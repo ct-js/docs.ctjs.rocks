@@ -7,6 +7,7 @@ module.exports = {
         lastUpdated: 'Last Updated',
 
         repo: 'https://github.com/CosmoMyzrailGorynych/docs.ctjs.rocks',
+        docsDir: 'docs',
         editLinks: true,
         editLinkText: 'Help us improve this page!',
 
