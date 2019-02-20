@@ -1,0 +1,23 @@
+{
+  "name": "ctjs-docs",
+  "version": "1.0.0",
+  "description": "Nice to meet you! Here you will find all the official documentation and tutorials for ct.js.",
+  "main": "",
+  "scripts": {
+    "dev": "vuepress dev docs",
+    "build": "vuepress build docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/CosmoMyzrailGorynych/docs.ctjs.rocks.git"
+  },
+  "author": "Cosmo Myzrail Gorynych",
+  "license": "Creative Commons Attribution-ShareAlike 4.0 International",
+  "bugs": {
+    "url": "https://github.com/CosmoMyzrailGorynych/docs.ctjs.rocks/issues"
+  },
+  "homepage": "https://github.com/CosmoMyzrailGorynych/docs.ctjs.rocks#readme",
+  "dependencies": {
+    "vuepress": "^0.14.9"
+  }
+}
