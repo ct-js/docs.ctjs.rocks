@@ -46,7 +46,6 @@ module.exports = {
                 collapsable: false,
                 children: [
                     'ct',
-                    'ct.mouse',
                     'ct.res',
                     'ct.rooms',
                     'ct.sound',
