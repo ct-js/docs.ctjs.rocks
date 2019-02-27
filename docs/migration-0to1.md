@@ -184,3 +184,13 @@ this.addChild(this.coinIcon);
 ## Changes from 1.0.0-next-1 to 1.0.0-next-2
 
 For working with different resolutions, you should now use `ct.viewWidth` and `ct.viewHeight` instead of `ct.width` and `ct.height`. The latter now mean the size of a drawing canvas, which doesn't always match with your viewport, especially when using new sizing modes of `ct.fittoscreen`.
+
+## Changes in 1.0.0-next-3
+
+### Keyboard and mouse support
+
+ct.js now uses Actions for mapping a user input with game events. You can read about Actions [here](/actions.html). Because of that, `ct.mouse` dropped out of the core and is now a catmod.
+
+All old projects will automatically work with `ct.mouse.legacy` and, if needed, `ct.keyboard.legacy`. They reflect the previous behaviour of these modules and should not cause compatibility issues.
+
+The new `ct.keyboard` doesn't have `ct.keyboard.pressed`, `ct.keyboard.down`, and `ct.keyboard.released`. Instead, it fully relies on the new Actions system.
