@@ -202,3 +202,33 @@ For now, supported values are:
 * `text` that will yield `String`s;
 * `number` that will yield `Number`s;
 * `checkbox` that will yield `Boolean`s.
+
+## Adding new input methods
+
+Since `v1.0.0-next-3`, ct.js now uses Actions system for managing inputs from mouse, keyboard, gamepads, etc. If you are making a module with a new input method, you should do a couple of things:
+
+### Provide a list of available input signals (aka input methods)
+
+This is done to allow users to select your new input methods in ct.IDE, with an Action editor. To do so, you should add a new entry `inputMethods` to your `module.json`:
+
+```json
+{
+    "main": {
+        "name": "A catmod for a new input method",
+        "version": "0.0.0",
+        "authors": [{/*...*/}]
+    },
+    "inputMethods": {
+        "Code1": "The name of the first button, axis, etc.",
+        "Code2": "The name of the second button, axis, etc.",
+        "Code3": "The name of the third button, axis, etc."
+    }
+}
+```
+
+Next, you should write your module so that it updates the `ct.inputs.registry`. It is a map-like object with keys equal to your module name + signal code, e.g. `keyboard.KeyW` or `mouse.Left`, and `Number` values from `-1` to `1`. Here, `0` means that there is no signal (e.g. a button is not pressed or a gamepad's thumb is in its resting position). Analog sticks will use a full range of `(-1, 1)`, when buttons will usually alternate between `0` and `1`.
+
+```js
+ct.inputs.registry['keyboard.keyW'] = 1;
+ct.inputs.registry['gamepad.LeftThumbX'] = 0.2;
+```
