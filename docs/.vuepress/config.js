@@ -49,6 +49,7 @@ module.exports = {
                 collapsable: false,
                 children: [
                     'ct',
+                    ['ct.inputs', 'ct.inputs and ct.actions'],
                     'ct.res',
                     'ct.rooms',
                     'ct.sound',
@@ -61,6 +62,7 @@ module.exports = {
                 title: 'Tips & tricks',
                 collapsable: false,
                 children: [
+                    'actions',
                     'localstorage',
                     'viewport-management'
                 ]
