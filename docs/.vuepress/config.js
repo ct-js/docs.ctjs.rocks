@@ -2,6 +2,8 @@ module.exports = {
     title: 'ct.js Documentation',
     description: 'Docs, tutorials, guides',
     
+    plugins: ['@vuepress/pwa'],
+    
     themeConfig: {
         logo: '/assets/img/logo.png',
         lastUpdated: 'Last Updated',
@@ -15,8 +17,8 @@ module.exports = {
             text: 'Home',
             link: '/'
         }, {
-            text: "Official website",
-            link: "https://ctjs.rocks"
+            text: 'Official website',
+            link: 'https://ctjs.rocks'
         }, {
             text: 'Discord',
             link: 'https://discord.gg/CggbPkb'
@@ -24,6 +26,7 @@ module.exports = {
             text: 'Forum',
             link: 'https://comigo.itch.io/ct/community'
         }],
+
         sidebar: [
             [
                 '/', 'Home'
@@ -36,7 +39,7 @@ module.exports = {
                 ],
             }, {
                 collapsable: false,
-                title: "Tutorials",
+                title: 'Tutorials',
                 children: [
                     'tut-making-shooter',
                     'tut-making-platformer'
