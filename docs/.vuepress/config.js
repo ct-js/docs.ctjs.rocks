@@ -117,12 +117,19 @@ module.exports = {
                 editLinkText: 'Помогите сделать эту страницу лучше!',
                 sidebar: [
                     ['/', 'Русская документация пока что неполная и может расходиться с английской!'],
+                    ['ru/', 'Главная'],
                     {
                         title: 'Подсказки и советы',
                         collapsable: false,
                         children: [
                             'ru/actions'
                         ]
+                    }, {
+                        collapsable: false,
+                        title: 'Уроки',
+                        children: [
+                            'ru/tut-making-platformer'
+                        ],
                     }
                 ],
                 serviceWorker: {
