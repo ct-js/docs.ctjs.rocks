@@ -16,7 +16,7 @@ We will need some assets from the [simplified platformer pack by Kenny](https://
 
 ![The needed assets](./images/tutPlatformer_02.png)
 
-Open the "Graphics" tab, press the "Import" button, navigate to the `ctjs/examples/Platformer_assets/` folder and select all the images there. They will appear in the graphics panel.
+Open the "Graphics" tab, press the "Import" button, navigate to the `ctjs/examples/Platformer_assets/` folder and select all the images there. They will appear in the textures panel.
 
 The first thing that we can notice is that the Robot_Walking animation is counted on as one image, not as two separate frames. Click on the `Robot_Walking` asset.
 
@@ -26,7 +26,7 @@ The image is a small horizontal stripe. It has one row and two columns. We can t
 
 The whole image is 192 pixels wide so one frame will be 192 : 2 = 96 pixels wide. The robot's frames should now be outlined with two rectangles.
 
-![Editing a graphics asset](./images/tutPlatformer_04.png)
+![Editing a texture](./images/tutPlatformer_04.png)
 
 Now let's edit its collision mask. It determines which areas of an image are counted as solid and which are not, and is displayed as a yellow rectangle over the sprite.
 
@@ -38,7 +38,7 @@ As we have a 96x96 pixels image, we need 48 pixels on the horizontal axis and 96
 
 The robot has a nice rectangular shape so it will be wiser to mark it up as a rectangle. Make sure you have a rectangular shape selected, click the 'Fill' button and calibrate the offsets so the robot's body is covered with a yellow rectangle.
 
-![Editing a graphics asset](./images/tutPlatformer_05.png)
+![Editing a texture](./images/tutPlatformer_05.png)
 
 You can cover both body and hands, or select the body only.
 
@@ -61,7 +61,7 @@ The last asset we need to modify is the `Spikes`. We don't need to shift its axi
 
 ![Editing spikes](./images/tutPlatformer_08.png)
 
-Save your asset. If you look into other graphics assets, you will see that they all have a rectangular shape that fills the whole image. That fits for all other images so we will leave them as is.
+Save your asset. If you look into other textures, you will see that they all have a rectangular shape that fills the whole image. That fits for all other images so we will leave them as is.
 
 ## Creating a Robot Character and Ground
 
@@ -333,15 +333,15 @@ this.animationSpeed = 0.2;
 
 `0.2` means that we want to play 0.2×60 (which is 12) frames per second. For more readability, we could also write it as `12/60`.
 
-Open the `Robot`'s "On Step" code and modify the moving section so it changes the drawn graphics asset depending on user inputs and the robot's position in space:
+Open the `Robot`'s "On Step" code and modify the moving section so it changes the drawn texture depending on user inputs and the robot's position in space:
 
 ```js{4,5,6,7,8,9,13,14,15,16,17,18,22,38,39}
 if (ct.actions.MoveLeft.down) {
     // If the A key on keyboard is down, then move to left
     this.hspd = -this.speed;
     // Set the walking animation and transform the robot to the left
-    if (this.graph !== 'Robot_Walking') {
-        this.graph = 'Robot_Walking';
+    if (this.tex !== 'Robot_Walking') {
+        this.tex = 'Robot_Walking';
         this.play();
     }
     this.scale.x = -1;
@@ -349,15 +349,15 @@ if (ct.actions.MoveLeft.down) {
     // If the D key on keyboard is down, then move to right
     this.hspd = this.speed;
     // Set the walking animation and transform the robot to the right
-    if (this.graph !== 'Robot_Walking') {
-        this.graph = 'Robot_Walking';
+    if (this.tex !== 'Robot_Walking') {
+        this.tex = 'Robot_Walking';
         this.play();
     }
     this.scale.x = 1;
 } else {
     // Don't move horizontally if no input
     this.hspd = 0;
-    this.graph = 'Robot_Idle';
+    this.tex = 'Robot_Idle';
 }
 
 // If there is ground underneath the Robot…
@@ -374,13 +374,13 @@ if (ct.place.occupied(this, this.x, this.y + 1, 'Solid')) {
     // If there is no ground  
     this.vspd += this.gravity;
     // Set jumping animation!
-    this.graph = 'Robot_Jump';
+    this.tex = 'Robot_Jump';
 }
 ```
 
 As out vertical movement isn't dependant on the horizontal movement, the animation is overridden to the jumping state if there is no ground under the robot.
 
-The robot will now flip to the current direction and change its graphics asset depending on movement. Look at that boy!
+The robot will now flip to the current direction and change its texture depending on movement. Look at that boy!
 
 ![Animated Robot](./images/tutPlatformer_Animating.gif)
 
@@ -392,7 +392,7 @@ Here's the idea:
 * There will be level exits that will collide with the Robot.
 * When they collide, the exit will read the room's variable and switch to the next room.
 
-Create a new type and call it an `Exit`. Set its graphics asset. Then open the "On Step" tab and write this code:
+Create a new type and call it an `Exit`. Set its texture. Then open the "On Step" tab and write this code:
 
 ```js
 // Are there next rooms defined?
@@ -420,7 +420,7 @@ Place an exit to the room.
 Now save the room, mark the `Level_01` as a starting room by right-clicking it and test whether there is a transition.
 
 ::: tip On your own!
-Create additional exits leading to secret sublevels and back. Get [more graphics assets from here](https://www.kenney.nl/assets/simplified-platformer-pack), if you need such.
+Create additional exits leading to secret sublevels and back. Get [more assets from here](https://www.kenney.nl/assets/simplified-platformer-pack), if you need such.
 :::
 
 ## Collectibles: Counting and Drawing

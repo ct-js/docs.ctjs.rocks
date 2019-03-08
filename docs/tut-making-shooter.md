@@ -4,7 +4,7 @@ Let's make a small space shooting game with asteroids, lasers and hostile gunshi
 
 ![](./images/tutSpaceShooter_Result.gif)
 
-## Importing Graphic Assets 
+## Importing Textures 
 
 Open ct.js and create a new project with a name "SpaceShooter".
 
@@ -18,7 +18,7 @@ These are all the assets we will need today:
 
 ![](./images/tutSpaceShooter_02.png)
 
-Now open the "Graphic" tab on the top of the ct.IDE window, and drag & drop these assets inside the ct.IDE window. You can also press an "Input" button to find them manually.
+Now open the "Textures" tab on the top of the ct.IDE window, and drag & drop these assets inside the ct.IDE window. You can also press an "Input" button to find them manually.
 
 A card for each of the images will appear. Let's open the `PlayerShip` and configure it. We will see a yellow shape that defines its collision shape. For now, it covers too much empty space, especially above wings. To fix it, we should modify this collision shape in the left column.
 
@@ -28,9 +28,9 @@ Next, select the "**Line Strip / Polygon**" option under the label "Collision Sh
 
 ![](./images/tutSpaceShooter_03.png)
 
-Press "Save" and move to the next graphic asset — "LaserRed". As with the ship, let's set its axis to center by clicking "Image's Center". Then, select a **Circle** collision shape right beneath this button. Now a yellow collision shape is drawn as a circle.
+Press "Save" and move to the next texture — "LaserRed". As with the ship, let's set its axis to center by clicking "Image's Center". Then, select a **Circle** collision shape right beneath this button. Now a yellow collision shape is drawn as a circle.
 
-The next graphic asset, `Laser_Blue`, should be centered too, and since the collision shape should cover all the image, we can click the "Fill" button to automate it.
+The next texture, `Laser_Blue`, should be centered too, and since the collision shape should cover all the image, we can click the "Fill" button to automate it.
 
 ![](./images/tutSpaceShooter_04.png)
 
@@ -44,15 +44,15 @@ The background image may be left as is, because it won't collide with other thin
 
 ## Making First Types and Laying Things Out
 
-**Graphic assets** don't do much on their own, and in order to display them in game, we need to create **Types** with these assets. Types are used to create **Copies**, and the latter are the things that you place inside **Rooms**, that interact with each other and respond to your inputs.
+**Textures** don't do much on their own, and in order to display them in game, we need to create **Types** with these assets. Types are used to create **Copies**, and the latter are the things that you place inside **Rooms**, that interact with each other and respond to your inputs.
 
-Press the "Types" tab on top of the screen, and create a new Type for the player. After clicking the "Create" button, click on the big ghostly cat in the left column. It will show you all your graphic assets. Press the card with your ship. It should now appear in the left column of the editor.
+Press the "Types" tab on top of the screen, and create a new Type for the player. After clicking the "Create" button, click on the big ghostly cat in the left column. It will show you all your textures. Press the card with your ship. It should now appear in the left column of the editor.
 
 Now, change the Type's name to `PlayerShip` so we won't need to remember these numbers while coding.
 
 ![](./images/tutSpaceShooter_06.png)
 
-Create Types for all the other graphic assets but the background image. Background images don't move or interact with anything, and is often tiled, so it is not a Type. We will add it later in a **Room**.
+Create Types for all the other textures but the background image. Background images don't move or interact with anything, and is often tiled, so it is not a Type. We will add it later in a **Room**.
 
 ![](./images/tutSpaceShooter_07.png)
 

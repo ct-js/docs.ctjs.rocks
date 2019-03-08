@@ -35,7 +35,7 @@ There are a number of parameters that can be changed:
 
 - `animationSpeed` — animation speed. Higher is faster, lower is slower;
 - `depth` — the drawing layer;
-- `graph` — the name of graphic asset to use;
+- `tex` — the name of a texture to use;
 - `rotation` — the rotation of the copy in degrees;
 - `scale` — the scale factor of the object. You can either assign a simple value (`this.scale = 0.5;`) for uniform scaling or access its `x` and `y` compounds (`this.scale.x = 0.5;`).
 - `tint` — the tint applied to the sprite. This is a hex value. A value of `0xFFFFFF` will remove any tint effect. The colors are the same as in CSS, e.g. `0xFF0000` is red, `0x00FFFF` is cyan, ect;

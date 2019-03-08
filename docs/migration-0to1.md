@@ -194,3 +194,9 @@ ct.js now uses Actions for mapping a user input with game events. You can read a
 All old projects will automatically work with `ct.mouse.legacy` and, if needed, `ct.keyboard.legacy`. They reflect the previous behaviour of these modules and should not cause compatibility issues.
 
 The new `ct.keyboard` doesn't have `ct.keyboard.pressed`, `ct.keyboard.down`, and `ct.keyboard.released`. Instead, it fully relies on the new Actions system.
+
+### Graphics -> Textures
+
+Graphics, graphic assets, etc. are now called "Textures".
+
+Now, instead of writing `this.graph = 'Sosiska';` in your code to change a texture, you should write `this.tex = 'Sosiska;`.

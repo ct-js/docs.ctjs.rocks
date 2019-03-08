@@ -1,9 +1,22 @@
 module.exports = {
     title: 'ct.js Documentation',
     description: 'Docs, tutorials, guides',
-    
+
     plugins: ['@vuepress/pwa'],
     
+    locales: {
+        '/': {
+            lang: 'en-US', // this will be set as the lang attribute on <html>
+            title: 'ct.js Documentation',
+            description: 'Docs, tutorials, guides',
+        },
+        '/ru/': {
+            lang: 'ru',
+            title: 'Документация к игровому движку ct.js',
+            description: 'Референсы, туториалы, гайды'
+        }
+    },
+
     themeConfig: {
         logo: '/assets/img/logo.png',
         lastUpdated: 'Last Updated',
@@ -12,7 +25,7 @@ module.exports = {
         docsDir: 'docs',
         editLinks: true,
         editLinkText: 'Help us improve this page!',
-
+        
         nav: [{
             text: 'Home',
             link: '/'
@@ -87,6 +100,40 @@ module.exports = {
                 ]
             }
         ],
+
+        locales: {
+            '/': {
+                // text for the language dropdown
+                selectText: 'Languages',
+                // label for this locale in the language dropdown
+                label: 'English',
+            },
+            '/ru/': {
+                // text for the language dropdown
+                selectText: 'Язык',
+                // label for this locale in the language dropdown
+                label: 'Русский',
+                // text for the edit-on-github link
+                editLinkText: 'Помогите сделать эту страницу лучше!',
+                sidebar: [
+                    ['/', 'Русская документация пока что неполная и может расходиться с английской!'],
+                    {
+                        title: 'Подсказки и советы',
+                        collapsable: false,
+                        children: [
+                            'ru/actions'
+                        ]
+                    }
+                ],
+                serviceWorker: {
+                    updatePopup: {
+                        message: "Доступно новое содержимое.",
+                        buttonText: "Обновить страницу"
+                    }
+                }
+            }
+        },
+
         lastUpdated: 'Last Updated'
     }
 };  
