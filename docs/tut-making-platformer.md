@@ -10,13 +10,13 @@ Open ct.js and create a new project called "Platformer".
 
 ![Creating a new project](./images/tutPlatformer_01.png)
 
-## Importing Graphics Assets
+## Importing Textures
 
-We will need some assets from the [simplified platformer pack by Kenny](https://www.kenney.nl/assets/simplified-platformer-pack). You can find the needed assets with proper names in the `ctjs/examples/Platformer_assets/` folder.
+We will need some assets from the [simplified platformer pack by Kenney](https://www.kenney.nl/assets/simplified-platformer-pack). You can find the needed assets with proper names in the `ctjs/examples/Platformer_assets/` folder.
 
 ![The needed assets](./images/tutPlatformer_02.png)
 
-Open the "Graphics" tab, press the "Import" button, navigate to the `ctjs/examples/Platformer_assets/` folder and select all the images there. They will appear in the textures panel.
+Open the "Textures" tab, press the "Import" button, navigate to the `ctjs/examples/Platformer_assets/` folder and select all the images there. They will appear in the textures panel.
 
 The first thing that we can notice is that the Robot_Walking animation is counted on as one image, not as two separate frames. Click on the `Robot_Walking` asset.
 
@@ -40,14 +40,14 @@ The robot has a nice rectangular shape so it will be wiser to mark it up as a re
 
 ![Editing a texture](./images/tutPlatformer_05.png)
 
-You can cover both body and hands, or select the body only.
+You can cover both the body and hands, or select the body only.
 
 Click the "Save" button in the bottom-left corner.
 
 We now need to set collision masks for `Robot_Idle` and `Robot_Jump` too. Make sure that you shift the axis to 48x96 and calibrate collision masks for both of them.
 
 ::: tip
-It is also good to make collision offsets same for each of the three sprites, so the robot doesn't clip into the surface when switching its animations and suddenly getting bigger.
+It is also good to make collision offsets same for each of the three sprites, so the robot doesn't clip into the surface when switching its animations while suddenly getting bigger as a collision shape.
 :::
 
 Now let's set the collision shapes of our crystals and heart bonuses. These can be defined as circles. Open the `GreenCrystal`, set its collision shape as a "Circle", then click a button called "Image's center" so the axis automatically snaps to needed values, and calibrate the collision shape's radius.
@@ -93,7 +93,9 @@ I drew this. It is hard to get stuck here as a player, but it teaches how to jum
 
 ![Comigo's platformer level](./images/tutPlatformer_11.png)
 
-Now let's add a background. Click the "Backgrounds" tab on the left, press "Add", and select the `BG` asset. Now click on the 0 near our new background and change its depth to `-10`. Thus we tell the engine that the background should be drawn 10 layers below the default 0 layer.
+Now let's add a background. Click the "Backgrounds" tab on the left, press "Add", and select the `BG` asset. Now click the cog near our new background and change its depth to `-10`. Thus we tell the engine that the background should be drawn 10 layers below the default 0 layer.
+
+![](./images/tutPlatformer_27.png)
 
 If we save the project now and click the "Play" button at the top, we will be able to see a small portion of our level drawn in a debugger window. Nothing is movable yet, but it's still a good beginning!
 
@@ -106,7 +108,7 @@ We will need to listen to keyboard events and to detect collisions between the R
 ![Enabling a module in ct.js](./images/tutPlatformer_13.png)
 
 ::: tip PRO TIP ✨
-Enable the catmod called `fittoscreen`, then go to its settings tab and enable the option called "Just scale, no canvas resize" for an automagical full-screen view.
+Enable the catmod called `fittoscreen`, then go to its settings tab and enable the option called "Fast scale with letterboxing" for an automagical full-screen view.
 :::
 
 Each module has its own documentation on the "Reference" tab. We will highlight some of its parts later.
@@ -121,7 +123,7 @@ Go to the Settings panel, then press the "Edit actions" button.
 
 Then, create an input scheme as in the picture below. To do that, firstly press the button "Add an action", name it, and then add input methods in the right column. You can use search to quickly add the needed keys.
 
-![Input mappings for a simple tutorial in ct.js](./images/tutPlatformer_25.png)
+![Input mappings for a simple platformer in ct.js](./images/tutPlatformer_25.png)
 
 ::: tip
 Though this scheme may be simplified down to just two actions (see [examples in the Actions page](/actions.html#examples)), we will have two separate actions for moving left or right to not overcomplicate the tutorial.
@@ -129,17 +131,17 @@ Though this scheme may be simplified down to just two actions (see [examples in 
 
 ### Coding Collision Detection and Movement
 
-Now, move to the "Types" tab at the top of the screen and open the `Rocks` type. In the left column, fill the field called "Collision group" with `solid`:
+Now, move to the "Types" tab at the top of the screen and open the `Rocks` type. In the left column, fill the field called "Collision group" with `Solid`:
 
 ![Adding a collision group to a type](./images/tutPlatformer_26.png)
 
-This will tell the `ct.place` catmod that this exact type belongs to a special collision group called "Solid". The name of this group can be of any value, and the number of such groups is unlimited. For now, one group will be enough.
+This will tell the `ct.place` catmod that this particular type belongs to a special collision group called "Solid". The name of this group can be of any value, and the number of such groups is unlimited. For now, one group will be enough.
 
 Add the same line to `Rocks_Top` and `Rocks_Platform`.
 
 Now open the `Robot` type. If you completed the "Space Shooter" tutorial before, you may recall that movement is made using either direct manipulation of a copy's parameters or by using built-in variables like `this.speed` or `this.direction`. The truth is that the latter never worked with platformers, even outside ct.js! We will need to write something more complicated. Be prepared! 😃
 
-The idea of a side-view movement is that we will have a value on which we would like to move to, and then we will check whether we are colliding with something or not, pixel-by-pixel.
+The idea of a side-view movement is that we will have a value by which we would like to move to, and then we will check whether we are colliding with something or not, pixel-by-pixel.
 
 Let's set up some variables on the "On Create" tab:
 
@@ -286,7 +288,7 @@ The line `this.move();` is responsible for moving copies that use standard ct va
 
 Here we also shift the stored point by 32x32 pixels, because the checkpoint's axis is placed in its top-left corner, but the Robot's axis is placed at the middle bottom point. Because of that, the Robot would respawn a bit left and above the desired central point.
 
-Go to the "Draw" tab and erase the line `ct.draw(this);`. This will make checkpoints invisible during the gameplay.
+Go to the "On Create" tab and add a line `this.visible = false;`. This will make checkpoints invisible during the gameplay.
 
 Now go to the `Spikes` type and mark them as a "Deadly" collision:
 
@@ -312,7 +314,7 @@ if (ct.place.occupied(this, this.x, this.y, 'Deadly')) {
 Here, the `return;` statement stops the execution of a function. We won't need movement and other checks if we need to respawn the Robot at some other position.
 :::
 
-We should also write this code to "On Create" code so that respawn point will be at creation location by default, in case something ever goes wrong:
+We should also write this code to "On Create" tab so that respawn point will be at creation location by default, in case something ever goes wrong:
 
 ```js
 this.savedX = this.x;
@@ -378,7 +380,7 @@ if (ct.place.occupied(this, this.x, this.y + 1, 'Solid')) {
 }
 ```
 
-As out vertical movement isn't dependant on the horizontal movement, the animation is overridden to the jumping state if there is no ground under the robot.
+As our vertical movement isn't dependant on the horizontal movement, the animation is overridden to the jumping state if there is no ground under the robot.
 
 The robot will now flip to the current direction and change its texture depending on movement. Look at that boy!
 
@@ -437,7 +439,7 @@ if (ct.place.meet(this, this.x, this.y, 'Robot')) {
 ```
 
 ::: tip
-`this.kill = true;` tells that the current copy should be removed from the current room. It will happen after any "On Step" events but before the "Draw" event.
+`this.kill = true;` tells that the current copy should be removed from the current room. It will happen after all "On Step" events but before the "Draw" event.
 :::
 
 As you may already guess, the number of gathered crystals will be stored in the room.
@@ -484,11 +486,11 @@ Then activate the "Font" section, set the font size to 24 and its weight to 600.
 
 ![Setting a style's font](./images/tutPlatformer_17.png)
 
-Then open the "Fill" tab, activate it and set its fill color to green. I chose `#00A847`. Other good choices include main colors of the crystal, like `#2ECC71` and `#28B463`.
+Then open the "Fill" tab, activate it and set its fill color to green. I chose `#00A847`. Other good choices include the main colors of the crystal, like `#2ECC71` and `#28B463`.
 
 ![Setting a style's fill color](./images/tutPlatformer_18.png)
 
-We can also add a thich white line to our text. Open the "Stroke" tab, then set the color to white and line's width to 5. If you can't see the result on the right, try switching to a dark UI theme for a while by clicking the hamburger menu at the top.
+We can also add a thick white line to our text. Open the "Stroke" tab, then set the color to white and line's width to 5. If you can't see the result on the right, try switching to a dark UI theme for a while by clicking the hamburger menu at the top.
 
 ![Setting a style's line style](./images/tutPlatformer_23.png)
 
@@ -513,7 +515,7 @@ this.y = ct.room.y + 24;
 this.text.text = ct.room.crystals + ' / ' + ct.room.crystalsTotal;
 ```
 
-Here we snap our widget to the top-left corner, and update its label.
+Here we snap our widget to the top-left corner and update its label.
 
 We will now have a crystal counter at the top-left corner of our screen.
 
@@ -556,7 +558,7 @@ var inGameRoomStart = function (room) {
 
 Don't forget to place actual heart bonuses on your levels!
 
-We will also need a style for a counter. The process is the same, and the suitable color is `#E85017`. We can even duplicate the existing style! Let's call this style a `HeartCounter`.
+We will also need a style for a counter. The process is the same, and a suitable color is `#E85017`. We can even duplicate the existing style! Let's call this style a `HeartCounter`.
 
 We will need another widget for health, too. Create a new type called `HeartsWidget`, set its sprite to the `Heart`, and set its OnCreate code to this:
 
@@ -629,6 +631,7 @@ if (robot) {
 ```
 
 And the movement logic:
+
 ```js
 if (ct.place.occupied(this, this.x + this.speed * ct.delta, this.y, 'Solid')) {
     // Flip direction
