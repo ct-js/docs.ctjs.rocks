@@ -22,7 +22,9 @@ Now open the "Graphic" tab on the top of the ct.IDE window, and drag & drop thes
 
 A card for each of the images will appear. Let's open the `PlayerShip` and configure it. We will see a yellow shape that defines its collision shape. For now, it covers too much empty space, especially above wings. To fix it, we should modify this collision shape in the left column.
 
-Firstly, press a button "Image's center", so its axis is placed at the ship's center. Next, modify the four values above the "Fill" button. Each one defines how far should the rectangular shape extend from the image's center. I chose `12` to the top, `50` on sides and `32` to the bottom. 
+Firstly, press a button "Image's center", so its axis is placed at the ship's center. 
+
+Next, select the "**Line Strip / Polygon**" option under the label "Collision Shape". Add a couple of additional points and move them with your mouse so that the resulting polygon resembles the ship's shape. 
 
 ![](./images/tutSpaceShooter_03.png)
 
@@ -32,12 +34,11 @@ The next graphic asset, `Laser_Blue`, should be centered too, and since the coll
 
 ![](./images/tutSpaceShooter_04.png)
 
-
-Both asteroids are definitely more circular by their shapes. Set their collision shape to **Circle**, and don't forget to set their axis to center.
-
+Both asteroids are better defined as polygons by their concave or sharp shapes. Set their collision shape to **Line Strip / Polygon**, and don't forget to set their axis to center.
+ 
 ![](./images/tutSpaceShooter_05.png)
 
-The `EnemyShip`'s shape can be treated either as a **Circle** or as a **Rectangle**. Select the one you think is better.
+The `EnemyShip`'s shape can be treated as a **Polygon**.
 
 The background image may be left as is, because it won't collide with other things in the game.
 
@@ -91,16 +92,30 @@ After that, save the project and click a 'play' button. At this point, you will 
 
 ## Adding Player's Movement
 
-Handling user's input is the most important task. In this section we will make the blue ship move when a player presses arrow keys.
+Handling user's input is the most important task. In this section we will make the blue ship move when a player presses arrow keys or WASD.
 
-In order to handle keyboard inputs, we need to enable keyboard module. Press the "Catmods" tab, find a `keyboard` module on the left, select it, and then push the big red button to enable it. Then add `random` and `place` modules, as we will need them later too.
+In order to handle keyboard inputs, we need to enable keyboard module. Press the "Catmods" tab, find a `keyboard` module on the left, select it, and then push the big red button to enable it (it may be enabled by default, though). Then add `mouse`, `random` and `place` modules, as we will need them later too.
 
 ![](./images/tutSpaceShooter_12.png)
+
+### Adding actions
+
+Actions in ct.js are entities that group different input methods into events, and allow you to listen to player input in code. You can read more about them [here](/actions.html).
+
+For now, let's create a basic input scheme for our shooter. Open the "Settings" tab, then press the button labelled as "Edit actions". We will need to define three different actions: for shooting laser bullets, for moving horisontally, and for moving vertically.
+
+First, click the "Add an action" button. Then, input the name of the first module. Click the button called "Add an input method" to bind specific buttons to your action. Use its search to quickly filter available input methods.
+
+![](./images/tutSpaceShooter_15.png)
+
+Create three actions as in the picture above. Set multiplier value to `-1` for `keyboard.ArrowUp`, `keyboard.KeyW`, `keyboard.ArrowLeft`, and for `keyboard.A`, so that these keys will move the ship in the opposite direction.
+
+### Coding the movement
 
 Open the "Types" tab on the top, next move to `On Step` event.
 
 ::: tip
-`On Step` event occurs every frame before drawing, while `Draw` happens after all the `On Step` events in the room to draw a new frame. `On create` happens when you spawn a new Copy, and  `On Destroy` occurs before the `Draw` event if a Copy is killed.
+`On Step` event occurs every frame before drawing, while `Draw` happens after all the `On Step` events in the room to draw a new frame. `On Create` happens when you spawn a new Copy, and  `On Destroy` occurs before the `Draw` event if a Copy is killed.
 :::
 
 Write the following code:
@@ -108,17 +123,16 @@ Write the following code:
 ```js
 /**
  * Move the ship
+ * See Settings > Edit actions panel
+ * and "Actions" in the docs.
  */
 
-if (ct.keyboard.down['left']) { // Is the left arrow key pressed?
-    this.x -= 8 * ct.delta; // Move to the left by X axis
-}
-if (ct.keyboard.down['right']) { // Is the right arrow key pressed?
-    this.x += 8 * ct.delta; // Move to the right by X axis
-}
+this.x += 8 * ct.delta * ct.actions.MoveX.value; // Move by X axis
+this.y += 8 * ct.delta * ct.actions.MoveY.value; // Move by Y axis
+
 
 /**
- * Check whether the shif fell off the viewport
+ * Check whether the ship fell off the viewport
  */
 if (this.x < 0) { // Have the ship crossed the left border?
     this.x = 0; // Go back to the left border
@@ -130,7 +144,13 @@ if (this.x > ct.viewWidth) { // Have the ship crossed the right border?
 this.move();
 ```
 
-First, we move the ship if arrow keys were pressed, then we check whether its X coordinate fell off the viewport. Here `0` means the left side of the room and `ct.viewWidth` means the horizontal size of the viewport, which forms the right side.
+Here we are using the created actions. First, we try to move the ship horisontally (by `x`, line 6). `ct.actions.MoveX` will return `1` if we pressed the right keyboard arrow or the "D" key, and will return `-1` if a player presses the left arrow or the "A" key. If nothing is pressed, it will return `0`, disabling the horisontal movement.
+
+`ct.delta` is needed to compensate possible lags and FPS drops. It is usually equal to `1` and doesn't add much, but will speed up the movement if some frames were dropped.
+
+Lastly, we multiply our intermediate speed value with the desired velocity, `8`, and do it all the same way for the `y` axis.
+
+We later check whether its X coordinate fell off the viewport. Here `0` means the left side of the room and `ct.viewWidth` means the horizontal size of the viewport, which forms the right side.
 
 All the methods starting with `ct.keyboard` come from the enabled module. You can read its documentation on the "Catmods" tab, "Reference" section.
 
@@ -212,12 +232,12 @@ Save the project and click the "Play" button at the top. The hostile ship will s
 
 ## Projectiles & Collision
 
-Now it is time to bring the guns.
+Now it is time to bring the guns 😎
 
 Open the `PlayerShip`'s `Step` event, and add this code:
 
 ```js
-if (ct.keyboard.pressed['space']) {
+if (ct.actions.Shoot.pressed) {
     ct.types.copy('Laser_Blue', this.x, this.y);
 }
 ```
