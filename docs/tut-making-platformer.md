@@ -111,21 +111,33 @@ Enable the catmod called `fittoscreen`, then go to its settings tab and enable t
 
 Each module has its own documentation on the "Reference" tab. We will highlight some of its parts later.
 
+### Adding Actions for Keyboard Events
+
+Actions allow to listen to events from keyboard, mouse, gamepad, etc. You can read more about them [here](/actions.html). With them, we will create listeners to WASD keys and arrows.
+
+Go to the Settings panel, then press the "Edit actions" button.
+
+![](./images/tutPlatformer_24.png)
+
+Then, create an input scheme as in the picture below. To do that, firstly press the button "Add an action", name it, and then add input methods in the right column. You can use search to quickly add the needed keys.
+
+![Input mappings for a simple tutorial in ct.js](./images/tutPlatformer_25.png)
+
+::: tip
+Though this scheme may be simplified down to just two actions (see [examples in the Actions page](/actions.html#examples)), we will have two separate actions for moving left or right to not overcomplicate the tutorial.
+:::
+
 ### Coding Collision Detection and Movement
 
-Now, move to the "Types" tab at the top of the screen and open the `Rocks` type. The "On Create" tab should be selected by default; write this line to its code:
+Now, move to the "Types" tab at the top of the screen and open the `Rocks` type. In the left column, fill the field called "Collision group" with `solid`:
 
-```js
-this.ctype = 'Solid';
-```
+![Adding a collision group to a type](./images/tutPlatformer_26.png)
 
 This will tell the `ct.place` catmod that this exact type belongs to a special collision group called "Solid". The name of this group can be of any value, and the number of such groups is unlimited. For now, one group will be enough.
 
-![Adding a collision group to a type](./images/tutPlatformer_14.png)
-
 Add the same line to `Rocks_Top` and `Rocks_Platform`.
 
-Now open the `Robot` type. If you completed the "Space Shooter" tutorial before, you may recall that movement is made using either direct manipulation of a copy's parameters or by using built-in variables like `this.spd` or `this.dir`. The truth is that the latter never worked, even outside ct.js! We will need to write something more complicated. Be prepared! 😃
+Now open the `Robot` type. If you completed the "Space Shooter" tutorial before, you may recall that movement is made using either direct manipulation of a copy's parameters or by using built-in variables like `this.speed` or `this.direction`. The truth is that the latter never worked with platformers, even outside ct.js! We will need to write something more complicated. Be prepared! 😃
 
 The idea of a side-view movement is that we will have a value on which we would like to move to, and then we will check whether we are colliding with something or not, pixel-by-pixel.
 
@@ -147,12 +159,13 @@ Now move to the "On Step" tab and add this code:
 
 ```js
 this.speed = 4 * ct.delta; // Max horizontal speed
-if (ct.keyboard.down['A']) {
-    // If the A key on keyboard is down, then move to left
+
+if (ct.actions.MoveLeft.down) {
+    // If the A key or left arrow on a keyboard is down, then move to left
     this.hspd = -this.speed;
-} else if (ct.keyboard.down['D']) {
-    // If the D key on keyboard is down, then move to right
-    this.hspd = this.speed;
+} else if (ct.actions.MoveRight.down) {
+    // If the D key or right arrow on a keyboard is down, then move to right
+    this.hspd = this.speed; 
 } else {
     // Don't move horizontally if no input
     this.hspd = 0;
@@ -161,7 +174,7 @@ if (ct.keyboard.down['A']) {
 // If there is ground underneath the Robot…
 if (ct.place.occupied(this, this.x, this.y + 1, 'Solid')) {
     // …and the W key or the spacebar is down…
-    if (ct.keyboard.down['W'] || ct.keyboard.down['space']) {
+    if (ct.actions.Jump.down) {
         // …then jump!
         this.vspd = this.jumpSpeed;
     } else {
@@ -179,7 +192,7 @@ if (ct.place.occupied(this, this.x, this.y + 1, 'Solid')) {
 :::
 
 ::: tip
-`ct.keyboart.down['key']` checks whether a given `key` is currently held down. Note the square brackets here! There are also `ct.keyboard.pressed['key']` and `ct.keyboard.released['key']`.
+`ct.actions.YourAction.down` checks whether any key you listed in this action is currently held down. There are also `ct.actions.YourAction.pressed` and `ct.actions.YourAction.released`.
 
 `ct.place.occupied(copy, x, y, group)` checks whether a given copy has any collisions in given coordinates with a specific group. You can omit the group if you don't need it. This method returns either `false` (no collision) or a copy which was the first to collide with.
 :::
@@ -223,10 +236,6 @@ We can now move our Robot around!
 Your character may ignore holes which are one grid cell wide. Test it. If it occurs, you need to make the Robot's collision shapes a bit slimmer.
 :::
 
-::: tip On your own!
-Modify the code so that the player can control it with arrows, too.
-:::
-
 ### Making Camera Follow the Robot
 
 If we launch the game now, we will be able to move the Robot around. There is an issue, though: the camera isn't moving!
@@ -259,7 +268,7 @@ Here the supposed level's end is placed on the top middle platform. I also place
 
 Now let's move to the `Checkpoint`'s type and edit its "On Step" code.
 
-We will check for collision with the Robot, and when it happens, we will store a rescue point inside the Robot's copy. Remove the line `ct.types.move(this);` and add this code:
+We will check for collision with the Robot, and when it happens, we will store a rescue point inside the Robot's copy. Remove the line `this.move();` and add this code:
 
 ```js
 var robot = ct.place.meet(this, this.x, this.y, 'Robot');
@@ -270,9 +279,9 @@ if (robot) {
 ```
 
 ::: tip
-The line `ct.types.move(this);` is responsible for moving copies that use standard ct variables around. In this case, the checkpoint shouldn't move at all. 😉
+The line `this.move();` is responsible for moving copies that use standard ct variables around. In this case, the checkpoint shouldn't move at all. 😉
 
-`ct.place.meet` is almost the same as ct.place.occupied, but it checks against copies' types, not their collision group. This is also the fastest method if compared to `ct.place.free` and `ct.place.occupied`.
+`ct.place.meet` is almost the same as `ct.place.occupied`, but it checks against copies' types, not their collision group.
 :::
 
 Here we also shift the stored point by 32x32 pixels, because the checkpoint's axis is placed in its top-left corner, but the Robot's axis is placed at the middle bottom point. Because of that, the Robot would respawn a bit left and above the desired central point.
@@ -327,7 +336,7 @@ this.animationSpeed = 0.2;
 Open the `Robot`'s "On Step" code and modify the moving section so it changes the drawn graphics asset depending on user inputs and the robot's position in space:
 
 ```js{4,5,6,7,8,9,13,14,15,16,17,18,22,38,39}
-if (ct.keyboard.down['A']) {
+if (ct.actions.MoveLeft.down) {
     // If the A key on keyboard is down, then move to left
     this.hspd = -this.speed;
     // Set the walking animation and transform the robot to the left
@@ -336,7 +345,7 @@ if (ct.keyboard.down['A']) {
         this.play();
     }
     this.scale.x = -1;
-} else if (ct.keyboard.down['D']) {
+} else if (ct.actions.MoveRight.down) {
     // If the D key on keyboard is down, then move to right
     this.hspd = this.speed;
     // Set the walking animation and transform the robot to the right
@@ -354,7 +363,7 @@ if (ct.keyboard.down['A']) {
 // If there is ground underneath the Robot…
 if (ct.place.occupied(this, this.x, this.y + 1, 'Solid')) {
     // …and the W key or the spacebar is down…
-    if (ct.keyboard.down['W'] || ct.keyboard.down['space']) {
+    if (ct.actions.Jump.down) {
         // …then jump!
         this.vspd = this.jumpSpeed;
     } else {
@@ -463,7 +472,7 @@ Now go to each room's "On Create" code and add this line:
 inGameRoomStart(this);
 ```
 
-Hmmm… it looks familiar! Like `ct.draw(this);` or `ct.place.free(this, this.x, this.y)`! That's actually how most of the ct.js methods work: you have a method, and you tell this method to do something with that copy or that room.
+Hmmm… it looks familiar! Like `ct.place.free(this, this.x, this.y)`! That's actually how most of the ct.js methods work: you have a method, and you tell this method to do something with that copy or that room.
 
 When `inGameRoomStart(this);` is called it will set `crystals` and `crystalsTotal` parameters by itself, without the need to write such code directly to a room.
 
@@ -535,13 +544,13 @@ if (ct.place.meet(this, this.x, this.y, 'Robot')) {
 
 Then go to the "Settings" tab and modify the `inGameRoomStart` script:
 
-```diff
+```js{6,7}
 var inGameRoomStart = function (room) {
     room.crystals = 0;
     room.crystalsTotal = ct.types.list['GreenCrystal'].length;
     ct.types.copy('CrystalsWidget', 0, 0);
-+    ct.types.copy('HeartsWidget', 0, 0);
-+    room.lives = 3;
+    ct.types.copy('HeartsWidget', 0, 0);
+    room.lives = 3;
 };
 ```
 
