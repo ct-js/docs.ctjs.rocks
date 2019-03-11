@@ -128,7 +128,8 @@ module.exports = {
                         collapsable: false,
                         title: 'Уроки',
                         children: [
-                            'ru/tut-making-platformer'
+                            'ru/tut-making-platformer',
+                            'ru/tut-making-shooter'
                         ],
                     }
                 ],
