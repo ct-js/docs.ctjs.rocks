@@ -82,7 +82,7 @@ Then add a background. Click the "Backgrounds" tab and press "Add", then select 
 
 ![](./images/tutSpaceShooter_09.png)
 
-Though backgrounds are always drawn before Copies of the same depth level (`0` by default), it is better to change their Depth level. Click on the zero on the left to the background's icon in the left column and input `-5`. By doing this, we tell the engine that this background is placed lower than other Copies and backgrounds. Depth represents a third coordinate axis that goes upwards, when X and Y go to the sides.
+Though backgrounds are always drawn before Copies of the same depth level (`0` by default), it is better to change their Depth level. Click on the cog on the left to the background's icon in the left column and input `-5` in the "Depth" field. By doing this, we tell the engine that this background is placed lower than other Copies and backgrounds. Depth represents a third coordinate axis that goes upwards, when X and Y go to the sides.
 
 ![](./images/tutSpaceShooter_Depth.png)
 
@@ -128,7 +128,6 @@ Write the following code:
  */
 
 this.x += 8 * ct.delta * ct.actions.MoveX.value; // Move by X axis
-this.y += 8 * ct.delta * ct.actions.MoveY.value; // Move by Y axis
 
 
 /**
@@ -148,11 +147,9 @@ Here we are using the created actions. First, we try to move the ship horisontal
 
 `ct.delta` is needed to compensate possible lags and FPS drops. It is usually equal to `1` and doesn't add much, but will speed up the movement if some frames were dropped.
 
-Lastly, we multiply our intermediate speed value with the desired velocity, `8`, and do it all the same way for the `y` axis.
+Lastly, we multiply our intermediate speed value with the desired velocity, `8`.
 
 We later check whether its X coordinate fell off the viewport. Here `0` means the left side of the room and `ct.viewWidth` means the horizontal size of the viewport, which forms the right side.
-
-All the methods starting with `ct.keyboard` come from the enabled module. You can read its documentation on the "Catmods" tab, "Reference" section.
 
 ::: tip On your own!
 Add a vertical movement to the player. Then, try to limit its movement so the ship can't fly above the middle of the viewport.
@@ -171,7 +168,7 @@ this.speed = 3;
 this.direction = 270;
 ```
 
-Here, we use built-in variables for moving. Manually editing coordinates is good for handling player's input, but for most tasks it is better to use these vars as they automate most of the things. Here, `this.speed` means the speed of the Copy, and `this.direction` refers to its direction.
+Here, we use built-in variables for moving. Manually editing coordinates is good for handling player's input, but for most tasks it is better to use these vars as they automate most of the things. For example, you don't need to use `ct.delta` while using `this.speed` and `this.direction`. Here, `this.speed` means the speed of the Copy, and `this.direction` refers to its direction.
 
 ::: tip
 In ct.js, direction is measured in degrees, moving from the left side counter-clockwise. 0° means right, 90° means up, 180° is for left, and 270° points to the bottom.
@@ -205,7 +202,7 @@ What if enemy ships could move diagonally, zig-zagging?
 
 ### Asteroids
 
-Asteroids will contain the same `Step` code, but their `dir` variable will be set at random.
+Asteroids will contain the same `Step` code, but their `direction` variable will be defined randomly.
 
 Open the `Asteroid_Medium` in the "Types" tab, then write the code below in the `On Create` event. 
 
@@ -333,7 +330,7 @@ this.direction = 270;
 this.rotation = ct.random.deg();
 ```
 
-`this.rotation` stands for transform rotation. `ct.random.deg()` returns a random value between 0 and 360, which is handy while defining angular values.
+`this.rotation` rotates a copy's texture. `ct.random.deg()` returns a random value between 0 and 360, which is handy while defining angular values.
 
 ::: tip
 There is also `this.scale.x` and `this.scale.y`, which sets a copy's horizontal and vertical scale accordingly, and `this.alpha` which manipulates its opacity (0 means fully transparent, 1 — fully opaque).
@@ -422,6 +419,12 @@ this.scoreLabel.y = 30;
 
 Here, we create a variable called `score`. Then, we construct a text label with `new PIXI.Text('Some text')`, save it `this.scoreLabel` and add it to the room with `this.addChild(this.scoreLabel);`. Later, we position it so that it shows at the top-left corner, with 30px padding on each side.
 
+We also need this code at `Draw` to keep the label up-to-date:
+
+```js
+this.livesLabel.text = 'Lives: ' + this.lives;
+```
+
 Now, move to `EnemyShip`'s `On Step` code, and add `ct.room.score += 100;` to a place where a ship is destroyed after colliding with a bullet, so the whole code looks like this:
 
 ```js
@@ -449,7 +452,7 @@ if (this.bulletTimer <= 0) {
 `ct.room` points to the current room object.
 :::
 
-Do the same to asteroids, too. Change the number of given score points as you wish.
+Do the same for asteroids, too. Change the number of given score points as you wish.
 
 If you launch the game, you may notice a small black number in the top-left corner which changes as asteroids and enemy ships get destroyed. But this doesn't look nice, so it is a good time to make some styling.
 
@@ -504,19 +507,13 @@ this.livesLabel.x = ct.viewWidth - 200;
 this.livesLabel.y = 30;
 ```
 
-And we need this code to keep the label up-to-date:
-
-```js
-this.livesLabel.text = 'Lives: ' + this.lives;
-```
-
 ::: tip On your own!
 Create a new style and apply it to the 'Lives' label.
 :::
 
-Then we should add logic so that player's ship removes one life on collision. We could use `ct.place.meet` as we used it in asteroids' and enemies' code, but let's group them into one _collision group_. It will allow us to write less code and won't require any changes if we add more enemies, missiles or asteroids of different size.
+Then we should add logic so that player's ship removes one life on collision. We could use `ct.place.meet` as we used it in asteroids' and enemies' code to test against a particular type, but let's group them into one _collision group_. It will allow us to write less code and won't require any changes if we add more enemies, missiles or asteroids of different size.
 
-To add copies to a collision group, we should add this line of code to all the needed types:
+To add copies to a collision group, we should add this line of code to all the needed types' `On Create` code:
 
 ```js
 this.ctype = 'Hostile';
@@ -547,7 +544,7 @@ if (hostile) {
 `setTimeout` is a standard browser's function that executes a function after a given number of milliseconds. Here we wait one second (1000 milliseconds) and then restart the room.
 
 ::: tip
-`setTimeout` may seem like a better way to work with delayed events than writing timers. The difference is that timers exist while its owner does, but `setTimeout` will happen in any circumstances, even if the copy that called it was removed from a room (actually, there _is_ a way to cancel a `setTimeout`, but it isn't that handy when working with different copies).
+`setTimeout` may seem like a better way to work with delayed events than writing timers. The difference is that timers exist while its owner does, but `setTimeout` will happen in any circumstances, even if the copy that called it was removed from a room. (Actually, there _is_ a way to cancel a `setTimeout`, but it isn't that handy when working with different copies. Ok, forget what I've said.)
 
 In our case, we want the room to be restarted though there aren't any player ships on the screen, so we use `setTimeout`. We use timers for shooting and spawning enemies because we don't want bullets to randomly appear after enemies were destroyed.
 :::
