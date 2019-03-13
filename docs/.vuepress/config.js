@@ -131,6 +131,12 @@ module.exports = {
                             'ru/tut-making-platformer',
                             'ru/tut-making-shooter'
                         ],
+                    }, {
+                        title: 'Ядро',
+                        collapsable: false,
+                        children: [
+                            ['catmoddocs.md', 'Где документация к модулям?']
+                        ]
                     }
                 ],
                 serviceWorker: {
