@@ -129,6 +129,7 @@ module.exports = {
                         collapsable: false,
                         children: [
                             'ru/ct',
+                            ['ru/ct.inputs', 'ct.inputs и ct.actions'],
                             'ru/ct.res',
                             ['catmoddocs.md', 'Где документация к модулям?']
                         ]
