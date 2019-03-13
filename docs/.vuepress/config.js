@@ -117,14 +117,7 @@ module.exports = {
                 editLinkText: 'Помогите сделать эту страницу лучше!',
                 sidebar: [
                     ['/', 'Русская документация пока что неполная и может расходиться с английской!'],
-                    ['ru/', 'Главная'],
-                    {
-                        title: 'Подсказки и советы',
-                        collapsable: false,
-                        children: [
-                            'ru/actions'
-                        ]
-                    }, {
+                    ['ru/', 'Главная'], {
                         collapsable: false,
                         title: 'Уроки',
                         children: [
@@ -136,6 +129,13 @@ module.exports = {
                         collapsable: false,
                         children: [
                             ['catmoddocs.md', 'Где документация к модулям?']
+                        ]
+                    },
+                    {
+                        title: 'Подсказки и советы',
+                        collapsable: false,
+                        children: [
+                            'ru/actions'
                         ]
                     }
                 ],
