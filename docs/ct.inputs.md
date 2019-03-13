@@ -94,6 +94,22 @@ methods|Array\<Object\>|A list of input methods. This list can be changed later.
 
 **Returns:** `CtAction` – The created action
 
+**Example:**
+
+```js
+ct.inputs.addAction('Move', [{
+    code: 'keyboard.ArrowLeft',
+    multiplier: -1
+}, {
+    code: 'keyboard.ArrowRight'
+}, {
+    code: 'keyboard.KeyA',
+    multiplier: -1
+}, {
+    code: 'keyboard.KeyD'
+}]);
+```
+
 ### ct.inputs.removeAction(name, methods) ⇒ <code>void</code>
 
 Removes an action with a given name.
