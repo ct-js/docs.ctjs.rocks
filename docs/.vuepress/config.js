@@ -128,6 +128,7 @@ module.exports = {
                         title: 'Ядро',
                         collapsable: false,
                         children: [
+                            'ru/ct',
                             ['catmoddocs.md', 'Где документация к модулям?']
                         ]
                     },
