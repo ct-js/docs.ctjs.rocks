@@ -25,10 +25,6 @@ this.addSpeed(speed, dir);
 
 To actually move a copy, you should call `this.move();` in your copy's OnStep code (it is included in each Type by default). Default movement system already takes `ct.delta` into account, so it will move with the same speed at every frame rate.
 
-::: tip Note
-OnStep code [will still be executed](ct.html#Event-sequence) until the drawing phase.
-:::
-
 ### Manipulating Copies' look
 
 There are a number of parameters that can be changed:
@@ -68,6 +64,10 @@ if (this.health <= 0) {
     this.kill = true;
 }
 ```
+
+::: tip Note
+OnStep code [will still be executed](ct.html#Event-sequence) until the drawing phase.
+:::
 
 ## Methods and properties of ct.types
 
@@ -121,4 +121,4 @@ for (var bonus of ct.types.list.Bonus) {
 
 ### `ct.types.addSpeed(o: Copy, spd, dir)`
 
-Adds a speed vector to a given Copy. This is the same as calling `o.addSpeed(spd, dir)`;
+Adds a speed vector to a given Copy. This is the same as calling `o.addSpeed(spd, dir);` on that copy.
