@@ -131,6 +131,7 @@ module.exports = {
                             'ru/ct',
                             ['ru/ct.inputs', 'ct.inputs и ct.actions'],
                             'ru/ct.res',
+                            'ru/ct.rooms',
                             ['catmoddocs.md', 'Где документация к модулям?']
                         ]
                     },
