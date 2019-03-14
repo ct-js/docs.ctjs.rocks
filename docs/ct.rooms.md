@@ -6,9 +6,7 @@ This object manages your rooms and current view (camera).
 
 ### `ct.rooms.switch(newRoom: String)`
 
-Destroys all the existing copies and moves to a new room.
-
-> This action also resets all the drawing settings, like fill color, opacity, etc. You might need to set them again.
+Calls the latest room's `onleave` event and moves to a new room.
 
 ### `ct.rooms.clear()`
 
