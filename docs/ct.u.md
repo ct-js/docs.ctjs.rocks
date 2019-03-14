@@ -34,7 +34,7 @@ Linearly interpolates a value from `a` to `b`, returning `a` if `alpha` = 0 and 
 
 ### `ct.u.unlerp(a, b, val)`
 
-An opposite of `ct.u.lerp`.
+An opposite of `ct.u.lerp`. Returns a position of `val` inside a range from `a` to `b`. If `val` is inside this range, this method will return a value between 0 and 1.
 
 ### `ct.u.prect(x1, y1, arg: Array|Copy)` and `ct.u.pointRectangle(x1, y1, arg: Array|Copy)`
 
