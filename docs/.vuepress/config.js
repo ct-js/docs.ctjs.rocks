@@ -135,7 +135,8 @@ module.exports = {
                             'ru/ct.sound',
                             'ru/ct.styles',
                             'ru/ct.types',
-                            ['catmoddocs.md', 'Где документация к модулям?']
+                            ['ru/ct.u', 'ct.u (утилиты)'],
+                            ['ru/catmoddocs', 'Где документация к модулям?']
                         ]
                     },
                     {
