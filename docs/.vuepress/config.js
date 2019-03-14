@@ -133,6 +133,7 @@ module.exports = {
                             'ru/ct.res',
                             'ru/ct.rooms',
                             'ru/ct.sound',
+                            'ru/ct.styles',
                             ['catmoddocs.md', 'Где документация к модулям?']
                         ]
                     },
