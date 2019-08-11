@@ -9,16 +9,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/CosmoMyzrailGorynych/docs.ctjs.rocks.git"
+    "url": "git+https://github.com/ct-js/docs.ctjs.rocks.git"
   },
   "author": "Cosmo Myzrail Gorynych",
   "license": "Creative Commons Attribution-ShareAlike 4.0 International",
   "bugs": {
-    "url": "https://github.com/CosmoMyzrailGorynych/docs.ctjs.rocks/issues"
+    "url": "https://github.com/ct-js/docs.ctjs.rocks/issues"
   },
-  "homepage": "https://github.com/CosmoMyzrailGorynych/docs.ctjs.rocks#readme",
+  "homepage": "https://github.com/ct-js/docs.ctjs.rocks#readme",
   "dependencies": {
-    "@vuepress/plugin-pwa": "^1.0.0-alpha.0",
-    "vuepress": "^1.0.0-alpha.40"
+    "@vuepress/plugin-pwa": "^1.0.3",
+    "vuepress": "^1.0.3"
   }
 }
