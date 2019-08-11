@@ -1,5 +1,7 @@
 # ct.js Docs [![Creative Commons Attribution 4.0 International](https://i.creativecommons.org/l/by/4.0/88x31.png)](https://creativecommons.org/licenses/by/4.0/)
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/3e703edc-cd75-4b76-a580-35bc19cbbd55/deploy-status)](https://app.netlify.com/sites/clever-shaw-0cdd72/deploys)
+
 Nice to meet you! This repo includes the official documentation of [ct.js game engine](https://ctjs.rocks/). The documentation site runs on [Vuepress](https://vuepress.vuejs.org/) and is hosted on [docs.ctjs.rocks](https://docs.ctjs.rocks/).
 
 In this repo, you can:
