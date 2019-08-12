@@ -26,6 +26,10 @@ It will allow you to preview your changes with live reloading.
 2. run `npm install` in it;
 3. run `npm run dev` to launch the server.
 
+## Naming convention
+
+Use [Gitmoji-flavored Comigoji guide](http://localhost:8080/#gitmoji) for commit messages.
+
 ## License
 
 Except where otherwise noted, content is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
