@@ -6,7 +6,7 @@ Nice to meet you! This repo includes the official documentation of [ct.js game e
 
 In this repo, you can:
 
-* [open an issue](https://github.com/CosmoMyzrailGorynych/docs.ctjs.rocks/issues/new) to highlight errors in docs, or send a pull request that will fix them;
+* [open an issue](https://github.com/ct-js/docs.ctjs.rocks/issues/new) to highlight errors in docs, or send a pull request that will fix them;
 * add a new tutorial;
 * improve docs with better explanations and other stuff.
 
