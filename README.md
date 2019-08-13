@@ -28,7 +28,7 @@ It will allow you to preview your changes with live reloading.
 
 ## Naming convention
 
-Use [Gitmoji-flavored Comigoji guide](http://localhost:8080/#gitmoji) for commit messages.
+Use [Gitmoji-flavored Comigoji guide](https://comigo.gitlab.io/comigoji#gitmoji) for commit messages.
 
 ## License
 
