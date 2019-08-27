@@ -3,7 +3,7 @@ module.exports = {
     description: 'Docs, tutorials, guides',
 
     plugins: ['@vuepress/pwa'],
-    
+
     locales: {
         '/': {
             lang: 'en-US', // this will be set as the lang attribute on <html>
@@ -25,12 +25,12 @@ module.exports = {
         docsDir: 'docs',
         editLinks: true,
         editLinkText: 'Help us improve this page!',
-        
+
         nav: [{
             text: 'Home',
             link: '/'
         }, {
-            text: 'Official website',
+            text: 'Get ct.js',
             link: 'https://ctjs.rocks'
         }, {
             text: 'Discord',
@@ -158,4 +158,4 @@ module.exports = {
 
         lastUpdated: 'Last Updated'
     }
-};  
+};
