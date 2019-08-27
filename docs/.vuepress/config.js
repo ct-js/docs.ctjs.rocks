@@ -77,6 +77,7 @@ module.exports = {
                 children: [
                     'actions',
                     'localstorage',
+                    'game-pause',
                     'viewport-management'
                 ]
             }, {
