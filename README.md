@@ -18,13 +18,18 @@ Please organize your commits so each one changes, deletes or adds one subject: a
 * Adding a tip or improving a paragraph is a commit;
 * Changing an old variable to a new one across multiple documents is a commit.
 
-## Running a dev server
+## Editing & running a dev server
 
-It will allow you to preview your changes with live reloading.
+A dev server will allow you to preview your changes with live reloading. You will need to [install node.js](https://nodejs.org/en/download/), if you don't have it.
 
-1. Clone the repo;
-2. run `npm install` in it;
-3. run `npm run dev` to launch the server.
+1. Clone the repo with `git clone https://github.com/ct-js/docs.ctjs.rocks.git`;
+2. `cd ./docs.ctjs.rocks/`
+3. run `npm install` in it;
+4. run `npm run dev` to launch the server.
+
+Then edit `*.md` files in the `./docs` folder.
+
+New entries can be added at `.vuepress/config.js` → `themeConfig` → `sidebar` field.
 
 ## Naming convention
 
