@@ -1,6 +1,6 @@
 # ct.types
 
-This object allows you to create new Copies and manipulate them. Each copy is an instance of Pixi's AnimatedSprite class, so you can find [much more parameters](https://pixijs.download/release/docs/PIXI.extras.AnimatedSprite.html) at their docs site.
+This object allows you to create new Copies and manipulate them. Each copy is an instance of Pixi's AnimatedSprite class, so you can find [much more parameters](https://pixijs.download/release/docs/PIXI.AnimatedSprite.html) at their docs site.
 
 ## Working with Copies
 
