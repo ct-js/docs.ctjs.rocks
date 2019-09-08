@@ -20,6 +20,14 @@ Gets the direction of vector which is pointing from (x1;y1) to (x2;y2).
 
 Gets the distance between points (x1;y1) and (x2;y2).
 
+### `ct.u.rotate(x, y, deg)`
+
+Rotates a given vector by a given angle. Returns an array with two entries: `x` and `y` components.
+
+### `ct.u.rotateRad(x, y, rad)`
+
+The same as `ct.u.rotate`, but the angle is given in radians.
+
 ### `ct.u.deltaDir(dir1, dir2)`
 
 Retuns a difference between two directions, in degrees.
