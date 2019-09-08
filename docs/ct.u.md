@@ -1,6 +1,6 @@
 # ct.u
 
-This object contains some handy utility functions to ease the development process.
+This object contains a number of handy utility functions to ease the development process.
 
 ## Methods and properties
 
@@ -27,6 +27,14 @@ Rotates a given vector by a given angle. Returns an array with two entries: `x` 
 ### `ct.u.rotateRad(x, y, rad)`
 
 The same as `ct.u.rotate`, but the angle is given in radians.
+
+### `ct.u.degToRad(deg)`
+
+Converts degrees into radians.
+
+### `ct.u.radToDeg(rad)`
+
+Converts radians into degrees.
 
 ### `ct.u.deltaDir(dir1, dir2)`
 
