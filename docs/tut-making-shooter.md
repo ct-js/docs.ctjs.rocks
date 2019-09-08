@@ -4,7 +4,7 @@ Let's make a small space shooting game with asteroids, lasers and hostile gunshi
 
 ![](./images/tutSpaceShooter_Result.gif)
 
-## Importing Textures 
+## Importing Textures
 
 Open ct.js and create a new project with a name "SpaceShooter".
 
@@ -22,9 +22,9 @@ Now open the "Textures" tab on the top of the ct.IDE window, and drag & drop the
 
 A card for each of the images will appear. Let's open the `PlayerShip` and configure it. We will see a yellow shape that defines its collision shape. For now, it covers too much empty space, especially above wings. To fix it, we should modify this collision shape in the left column.
 
-Firstly, press a button "Image's center", so its axis is placed at the ship's center. 
+Firstly, press a button "Image's center", so its axis is placed at the ship's center.
 
-Next, select the "**Line Strip / Polygon**" option under the label "Collision Shape". Add a couple of additional points and move them with your mouse so that the resulting polygon resembles the ship's shape. 
+Next, select the "**Line Strip / Polygon**" option under the label "Collision Shape". Add a couple of additional points and move them with your mouse so that the resulting polygon resembles the ship's shape.
 
 ![](./images/tutSpaceShooter_03.png)
 
@@ -35,7 +35,7 @@ The next texture, `Laser_Blue`, should be centered too, and since the collision 
 ![](./images/tutSpaceShooter_04.png)
 
 Both asteroids are better defined as polygons by their concave or sharp shapes. Set their collision shape to **Line Strip / Polygon**, and don't forget to set their axis to center.
- 
+
 ![](./images/tutSpaceShooter_05.png)
 
 The `EnemyShip`'s shape can be treated as a **Polygon**.
@@ -60,7 +60,7 @@ Let's place created Types somewhere on the map. To create this map, or Room, pre
 
 ![](./images/tutSpaceShooter_08.png)
 
-Here we will stop a bit to explain how to use the Room editor. Firstly, we can set up a Room's name and its viewport size. 
+Here we will stop a bit to explain how to use the Room editor. Firstly, we can set up a Room's name and its viewport size.
 
 In ct.js, Rooms are infinite and can pan in any direction. You can place objects inside and outside the viewport.
 
@@ -191,7 +191,7 @@ We will modify the `Step` code so enemies will destroy themselves if they fall o
 ```js
 this.move();
 
-if (this.y > ct.height + 80) {
+if (this.y > ct.viewHeight + 80) {
     this.kill = true;
 }
 ```
@@ -204,7 +204,7 @@ What if enemy ships could move diagonally, zig-zagging?
 
 Asteroids will contain the same `Step` code, but their `direction` variable will be defined randomly.
 
-Open the `Asteroid_Medium` in the "Types" tab, then write the code below in the `On Create` event. 
+Open the `Asteroid_Medium` in the "Types" tab, then write the code below in the `On Create` event.
 
 ```js On Create event
 this.speed = ct.random.range(1, 3);
@@ -216,7 +216,7 @@ The `Step` event will be the same as in `EnemyShip`.
 ```js Step event
 this.move();
 
-if (this.y > ct.height + 80) {
+if (this.y > ct.viewHeight + 80) {
     this.kill = true;
 }
 ```
@@ -266,7 +266,7 @@ this.move();
 
 The next thing is handling collisions. It is better to write all the collision logic in enemy ships' and asteroids' code because they will respond differently, making no clutter in the bullet's code.
 
-Go to the `EnemyShip`'s On Step code. Add the following code: 
+Go to the `EnemyShip`'s On Step code. Add the following code:
 
 ``` js
 var collided = ct.place.meet(this, this.x, this.y, 'Laser_Blue');
@@ -339,7 +339,7 @@ There is also `this.scale.x` and `this.scale.y`, which sets a copy's horizontal 
 The code of On Step section will look as following:
 
 ``` js
-if (this.y > ct.height + 40) {
+if (this.y > ct.viewHeight + 40) {
     this.kill = true;
 }
 
@@ -430,7 +430,7 @@ Now, move to `EnemyShip`'s `On Step` code, and add `ct.room.score += 100;` to a 
 ```js
 this.move();
 
-if (this.y > ct.height + 80) {
+if (this.y > ct.viewHeight + 80) {
     this.kill = true;
 }
 
@@ -483,7 +483,7 @@ this.scoreLabel.x = 30;
 this.scoreLabel.y = 30;
 ```
 
-We should also add this line to the `Draw` tab so that the label is updated each frame: 
+We should also add this line to the `Draw` tab so that the label is updated each frame:
 
 ```js
 this.scoreLabel.text = 'Score: ' + this.score;
