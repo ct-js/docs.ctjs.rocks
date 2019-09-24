@@ -97,7 +97,8 @@ module.exports = {
                 collapsable: false,
                 children: [
                     ['migration-0to1', 'Migration from 0.x to 1.x'],
-                    ['troubleshooting-teared-background', 'Background splits into squares!']
+                    ['troubleshooting-teared-background', 'Background splits into squares!'],
+                    ['troubleshooting-sounds-not-playing', 'Sounds don\'t play at game start!']
                 ]
             }
         ],
