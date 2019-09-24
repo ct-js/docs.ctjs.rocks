@@ -1,4 +1,4 @@
-# My repeating background splits into squares!
+# My repeating background or tiles split into squares!
 
 **How it may look:**
 
