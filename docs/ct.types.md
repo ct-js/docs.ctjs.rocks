@@ -19,7 +19,7 @@ Each Copy has these parameters for movement:
 
 You can also call `this.addSpeed` to add speed vector to a Copy in a given direction.
 
-```js 
+```js
 this.addSpeed(speed, dir);
 ```
 
@@ -35,7 +35,8 @@ There are a number of parameters that can be changed:
 - `rotation` — the rotation of the copy in degrees;
 - `scale` — the scale factor of the object. You can either assign a simple value (`this.scale = 0.5;`) for uniform scaling or access its `x` and `y` compounds (`this.scale.x = 0.5;`).
 - `tint` — the tint applied to the sprite. This is a hex value. A value of `0xFFFFFF` will remove any tint effect. The colors are the same as in CSS, e.g. `0xFF0000` is red, `0x00FFFF` is cyan, ect;
-- `visible` — the visibility of the object.
+— `alpha` — the opacity of the copy. 0 makes a copy invisible, 1 is the default (fully opaque) mode. All in between will make a gradual transparency change;
+- `visible` — the visibility of the object (`true` or `false`).
 
 Read-only variables:
 
@@ -59,7 +60,7 @@ To delete a Copy, simply set its `kill` parameter to `true`.
 
 **Example:** delete a Copy, if its health is depleted
 
-```js 
+```js
 if (this.health <= 0) {
     this.kill = true;
 }
@@ -81,7 +82,7 @@ Applies a function to all the active copies.
 
 **Example:** destroy all the copies within a 150px radius
 
-```js 
+```js
 var me = this;
 ct.types.each(function () {
     if (this !== me) { // aren't we trying to destroy ourselves?
@@ -105,7 +106,7 @@ Returns an array with all the existing copies of the specified type.
 
 **Example:** make an order to destroy all the 'Bonus' Copies
 
-```js 
+```js
 for (var bonus of ct.types.list['Bonus']) {
     bonus.kill = true;
 }
@@ -113,7 +114,7 @@ for (var bonus of ct.types.list['Bonus']) {
 
 This can be also written as following:
 
-```js 
+```js
 for (var bonus of ct.types.list.Bonus) {
     bonus.kill = true;
 }
