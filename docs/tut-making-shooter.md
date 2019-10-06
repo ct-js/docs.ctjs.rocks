@@ -422,7 +422,7 @@ Here, we create a variable called `score`. Then, we construct a text label with 
 We also need this code at `Draw` to keep the label up-to-date:
 
 ```js
-this.livesLabel.text = 'Lives: ' + this.lives;
+this.scoreLabel.text = 'Score: ' + this.score;
 ```
 
 Now, move to `EnemyShip`'s `On Step` code, and add `ct.room.score += 100;` to a place where a ship is destroyed after colliding with a bullet, so the whole code looks like this:
