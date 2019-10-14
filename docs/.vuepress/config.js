@@ -14,6 +14,11 @@ module.exports = {
             lang: 'ru',
             title: 'Документация к игровому движку ct.js',
             description: 'Референсы, туториалы, гайды'
+        },
+        '/pt_BR/': {
+            lang: 'pt-BR',
+            title: 'Documentação ct.js',
+            description: 'Docs, tutoriais, guias'
         }
     },
 
@@ -155,6 +160,66 @@ module.exports = {
                         buttonText: "Обновить страницу"
                     }
                 }
+            },
+            '/pt_BR/': {
+                // text for the language dropdown
+                selectText: 'Linguagens',
+                // label for this locale in the language dropdown
+                label: 'Português - Brasil',
+                // text for the edit-on-github link
+                editLinkText: 'Ajude a melhorar esta página!',
+                sidebar: [
+                    ['/', 'A documentação em português ainda está incompleta e pode divergir do inglês!'],
+                    ['pt_BR/', 'Página Inicial'], {
+                        collapsable: false,
+                        title: 'Tutoriais',
+                        children: [
+                            'pt_BR/tut-making-platformer',
+                            'pt_BR/tut-making-shooter'
+                        ],
+                    }, {
+                        title: 'Biblioteca Principal',
+                        collapsable: false,
+                        children: [
+                            'pt_BR/ct',
+                            ['pt_BR/ct.inputs', 'ct.inputs e ct.actions'],
+                            'pt_BR/ct.res',
+                            'pt_BR/ct.rooms',
+                            'pt_BR/ct.sound',
+                            'pt_BR/ct.styles',
+                            'pt_BR/ct.types',
+                            ['pt_BR/ct.u', 'ct.u (Utilitários)'],
+                            ['pt_BR/catmoddocs', 'Onde está a documentação para os outros módulos ct.*?']
+                        ]
+                    }, {
+                        title: 'Dicas & truques',
+                        collapsable: false,
+                        children: [
+                            'pt_BR/actions',
+                            'pt_BR/game-pause'
+                        ]
+                    }, {
+                        title: 'Trabalhando com assets',
+                        collapsable: false,
+                        children: [
+                            ['pt_BR/skeletal-animation.md', 'Usando animação skeletal']
+                        ]
+                    }, {
+                        title: 'Estendendo ct.js',
+                        collapsable: false,
+                        children: [
+                            ['pt_BR/making-mods', 'Criando os seus próprios mods']
+                        ]
+                    }, {
+                        title: 'Solução de problemas',
+                        collapsable: false,
+                        children: [
+                            ['pt_BR/migration-0to1', 'Migrando de 0.x para 1.x'],
+                            ['pt_BR/troubleshooting-teared-background', 'Background dividido em quadrados!'],
+                            ['pt_BR/troubleshooting-sounds-not-playing', 'Som não toca no início do jogo!']
+                        ]
+                    }
+                ]
             }
         },
 
