@@ -38,7 +38,7 @@ Converts radians into degrees.
 
 ### `ct.u.deltaDir(dir1, dir2)`
 
-Retuns a difference between two directions, in degrees.
+Returns a difference between two directions, in degrees.
 
 ### `ct.u.clamp(min, val, max)`
 
