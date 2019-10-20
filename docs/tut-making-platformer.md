@@ -665,6 +665,8 @@ if (ct.place.occupied(this, this.x + this.speed * ct.delta, this.y, 'Solid')) {
 this.move();
 ```
 
+What happens here? First of all, we check whether a robot is already overlapping with a platform. If it does, we tell that the platform should stop being solid by `this.ctype = undefined;`, so that the robot can fall through the platform instead of getting stuck in it. But if there is no collision between the platform and the robot, the platform becomes solid (`this.ctype = 'Solid';`), and we look for the robot once again, but now one pixel above the platform. As we have pixel-perfect collisions, one pixel will be enough.
+
 ::: tip On your own!
 Add vertically moving platforms! And make sure they don't squash the Robot. 😉
 :::
