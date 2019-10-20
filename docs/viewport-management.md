@@ -14,7 +14,7 @@ There are two other variables:
 * `ct.roomWidth` (read-only);
 * `ct.roomHeight` (read-only).
 
-They define how the room was designed in ct.IDE. These variables may be different depending on different viewport scaling methods.
+They define how the room was designed in ct.IDE. These variables may be different depending on various viewport scaling methods.
 
 ## Moving camera around
 
@@ -26,6 +26,15 @@ You can alter the camera's behaviour by these variables:
 * `ct.room.center` may be set to `true` to automatially set borders so that the followed copy always stays at the center of the screen. It has a higher priority over `ct.room.borderX` and `ct.room.borderY`;
 * `ct.room.followShiftX` and `ct.room.followShiftY` allow to place the camera higher/lower/etc than the target copy's axis;
 * `ct.room.followDrift` is a value between [0; 1] that defines how fast the camera reacts to a copy's movement. The default is `0` (no drift). For casual games and puzzles, settings `ct.room.followDrift` to `0.9` may be a good choice to create a smooth camera.
+
+## Resizing the viewport
+
+Usually it is best to use `ct.fittoscreen` so that it manages the renderer and viewport for you. If you still want to resize the viewport, e.g. to zoom in/zoom out in game, use the following variables:
+
+* `ct.width`;
+* `ct.height`.
+
+These can still be used with most of `ct.fittoscreen`'s  modes, except for "expand" mode, as the use of `ct.width` and `ct.height` makes no sense here, because ct.fittoscreen overrides them.
 
 ## Making an adaptive UI
 
