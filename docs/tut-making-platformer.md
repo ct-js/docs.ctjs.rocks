@@ -458,7 +458,7 @@ Call a new script as `inGameRoomStart`. Write this code:
 var inGameRoomStart = function (room) {
     room.crystals = 0;
     room.crystalsTotal = ct.types.list['GreenCrystal'].length;
-    ct.types.copy('CrystalsWidget', 0, 0);
+    ct.types.copy('CrystalCounter', 0, 0);
 };
 ```
 
@@ -480,7 +480,7 @@ When `inGameRoomStart(this);` is called it will set `crystals` and `crystalsTota
 
 So that's how we gather and count the crystals, but we also need to draw their count and do it with *style*. ✨
 
-Gladly, there is a tool for designing nifty text styles inside the ct.js. Open the "Styles" tab at the top of the screen and create a new style. Call it as a `CrystalCounter`.
+Gladly, there is a tool for designing nifty text styles inside the ct.js. Open the "UI" tab at the top of the screen and create a new style. Call it as a `CrystalCounter`.
 
 Then activate the "Font" section, set the font size to 24 and its weight to 600. Align it to the left.
 
@@ -550,7 +550,7 @@ Then go to the "Settings" tab and modify the `inGameRoomStart` script:
 var inGameRoomStart = function (room) {
     room.crystals = 0;
     room.crystalsTotal = ct.types.list['GreenCrystal'].length;
-    ct.types.copy('CrystalsWidget', 0, 0);
+    ct.types.copy('CrystalCounter', 0, 0);
     ct.types.copy('HeartsWidget', 0, 0);
     room.lives = 3;
 };
@@ -580,7 +580,7 @@ this.y = ct.room.y + 24;
 this.text.text = ct.room.lives;
 ```
 
-Note how we use the property `room.viewWidth` to position the widget on the right side of the screen.
+Note how we use the property `ct.viewWidth` to position the widget on the right side of the screen.
 
 Now modify the respawn code of the `Robot` so it loses one heart at each respawn:
 
