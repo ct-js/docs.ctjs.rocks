@@ -458,7 +458,7 @@ Call a new script as `inGameRoomStart`. Write this code:
 var inGameRoomStart = function (room) {
     room.crystals = 0;
     room.crystalsTotal = ct.types.list['GreenCrystal'].length;
-    ct.types.copy('CrystalCounter', 0, 0);
+    ct.types.copy('CrystalsWidget', 0, 0);
 };
 ```
 
