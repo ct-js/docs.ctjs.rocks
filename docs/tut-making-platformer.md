@@ -167,7 +167,7 @@ if (ct.actions.MoveLeft.down) {
     this.hspd = -this.speed;
 } else if (ct.actions.MoveRight.down) {
     // If the D key or right arrow on a keyboard is down, then move to right
-    this.hspd = this.speed; 
+    this.hspd = this.speed;
 } else {
     // Don't move horizontally if no input
     this.hspd = 0;
@@ -184,7 +184,7 @@ if (ct.place.occupied(this, this.x, this.y + 1, 'Solid')) {
         this.vspd = 0;
     }
 } else {
-    // If there is no ground  
+    // If there is no ground
     this.vspd += this.gravity * ct.delta;
 }
 ```
@@ -373,7 +373,7 @@ if (ct.place.occupied(this, this.x, this.y + 1, 'Solid')) {
         this.vspd = 0;
     }
 } else {
-    // If there is no ground  
+    // If there is no ground
     this.vspd += this.gravity;
     // Set jumping animation!
     this.tex = 'Robot_Jump';
@@ -480,7 +480,7 @@ When `inGameRoomStart(this);` is called it will set `crystals` and `crystalsTota
 
 So that's how we gather and count the crystals, but we also need to draw their count and do it with *style*. ✨
 
-Gladly, there is a tool for designing nifty text styles inside the ct.js. Open the "Styles" tab at the top of the screen and create a new style. Call it as a `CrystalCounter`.
+Gladly, there is a tool for designing nifty text styles inside the ct.js. Open the "UI" tab at the top of the screen and create a new style. Call it as a `CrystalCounter`.
 
 Then activate the "Font" section, set the font size to 24 and its weight to 600. Align it to the left.
 
@@ -494,7 +494,7 @@ We can also add a thick white line to our text. Open the "Stroke" tab, then set 
 
 ![Setting a style's line style](./images/tutPlatformer_23.png)
 
-We should now create a new type that will display a crystal icon and a counter called `CrystalCounter`. Set its sprite to `GreenCrystal`, and write the following in its OnCreate code:
+We should now create a new type called `CrystalsWidget`. It will display a crystal icon and a counter. Set its sprite to `GreenCrystal`, and write the following in its OnCreate code:
 
 ```js
 this.text = new PIXI.Text('0 / ' + ct.room.crystalsTotal, ct.styles.get('CrystalCounter'));
@@ -580,7 +580,7 @@ this.y = ct.room.y + 24;
 this.text.text = ct.room.lives;
 ```
 
-Note how we use the property `room.viewWidth` to position the widget on the right side of the screen.
+Note how we use the property `ct.viewWidth` to position the widget on the right side of the screen.
 
 Now modify the respawn code of the `Robot` so it loses one heart at each respawn:
 
@@ -665,8 +665,10 @@ if (ct.place.occupied(this, this.x + this.speed * ct.delta, this.y, 'Solid')) {
 this.move();
 ```
 
+What happens here? First of all, we check whether a robot is already overlapping with a platform. If it does, we tell that the platform should stop being solid by `this.ctype = undefined;`, so that the robot can fall through the platform instead of getting stuck in it. But if there is no collision between the platform and the robot, the platform becomes solid (`this.ctype = 'Solid';`), and we look for the robot once again, but now one pixel above the platform. As we have pixel-perfect collisions, one pixel will be enough.
+
 ::: tip On your own!
-Add vertically moving platforms! And make sure they don't squash the Robot. 😉 
+Add vertically moving platforms! And make sure they don't squash the Robot. 😉
 :::
 
 ## That's it!
@@ -686,5 +688,5 @@ Here is how you can make this game better:
 Look how new features in your code gradually appear in your levels! This is a good way to introduce new things to a player, too. Afford them one new concept at a time, but preserve previous ones with escalating difficulty. *That was a pro-tip on level design by Comigo* 😎
 :::
 
-**Happy coding!**  
+**Happy coding!**
 Comigo
