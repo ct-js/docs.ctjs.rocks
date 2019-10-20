@@ -167,7 +167,7 @@ if (ct.actions.MoveLeft.down) {
     this.hspd = -this.speed;
 } else if (ct.actions.MoveRight.down) {
     // If the D key or right arrow on a keyboard is down, then move to right
-    this.hspd = this.speed; 
+    this.hspd = this.speed;
 } else {
     // Don't move horizontally if no input
     this.hspd = 0;
@@ -184,7 +184,7 @@ if (ct.place.occupied(this, this.x, this.y + 1, 'Solid')) {
         this.vspd = 0;
     }
 } else {
-    // If there is no ground  
+    // If there is no ground
     this.vspd += this.gravity * ct.delta;
 }
 ```
@@ -373,7 +373,7 @@ if (ct.place.occupied(this, this.x, this.y + 1, 'Solid')) {
         this.vspd = 0;
     }
 } else {
-    // If there is no ground  
+    // If there is no ground
     this.vspd += this.gravity;
     // Set jumping animation!
     this.tex = 'Robot_Jump';
@@ -494,7 +494,7 @@ We can also add a thick white line to our text. Open the "Stroke" tab, then set 
 
 ![Setting a style's line style](./images/tutPlatformer_23.png)
 
-We should now create a new type that will display a crystal icon and a counter called `CrystalCounter`. Set its sprite to `GreenCrystal`, and write the following in its OnCreate code:
+We should now create a new type called `CrystalsWidget`. It will display a crystal icon and a counter. Set its sprite to `GreenCrystal`, and write the following in its OnCreate code:
 
 ```js
 this.text = new PIXI.Text('0 / ' + ct.room.crystalsTotal, ct.styles.get('CrystalCounter'));
@@ -550,7 +550,7 @@ Then go to the "Settings" tab and modify the `inGameRoomStart` script:
 var inGameRoomStart = function (room) {
     room.crystals = 0;
     room.crystalsTotal = ct.types.list['GreenCrystal'].length;
-    ct.types.copy('CrystalCounter', 0, 0);
+    ct.types.copy('CrystalsWidget', 0, 0);
     ct.types.copy('HeartsWidget', 0, 0);
     room.lives = 3;
 };
@@ -666,7 +666,7 @@ this.move();
 ```
 
 ::: tip On your own!
-Add vertically moving platforms! And make sure they don't squash the Robot. 😉 
+Add vertically moving platforms! And make sure they don't squash the Robot. 😉
 :::
 
 ## That's it!
@@ -686,5 +686,5 @@ Here is how you can make this game better:
 Look how new features in your code gradually appear in your levels! This is a good way to introduce new things to a player, too. Afford them one new concept at a time, but preserve previous ones with escalating difficulty. *That was a pro-tip on level design by Comigo* 😎
 :::
 
-**Happy coding!**  
+**Happy coding!**
 Comigo
