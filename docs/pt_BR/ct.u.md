@@ -42,7 +42,7 @@ Retorna a diferença entre duas direções, em graus.
 
 ### `ct.u.clamp(min, val, max)`
 
-Retorna um valor fixo `val` limitados ao mínimos ao máximos especificados.Returns a clamped value.
+Retorna um valor fixo `val` limitados aos mínimos e máximos especificados.
 
 ### `ct.u.lerp(a, b, alpha)`
 

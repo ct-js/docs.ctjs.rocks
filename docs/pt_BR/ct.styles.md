@@ -10,7 +10,7 @@ Retorna o estilo especificado.
 
 ### `ct.styles.get(name: String, true)`
 
-Retrona uma cópia do estilo especificado. Essa cópia pode então ser editada e usada com segurança.
+Retorna uma cópia do estilo especificado. Essa cópia pode então ser editada e usada com segurança.
 
 ```js
 var multiline = ct.styles.get('Label', true);
@@ -31,7 +31,7 @@ var multiline = ct.styles.get('Label', {
 this.details = new PIXI.Text(this.info, multiline);
 ```
 
-## Criando estilod programaticamente
+## Criando estilos programaticamente
 
 ### `ct.styles.new(name, options)`
 

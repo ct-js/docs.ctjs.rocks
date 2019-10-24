@@ -1,34 +1,34 @@
-# Using Skeletal Animation in ct.js Projects
+# Usando uma Animação Skeletal em Projetos ct.js
 
-ct.js supports importing DragonBones animations. It was tested with DragonBones v5.6, but, as DragonBones has a good backweards compatibility, it should work back to v4.0, too. Dragonones is free to use and is available at [their official site](http://dragonbones.com/).
+ct.js suporta a importação de animações DragonBones. Ele foi testado com o DragonBones v5.6, mas como o DragonBones tem uma boa compatibilidade com as versões anteriores, a versão v4.0 deve funcionar também. Dragonones é de uso gratuito e está disponível no [site oficial deles](http://dragonbones.com/).
 
-## Importing Skeletal Animation
+## Importando Animação Skeletal
 
-To import animations with their textures, you should first open your DragonBones project. Make sure that your armature is called exactly as `Armature`.
+Para importar as animações com as suas texturas, você deve primeiro abrir o seu projeto DragonBones. Esteja certo de que você chamou a sua armadura extamente como `Armature`.
 
 ![](./../images/skeletalAnimationsDB_03.png)
 
-Select File — Export…
+Selecione File — Export…
 
 ![](./../images/skeletalAnimationsDB_01.png)
 
-You should then open the tab "Animation Data + Texture". Make sure that you export DragonBones **JSON** (not the binary format!) and that your background is transparent. You can set other parameters as you like. Then, smash the "Finish" button.
+Você então abre a aba "Animation Data + Texture". Esteja certo que você exportou o DragonBones para **JSON** (e não para o formato binário!) e que o seu background é transparente. Você pode configurar outros parâmetros que você queira. Em seguida pressione o botão "Finish".
 
 ![](./../images/skeletalAnimationsDB_02.png)
 
-You will get three files in the output directory:
+Você irá obter três arquivos na pasta onde você exportou:
 
 * `Animation_ske.json`;
 * `Animation_tex.json`;
 * `Animation_tex.png`.
 
-We will need all the three files to be in the same location. Open ct.js, then the Graphics tab, and press the "Import" button. Locate the `Animation_ske.json` file and add it. Ct.js will then import all the three files into your project.
+Tudo o que nós precisamos é que esses três arquivos estejam na mesma pasta. Abra o ct.js, e na aba `Textures`, pressione o botão "Import" sob a seção "Skeletal Animation". Localize o arquivo `Animation_ske.json` e o adicione. Ct.js então importará todos os três arquivos para o seu projeto.
 
-## Using Skeletal Animations
+## Usando Animações Skeletal
 
-Skeletal animations are different from regular copies' sprites, and thus they will lack such features like collision detection, but they can be added to any regular copy.
+Animações Skeletal são diferentes dos sprites das copies, e desse forma eles não terão recursos com a detecção de colisão, mas eles podem ser adicionados para qualquer copy regular.
 
-To add a skeletal animation to a copy, write this to its On Create code:
+Para adicionar uma animação skeletal para uma copy, escreva isso em seu código `OnCreate`:
 
 ```js
 this.skel = ct.res.makeSkeleton('YourAnimationName');
@@ -38,13 +38,13 @@ this.addChild(this.skel);
 this.graph = -1; // This will hide the copy's own sprite
 ```
 
-These are some useful functions to manipulate the skeleton:
+Existem algumas funções para manipular o skeleton:
 
 * `skel.animation.play('AnimationName');`
 * `skel.animation.fadeIn('NewAnimation', durationInSecs);`
 * `skel.armature.getSlot("SlotName").display = false;`
 
-Example of adding dynamic skeletal animation with blends:
+Exemplo de como adicionar efeitos dinâmicos em uma animação skeletal:
 
 ```js
 /* Draw event */
@@ -67,11 +67,11 @@ if (this.onGround) { // should be defined before
 }
 ```
 
-## Responding to Animation Events
+## Respondendo aos Eventos da Animação
 
-ct.js will automatically listen for sound events inside DragonBones skeleton. The names you define in the DragonBones project should be named in the same way as ct.js' sounds.
+Ct.js automaticamente ouvirá por eventos de som dentro do DragonBones skeleton. Os nomes que você define em seu projeto DragonBones devem ser os mesmos que os sons do ct.js.
 
-For listening for custom events, add such code right after attachment of a skeleton to a sprite:
+Para ouvir por um evento específico, adicione esse código logo após ter anexado o skeleton para o sprite:
 
 ```js
 this.skel.on(dragonBones.EventObject.FRAME_EVENT, event => {

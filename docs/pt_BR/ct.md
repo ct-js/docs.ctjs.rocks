@@ -42,4 +42,4 @@ Você pode usar delta para determinar o movimento, então todas as coisas se mov
 this.x += 10 * ct.delta;
 ```
 
-Mas `ct.delta` é frequentemente utilizado enquanto se projeta movimentos complexos ou controlado logicamente, uma vez que [o sistenas padrão de movimentos](ct.types.html#moving-copies-around) já leva em consideração `ct.delta`.
+Mas `ct.delta` é frequentemente utilizado enquanto se projeta movimentos complexos ou controlado logicamente, uma vez que [o sistema padrão de movimentos](ct.types.html#moving-copies-around) já leva em consideração `ct.delta`.

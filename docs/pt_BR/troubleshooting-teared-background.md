@@ -1,9 +1,9 @@
-# My repeating background or tiles split into squares!
+# Minha imagem de fundo ou os meus tiles se dividem em quadrados!
 
-**How it may look:**
+**Como se parece:**
 
 ![](./../images/ts_TearedBackgroundExample.png)
 
-**Solution:** Make sure that you mark your background texture as tiled in its Graphic editor:
+**Solution:** Esteja certo que você marcou na sua imagem de fundo, background, na aba `Textures` a opção `Use as a background`:
 
 ![](./../images/ts_TearedBackground.png)

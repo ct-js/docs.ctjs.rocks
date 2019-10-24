@@ -60,7 +60,7 @@ Qualquer módulo é um diretório com a seguinte estrutura:
 
 ## Adicionando injeções
 
-Injeções é um poderoso instrumento para estender as funcionalidades doframework ct.js, além de permitir adição de métodos ou propriedades. Isso permite que você adicione lógica ao game loop, carregar recursos, criar Tipos embutidos, etc. 
+Injeções é um poderoso instrumento para estender as funcionalidades do framework ct.js, além de permitir adição de métodos ou propriedades. Isso permite que você adicione lógica ao game loop, carregar recursos, criar tipos embutidos, etc. 
 
 A pasta `injects` contém os arquivos com os códigos que devem ser injetados durante a exportação do jogo. Todas eles são opcionais, e aqui vai uma lista de todas as injeções possíveis:
 

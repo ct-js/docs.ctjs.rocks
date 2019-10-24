@@ -1,6 +1,6 @@
 # Using Skeletal Animation in ct.js Projects
 
-ct.js supports importing DragonBones animations. It was tested with DragonBones v5.6, but, as DragonBones has a good backweards compatibility, it should work back to v4.0, too. Dragonones is free to use and is available at [their official site](http://dragonbones.com/).
+ct.js supports importing DragonBones animations. It was tested with DragonBones v5.6, but, as DragonBones has a good backwards compatibility, it should work back to v4.0, too. Dragonones is free to use and is available at [their official site](http://dragonbones.com/).
 
 ## Importing Skeletal Animation
 

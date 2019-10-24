@@ -22,7 +22,7 @@ As rooms existentes para alternância.
 
 ### `ct.rooms.make`
 
-Uma função que é invocada por uma room para criar as suas copies, backgrounds e tiles no carregamento. Ela é meramente uma função interna que não precisar ser utilizada na ct.IDE, mas ainda assim vcoê pode usar esse método para adicionar copies de uma room para uma outra room existente. O método retorna um array com todas as copies criadas, incluindo os tile layers e backgrounds. Exemplo:
+Uma função que é invocada por uma room para criar as suas copies, backgrounds e tiles no carregamento. Ela é meramente uma função interna que não precisa ser utilizada na ct.IDE, mas ainda assim vcoê pode usar esse método para adicionar copies de uma room para uma outra room existente. O método retorna um array com todas as copies criadas, incluindo os tile layers e backgrounds. Exemplo:
 
 ```js
 this.interfaceCopies = ct.rooms.make.apply(ct.rooms.templates.MainInterface);
@@ -30,7 +30,7 @@ this.interfaceCopies = ct.rooms.make.apply(ct.rooms.templates.MainInterface);
 
 ## Gerenciando o viewport atual
 
-Você pode gerenciar o viewport em qualquer momento editiando as propriedades listadas abaixo do objeto`ct.room`. Você também pode utilizar a palavra reservada `this` nos eventos da room.
+Você pode gerenciar o viewport em qualquer momento editando as propriedades listadas abaixo do objeto`ct.room`. Você também pode utilizar a palavra reservada `this` nos eventos da room.
 
 ### `ct.room.x`, `ct.room.y`
 

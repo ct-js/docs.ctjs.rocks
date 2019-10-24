@@ -12,7 +12,7 @@ Use essa documentação sempre que quiser a partir do painel lateral do ct.js e 
 
 Alguns módulos adicionais são vitais para a criação de um bom jogo. Você precisará aprender como usar essas bibliotecas como `ct.place` e `ct.keyboard`. Cada módulo tem a sua própria documentação de referência dentro do ct.js na aba "Catmods". `ct.place` e `ct.keyboard` também são frequentemente utilizados em nossos tutoriais, e eles são bons para mostrar como usar essas bibliotecas.
 
-Se você tiver alguma dificuldade, crie um tópico em [nosso fórum ct.js](https://comigo.itch.io/ct/community) para que outras pessoas poderão te ajudar.
+Se você tiver alguma dificuldade, crie um tópico em [nosso fórum ct.js](https://comigo.itch.io/ct/community) para que outras pessoas possam te ajudar.
 
 ## Conceitos básicos
 

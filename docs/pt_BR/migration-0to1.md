@@ -1,61 +1,61 @@
-# Migration Guide
+# Guia de Migração
 
-Version 1.0 is slightly different from 0.5.2 and earlier versions of ct.js. These changes include movement and, at its bigger part, drawing. Here are some tips and examples on how to update your 0.x project to 1.x.
+A versão 1.0 é levemente diferente da versão 0.5.2 e das versões anteriores do ct.js. Essas mudanças incluem movimento e em sua grande maioria na parte de desenho. Aqui vai algumas dicas de como migrar da versão 0.x do seu projeto para 1.x.
 
-## General changes
+## Alterações gerais
 
-### Movement
+### Movimento
 
-Movement is generally the same, though you should note, that some variables are now renamed, and their older variants are deprecated and work a bit slower:
+O movimento de forma geral é o mesmo, como você deve ter notado, o que mudou foi que agora algumas variáveis foram renomeadas, e suas variantes agora são desapreciadas por funcionarem de uma forma um pouco mais lenta:
 
-* `dir` is now `direction`;
+* `dir` agora é `direction`;
 * `spd` → `speed`;
 * `grav` → `gravity`;
 * `dravdir` → `gravityDir`.
 
-Such variables as `speed`, `gravity` still reflect a number of pixels added each frame, but, as the default framerate is 60 now, you should cut them in half if you used 30 FPS.
+Da mesma forma como `speed`, `gravity` ainda representa uma quantidade de pixels adicionado a cada frame, mas como a taxa de frames agora é 60, você deve dividir ao meio se você for usar 30 FPS.
 
-Additionally, two new variables were introduced: `hspeed` and `vspeed`. You can read and write to them.
+Adicionalmente, duas novas variáveis foram introduzidas: `hspeed` e `vspeed`. E você pode tanto lê como assinar valores para elas.
 
-Under the hood, the default movement system is now based on vertical an horizontal speed, not on direction and overall speed. Some inconsistencies may arise, though, especially with specific orders of execution:
+Por debaixo dos panos, o sistema de movimento padrão agora é baseado nas velocidades verticais e horizontais, não na velocidade geral e de direção. Algumas inconsistências podem surgir, especialmente com a ordem de execução:
 
 ```js
 this.speed = 4;
 this.direction = 90;
 ```
 
-Everything is ok, `this.vspeed` is now -4.
+Tudo bem até aqui, `this.vspeed` agora é -4.
 
 ```js
 this.direction = 90;
 this.speed = 4;
 ```
 
-`this.direction = 90` makes no sense here, because `this.vspeed` and `this.hspeed` are equal to 0 and this rotation had no effect.
+`this.direction = 90` não tem sentido nisso, porque `this.vspeed` e `this.hspeed` ainda são iguais a zero e essa rotação não tem efeito.
 
-When making incremental movement without default variables, or when adding acceleration, you should multiply your numbers with `ct.delta`. So, instead of this:
+Quando fizer o incremento de movimento sem as variáveis padrões, ou quando adicionar uma aceleração, você deve multiplicar os seus números por `ct.delta`. Então em vez de escrever isso:
 
 ```js
 this.speed += 0.5;
 this.x -= 10;
 ```
 
-You should write:
+Você deve escrever isso aqui:
 
 ```js
 this.speed += 0.5 * ct.delta;
 this.x -= 10 * ct.delta;
 ```
 
-It is not necessary, yet recommended, as it helps to provide consistent movement with any framerate. 
+Isso não é necessário, mas fortemente recomendado, já que ajuda a manter o movimento consistente, independente de qual seja a taxa de frames por segundo. 
 
-`this.move();` utilizes `ct.delta`, so the default movement system will be consistent on every framerate by default.
+`this.move();` utiliza `ct.delta`, então o sistema de movimentos por padrão será consistente a cada frame independente da sua taxa de frames, seja ela 30 ou 60 FPS, não importa.
 
-### Transformations (`Cannot create property '_parentID' on boolean 'true'`)
+### Transformações (`Não é possível criar a propriedade '_parentID' com um booleano 'true'`)
 
-Writing `this.transform = true;` will break your game now, as `transform` is now an object.
+Escrever `this.transform = true;` fará com que o seu jogo não funcione, porque `transform` agora é um objeto.
 
-Instead of writing this:
+Em vez de escrever isso:
 
 ```js
 this.transform = true;
@@ -65,7 +65,7 @@ this.tr = 45;
 this.ta = 0.5;
 ```
 
-You should write this:
+Você deve escrever isso aqui:
 
 ```js
 this.scale.x = 0.5;
@@ -74,30 +74,31 @@ this.rotation = 45;
 this.alpha = 0.5;
 ```
 
-### View boundaries
+### Limites da View
 
-Instead of `ct.room.width` and `ct.room.height` use `ct.viewWidth` and `ct.viewHeight` only. These are different concepts now, and `ct.room.width` and `ct.room.height` changes over time.
+Em vez de usar `ct.room.width` e `ct.room.height`, use apenas `ct.viewWidth` e `ct.viewHeight`. Existe um conceito diferente agora, e `ct.room.width` e `ct.room.height` muda a todo instante.
 
-### Timers
-Instead of:
+### Temporizadores
+
+Em vez de:
 
 ```js
 this.shootTimer--;
 ```
 
-Better write:
+É melhor escrever:
 
 ```js
 this.shootTimer -= ct.delta;
 ```
 
-## Drawing
+## Desenhando
 
-First off: you can't directly draw in the Draw event now. Instead, you should create an object to draw (e.g. in the On Create event), and add it to your room or attach to an object, forming some kind of a widget.
+Primeiramente: agora você não pode mais desenhar no evento `Draw`. Em vez disso, você deve criar um objeto de desenho (por exemplo, no evento `OnCreate`), e adicionar o mesmo para a sua room ou anexá-lo para um objeto, formando assim algum tipo de widget.
 
-### Drawing text labels
+### Desenhando etiquetas de texto
 
-Instead of:
+Em vez de:
 
 ```js
 ct.styles.set('ScoreText');
@@ -105,7 +106,7 @@ ct.draw.text('Score: ' + this.score, 20, 20);
 ct.styles.reset();
 ```
 
-You should write this to your On Create code:
+Você deve escrever isso em seu evento `OnCreate`:
 
 ```js
 this.scoreLabel = new PIXI.Text('Score: ' + this.score, ct.styles.get('ScoreText'));
@@ -113,17 +114,17 @@ this.scoreLabel.x = this.scoreLabel.y = 20;
 this.addChild(this.scoreLabel);
 ```
 
-And update the label in the Draw event:
+E atualizar a sua etiqueta no evento `Draw`:
 
 ```js
 this.scoreLabel.text = 'Score: ' + this.score;
 ```
 
-### Drawing geometry
+### Desenhos geométricos
 
-For this, use [PIXI.Graphics](https://pixijs.download/release/docs/PIXI.Graphics.html). Its API is similar to HTMLCanvas API, and one PIXI.Graphics object can contain more than one shape.
+Para isso use [PIXI.Graphics](https://pixijs.download/release/docs/PIXI.Graphics.html). É uma API semenlhante a API do HTMLCanvas, e um objeto PIXI.Graphics pode conter mais de uma forma.
 
-Example (On Create event):
+Exemplo (Evento `OnCreate`):
 
 ```js
 var overlay = new PIXI.Graphics();
@@ -135,13 +136,13 @@ overlay.alpha = 0.65;
 this.addChild(overlay);
 ```
 
-### Drawing Healthbars, Mana Bars, etc.
+### Desenhando Barras de vida, Barra de Mana e etc.
 
-For these, consider using built-in [9-slice scaling](https://en.wikipedia.org/wiki/9-slice_scaling). You should use an image that can be stretched horizontally and/or vertically, like this:
+Para isso, considere usar o [escalonamento de 9 fatias](https://en.wikipedia.org/wiki/9-slice_scaling). Você deve utilizar uma imagem que pode ser esticada verticalmente e/ou horizontalmente, como essa aqui:
 
 ![](./../images/migrationBarSource.png)
 
-Add this to your On Create code:
+Adicione isso em seu código `OnCreate`:
 
 ```js
 this.healthBar = new PIXI.mesh.NineSlicePlane(
@@ -153,7 +154,7 @@ this.healthBar.height = 64;
 this.healthBar.width = ct.game.health * 2; // Assuming that the max health is 100 and you want 100×2 = 200px wide bar
 ```
 
-And update it each step with this code:	
+E atualize o mesmo a cada momento com esse código:	
 
 ```js
 this.healthBar.width = ct.game.health * 2;
@@ -161,18 +162,18 @@ this.healthBar.width = ct.game.health * 2;
 
 ![](./../images/migrationBars.gif)
 
-Constants `8, 8, 8, 16` tell which areas should not be stretched, in this order: on the left side, on the top, on the right and on the bottom.
+As constantes `8, 8, 8, 16` dizem quais áreas não devem ser esticadas, nessa ordem: o lado esquerdo, o topo, o lado direito, e a parte inferior.
 
-Backgrounds for these bars can be made in the same way.
+Planos de fundo para essas barras podem ser feitas do mesmo jeito.
 
-### Drawing Static Images
+### Desenhando Imagens Estáticas
 
-Two ways to do that exist:
+Existe duas formas de fazer isso:
 
-1. Creating a new type that will display the needed image;
-2. Or creating a PIXI.Sprite and adding it to the room (or to the object).
+1. Criar um novo tipo que exibirá a imagem;
+2. Ou criar um objeto PIXI.Sprite e adicionar o mesmo em sua room ou para um objeto.
 
-The second approach can be made in this way:
+A segunda forma pode ser feita dessa forma aqui:
 
 ```js
 this.coinIcon = new PIXI.Sprite(ct.res.getTexture('coinGold', 0));
@@ -181,22 +182,22 @@ this.coinIcon.y = this.y + 35;
 this.addChild(this.coinIcon);
 ```
 
-## Changes from 1.0.0-next-1 to 1.0.0-next-2
+## Alterações de 1.0.0-next-1 para 1.0.0-next-2
 
-For working with different resolutions, you should now use `ct.viewWidth` and `ct.viewHeight` instead of `ct.width` and `ct.height`. The latter now mean the size of a drawing canvas, which doesn't always match with your viewport, especially when using new sizing modes of `ct.fittoscreen`.
+Para trabalhar com difrentes resoluções, você agora deve uar `ct.viewWidth` e `ct.viewHeight` em vez de `ct.width` e `ct.height`. os últimos significam agora o tamanho do canvas, o que não necessariamente significa que seja o tamanho da sua tela de visualização, especialmente quando estiver usando o novo modo de tamanho `ct.fittoscreen`.
 
-## Changes in 1.0.0-next-3
+## Alterações em 1.0.0-next-3
 
-### Keyboard and mouse support
+### Suporte para teclado e mouse
 
-ct.js now uses Actions for mapping a user input with game events. You can read about Actions [here](/actions.html). Because of that, `ct.mouse` dropped out of the core and is now a catmod.
+ct.js agora usa Actions para mapear as entradas do usuário com os eventos do jogo. Você pode lê sobre Actions [aqui](/actions.html). Por causa disso, `ct.mouse` foi removido do núcleo da ferramenta para o catmod.
 
-All old projects will automatically work with `ct.mouse.legacy` and, if needed, `ct.keyboard.legacy`. They reflect the previous behaviour of these modules and should not cause compatibility issues.
+Todos os projetos antigos automaticamente vão funcionar com o `ct.mouse.legacy` e, se necessário, `ct.keyboard.legacy`. Eles representam o comportamento anterior desse módulos e não devem causar problemas de compatibilidade.
 
-The new `ct.keyboard` doesn't have `ct.keyboard.pressed`, `ct.keyboard.down`, and `ct.keyboard.released`. Instead, it fully relies on the new Actions system.
+O novo `ct.keyboard` não tem um `ct.keyboard.pressed`, `ct.keyboard.down` e `ct.keyboard.released`. Em vez disso, eles são completamente dependentes do novo sistemas de Ações (Actions).
 
-### Graphics -> Textures
+### Gráficos -> Texturas
 
-Graphics, graphic assets, etc. are now called "Textures".
+Gráficos, assets gráficos, etc. agora são chamados de "Texturas" ("Textures").
 
-Now, instead of writing `this.graph = 'Sosiska';` in your code to change a texture, you should write `this.tex = 'Sosiska;`.
+Agora em vez de escrever `this.graph = 'Sosiska';` em seu código para alterar uma textura, você deve esccrever `this.tex = 'Sosiska;`.
