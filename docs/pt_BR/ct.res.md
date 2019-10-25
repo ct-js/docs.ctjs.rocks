@@ -1,6 +1,6 @@
 # ct.res
 
-Esse objeto gerencia todos os recursos necessários para o seu jogo, incluindo imagens e som. Usualmente você não precisa utilizar esses métodos, porque todo o trabalho é feito pelo ct.IDE, entretanto você pode achar útil o carregamento adicional ou dinâmico de assets durante o processo do game.
+Esse objeto gerencia todos os recursos necessários para o seu jogo, incluindo imagens e som. Usualmente você não precisa utilizar esses métodos, porque todo o trabalho é feito pelo ct.IDE, entretanto você pode achar útil o carregamento adicional ou dinâmico de assets durante o processo de execução do jogo.
 
 ## Métodos e propriedades
 
@@ -10,7 +10,7 @@ Esse objeto gerencia todos os recursos necessários para o seu jogo, incluindo i
 
 ### `ct.res.skelRegistry`
 
-Contém todos os dados de animações skeletal importadas do jogo.
+Contém todos os dados de animações skeletal importadas para o jogo.
 
 ### `ct.res.sounds`
 
@@ -22,7 +22,7 @@ Retorna uma textura Pixi obtida através de uma textura ct.js, isso é necessár
 
 Se `name` é igual a `-1`, então uma textura vazia é rotornada.
 
-Se `frame` é definido, então apenas uma textura é retornada. Caso contrário, todas as texturas em uma animação ct.js serão retornadas como um array.
+Se `frame` é definido, então apenas a textura especificada é retornada. Caso contrário, todas as texturas da animação serão retornadas como um array.
 
 ### `ct.res.fetchImage(url: String, callback: Function)`
 

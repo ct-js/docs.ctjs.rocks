@@ -1,10 +1,10 @@
-# Introduction to JavaScript, part II: Conditions and Loops
+# Introdução ao JavaScript, parte II: Condicionais e Loops
 
-Variables are good for storing things, but it isn't enough for making a game. Here we will talk about conditional statements and loops, and how they may define a game's logic.
+Variáveis é um bom lugar para guardar as coisas, mas apenas isso não faz um jogo. Aqui nós falaremos sobre instruções condicionais e loops, e como eles podem definir a lógica do jogo.
 
-## "if" statements
+## Instrução "if"
 
-Let's start with an "if" structure:
+Vamos iniciar com a estrutura de um "if":
 
 ```js
 if (/* this statement is true*/) {
@@ -14,7 +14,7 @@ if (/* this statement is true*/) {
 }
 ```
 
-We can omit an "else" part if we don't need it:
+Podemos omitir a parte "else" se não precisarmos dele:
 
 ```js
 if (/* this statement is true */) {
@@ -22,15 +22,15 @@ if (/* this statement is true */) {
 }
 ```
 
-To make things work, we need to pass a Boolean value in the parentheses and write some code. We can do lots of things with this simple statement:
+Para fazer as coisas funcionarem, precisamos passar um valor Booleano entre os parênteses e em seguida escrever algum código. Podemos fazer um monte de coisas com essa simples instrução:
 
-```js Destroy a Copy if its health is zero or below
+```js Destrói uma Copy se health for menor ou igual a zero
 if (this.health <= 0) {
     this.kill = true;
 }
 ```
 
-```js Make a purchase
+```js Realiza uma compra
 var price = 500;
 this.money = 1230;
 
@@ -40,7 +40,7 @@ if (this.money >= price) {
 }
 ```
 
-```js Make a jump
+```js dá um pulo
 this.onGround = true;
 var keyUp = ct.keyboard.down['up'];
 if (this.onGround && keyUp) {
@@ -48,7 +48,7 @@ if (this.onGround && keyUp) {
 }
 ```
 
-```js Don't jump off the screen
+```js Não pula fora dos limites da tela
 if (this.x < 0) {
     this.x = 0;
 }
@@ -63,9 +63,9 @@ if (this.y > ct.viewHeight) {
 }
 ```
 
-Let's optimize the latter one a bit:
+Vamos otimizar um pouco o código anterior:
 
-```js Don't jump off the screen
+```js Não pula fora dos limites da tela
 if (this.x < 0) {
     this.x = 0;
 } else if (this.x > ct.viewWidth) {
@@ -78,9 +78,9 @@ if (this.y < 0) {
 }
 ```
 
-## "While" loops
+## Loops "while"
 
-"While" loops execute some code multiple times until some statement becomes false.
+loops "while" executa o código múltiplas vezes até que a instrução se torna `false`.
 
 ```js 
 while (/* this statement is true */) {
@@ -88,7 +88,7 @@ while (/* this statement is true */) {
 }
 ```
 
-Imagine that we need to create a number of same Copies, and that this number cannot be hard-coded or is relatively big to write it by hand. In this case, a "while" loop can automate the creation process.
+Imagine que a gente precise criar um monte de Copies iguais, e que esse número alto de Copies não possa ser codificado ou que seja uma quantidade relativamente alta pra escrever na "mão grande". Nesse caso, um loop "while" pode automatizar o processo de criação dessas Copies.
 
 ```js
 var counter = 20; // We need to create 20 Copies
@@ -99,9 +99,9 @@ while (counter > 0) {
 }
 ```
 
-## "For" loops
+## Loops "for"
 
-General "for" loops work in the same way as "while" loops do. Let's take the previous "while" example and turn it into a "for" loop:
+De modo geral, os loops "for" funcionam da mesma forma que os loops "while". Vamos reescrever o exemplo anterior em "while" para "for":
 
 ```js
 for (var counter = 20; counter > 0; counter--) {
@@ -109,7 +109,7 @@ for (var counter = 20; counter > 0; counter--) {
 }
 ```
 
-Looks like we mashed all the loop-related things into one line! And "for" loops are created exactly for this:
+Observe que nós juntamos todas as coisas relacionadas ao loop em uma única linha! Loops "for" são criados exatamente para isso:
 
 ```js
 for (/*define variables here*/; /*set a condition*/; /*change variables after each iteration*/) {
@@ -117,21 +117,21 @@ for (/*define variables here*/; /*set a condition*/; /*change variables after ea
 }
 ```
 
-But there are more "for" loops. For example, we can manipulate *arrays* and *objects* with "for…of" and "for…in" loops.
+Mas ainda existem outros tipos de loops "for". Por exemplo, nós podemos manipular *arrays* e *objetos* com um loop "for…of" e "for…in".
 
 :::tip
-The "for" loops below are optional and are quite an advanced stuff, but they are also powerful instruments while manipulating complex data.
+Os loops for abaixo são opcionais e bastante avançados, mas eles também são um poderoso instrumento para a manipulação de dados complexos.
 :::
 
-Let's take a look at "for…of" loops. They work with *Arrays*, which are essentially an ordered list of stuff. We can define Arrays in this way:
+Vamos olhar o loop "for…of". Ele funciona com *Arrays*, os quais são essencialmente uma lista ordenada de coisas. Nós podemos definir Arrays dessa forma:
 
 ```js
 this.monstersPowers = [1, 2, 3, 5, 8];
 
-console.log(this.monstersPowers[0]); // output the first element to the console
+console.log(this.monstersPowers[0]); // envia o primeiro elemento do array para o console
 ```
 
-Let's output all these values to the console. Here's how we can do it with the "while" statement:
+Vamos enviar todos esses valores para o console. Vamos ver como fazer isso com a declaração "while":
 
 ```js
 var ind = 0;
@@ -142,10 +142,10 @@ while (ind < this.monsterPowers.length) {
 ```
 
 :::tip
-The `length` property exists on all Arrays, and it defines the number of elements inside. You can both read and change this variable.
+A propriedade `length` existe em todos os Arrays, e ela define o número de elementos do array. Você pode tanto ler como alterar essa propriedade.
 :::
 
-That's how we could do the same thing with a generic "for" loop:
+Aqui está como podemos fazer a mesma coisa com um loop "for" genérico:
 
 ```js
 for (var ind = 0; ind < this.monsterPowers.length; ind++) {
@@ -153,7 +153,7 @@ for (var ind = 0; ind < this.monsterPowers.length; ind++) {
 }
 ```
 
-Now behold, the "for…of" loop:
+Agora eis o loop "for…of":
 
 ```js
 for (var element of this.monsterPowers) {
@@ -161,14 +161,14 @@ for (var element of this.monsterPowers) {
 }
 ```
 
-This one does two things for us automatically:
+Ele faz duas coisas para nós automaticamente:
 
-* it creates its own internal counters and conditions, but doesn't show them, so the code stays clean, and
-* it stores each element to the `element` variable (it will have a different value on each iteration).
+* Ele cria um contador interno e as condições, mas não mostra, o que deixa o código mais limpo.
+* Ele também armazena cada elemento na variável `element` (Ela terá um valor diferente a cada interação).
 
-Note though that "for…of" loops work on Arrays only. But there are also *Objects*.
+Note que o loop "for…of" funciona apenas com arrays. Mas também existem os *objetos*.
 
-*Objects* are more abstract things; they may be interpreted as cabinets with named shelfs, each shelf containing one item. By the way, Arrays are Objects, too, but instead of named shelfs they contain numerated ones. The names of these "shelfs" are called *"keys"*, and a pair of a key and a value is a *property* from the previous tutorial part!
+*Objetos* são muito mais abstratos; eles podem ser interpretados como armários com prateleiras nomeadas, cada prateleira contendo um item. A propósito, Arrays são Objetos também, mas em vez de prateleiras com nomes, eles têm índices numéricos. Os nomes dessas "prateleiras" são chamadas de *"chaves"*, e um par de uma chave e um valor é o que chamamos de *propriedade*, vista na [parte I](./jsintro_pt1.html) desse tutorial!
 
 ```js
 var magicWand = {
@@ -182,7 +182,7 @@ console.log(magicWand.name);
 console.log(magicWand['forces']); // Another way to get values from Objects — Array-styled!
 ```
 
-We can use two kinds of "for" loops to walk over all elements of an Array, but we will need a "for…in" loop to walk over all the properties of an Object:
+Podemos utilizar dois tipos de loop "for" para percorrer todos os elementos de uma array, mas nós precisaremos de um loop "for…in" para percorrer todas as propriedades de um Objeto:
 
 ```js
 for (var key in magicWand) {
@@ -190,6 +190,6 @@ for (var key in magicWand) {
 }
 ```
 
-What does happen there? Firstly, we tell that we want to read the keys from the `magicWand` in the `key` variable. This is mostly similar to the way how "for…of" loops work. Then we output two values at a time, at each iteration: a key (it will be `"name"`, then `"forces"`, etc.) and a corresponding value. We can't just write `magicWand.key` here, because `magicWand.key` will look for a static `key` property, but we can use Array-styled notation to get these properties dynamically.
+O que acontece lá? primeiro, dizemos que queremos ler as chaves de `magicWand` e guardar o resultado na variável `key`. Isso é muito semelhante ao funcionamento do loop "for…of". Em seguida enviamos os dois valores para o console: key (que é a chave e será `"name"`, depois `"forces"` e por aí vai.) e o seu valor. Nós não podemos apenas escrever `magicWand.key` aqui, porque em `magicWand.key`, `key` não é uma propriedade estática, mas nós podemos utilizar uma notação no estilo Array para obter as propriedades dinamicamente.
 
-Array-styled notation is a powerful instrument that has many uses, but for now, remember that you should use `someObject[key]` while using "for…in" loops.
+A notação no estilo Array é um poderoso instrumento que tem muitos usos, mas por enquanto, lembre-se que você deve usar `someObject[key]` quando usar o loop "for…in".

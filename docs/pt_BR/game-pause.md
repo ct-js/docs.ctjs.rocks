@@ -55,4 +55,4 @@ if (ct.actions.Pause.pressed) {
 }
 ```
 
-Esse código pode também ser dividido em duas partes e movido para os botões de UI. Animações de UI podem ser executada através de `ct.tween` ou ser manualmente animadas a cada frame.
+Esse código pode também ser dividido em duas partes e movido para os botões de UI. Animações de UI podem ser executadas através de `ct.tween` ou ser manualmente animadas a cada frame.

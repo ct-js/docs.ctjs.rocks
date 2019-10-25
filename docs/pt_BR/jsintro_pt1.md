@@ -1,16 +1,16 @@
-# Introduction to JavaScript, part I: Variables, Properties, Operations
+# Introdução ao JavaScript, parte I: Variáveis, Propriedades, Operações
 
-JavaScript is a great programming language that powers websites, games, apps like ct.js, and even robots! It is easy to learn, though infinitely deep, and is similar to other programming languages like C#, C++ or Java.
+JavaScript é uma ótima linguagem de programação para websites, games, apps como ct.js e até mesmo para robôs! Ela é muito fácil de aprender e é similar a outras linguagens de programação como C#, C++ ou Java.
 
-Ct.js games are all written in JavaScript. You define logic for your Copies and Rooms and write new extensions with it. Here we will learn basic concepts of this language.
+Jogos em ct.js são totalmente escritos em JavaScript. Você define a lógica para as suas Copies e Rooms além de escrever extensões com ela. Aqui nós ensinaremos os conceitos básico da linguagem.
 
-## Variables
+## Variáveis
 
-Variables are like memory cells. You can store any information in them, e.g. a number of lives, resources or experience, an NPC's name, etc. 
+Variáveis são como gavetas, assim como a gaveta de suas meias. Dentro dessas gavetas você pode armazenar qualquer informação, por exemplo, número de vidas, recursos ou experiência, um nome de um NPC (non-player character) e etc. 
 
-Variables can also contain more complex data, like a list of inventory items or a deck of cards.
+Variáveis também podem conter estrutura de dados mais complexa, como uma lista de inventários ou um baralho de cartas.
 
-You can *declare* new variables with a `var` keyword, and *assign them values* with an equation sign: 
+Você pode *declarar* novas variáveis com as palavras reservadas `var`, `let` e `const` e *assinar valores para elas* com um sinal de igualdade: 
 
 ```js
 var maxHealth;
@@ -31,15 +31,15 @@ var invincible = true, // These are Boolean values
     bleed = false; // You can combine multiple declarations and assignments with comma!
 ```
 
-*Declaration* process tells ct.js that we want to create a new variable. Without it, ct.js will throw an error, because we can't store information in a place that doesn't exist.
+O processo de *Declaração* diz ao ct.js que nós queremos criar uma nova variável. Sem isso, o ct.js lançaria um erro, porque nós não podemos armazenar informações em um local que não existe.
 
-*Assignment* writes a new value to a variable. When *declared*, variables are `undefined`. They will store useful information only after *assignment*. You can assign new variables many times.
+*Assinatura* escreve um novo valor para a variável. Quando *declarada*, as variáveis são `undefined`. Elas armazenarão informações úteis apenas depois da *assinatura*. Você pode assinar as novas variáveis quantas vezes você quiser.
 
-## Properties
+## Propriedades
 
-Variables are great for temporal values, but they disappear after a ct.js event completes (e.g., after 'On Destroy', 'On Step'). This makes variables useful for quick operations but unusable for a long run. We should use *properties* to store information so that we can use it later.
+Variáveis são excelentes para valores temporários, mas elas desaparecem depois que um ct.js termina (por exemplo, depois de 'On Destroy', 'On Step'). Isso faz com que as variáveis sejam úteis para operações rápidas, mas inúteis para uma execução a longo prazo. Nós devemos usar *propriedades* para armazenar informações que podemos utilizar depois.
 
-You can use properties in the same way you use variables, but they may only exist inside *Objects*. Objects are very abstract things, and they include all the Copies and Rooms. You will create your own Objects soon, too. But for now, let's look how to create and use properties: 
+Você pode usar propriedades da mesma forma que você usa variáveis, mas elas existem apenas dentro de *Objetos*. Objetos são coisas muito abstratas, e isso inclui todas as Copies e Rooms. Você irá criar os seus próprios objetos em breve, mas agora, vamos ver como criar e usar propriedades: 
 
 ```js
 this.maxHealth = 100;
@@ -55,17 +55,17 @@ this.stunned = false;
 this.bleed = false;
 ```
 
-As you can see, the most significant difference is that we don't need to declare properties. We can start writing values to them directly.
+Como você pode notar, a difrença mais significante é que não precisamos declarar as propriedades. Podemos simplesmente definir de forma direta valores para ela.
 
-There is also a new keyword: `this`. `this` stands for the current object which calls the code. If you write a code for an 'On Step' event of a Copy, then `this` will point to this exact copy. Writing `this.health = 100;` means that we store a property `health` inside the current copy, with a value `100`.
+Também tem uma nova palavra reservada: `this`. `this` representa o objeto atual, o qual é usado para acessar a propriedade no código. Se você escreve um código no evento 'On Step' de uma Copy, então `this` representa o exato e atual objeto de copy. Escrevendo `this.health = 100;` faz com que seja armazenado dentro da propriedade `health` do objeto copy atual o valor `100`.
 
-We can use a `this` keyword inside a room's code. In this case, values will be stored in a room.
+Nós podemos usar a palavra reservada `this` em um código dentro de uma room. E nesse caso, os valores serão armazenados nessa room.
 
-## Operations with values, properties and variables
+## Operações com valores, propriedades e variáveis
 
-Variables and properties are quite useless “as is”. With conditional statements, loops and operations they become a powerful mechanism defining your game's logic. We will talk about loops and conditionals later. For now, let's look at operations.
+Variáveis e propriedades são completamente inúteis da forma que estão. Através de instruções condicionais, loops e operações, elas se tornam um poderoso mecanismo de definição de lógica em seu jogo. Depois nós falaremos sobre loops e condicionais. Por hora, vamos nos focar apenas em operações.
 
-Operations with numbers are familiar to everyone. They are like arithmetic equations: 
+Operações numéricas é familiar pra todo mundo. Elas são como equações aritméticas: 
 
 ```js
 this.level = 10;
@@ -79,7 +79,7 @@ this.magicResistance = this.magicPower / 10; // 8.5
 this.remainder = 11 % 4; // 3, because 11 / 4 = 2 and 3 as a remainder;
 ```
 
-When we need to *change* a variable or property, we can unite assignment and the needed operation:
+Quando precisamos *alterar* o valor numérico de uma variável ou propriedade, podemos simplesmente unir a atribuição e operação em uma única assinatura ou instrução:
 
 ```js
 this.health = 10;
@@ -89,7 +89,7 @@ this.health *= 10; // 30
 this.health -= 20; // 10
 ```
 
-There are also two fancy operators which modify a variable's value by `1`:
+Existe também um operador que modifica o valor da variável em `1` unidade:
 
 ```js
 this.counter = 10;
@@ -98,7 +98,7 @@ this.counter++; // 12
 this.counter--; // 11 again
 ```
 
-Strings have their operators too. We will use a plus sign to *concatenate* Strings: 
+Strings também tem os seus próprios operadores. Usamos um operador de `+` para *concatenar* as Strings: 
 
 ```js
 this.name = 'ct.js';
@@ -108,7 +108,7 @@ this.name += ', '; // 'ct.js, '
 this.name += this.title; // 'ct.js, The Almighty Cat'
 ```
 
-We can even add numbers to strings: 
+Nós sempre podemos adicionar números para as strings:
 
 ```js
 var score = 1000,
@@ -118,7 +118,7 @@ var power = 42,
     powerInfo = power + ' of power'; // '42 of power'
 ```
 
-**Warning!** Things get weird when we mix number-like strings and math operators: 
+**Alerta!** Coisas estranhas acontecem quandos misturamos strings com operações numéricas: 
 
 ```js
 var money = 100,
@@ -127,13 +127,13 @@ var case1 = money - price, // 95
     case2 = money + price; // 1005 (!)
 ```
 
-So the rule of thumb is to store numerical values as Numbers, not Strings. If you need to convert a String into a Number, use `parseFloat(yourString)`.
+Isso acontece porque no `case1` o JavaScript converte a string price automaticamente para um valor numérico, enquanto que no `case2` o operador `+` utilizado é uma concatenação de string e não uma operação numérica. Então a regra é muito simples, armazene os valores numéricos como números e não como strings. Se você precisa converter uma String para um número, use `Number.parseFloat(suaString)` ou `Number.parseInt(suaString)`, a primeira é para números decimais e a segunda é para números inteiros.
 
-## Boolean values and comparisons
+## Valores booleanos e de comparações
 
-Boolean is these variables and properties which values are either 'true' or 'false'. Note that we don't use quotation marks here.
+Booleano existe em variáveis e propriedades, os valores que um booleano pode assumir é `true` ou `false`.
 
-Boolean values can be retrieved by using comparisons, and they also have their own operators. Numbers have comparisons like what we can find in Math, while Strings are either equal or not:
+Valores booleanos são obtidos através do uso de comparações, e eles também têm os seus próprios operadores. Os números têm as comparações baseado nos operadores matemáticos, equanto que Strings podem ser iguais (`==`) ou diferentes (`!=`):
 
 ```js
 var health = 63,
@@ -145,8 +145,8 @@ health < maxHealth; // true
 mana > maxMana; // false
 mana >= maxMana; // true
 health <= maxHealth; // true
-health == maxHealth; // are they equal? false
-health != maxHealth; // they aren't equal, right? true
+health == maxHealth; // são iguais? false
+health != maxHealth; // não são iguais, certo? true
 
 var cat = 'Albert',
     dog = 'Snowball';
@@ -160,7 +160,7 @@ cat != dog; // true
 5 === parseFloat('5') // true, because parseFloat returns a Number, and so is 5
 ```
 
-Boolean values have their operators, too. The most basic one is `!`, which negates a value next to it.
+Os valores booleanos têm os seus próprios operadores também. O mais básico é a `!`, o qual nega o valor booleano.
 
 ```js An '!' operator
 !true; // false
@@ -171,7 +171,7 @@ var health = 50,
 var dead = !alive; // false
 ```
 
-There are also `&&` and `||`. The first one is referred to as "AND", and the second one is "OR". They are used to combine different Boolean values.
+Também existe os operadores `&&` e `||`. O primeiro representa "E", enquanto que o segundo representa "OU". Eles são usados para combinar os diferentes valores Booleanos.
 
 ```js Use of '&&' and '||'
 this.onGround = true;
@@ -183,4 +183,4 @@ this.powerFromRight = true;
 this.poweredOn = this.powerFromLeft || this.powerFromRight; // true
 ```
 
-In the next part we will talk about conditional statements and loops. For now, I recommend you to read about default [properties of Copies](ct.types.html) and [Rooms](ct.rooms.html).
+Na próxima parte nós falaremos um pouco mais sobre instruções condicionais e loops. Por hora, recomendo que você leia sobre as [propriedades das Copies](ct.types.html) e [Rooms](ct.rooms.html).

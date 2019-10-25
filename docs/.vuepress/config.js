@@ -171,11 +171,18 @@ module.exports = {
                 sidebar: [
                     ['/', 'A documentação em português ainda está incompleta e pode divergir do inglês!'],
                     ['pt_BR/', 'Página Inicial'], {
+                        title: 'Introdução ao JS',
+                        collapsable: false,
+                        children: [
+                            'pt_BR/jsintro_pt1',
+                            'pt_BR/jsintro_pt2'
+                        ],
+                    }, {
                         collapsable: false,
                         title: 'Tutoriais',
                         children: [
-                            'pt_BR/tut-making-platformer',
-                            'pt_BR/tut-making-shooter'
+                            'pt_BR/tut-making-shooter',
+                            'pt_BR/tut-making-platformer'
                         ],
                     }, {
                         title: 'Biblioteca Principal',
@@ -196,6 +203,7 @@ module.exports = {
                         collapsable: false,
                         children: [
                             'pt_BR/actions',
+                            'pt_BR/localstorage',
                             'pt_BR/game-pause'
                         ]
                     }, {
@@ -215,7 +223,7 @@ module.exports = {
                         collapsable: false,
                         children: [
                             ['pt_BR/migration-0to1', 'Migrando de 0.x para 1.x'],
-                            ['pt_BR/troubleshooting-teared-background', 'Background dividido em quadrados!'],
+                            ['pt_BR/troubleshooting-teared-background', 'Minha imagem de fundo dividida em quadrados!'],
                             ['pt_BR/troubleshooting-sounds-not-playing', 'Som não toca no início do jogo!']
                         ]
                     }

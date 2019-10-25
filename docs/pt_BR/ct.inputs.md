@@ -1,6 +1,6 @@
 # ct.inputs, ct.actions
 
-Esse módulo (`ct.inputs`) permite manipular [Ações](/actions.html). Você pode criar novas ações durante o jogo, modificando oou deletando as mesmas.
+Esse módulo (`ct.inputs`) permite manipular [Ações](/actions.html). Você pode criar novas ações durante o jogo, modificando ou deletando as mesmas.
 
 `ct.actions` armazena as ações existentes. Se você criou uma ação `Move`, Então ela estará disponível em `ct.actions.Move`. Cada uma delas é uma instância da classe JS `CtAction`.
 
@@ -23,10 +23,10 @@ if (ct.actions.Shoot.pressed) {
 
 ### ctAction.value ⇒ <code>Number</code>
 
-Um valor escalar entre -1 e 1. 0(zero) indica que não existe uma entrada para o frame atual, por exemplo, todos os direcionais/alavanca do gamepad estão na posição inicial ou todos os botões foram liberados. Qaundo utilizado com teclado e mouse, os valores das ações se alternará entre 0, 1, e -1 (if multipliers were used). Os direcionais do Gamepad e outros manipuladores podem produzir outros valores.
+Um valor escalar entre -1 e 1. 0(zero) indica que não existe uma entrada para o frame atual, por exemplo, todos os direcionais/alavanca do gamepad estão na posição inicial ou todos os botões foram liberados. Qaundo utilizado com teclado e mouse, os valores das ações se alternará entre 0, 1, e -1 (Se os multiplicadores foram usados). Os direcionais do Gamepad e outros manipuladores podem produzir outros valores.
 
 ### ctAction.pressed ⇒ <code>Boolean</code>
-Retorna se a ação tornou-se ativa no frame atual, seja por um aperta de um botão ou por usar um escalar de entrada.
+Retorna se a ação tornou-se ativa no frame atual, seja por um apertar de um botão ou por usar um escalar de entrada.
 
 **Retorna**: <code>Boolean</code> – `true` por ser pressionado e `false` em caso contrário 
 

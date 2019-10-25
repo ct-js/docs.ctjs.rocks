@@ -1,10 +1,10 @@
-# Saving and Loading Games with LocalStorage
+# Salvando e Carregando o Jogo com LocalStorage(Armazenamento Local)
 
-Saving a game's state is a necessary feature for games with anyhow long-term progression. Maybe you also want to store a highscore and a nickname for a fast-paced game with short playsessions. LocalStorage to the rescue! This global object allows for storing different string values and accessing them later. This feature works both in modern browsers and packed games. Combined with other handy features, we can store nearly any type of data!
+Salvar o progresso do jogo é um recurso necessário. Talvez você queira também armazenar a pontuação e o apelido para um jogo acelerado e de sessão curta, tipo o jogo dino do google-chrome. LocalStorage ao resgate! Esse objeto global permite armazenar diferentes tipos de valores string e acessá-los depois. Esse recurso funciona tanto em navegadores modernos como em jogos exportados. Combinado com outros recursos acessíveis, nós podemos armazenar qualquer tipo de dados ou quase todos os tipos de dados!
 
-## Saving Simple Values
+## Salvando Valores Simples
 
-Saving and reading string values is pretty easy:
+Salvar e lê valores string é muito fácil:
 
 ```js
 // Writing values to localStorage
@@ -22,7 +22,7 @@ if ('heroName' in localStorage) { // was anything saved before?
 }
 ```
 
-When it comes to numbers, dates, booleans, other stuff, we need to convert read values before using them.
+Quando os dados lindos são números, datas, booleanos ou qualquer outra coisa, precisamos converter esses valores antes de usá-los.
 
 ```js
 // WRONG WAY
@@ -37,7 +37,7 @@ console.log(this.level);
 
 ![Wrong use of localStorage](./../images/tutLocalStorage.png)
 
-`this.level` is now `'151'`! This is definitely not what we would expect. The reason is that `localStorage` can only store things, and anything else is turned into those. Because of that, we need to convert the values of `localStorage` to the needed types.
+`this.level` agora é `'151'`! Isso definitivamente não erá o que esperávamos. E a razão é porque o `localStorage` pode apenas fazer armazenamento em strings. E por causa disso, precisamos converter os valores de `localStorage` para os tipos que precisamos.
 
 ```js
 // BETTER WAY
@@ -51,7 +51,7 @@ console.log(this.level);
 
 ![Proper use of localStorage](./../images/tutLocalStorage_Yaaay.png)
 
-Here is how we can convert Date objects and Booleans:
+Aqui está como podemos converter os objetos do tipo Date e do tipo Boolean:
 
 ```js
 localStorage.gameStartTime = new Date();
@@ -63,9 +63,9 @@ this.startTime = new Date(localStorage.gameStartTime);
 this.hardcoreMode = localStorage.hardcoreMode === 'true';
 ```
 
-## Storing Complex Objects
+## Armazenando Objetos Complexos
 
-For anything beyound simple strings and numbers we need special encoding and decoding functions. Thankfully, there are such functions in JavaScript! They are `JSON.parse(encodedString)` and `JSON.stringify(complexObject)`.
+Para qualquer coisa além das simples strings e números, precisamos de funções especiais para a codificação e decodificação. Mas como o javascript é marivilhoso, temos uma função assim para isso! Elas são`JSON.parse(encodedString)` e `JSON.stringify(complexObject)`.
 
 ```js
 var inventory = [{
@@ -100,6 +100,6 @@ localStorage.heroInventory = JSON.stringify(inventory);
 this.inventory = JSON.parse(localStorage.heroInventory);
 ```
 
-This is quite a complex thing! Here we encode an array, but you can pass both arrays and objects to `JSON.stringify`.
+Isso já é o bastante para coisas complexas! Aqui nós codificamos um array, mas você pode passar tanto arrays como objetos com `JSON.stringify`.
 
-What can't be encoded, though, are functions, Date objects as-is, circular references. But in most cases you won't even save such data in your games!
+O que não pode ser codificado, as functions, os objetos do tipo Date, referências cíclicas. Mas em muitos casos você não precisará salvar dados assim para o seu jogo!

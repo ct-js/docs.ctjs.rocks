@@ -1,149 +1,149 @@
-# Making Games: Platformer
+# Criando Jogos: Plataforma
 
-In this tutorial, we will create a small platformer with diamonds, checkpoints, moving platforms, and traps! You will learn how to detect collisions, use them to create a side-view movement, and how to manipulate sprites and move the player between levels.
+Nesse tutorial criaremos um pequeno jogo de plataforma com diamantes, pontos de salvamento, plataformas que se movem e armadilhas! Você aprenderá como detectar colisões, e usar a mesma para criar uma visão de movimento lateral, além de manipular sprites e mover o jogador entre os níveis.
 
-![Creating a new project](./../images/tutPlatformer_endResult.png)
+![Criando um novo projeto](./../images/tutPlatformer_endResult.png)
 
-## Creating a Project
+## Criando um Projeto
 
-Open ct.js and create a new project called "Platformer".
+Abra o ct.js e crie um projeto chamado "Platformer".
 
-![Creating a new project](./../images/tutPlatformer_01.png)
+![Criando um novo projeto](./../images/tutPlatformer_01.png)
 
-## Importing Textures
+## Importando Texturas
 
-We will need some assets from the [simplified platformer pack by Kenney](https://www.kenney.nl/assets/simplified-platformer-pack). You can find the needed assets with proper names in the `ctjs/examples/Platformer_assets/` folder.
+Nós precisaremos de alguns assets que podem ser encontrados em [pacote simplificado de plataforma por Kenney](https://www.kenney.nl/assets/simplified-platformer-pack). Você pode encontrar também os assets que precisamos na pasta `ctjs/examples/Platformer_assets/`.
 
-![The needed assets](./../images/tutPlatformer_02.png)
+![Os assets que precisamos](./../images/tutPlatformer_02.png)
 
-Open the "Textures" tab, press the "Import" button, navigate to the `ctjs/examples/Platformer_assets/` folder and select all the images there. They will appear in the textures panel.
+Abra a aba "Textures", e pressione o botão "Import", navegue até a pasta `ctjs/examples/Platformer_assets/` e selecione todas as imagens. Elas aparecerão no painel de texturas.
 
-The first thing that we can notice is that the Robot_Walking animation is counted on as one image, not as two separate frames. Click on the `Robot_Walking` asset.
+A primeira coisa que nós precisamos notar é que a animação `Robot_Walking` é representada apenas por uma única imagem e, não com dois frames separados. Click no asset `Robot_Walking`.
 
 ![Editing an animation stripe](./../images/tutPlatformer_03.png)
 
-The image is a small horizontal stripe. It has one row and two columns. We can tell ct.js to divide the image in this way by setting `Columns` and `Rows` fields and then calibrating the `Width` field.
+A imagem é uma pequena faixa horizontal. Ela tem uma linha e duas colunas. Então podemos dizer ao ct.js para dividir a imagem especificando os campos `Columns`, `Rows` e ajustando o campo `Width`.
 
-The whole image is 192 pixels wide so one frame will be 192 : 2 = 96 pixels wide. The robot's frames should now be outlined with two rectangles.
+A imagem inteira tem 192 pixels então um frame será 192 : 2 = 96 pixels. Então cada frame do robô agora deve ser de 96 pixels.
 
-![Editing a texture](./../images/tutPlatformer_04.png)
+![Editando uma textura](./../images/tutPlatformer_04.png)
 
-Now let's edit its collision mask. It determines which areas of an image are counted as solid and which are not, and is displayed as a yellow rectangle over the sprite.
+Vamos agora editar a máscara de colisão. Ela determina qual área de uma imagem deve ser tratada como sólida e qual não é, a máscara é mostrada em forma de um retângulo amarelo sobre o sprite.
 
-Firstly, shift its axis so it is placed at the bottom middle point.
+Primeiramente, vamos mudar os eixos para o ponto médio do lado inferior.
 
-::: tip Explanation
-As we have a 96x96 pixels image, we need 48 pixels on the horizontal axis and 96 at a vertical one. Pixels are measured from the top-left corner, and the first value of a point is usually its horizontal component, or its X value, and the second is referred to as an Y component.
+::: tip Explicação
+Como temos uma imagem de 96x96, nós precisamos de 48pixel na horizontal e de 96 na vertical. Os pixels são calculados do canto superior esquerdo, sendo o primeiro valor do ponto, um valor que representa a componente horizontal, x, e a segunda sendo a componente vertical, y.
 :::
 
-The robot has a nice rectangular shape so it will be wiser to mark it up as a rectangle. Make sure you have a rectangular shape selected, click the 'Fill' button and calibrate the offsets so the robot's body is covered with a yellow rectangle.
+O robô tem um formato retangular, então ele pode ser marcado como `Rectangle`. Tenha certeza de escolher essa opção, em seguida click no botão 'Fill' e por fim ajuste as dimensões para cobrir o corpo do robô com o retângulo amarelo representando a máscara de colisão.
 
-![Editing a texture](./../images/tutPlatformer_05.png)
+![Editando uma textura](./../images/tutPlatformer_05.png)
 
-You can cover both the body and hands, or select the body only.
+Você pode cobrir tanto as mãos como o corpo do robô ou apenas cobrir o corpo.
 
-Click the "Save" button in the bottom-left corner.
+Click no botão no "Save" no canto esquerdo inferior.
 
-We now need to set collision masks for `Robot_Idle` and `Robot_Jump` too. Make sure that you shift the axis to 48x96 and calibrate collision masks for both of them.
+Precisamos agora definir a máscara de colisão para o `Robot_Idle` e `Robot_Jump`. Esteja certo de que você mudou os eixos para 48x96 e que ajustou as máscaras de colisão deles também.
 
 ::: tip
-It is also good to make collision offsets same for each of the three sprites, so the robot doesn't clip into the surface when switching its animations while suddenly getting bigger as a collision shape.
+É uma boa fazer com que a máscara de colisão seja a mesma para os três sprites, assim o robô não ficará surfando quando alternar entre as animações por causa das máscaras de colisão estarem diferentes.
 :::
 
-Now let's set the collision shapes of our crystals and heart bonuses. These can be defined as circles. Open the `GreenCrystal`, set its collision shape as a "Circle", then click a button called "Image's center" so the axis automatically snaps to needed values, and calibrate the collision shape's radius.
+Agora vamos definir a máscara de colisão para os nossos cristais e para o coração bônus. Esses podem ser definidos como um círculo. Abra o `GreenCrystal` e, defina a sua máscara de colisão como um "Circle", então click no botão chamado "Image's center" para que os eixos se ajustem de forma automática para os valores necessários, e em seguida ajuste o raio da máscara de colisão.
 
-Do the same for the `Heart` asset.
+Faça o mesmo para o asset `Heart`.
 
-![Editing diamonds](./../images/tutPlatformer_06.png)
-![Editing hearts](./../images/tutPlatformer_07.png)
+![Editando diamantes](./../images/tutPlatformer_06.png)
+![Editando coração](./../images/tutPlatformer_07.png)
 
-The last asset we need to modify is the `Spikes`. We don't need to shift its axis, because it will appear misaligned on the map in this way, but we still need to set its collision shape. Set its top offset to a negative value so the top part of the image is not filled with yellow.
+O último asset que precisamos modificar é o `Spikes`. Não precisamos mudar os seus eixos, porque senão ficariam desalinhados no mapa, mas ainda precisamos definir a sua máscara de colisão. Defina o lado superior com um valor negativo para que a parte superior não seja preenchida com o amarelo da máscara de colisão.
 
-![Editing spikes](./../images/tutPlatformer_08.png)
+![Editando spikes](./../images/tutPlatformer_08.png)
 
-Save your asset. If you look into other textures, you will see that they all have a rectangular shape that fills the whole image. That fits for all other images so we will leave them as is.
+Salve o seu asset. Se você observar as outras texturas, você verá que todas elas têm uma forma retangular que preenche toda a imagem. Portanto vamos deixar as mesmas do jeito que estão por enquanto.
 
-## Creating a Robot Character and Ground
+## Criando o Personagem Robô e o Chão
 
-Open the "Types" tab and create a new type. Call it "Robot", set its sprite to `Robot_Idle`, and save it.
+Abra a aba "Types" e crie um novo tipo. Chame-o de "Robot", defina o sprite para `Robot_Idle`, e o salve.
 
-![Editing a type](./../images/tutPlatformer_09.png)
+![Editando um type](./../images/tutPlatformer_09.png)
 
 ::: tip
-Types are like templates, from which copies are created. We fill our levels (also often named as rooms) with copies, and they are the things that interact with each other on the screen, but each copy was created from a certain type.
+Os Types (Tipos) são como modelos, a partir dos quais as copies são criadas. Nós preenchemos nossos níveis (frequentemente chamadas de rooms em ct.js) com copies, e eles são as coisas que interagem uma com a outra na tela, mas cada copy foi criada a partir de um certo type (tipo).
 :::
 
-Create additional types in the same way:
+Crie tipos adicionais do mesmo modo:
 
 * Rocks;
 * Rocks_Top;
 * Rocks_Platform.
 
-### Adding a Room
+### Adicionando uma Room
 
-Click on the "Rooms" tab at the top and create a new room. Set its name to "Level_01". Set view's size to 1024x576.
+Click na aba "Rooms" no topo e crie uma nova room. Chame essa room de "Level_01". Defina o tamanho para 1024x576.
 
-![Editing a room](./../images/tutPlatformer_10.png)
+![Editando uma room](./../images/tutPlatformer_10.png)
 
-Then draw a level by clicking on a type on the left and then placing it with your mouse in the big area on the right. Hold `Shift` to add multiple copies at once. Don't forget about the robot!
+Em seguida desenhe o nível clicando em um tipo a esquerda e com o seu mouse click na grande área a direita. Segure o `Shift` para adicionar várias copies de uma só vez. Não esqueça o nosso robô!
 
-You can expand your level to any side, and copies don't need to be inside the blue frame. This frame, which is manipulated by view's size, just sets the initially visible part of your level.
+Você pode expandir o seu nível em qualquer direção, e as copies não precisam está dentro do quadro azul. Esse quadro é definido pelas dimensões `View width` e `View height` localizadas no canto superior esquerdo, e serve apenas para determinar a parte visível inicial do seu nível.
 
-I drew this. It is hard to get stuck here as a player, but it teaches how to jump. We can also add crystals on the rock platform later, and some secret in a window under the final hill.
+Aqui está um nível básico, você é livre para desenhar o seu, até porque o nosso objetivo nesse momento é o de ensinar a movimentar, pular e coletar itens. Por enquanto faça algo assim, bem simples, porque depois vamos adicionar alguns cristais e como mudar para uma outra room.
 
 ![Comigo's platformer level](./../images/tutPlatformer_11.png)
 
-Now let's add a background. Click the "Backgrounds" tab on the left, press "Add", and select the `BG` asset. Now click the cog near our new background and change its depth to `-10`. Thus we tell the engine that the background should be drawn 10 layers below the default 0 layer.
+Vamos adicionar uma imagem de plano de fundo. Click na aba "Backgrounds" no lado esquerdo e em seguida click em "Add a Background", por fim, escolha o asset `BG`. Agora click na engrenagem em nosso plano de fundo e altere `Depth` para `-10`. Dessa forma diremos ao ct.js que o nosso plano de fundo deve ser desenhado 10 camadas abaixo da camada padrão, que é a camada 0 (zero).
 
 ![](./../images/tutPlatformer_27.png)
 
-If we save the project now and click the "Play" button at the top, we will be able to see a small portion of our level drawn in a debugger window. Nothing is movable yet, but it's still a good beginning!
+Se salvarmos o nosso projeto agora e clicarmos no botão "Play" localizado no top, seremos capazes de vermos parte do nosso nível na janela de debugger. Não existe nenhuma interação, mas já é um bom começo!
 
 ![Debug window with placed copies and background](./../images/tutPlatformer_12.png)
 
-### Adding Modules for Keyboard and Collisions
+### Adicionando Colisões e o Módulo de Teclado (Keyboard)
 
-We will need to listen to keyboard events and to detect collisions between the Robot and ground. For such superpowers, we will need Catmods! Click on the "Catmods" tab and select the `keyboard` on the left. Then press the big red knob to enable this module. Do the same with the `place` module.
+Precisamos ouvir por eventos de teclado e detectar as colisões entre o Robô e o chão. Para ter esse poder, precisamos do Catmods! Click na aba "Catmods" e selecione `keyboard` na coluna da esquerda. Em seguida click no grande botão vermelho para habilitar esse módulo, caso esteja em verde, o mesmo já estará habilitado. Depois faça o mesmo para o módulo `place`.
 
 ![Enabling a module in ct.js](./../images/tutPlatformer_13.png)
 
-::: tip PRO TIP ✨
-Enable the catmod called `fittoscreen`, then go to its settings tab and enable the option called "Fast scale with letterboxing" for an automagical full-screen view.
+::: tip DICA TOP ✨
+Habilite o módulo chamado `fittoscreen`, em seguida click na aba "settings" e habilite a opção chamada "Fast scale with letterboxing" para um modo tela cheia.
 :::
 
-Each module has its own documentation on the "Reference" tab. We will highlight some of its parts later.
+Cada módulo tem a sua própria documentação na aba "Reference". Destacaremos algumas de suas partes depois.
 
-### Adding Actions for Keyboard Events
+### Adicionando Actions (Ações) para Eventos de Keyboard (Teclado)
 
-Actions allow to listen to events from keyboard, mouse, gamepad, etc. You can read more about them [here](/actions.html). With them, we will create listeners to WASD keys and arrows.
+Ações permite ouvir por eventos de teclado, mouse, gamepad e etc. Você pode lê mais sobre elas [aqui](/actions.html). Com elas, nós criamos ouvintes para as teclas WASD e para as setas de navegação.
 
-Go to the Settings panel, then press the "Edit actions" button.
+Vá para o painel "Settings", em seguida click no botão "Edit actions".
 
 ![](./../images/tutPlatformer_24.png)
 
-Then, create an input scheme as in the picture below. To do that, firstly press the button "Add an action", name it, and then add input methods in the right column. You can use search to quickly add the needed keys.
+Então crie um esquema de entrada como na imagem abaixo. Para fazer isso, primeiro click no botão "Add an action", dê um nome pra ela, e então adicione um método de entrada na coluna da direita. Você pode usar o campo de pesquisa para encontrar o método de entrada que você precisa e assim agilizar o processo.
 
 ![Input mappings for a simple platformer in ct.js](./../images/tutPlatformer_25.png)
 
 ::: tip
-Though this scheme may be simplified down to just two actions (see [examples in the Actions page](/actions.html#examples)), we will have two separate actions for moving left or right to not overcomplicate the tutorial.
+Para tornar esse tutorial simples, temos duas ações (veja [exemplos na página de ações](/actions.html#examples)), uma para o movimento de ir para a esquerda e outra para ir para a direita, além de termos uma terceira ação, a de pulo.
 :::
 
-### Coding Collision Detection and Movement
+### Codificando o Movimentação e a Detecção de Colisão
 
-Now, move to the "Types" tab at the top of the screen and open the `Rocks` type. In the left column, fill the field called "Collision group" with `Solid`:
+Agora vá para a aba "Types" localizada no topo da tela e abra o tipo `Rocks`. Na coluna da esquerda preencha o campo chamado "Collision group" com o nome `Solid`:
 
-![Adding a collision group to a type](./../images/tutPlatformer_26.png)
+![Adicionando um grupo de colisão para um type](./../images/tutPlatformer_26.png)
 
-This will tell the `ct.place` catmod that this particular type belongs to a special collision group called "Solid". The name of this group can be of any value, and the number of such groups is unlimited. For now, one group will be enough.
+Isso diz ao catmod `ct.place` que esse tipo específico pertence ao grupo de colisões chamdo "Solid". O nome desse grupo pode ser qualquer um, e o número de grupos é ilimitado. Por hora, um grupo apenas está bom.
 
-Add the same line to `Rocks_Top` and `Rocks_Platform`.
+Faça a mesma coisa para os tipos `Rocks_Top` e `Rocks_Platform`.
 
-Now open the `Robot` type. If you completed the "Space Shooter" tutorial before, you may recall that movement is made using either direct manipulation of a copy's parameters or by using built-in variables like `this.speed` or `this.direction`. The truth is that the latter never worked with platformers, even outside ct.js! We will need to write something more complicated. Be prepared! 😃
+Agora o tipo `Robot`. Se você leu o tutorial "Space Shooter" primeiro, você deve lembrar que o movimento é feito usuando os parâmetros de uma copy ou através de suas variáveis internas como `this.speed` e `this.direction` de forma direta. Mas no caso desse tutorial de plataforma, precisamos escrever algo um pouco mais elaborado. Esteja pronto e que a força esteja com você! 😃
 
-The idea of a side-view movement is that we will have a value by which we would like to move to, and then we will check whether we are colliding with something or not, pixel-by-pixel.
+A ideia de um movimento de visão lateral (side-view) é que nós teremos um valor pelo qual é feito o movimento e então checamos se existe uma colisão ou não, essa verificação é feita pixel por pixel.
 
-Let's set up some variables on the "On Create" tab:
+Vamos definir algumas variáveis na aba "On Create":
 
 ```js
 this.jumpSpeed = -9;
@@ -154,10 +154,10 @@ this.vspd = 0; // Vertical speed
 ```
 
 ::: tip
-`this` is a copy that is executing the written code. In this case, it is a `Robot` copy.
+`this` é a copy que está executando o código escrito. E nesse caso, a copy é o nosso `Robot`.
 :::
 
-Now move to the "On Step" tab and add this code:
+Agora vá para a aba "On Step" e adicione esse código:
 
 ```js
 this.speed = 4 * ct.delta; // Max horizontal speed
@@ -190,22 +190,22 @@ if (ct.place.occupied(this, this.x, this.y + 1, 'Solid')) {
 ```
 
 ::: tip
-"On Step" code is executed each frame for each copy. Movement and other game logic usually go here.
+O código em "On Step" é executado a cada frame para cada copy. A lógica de movimento e outras lógicas do jogo normalmente vão aqui.
 :::
 
 ::: tip
-`ct.actions.YourAction.down` checks whether any key you listed in this action is currently held down. There are also `ct.actions.YourAction.pressed` and `ct.actions.YourAction.released`.
+`ct.actions.YourAction.down` verifica se qualquer tecla que você esteja ouvindo nessa ação foi pressionada. Existe também `ct.actions.YourAction.pressed` e `ct.actions.YourAction.released`.
 
-`ct.place.occupied(copy, x, y, group)` checks whether a given copy has any collisions in given coordinates with a specific group. You can omit the group if you don't need it. This method returns either `false` (no collision) or a copy which was the first to collide with.
+`ct.place.occupied(copy, x, y, group)` verifica se a copy fornecida está colidindo nas coordenada x,y passadas com o grupo específico fornecido. Você pode omitir o grupo caso você não precise dele. Esse método retorna `false` no caso de não haver colisão ou a copy que colidiu primeiro.
 :::
 
 ::: tip
-`ct.delta` describes how much the previous frame took time to process. If everything is ok and game performs at smooth FPS, it is eqal to `1`, and is larger if a game can't reach the target FPS value.
+`ct.delta` retorna o tempo decorrido desde o último frame. Se tudo estiver ok e o jogo executar a uma taxa de frames suave, o valor dele será igual a `1`, e esse valor será maior se o jogo não conseguir executar a uma taxa de frames suave.
 
-By multiplying values to `ct.delta`, we make sure that everything moves uniformly at any framerate.
+Multiplicar o valor por `ct.delta` nos garante que tudo se mova de forma uniforme, independente de qual seja a taxa de frames por segundo.
 :::
 
-This will set variables `hspd` and `vspd`, but they won't do anything as is. Add more code to actually move the Robot around:
+Isso definirá as variáveis `hspd` e `vspd`, mas elas ainda não fazem nada. Precisamos adicionar mais um pouco de código para pode mover o Robô:
 
 ```js
 // Move by horizontal axis, pixel by pixel
@@ -227,24 +227,24 @@ for (var i = 0; i < Math.abs(this.vspd); i++) {
 ```
 
 ::: tip
-`ct.place.free` is an opposite equivalent of `ct.place.occupied`. It has the same parameters and returns either `true` or `false`.
+`ct.place.free` faz o mesmo que `ct.place.occupied`, só que em vez de verificar se existe algo no caminho, ele faz justamente o contrário, verifica se o caminho está livre. Ele tem os mesmos parâmetros e também retorna `true` ou `false`.
 
-`Math.abs` returns the absolute value of a given number, meaning that negative numbers will become positive. `Math.sign` returns -1 if the given value is negative, 1 if it is positive, and 0 if it is 0. Combined together, they create a `for` loop which works in both directions and checks collisions pixel by pixel.
+`Math.abs` retorna o valor absoluto do número fornecido, em outras palavras, se o número for negativo, retorna positivo, e se for positivo, retorna positivo mesmo. `Math.sign` retorna -1 se o número fornecido é negativo, 1 se for positivo, e 0 se ele for 0 (zero). Juntando tudo, eles criam um loop `for` que funciona em ambas as direções e verifica se existe colisão pixel por pixel.
 :::
 
-We can now move our Robot around!
+Agora nós podemos mover o nosso Robô por aí!
 
 ::: warning
-Your character may ignore holes which are one grid cell wide. Test it. If it occurs, you need to make the Robot's collision shapes a bit slimmer.
+O personagem pode apresentar falhas de colisão, caso isso aconteça você precisa ajustar a máscara de colisão, talvez a tornando mais estreita.
 :::
 
-### Making Camera Follow the Robot
+### Fazendo a Câmera Seguir o Robô
 
-If we launch the game now, we will be able to move the Robot around. There is an issue, though: the camera isn't moving!
+Se você executar o jogo agora, você verá que agora podemos mover o nosso Robô. Mas existe um problema: a câmera não se mexe!
 
-It is not a hard issue, though. If we dig into the ct.js docs and read the ct.rooms section, we will find that there are properties `ct.rooms.current.follow`, `ct.rooms.current.borderX` and `ct.rooms.current.borderY` exactly for following a copy.
+Isso não é um problema difícil. Se a gente for na documentação do ct.js e lermos a seção *ct.rooms*, notaremos a existência das propriedades `ct.rooms.current.follow`, `ct.rooms.current.borderX` e `ct.rooms.current.borderY` que é exatamente para seguir uma copy.
 
-Open the `Robot` type and its "On Create" Code. Add this code to the end:
+Abra o tipo `Robot` e no código em "On Create" adicione o código abaixo ao final:
 
 ```js
 ct.room.follow = this;
@@ -252,25 +252,25 @@ ct.room.borderX = 450;
 ct.room.borderY = 200;
 ```
 
-The camera will now follow the Robot.
+Agora a câmera seguirá o Robô.
 
-## Adding Traps and Checkpoints
+## Adicionando Armadilhas e Ponto de Salvamento
 
-We will now add deadly traps and water moats, and checkpoints so the player restarts at them and not at the beginning of the level.
+Agora vamos adicionar armadilhas mortais, fossos de água e pontos de salvamento para que o jagador reinicie a partir daí em caso de morte e não do início da fase.
 
-Create new types for `Water`, `Water_Top`, `Spikes` and `Checkpoint` assets.
+Crie novos tipos de assets para `Water`, `Water_Top`, `Spikes` e `Checkpoint`.
 
-Create a new room and call it `Level_02`. Set its size to 1024x576 and add a background. Create a dangerous level with spikes and lakes.
+Crie também uma nova room chamada de `Level_02`. Defina o tamanho dela para 1024x576 e adicione uma imagem de plano de fundo. Crie uma fase perigosa com espinhos (spikes) e lagos (lakes).
 
-Place checkpoint boxes before and/or after hazardous places. Don't be afraid to put a lot of them, as punishing a player for mistakes is never a good idea! 😉
+Coloque os pontos de salvamento antes e/ou depois dos lugares perigosos. Não tenha medo de pôr um monte deles, até porque, punir o jogador pelos seus erros nunca é uma boa ideia! 😉
 
 ![Comigo's second level](./../images/tutPlatformer_16.png)
 
-Here the supposed level's end is placed on the top middle platform. I also placed some platforms outside the screenshot for gathering future crystals.
+Aqui o final da fase proposta está na plataforma média superior. Também foram colocados algumas outras plataformas fora da imagem capturada para adição de cristais futuros.
 
-Now let's move to the `Checkpoint`'s type and edit its "On Step" code.
+Vamos agora até o tipo `Checkpoint` e editar o seu código em "On Step".
 
-We will check for collision with the Robot, and when it happens, we will store a rescue point inside the Robot's copy. Remove the line `this.move();` and add this code:
+Vamos checar por uma colisão com o nosso Robô, e quando isso acontecer, nos armazenaremos as coordenadas de salvamento dentro da copy `Robot`. Remova a linha `this.move();` e adicione essa:
 
 ```js
 var robot = ct.place.meet(this, this.x, this.y, 'Robot');
@@ -281,24 +281,24 @@ if (robot) {
 ```
 
 ::: tip
-The line `this.move();` is responsible for moving copies that use standard ct variables around. In this case, the checkpoint shouldn't move at all. 😉
+A linha `this.move();` é responsável por mover as copies que usam as variáveis ct padrão. Sendo que nesse caso, o ponto de salvamento não deve se mover. 😉
 
-`ct.place.meet` is almost the same as `ct.place.occupied`, but it checks against copies' types, not their collision group.
+`ct.place.meet` faz o mesmos que `ct.place.occupied`, mas em vez de verificar colisões contra um grupo, ela verifica a existência de uma colisão contra uma copy.
 :::
 
-Here we also shift the stored point by 32x32 pixels, because the checkpoint's axis is placed in its top-left corner, but the Robot's axis is placed at the middle bottom point. Because of that, the Robot would respawn a bit left and above the desired central point.
+Nós também adicionamos 32 pixels as coordenadas de salvamento, porque o eixo do ponto de salvamento está localizado no canto superior esquerdo,  mas o eixo do nosso Robô está localizado no ponto médio inferior. Por causa disso, o Robô iria reaparecer um pouco a esquerda e acima do ponto central desejado.
 
-Go to the "On Create" tab and add a line `this.visible = false;`. This will make checkpoints invisible during the gameplay.
+Vá para a aba "On Create" de `Checkpoint` e adicione a linha `this.visible = false;`. Isso fará com que o `Checkpoint` fique invisível durante a execução do jogo.
 
-Now go to the `Spikes` type and mark them as a "Deadly" collision:
+Agora vá para o tipo `Spikes` e o defina como uma colisão "Deadly":
 
 ```js
 this.ctype = 'Deadly';
 ```
 
-Do the same with `Water` and `Water_Top`.
+Faça o mesmo com `Water` e `Water_Top`.
 
-Now open the `Robot` type again, and add this code to the top of its `On Step` code:
+Agora abra o tipo `Robot` novamente e adicione esse código no topo de `On Step`:
 
 ```js
 if (ct.place.occupied(this, this.x, this.y, 'Deadly')) {
@@ -311,31 +311,31 @@ if (ct.place.occupied(this, this.x, this.y, 'Deadly')) {
 ```
 
 ::: tip
-Here, the `return;` statement stops the execution of a function. We won't need movement and other checks if we need to respawn the Robot at some other position.
+Aqui a instrução `return;` para a execução da função. Não precisamos de movimento e de outras verificações quando o Robô reaparecer em uma outra posição.
 :::
 
-We should also write this code to "On Create" tab so that respawn point will be at creation location by default, in case something ever goes wrong:
+Também precisamos escrever o código abaixo na aba "On Create" de `Robot` para o caso dele morrer antes de chegar em um ponto de salvamento:
 
 ```js
 this.savedX = this.x;
 this.savedY = this.y;
 ```
 
-To test a specific room, open the "Rooms" tab at the top, then right-click the desired room and press "Set as starting room".
+Para testar um room específica, abra a aba "Rooms" localizada na parte superior e click com o botão direito do mouse sobre a room desejada e selecione a opção "Set as starting room". Note que se você estiver com uma room aberta, você precisará fechar a room aberta clicando no botão "Done" localizado no canto inferior esquerdo.
 
-## Transforming and Animating the Robot
+## Transformando e Animando o Robô
 
-At this point, it will be wise to add little animations to our robot. As you remember, we have three different assets called `Robot_Idle`, `Robot_Jump`, and `Robot_Walking`.
+Nesse ponto, já é hora de adicionar uma animação ao nosso robô. Como você pode se lembrar, temos três diferentes assets chamados de `Robot_Idle`, `Robot_Jump`, e `Robot_Walking`.
 
-Add this line to `Robot`'s "On Create" code:
+Adicione essa linha de código ao tipo `Robot` na sua aba "On Create":
 
 ```js
 this.animationSpeed = 0.2;
 ```
 
-`0.2` means that we want to play 0.2×60 (which is 12) frames per second. For more readability, we could also write it as `12/60`.
+`0.2` determina que queremos que a animação execute a 0.2×60 (o qual é 12) frames por segundo. Para um valor mais confiável, poderíamos escrever também `12/60`.
 
-Open the `Robot`'s "On Step" code and modify the moving section so it changes the drawn texture depending on user inputs and the robot's position in space:
+Abra o tipo `Robot` e em sua aba "On Step" modifique o código na seção de movimentação alterando a textura a ser desenhada de acordo com a entrada do usuário e da posição do robô no espaço:
 
 ```js{4,5,6,7,8,9,13,14,15,16,17,18,22,38,39}
 if (ct.actions.MoveLeft.down) {
@@ -380,21 +380,21 @@ if (ct.place.occupied(this, this.x, this.y + 1, 'Solid')) {
 }
 ```
 
-As our vertical movement isn't dependant on the horizontal movement, the animation is overridden to the jumping state if there is no ground under the robot.
+Como o nosso movimento vertical não depende do movimento horizontal, a animação é substituída para a animação de estado pulando se o robô não estiver no chão.
 
-The robot will now flip to the current direction and change its texture depending on movement. Look at that boy!
+O robô agora terá a sua direção atual transformada e a sua textura alterada dependendo do movimento, por exemplo, se ele for para esquerda, então sua textura será transforma para a esquerda e o robô irá olhar para essa direção. Veja o nosso garoto em ação!
 
 ![Animated Robot](./../images/tutPlatformer_Animating.gif)
 
-## Adding level transitions
+## Fazendo a Transição Entre as Fases
 
-Here's the idea:
+Aqui está a ideia:
 
-* Each room will store a name of the next room as a variable.
-* There will be level exits that will collide with the Robot.
-* When they collide, the exit will read the room's variable and switch to the next room.
+* Cada room armazenará o nome da próxima room em uma variável.
+* Haverá uma saída da fase na qual o Robô irá colidir com ela.
+* Quando houver a colisão, então a saída irá lê a variável da room atual que aponta para a próxima room.
 
-Create a new type and call it an `Exit`. Set its texture. Then open the "On Step" tab and write this code:
+Crie uma novo tipo chamado `Exit`. Depois defina a textura. Então abra a aba "On Step" e escreve o código abaixo:
 
 ```js
 // Are there next rooms defined?
@@ -408,28 +408,28 @@ if (ct.room.nextRoom) {
 ```
 
 ::: tip
-Here `ct.room` points to the current room. `ct.rooms.switch` exits the current room and opens another room with a given name.
+Aqui `ct.room` aponta para a room atual. `ct.rooms.switch` sai da room atual e vai para a room fornecida por `ct.room.nextRoom`.
 :::
 
-Now go to the "Rooms" tab at the top, open the `Level_01`, click the button called "Room's events" and write the following to its "On Create" code:
+Vamos agora para a aba "Rooms" localizada no topo e abra a room `Level_01`, click no botão chamado "Room's events" e escreva o seguinte código na aba "On Create":
 
 ```js
 this.nextRoom = 'Level_02';
 ```
 
-Place an exit to the room.
+Agora resta apenas você pôr a saída na room, faça isso.
 
-Now save the room, mark the `Level_01` as a starting room by right-clicking it and test whether there is a transition.
+Em seguida salve a room, e click no botão "Done", depois click com o botão direito do mouse sobre a room de nome `Level_01` e selecione a opção "Set as starting room" e teste a transição.
 
-::: tip On your own!
-Create additional exits leading to secret sublevels and back. Get [more assets from here](https://www.kenney.nl/assets/simplified-platformer-pack), if you need such.
+::: tip Faça você mesmo!
+Crie saídas adicionais levando a subfases secretas e libere todo o seu poder criativo. Obtenha [mais assets aqui](https://www.kenney.nl/assets/simplified-platformer-pack), se você precisar.
 :::
 
-## Collectibles: Counting and Drawing
+## Colecionáveis: Contando e Desenhando
 
-### Adding Crystals
+### Adicionando Cristais
 
-Create a new type called `GreenCrystal` and set its sprite. Write this code to its "On Step" event:
+Crie um novo tipo chamado `GreenCrystal` e defina a sua textura. Em seguida escreva esse código na aba "On Step":
 
 ```js
 if (ct.place.meet(this, this.x, this.y, 'Robot')) {
@@ -439,20 +439,20 @@ if (ct.place.meet(this, this.x, this.y, 'Robot')) {
 ```
 
 ::: tip
-`this.kill = true;` tells that the current copy should be removed from the current room. It will happen after all "On Step" events but before the "Draw" event.
+`this.kill = true;` determina que a copy atual deve ser removida da room atual. Isso acontecerá depois de todos os eventos "On Step" mas antes do evento "Draw".
 :::
 
-As you may already guess, the number of gathered crystals will be stored in the room.
+Como você deve ter notado, o número de cristais coletados serão armazenados na room.
 
-But if we continue to add more features to room-specific codes, we will soon fail into buggy traps of forgetting to copy-paste some snippets. Anyway, it will be a tedious job to do that to the third room. (And we *will* have a third room!)
+Mas se continuarmos a adicionar mais características para uma room específica, cairemos na armadilha de acabar esquecendo de copiar e colar algum código em outras rooms. De qualquer forma, é um trabalho entediante ter que fazer a mesma coisa para mais de uma room. (E com certeza teremos mais de uma room!)
 
-So we need to create reusable functions now. This may look strange, but it is actually not that hard.
+Então agora precisamos criar uma função reutilizável. Isso pode parecer estranho, mas na verdade não é difícil.
 
-Go to the "Settings" tab on the top of the screen, and press the "Add a New Script" button at the bottom-right corner:
+Vá para a aba "Settings" localizada no topo da tela e pressione o botão "Add a New Script" no canto inferior direito:
 
 ![Creating a reusable script](./../images/tutPlatformer_20.png)
 
-Call a new script as `inGameRoomStart`. Write this code:
+Chame o novo script de `inGameRoomStart`. E escreva o seguinte código:
 
 ```js
 var inGameRoomStart = function (room) {
@@ -463,38 +463,38 @@ var inGameRoomStart = function (room) {
 ```
 
 ::: tip
-`ct.types.list['TypeName']` returns an array of all the copies of the given type in the room. `length` returns the size of an array.
+`ct.types.list['TypeName']` retorna uma lista de todas as copies do tipo definido na room. `length` retorna o tamanho da lista.
 :::
 
 ![Creating a reusable script](./../images/tutPlatformer_21.png)
 
-Now go to each room's "On Create" code and add this line:
+Agora em cada aba "On Create" de cada room adicione a seguinte linha de código:
 
 ```js
 inGameRoomStart(this);
 ```
 
-Hmmm… it looks familiar! Like `ct.place.free(this, this.x, this.y)`! That's actually how most of the ct.js methods work: you have a method, and you tell this method to do something with that copy or that room.
+Hmmm… Isso parece familiar! Como em `ct.place.free(this, this.x, this.y)`! Na verdade, é dessa forma como a maioria dos métodos em ct.js funcionam: Você tem um método, e você define que esse método deve fazer alguma coisa com uma copy ou com uma room.
 
-When `inGameRoomStart(this);` is called it will set `crystals` and `crystalsTotal` parameters by itself, without the need to write such code directly to a room.
+Quando `inGameRoomStart(this);` é invocado, ele mesmo definirá as propriedades `crystals` e `crystalsTotal`, sem a necessidade de escrever o código diretamente na room.
 
-So that's how we gather and count the crystals, but we also need to draw their count and do it with *style*. ✨
+Então, é dessa forma que coletamos e contamos os cristais, mas precisamos desenhar a contagem deles e devemos fazer isso em grande *estilo*. ✨
 
-Gladly, there is a tool for designing nifty text styles inside the ct.js. Open the "Styles" tab at the top of the screen and create a new style. Call it as a `CrystalCounter`.
+Felizmente, existe uma ferramenta para desenhar texto estilosos dentro do próprio ct.js. Abra a aba "UI" localizada no topo da tela e crie um novo estilo. Chame-o de `CrystalCounter`.
 
-Then activate the "Font" section, set the font size to 24 and its weight to 600. Align it to the left.
+Então na seção "Font", defina o tamanho da fonte para 24 e a sua espessura para 600. Alinhe à esquerda.
 
 ![Setting a style's font](./../images/tutPlatformer_17.png)
 
-Then open the "Fill" tab, activate it and set its fill color to green. I chose `#00A847`. Other good choices include the main colors of the crystal, like `#2ECC71` and `#28B463`.
+Depois abra a aba "Fill", ative a mesma e defina o tipo de preenchimento como "Diffuse", em seguida determine a cor como sendo verde. Eu escolhi `#00A847`. Outras boas escolhas incluem as cores principais dos cristais como `#2ECC71` e `#28B463`.
 
 ![Setting a style's fill color](./../images/tutPlatformer_18.png)
 
-We can also add a thick white line to our text. Open the "Stroke" tab, then set the color to white and line's width to 5. If you can't see the result on the right, try switching to a dark UI theme for a while by clicking the hamburger menu at the top.
+Podemos adicionar também uma linha grossa branca para o nosso texto. Abra a aba "Stroke", ative a mesma, e então defina uma cor branca e uma largura de linha 5. Se não conseguir ver o resultado a direita, tente alternar para o tema escuro clicando no ícone de menu em forma de hamburger localizado no topo da janela.
 
 ![Setting a style's line style](./../images/tutPlatformer_23.png)
 
-We should now create a new type that will display a crystal icon and a counter called `CrystalCounter`. Set its sprite to `GreenCrystal`, and write the following in its OnCreate code:
+Devemos agora criar um novo tipo que exibirá um ícone de cristal, você deve chamar esse novo tipo de `CrystalsWidget`, defina a textura `GreenCrystal` e em seguida escreva o seguinte código em sua aba "On Create":
 
 ```js
 this.text = new PIXI.Text('0 / ' + ct.room.crystalsTotal, ct.styles.get('CrystalCounter'));
@@ -504,9 +504,9 @@ this.text.anchor.y = 0.5;
 this.addChild(this.text);
 ```
 
-Here we create a new text label and attach it to our icon. `this.text.anchor.y = 0.5;` tells that the vertical axis of the label should be aligned to the middle of our icon.
+Criamos uma nova etiqueta de texto e aplicamos o estilo `CrystalCounter`. `this.text.x = 32;` põe a nossa etiqueta de texto na posição horizontal de 32 pixels, como o nosso ícone de cristal tem 32 pixel de largura, a etiqueta ficará a direita desse ícone. `this.text.anchor.y = 0.5;` define que o eixo vertical da nossa etiqueta deve ser alinhado no meio do nosso ícone. `this.addChild(this.text);` adiciona a nossa etiqueta de texto ao nosso widget `CrystalsWidget`.
 
-Now open the "Draw" tab and add this code:
+Abra a aba "Draw" e adicione o código abaixo:
 
 ```js
 this.x = ct.room.x + 24;
@@ -515,25 +515,25 @@ this.y = ct.room.y + 24;
 this.text.text = ct.room.crystals + ' / ' + ct.room.crystalsTotal;
 ```
 
-Here we snap our widget to the top-left corner and update its label.
+Aqui mantemos o nosso widget preso no canto superior esquerdo e atualizamos o texto da nossa etiqueta.
 
-We will now have a crystal counter at the top-left corner of our screen.
+Agora temos uma contador de cristais no canto superior esquerdo de nossa tela.
 
 ![A crystal counter](./../images/tutPlatformer_19.png)
 
-### Adding Lives and Heart Bonuses
+### Adicionando Vidas e Corações Extras
 
-This is mostly similar to gathering crystals, though there are some changes:
+Isso é semelhante a coleta de cristais, embora haja algumas mudanças:
 
-* We start with 3 lives.
-* We will have no more than 3 lives at once.
-* If we lost the last life, the level restarts.
+* Começamos com 3 vidas.
+* Não teremos mais de 3 vidas por vez.
+* Se perdemos a última vida, a fase será reiniciada.
 
-::: tip On your own!
-Try making it all by yourself! If you get lost, just look for instructions below. Now, stop scrolling! 😃
+::: tip Faça você mesmo!
+Tente fazer tudo sozinho, se você se perder, apenas siga as instruções abaixo. Agora pare de enrolação e mãos à obra! 😃
 :::
 
-Create a new type called `Heart` and set a corresponding sprite. Add this code to its "On Step" tab:
+Crie um novo tipo chamado `Heart` e defina a sua textura. Adicione o seguinte código na aba "On Step":
 
 ```js
 if (ct.place.meet(this, this.x, this.y, 'Robot')) {
@@ -544,7 +544,7 @@ if (ct.place.meet(this, this.x, this.y, 'Robot')) {
 }
 ```
 
-Then go to the "Settings" tab and modify the `inGameRoomStart` script:
+Em seguida vá para a aba "Settings" e modifique o script `inGameRoomStart`:
 
 ```js{6,7}
 var inGameRoomStart = function (room) {
@@ -556,11 +556,11 @@ var inGameRoomStart = function (room) {
 };
 ```
 
-Don't forget to place actual heart bonuses on your levels!
+Não esqueça de pôr corações extras em sua fase!
 
-We will also need a style for a counter. The process is the same, and a suitable color is `#E85017`. We can even duplicate the existing style! Let's call this style a `HeartCounter`.
+Precisamos de um contador de vidas estiloso. O processo de criação é o mesmo que o anterior, apenas escolha essa cor `#E85017` em vez de verde. Podemos até duplicar o estilo anterior para agilizar o processo de criação, para isso, vá até a aba "UI" novamente, caso o estilo anterior esteja aberto, feche clicando no botão "Apply" e em seguida click com o botão direito do mouse sobre o estilo criado anteriormente e selecione a opção "duplicate", depois defina o nome como sendo `HeartCounter` e click em "Ok", pronto, agora é só editar o estilo. :-)
 
-We will need another widget for health, too. Create a new type called `HeartsWidget`, set its sprite to the `Heart`, and set its OnCreate code to this:
+Precisaremis de um outro widget para a nossa barra de vidas. Crie um novo tipo chamado `HeartsWidget` e defina a sua textura para `Heart`, na sua aba "On Create" escreva o seguinte código:
 
 ```js
 this.text = new PIXI.Text(ct.room.lives, ct.styles.get('HeartCounter'));
@@ -571,7 +571,7 @@ this.text.anchor.x = 1;
 this.addChild(this.text);
 ```
 
-And in the "Draw" event:
+Adicione o código abaixo na aba "Draw":
 
 ```js
 this.x = ct.room.x + ct.viewWidth - 24;
@@ -580,9 +580,9 @@ this.y = ct.room.y + 24;
 this.text.text = ct.room.lives;
 ```
 
-Note how we use the property `room.viewWidth` to position the widget on the right side of the screen.
+Note que nós usamos a propriedade `room.viewWidth` para posicionar o widget no lado direito da tela.
 
-Now modify the respawn code of the `Robot` so it loses one heart at each respawn:
+Agora modifique o código responsável pela morte do nosso robô, vá para aba "Types" e abra o tipo `Robot`, então adicione o código que faz o robô perder um coração a cada vez que ele morrer:
 
 ```js
 if (ct.place.occupied(this, this.x, this.y, 'Deadly')) {
@@ -600,28 +600,28 @@ if (ct.place.occupied(this, this.x, this.y, 'Deadly')) {
 }
 ```
 
-That's it! Time for little testing.
+É isso aí! Agora é hora de testar. Execute o jogo.
 
-## Adding moving platforms
+## Adicionando Plataformas Móveis
 
-Create a new type called `Platform` and select its corresponding sprite. Create a new level called `Level_03` that features wide moats or long traps with platforms that move you around.
+Crie um tipo chamado `Platform` e selecione a textura correspondente. Crie uma nova fase chamada `Level_03` com características de fossos mais compridos, armadilhas mais longas e com plataformas que se movimentam.
 
 ![Comigo's third level](./../images/tutPlatformer_22.png)
 
-The moving platforms will act in this way:
+A movimentação das plataformas será dessa forma:
 
-* They move horizontally, starting moving, say, to the right.
-* If a platform detects that it will touch a `Solid` object in the next frame, it flips their direction.
-* Platforms move the player if it appears to be right above the platform.
+* Elas se movem horizontalmente, iniciando o movimento, digamos, indo para a direita.
+* Se uma plataforma detectar que ela colidiu com um objeto `Solid` no próximo frame, então ela mudará de direção.
+* As plataformas também moverá o nosso robô quando ele estiver sobre a plaforma.
 
-Let's open a `Platform`'s type and initialize its speed and collision group:
+Vamos abrir o tipo `Platform` em sua aba "On Create" defina a sua velocidade e o seu grupo de colisão com código abaixo:
 
 ```js
 this.speed = 2;
 this.ctype = 'Solid';
 ```
 
-Then, add some code to the "On Step" tab to move our Robot:
+Agora vá para a aba "On Step" e adicione o código abaixo que moverá o nosso Robô quando ele estiver sobre a plataforma:
 
 ```js
 var robot = ct.place.meet(this, this.x, this.y - 1, 'Robot');
@@ -630,7 +630,7 @@ if (robot) {
 }
 ```
 
-And the movement logic:
+Adicione também esta lógica de momimento para quando a plataforma colidir com um objeto sólido:
 
 ```js
 if (ct.place.occupied(this, this.x + this.speed * ct.delta, this.y, 'Solid')) {
@@ -640,11 +640,11 @@ if (ct.place.occupied(this, this.x + this.speed * ct.delta, this.y, 'Solid')) {
 this.move();
 ```
 
-Looks simple! Maybe even too simple. And here is the issue: if the Robot touches the left or right side of a platform, it gets stuck forever! We need to make platforms solid only when they don't overlap.
+Veja como é simples, simples até demais. E aqui temos um problema: Se o Robô encostar no lado direito ou esquerdo da plataforma ele ficará preso lá. Precisamos fazer com que as platoformas sejam sólidas apenas no caso do Robô está sobre elas.
 
 ![An issue with platforms](./../images/tutPlatformer_PlatformIssues.gif)
 
-Here is a better code:
+Aqui vai um código melhor:
 
 ```js
 var robot = ct.place.meet(this, this.x, this.y, 'Robot');
@@ -665,26 +665,26 @@ if (ct.place.occupied(this, this.x + this.speed * ct.delta, this.y, 'Solid')) {
 this.move();
 ```
 
-::: tip On your own!
-Add vertically moving platforms! And make sure they don't squash the Robot. 😉 
+::: tip Faça você mesmo!
+Adicione plataformas de movimento vertical! E verifique se elas não vão esmagar o nosso robô. 😉 
 :::
 
-## That's it!
+## É isso aí pessoal!
 
-Whew! That was quite a long tutorial. Still, there is much room for improvement.
+Ufa! Esse foi um tutorial bastante longo. Mas ainda existem muitas melhorias que podem ser adicionadas.
 
-Here is how you can make this game better:
+Aqui vai uma lista de algumas delas que você pode implementar:
 
-* Add enemies and deadly moving chainsaws! You can get sprites of them and much more [here](https://www.kenney.nl/assets/platformer-art-deluxe).
-* Create a story and tell it through NPCs, notes on wooden plates, or just through subtitles!
-* Make the respawn process better. Make sure the Robot doesn't fall into traps after respawning. This can be done by blocking a player's input for a half of a second, or just by making checkpoint areas safer.
-* Add sounds! Nothing makes a game more alive than some good-quality SFX.
-* Make sure that the Robot is respawned if it occasionally falls out of a level.
-* Just add more levels. 😉 Decorate them with plants, create worlds of different colors.
+* Adicionar inimigos e motoserras mortais! Você pode obter esses sprites e muito mais [aqui](https://www.kenney.nl/assets/platformer-art-deluxe).
+* Crie uma história e conte através de NPCs, seja por placas de madeira ou via legendas!
+* Melhore o processo de reaparecer após a morte do Robô. Esteja certo de o Robô não caia em alguma armadilha ao reaparecer. Isso pode ser feito bloqueando por alguns instantes a entrada do usuário ou certificando-se que o ponto de salvamento está em uma área segura.
+* Adicione sons! Nada como uma boa trilha e efeitos sonoros para dá vida e uma boa qualidade ao jogo.
+* Esteja certo de que o Robô reapareça caso ele caia fora da fase.
+* Apenas adicione mais fases. 😉 Decorando elas com plantas e criando mundo de cores diferentes.
 
-::: tip A side note
-Look how new features in your code gradually appear in your levels! This is a good way to introduce new things to a player, too. Afford them one new concept at a time, but preserve previous ones with escalating difficulty. *That was a pro-tip on level design by Comigo* 😎
+::: tip Uma observação à parte
+Note como as novas características em seu código aparecem de forma gradual nas fases! Essa é uma ótima maneira de introduzir novos recursos ao jogador. Ofereça ao jogador um conceito novo de cada vez, mas preserve o que já foi adicionado aumentando o grau de dificuldade aos poucos. *Essa foi uma dica profissional de level design do Comigo* 😎
 :::
 
-**Happy coding!**  
+**Feliz Codificação!**  
 Comigo

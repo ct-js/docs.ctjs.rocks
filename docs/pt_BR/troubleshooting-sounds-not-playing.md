@@ -1,8 +1,8 @@
-# Sounds don't play at startup under certain (or "completely random") conditions
+# Sons não tocam no carregamento inicial em certas (ou "completamente aleatórias") condições
 
-You may notice that sound effects or music don't play at startup sometimes. This is due to browsers' behavior: they won't let you play any sound unless a user interacted with a game. Moving a mouse pointer over a game is enough, so it looks like it works in one case and not in the others. That's not something ct.js can change, and not exclusive to ct.js as well, but there are a number of workarounds to spawn sounds reliably:
+Você pode notar que músicas ou efeitos de som não toca no carregamento inicial as vezes. Isso acontece por causa do comportamento dos navegadores: Eles não permitem que o você toque um som sem que exista uma interação do usuário com o jogo. Mover o ponteiro do mouse sobre o jogo parece ser suficiente, mas em alguns casos isso simplesmente não funciona. Isso não é um problema específico do ct.js e também não é algo que ele pode simplesmente mudar. Mas existem várias alternativas confiáveis de tocar o som:
 
-- Create a splash screen with your logo or such;
-- Create a starting room in which players can either enable sounds or not;
-- On itch.io, select "Click to launch in fullscreen" in your project's Embed options
-- Add anything that requires interaction before your actual game starts :)
+- Crie uma tela de início, splash screen, com o seu logotipo ou algo do tipo;
+- Crie uma room de início em que o jogador pode ativar o som ou não;
+- No itch.io, selecione"Click to launch in fullscreen" nas opções de incorporação do seu projeto;
+- Adicione qualquer coisa que precise de interação antes que o seu jogo comece de verdade :)

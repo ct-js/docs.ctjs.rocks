@@ -45,7 +45,7 @@ Variáveis apenas de leitura:
 
 Métodos:
 
-- `gotoAndPlay(frameIndex)` — vai para um frame específico e inicia a animaçãos;
+- `gotoAndPlay(frameIndex)` — vai para um frame específico e inicia as animações;
 - `gotoAndStop(frameIndex)` — para a animação e vai para um frame específico;
 - `play()` — inicia a animação;
 - `stop()` — para a animação.
@@ -80,7 +80,7 @@ Cria uma Copy a partir do tipo fornecido. Se x ou y é omitido, então eles ser�
 
 Aplica uma função para todas as copies ativas.
 
-**Exemplo:** Destrói todas as copies em uma de 150px
+**Exemplo:** Destrói todas as copies em um raio de 150px
 
 ```js
 var me = this;
@@ -122,4 +122,4 @@ for (var bonus of ct.types.list.Bonus) {
 
 ### `ct.types.addSpeed(o: Copy, spd, dir)`
 
-Adiciona um vetor de velocidade para a Copy fornecida. Isso é o mesmo que invocar `o.addSpeed(spd, dir);` de copy.
+Adiciona um vetor de velocidade para a Copy fornecida. Isso é o mesmo que invocar `o.addSpeed(spd, dir);` da copy.
