@@ -60,7 +60,7 @@ Any module is a directory with a following structure:
 
 ## Adding injections
 
-Injects are a powerful instrument to extend functionality of ct.js framework beyond adding methods or properties. It allows you to add logic to a game loop, load resources, create bundled Types, etc. 
+Injects are a powerful instrument to extend functionality of ct.js framework beyond adding methods or properties. It allows you to add logic to a game loop, load resources, create bundled Types, etc.
 
 The `injects` folder contains files which code should be injected while exporting a game. All of them are optional, and here is a list of all the possible injections:
 
@@ -75,7 +75,7 @@ The `injects` folder contains files which code should be injected while exportin
 * `roomoncreate.js` – fired after entering a new room. This code is evaluated *after* user-defined OnCreate code, when all the copies were created. Here, `this` equals to a new room.
 * `roomonleave.js` – fired before leaving a room, but *before* any user's script.  Copies still exist here.
 * `beforeroomdraw.js`
-* `afterroomdraw.js` 
+* `afterroomdraw.js`
 * `beforeroomstep.js`
 * `afterroomstep.js`
 
@@ -94,8 +94,8 @@ The `injects` folder contains files which code should be injected while exportin
 * `res.js` – called once while parsing loaded images.
 * `resload.txt` – a comma-separated list of images to load. This must start with a comma too, like `, 'img/ct.place.demoimg1.png', 'img/ct.place.demoimg2.png'`
 * `types.js` – here you can place your own Types.
-* `styles.js` – here you can place your own drawing styles. 
-* `htmltop.html` – this code is placed right before the drawing canvas. 
+* `styles.js` – here you can place your own drawing styles.
+* `htmltop.html` – this code is placed right before the drawing canvas.
 * `htmlbottom.html` – this code is placed right after the drawing canvas.
 
 ### Adding fields
@@ -232,3 +232,54 @@ Next, you should write your module so that it updates the `ct.inputs.registry`. 
 ct.inputs.registry['keyboard.keyW'] = 1;
 ct.inputs.registry['gamepad.LeftThumbX'] = 0.2;
 ```
+
+## Adding type definitions and code completions
+
+From version 1.2., ct.js now supports adding type definitions for catmods. With these, you can provide live type checks, code completion, and rich documentation when users hover over your method names.
+
+Ct.js will look for a file `types.d.ts` inside the root of your module's directory. For example, `ct.place`, `ct.mouse`, and `ct.sound.howler` have them. `types.d.ts` is a [TypeScript declaration file](https://www.typescriptlang.org/docs/handbook/declaration-files/introduction.html), a special manifest-like file that tells what methods and variables your module is providing. Please see the [TypeScript documentation](https://www.typescriptlang.org/docs/home.html) for more information.
+
+By itself, a declaration file can only provide type checks and a list of completions. With [JSDoc-styled annotations](https://jsdoc.app/) and markdown comments, you can get rich documentation right in the editor.
+
+### In practice
+
+A `types.d.ts` file for an imaginary module called `sosiska` would look as the following:
+
+```typescript
+declare namespace ct {
+    /**
+     * A module for roasting flexible sausages inside your game.
+     */
+    namespace sosiska {
+        /* Here all the methods and properties go */
+
+        /**
+         * Roasts your copy, adding a crispy crust
+         * @param {Copy} me The copy that needs to be roasted
+         */
+        function roast(me: Copy): void;
+
+        /**
+         * Covers your copy in ketchup. Consumes `ct.sosiska.ketchup`.
+         * @param {Copy} me The copy to cover in ketchup
+         * @param {boolean} tonsOfKetchup If set to `true`, it will spend a LOT of ketchup on this particular copy
+         */
+        function addKetchup(me: Copy, tonsOfKetchup?: boolean);
+
+        /**
+         * Amount of ketchup left
+         */
+        var ketchup: number;
+    }
+}
+```
+
+### Built-in classes
+
+Ct.js has a number of classes that represent in-game entities:
+
+* `Copy`,
+* `Background`,
+* `Tileset`,
+* `Room`,
+* [All the pixi.js' classes](https://pixijs.download/release/docs/index.html).
