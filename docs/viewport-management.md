@@ -1,40 +1,29 @@
 # Working with Viewport
 
-## Variables Defining the Viewport
+Since v1.3, ct.js has a Camera object that manipulates the viewport. It supports scaling, rotation, and other features like following a copy and creating screen shake effects.
 
-The position and the size of the viewport are defined by these variables:
+## Moving the camera around
 
-* `ct.room.x`;
-* `ct.room.y`;
-* `ct.viewWidth` (read-only);
-* `ct.viewHeight` (read-only).
+To move the camera around, you can either modify `ct.camera.x` and `ct.camera.y` by yourself, or use the built-in variables for following things on the screen. The latter approach requires the `ct.camera.follow` variable to be set (see below).
 
-There are two other variables:
+To scale the viewport, use `ct.camera.scale.x` and `ct.camera.scale.y`, similarly to scaling copies. This is not a zoom level, but a scaling factor of a capturing rectangle: when using values larger than 1, you will see a larger portion of a room.
 
-* `ct.roomWidth` (read-only);
-* `ct.roomHeight` (read-only).
+To rotate the viewport, use `ct.camera.angle` (in degrees) and `ct.camera.rotation` (in radians). Again, you rotate a capturing rectangle, so the stuff on the screen will rotate clockwise.
 
-They define how the room was designed in ct.IDE. These variables may be different depending on various viewport scaling methods.
+## Following a copy
 
-## Moving camera around
-
-To move the camera around, you can either modify `ct.room.x` and `ct.room.y` by yourself, or use the built-in variables for following things on the screen. The latter approach requires the `ct.room.follow` variable to be set. A simple line `ct.room.follow = this;` inside the On Create code of your main character will be enough.
+A simple line `ct.camera.follow = this;` inside the On Create code of your main character is enough to set up automagical camera movement ✨
 
 You can alter the camera's behaviour by these variables:
 
-* `ct.room.borderX` and `ct.room.borderY` define the area at which the camera shifts if the followed copy enters these borders. These values are represented in pixels, relative to a room's designed size;
-* `ct.room.center` may be set to `true` to automatially set borders so that the followed copy always stays at the center of the screen. It has a higher priority over `ct.room.borderX` and `ct.room.borderY`;
-* `ct.room.followShiftX` and `ct.room.followShiftY` allow to place the camera higher/lower/etc than the target copy's axis;
-* `ct.room.followDrift` is a value between [0; 1] that defines how fast the camera reacts to a copy's movement. The default is `0` (no drift). For casual games and puzzles, settings `ct.room.followDrift` to `0.9` may be a good choice to create a smooth camera.
+* `ct.camera.borderX` and `ct.camera.borderY` define the area at which the camera shifts if the followed copy enters these borders. These values are represented in pixels, relative to a room's designed size;
+* `ct.camera.center` may be set to `true` to automatially set borders so that the followed copy always stays at the center of the screen. It has a higher priority over `ct.camera.borderX` and `ct.camera.borderY`;
+* `ct.camera.shifttX` and `ct.camera.shifttY` allow to place the camera higher/lower/etc than the target copy's axis;
+* `ct.camera.followDrift` is a value between [0; 1] that defines how fast the camera reacts to a copy's movement. The default is `0` (no drift). For casual games and puzzles, settings `ct.camera.followDrift` to `0.9` may be a good choice to create a smooth camera.
 
-## Resizing the viewport
+## Screenshake effects
 
-Usually it is best to use `ct.fittoscreen` so that it manages the renderer and viewport for you. If you still want to resize the viewport, e.g. to zoom in/zoom out in game, use the following variables:
-
-* `ct.width`;
-* `ct.height`.
-
-These can still be used with most of `ct.fittoscreen`'s  modes, except for "expand" mode, as the use of `ct.width` and `ct.height` makes no sense here, because ct.fittoscreen overrides them.
+// TODO
 
 ## Making an adaptive UI
 
@@ -57,3 +46,14 @@ In general, you should follow these rules:
 * when using "Scaling with/without letterboxing", start designing your rooms, graphic assets and UI at a relatively big view size at rooms' settings, e.g. at 1920x1080px, so it will scale down on other resolutions nicely.
 
 Don't forget to test your UI on different screen sizes and devices!
+
+## Resizing the viewport
+
+Usually, it is best to use `ct.fittoscreen` so that it manages the renderer and viewport for you. In other cases, use `ct.camera.scale.x` and `ct.camera.scale.y`.
+
+If you still want to resize the viewport manually, use these parameters (this affects the renderer!):
+
+* `ct.width`;
+* `ct.height`.
+
+These can still be used with most of `ct.fittoscreen`'s  modes, except for "expand" mode, as the use of `ct.width` and `ct.height` makes no sense here, because `ct.fittoscreen` overrides them.
