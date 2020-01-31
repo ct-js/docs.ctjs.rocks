@@ -8,9 +8,9 @@ It also introduced the concepts of game coordinates and UI coordinates. Shortly,
 
 So,
 
-- use `ct.room.x` instead of `ct.camera.getTopLeftCorner().x`;
-- use `ct.room.y` instead of `ct.camera.getTopLeftCorner().y`;
-- use `ct.viewWidth` instead of `ct.camera.width` for UI and `ct.camera.getBoundingBox().width` for game coordinates;
-- use `ct.viewHeight` instead of `ct.camera.heght` for UI and `ct.camera.getBoundingBox().heght` for game coordinates;
+- use `ct.camera.getTopLeftCorner().x` instead of `ct.room.x`;
+- use `ct.camera.getTopLeftCorner().y` instead of `ct.room.y`;
+- use `ct.camera.width` instead of `ct.viewWidth` for UI and `ct.camera.getBoundingBox().width` for game coordinates;
+- use  `ct.camera.heght` instead of `ct.viewHeight` for UI and `ct.camera.getBoundingBox().heght` for game coordinates;
 
 For their combinations, like `ct.room.x + ct.viewWidth`, better use camera's special functions and parameters. For example, `ct.room.x + ct.viewWidth` is `ct.camera.width` in UI coordinates and `ct.camera.left` in game coordinates (though you will need to use `ct.camera.getTopRightCorner` and `ct.camera.getBottomLeftCorner` while working with rotated cameras).
