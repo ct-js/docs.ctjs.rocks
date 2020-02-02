@@ -72,6 +72,7 @@ The `injects` folder contains files which code should be injected while exportin
 
 **Room-specific events**:
 
+* `beforeroomoncreate.js` — fired before a room is created, but a camera and renderer are set.
 * `roomoncreate.js` – fired after entering a new room. This code is evaluated *after* user-defined OnCreate code, when all the copies were created. Here, `this` equals to a new room.
 * `roomonleave.js` – fired before leaving a room, but *before* any user's script.  Copies still exist here.
 * `beforeroomdraw.js`

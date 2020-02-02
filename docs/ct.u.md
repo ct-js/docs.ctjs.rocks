@@ -20,6 +20,14 @@ Gets the direction of vector which is pointing from (x1;y1) to (x2;y2).
 
 Gets the distance between points (x1;y1) and (x2;y2).
 
+### `ct.u.uiToGameCoord(x, y)`
+
+Converts from UI coordinates to game coordinates. Returns an array with two elements: x and y coordinates.
+
+### `ct.u.gameToUiCoord(x, y)`
+
+Converts from game coordinates to ui coordinates. Returns an array with two elements: x and y coordinates.
+
 ### `ct.u.rotate(x, y, deg)`
 
 Rotates a given vector by a given angle. Returns an array with two entries: `x` and `y` components.
