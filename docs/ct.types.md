@@ -94,8 +94,9 @@ ct.types.each(function () {
 });
 ```
 
-> `ct.u.pdc` computes distance between two points. This and other similar functions can be found [here](ct.u.html).
-
+::: tip
+`ct.u.pdc` computes distance between two points. This and other similar functions can be found [here](ct.u.html).
+:::
 
 ### `ct.types.with(copy: Copy, func: Function)`
 
