@@ -53,6 +53,7 @@ Methods:
 ### Misc
 
 - `type` — the name of the Type from which a Copy was created;
+- `getRoom()` — returns the room that owns the current copy. This is useful when working with different rooms in a stage.
 
 ### Deleting Copies
 
