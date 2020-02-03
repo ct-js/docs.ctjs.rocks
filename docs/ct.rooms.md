@@ -4,6 +4,10 @@ This object manages your rooms and current view (camera).
 
 ## Methods and properties
 
+### `ct.room`
+
+The current room's object.
+
 ### `ct.rooms.switch('NewRoomName')`
 
 Calls the latest room's `onleave` event and moves to a new room.
@@ -12,13 +16,39 @@ Calls the latest room's `onleave` event and moves to a new room.
 
 Destroys all the existing copies in the room.
 
-### `ct.room`
-
-The current room's object.
-
 ### `ct.rooms.templates`
 
 Existing rooms to switch to.
+
+### `ct.rooms.list['RoomName']`
+
+Similar to `ct.types.list`, this object contains arrays of rooms on the current stage. These may be useful when you have a lot of UI widgets on the screen and need to manage them.
+
+### `ct.rooms.remove(room)`
+
+This method safely removes a previously appended/prepended room from the stage. It will trigger "On Leave" for a room and "On Destroy" event for all the copies of the removed room. The room will also have `this.kill` set to `true` in its event, if it comes in handy. This method cannot remove `ct.room`, the main room. The `room` argument must be a reference to the previously created room, for example:
+
+```js Creating a pause menu by using a UI room
+if (ct.actions.TogglePause.released) {
+    if (!this.pauseMenu) { // if a parameter `pauseMenu` is not set
+        this.pauseMenu = ct.rooms.append('UI_Pause'); // create a room, and set it to a parameter `pauseMenu`
+    } else {
+        ct.rooms.remove(this.pauseMenu);
+    }
+}
+```
+
+How does a copy know that its "On Destroy" event is triggered from a removed room, that it was not the main one? Well, each copy has a method `getRoom()`, and you can use it with `room.kill` property:
+
+```js
+// Let's suppose that we have a modular level and some chunks shoud be loaded/unloaded dynamically,
+// and this particular copy is a bomb that shouldn't trigger if its chunk is unloaded.
+if (this.getRoom().kill) {
+    return; // effectively breaks the execution of the next code
+}
+ct.sound.spawn('Explosion');
+this.killEverythingNearby();
+```
 
 ### `ct.rooms.append('NameOfTheRoom', ext)` and `ct.rooms.prepend('NameOfTheRoom', ext)`
 
