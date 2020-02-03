@@ -7,7 +7,7 @@ In ct.js, there are two coordinate spaces: for UI elements (UI coordinates) and 
 By using these coordinates, you can separate UI and gameplay layers, reuse your UI in different rooms and simplify UI development, as UI coordinates are usually constant and you can design your menus and other elements in a room editor.
 
 ::: tip
-Layers are regular rooms added by `ct.rooms.append` and `ct.rooms.prepend`.
+*Layers* are regular rooms added by `ct.rooms.append` and `ct.rooms.prepend`. Together with the main room, they form a *stage*.
 :::
 
 ## Game Space
