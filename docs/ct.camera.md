@@ -22,6 +22,14 @@ The resulting position of the camera in game coordinates. These have screen shak
 
 The width and height of the camera of the unscaled shown region. Use `ct.camera.scale` to get a scaled version. To change these value, see `ct.width` and `ct.height` properties.
 
+### `ct.camera.rotation`
+
+A value in degrees that rotate the camera.
+
+### `ct.camera.scale.x`, `ct.camera.scale.y`
+
+A scalar value that scales the capturing rectangle. If compared to image viewing tools, `1` and `1` means no scaling, `0.5` will zoom in to a 200% view, `3` will zoom out and produce 33% scaling.
+
 ### `ct.camera.left`, `ct.camera.top`, `ct.camera.right` and `ct.camera.bottom`
 
 These represent the resulting location of a particular side of the camera in game units. Those cannot be changed manually.
@@ -29,6 +37,8 @@ These represent the resulting location of a particular side of the camera in gam
 ### `ct.camera.uiToGameCoord(x, y)` and `ct.camera.gameToUiCoord(x, y)`
 
 Convert a point from one coordinate space to another. These return an array with two elements: x and y coordinates.
+
+There are also `ct.u.uiToGameCoord` and `ct.u.gameToUiCoord`, that call these methods of the current `ct.camera` object.
 
 ### `ct.camera.getTopLeftCorner()`, `ct.camera.getTopRightCorner()`, `ct.camera.getBottomLeftCorner()`, `ct.camera.getBottomRightCorner()`
 
