@@ -48,7 +48,7 @@ If you ever find that above methods are not enough for you, use these parameters
 
 To scale the viewport, use `ct.camera.scale.x` and `ct.camera.scale.y`, similarly to scaling copies. This is not a zoom level, but a scaling factor of a capturing rectangle: when using values larger than 1, you will see a larger portion of a room.
 
-To rotate the viewport, use `ct.camera.angle` (in degrees) or `ct.camera.rotation` (in radians). Again, you rotate a capturing rectangle, so the stuff on the screen will rotate clockwise.
+To rotate the viewport, use `ct.camera.rotation` (in degrees). Again, you rotate a capturing rectangle, so the stuff on the screen will rotate clockwise.
 
 ::: warning A little caveat
 You should not change the camera's values in the "On Draw" event, as the camera updates after the "On Step" event and before "On Draw" event. If you do, you will notice some inconsistencies when converting UI coordinates to game ones. That's because `ct.u.uiToGameCoord` and others will use new values though the room is not yet repositioned.
