@@ -86,7 +86,7 @@ These displace the camera in UI units, but do not change `ct.camera.x` or `ct.ca
 
 ### `ct.camera.realign(room)`
 
-Realigns all the copies in a room based on new dimensions of a camera. This is useful for quick positioning of UI elements on different screens.
+Realigns all the copies in a room based on new dimensions of a camera. This is useful for quick positioning of UI elements on different screens. You can skip the realignment for some copies if you set their `skipRealign` parameter to `true`.
 
 ### `ct.camera.manageStage()`
 

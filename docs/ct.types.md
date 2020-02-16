@@ -53,6 +53,7 @@ Methods:
 ### Misc
 
 - `type` — the name of the Type from which a Copy was created;
+- `getRoom()` — returns the room that owns the current copy. This is useful when working with different rooms in a stage.
 
 ### Deleting Copies
 
@@ -93,8 +94,9 @@ ct.types.each(function () {
 });
 ```
 
-> `ct.u.pdc` computes distance between two points. This and other similar functions can be found [here](ct.u.html).
-
+::: tip
+`ct.u.pdc` computes distance between two points. This and other similar functions can be found [here](ct.u.html).
+:::
 
 ### `ct.types.with(copy: Copy, func: Function)`
 
