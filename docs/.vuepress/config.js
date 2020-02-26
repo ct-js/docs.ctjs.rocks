@@ -106,6 +106,7 @@ module.exports = {
                     ['migration-0to1', 'Migration from 0.x to 1.x'],
                     ['migration-1-2to1-3', 'Migration from 1.2 to 1.3'],
                     ['troubleshooting-teared-background', 'Background splits into squares!'],
+                    ['troubleshooting-leaking-pixels', 'Textures have leaked pixels!'],
                     ['troubleshooting-sounds-not-playing', 'Sounds don\'t play at game start!']
                 ]
             }
