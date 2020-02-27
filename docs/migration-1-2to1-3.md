@@ -35,3 +35,7 @@ Besides that,
 - use `ct.camera.drift` instead of `ct.room.followDrift`;
 - use `ct.camera.borderX` and `ct.camera.borderY` instead of `ct.room.borderX` and `ct.camera.borderY`;
 - use `ct.camera.borderX = ct.camera.borderY = null;` instead of `ct.room.center = true;`.
+
+## Changes in built-in modules
+
+`ct.mouse` and `ct.touch` now have additional methods and parameters, e.g. `ct.mouse.xui` and `ct.mouse.yui`, `ct.touch.hoversUi`. See their docs for the full list of new parameters.
