@@ -519,7 +519,7 @@ ct.rooms.append('LayerUI', {
 
 It should look like this:
 
-![A complete code of adding a UI layer in ct.js](./images/tutPlatformer_28.png)
+![A complete code of adding a UI layer in ct.js](./images/tutPlatformer_29.png)
 
 ::: tip
 The method `ct.rooms.append` (as well as `ct.rooms.prepend`) may be also used for reusing other stuff than UI layers. For example, we can place all the backgrounds to a separate room, and then call `ct.rooms.prepend("YourBackgroundRoom");` to import them. This is especially useful while making complex layered backgrounds with a parallax effect.
