@@ -136,8 +136,8 @@ this.x += 8 * ct.delta * ct.actions.MoveX.value; // Move by X axis
 if (this.x < 0) { // Have the ship crossed the left border?
     this.x = 0; // Go back to the left border
 }
-if (this.x > ct.viewWidth) { // Have the ship crossed the right border?
-    this.x = ct.viewWidth; // Go back to the right border
+if (this.x > ct.camera.width) { // Have the ship crossed the right border?
+    this.x = ct.camera.width; // Go back to the right border
 }
 
 this.move();
@@ -149,7 +149,7 @@ Here we are using the created actions. First, we try to move the ship horisontal
 
 Lastly, we multiply our intermediate speed value with the desired velocity, `8`.
 
-We later check whether its X coordinate fell off the viewport. Here `0` means the left side of the room and `ct.viewWidth` means the horizontal size of the viewport, which forms the right side.
+We later check whether its X coordinate fell off the viewport. Here `0` means the left side of the room and `ct.camera.width` means the horizontal size of the viewport, which forms the right side.
 
 ::: tip On your own!
 Add a vertical movement to the player. Then, try to limit its movement so the ship can't fly above the middle of the viewport.
@@ -380,13 +380,13 @@ Then add this code to generate enemies through time:
 this.asteroidTimer -= ct.delta;
 if (this.asteroidTimer <= 0) {
     this.asteroidTimer = ct.random.range(20, 200);
-    ct.types.copy(ct.random.dice('Asteroid_Big', 'Asteroid_Medium'), ct.random(ct.viewWidth), -100);
+    ct.types.copy(ct.random.dice('Asteroid_Big', 'Asteroid_Medium'), ct.random(ct.camera.width), -100);
 }
 
 this.enemyTimer -= ct.delta;
 if (this.enemyTimer <= 0) {
     this.enemyTimer = ct.random.range(180, 400);
-    ct.types.copy('EnemyShip', ct.random(ct.viewWidth), -100);
+    ct.types.copy('EnemyShip', ct.random(ct.camera.width), -100);
 }
 ```
 
@@ -415,9 +415,10 @@ this.scoreLabel = new PIXI.Text('Score: ' + this.score);
 this.addChild(this.scoreLabel);
 this.scoreLabel.x = 30;
 this.scoreLabel.y = 30;
+this.scoreLabel.depth = 1000;
 ```
 
-Here, we create a variable called `score`. Then, we construct a text label with `new PIXI.Text('Some text')`, save it `this.scoreLabel` and add it to the room with `this.addChild(this.scoreLabel);`. Later, we position it so that it shows at the top-left corner, with 30px padding on each side.
+Here, we create a variable called `score`. Then, we construct a text label with `new PIXI.Text('Some text')`, save it `this.scoreLabel` and add it to the room with `this.addChild(this.scoreLabel);`. Later, we position it so that it shows at the top-left corner, with 30px padding on each side. We also set its depth — this is the same parameter we use in types' settings, and this large positive value will place the `scoreLabel` above other entities in our room.
 
 We also need this code at `Draw` to keep the label up-to-date:
 
@@ -503,8 +504,9 @@ Managing lives is similar to managing score points. Add this code to the room's 
 this.lives = 3;
 this.livesLabel = new PIXI.Text('Lives: ' + this.lives, ct.styles.get('ScoreText'));
 this.addChild(this.livesLabel);
-this.livesLabel.x = ct.viewWidth - 200;
+this.livesLabel.x = ct.camera.width - 200;
 this.livesLabel.y = 30;
+this.livesLabel.depth = 1000;
 ```
 
 ::: tip On your own!
