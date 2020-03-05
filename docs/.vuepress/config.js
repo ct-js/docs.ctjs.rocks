@@ -2,7 +2,7 @@ module.exports = {
     title: 'ct.js Documentation',
     description: 'Docs, tutorials, guides',
 
-    plugins: ['@vuepress/pwa'],
+    plugins: [],
 
     locales: {
         '/': {
@@ -68,6 +68,7 @@ module.exports = {
                 children: [
                     'ct',
                     'ct.camera',
+                    'ct.emitters',
                     ['ct.inputs', 'ct.inputs and ct.actions'],
                     'ct.res',
                     'ct.rooms',
