@@ -86,7 +86,8 @@ module.exports = {
                     'game-and-ui-coordinates',
                     'game-pause',
                     'localstorage',
-                    'viewport-management'
+                    'viewport-management',
+                    'textures-magic-properties'
                 ]
             }, {
                 title: 'Working with assets',
