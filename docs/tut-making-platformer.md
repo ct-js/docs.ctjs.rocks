@@ -4,6 +4,10 @@ In this tutorial, we will create a small platformer with diamonds, checkpoints, 
 
 ![A screenshot of the final game](./images/tutPlatformer_endResult.png)
 
+Here's what we will do:
+
+[[toc]]
+
 ## Creating a Project
 
 Open ct.js and input your project's name into the lower field of the starting window. Let's call it "Platformer". Then, click the "Create" button and select the folder where ct.js will store it, e.g. inside your "Documents" folder.

@@ -4,6 +4,10 @@ Let's make a small space shooting game with asteroids, lasers and hostile gunshi
 
 ![](./images/tutSpaceShooter_Result.gif)
 
+Here's what we will do:
+
+[[toc]]
+
 ## Importing Textures
 
 Open ct.js and create a new project with a name "SpaceShooter".
