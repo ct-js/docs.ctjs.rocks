@@ -2,7 +2,7 @@ module.exports = {
     title: 'ct.js Documentation',
     description: 'Docs, tutorials, guides',
 
-    plugins: [],
+    plugins: ['@vuepress/medium-zoom'],
 
     locales: {
         '/': {
