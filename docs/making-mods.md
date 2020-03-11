@@ -201,7 +201,7 @@ A field's `id` must be unique for a module. A `key` determines which parts of co
 
 You can define additional fields that will be available in the type editor. They will be displayed in the left column:
 
-![](images/modsFields.png)
+![](./images/modsFields.png)
 
 That's how you define them inside the `module.json`:
 
