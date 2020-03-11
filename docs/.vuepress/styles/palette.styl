@@ -32,13 +32,33 @@ body.dark
   div[class*="language-"]
     background $border-color
 
+  th, td
+    border: 1px solid $border-color
+
+  tr:nth-child(2n)
+    background-color: rgba($border-color, 0.35)
+
   &
     background-color $bg-color
     color #C8CECD
+    min-height 100vh
 
   .custom-block.tip
     background-color $border-color
     border-color $accentColor
+  .custom-block.warning
+    background-color rgba(255, 229, 100, 0.1)
+    color #b2a45f
+  .custom-block.warning a
+    color $accentColor
+  .custom-block.danger
+    background-color #3e252d
+    border-color #c00
+    color #cfb1b1
+  .custom-block.danger a
+    color $accentColor
+  .custom-block.danger .custom-block-title
+    color #fd6565
 
   .search-box
     input
