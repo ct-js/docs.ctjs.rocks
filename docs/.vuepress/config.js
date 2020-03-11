@@ -4,6 +4,12 @@ module.exports = {
 
     plugins: ['@vuepress/medium-zoom'],
 
+    head: [
+        ['script', {
+            src: '/themeSwitcher.js'
+        }]
+    ],
+
     locales: {
         '/': {
             lang: 'en-US', // this will be set as the lang attribute on <html>
