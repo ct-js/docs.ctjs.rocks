@@ -8,10 +8,35 @@ body.dark
   $vue-color = #44dbb5
   $bg-color = #121822
   $border-color = #1C2B42
+  $text-color = #C8CECD
 
   $MQNarrow = 959px
   $MQMobile = 719px
   $MQMobileNarrow = 419px
+
+  &
+    background-color #08080D
+    color $text-color
+    min-height 100vh
+
+  ::-webkit-scrollbar
+    width 0.75rem
+    height 0.75rem
+  ::-webkit-scrollbar-track
+      background rgba($text-color, 0.17)
+      border-radius 0.35rem
+  ::-webkit-scrollbar-thumb
+      border-radius 0.35rem
+      background: rgba($text-color, 0.27)
+      {trans}
+      &:hover
+          background rgba($text-color, 0.5)
+      &:active
+          background rgba($text-color, 0.35)
+  ::-webkit-scrollbar-track:window-inactive
+      background rgba($text-color, 0.1)
+  ::-webkit-scrollbar-corner
+      background transparent
 
   a
     color $accentColor
@@ -37,11 +62,6 @@ body.dark
 
   tr:nth-child(2n)
     background-color: rgba($border-color, 0.35)
-
-  &
-    background-color #08080D
-    color #C8CECD
-    min-height 100vh
 
   .custom-block.tip
     background-color $border-color
