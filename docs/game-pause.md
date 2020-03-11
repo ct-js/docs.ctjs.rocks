@@ -3,13 +3,12 @@
 If you want to pause a game and to create a pause menu, you should freeze all the movement and gameplay processes and leave UI untouched. If you have been using `ct.delta` all the time, you're all set and need to add a couple of lines! Some things are tricky though:
 
 * Make sure all your timers are based on `ct.delta`. It can be as simple as `this.timer -= ct.delta;`, but it can't be `this.timer--;`.
-* Your UI elements probably should not use `ct.delta` at all, so they stay responsive when the game freezes.
+* Your UI elements should use `ct.deltaUi`, so they stay responsive when the game freezes.
 * Watch out for `ct.tween` inside your gameplay-related code, as `ct.tween` does not use `ct.delta` by default.
 
 `ct.delta` is a value available globally, and it shows how long a frame lasted relative to an ideal one at 60 FPS. It makes your game run uniformly smooth on any devices, but it can also be scaled, making the game running slower or faster, e.g. for making epic slo-mo scenes. We can freeze the game as well:
 
 ```js
-PIXI.ticker.shared.speed = 0;
 ct.pixiApp.ticker.speed = 0;
 ```
 
@@ -17,7 +16,6 @@ And that's the code you need to pause a game. Put it in any Action-based event, 
 
 ```js
 if (ct.actions.Pause.pressed) {
-    PIXI.ticker.shared.speed = 0;
     ct.pixiApp.ticker.speed = 0;
 }
 ```
@@ -36,7 +34,6 @@ if (ct.actions.Pause.pressed) {
         // This can be used by UI and gameplay elements to stop any gameplay actions that are not tied to ct.delta
         ct.room.paused = true;
 
-        PIXI.ticker.shared.speed = 0;
         ct.pixiApp.ticker.speed = 0;
 
         // This type can simply be a texture that aligns itself to the view
@@ -47,8 +44,7 @@ if (ct.actions.Pause.pressed) {
     } else {
         ct.room.paused = false;
 
-        PIXI.ticker.shared.speed = 1; // `1` is the normal speed
-        ct.pixiApp.ticker.speed = 1;
+        ct.pixiApp.ticker.speed = 1; // `1` is the normal speed
 
         this.unpauseHint.kill = true; // Remove the copy
     }
