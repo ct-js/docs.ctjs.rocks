@@ -1,4 +1,4 @@
-# ct.emitters
+# ct.emitters <badge>new in v1.3</badge>
 
 The module `ct.emitters` allows you to fire particle effects, attach them to copies, or make them follow one.
 

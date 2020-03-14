@@ -60,7 +60,7 @@ Any module is a directory with a following structure:
 }
 ```
 
-## Listing dependencies
+## Listing dependencies <badge>new in v1.3</badge>
 
 Currently, catmods may express their dependency in other module with fields `dependencies` and `optionalDependencies` inside `module.json`. It allows ct.IDE to warn users about missing (disabled) modules. Please write info about getting custom modules in the "readme" section.
 

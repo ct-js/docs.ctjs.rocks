@@ -10,7 +10,7 @@ To move the camera around, you can:
 * use the built-in variables to follow things on the screen;
 * change the camera's parameters by yourself.
 
-### Moving and teleporting
+### Moving and teleporting <badge>new in v1.3</badge>
 
 `ct.camera.moveTo(x, y)` and `ct.camera.teleportTo(x, y)` both move the camera to a new position. There are differences, though:
 
@@ -44,7 +44,7 @@ If you ever find that above methods are not enough for you, use these parameters
 `x` and `y` are the current position of the camera without screen shake and effects of `shiftX` and `shiftY`.
 `targetX` and `targetY` will be different if `ct.camera.drift` is larger than 0, and you should firstly edit these values.
 
-## Zooming and rotation
+## Zooming and rotation <badge>new in v1.3</badge>
 
 To scale the viewport, use `ct.camera.scale.x` and `ct.camera.scale.y`, similarly to scaling copies. This is not a zoom level, but a scaling factor of a capturing rectangle: when using values larger than 1, you will see a larger portion of a room.
 
@@ -84,7 +84,7 @@ ct.camera.angle += ct.actions.CameraRotate.value * ct.delta * 5;
 
 :::
 
-## Screen shake effects
+## Screen shake effects <badge>new in v1.3</badge>
 
 Yes, there is a built-in feature for that 😅 Its design is as follows:
 
@@ -129,7 +129,7 @@ In general, you should follow these rules:
 
 * design UI in a separate room, and then import it with `ct.rooms.append('NameOfTheRoom', {isUi: true})`;
 * use `ct.camera.width` and `ct.camera.height` to position UI elements;
-* use `ct.camera.realign(this)` in "On Draw" of the UI layer to quickly get decent results;
+* use `ct.camera.realign(this)` <badge>new in v1.3</badge> in "On Draw" of the UI layer to quickly get decent results;
 * update the position of UI elements regularly, as any resolution change may crop your elements. This can be caused by resizing a windowed version, at random unplug of an external monitor, etc;
 * when using "Scaling with/without letterboxing", start designing your rooms, graphic assets, and UI at a relatively big view size at rooms' settings, e.g. at 1920x1080px, so it will scale down on other resolutions nicely.
 

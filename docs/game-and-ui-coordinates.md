@@ -1,4 +1,4 @@
-# Game and UI Coordinates: the Difference
+# Game and UI Coordinates: the Difference <badge>new in v1.3</badge>
 
 In ct.js, there are two coordinate spaces: for UI elements (UI coordinates) and for gameplay elements that live on a separate coordinate grid. By default, they will match, but once you start moving the camera, rotating and zooming it, they will be different. For example, you can scale viewport and get more stuff shown on a screen, capturing a bigger rectangle in *game space*, but always showing the same rectangle in *UI space*.
 
