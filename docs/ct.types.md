@@ -73,6 +73,14 @@ OnStep code [will still be executed](ct.html#Event-sequence) until the drawing p
 
 ## Methods and properties of ct.types
 
+### `ct.types.addSpeed(o: Copy, spd, dir)`
+
+Adds a speed vector to a given Copy. This is the same as calling `o.addSpeed(spd, dir);` on that copy.
+
+::: warn DEPRECATED
+This method will soon be removed; instead of it, use `this.addSpeed(spd, dir)` inside your copies' code.
+:::
+
 ### `ct.types.copy(type: String, x, y)` and `ct.types.make(type: String, x, y)`
 
 Creates a Copy of a given Type. If x or y is omitted, they are set to 0.
@@ -98,10 +106,6 @@ ct.types.each(function () {
 `ct.u.pdc` computes distance between two points. This and other similar functions can be found [here](ct.u.html).
 :::
 
-### `ct.types.with(copy: Copy, func: Function)`
-
-Works like `ct.types.each`, but only for the specified Copy.
-
 ### `ct.types.list['TypeName']`
 
 Returns an array with all the existing copies of the specified type.
@@ -122,6 +126,6 @@ for (var bonus of ct.types.list.Bonus) {
 }
 ```
 
-### `ct.types.addSpeed(o: Copy, spd, dir)`
+### `ct.types.with(copy: Copy, func: Function)`
 
-Adds a speed vector to a given Copy. This is the same as calling `o.addSpeed(spd, dir);` on that copy.
+Works like `ct.types.each`, but only for the specified Copy.
