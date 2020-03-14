@@ -77,7 +77,7 @@ OnStep code [will still be executed](ct.html#Event-sequence) until the drawing p
 
 Adds a speed vector to a given Copy. This is the same as calling `o.addSpeed(spd, dir);` on that copy.
 
-::: warn DEPRECATED
+::: warning DEPRECATED
 This method will soon be removed; instead of it, use `this.addSpeed(spd, dir)` inside your copies' code.
 :::
 
@@ -105,6 +105,10 @@ ct.types.each(function () {
 ::: tip
 `ct.u.pdc` computes distance between two points. This and other similar functions can be found [here](ct.u.html).
 :::
+
+### `ct.types.exists(copy)` <badge>new in v1.3</badge>
+
+Checks whether a given argument is a copy that exists in ct.js' world. Falsey variables like undefined ones will return `false`, as well as destroyed copies; the other times, it will return `true`. This method also works with most PIXI entities, e.g. with `PIXI.Text` and `PIXI.Graphics`.
 
 ### `ct.types.list['TypeName']`
 
