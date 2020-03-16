@@ -32,6 +32,8 @@ ct.camera.borderX = 300;
 ct.camera.borderY = 300;
 ```
 
+You can also disable following logic for one axis. Setting `ct.camera.followX` to `false` will disable horizontal movement, and setting `ct.camera.followY` will disable vertical movement. This still allows you to move the camera with `teleportTo` and `moveTo` methods. <badge>new in v1.3</badge>
+
 ### Manual positioning
 
 If you ever find that above methods are not enough for you, use these parameters:

@@ -54,6 +54,10 @@ Returns a bounding box of the camera, in game coordinates. See [PIXI.Rectangle](
 
 If set, the camera will follow the given copy.
 
+### `ct.camera.followX`, `ct.camera.followY`
+
+Works if `follow` is set to a copy. Setting one of these to `false` will disable automatic camera in a given direction.
+
 ### `ct.camera.borderX`, `ct.camera.borderY`
 
 Works if `follow` is set to a copy. Sets the frame inside which the copy will be kept, in game pixels. Can be set to `null` so the copy is set to the center of the screen.
