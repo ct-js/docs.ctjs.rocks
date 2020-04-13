@@ -80,6 +80,7 @@ module.exports = {
                     'ct.rooms',
                     'ct.sound',
                     'ct.styles',
+                    'ct.timer',
                     'ct.types',
                     ['ct.u', 'ct.u (utilities)'],
                     ['catmoddocs.md', 'Where are the other ct.* docs?']
