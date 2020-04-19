@@ -2,11 +2,15 @@
 
 In this tutorial, we will create a small platformer with diamonds, checkpoints, moving platforms, and traps! You will learn how to detect collisions, use them to create a side-view movement, and how to manipulate sprites and move the player between levels.
 
-![Creating a new project](./images/tutPlatformer_endResult.png)
+![A screenshot of the final game](./images/tutPlatformer_endResult.png)
+
+Here's what we will do:
+
+[[toc]]
 
 ## Creating a Project
 
-Open ct.js and create a new project called "Platformer".
+Open ct.js and input your project's name into the lower field of the starting window. Let's call it "Platformer". Then, click the "Create" button and select the folder where ct.js will store it, e.g. inside your "Documents" folder.
 
 ![Creating a new project](./images/tutPlatformer_01.png)
 
@@ -70,14 +74,14 @@ Open the "Types" tab and create a new type. Call it "Robot", set its sprite to `
 ![Editing a type](./images/tutPlatformer_09.png)
 
 ::: tip
-Types are like templates, from which copies are created. We fill our levels (also often named as rooms) with copies, and they are the things that interact with each other on the screen, but each copy was created from a certain type.
+Types are like templates, from which copies are created. We fill our levels (a.k.a. rooms) with copies, and they are the things that interact with each other on the screen, but each copy was created from a certain type.
 :::
 
 Create additional types in the same way:
 
-* Rocks;
-* Rocks_Top;
-* Rocks_Platform.
+* `Rocks`;
+* `Rocks_Top`;
+* `Rocks_Platform`.
 
 ### Adding a Room
 
@@ -242,14 +246,14 @@ Your character may ignore holes which are one grid cell wide. Test it. If it occ
 
 If we launch the game now, we will be able to move the Robot around. There is an issue, though: the camera isn't moving!
 
-It is not a hard issue, though. If we dig into the ct.js docs and read the ct.rooms section, we will find that there are properties `ct.rooms.current.follow`, `ct.rooms.current.borderX` and `ct.rooms.current.borderY` exactly for following a copy.
+It is not a hard issue, though. If we dig into the ct.js docs, we will find a `ct.camera` entity with `ct.camera.follow`, `ct.camera.borderX` and `ct.camera.borderY` exactly for following a copy.
 
 Open the `Robot` type and its "On Create" Code. Add this code to the end:
 
 ```js
-ct.room.follow = this;
-ct.room.borderX = 450;
-ct.room.borderY = 200;
+ct.camera.follow = this;
+ct.camera.borderX = 450;
+ct.camera.borderY = 200;
 ```
 
 The camera will now follow the Robot.
@@ -458,7 +462,6 @@ Call a new script as `inGameRoomStart`. Write this code:
 var inGameRoomStart = function (room) {
     room.crystals = 0;
     room.crystalsTotal = ct.types.list['GreenCrystal'].length;
-    ct.types.copy('CrystalsWidget', 0, 0);
 };
 ```
 
@@ -478,7 +481,7 @@ Hmmm… it looks familiar! Like `ct.place.free(this, this.x, this.y)`! That's ac
 
 When `inGameRoomStart(this);` is called it will set `crystals` and `crystalsTotal` parameters by itself, without the need to write such code directly to a room.
 
-So that's how we gather and count the crystals, but we also need to draw their count and do it with *style*. ✨
+So that's how we gather and count the crystals, but we also need to create a simple interface to draw their count and do it with *style*. ✨
 
 Gladly, there is a tool for designing nifty text styles inside the ct.js. Open the "UI" tab at the top of the screen and create a new style. Call it as a `CrystalCounter`.
 
@@ -506,18 +509,29 @@ this.addChild(this.text);
 
 Here we create a new text label and attach it to our icon. `this.text.anchor.y = 0.5;` tells that the vertical axis of the label should be aligned to the middle of our icon.
 
-Now open the "Draw" tab and add this code:
+We should now create a special room for our UI elements. Create it in the "Rooms" tab, and call it `LayerUI`. Set its size identical to other rooms', 1024x576. Then, add the newly created `CrystalsWidget` to the top-left corner of the room:
+
+![Adding a crystals widget to a UI layer](./images/tutPlatformer_28.png)
+
+Adding UI elements to a separate room allows you to design UI visually, and then import them into other rooms through code. Ct.js also has a special flag that locks UI layers in place, so you can freely move, scale and even rotate camera, and UI elements will remain properly positioned. Now, to import a UI room into another, go to our script `inGameRoomStart` created at the Settings tab before, and add this code before the closing brace of the function:
 
 ```js
-this.x = ct.room.x + 24;
-this.y = ct.room.y + 24;
-
-this.text.text = ct.room.crystals + ' / ' + ct.room.crystalsTotal;
+ct.rooms.append('LayerUI', {
+    isUi: true
+});
 ```
 
-Here we snap our widget to the top-left corner and update its label.
+It should look like this:
 
-We will now have a crystal counter at the top-left corner of our screen.
+![A complete code of adding a UI layer in ct.js](./images/tutPlatformer_29.png)
+
+::: tip
+The method `ct.rooms.append` (as well as `ct.rooms.prepend`) may be also used for reusing other stuff than UI layers. For example, we can place all the backgrounds to a separate room, and then call `ct.rooms.prepend("YourBackgroundRoom");` to import them. This is especially useful while making complex layered backgrounds with a parallax effect.
+
+But what is important is the `isUi: true` flag. This particular parameter differentiates UI layers from other ones, e.g. from that background room.
+:::
+
+If you now run your game, you should see the crystal counter in the top-left corner:
 
 ![A crystal counter](./images/tutPlatformer_19.png)
 
@@ -544,18 +558,6 @@ if (ct.place.meet(this, this.x, this.y, 'Robot')) {
 }
 ```
 
-Then go to the "Settings" tab and modify the `inGameRoomStart` script:
-
-```js{6,7}
-var inGameRoomStart = function (room) {
-    room.crystals = 0;
-    room.crystalsTotal = ct.types.list['GreenCrystal'].length;
-    ct.types.copy('CrystalsWidget', 0, 0);
-    ct.types.copy('HeartsWidget', 0, 0);
-    room.lives = 3;
-};
-```
-
 Don't forget to place actual heart bonuses on your levels!
 
 We will also need a style for a counter. The process is the same, and a suitable color is `#E85017`. We can even duplicate the existing style! Let's call this style a `HeartCounter`.
@@ -571,16 +573,7 @@ this.text.anchor.x = 1;
 this.addChild(this.text);
 ```
 
-And in the "Draw" event:
-
-```js
-this.x = ct.room.x + ct.viewWidth - 24;
-this.y = ct.room.y + 24;
-
-this.text.text = ct.room.lives;
-```
-
-Note how we use the property `ct.viewWidth` to position the widget on the right side of the screen.
+Then add a copy of this type to the room `LayerUI`.
 
 Now modify the respawn code of the `Robot` so it loses one heart at each respawn:
 

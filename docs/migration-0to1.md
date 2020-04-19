@@ -78,6 +78,10 @@ this.alpha = 0.5;
 
 Instead of `ct.room.width` and `ct.room.height` use `ct.viewWidth` and `ct.viewHeight` only. These are different concepts now, and `ct.room.width` and `ct.room.height` changes over time.
 
+::: warning
+Stuff changed in v1.3. [See the migration guide](/migration-1.2to1.3.html). Shortly, `ct.room.width` is `ct.camera.width` now, and `ct.room.height` is `ct.camera.height`, but there are nuances once you start scaling or rotating the camera.
+:::
+
 ### Timers
 Instead of:
 

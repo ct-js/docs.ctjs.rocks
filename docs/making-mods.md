@@ -10,7 +10,7 @@ Any module is a directory with a following structure:
 * `DOCS.md`
 * `index.js`
 * `LICENSE` (plain text, strongly recommended)
-* `module.json` (required)
+* `module.json` **(required)**
 * `README.md` (strongly recommended to include)
 
 `index.js` usually represents the main code of your module, and is bundled with all the remaining code of compiled game. A rule of thumb is to pack all your dependencies in one file or, if your dependency is an another ct module, to explicitly state it in README.md.
@@ -54,7 +54,27 @@ Any module is a directory with a following structure:
         "type": "text",
         "default": "default value",
         "key": "ctype"
-    }]
+    }],
+    "dependencies": ["tween", ...],
+    "optionalDependencies": ["place", ...]
+}
+```
+
+## Listing dependencies <badge>new in v1.3</badge>
+
+Currently, catmods may express their dependency in other module with fields `dependencies` and `optionalDependencies` inside `module.json`. It allows ct.IDE to warn users about missing (disabled) modules. Please write info about getting custom modules in the "readme" section.
+
+```json {9,10}
+{
+    "main": {
+        "name": "An example module json with dependencies",
+        "version": "1.0.0",
+        "authors": [
+            ...
+        ]
+    },
+    "dependencies": ["tween"],
+    "optionalDependencies": ["place"]
 }
 ```
 
@@ -72,6 +92,7 @@ The `injects` folder contains files which code should be injected while exportin
 
 **Room-specific events**:
 
+* `beforeroomoncreate.js` — fired before a room is created, but a camera and renderer are set.
 * `roomoncreate.js` – fired after entering a new room. This code is evaluated *after* user-defined OnCreate code, when all the copies were created. Here, `this` equals to a new room.
 * `roomonleave.js` – fired before leaving a room, but *before* any user's script.  Copies still exist here.
 * `beforeroomdraw.js`
@@ -92,7 +113,7 @@ The `injects` folder contains files which code should be injected while exportin
 
 * `css.css` – injects CSS into an exported game.
 * `res.js` – called once while parsing loaded images.
-* `resload.txt` – a comma-separated list of images to load. This must start with a comma too, like `, 'img/ct.place.demoimg1.png', 'img/ct.place.demoimg2.png'`
+* `resload.js` – called once after all the resources were loaded.
 * `types.js` – here you can place your own Types.
 * `styles.js` – here you can place your own drawing styles.
 * `htmltop.html` – this code is placed right before the drawing canvas.
@@ -180,7 +201,7 @@ A field's `id` must be unique for a module. A `key` determines which parts of co
 
 You can define additional fields that will be available in the type editor. They will be displayed in the left column:
 
-![](images/modsFields.png)
+![](./images/modsFields.png)
 
 That's how you define them inside the `module.json`:
 
@@ -264,7 +285,7 @@ declare namespace ct {
          * @param {Copy} me The copy to cover in ketchup
          * @param {boolean} tonsOfKetchup If set to `true`, it will spend a LOT of ketchup on this particular copy
          */
-        function addKetchup(me: Copy, tonsOfKetchup?: boolean);
+        function addKetchup(me: Copy, tonsOfKetchup?: boolean): void;
 
         /**
          * Amount of ketchup left

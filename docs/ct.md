@@ -43,3 +43,7 @@ this.x += 10 * ct.delta;
 ```
 
 But this delta is mostly useful while designing complex or logic-driven movement, as [the default movement system](ct.types.html#moving-copies-around) already takes `ct.delta` into account.
+
+### `ct.deltaUi`
+
+`ct.deltaUi` is similar to `ct.delta`, but it ignores time scaling factors that can happen during slow-mo effects or game pause (see ["Pausing a game"](game-pause.html) for examples).
