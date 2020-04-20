@@ -28,25 +28,25 @@ A scalar value between -1 and 1. 0 means that there is no input at the current f
 ### ctAction.pressed ⇒ <code>Boolean</code>
 Returns whether the action became active in the current frame, either by a button just pressed or by using a scalar input.
 
-**Returns**: <code>Boolean</code> – `true` for being pressed and `false` otherwise
+**Returns**: <code>Boolean</code> – `true` for being pressed and `false` otherwise 
 
 ### ctAction.released ⇒ <code>Boolean</code>
 Returns whether the action became inactive in the current frame,
 either by releasing all buttons or by resting all scalar inputs.
 
-**Returns**: <code>Boolean</code> – `true` for being released and `false` otherwise
+**Returns**: <code>Boolean</code> – `true` for being released and `false` otherwise 
 
 ### ctAction.down ⇒ <code>Boolean</code>
 Returns whether the action is active, e.g. by a pressed button
 or a currently used scalar input
 
-**Returns**: <code>Boolean</code> – `true` for being active and `false` otherwise
+**Returns**: <code>Boolean</code> – `true` for being active and `false` otherwise 
 
 ### ctAction.methodExists(code) ⇒ <code>Boolean</code>
 Checks whether the current action listens to a given input method.
 This *does not* check whether this input method is supported by ct.
 
-**Returns**: <code>Boolean</code> – `true` if it exists, `false` otherwise.
+**Returns**: <code>Boolean</code> – `true` if it exists, `false` otherwise.  
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -80,9 +80,6 @@ This method will produce a warning if one is trying to change an input method th
 Recalculates the digital value of an action.
 
 **Returns**: <code>Number</code> – A scalar value between -1 and 1.
-
-### ctAction.reset() ⇒ <code>void</code>
-Resets the state of the action, setting its `value` to `0` and its `pressed`, `down`, `released` states to `false`.
 
 ## Creating and removing new actions programmatically
 
@@ -122,7 +119,7 @@ Removes an action with a given name.
 | --- | --- | --- |
 name|String|The name of an action
 
-**Returns:** `void`
+**Returns:** `void` 
 
 ## Creating new actions without adding it to ct.actions
 

@@ -18,10 +18,7 @@
   },
   "homepage": "https://github.com/ct-js/docs.ctjs.rocks#readme",
   "dependencies": {
-    "@vuepress/plugin-pwa": "^1.4.0",
-    "vuepress": "^1.4.0"
-  },
-  "devDependencies": {
-    "@vuepress/plugin-medium-zoom": "^1.4.0"
+    "@vuepress/plugin-pwa": "^1.0.3",
+    "vuepress": "^1.0.3"
   }
 }

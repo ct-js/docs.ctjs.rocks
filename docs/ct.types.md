@@ -53,7 +53,6 @@ Methods:
 ### Misc
 
 - `type` — the name of the Type from which a Copy was created;
-- `getRoom()` — returns the room that owns the current copy. This is useful when working with different rooms in a stage.
 
 ### Deleting Copies
 
@@ -72,14 +71,6 @@ OnStep code [will still be executed](ct.html#Event-sequence) until the drawing p
 :::
 
 ## Methods and properties of ct.types
-
-### `ct.types.addSpeed(o: Copy, spd, dir)`
-
-Adds a speed vector to a given Copy. This is the same as calling `o.addSpeed(spd, dir);` on that copy.
-
-::: warning DEPRECATED
-This method will soon be removed; instead of it, use `this.addSpeed(spd, dir)` inside your copies' code.
-:::
 
 ### `ct.types.copy(type: String, x, y)` and `ct.types.make(type: String, x, y)`
 
@@ -102,13 +93,12 @@ ct.types.each(function () {
 });
 ```
 
-::: tip
-`ct.u.pdc` computes distance between two points. This and other similar functions can be found [here](ct.u.html).
-:::
+> `ct.u.pdc` computes distance between two points. This and other similar functions can be found [here](ct.u.html).
 
-### `ct.types.exists(copy)` <badge>new in v1.3</badge>
 
-Checks whether a given argument is a copy that exists in ct.js' world. Falsey variables like undefined ones will return `false`, as well as destroyed copies; the other times, it will return `true`. This method also works with most PIXI entities, e.g. with `PIXI.Text` and `PIXI.Graphics`.
+### `ct.types.with(copy: Copy, func: Function)`
+
+Works like `ct.types.each`, but only for the specified Copy.
 
 ### `ct.types.list['TypeName']`
 
@@ -130,6 +120,6 @@ for (var bonus of ct.types.list.Bonus) {
 }
 ```
 
-### `ct.types.with(copy: Copy, func: Function)`
+### `ct.types.addSpeed(o: Copy, spd, dir)`
 
-Works like `ct.types.each`, but only for the specified Copy.
+Adds a speed vector to a given Copy. This is the same as calling `o.addSpeed(spd, dir);` on that copy.
