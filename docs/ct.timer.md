@@ -7,21 +7,20 @@ Examples:
 ```js
 // Add a timer
 ct.timer.addTimer("test");
+// Or:
+new CtTimer("test");
+
+// Log "Done!" when it gets to 2.5 seconds
+// Note: `ct.timer.addTimer` also supports this.
+new CtTimer("test", 2500).then(() => {
+    console.log("Done!");
+});
 
 // Log the timer's time count
 console.log(ct.timer.timers["test"].time);
 
 // Remove the timer
 ct.timer.removeTimer("test");
-
-// Add a timed timer that prints "Done!" when it gets to 2.5 seconds
-ct.timer.addTimedTimer("test2", 2500, function () { console.log("Done!") });
-
-// Log the timed timer's time count
-console.log(ct.timer.timedTimers["test2"].time);
-
-// Remove the timer
-ct.timer.removeTimer("test2");
 ```
 
 ## ct.timer properties
@@ -38,18 +37,6 @@ ct.timer.timers["myTimer"];
 ct.timer.timers.myTimer;
 ```
 
-### ct.timer.timedTimers ⇒ <code>Object`<CtTimedTimer>`</code>
-
-An object of timers. Access them by their name.
-
-Example: 
-```js
-// Access a timer called "myTimer"
-ct.timer.timedTimers["myTimer"];
-// Or
-ct.timer.timedTimers.myTimer;
-```
-
 ## ct.timer methods
 
 ### ct.timer.addTimer(name, [uiDelta], [startTime]) ⇒ <code>void</code>
@@ -58,26 +45,15 @@ Adds a new timer to `ct.timer.timers`.
 | Param | Type | Description |
 | --- | --- | --- |
 | name | <code>String</code> | The timer's name, which will be used to access from `ct.timer.timers`. |
+| [timeMs=0] | <code>Number</code> | The length of the timer, **in milliseconds** |
 | [uiDelta=false] | <code>Boolean</code> | If `true`, it will use `ct.deltaUi` for counting time. if `false`, it will use `ct.delta` for counting time. |
-| [startTime=0] | <code>Number</code> | The amount of time to start at, in milliseconds. |
-
-### ct.timer.addTimedTimer(name, length, callback, [uiDelta], [startTime]) ⇒ <code>void</code>
-Adds a new timer to `ct.timer.timedTimers`.
-
-| Param | Type | Description |
-| --- | --- | --- |
-| name | <code>String</code> | The timer's name, which will be used to access from `ct.timer.timedTimers`. |
-| length | <code>Number</code> | The length for the timed timer, in milliseconds |
-| callback | <code>Function</code> | The function to call when the timer ends. |
-| [uiDelta=false] | <code>Boolean</code> | If `true`, it will use `ct.deltaUi` for counting time. if `false`, it will use `ct.delta` for counting time. |
-| [startTime=0] | <code>Number</code> | The amount of time to start at, in milliseconds. |
 
 ### ct.timer.removeTimer(name) ⇒ <code>void</code>
 Adds a new timer to `ct.timer.timedTimers`.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| name | <code>String</code> | The timer's name, which was used to access from `ct.timer.timedTimers`. |
+| name | <code>String</code> | The timer's name, which was used to access from `ct.timer.timers`. |
 
 ## Timer properties
 
@@ -85,18 +61,36 @@ Adds a new timer to `ct.timer.timedTimers`.
 
 The amount of time the timer has been active, in milliseconds.
 
-## Timed timer properties 
+### CtTimer.timeLeft ⇒ <code>Number</code>
 
-Includes [timer properties](#timer-properties).
+The amount of time left until it gets to `timeMs`. Defaults to `0`.
 
-### CtTimedTimer.length ⇒ <code>Number</code>
+### CtTimer.uiDelta ⇒ <code>Boolean</code>
 
-The amount of time the timer will be active, in milliseconds.
+If `true`, it will use `ct.deltaUi` for counting time. if `false`, it will use `ct.delta` for counting time.
 
-### CtTimedTimer.callback ⇒ <code>Function</code>
+### CtTimer.promise ⇒ <code>Promise</code>
 
-The function that will be called when the timer reaches `CtTimedTimer.length`.
+The promise used to execute callbacks when the timer has finished.
 
-### CtTimedTimer.done ⇒ <code>Boolean</code>
+### CtTimer.resolve ⇒ <code>Function</code>
 
-If `true`, the timer is done and `CtTimedTimer.time` will not increase. If `false`, the timer is not done and time will still increase.
+Resolves the promise. Not recommended as it will stop the timer from counting.
+
+### CtTimer.reject ⇒ <code>Function</code>
+
+Rejects the promise. Not recommended as it will stop the timer from counting.
+
+### CtTimer.rejected ⇒ <code>Boolean</code>
+
+If true, the timer was rejected. **If you call `CtTimer.reject` by yourself, it will not update.**
+
+### CtTimer.done ⇒ <code>Boolean</code>
+
+If true, the timer was resolved. **If you call `CtTimer.resolve` by yourself, it will not update.**
+
+## Timer methods
+
+### CtTimer.then ⇒ <code>void</code>
+
+Mirrors `CtTimer.promise.then()`.
