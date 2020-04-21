@@ -39,7 +39,7 @@ ct.timer.timers.myTimer;
 
 ## ct.timer methods
 
-### ct.timer.addTimer(name, [uiDelta], [startTime]) ⇒ <code>void</code>
+### ct.timer.addTimer(name, [timeMs], [uiDelta]) ⇒ <code>void</code>
 Adds a new timer to `ct.timer.timers`.
 
 | Param | Type | Description |
@@ -94,3 +94,10 @@ If true, the timer was resolved. **If you call `CtTimer.resolve` by yourself, it
 ### CtTimer.then ⇒ <code>void</code>
 
 Mirrors `CtTimer.promise.then()`.
+
+Attaches callbacks for the resolution and/or rejection of the Promise.
+
+| Param | Type | Description |
+| --- | --- | --- |
+| onfulfilled | <code>Any</code> | The callback to execute when the Promise is resolved. |
+| [onrejected] | <code>Any</code> | The callback to execute when the Promise is rejected. |
