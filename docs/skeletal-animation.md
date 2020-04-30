@@ -66,6 +66,17 @@ if (this.onGround) { // should be defined before
     }
 }
 ```
+## Animation Play Times
+```js
+/* Stop animation after it has played once */
+if(skel.animation.lastAnimationName == "attack")
+{
+    if(skel.animation.lastAnimationState.currentPlayTimes > 0)
+    {
+        skel.animation.play('stand');
+    }
+}
+```
 
 ## Responding to Animation Events
 
