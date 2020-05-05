@@ -32,7 +32,7 @@ Creates a new timer that runs in gameplay time scale and is affected by time acc
 | Param | Type | Description |
 | --- | --- | --- |
 | timeMs | <code>Number</code> | The length of the timer, **in milliseconds** |
-| [name] | <code>String</code> | The timer's name, which will be used to access from `ct.timer.timers`. |
+| [name] | <code>String</code> | The timer's name, which will be accessible from `timer.name`. |
 
 ### ct.timer.addUi(timeMs, name) ⇒ <code>void</code>
 Creates a new timer that runs in UI time scale.
@@ -51,6 +51,10 @@ The amount of time the timer has been active, in milliseconds.
 ### CtTimer.timeLeft ⇒ <code>Number</code>
 
 The amount of time left until it gets to `timeMs`. Defaults to `0`.
+
+### CtTimer.name ⇒ <code>String|false</code>
+
+The given name of a timer, or `false` if no name was given.
 
 ### CtTimer.uiDelta ⇒ <code>Boolean</code>
 
