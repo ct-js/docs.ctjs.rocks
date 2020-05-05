@@ -1,45 +1,32 @@
 # ct.timer
 
-This module (`ct.timer`) allows for making timers, optionally running a function when the timer reaches a certain amount of time.
+`ct.timer` allows for making timers, optionally running a function when the timer reaches a certain amount of time.
 
 Examples:
 
 ```js
 // Add a timer
-ct.timer.addTimer("test");
+ct.timer.add('test');
 // Or:
-new CtTimer("test");
+new CtTimer('test');
 
+// Create a new timer and remember it in a variable `timer`
 // Log "Done!" when it gets to 2.5 seconds
-// Note: `ct.timer.addTimer` also supports this.
-new CtTimer("test", 2500).then(() => {
-    console.log("Done!");
+// Note: `CtTimer` also supports this.
+var timer = ct.timer.add('test', 2500).then(() => {
+    console.log('Done!');
 });
 
 // Log the timer's time count
-console.log(ct.timer.timers["test"].time);
+console.log(timer.time);
 
 // Remove the timer
-ct.timer.removeTimer("test");
-```
-
-## ct.timer properties
-
-### ct.timer.timers ⇒ <code>Object`<CtTimer>`</code>
-
-An object of timers. Access them by their name.
-
-Example: 
-```js
-// Access a timer called "myTimer"
-ct.timer.timers["myTimer"];
-// Or
-ct.timer.timers.myTimer;
+ct.timer.removeTimer('test');
 ```
 
 ## ct.timer methods
 
-### ct.timer.addTimer(name, [timeMs], [uiDelta]) ⇒ <code>void</code>
+### ct.timer.add(name, [timeMs], [uiDelta]) ⇒ <code>void</code>
 Adds a new timer to `ct.timer.timers`.
 
 | Param | Type | Description |
@@ -71,23 +58,27 @@ If `true`, it will use `ct.deltaUi` for counting time. if `false`, it will use `
 
 ### CtTimer.promise ⇒ <code>Promise</code>
 
-The promise used to execute callbacks when the timer has finished.
+The promise used to execute callbacks when the timer has finished. You can use it with other promises and [`Promise` methods](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) to create complex asynchronous chains.
 
 ### CtTimer.resolve ⇒ <code>Function</code>
 
-Resolves the promise. Not recommended as it will stop the timer from counting.
+Instantly triggers the promise, calling its callback.
 
 ### CtTimer.reject ⇒ <code>Function</code>
 
-Rejects the promise. Not recommended as it will stop the timer from counting.
+Stops the timer by rejecting the internal promise.
 
 ### CtTimer.rejected ⇒ <code>Boolean</code>
 
-If true, the timer was rejected. **If you call `CtTimer.reject` by yourself, it will not update.**
+If true, the timer was rejected.
 
 ### CtTimer.done ⇒ <code>Boolean</code>
 
-If true, the timer was resolved. **If you call `CtTimer.resolve` by yourself, it will not update.**
+If true, the timer was resolved.
+
+### CtTimer.settled ⇒ <code>Boolean</code>
+
+If true, the timer was either rejected or resolved.
 
 ## Timer methods
 
@@ -95,7 +86,18 @@ If true, the timer was resolved. **If you call `CtTimer.resolve` by yourself, it
 
 Mirrors `CtTimer.promise.then()`.
 
-Attaches callbacks for the resolution and/or rejection of the Promise.
+Attaches callbacks for the resolution and/or rejection of the internal Promise.
+
+| Param | Type | Description |
+| --- | --- | --- |
+| onfulfilled | <code>Any</code> | The callback to execute when the Promise is resolved. |
+| [onrejected] | <code>Any</code> | The callback to execute when the Promise is rejected. |
+
+### CtTimer.catch ⇒ <code>void</code>
+
+Mirrors `CtTimer.promise.catch()`.
+
+Attaches callbacks for the rejection of the internal Promise.
 
 | Param | Type | Description |
 | --- | --- | --- |
