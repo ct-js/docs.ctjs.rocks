@@ -6,14 +6,14 @@ Examples:
 
 ```js
 // Add a timer
-ct.timer.add('test');
+ct.timer.add(1000, 'test');
 // Or:
-new CtTimer('test');
+new CtTimer(1000, 'test');
 
 // Create a new timer and remember it in a variable `timer`
 // Log "Done!" when it gets to 2.5 seconds
-// Note: `CtTimer` also supports this.
-var timer = ct.timer.add('test', 2500).then(() => {
+// This is an equivalent to `new CtTimer(2500, 'test')`
+var timer = ct.timer.add(2500, 'test').then(() => {
     console.log('Done!');
 });
 
@@ -26,21 +26,21 @@ ct.timer.removeTimer('test');
 
 ## ct.timer methods
 
-### ct.timer.add(name, [timeMs], [uiDelta]) ⇒ <code>void</code>
-Adds a new timer to `ct.timer.timers`.
+### ct.timer.add(timeMs, name) ⇒ <code>void</code>
+Creates a new timer that runs in gameplay time scale and is affected by time acceleration/deceleration.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| name | <code>String</code> | The timer's name, which will be used to access from `ct.timer.timers`. |
-| [timeMs=0] | <code>Number</code> | The length of the timer, **in milliseconds** |
-| [uiDelta=false] | <code>Boolean</code> | If `true`, it will use `ct.deltaUi` for counting time. if `false`, it will use `ct.delta` for counting time. |
+| timeMs | <code>Number</code> | The length of the timer, **in milliseconds** |
+| [name] | <code>String</code> | The timer's name, which will be used to access from `ct.timer.timers`. |
 
-### ct.timer.removeTimer(name) ⇒ <code>void</code>
-Adds a new timer to `ct.timer.timedTimers`.
+### ct.timer.addUi(timeMs, name) ⇒ <code>void</code>
+Creates a new timer that runs in UI time scale.
 
 | Param | Type | Description |
 | --- | --- | --- |
-| name | <code>String</code> | The timer's name, which was used to access from `ct.timer.timers`. |
+| timeMs | <code>Number</code> | The length of the timer, **in milliseconds** |
+| [name] | <code>String</code> | The timer's name, which will be accessible from `timer.name`. |
 
 ## Timer properties
 
