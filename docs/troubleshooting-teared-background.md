@@ -7,3 +7,5 @@
 **Solution:** Make sure that you mark your background texture as such in its Texture editor:
 
 ![](./images/ts_TearedBackground.png)
+
+Note that if you have issues with particles or regular copies, you should increase padding of their textures instead, which is [described here](troubleshooting-leaking-pixels.md).
