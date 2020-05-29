@@ -22,7 +22,7 @@ These are all the assets we will need today:
 
 ![](./images/tutSpaceShooter_02.png)
 
-Now open the "Textures" tab on the top of the ct.IDE window, and drag & drop these assets inside the ct.IDE window. You can also press an "Input" button to find them manually.
+Now open the "Textures" tab on the top of the ct.IDE window, and drag & drop these assets inside the ct.IDE window. You can also press an "Import" button to find them manually.
 
 A card for each of the images will appear. Let's open the `PlayerShip` and configure it. We will see a yellow shape that defines its collision shape. For now, it covers too much empty space, especially above wings. To fix it, we should modify this collision shape in the left column.
 
