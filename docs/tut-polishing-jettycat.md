@@ -60,11 +60,12 @@ ct.tween.add({
     fields: {
         alpha: 1
     },
-    duration: 500
+    duration: 500,
+    useUiDelta: true
 });
 ```
 
-Firstly, we make a room fully transparent by setting its `alpha` to 0. Then, we call `ct.tween.add` to start a smooth transition. `obj` points to an object that should be animated, and `fields` lists all the properties and values we want to change. Finally, the `duration` key sets the length of the effect, in milliseconds.
+Firstly, we make a room fully transparent by setting its `alpha` to 0. Then, we call `ct.tween.add` to start a smooth transition. `obj` points to an object that should be animated, and `fields` lists all the properties and values we want to change. The `duration` key sets the length of the effect, in milliseconds. Finally, the `useUiDelta` key tells that animation should run in UI time scale, ignoring our "paused" game state.
 
 We can fade out a UI layer, too. Let's gradually hide the pause menu when the player hits the "continue" button. Open the type `Button_Continue`, and modify its code:
 
@@ -77,7 +78,8 @@ if (ct.touch.collideUi(this)) {
             fields: {
                 alpha: 0
             },
-            duration: 1000
+            duration: 1000,
+            useUiDelta: true
         })
         .then(() => {
             ct.pixiApp.ticker.speed = 1;
@@ -97,7 +99,7 @@ Though the "paused" menu fades out slowly, it is still hard for a player to catc
 
 Open the type `Button_Continue` again, and modify the script so it fires another `ct.tween.add` after it finishes the first one:
 
-```js {12,13,14,15,16,17,18}
+```js {13,14,15,16,17,18,19,20}
 if (ct.touch.collideUi(this)) {
     if (!this.pressed) {
         this.pressed = true;
@@ -106,7 +108,8 @@ if (ct.touch.collideUi(this)) {
             fields: {
                 alpha: 0
             },
-            duration: 1000
+            duration: 1000,
+            useUiDelta: true
         })
         .then(() => {
             ct.tween.add({
@@ -114,7 +117,8 @@ if (ct.touch.collideUi(this)) {
                 fields: {
                     speed: 1
                 },
-                duration: 1000
+                duration: 1000,
+                useUiDelta: true
             });
             ct.rooms.remove(this.getRoom());
         });
