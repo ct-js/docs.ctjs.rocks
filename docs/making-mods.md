@@ -5,7 +5,7 @@ Any module is a directory with a following structure:
 * `includes`
   * (files to be copied to a resulting game)
 * `injects`
-  * (injects go here)
+  * (injections go here; see below)
 * `CHANGELOG.md`
 * `DOCS.md`
 * `index.js`
@@ -13,7 +13,7 @@ Any module is a directory with a following structure:
 * `module.json` **(required)**
 * `README.md` (strongly recommended to include)
 
-`index.js` usually represents the main code of your module, and is bundled with all the remaining code of compiled game. A rule of thumb is to pack all your dependencies in one file or, if your dependency is an another ct module, to explicitly state it in README.md.
+`index.js` usually represents the main code of your module, and is bundled with all the remaining code of compiled game. A rule of thumb is to pack all your dependencies in one file. If your dependency is an another ct module, you can list this module as such in `module.json`. (See below for examples.)
 
 `module.json` allows your module to be discoverable by ct.IDE, and contains basic info, list of authors and description of module settings.
 
@@ -80,7 +80,7 @@ Currently, catmods may express their dependency in other module with fields `dep
 
 ## Adding injections
 
-Injects are a powerful instrument to extend functionality of ct.js framework beyond adding methods or properties. It allows you to add logic to a game loop, load resources, create bundled Types, etc.
+Injections are a powerful instrument to extend functionality of ct.js framework beyond adding methods or properties. It allows you to add logic to a game loop, load resources, create bundled Types, etc.
 
 The `injects` folder contains files which code should be injected while exporting a game. All of them are optional, and here is a list of all the possible injections:
 
@@ -92,7 +92,7 @@ The `injects` folder contains files which code should be injected while exportin
 
 **Room-specific events**:
 
-* `beforeroomoncreate.js` — fired before a room is created, but a camera and renderer are set.
+* `beforeroomoncreate.js` — fired before a room is created, but after a camera and renderer are set.
 * `roomoncreate.js` – fired after entering a new room. This code is evaluated *after* user-defined OnCreate code, when all the copies were created. Here, `this` equals to a new room.
 * `roomonleave.js` – fired before leaving a room, but *before* any user's script.  Copies still exist here.
 * `beforeroomdraw.js`
@@ -208,7 +208,7 @@ That's how you define them inside the `module.json`:
 ```json
 {
     "main": {
-        ...
+        /*...*/
     },
     "typeExtends": [{
         "name": "Field name in the UI",
@@ -271,7 +271,7 @@ declare namespace ct {
     /**
      * A module for roasting flexible sausages inside your game.
      */
-    namespace sosiska {
+    namespace sausage {
         /* Here all the methods and properties go */
 
         /**
@@ -297,7 +297,7 @@ declare namespace ct {
 
 ### Built-in classes
 
-Ct.js has a number of classes that represent in-game entities:
+Ct.js has a number of classes that represent in-game entities. You should use these names to describe arguments and properties of your module.
 
 * `Copy`,
 * `Background`,
