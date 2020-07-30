@@ -58,6 +58,8 @@ Here is how the screen above was implemented:
 
 There are actually more input types; all of them, as well as description of other keys, can be found in [Fields declarations](modding-fields-declaration.html) page.
 
+Settings' values are used for templating in your index.js and injections. Injections allow you to place your code in particular ct.js events. More about them and templating [here](modding-events-and-injections.html).
+
 ## Adding extensions to built-in assets
 
 You can define additional fields that will be available in asset editors. Currently, you can define these fields for types and tile layers. Don't ask why. Here is where such fields are placed at the type editor:

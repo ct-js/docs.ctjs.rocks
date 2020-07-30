@@ -7,18 +7,21 @@ Any module is a directory with a following structure, placed at `ct.js/data/ct.l
 ```
 mycatmod
   |
+  |  (Core files)
   |-- index.js
   |-- module.json (required)
-  |-- CHANGELOG.md`
-  |-- DOCS.md`
-  |-- LICENSE` (plain text, strongly recommended)
-  |-- README.md` (strongly recommended to include)
+  |
+  |  (Documents shown in a module's panel)
+  |-- README.md
+  |-- DOCS.md
+  |-- CHANGELOG.md
+  |-- LICENSE (plain text, strongly recommended)
   |
   |-- includes
-  |   |-- (files to be copied to a resulting game)
+  |   \-- (files to be copied to a resulting game)
   |
-  |-- injects
-      |-- (injections go here)
+  \-- injects
+      \-- (injections go here)
 ```
 (more about injections [here](modding-events-and-injections.html))
 

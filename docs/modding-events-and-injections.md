@@ -42,7 +42,7 @@ The `injects` folder inside your module's directory accepts files with code that
 
 ## Templating
 
-Each injection can substitute a special label (a js/css/html comment) with a [value from your settings](modding-settings-and-extensions.html). If you defined a setting field with key `enableSockets`, then all matches with `/*%enableSockets%*/` in js, css, and html files will be replaced with user's chosen value.
+Each injection can substitute a special label with a [value from your settings](modding-settings-and-extensions.html). If you defined a setting field with a key `enableSockets`, then all matches with `/*%enableSockets%*/` in js, css, and html files will be replaced with user's chosen value.
 
 Be wary, as a field may return an empty value. In JavaScript, you may use this wrapper to safely read a variable without breaking syntax: `[/*%enableSockets%*/][0]`. This will return either the defined value or `undefined`.
 
