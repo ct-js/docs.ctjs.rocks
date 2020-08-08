@@ -1,0 +1,45 @@
+## Using Custom Fonts (.ttf files)
+
+As of version 1.3, importing and using custom fonts in styles is a bit confusing, so here's how to do it.
+
+
+## 1. Import a font in the UI tab.
+
+In the UI tab, click the "Import TTF" button to import a font file.
+
+![](./images/customFonts1.png)
+
+## 2. Select your typeface (.ttf) file.
+
+A choose file dialog will open, select your font file and click Open to load it.
+
+![](./images/customFonts2.png)
+
+## 3. Set your typeface's name
+
+In the font's settings, set your typefaces name to whatever you'd like to reference it by from the styles menu.
+Then click Apply to save your changes.
+
+![](./images/customFonts3.png)
+
+## 4. Create a new text style
+
+Under "Text Styles", click "Create".
+
+![](./images/customFonts4.png)
+
+## 5. Set the text style's name a font family.
+
+Set your text style's name to whatever you want, and change the Font family to the following:
+
+`pixel, CTPROJFONTpixel, sans-serif`
+
+Change `pixel` to whatever you renamed your typeface.
+
+![](./images/customFonts5.png)
+
+## And you're done!
+
+After you've clicked Apply, you can load in your fonts with `PIXI.text` like so:
+
+`new PIXI.Text('your text', ct.styles.get('YourStyle'))`
