@@ -108,7 +108,7 @@ ct.types.each(function () {
 
 ### `ct.types.exists(copy)` <badge>new in v1.3</badge>
 
-Checks whether a given argument is a copy that exists in ct.js' world. Falsey variables like undefined ones will return `false`, as well as destroyed copies; the other times, it will return `true`. This method also works with most PIXI entities, e.g. with `PIXI.Text` and `PIXI.Graphics`.
+Checks whether a given argument is a copy that exists in ct.js' world. False variables like undefined ones will return `false`, as well as destroyed copies; the other times, it will return `true`. This method also works with most PIXI entities, e.g. with `PIXI.Text` and `PIXI.Graphics`.
 
 ### `ct.types.list['TypeName']`
 
