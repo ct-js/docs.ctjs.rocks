@@ -96,7 +96,8 @@ module.exports = {
                     'game-pause',
                     'localstorage',
                     'viewport-management',
-                    'textures-magic-properties'
+                    'textures-magic-properties',
+		                'using-custom-fonts'
                 ]
             }, {
                 title: 'Working with assets',

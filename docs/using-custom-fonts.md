@@ -1,6 +1,7 @@
-## Using Custom Fonts (.ttf files)
+## Using Custom Fonts In Your Game
 
-As of version 1.3, importing and using custom fonts in styles is a bit confusing, so here's how to do it.
+### What's this for?
+As of version 1.3, importing and using custom fonts in styles can be a bit confusing, so here's how to do it.
 
 
 ## 1. Import a font in the UI tab.
@@ -17,8 +18,8 @@ A choose file dialog will open, select your font file and click Open to load it.
 
 ## 3. Set your typeface's name
 
-In the font's settings, set your typefaces name to whatever you'd like to reference it by from the styles menu.
-Then click Apply to save your changes.
+In the font settings, set your typefaces name to whatever you'd like to reference it by from the styles menu.
+Click Apply to save your changes.
 
 ![](./images/customFonts3.png)
 
@@ -28,13 +29,13 @@ Under "Text Styles", click "Create".
 
 ![](./images/customFonts4.png)
 
-## 5. Set the text style's name a font family.
+## 5. Set the text style's name to a font family.
 
 Set your text style's name to whatever you want, and change the Font family to the following:
 
 `pixel, CTPROJFONTpixel, sans-serif`
 
-Change `pixel` to whatever you renamed your typeface.
+Change `pixel` to whatever you named your typeface.
 
 ![](./images/customFonts5.png)
 
