@@ -85,7 +85,7 @@ Create additional types in the same way:
 
 ### Adding a Room
 
-Click on the "Rooms" tab at the top and create a new room. Set its name to "Level_01". Set view's size to 1024x576.
+Click on the "Rooms" tab at the top and create a new room. Set its name to "Level_01". In the "Properties" tab with a cog icon, set view's size to 1024x576.
 
 ![Editing a room](./images/tutPlatformer_10.png)
 
@@ -101,13 +101,13 @@ Now let's add a background. Click the "Backgrounds" tab on the left, press "Add"
 
 ![](./images/tutPlatformer_27.png)
 
-If we save the project now and click the "Play" button at the top, we will be able to see a small portion of our level drawn in a debugger window. Nothing is movable yet, but it's still a good beginning!
+If we save the project now and click the "Launch" button at the top, we will be able to see a small portion of our level drawn in a debugger window. Nothing is movable yet, but it's still a good beginning!
 
 ![Debug window with placed copies and background](./images/tutPlatformer_12.png)
 
 ### Adding Modules for Keyboard and Collisions
 
-We will need to listen to keyboard events and to detect collisions between the Robot and ground. For such superpowers, we will need Catmods! Click on the "Catmods" tab and select the `keyboard` on the left. Then press the big red knob to enable this module. Do the same with the `place` module.
+We will need to listen to keyboard events and to detect collisions between the Robot and ground. For such superpowers, we will need Catmods! Click on the "Project" tab, then on the "Catmods" tab on the left. Click the Keyboard module in the section of available modules so it has a green checkbox and a little spinning circle around it. (It may be already enabled, though!) Do the same with the `place` module.
 
 ![Enabling a module in ct.js](./images/tutPlatformer_13.png)
 
@@ -121,9 +121,7 @@ Each module has its own documentation on the "Reference" tab. We will highlight 
 
 Actions allow to listen to events from keyboard, mouse, gamepad, etc. You can read more about them [here](/actions.html). With them, we will create listeners to WASD keys and arrows.
 
-Go to the Settings panel, then press the "Edit actions" button.
-
-![](./images/tutPlatformer_24.png)
+Go to the Project panel, then press the "Actions and input methods" tab on the left.
 
 Then, create an input scheme as in the picture below. To do that, firstly press the button "Add an action", name it, and then add input methods in the right column. You can use search to quickly add the needed keys.
 
@@ -429,7 +427,7 @@ Now save the room, mark the `Level_01` as a starting room by right-clicking it a
 Create additional exits leading to secret sublevels and back. Get [more assets from here](https://www.kenney.nl/assets/simplified-platformer-pack), if you need such.
 :::
 
-## Collectibles: Counting and Drawing
+## Collectibles: Counting and DrawingCollectibles: Counting and Drawing
 
 ### Adding Crystals
 
@@ -452,7 +450,7 @@ But if we continue to add more features to room-specific codes, we will soon fai
 
 So we need to create reusable functions now. This may look strange, but it is actually not that hard.
 
-Go to the "Settings" tab on the top of the screen, and press the "Add a New Script" button at the bottom-right corner:
+Go to the "Project" tab on the top of the screen, then click the "Custom scripts" tab on the left. Press the "Add a New Script" button:
 
 ![Creating a reusable script](./images/tutPlatformer_20.png)
 
@@ -513,7 +511,7 @@ We should now create a special room for our UI elements. Create it in the "Rooms
 
 ![Adding a crystals widget to a UI layer](./images/tutPlatformer_28.png)
 
-Adding UI elements to a separate room allows you to design UI visually, and then import them into other rooms through code. Ct.js also has a special flag that locks UI layers in place, so you can freely move, scale and even rotate camera, and UI elements will remain properly positioned. Now, to import a UI room into another, go to our script `inGameRoomStart` created at the Settings tab before, and add this code before the closing brace of the function:
+Adding UI elements to a separate room allows you to design UI visually, and then import them into other rooms through code. Ct.js also has a special flag that locks UI layers in place, so you can freely move, scale and even rotate camera, and UI elements will remain properly positioned. Now, to import a UI room into another, go to our script `inGameRoomStart` created at the Project -> Custom scripts tab before, and add this code before the closing brace of the function:
 
 ```js
 ct.rooms.append('LayerUI', {
