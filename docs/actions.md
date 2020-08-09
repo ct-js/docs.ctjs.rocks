@@ -4,15 +4,15 @@ Actions are an abstraction layer over various input methods that allow you to wr
 
 ![](./images/actions.png)
 
-For the actions to work, you need to connect particular modules: providers of input methods. The actions themselves are described in the "Settings" tab, behind the button "Actions and input methods". Ct.js comes with a number of default input providers: `ct.mouse` to track mouse clicks and `ct.keyboard` for keystrokes.
+For the actions to work, you need to connect particular modules: providers of input methods. The actions themselves are described in the "Settings" tab, behind the button "Actions and input methods". Ct.js comes with a number of default input providers: `ct.mouse` to track mouse clicks `ct.keyboard` for keystrokes, `ct.touch` and `ct.vkeys` for mobile, `ct.gamepad`.
 
-All these modules should have been enabled by default for all new projects. If not, activate `ct.mouse` and `ct.keyboard` in the tab "Catmods". Other input providers are marked with a magical icon:
+All these modules can be found and enabled in the catmods tab at a project's settings, in the category "Input methods":
 
-![](./images/actions_magicIcon.png)
+![](./images/actions_filterInputProviders.png)
 
 ## Creating new actions
 
-To create a new action, go to the "Settings" tab, and then click on the "Actions and input methods" button. A full-screen panel appears in which the actions themselves are specified in the left column, and input methods in the right column.
+To create a new action, go to the "Project" tab, and then click on the "Actions and input methods" tab on the left. A panel appears in which the actions themselves are specified in the left column, and input methods in the right column.
 
 ![Opening actions editor](./images/actions_02.png)
 
