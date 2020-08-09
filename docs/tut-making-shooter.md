@@ -127,7 +127,7 @@ Write the following code:
 ```js
 /**
  * Move the ship
- * See Settings > Edit actions panel
+ * See Project > Actions and input methods panel
  * and "Actions" in the docs.
  */
 

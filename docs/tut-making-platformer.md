@@ -511,7 +511,7 @@ We should now create a special room for our UI elements. Create it in the "Rooms
 
 ![Adding a crystals widget to a UI layer](./images/tutPlatformer_28.png)
 
-Adding UI elements to a separate room allows you to design UI visually, and then import them into other rooms through code. Ct.js also has a special flag that locks UI layers in place, so you can freely move, scale and even rotate camera, and UI elements will remain properly positioned. Now, to import a UI room into another, go to our script `inGameRoomStart` created at the Settings tab before, and add this code before the closing brace of the function:
+Adding UI elements to a separate room allows you to design UI visually, and then import them into other rooms through code. Ct.js also has a special flag that locks UI layers in place, so you can freely move, scale and even rotate camera, and UI elements will remain properly positioned. Now, to import a UI room into another, go to our script `inGameRoomStart` created at the Project -> Custom scripts tab before, and add this code before the closing brace of the function:
 
 ```js
 ct.rooms.append('LayerUI', {
