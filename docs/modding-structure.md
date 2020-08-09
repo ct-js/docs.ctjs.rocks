@@ -11,9 +11,11 @@ mycatmod
   |-- index.js
   |-- module.json (required)
   |
-  |  (Documents shown in a module's panel)
+  |  (Docs shown in the expanding panel on the right)
   |-- README.md
-  |-- DOCS.md
+  |-- docs
+      \-- (any number of .md docs)
+  |
   |-- CHANGELOG.md
   |-- LICENSE (plain text, strongly recommended)
   |
@@ -29,9 +31,7 @@ mycatmod
 
 * `index.js` usually represents the main code of your module, and is bundled with all the remaining code of compiled game. A rule of thumb is to pack all your dependencies in one file. If your dependency is an another ct module, you can list this module as such in `module.json`. (See below for examples.) This file supports [templating](modding-events-and-injections.html#templating).
 
-* `README.md` is a markdown file with general info, examples, special notes, etc. It is showed on the 'Info' tab in ct.IDE's modules section.
-
-* `DOCS.md` is shown on the 'Documentation' tab in ct.IDE's modules section and is a markdown file too.
+* `README.md` is a markdown file with general info, examples, special notes, etc. If present, it makes the module's header clickable in the panel with all the modules' docs.
 
 * `CHANGELOG.md` should contain a history of changes, if any.
 
@@ -43,6 +43,7 @@ mycatmod
 {
     "main": {
         "name": "Module's name",
+        "tagline": "A short description of a module",
         "version": "1.0.0",
         "authors": [{
             "name": "Cosmo Myzrail Gorynych",
@@ -62,6 +63,7 @@ Currently, catmods may express their dependency in other module with fields `dep
 {
     "main": {
         "name": "An example module json with dependencies",
+        "tagline": "Add dependencies to your modules!",
         "version": "1.0.0",
         "authors": [
             ...
@@ -69,6 +71,46 @@ Currently, catmods may express their dependency in other module with fields `dep
     },
     "dependencies": ["tween"],
     "optionalDependencies": ["place"]
+}
+```
+
+## Specifying a category <badge>new in v1.4</badge>
+
+Since v1.4, modules can specify one or two categories in module.json so that they can be filtered on the project's settings page. Categories are written in an array under the `main.categories` key, and can be one of these strings:
+
+* `customization`;
+* `desktop` — modules for desktop builds;
+* `fx`;
+* `inputs` — modules that provide new input methods for the Actions system;
+* `integrations`;
+* `media`;
+* `misc`;
+* `mobile`;
+* `motionPlanning`;
+* `networking`;
+* `tweaks`;
+* `utilities`;
+
+The first category is also used to create an icon in the bottom-right corner of a module's card:
+
+![](./images/modsCardIcon.png)
+
+**An example from `ct.flow` module:**
+
+```json {10,11,12}
+{
+    "main": {
+        "name": "Flow control and timing",
+        "tagline": "Add high-level methods for asynchronous events, e.g. gate, cumulative delay, retriggerable delay.",
+        "version": "0.0.0",
+        "authors": [{
+            "name": "Cosmo Myzrail Gorynych",
+            "mail": "admin@nersta.ru"
+        }],
+        "categories": [
+            "utilities"
+        ]
+    }
 }
 ```
 

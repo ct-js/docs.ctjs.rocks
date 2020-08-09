@@ -108,7 +108,7 @@ module.exports = {
                 title: 'Modding ct.js',
                 collapsable: false,
                 children: [
-                    ['modding-structure', 'Directory structure and mod manifest'],
+                    ['modding-structure', 'Directory structure and module\'s manifest'],
                     ['modding-events-and-injections', 'Extending events with injections'],
                     ['modding-settings-and-extensions', 'Settings and additional fields'],
                     ['modding-input-methods', 'Adding new input methods'],
