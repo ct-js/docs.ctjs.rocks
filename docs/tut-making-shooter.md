@@ -98,7 +98,7 @@ After that, save the project and click a 'play' button. At this point, you will 
 
 Handling user's input is the most important task. In this section we will make the blue ship move when a player presses arrow keys or WASD.
 
-In order to handle keyboard inputs, we need to enable keyboard module. Press the "Catmods" tab, find a `keyboard` module on the left, select it, and then push the big red button to enable it (it may be enabled by default, though). Then add `mouse`, `random` and `place` modules, as we will need them later too.
+In order to handle keyboard inputs, we need to enable the Keyboard module. Press the "Project" tab, then a "Catmods" tab on the left, then find a Keyboard module in the section with available modules. Click it to enable it (it may be enabled by default, though — a green checkbox with a little spinning circle indicates that the module is enabled). Then make sure that modules `mouse`, `random` and `place` are enabled, as we will need them later too.
 
 ![](./images/tutSpaceShooter_12.png)
 
@@ -106,9 +106,9 @@ In order to handle keyboard inputs, we need to enable keyboard module. Press the
 
 Actions in ct.js are entities that group different input methods into events, and allow you to listen to player input in code. You can read more about them [here](/actions.html).
 
-For now, let's create a basic input scheme for our shooter. Open the "Settings" tab, then press the button labelled as "Edit actions". We will need to define three different actions: for shooting laser bullets, for moving horisontally, and for moving vertically.
+For now, let's create a basic input scheme for our shooter. Open the "Project" tab, then the "Actions and input methods" tab on the left side. We will need to define three different actions: for shooting laser bullets, for moving horisontally, and for moving vertically.
 
-First, click the "Add an action" button. Then, input the name of the first module. Click the button called "Add an input method" to bind specific buttons to your action. Use its search to quickly filter available input methods.
+First, click the "Add an action" button. Then, input the name of the first action. Click the button called "Add an input method" to bind specific buttons to your action. Use its search to quickly filter available input methods.
 
 ![](./images/tutSpaceShooter_15.png)
 
