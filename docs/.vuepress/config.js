@@ -102,6 +102,7 @@ module.exports = {
                 title: 'Working with assets',
                 collapsable: false,
                 children: [
+                    ['bitmap-fonts.md', 'Using bitmap fonts'],
                     ['skeletal-animation.md', 'Using skeletal animation']
                 ]
             }, {
