@@ -106,10 +106,15 @@ module.exports = {
                     ['skeletal-animation.md', 'Using skeletal animation']
                 ]
             }, {
-                title: 'Extending ct.js',
+                title: 'Modding ct.js',
                 collapsable: false,
                 children: [
-                    ['making-mods', 'Making your own mods']
+                    ['modding-structure', 'Directory structure and module\'s manifest'],
+                    ['modding-events-and-injections', 'Extending events with injections'],
+                    ['modding-settings-and-extensions', 'Settings and additional fields'],
+                    ['modding-input-methods', 'Adding new input methods'],
+                    ['modding-typings-and-intellisense', 'Autocompletion and IntelliSense'],
+                    ['modding-fields-declaration', 'Fields reference']
                 ]
             }, {
                 title: 'Troubleshooting',

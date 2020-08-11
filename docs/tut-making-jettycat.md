@@ -56,7 +56,7 @@ Let's create a room where all the fun will be happening! Rooms are often called 
 
 A room editor for this exact room will appear. Call the room as `InGame` — we will use this particular name later in code. There are no rules in naming them, though; we just need something we can remember later while coding menus :)
 
-Then we need to set the size of our room. Set it to 1080x1920 pixels.
+Then, on the Properties tab with a gear icon, we need to set the size of our room. Set it to 1080x1920 pixels.
 
 ![Setting room's name and viewport size in ct.js](./images/tutJettyCat_07.png)
 
@@ -115,17 +115,15 @@ this.direction = 0;
 
 `this.direction = 0;` means that we move the cat in a given direction at 0 degrees. 0 degrees mean that it will move to the right, 90 — to the top, 180 — to the left, and 270 — downwards.
 
-Now, let's move our cat whenever a player presses the screen. We will need to support both mouse and mobile touch events, thus we will need to enable a module that provides support for these. It's easy, though: open the "Catmods" tab at the top of the ct.js window, and find the module `touch` in the left column. Click it, and smash that big button to enable it:
+Now, let's move our cat whenever a player presses the screen. We will need to support both mouse and mobile touch events, thus we will need to enable a module that provides support for these. It's easy, though: open the "Project" tab at the top of the ct.js window, then "Catmods" on the left. Find the module `touch` in the section with available modules. Click it to enable it — it will have a green checkbox with a tiny spinning circle around it:
 
 ![Enabling a touch module in ct.js](./images/tutJettyCat_13.png)
 
-There is an option in the `touch` module that will help our code stay cleaner. Open the settings tab of the module, and tick the option "Detect mouse events as touch events". With this option, we can write code for touch events only, and it will automatically work for a mouse as well.
+There is an option in the `touch` module that will help our code stay cleaner. Settings for enabled modules appear on the left, under the "Catmods' settings" header. Click the Touch tab, then tick the option "Detect mouse events as touch events". With this option, we can write code for touch events only, and it will automatically work for a mouse as well.
 
 ![Detecting mouse events as touch events in ct.touch module](./images/tutJettyCat_14.png)
 
-Now, in ct.js, input methods are grouped into *Actions*. In this project, we will use just one input method — touching the screen. Open the "Settings" tab at the top of the screen, and find the button "Edit actions".
-
-![Opening the Actions panel in ct.js](./images/tutJettyCat_15.png)
+Now, in ct.js, input methods are grouped into *Actions*. In this project, we will use just one input method — touching the screen. On the "Project" tab at the top of the screen, press the "Actions and input methods" tab on the left.
 
 Add our first action, name it `Poof`. Yea. Then, click "Add an input method" on the right, and find the "Any touch" method under the Touch heading. You can use the search to quickly filter out the results.
 
@@ -134,7 +132,7 @@ Add our first action, name it `Poof`. Yea. Then, click "Add an input method" on 
 The action is done, we can save it and move back to our cat.
 
 ::: tip Actions? Why?
-Actions really look as an extraneous step here, but they shine when you need to support a number of different input methods. Say, you create a game that supports both keyboard and gamepad, and the keyboard supports the WASD movement and moving with arrows. One action will support all the three methods, and your code will stay slim, even if you add new input methods later. Besides that, they all can be used with the same code!
+For seasoned developers, actions might look as an extraneous step here, but they shine when you need to support a number of different input methods. Say, you create a game that supports both keyboard and gamepad, and the keyboard supports the WASD movement and moving with arrows. One action will support all the three methods, and your code will stay slim, even if you add new input methods later. Besides that, they all can be used with the same code!
 
 You can [read more about actions here](actions.html).
 :::
@@ -354,7 +352,7 @@ if (this.spawnTimer <= 0) {
 
 There's a lot of code!
 
-`this.spawnTimer` is decremented at each frame and will eventually turn to zero, or to a smaller value. When it happens, we set its value again to a positive number so that it fires again later. Here we add 2 seconds.
+`this.spawnTimer` is decremented at each frame and will eventually turn to zero, or to a smaller value. When it happens, we set its value again to a positive number so that it fires again later. Here we add 2 seconds. (`ct.speed` is a number of frames in one second.)
 
 We create two copies with `ct.types.copy(typeName, xPosition, yPosition)` and store references to them to variables `tube1` and `tube2`. At the start, their height will be completely normal as their On Create code with `ct.random.dice` will be run instantly after their creation. This will result in a blocked pathway in a good portion of cases when both tubes turned out to be the long ones. To fix this, we read the texture's name of a first tube `tube1` with `tube1.tex` and set the texture of the second tube `tube2` depending on the extracted value.
 
