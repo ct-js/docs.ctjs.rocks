@@ -28,7 +28,10 @@ The process of creating a bitmap text label is similar to canvas-based one: we c
 
 ```js
 this.label = new PIXI.BitmapText('Initial text', {
-  font: '16px Void_400',
+  font: {
+    name: 'Void_400',
+    size: 16
+  },
   align: 'left'
 });
 this.addChild(this.label);
