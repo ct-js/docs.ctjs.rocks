@@ -427,7 +427,7 @@ Now save the room, mark the `Level_01` as a starting room by right-clicking it a
 Create additional exits leading to secret sublevels and back. Get [more assets from here](https://www.kenney.nl/assets/simplified-platformer-pack), if you need such.
 :::
 
-## Collectibles: Counting and DrawingCollectibles: Counting and Drawing
+## Collectibles: Counting and Drawing
 
 ### Adding Crystals
 
