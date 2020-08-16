@@ -378,7 +378,7 @@ this.asteroidTimer = 20;
 this.enemyTimer = 180;
 ```
 
-Then add this code to generate enemies through time:
+Then add this code in the `On Step` tab to generate enemies through time:
 
 ```js
 this.asteroidTimer -= ct.delta;
