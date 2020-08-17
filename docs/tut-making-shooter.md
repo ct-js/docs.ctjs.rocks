@@ -112,7 +112,7 @@ First, click the "Add an action" button. Then, input the name of the first actio
 
 ![](./images/tutSpaceShooter_15.png)
 
-Create three actions as in the picture above. Set multiplier value to `-1` for `keyboard.ArrowUp`, `keyboard.KeyW`, `keyboard.ArrowLeft`, and for `keyboard.A`, so that these keys will move the ship in the opposite direction.
+Create three actions as in the picture above. Set multiplier value to `-1` for `keyboard.ArrowUp`, `keyboard.KeyW`, `keyboard.ArrowLeft`, and for `keyboard.KeyA`, so that these keys will move the ship in the opposite direction.
 
 ### Coding the movement
 
