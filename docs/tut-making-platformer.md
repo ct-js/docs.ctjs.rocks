@@ -105,6 +105,10 @@ If we save the project now and click the "Launch" button at the top, we will be 
 
 ![Debug window with placed copies and background](./images/tutPlatformer_12.png)
 
+::: tip
+Is your background splitting into squares? See [Troubleshooting: Background splits into squares!](./troubleshooting-teared-background.md)
+:::
+
 ### Adding Modules for Keyboard and Collisions
 
 We will need to listen to keyboard events and to detect collisions between the Robot and ground. For such superpowers, we will need Catmods! Click on the "Project" tab, then on the "Catmods" tab on the left. Click the Keyboard module in the section of available modules so it has a green checkbox and a little spinning circle around it. (It may be already enabled, though!) Do the same with the `place` module.
