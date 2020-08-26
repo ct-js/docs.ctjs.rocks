@@ -59,7 +59,10 @@ declare interface IExtensionField {
         value: any,
         name: string,
         help?: string
-    }>
+    }>,
+    min?: number, // Used with type === 'number', 'slider', or 'sliderAndNumber'
+    max?: number,
+    step?: number
 }
 ```
 
@@ -69,6 +72,8 @@ Here we mark optional fields in form of `key?: type`. The required fields are `n
 * `textfield` – a large textarea for a long input;
 * `code` – similar to `textfield`, but with monospace font and usually wider than `textfield`;
 * `number` – an input field for integers;
+* `slider` ­– a slider (aka range) input for inputs that are better inputed with mouse; <badge>new in v1.4.2</badge>
+* `sliderAndNumber` ­– displays both a slider and a number in one row; <badge>new in v1.4.2</badge>
 * `checkbox` – a checkbox for Boolean variables;
 * `radio` – a list of predefined values to choose from. This type also requires an `options` array to be set;
 * `texture` – a link to an asset in a project; <badge>new in v1.4</badge>
@@ -77,6 +82,14 @@ Here we mark optional fields in form of `key?: type`. The required fields are `n
 * `h1`, `h2`, `h3` and `h4`. These are not really for any input, but display a heading to categorize fields in catmod's settings tab. Such fields require `type` and `name` only. <badge>new in v1.4</badge>
 
 For settings, field's `key` must be unique for a module. For extended fields of types and other assets, it should be unique all across a user's codebase, so naming a key in form of `mymodMyfieldname` is a good idea.
+
+## Additional tweaks for number and range inputs <badge>new in v1.4.2</badge>
+
+`number`, `slider`, `sliderAndNumber` input types accept additional fields for setting restrictions on input:
+
+* `min` — the minimum allowed value;
+* `max` — the maximum allowed value;
+* `step` — the step size for the slider and number input. Users still can input arbitrary values in number inputs.
 
 ## Adding radio inputs
 
