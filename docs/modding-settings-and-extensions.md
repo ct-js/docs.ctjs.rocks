@@ -62,7 +62,7 @@ Settings' values are used for templating in your index.js and injections. Inject
 
 ## Adding extensions to built-in assets
 
-You can define additional fields that will be available in asset editors. Currently, you can define these fields for types, rooms and tile layers. Don't ask why. Here is where such fields are placed at the type editor:
+You can define additional fields that will be available in asset editors. Currently, you can define these fields for types, rooms, copies, and tile layers. Here is where such fields are placed at the type editor:
 
 ![](./images/modsFields.png)
 
@@ -85,6 +85,7 @@ We currently have two keys where you can define new fields:
 
 * `typeExtends`, for types (applied directly to copies);
 * `tileLayerExtends` for tile layers (written to `layer.extends` field);
+* `copyExtends` for individual copies (applied directly to copies); <badge>new in v1.4.2</badge>
 * `roomExtends` for your levels (applied directly to rooms).
 
 Since v1.4, extensions support all the fields that are supported by injections. See [Fields declarations](modding-fields-declaration.html) page for more info.
