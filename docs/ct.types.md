@@ -81,9 +81,19 @@ Adds a speed vector to a given Copy. This is the same as calling `o.addSpeed(spd
 This method will soon be removed; instead of it, use `this.addSpeed(spd, dir)` inside your copies' code.
 :::
 
-### `ct.types.copy(type: String, x, y)` and `ct.types.make(type: String, x, y)`
+### `ct.types.copy(type: String, x, y, {}: onCreate, parentRoom)`
 
-Creates a Copy of a given Type. If x or y is omitted, they are set to 0.
+*Alias:* `ct.types.make`
+
+Creates a Copy of a given Type. If x or y is omitted, they are set to 0. Specifying a parent Room will create the Copy within the context of the room; this argument is optional. The `{}` object can be used to add parameters that will be available in a Copy's oncreate.
+
+**Example:** add a copy to a room.
+
+```js
+var room = ct.rooms.list['Level_1'][0];
+var newEnemy = ct.types.copy('Enemy', 10, 10, {}, room);
+```
+
 
 ### `ct.types.each(func: Function)`
 
