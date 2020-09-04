@@ -93,6 +93,7 @@ module.exports = {
                 children: [
                     'actions',
                     'game-and-ui-coordinates',
+                    'movement',
                     'game-pause',
                     'localstorage',
                     'viewport-management',
