@@ -163,7 +163,7 @@ this.vspd = 0; // Vertical speed
 `this` is a copy that is executing the written code. In this case, it is a `Robot` copy.
 :::
 
-Now move to the "On Step" tab and add this code:
+Now move to the "On Step" tab and replace the default `this.move()` with this code:
 
 ```js
 this.speed = 4 * ct.delta; // Max horizontal speed
