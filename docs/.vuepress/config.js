@@ -2,7 +2,15 @@ module.exports = {
     title: 'ct.js Documentation',
     description: 'Docs, tutorials, guides',
 
-    plugins: ['@vuepress/medium-zoom'],
+    plugins: [
+        '@vuepress/medium-zoom',
+        [
+            require('./plugins/easy-scrape'),
+            {
+                name: "easy-scrape"
+            }
+        ],
+    ],
 
     head: [
         ['script', {

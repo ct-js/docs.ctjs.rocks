@@ -4,7 +4,7 @@
   "description": "Nice to meet you! Here you will find all the official documentation and tutorials for ct.js.",
   "main": "",
   "scripts": {
-    "dev": "vuepress dev docs",
+    "dev": "vuepress dev docs --no-clear-screen",
     "build": "vuepress build docs"
   },
   "repository": {
