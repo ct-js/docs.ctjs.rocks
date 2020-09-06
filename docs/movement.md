@@ -6,27 +6,27 @@ Movement is often the core of any game, and it is essential to know how it works
 
 ### Position
 
-Each object's position is defined by `this.x` and `this.y` parameters. `this.x` increases going from left to right, and `this.y` increases from top to bottom. It is the point of copy's axis — a point around which a copy rotates and scales.
+Each object's position is defined by `this.x` and `this.y` parameters. `this.x` increases going from left to right, and `this.y` increases from top to bottom. It is the point of a copy's axis — the point around which a copy rotates and scales.
 
 ### Speed
 
 The change of `this.x` and `this.y` properties define the *speed* of objects. If you have `this.speed` equal to 5, it means that a copy will move by 5 pixels at each frame. The speed of an object also has direction, which is set by `this.direction` property.
 
-The speed and its direction of an object can be decomposed into vertical and horizontal components, and they are defined as `this.vspeed` and `this.hspeed`. When you change `this.vspeed` or `this.hspeed`, `this.speed` and `this.direction` get updated automatically, and the other way around.
+The speed and its direction of an object decompose into vertical and horizontal components. In ct.js, they are defined as `this.vspeed` and `this.hspeed`. When you change `this.vspeed` or `this.hspeed`, `this.speed` and `this.direction` get updated automatically, and the other way around.
 
 ### Gravity and acceleration
 
-Copies can also have gravity applied, by setting `this.gravity` and `this.gravityDir`. Gravity will change a copy's speed at each frame, enlarging it by `this.gravity` at each frame in the given direction.
+Copies can be accelerated by gravity with `this.gravity` and `this.gravityDir` parameters. Gravity will change a copy's speed at each frame, enlarging it by `this.gravity` at each frame in the given direction.
 
 ---
 
-By themselves, only `this.x` and `this.y` have effect on the visual position of objects. To make the other properties work, ct.js has `this.move()` method, and `ct.place` provides two other methods too. (This module is enabled by default in all new projects.) You also may not use them at all. Due to that, there are several ways to program copies' movement.
+By themselves, only `this.x` and `this.y` affect the visual position of objects. To make the other properties work, ct.js has `this.move()` method and `ct.place` provides `this.moveContinuous(cgroup)` and `this.moveContinuousByAxes(cgroup)`. (`ct.place` module is enabled by default in all new projects.) You also may not need them at all. Due to that, there are several ways to program copies' movement.
 
 ## `this.move()`
 
-`this.move()` can be called at the On Step code at any type so it moves according to `this.speed` and `this.direction` parameters. It doesn't check for collisions on its own, so you will need to program your own collision handling logic with it. But it may be the only thing you need for, say, arcade space shooters. It is also the way to move bullets and other things that get destroyed on collision.
+`this.move()` can be called at the On Step code at any type to make a copy move according to `this.speed` and `this.direction` parameters. It doesn't check for collisions on its own, so you will need to program your collision handling logic with it or use other methods. (See below.) But it may be the only thing you need for, say, arcade space shooters. It is also the way to move bullets and other things that get destroyed on collision.
 
-### Example: Set speed of a copy according to player's input and move it.
+### Example: Set the speed of a copy according to a player's input and move it.
 
 On Step code:
 
@@ -36,7 +36,7 @@ this.vspeed = ct.actions.MoveVertically.value * 5;
 this.move();
 ```
 
-### Example: Set speed and direction of a copy and move it.
+### Example: Set the speed and direction of a copy and move it.
 
 On Create code:
 
@@ -51,7 +51,7 @@ On Step code:
 this.move();
 ```
 
-### Example: Follow a copy of a type "Character"
+### Example: Follow a copy of a type called "Character"
 
 On Step code:
 
@@ -72,7 +72,7 @@ if (ct.types.exists(character)) {
 
 `this.moveContinuous(cgroup)` is a method from ct.place that checks for collisions while moving copies, and it can be called from On Step code at each frame to precisely move copies with high speed.
 
-If you, for example, have small fast moving projectiles that fly through some really narrow walls, these projectiles will fly through the walls as they jump over it in one frame, not causing collisions.
+If you, for example, have small fast-moving projectiles that fly through considerably narrow walls, the projectiles may fly through these walls. It happens because bullets jump over the walls in one frame, not causing collisions.
 
 ![](./images/movement/noMoveContinuous.png)
 
@@ -80,17 +80,17 @@ To prevent it, you can use `this.moveContinuous(cgroup)` to move the projectiles
 
 ![](./images/movement/moveContinuous.png)
 
-`cgroup` is a collision group. There is also a form of the method `this.moveContinuous(cgroup, precision)`, where `precision` is the length of each step, in pixels. It is set to 1 by default but for fast-moving projectiles, you will often want to set it to a value somewhere between the half and the whole diameter of this projectile.
+`cgroup` is a collision group. There is also a form of the method `this.moveContinuous(cgroup, precision)`, where `precision` is the length of each step in pixels. It is set to 1 by default. For fast-moving projectiles, though, you will often set it to a value somewhere between the radius and the diameter of this projectile.
 
 :::warning
 Note that you should use `this.moveContinuous(cgroup)` sparingly, setting its precision as well, as too many bullets using it will produce so many collision checks that it may slow down your game.
 :::
 
-Calling `this.moveContinuous(cgroup)` doesn't clip into surfaces — it will stop right next to the obstacle, unless this obstacle clips into your copy or this copy gets transformed.
+Calling `this.moveContinuous(cgroup)` doesn't clip into surfaces — it will stop right next to the obstacle unless this obstacle clips into your copy or this copy gets transformed.
 
-To check whether your copy contacted an obstacle, you can check against a returned result of `this.moveContinuous(cgroup)` — it will be `false` when where was no contact, `true` if there was a contact with a tile, and a copy if it was contacted.
+To check whether your copy contacted an obstacle, you can check against a returned result of `this.moveContinuous(cgroup)`. It will be `false` when there was no contact, `true` if there was a contact with a tile, and a copy if it was contacted.
 
-### Example: Set speed and direction of a copy and move it continuously.
+### Example: Set the speed and direction of a copy and move it continuously.
 
 On Create code:
 
@@ -132,7 +132,7 @@ if (obstacle && ct.types.isCopy(obstacle)) {
 
 ## `this.moveContinuousByAxes(cgroup)`
 
-`this.moveContinuousByAxes` works mainly in the same way as `this.moveContinuous`, as it performs numerous collision checks while moving in a given direction. The difference is that `this.moveContinuousByAxes` computes collisions on X and Y axes separately, hence the name. This may seem like a minor change, but in result, we get a "sliding" movement that helps avoid obstacles that happen to come along the way.
+`this.moveContinuousByAxes` works mainly in the same way as `this.moveContinuous`, as it performs numerous collision checks while moving in a given direction. The difference is that `this.moveContinuousByAxes` computes collisions on X and Y axes separately, hence the name. It may seem like a minor change, but in the result, we get a "sliding" movement that helps avoid obstacles that happen to come along the way.
 
 Without `this.moveContinuousByAxes(cgroup)`, a copy will get stuck at the nearest obstacle:
 
@@ -144,11 +144,14 @@ With `this.moveContinuousByAxes(cgroup)`, it will slide along the obstacle and t
 
 Due to that, `moveContinuousByAxes` is often a go-to solution to moving characters — and even mobs — in a game. Moreover, it works both with platformers and top-down views! For platformers, you only need to reset `this.vspeed` if there is an obstacle underneath. Otherwise, a copy will smash into the nearest platform at first cosmic speed due to accumulating gravity, as soon as it slips off a ledge. Resetting it when there is an obstacle above will also prevent sticking to ceilings :)
 
-`this.moveContinuousByAxes()` returns values about successful collisions, too. As a copy may still move by one axis whilst being blocked on the other, the method returns `false` if there were no contacts with obstacles, but will return an object with `x` and `y` otherwise. Each property may equal to `false` (there was no collision on this axis), `true` (there was a contact with a tile), or some copy.
+`this.moveContinuousByAxes()` returns values about successful collisions, too. As a copy may still move by one axis whilst being blocked on the other, the method returns one of the following:
 
-### Example: Movement for a top down game with collisions against a group called "Solid"
+* `false` if there were no contacts with obstacles.
+* **An object** with `x` and `y` properties if there was at least one contact on either side. Each property may equal to `false` (there was no collision on this axis), `true` (there was a contact with a tile), or some copy.
 
-Considering you have Actions called MoveX and MoveY.
+### Example: Movement for a top-down game with collisions against a group called "Solid"
+
+Assuming you have Actions called MoveX and MoveY.
 
 On Step:
 
@@ -160,7 +163,7 @@ this.moveContinuousByAxes('Solid');
 
 ### Example: Movement for a platformer
 
-Considering you have Actions called MoveX and Jump.
+Assuming you have Actions called MoveX and Jump.
 
 On Create:
 
@@ -194,13 +197,13 @@ if (collided && collided.y) {
 
 ## Grid-based movement
 
-To move copies precisely on grids, you usually need to use methods different to `this.move`, `this.moveContinuous`, and `this.moveContinuousByAxes`, as these three methods are tailored for real-time, free movement and won't snap to the grid perfectly due to compensating lags and `ct.delta`.
+To move copies precisely on grids, you usually need to use methods different from those described above. Those three methods are tailored for real-time, free movement and won't snap to the grid pixel-perfectly due to lag compensation and `ct.delta`.
 
-There are currently two relatively easy ways to move copies with grid snapping: by changing `x` and `y` values manually or by using `ct.tween` module.
+There are currently two relatively easy ways to move copies with grid snapping: by changing `x` and `y` values manually or by using the `ct.tween` module.
 
-### Example: Move a copy by 64 pixels on key presses
+### Example: Move a copy by 64 pixels on keypress
 
-Considering that you have actions MoveX and MoveY.
+Assuming that you have actions MoveX and MoveY.
 
 On Step:
 
@@ -220,13 +223,13 @@ if (ct.actions.MoveY.pressed) {
 
 ### Example: Move a copy slowly but stop at grid cells
 
-Considering that you have actions MoveX and MoveY.
-Make sure that your copy is snapped on the grid at the start.
+Assuming that you have actions MoveX and MoveY.
+Make sure that your copy is snapped on the grid at the start of a level.
 
 On Step:
 
 ```js
-// % means "Get the remainder of a division." A 64x64px grid
+// % means "Get the remainder of a division." A 64×64px grid
 // divides every axis by 64 pixels.
 
 // If a copy is snapped on the grid...
@@ -250,9 +253,9 @@ this.x += this.hspeed;
 this.y += this.vspeed;
 ```
 
-### Example: Move a copy by a grid with ct.tween
+### Example: Move a copy by a grid with `ct.tween`
 
-`ct.tween` produces smooth animations of values and can be used for grid-based movement. This approach assumes that you have ct.tween enabled at your Project settings -> Catmods, and that you have actions called MoveX and MoveY.
+`ct.tween` produces smooth animations of values and can be used for grid-based movement. This approach assumes that you have ct.tween enabled at your Project settings -> Catmods and that you have actions called MoveX and MoveY.
 
 On Create:
 
@@ -301,16 +304,16 @@ if (!this.moving) {
 
 ## Strategies to avoid clipping into other objects
 
-Say you have a character that moves in a top-down world and you have walls that should not pass the characte through. There are two strategies to do that:
+Say you have a game character that moves in a top-down world and walls that should not let the character pass through. There are two strategies to do the collisions part:
 
 1. Move the character as is, then move it out of possible collisions.
 2. Check for collisions first, and then move if there is free space.
 
-`this.moveContinuous` and `this.moveContinuousByAxes` follow the second strategies and are often enough to avoid clipping. But if you are not using these methods, you will either follow the first strategy or check for possible collisions prior to movement by yourself. Here is how it can be done.
+`this.moveContinuous` and `this.moveContinuousByAxes` follow the second strategy and are often enough to avoid clipping. But if you are not using these methods, you will either follow the first strategy or check for possible collisions before movement by yourself. Here is how to do it.
 
 ### Getting out of collisions
 
-The simplest way to get out of collisions is jumping to previous coordinates after movement. Every copy has `this.xprev` and `this.yprev`
+The simplest way to get out of collisions is by jumping to previous coordinates after movement. Every copy has `this.xprev` and `this.yprev`
 
 #### Example: Jump to previous coordinates if there is a collision, to prevent clipping
 
