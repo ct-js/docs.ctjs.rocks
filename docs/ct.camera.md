@@ -100,7 +100,23 @@ These displace the camera in UI units, but do not change `ct.camera.x` or `ct.ca
 
 ### `ct.camera.realign(room)`
 
-Realigns all the copies in a room based on new dimensions of a camera. This is useful for quick positioning of UI elements on different screens. You can skip the realignment for some copies if you set their `skipRealign` parameter to `true`.
+Realigns all the copies in a room based on new dimensions of a camera. This is useful for quick positioning of UI elements on different screens. New position is the result of interpolation based on copies' `xstart` and `ystart` parameters, so it won't work with moving elements. You can skip the realignment for some copies if you set their `skipRealign` parameter to `true`.
+
+The method is usually applicable to fittoscreen's "Expand" and "Scaling without letterboxing" modes only.
+
+No `ct.camera.realign` | With `ct.camera.realign`
+-|-
+![UI elements are scaled, but appear displaced if screen proportions change](./images/ctCameraAlign_notIncluded.gif) | ![UI elements are both scaled and evenly distributed accross the screen](./images/ctCameraAlign_included.gif)
+
+#### Example: Realing UI elements in a room
+
+On Draw code of your UI room:
+
+```js
+ct.camera.realign(this);
+```
+
+Yup, that's it!
 
 ### `ct.camera.manageStage()`
 
