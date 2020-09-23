@@ -511,6 +511,12 @@ this.addChild(this.text);
 
 Here we create a new text label and attach it to our icon. `this.text.anchor.y = 0.5;` tells that the vertical axis of the label should be aligned to the middle of our icon.
 
+To finish it off, add this to CrystalsWidget's OnDraw code:
+
+```js
+this.text.text = `${ct.room.crystals} / ${ct.room.crystalsTotal}`;
+```
+
 We should now create a special room for our UI elements. Create it in the "Rooms" tab, and call it `LayerUI`. Set its size identical to other rooms', 1024x576. Then, add the newly created `CrystalsWidget` to the top-left corner of the room:
 
 ![Adding a crystals widget to a UI layer](./images/tutPlatformer_28.png)
@@ -573,6 +579,12 @@ this.text.anchor.y = 0.5;
 this.text.anchor.x = 1;
 
 this.addChild(this.text);
+```
+
+Now add this to HeartsWidget's OnDraw code:
+
+```js
+this.text.text = ct.room.lives;
 ```
 
 Then add a copy of this type to the room `LayerUI`.
