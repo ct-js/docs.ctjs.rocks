@@ -82,6 +82,7 @@ module.exports = {
                     'ct.rooms',
                     'ct.sound',
                     'ct.styles',
+                    'ct.tilemaps',
                     'ct.timer',
                     'ct.types',
                     ['ct.u', 'ct.u (utilities)'],
