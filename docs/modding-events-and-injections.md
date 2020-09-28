@@ -40,6 +40,8 @@ The `injects` folder inside your module's directory accepts files with code that
 * `htmltop.html` – this code is placed right before the drawing canvas.
 * `htmlbottom.html` – this code is placed right after the drawing canvas.
 
+Also see [Call order with mod's injections](event-order.html#call-order-with-mod-s-injections) for a more complete picture of call order.
+
 ## Templating
 
 Each injection can substitute a special label with a [value from your settings](modding-settings-and-extensions.html). If you defined a setting field with a key `enableSockets`, then all matches with `/*%enableSockets%*/` in js, css, and html files will be replaced with user's chosen value.

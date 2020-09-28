@@ -108,8 +108,14 @@ module.exports = {
                     ['skeletal-animation.md', 'Using skeletal animation']
                 ]
             }, {
+                title: 'Technical stuff',
+                collapsable: true,
+                children: [
+                    'event-order.md'
+                ]
+            }, {
                 title: 'Modding ct.js',
-                collapsable: false,
+                collapsable: true,
                 children: [
                     ['modding-structure', 'Directory structure and module\'s manifest'],
                     ['modding-events-and-injections', 'Extending events with injections'],
