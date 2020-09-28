@@ -75,6 +75,7 @@ module.exports = {
                 collapsable: false,
                 children: [
                     'ct',
+                    'ct.backgrounds',
                     'ct.camera',
                     'ct.emitters',
                     ['ct.inputs', 'ct.inputs and ct.actions'],
