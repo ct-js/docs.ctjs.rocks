@@ -90,6 +90,14 @@ module.exports = {
                     ['catmoddocs.md', 'Where are the other ct.* docs?']
                 ]
             }, {
+                title: 'Built-in ct.js classes',
+                collapsable: false,
+                children: [
+                    ['Background.md', 'Background'],
+                    ['Copy.md', 'Copy'],
+                    ['Room.md', 'Room']
+                ]
+            }, {
                 title: 'Tips & tricks',
                 collapsable: false,
                 children: [

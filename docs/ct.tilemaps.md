@@ -1,4 +1,4 @@
-# ct.tilemaps. Tilemap objects
+# ct.tilemaps
 
 The `ct.tilemap` object allows making tilemaps in-game. It can also cache your tilemaps, speeding up your game noticeably, but once a tilemap is cached, it cannot be edited.
 
