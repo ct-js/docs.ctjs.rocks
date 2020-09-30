@@ -4,6 +4,12 @@ Rooms are the entities that contain all the copies, backgrounds, tile layers, an
 
 Rooms derive from [PIXI.Container](https://pixijs.download/release/docs/PIXI.Container.html) class, and inherit all its methods and properties.
 
+## The current room, `ct.room`.
+
+`ct.room` always points to the current room. If you have multiple rooms layered on top of each other, `ct.room` will point to the initial room that was created at the start of a game, or after calling [`ct.rooms.switch`](ct.rooms.html#ct-rooms-switch-newroomname).
+
+To get layered rooms, you can use [`ct.rooms.list`](ct.rooms.html#ct-rooms-list-roomname), or [`this.getRoom`](Copy.html#copy-getroom) inside copies' events.
+
 ## UI and Gameplay rooms
 
 Rooms can be put either into UI coordinate space or gameplay coordinate space. Gameplay rooms are managed by `ct.camera`, and cannot be moved manually. But UI rooms can be: for example, to move smaller widgets around the viewport.
