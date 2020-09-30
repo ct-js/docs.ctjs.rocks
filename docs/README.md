@@ -8,8 +8,9 @@ ct.js (`ct` is read as `kΛtæ`) is a game framework and editor aimed for creati
 
 Try completing one of our tutorials. They will teach you how to use ct.js, how its library works, how to create basic game features and more. Then, dig into examples that are placed in `ctjs/examples` folder and look how more serious projects are done.
 
-* [Making a platformer](tut-making-platformer.html)
-* [Making a space shooter](tut-making-shooter.html)
+* [Making a platformer](tut-making-platformer.html).
+* [Making a space shooter](tut-making-shooter.html).
+* [Making a Jetty Cat](tut-making-jettycat.html), flappy-bird-like game.
 
 Use this documentation whenever you want from the side panel of ct.js, learn its core library.
 
