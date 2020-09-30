@@ -14,7 +14,7 @@ Try completing one of our tutorials. They will teach you how to use ct.js, how i
 
 Use this documentation whenever you want from the side panel of ct.js, learn its core library.
 
-Some additional modules are vital for building a good game. You will need to know how to use such libraries as `ct.place` and `ct.keyboard`. Each module has its own reference which you can get inside ct.js on the "Catmods" tab. `ct.place` and `ct.keyboard` are also widely used in our tutorials, and they are good for learning how to use such libraries.
+Some additional modules are vital for building a good game. You will need to know how to use such libraries as `ct.place` and `ct.keyboard`. Each module has its own reference which you can get inside ct.js in the expandin panel on the right edge of the window. `ct.place` and `ct.keyboard` are also widely used in our tutorials, and they are good for learning how to use such libraries.
 
 If you get stuck, create a topic at [the ct.js forum](https://comigo.itch.io/ct/community) so others can help you.
 
