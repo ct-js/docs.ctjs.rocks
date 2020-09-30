@@ -155,8 +155,8 @@ Let's set up some variables on the "On Create" tab:
 this.jumpSpeed = -9;
 this.gravity = 0.5;
 
-this.hspd = 0; // Horizontal speed
-this.vspd = 0; // Vertical speed
+this.hspeed = 0; // Horizontal speed
+this.vspeed = 0; // Vertical speed
 ```
 
 ::: tip
@@ -166,17 +166,17 @@ this.vspd = 0; // Vertical speed
 Now move to the "On Step" tab. Remove default `this.move();` line and add this code:
 
 ```js
-this.speed = 4 * ct.delta; // Max horizontal speed
+this.movespeed = 4 * ct.delta; // Max horizontal speed
 
 if (ct.actions.MoveLeft.down) {
     // If the A key or left arrow on a keyboard is down, then move to left
-    this.hspd = -this.speed;
+    this.hspeed = -this.movespeed;
 } else if (ct.actions.MoveRight.down) {
     // If the D key or right arrow on a keyboard is down, then move to right
-    this.hspd = this.speed;
+    this.hspeed = this.movespeed;
 } else {
     // Don't move horizontally if no input
-    this.hspd = 0;
+    this.hspeed = 0;
 }
 
 // If there is ground underneath the Robot…
@@ -184,14 +184,14 @@ if (ct.place.occupied(this, this.x, this.y + 1, 'Solid')) {
     // …and the W key or the spacebar is down…
     if (ct.actions.Jump.down) {
         // …then jump!
-        this.vspd = this.jumpSpeed;
+        this.vspeed = this.jumpSpeed;
     } else {
         // Reset our vspeed. We don't want to be buried underground!
-        this.vspd = 0;
+        this.vspeed = 0;
     }
 } else {
     // If there is no ground
-    this.vspd += this.gravity * ct.delta;
+    this.vspeed += this.gravity * ct.delta;
 }
 ```
 
@@ -211,21 +211,21 @@ if (ct.place.occupied(this, this.x, this.y + 1, 'Solid')) {
 By multiplying values to `ct.delta`, we make sure that everything moves uniformly at any framerate.
 :::
 
-This will set variables `hspd` and `vspd`, but they won't do anything as is. Add more code to actually move the Robot around:
+This will set variables `hspeed` and `vspeed`, but they won't do anything as is. And we don't want to clip into wall or move when we are next to a 'Solid'. Add more code to actually move the Robot around:
 
 ```js
 // Move by horizontal axis, pixel by pixel
-for (var i = 0; i < Math.abs(this.hspd); i++) {
-    if (ct.place.free(this, this.x + Math.sign(this.hspd), this.y, 'Solid')) {
-        this.x += Math.sign(this.hspd);
+for (var i = 0; i < Math.abs(this.hspeed); i++) {
+    if (ct.place.free(this, this.x + Math.sign(this.hspeed), this.y, 'Solid')) {
+        this.x += Math.sign(this.hspeed);
     } else {
         break;
     }
 }
 // Do the same for vertical speed
-for (var i = 0; i < Math.abs(this.vspd); i++) {
-    if (ct.place.free(this, this.x, this.y + Math.sign(this.vspd), 'Solid')) {
-        this.y += Math.sign(this.vspd);
+for (var i = 0; i < Math.abs(this.vspeed); i++) {
+    if (ct.place.free(this, this.x, this.y + Math.sign(this.vspeed), 'Solid')) {
+        this.y += Math.sign(this.vspeed);
     } else {
         break;
     }
@@ -310,8 +310,8 @@ Now open the `Robot` type again, and add this code to the top of its `On Step` c
 if (ct.place.occupied(this, this.x, this.y, 'Deadly')) {
     this.x = this.savedX;
     this.y = this.savedY;
-    this.hspd = 0;
-    this.vspd = 0;
+    this.hspeed = 0;
+    this.vspeed = 0;
     return;
 }
 ```
@@ -346,7 +346,7 @@ Open the `Robot`'s "On Step" code and modify the moving section so it changes th
 ```js{4,5,6,7,8,9,13,14,15,16,17,18,22,38,39}
 if (ct.actions.MoveLeft.down) {
     // If the A key on keyboard is down, then move to left
-    this.hspd = -this.speed;
+    this.hspeed = -this.movespeed;
     // Set the walking animation and transform the robot to the left
     if (this.tex !== 'Robot_Walking') {
         this.tex = 'Robot_Walking';
@@ -355,7 +355,7 @@ if (ct.actions.MoveLeft.down) {
     this.scale.x = -1;
 } else if (ct.actions.MoveRight.down) {
     // If the D key on keyboard is down, then move to right
-    this.hspd = this.speed;
+    this.hspeed = this.movespeed;
     // Set the walking animation and transform the robot to the right
     if (this.tex !== 'Robot_Walking') {
         this.tex = 'Robot_Walking';
@@ -364,7 +364,7 @@ if (ct.actions.MoveLeft.down) {
     this.scale.x = 1;
 } else {
     // Don't move horizontally if no input
-    this.hspd = 0;
+    this.hspeed = 0;
     this.tex = 'Robot_Idle';
 }
 
@@ -373,14 +373,14 @@ if (ct.place.occupied(this, this.x, this.y + 1, 'Solid')) {
     // …and the W key or the spacebar is down…
     if (ct.actions.Jump.down) {
         // …then jump!
-        this.vspd = this.jumpSpeed;
+        this.vspeed = this.jumpSpeed;
     } else {
         // Reset our vspeed. We don't want to be buried underground!
-        this.vspd = 0;
+        this.vspeed = 0;
     }
 } else {
     // If there is no ground
-    this.vspd += this.gravity;
+    this.vspeed += this.gravity * ct.delta;
     // Set jumping animation!
     this.tex = 'Robot_Jump';
 }
@@ -595,8 +595,8 @@ Now modify the respawn code of the `Robot` so it loses one heart at each respawn
 if (ct.place.occupied(this, this.x, this.y, 'Deadly')) {
     this.x = this.savedX;
     this.y = this.savedY;
-    this.hspd = 0;
-    this.vspd = 0;
+    this.hspeed = 0;
+    this.vspeed = 0;
     // remove one life
     ct.room.lives --;
     if (ct.room.lives <= 0) {
