@@ -37,7 +37,7 @@ console.log(this.level);
 
 ![Wrong use of localStorage](./images/tutLocalStorage.png)
 
-`this.level` is now `'151'`! This is definitely not what we would expect. The reason is that `localStorage` can only store things, and anything else is turned into those. Because of that, we need to convert the values of `localStorage` to the needed types.
+`this.level` is now `'151'`! This is definitely not what we would expect. The reason is that `localStorage` can only store strings, and anything else is turned into those. Because of that, we need to convert the values of `localStorage` to the needed types.
 
 ```js
 // BETTER WAY
