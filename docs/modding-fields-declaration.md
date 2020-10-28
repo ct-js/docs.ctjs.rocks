@@ -60,7 +60,8 @@ declare interface IExtensionField {
         name: string,
         help?: string
     }>,
-    min?: number, // Used with type === 'number', 'slider', or 'sliderAndNumber'
+    fields?: Array<IExtensionField>, // These are for type === 'table'
+    min?: number, // These three are sed with type === 'number', 'slider', or 'sliderAndNumber'
     max?: number,
     step?: number
 }
@@ -79,7 +80,8 @@ Here we mark optional fields in form of `key?: type`. The required fields are `n
 * `texture` – a link to an asset in a project; <badge>new in v1.4</badge>
 * `type` – same as `texture`, but for types; <badge>new in v1.4</badge>
 * `point2D` — displays a pair of number inputs with X and Y labels. Stores values as an array of two numbers; <badge>new in v1.4</badge>
-* `h1`, `h2`, `h3` and `h4`. These are not really for any input, but display a heading to categorize fields in catmod's settings tab. Such fields require `type` and `name` only. <badge>new in v1.4</badge>
+* `h1`, `h2`, `h3` and `h4`. These are not really for any input, but display a heading to categorize fields in catmod's settings tab. Such fields require `type` and `name` only; <badge>new in v1.4</badge>
+* `table` — editable series of complex objects in a table form. <badge>new in v1.5</badge>
 
 For settings, field's `key` must be unique for a module. For extended fields of types and other assets, it should be unique all across a user's codebase, so naming a key in form of `mymodMyfieldname` is a good idea.
 
@@ -120,6 +122,72 @@ You can present a number of choices for your user in a group, and allow them to 
     }]
 }
 ```
+
+## Tables <badge>new in v1.5</badge>
+
+Tables allow users to describe an array of entities of a specific structure. Users can add/remove rows, and reorder them. Nested tables are supported, though they look terrible.
+
+![](./images/catmodsTable.png)
+
+A table field is defined by setting field's type to `table`. Its fields are described in an array `fields`, in the same way as you define fields for the whole module.
+
+### Example: Early settings of ct.splashscreen catmod
+
+```json{22,24-45}
+{
+    "main": {
+        /* … */
+    },
+    /* Two regular fields come first */
+    "fields": [{
+        "name": "Slide duration, ms",
+        "key": "slideDuration",
+        "default": 3000,
+        "type": "number",
+        "min": 0
+    }, {
+        "name": "Transition duration, ms",
+        "key": "transitionDuration",
+        "default": 1000,
+        "type": "number",
+        "min": 0
+    }, {
+        "name": "Slides",
+        "key": "slides",
+        /* A field with "type": "table" defines a table control */
+        "type": "table",
+        "default": [],
+        /* Table's fields are described here */
+        "fields": [{
+            "name": "Logo texture",
+            "key": "texture@@texture",
+            "default": -1,
+            "type": "texture"
+        }, {
+            "name": "Effect",
+            "key": "effect",
+            "type": "select",
+            "default": "none",
+            "options": [{
+                "value": "none",
+                "name": "None"
+            }, {
+                "value": "zoomIn",
+                "name": "Zoom in"
+            }, {
+                "value": "zoomOut",
+                "name": "Zoom out"
+            }]
+        }]
+    }]
+}
+```
+
+### Default values for tables
+
+For tables themselves, the `default` key must be an array of default elements in it. Each element is an object with `"key": "value"` entries You can put an empty array `[]` if you don't need to define default elements.
+
+For tables' fields, the `default` key sets the default values for newly added rows.
 
 ## Unwrapping UIDs of types and textures
 
