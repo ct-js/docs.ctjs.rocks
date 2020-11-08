@@ -32,6 +32,21 @@ Argument | Type | Description
 `tilemap` | `Tilemap` | The tilemap to cache.
 `chunkSize` | `number` | *(optional)* The minimum size of a chunk. Defaults to 1024.
 
+### `ct.tilemaps.cacheDiamond(tilemap, chunkSize)`
+
+Enables caching on this tileset, freezing it and turning it into a series of bitmap textures. This proides great speed boost, but prevents further editing.
+
+This version packs tiles into rhombus-shaped chunks, and sorts them from top to bottom. This fixes seam issues for isometric games.
+
+Note that tiles should be placed on a flat plane for the proper sorting. If you need an effect of elevation, consider shifting each tile with `tile.pivot.y` property.
+
+This is the same as calling `tilemap.cacheDiamond();`
+
+Argument | Type | Description
+-|-|-
+`tilemap` | `Tilemap` | The tilemap to cache.
+`chunkSize` | `number` | *(optional)* The minimum size of a chunk. Defaults to 1024.
+
 ## Methods of `Tilemap`
 
 `Tilemap` is a subclass of [`PIXI.Container`](https://pixijs.download/release/docs/PIXI.Container.html), and can be tinted, transformed, and moved. The methods below mostly repeat the methods of `ct.tilemaps`, but are in an object-oriented style.
@@ -49,6 +64,18 @@ Argument | Type | Description
 ### `tilemap.cache(chunkSize)`
 
 Caches the tilemap, grouping tiles into large chunks and turning them into several bitmaps. Once it is cached, it can no longer be modified.
+
+Argument | Type | Description
+-|-|-
+`chunkSize` | `number` | *(optional)* The minimum size of a chunk. Defaults to 1024.
+
+### `tilemap.cacheDiamond(chunkSize)`
+
+Caches the tilemap, grouping tiles into large chunks and turning them into several bitmaps. Once it is cached, it can no longer be modified.
+
+This version packs tiles into rhombus-shaped chunks, and sorts them from top to bottom. This fixes seam issues for isometric games.
+
+Note that tiles should be placed on a flat plane for the proper sorting. If you need an effect of elevation, consider shifting each tile with `tile.pivot.y` property.
 
 Argument | Type | Description
 -|-|-
