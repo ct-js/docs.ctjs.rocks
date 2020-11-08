@@ -8,12 +8,13 @@ ct.js (`ct` is read as `kΛtæ`) is a game framework and editor aimed for creati
 
 Try completing one of our tutorials. They will teach you how to use ct.js, how its library works, how to create basic game features and more. Then, dig into examples that are placed in `ctjs/examples` folder and look how more serious projects are done.
 
-* [Making a platformer](tut-making-platformer.html)
-* [Making a space shooter](tut-making-shooter.html)
+* [Making a platformer](tut-making-platformer.html).
+* [Making a space shooter](tut-making-shooter.html).
+* [Making a Jetty Cat](tut-making-jettycat.html), flappy-bird-like game.
 
 Use this documentation whenever you want from the side panel of ct.js, learn its core library.
 
-Some additional modules are vital for building a good game. You will need to know how to use such libraries as `ct.place` and `ct.keyboard`. Each module has its own reference which you can get inside ct.js on the "Catmods" tab. `ct.place` and `ct.keyboard` are also widely used in our tutorials, and they are good for learning how to use such libraries.
+Some additional modules are vital for building a good game. You will need to know how to use such libraries as `ct.place` and `ct.keyboard`. Each module has its own reference which you can get inside ct.js in the expandin panel on the right edge of the window. `ct.place` and `ct.keyboard` are also widely used in our tutorials, and they are good for learning how to use such libraries.
 
 If you get stuck, create a topic at [the ct.js forum](https://comigo.itch.io/ct/community) so others can help you.
 

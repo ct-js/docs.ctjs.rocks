@@ -75,6 +75,7 @@ module.exports = {
                 collapsable: false,
                 children: [
                     'ct',
+                    'ct.backgrounds',
                     'ct.camera',
                     'ct.emitters',
                     ['ct.inputs', 'ct.inputs and ct.actions'],
@@ -82,10 +83,19 @@ module.exports = {
                     'ct.rooms',
                     'ct.sound',
                     'ct.styles',
+                    'ct.tilemaps',
                     'ct.timer',
                     'ct.types',
                     ['ct.u', 'ct.u (utilities)'],
                     ['catmoddocs.md', 'Where are the other ct.* docs?']
+                ]
+            }, {
+                title: 'Built-in ct.js classes',
+                collapsable: false,
+                children: [
+                    ['Background.md', 'Background'],
+                    ['Copy.md', 'Copy'],
+                    ['Room.md', 'Room']
                 ]
             }, {
                 title: 'Tips & tricks',
@@ -93,6 +103,7 @@ module.exports = {
                 children: [
                     'actions',
                     'game-and-ui-coordinates',
+                    'movement',
                     'game-pause',
                     'localstorage',
                     'viewport-management',
@@ -106,8 +117,14 @@ module.exports = {
                     ['skeletal-animation.md', 'Using skeletal animation']
                 ]
             }, {
+                title: 'Technical stuff',
+                collapsable: true,
+                children: [
+                    'event-order.md'
+                ]
+            }, {
                 title: 'Modding ct.js',
-                collapsable: false,
+                collapsable: true,
                 children: [
                     ['modding-structure', 'Directory structure and module\'s manifest'],
                     ['modding-events-and-injections', 'Extending events with injections'],

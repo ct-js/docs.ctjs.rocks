@@ -1,5 +1,15 @@
 $accentColor = #446adb
 
+td p:first-child
+  margin-block-start 0
+td p:last-child
+  margin-block-end 0
+td
+  line-height 1.7
+  vertical-align top
+thead
+  text-align left
+
 body.dark
   // based on https://github.com/visualfanatic/vuepress-theme-dark
   // MIT License, by Damian Stasik
@@ -206,3 +216,6 @@ body.dark
         color desaturate(lighten($bg-color, 50%), 50%)
     .footer
       color desaturate(lighten($bg-color, 50%), 50%)
+
+.theme-default-content a code
+  color inherit

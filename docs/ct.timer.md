@@ -9,19 +9,35 @@ Examples:
 ct.timer.add(1000, 'test');
 // Or:
 new CtTimer(1000, 'test');
+```
 
+```js
 // Create a new timer and remember it in a variable `timer`
 // Log "Done!" when it gets to 2.5 seconds
-// This is an equivalent to `new CtTimer(2500, 'test')`
-var timer = ct.timer.add(2500, 'test').then(() => {
+var timer = ct.timer.add(2500, 'test');
+timer.then(() => {
+    // Do something useful
+    hero.invincible = false;
     console.log('Done!');
+})
+// The `catch` part is not necessary. Without it, though, you will
+// see errors in the console when timers got interrupted,
+// either manually or when you switch rooms
+.catch(e => {
+    console.log('Timer removed', e);
+    // You can add code here so that important stuff still
+    // gets executed on room switch:
+    hero.invincible = false;
 });
 
-// Log the timer's time count
+// Log how much time left
 console.log(timer.time);
 
-// Remove the timer
-ct.timer.removeTimer('test');
+// Stop the timer. It won't call the code inside `then(() => {})` clause
+timer.reject();
+
+// Trigger the timer manually
+timer.resolve();
 ```
 
 ## ct.timer methods

@@ -1,22 +1,23 @@
 # ct
 
-`ct` represents the game engine itself, extended with modules and core libraries. But let's talk a bit about how it all works.
+`ct` represents the game engine itself, extended with modules and core libraries. The core lib contains of:
 
-## Event sequence
+* [ct.backgrounds](ct.backgrounds.html) for, well, managing backgrounds;
+* [ct.camera](ct.camera.html) for viewport management;
+* [ct.emitters](ct.emitters.html) for particle systems;
+* [ct.inputs](ct.inputs.html) and [ct.actions](ct.actions.html) for handling user input;
+* [ct.res](ct.res.html) for loading resources;
+* [ct.rooms](ct.rooms.html) for switching and stacking multiple rooms (for UI, lighting, and gameplay, for example);
+* [ct.sound](ct.sound.html) for playing and tweaking sound effects;
+* [ct.styles](ct.styles.html) for reusing UI styles;
+* [ct.tilemaps](ct.tilemaps.html) for dynamically generating levels made of tiles;
+* [ct.timer](ct.timer.html) for asynchronous events;
+* [ct.types](ct.types.html) for creating, finding and managing types and copies;
+* [ct.u](ct.u.html) for vector functions, among other utilities.
 
-These events are always executed in the following order:
+You will usually use the API above, as well ass those APIs provided by ct.js modules.
 
-1. room's `oncreate` event, which is emitted when a user starts a game or navigates to a new room;
-1. `oncreate` is applied for each copy;
-1. then the main game loop starts:
-    1. `onstep` event is emitted for all the copies in the room;
-    1. `onstep` event for current room is called;
-    1. `ondestroy` is called for all the copies marked to be `kill`ed;
-    1. all the copies are reordered then;
-    1. `ondraw` is called for all the copies;
-    1. `ondraw` is called for a room;
-    1. input events are cleared. Waiting for a new game loop iteration.
-1. When a user moves to a new room, an `onleave` event is called for the latest room.
+By itself, ct.js is based on [Pixi.js](https://www.pixijs.com/), an HTML5 graphics library. You can use its API if you feel ct.js' one is not enough.
 
 ## Methods and properties
 
