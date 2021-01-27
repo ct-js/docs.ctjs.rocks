@@ -131,7 +131,7 @@ So the rule of thumb is to store numerical values as Numbers, not Strings. If yo
 
 ## Boolean values and comparisons
 
-Boolean is these variables and properties which values are either 'true' or 'false'. Note that we don't use quotation marks here.
+Boolean is these variables and properties which values are either `true` or `false`. Note that we don't use quotation marks here.
 
 Boolean values can be retrieved by using comparisons, and they also have their own operators. Numbers have comparisons like what we can find in Math, while Strings are either equal or not:
 
@@ -145,18 +145,18 @@ health < maxHealth; // true
 mana > maxMana; // false
 mana >= maxMana; // true
 health <= maxHealth; // true
-health == maxHealth; // are they equal? false
-health != maxHealth; // they aren't equal, right? true
+health === maxHealth; // are they equal? false
+health !== maxHealth; // they aren't equal, right? true
 
 var cat = 'Albert',
     dog = 'Snowball';
-cat == dog; // false
-cat != dog; // true
+cat === dog; // false
+cat !== dog; // true
 
-/* There are also strict comparisons, which compare both values and variables' types */
+/* There are also non-strict comparisons, which compare values but transform variables' types */
 
-5 == '5'; // true
 5 === '5'; // false, because '5' is String, not a Number
+5 == '5'; // true
 5 === parseFloat('5') // true, because parseFloat returns a Number, and so is 5
 ```
 
