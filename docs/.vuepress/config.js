@@ -33,9 +33,10 @@ module.exports = {
         lastUpdated: 'Last Updated',
 
         repo: 'https://github.com/CosmoMyzrailGorynych/docs.ctjs.rocks',
+        repoLabel: 'Contribute!',
         docsDir: 'docs',
         editLinks: true,
-        editLinkText: 'Help us improve this page!',
+        editLinkText: 'Propose edits',
 
         nav: [{
             text: 'Home',
@@ -74,6 +75,7 @@ module.exports = {
                 title: 'The `core` library',
                 collapsable: false,
                 children: [
+                    'ct-concepts',
                     'ct',
                     'ct.backgrounds',
                     'ct.camera',

@@ -10,6 +10,19 @@ td
 thead
   text-align left
 
+.button, button
+  display inline-block
+  font inherit
+  color $accentColor
+  border 1px solid $accentColor
+  padding 0.8rem 1.2rem
+  border-radius 4px
+  transition 0.2s ease all
+  box-sizing border-box
+  &:hover
+    color white
+    background-color $accentColor
+
 body.dark
   // based on https://github.com/visualfanatic/vuepress-theme-dark
   // MIT License, by Damian Stasik

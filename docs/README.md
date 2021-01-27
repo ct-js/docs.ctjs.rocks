@@ -1,40 +1,59 @@
-# Hey there!
+---
+home: true
+# heroImage: /assets/img/logo.png
+heroText: Welcome to the official ct.js docs!
+tagline: Learn ct.js, complete tutorials, and contribute to ct.js documentation
+actionText: Read the docs →
+actionLink: /ct-concepts.html
+footer: Ct.js documentation. Except where otherwise noted, content is licensed under a Creative Commons Attribution 4.0 International License.
+---
 
-Nice to meet you! Here you will find all the official documentation and tutorials for ct.js.
-
-ct.js (`ct` is read as `kΛtæ`) is a game framework and editor aimed for creation of 2D games. It is based on web technologies and supports lots of platforms. The framework is designed with modularity in mind, allowing additional modules to expand its possibilities and ease the development process.
-
-## Where to start?
-
-Try completing one of our tutorials. They will teach you how to use ct.js, how its library works, how to create basic game features and more. Then, dig into examples that are placed in `ctjs/examples` folder and look how more serious projects are done.
-
-* [Making a platformer](tut-making-platformer.html).
-* [Making a space shooter](tut-making-shooter.html).
-* [Making a Jetty Cat](tut-making-jettycat.html), flappy-bird-like game.
-
-Use this documentation whenever you want from the side panel of ct.js, learn its core library.
-
-Some additional modules are vital for building a good game. You will need to know how to use such libraries as `ct.place` and `ct.keyboard`. Each module has its own reference which you can get inside ct.js in the expandin panel on the right edge of the window. `ct.place` and `ct.keyboard` are also widely used in our tutorials, and they are good for learning how to use such libraries.
-
-If you get stuck, create a topic at [the ct.js forum](https://comigo.itch.io/ct/community) so others can help you.
-
-## Basic concepts
-
-**Ct.js** is a modular library written in JavaScript, coupled with a visual editor. The editor is also referred to as **ct.IDE**. Games in ct.js are written in JavaScript as well: it is the programming language of the web, is flexible, easy to learn, and infinitely deep.
-
-Any ct.js game consists of **textures**, **copies**, **types**, and **rooms**.
-
-* A **texture** is an image that doesn't do much by itself but is used by copies and can be drawn with code. This asset is also referred to as a sprite, but it can also be a tileset, a background, etc.
-* A **copy** is a logical entity in your game that can interact with user inputs and other copies. Enemies, trees, bullets, gems, bonuses, cats — everything is a copy. Copies are often called *"objects"*, *"actors"* or *"instances"* in other game engines.
-* Each copy corresponds to a specific **type**. A **type** is a template for new copies with common settings and behavior. It may be called a *class* or an *object* in other game engines.
-* A **room** is a 2D space in your game where you place your copies. Rooms may have their own additional behavior (level scripts). Rooms are also often referred to as *levels* or *maps*. A notable difference is that rooms in ct.js are boundless when other 2D engines tend to set a specific size to it.
-
-There are additional resources that help make games jucier, better, fun to play, and easier to develop:
-
-* [**Actions**](actions.html) that combine different input methods into one API, so you can code once for keyboards, gamepads, virtual joysticks and for other stuff.
-* **Catmods** are additional modules that hack on the core library, add new tools for programming and new features to the engine.
-* **Custom fonts** allow you to use .ttf files in your games, so your game looks nicely in every browser or PC.
-* **Emitter tandems,** or simply particle systems, are flexible visual effects made of textures. Explosions, magic effects, rain, snow, and many other special effects may be made with these.
-* [**Skeletal animations**](skeletal-animation.html) for skinnable characters with smooth animations.
-* **Sounds** are audio assets that are played by code.
-* **Styles** are templates for drawing labels that are used while making the user interface.
+<div class="features">
+    <div class="feature">
+        <h2>Learn JavaScript</h2>
+        <p>Games made in ct.js use JavaScript, or simply JS, to code its gameplay logic. Learn the needed part of it in our little <a href="/jsintro_pt1.html">Introduction to JS</a>.</p>
+        <a href="/jsintro_pt1.html" class="button">Learn JavaScript →</a>
+    </div>
+    <div class="feature">
+        <h2>Complete tutorials</h2>
+        <p>The best way to learn is by <i>making</i>, and you can create real games with our step-by-step tutorials:</p>
+        <ul>
+            <li><a href="/tut-making-shooter.html">Make a space shooter game →</a></li>
+            <li><a href="/tut-making-platformer.html">Create a platformer →</a></li>
+            <li><a href="/tut-making-jettycat.html">Create Jetty Cat, a flappy-bird-like game →</a></li>
+        </ul>
+    </div>
+    <div class="feature">
+        <h2>Learn the core library</h2>
+        <p>See additional methods and properties of copies, camera, rooms, and procedurally create tilemaps, backgrounds, and new copies.</p>
+        <a href="/ct-concepts.html" class="button">Go to ct.js docs →</a>
+    </div>
+    <div class="feature" style="flex-basis: 65%; max-width: 65%;">
+        <h2>Notable additions in ct.js v1.5</h2>
+        <ul>
+            <li><a href="/ct.backgrounds.html">ct.backgrounds</a> and <a href="/ct.tilemaps.html">ct.tilemaps</a> — two new built-in APIs appeared for your needs in procedural generation.</li>
+            <li><b>ct.place</b> got a bunch of tracing functions that you can use to test for collisions in an arbitrary area. See them in a new doc page at ct.js</a>.</li>
+            <li><b>ct.tween</b> module got three new interpolation methods thanks to kkornushin: elastic, bouncing motion, and motion with backwards overshoot. See <b>ct.tween</b>'s docs at your ct.js editor.</li>
+            <li>You can now mark a room as a UI layer in room's properties instead of using <code>isUi</code> property!</li>
+            <li>New methods: <a href="/ct.types.html#ct-types-iscopy-obj-new-in-v1-5">ct.types.isCopy</a>, <a href="/ct.u.html#ct-u-hextopixi-hex-string">ct.u.hexToPixi</a>, <a href="/ct.u.html#ct-u-pixitohex-pixi-number">ct.u.pixiToHex</a>.</li>
+        </ul>
+        <a href="https://ctjs.rocks/changelog/" target="_blank">Changelog →</a>
+    </div>
+    <div class="feature">
+        <h2>Get the cheatsheet</h2>
+        <a class="button" target="_blank" href="https://comigo.itch.io/ct-cheat-sheet">Download the cheatsheet →</a>
+        <p></p>
+        <img src="/assets/img/CheatsheetThumbnail.png">
+    </div>
+    <div class="feature"  style="flex-basis: 47.5%; max-width: 47.5%;">
+        <h2>Join the community</h2>
+        <p>Join our Discord server to meet other game developers, receive help, aid others, and share your creations. Alternatively, you can also post on our forum.</p>
+        <a class="button" target="_blank" href="https://discord.gg/CggbPkb">Discord Server →</a>
+        <a class="button" target="_blank" href="https://comigo.itch.io/ct/community">Forum →</a>
+    </div>
+    <div class="feature"  style="flex-basis: 47.5%; max-width: 47.5%;">
+        <h2>Contribute</h2>
+        <p>Set up a dev environment to run a local docs server and use simple Markdown syntax to write new tutorials and send fixes.</p>
+        <a class="button" target="_blank" href="https://github.com/ct-js/docs.ctjs.rocks">Visit the repo →</a>
+    </div>
+</div>
