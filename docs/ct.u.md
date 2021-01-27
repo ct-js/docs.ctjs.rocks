@@ -68,6 +68,25 @@ Checks if a given point (x1;y1) is inside a rectangle. `arg` can be either an ar
 
 Checks if a given point is inside a circle. `arg` can be either an array of [x1, y1, radius], or a Copy with a cirular shape.
 
+### `ct.u.hexToPixi(hex: string)`
+Converts a hex string to a Pixi color.
+
+#### Example: Set copy's tint color from a CSS color
+
+```js
+this.tint = ct.u.hexToPixi('#0dfac3');
+```
+
+### `ct.u.pixiToHex(pixi: number)`
+
+Converts a Pixi color to a hex-encoded color code.
+
+#### Example: Set page's background color from a Pixi color
+
+```js
+document.body.style.backgroundColor = ct.u.pixiToHex(0x0dfac3);
+```
+
 ### `ct.u.wait(time)`
 
 Returns a Promise. Waits `time` milliseconds, then resolves without any data. Rejects if a new room was loaded before the Promise was resolved. Example:

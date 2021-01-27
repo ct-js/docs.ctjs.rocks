@@ -70,6 +70,9 @@ ct.types.each(function () {
 
 Checks whether a given argument is a copy that exists in ct.js' world. Falsey variables like undefined ones will return `false`, as well as destroyed copies; the other times, it will return `true`. This method also works with most PIXI entities, e.g. with `PIXI.Text` and `PIXI.Graphics`.
 
+### `ct.types.isCopy(obj)` <badge>new in v1.5</badge>
+Checks whether a given object is a ct.js copy. Returns `true` if the passed object is a copy; `false` otherwise.
+
 ### `ct.types.list['TypeName']`
 
 Returns an array with all the existing copies of the specified type.
