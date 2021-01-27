@@ -2,7 +2,7 @@
 
 This object contains a number of handy utility functions to ease the development process.
 
-## Methods and properties
+## Geometry
 
 ### `ct.u.ldx(length, direction)` and `ct.u.lengthDirX(length, direction)`
 
@@ -19,14 +19,6 @@ Gets the direction of vector which is pointing from (x1;y1) to (x2;y2).
 ### `ct.u.pdc(x1, y1, x2, y2)` and `ct.u.pointDistance(x1, y1, x2, y2)`
 
 Gets the distance between points (x1;y1) and (x2;y2).
-
-### `ct.u.uiToGameCoord(x, y)`
-
-Converts from UI coordinates to game coordinates. Returns an array with two elements: x and y coordinates.
-
-### `ct.u.gameToUiCoord(x, y)`
-
-Converts from game coordinates to ui coordinates. Returns an array with two elements: x and y coordinates.
 
 ### `ct.u.rotate(x, y, deg)`
 
@@ -48,6 +40,18 @@ Converts radians into degrees.
 
 Returns a difference between two directions, in degrees.
 
+## Gameplay and UI Coordinates
+
+### `ct.u.uiToGameCoord(x, y)`
+
+Converts from UI coordinates to game coordinates. Returns an array with two elements: x and y coordinates.
+
+### `ct.u.gameToUiCoord(x, y)`
+
+Converts from game coordinates to ui coordinates. Returns an array with two elements: x and y coordinates.
+
+## Math
+
 ### `ct.u.clamp(min, val, max)`
 
 Returns a clamped value `val`.
@@ -60,6 +64,8 @@ Linearly interpolates a value from `a` to `b`, returning `a` if `alpha` = 0 and 
 
 An opposite of `ct.u.lerp`. Returns a position of `val` inside a range from `a` to `b`. If `val` is inside this range, this method will return a value between 0 and 1.
 
+## Built-in collision checks
+
 ### `ct.u.prect(x1, y1, arg: Array|Copy)` and `ct.u.pointRectangle(x1, y1, arg: Array|Copy)`
 
 Checks if a given point (x1;y1) is inside a rectangle. `arg` can be either an array of coordinates ([x1, y1, x2, y2]) or a Copy with a rectangular shape.
@@ -67,6 +73,8 @@ Checks if a given point (x1;y1) is inside a rectangle. `arg` can be either an ar
 ### `ct.u.pcircle(x1, y1, arg: Array|Copy)` and `ct.u.pointCircle(x1, y1, arg: Array|Copy)`
 
 Checks if a given point is inside a circle. `arg` can be either an array of [x1, y1, radius], or a Copy with a cirular shape.
+
+## Miscellaneous
 
 ### `ct.u.hexToPixi(hex: string)`
 Converts a hex string to a Pixi color.
