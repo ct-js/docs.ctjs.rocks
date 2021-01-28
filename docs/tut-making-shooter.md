@@ -106,7 +106,7 @@ In order to handle keyboard inputs, we need to enable the Keyboard module. Press
 
 Actions in ct.js are entities that group different input methods into events, and allow you to listen to player input in code. You can read more about them [here](/actions.html).
 
-For now, let's create a basic input scheme for our shooter. Open the "Project" tab, then the "Actions and input methods" tab on the left side. We will need to define three different actions: for shooting laser bullets, for moving horisontally, and for moving vertically.
+For now, let's create a basic input scheme for our shooter. Open the "Project" tab, then the "Actions and input methods" tab on the left side. We will need to define three different actions: for shooting laser bullets, for moving horizontally, and for moving vertically.
 
 First, click the "Add an action" button. Then, input the name of the first action. Click the button called "Add an input method" to bind specific buttons to your action. Use its search to quickly filter available input methods.
 
@@ -116,7 +116,7 @@ Create three actions as in the picture above. Set multiplier value to `-1` for `
 
 ### Coding the movement
 
-Open the "Types" tab on the top, next move to `On Step` event.
+Open the "Types" tab on the top, then click on the `PlayerShip` type and move to `On Step` event.
 
 ::: tip
 `On Step` event occurs every frame before drawing, while `Draw` happens after all the `On Step` events in the room to draw a new frame. `On Create` happens when you spawn a new Copy, and  `On Destroy` occurs before the `Draw` event if a Copy is killed.
@@ -147,7 +147,7 @@ if (this.x > ct.camera.width) { // Have the ship crossed the right border?
 this.move();
 ```
 
-Here we are using the created actions. First, we try to move the ship horisontally (by `x`, line 6). `ct.actions.MoveX` will return `1` if we pressed the right keyboard arrow or the "D" key, and will return `-1` if a player presses the left arrow or the "A" key. If nothing is pressed, it will return `0`, disabling the horisontal movement.
+Here we are using the created actions. First, we try to move the ship horizontally (by `x`, line 6). `ct.actions.MoveX` will return `1` if we pressed the right keyboard arrow or the "D" key, and will return `-1` if a player presses the left arrow or the "A" key. If nothing is pressed, it will return `0`, disabling the horizontal movement.
 
 `ct.delta` is needed to compensate possible lags and FPS drops. It is usually equal to `1` and doesn't add much, but will speed up the movement if some frames were dropped.
 
