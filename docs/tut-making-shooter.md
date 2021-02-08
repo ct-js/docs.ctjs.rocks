@@ -488,12 +488,6 @@ this.scoreLabel.x = 30;
 this.scoreLabel.y = 30;
 ```
 
-We should also add this line to the `Draw` tab so that the label is updated each frame:
-
-```js
-this.scoreLabel.text = 'Score: ' + this.score;
-```
-
 ::: tip
 `ct.styles.get('Style');` loads the given style. You can use it inside PIXI.Text constructor to style the created label.
 :::
