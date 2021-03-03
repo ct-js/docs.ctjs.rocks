@@ -61,9 +61,14 @@ declare interface IExtensionField {
         help?: string
     }>,
     fields?: Array<IExtensionField>, // These are for type === 'table'
-    min?: number, // These three are sed with type === 'number', 'slider', or 'sliderAndNumber'
+    // These three are used with type === 'number', 'slider', or 'sliderAndNumber'
+    min?: number,
     max?: number,
     step?: number
+    // These are used with type === 'group'
+    openedByDefault: boolean,
+    lsKey: string,
+    items: Array<IExtensionField>
 }
 ```
 
@@ -199,3 +204,43 @@ When you define a field with type `texture` or `type` and a user selects an asse
 The exported value will then be the name of an asset, as it is displayed in IDE and is usually used in code.
 
 This works both for injections and extensions for types. For injections, if you have a `key` in form of `yourVarName@@assetType`, matches with `/*%yourVarName%*/` or `%yourVarName%` will be replaced.
+
+## Field groups <badge>new in v1.6.0</badge>
+
+You can create a collapsable group of fields by setting `type` parameter of a field to `group`. This helps saving space at type and room editors or simlpy hiding less-used fields.
+
+The `group` type requires three additional properties to be set:
+
+* `openedByDefault` — whether or not the panel should be opened by default.
+* `lsKey` — a key in local storage to store whether a user left this group opened or not. It should be unique, and it is recommended to contain your module's name to avoid collisions with other modules.
+* `items` — the array of fields inside a group. These are the same fields you would define outside of one.
+
+### Example: creating one regular field and a group of fields for ct.js types
+
+```json
+// ...
+"typeExtends": [
+    {
+        "name": "Create a hoverboard",
+        "type": "checkbox",
+        "key": "createHoverboard",
+        "default": false
+    }, {
+        "name": "Hoverboard properties",
+        "type": "group",
+        "openedByDefault": false,
+        "lsKey": "hoverboards.advancedProperties",
+        "items": [{
+            "name": "Speed, mps",
+            "type": "number",
+            "key": "hoverboardSpeed",
+            "default": 100
+        }, {
+            // Another field can be defined here
+        }, {
+            // And any quantity of others
+        }]
+    }
+]
+// ...
+```
