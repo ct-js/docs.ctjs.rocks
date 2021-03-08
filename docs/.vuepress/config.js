@@ -110,6 +110,7 @@ module.exports = {
                     'localstorage',
                     'viewport-management',
                     'textures-magic-properties',
+                    'dragging-copies',
                     'gamedev-resources'
                 ]
             }, {
