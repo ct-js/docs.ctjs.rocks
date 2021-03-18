@@ -34,6 +34,10 @@ A scalar value that scales the capturing rectangle. If compared to image viewing
 
 These represent the resulting location of a particular side of the camera in game units. Those cannot be changed manually.
 
+### `ct.camera.moveTo(x, y)` and `ct.camera.teleportTo(x, y)`
+
+Both move the camera to a new position. `ct.camera.moveTo` is useful for cutscenes and smooth transitions between objects, as it works with `ct.camera.drift`. `ct.camera.teleportTo` does not cause transitions and reset screen shake effects. It is useful for instant precise changes, e.g. when moving a camera to a distant location.
+
 ### `ct.camera.uiToGameCoord(x, y)` and `ct.camera.gameToUiCoord(x, y)`
 
 Convert a point from one coordinate space to another. These return an array with two elements: x and y coordinates.
