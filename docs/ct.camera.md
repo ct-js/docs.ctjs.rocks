@@ -92,6 +92,14 @@ A multiplier applied to the screen shake effect. Default is 1.
 
 The maximum possible value for the `shake` property to protect players from losing their monitor, in `shake` units. Default is 10.
 
+### `ct.camera.minX`, `ct.camera.maxX`, `ct.camera.minY`, and `ct.camera.maxY`
+
+These make camera move only inside a specific rectangle. By default, the camera can move boundlessly, unless set otherwise inside the room editor.
+
+You can set all of these properties, or only some of them.
+
+To unset one of these values, use, for example, `delete ct.camera.minX;`, or write `ct.camera.minX = undefined;`.
+
 ## Other
 
 ### `ct.camera.drift`
