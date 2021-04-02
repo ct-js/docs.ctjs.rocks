@@ -64,6 +64,10 @@ Linearly interpolates a value from `a` to `b`, returning `a` if `alpha` = 0 and 
 
 An opposite of `ct.u.lerp`. Returns a position of `val` inside a range from `a` to `b`. If `val` is inside this range, this method will return a value between 0 and 1.
 
+### `ct.u.map(val, inMin, inMax, outMin, outMax)`
+
+Re-maps the given `val` from one number range (`inMin` - `inMax`) to another (`outMin` - `outMax`).
+
 ## Built-in collision checks
 
 ### `ct.u.prect(x1, y1, arg: Array|Copy)` and `ct.u.pointRectangle(x1, y1, arg: Array|Copy)`
@@ -77,6 +81,7 @@ Checks if a given point is inside a circle. `arg` can be either an array of [x1,
 ## Miscellaneous
 
 ### `ct.u.hexToPixi(hex: string)`
+
 Converts a hex string to a Pixi color.
 
 #### Example: Set copy's tint color from a CSS color
@@ -99,7 +104,7 @@ document.body.style.backgroundColor = ct.u.pixiToHex(0x0dfac3);
 
 Returns a Promise. Waits `time` milliseconds, then resolves without any data. Rejects if a new room was loaded before the Promise was resolved. Example:
 
-``` js
+```js
 var enemy = whatever;
 enemy.state = 'Disappear';
 ct.u.wait(1000)
