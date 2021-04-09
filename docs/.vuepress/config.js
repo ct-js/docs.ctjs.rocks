@@ -110,7 +110,8 @@ module.exports = {
                     'localstorage',
                     'viewport-management',
                     'textures-magic-properties',
-                    'dragging-copies'
+                    'dragging-copies',
+                    'gamedev-resources'
                 ]
             }, {
                 title: 'Working with assets',

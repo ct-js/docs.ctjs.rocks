@@ -16,7 +16,7 @@ Open ct.js and input your project's name into the lower field of the starting wi
 
 ## Importing Textures
 
-We will need some assets from the [simplified platformer pack by Kenney](https://www.kenney.nl/assets/simplified-platformer-pack). You can find the needed assets with proper names in the `ctjs/examples/Platformer_assets/` folder.
+We will need some assets from the [simplified platformer pack by Kenney](https://www.kenney.nl/assets/simplified-platformer-pack). The assets are already bundled with ct.js and are named properly; you can find them in the `ct.js/examples/Platformer_assets/` folder.
 
 ![The needed assets](./images/tutPlatformer_02.png)
 

@@ -29,13 +29,14 @@ footer: Ct.js documentation. Except where otherwise noted, content is licensed u
         <a href="/ct-concepts.html" class="button">Go to ct.js docs →</a>
     </div>
     <div class="feature" style="flex-basis: 65%; max-width: 65%;">
-        <h2>Notable additions in ct.js v1.5</h2>
+        <h2>Notable additions in ct.js v1.6</h2>
         <ul>
-            <li><a href="/ct.backgrounds.html">ct.backgrounds</a> and <a href="/ct.tilemaps.html">ct.tilemaps</a> — two new built-in APIs appeared for your needs in procedural generation.</li>
-            <li><b>ct.place</b> got a bunch of tracing functions that you can use to test for collisions in an arbitrary area. See them in a new doc page at ct.js</a>.</li>
-            <li><b>ct.tween</b> module got three new interpolation methods thanks to kkornushin: elastic, bouncing motion, and motion with backwards overshoot. See <b>ct.tween</b>'s docs at your ct.js editor.</li>
-            <li>You can now mark a room as a UI layer in room's properties instead of using <code>isUi</code> property!</li>
-            <li>New methods: <a href="/ct.types.html#ct-types-iscopy-obj-new-in-v1-5">ct.types.isCopy</a>, <a href="/ct.u.html#ct-u-hextopixi-hex-string">ct.u.hexToPixi</a>, <a href="/ct.u.html#ct-u-pixitohex-pixi-number">ct.u.pixiToHex</a>.</li>
+            <li>Qewer wrote a nice tutorial about <a href="/dragging-copies.html">making <b>drag-and-drop</b> interactions</a> in your game.</li>
+            <li>Two dope modules added for spectacular visual effects: <code>ct.light</code> for dynamic lighting system by Comigo and <code>ct.filters</code> with premade visual effects and for adding custom shaders, made by SN. See them in your engine!</li>
+            <li>Another cool catmod is <code>ct.nakama</code> that integrates ct.js with an open-source online gaming platform Nakama. This one comes with <a href="https://www.youtube.com/watch?v=Glo9t3TV1vg&list=PLOoNs4RDYDKDtF5LO-LwuJiRD6m81rI8e">tutorial video series</a> by Alexandar Gyurov!</li>
+            <li>Oh yeah, there is also <code>ct.matter</code> named after 2D physics engine Matter.js. Shortly, it is time to create Angry Birbs in ct.js!</li>
+            <li>We added a small <a href="/gamedev-resources.html">list of <b>free gamedev resources</b></a> to help newcomers with their journey. All the linked resources are free!</li>
+            <li>Catmods can now <a href="/modding-fields-declaration.html#field-groups-new-in-v1-6-0">group their fields</a> into collapsible sections with a special <code>group</code> input. See live inside <code>ct.light</code> module!</li>
         </ul>
         <a href="https://ctjs.rocks/changelog/" target="_blank">Changelog →</a>
     </div>
@@ -54,6 +55,7 @@ footer: Ct.js documentation. Except where otherwise noted, content is licensed u
     <div class="feature"  style="flex-basis: 47.5%; max-width: 47.5%;">
         <h2>Contribute</h2>
         <p>Set up a dev environment to run a local docs server and use simple Markdown syntax to write new tutorials and send fixes.</p>
+        <p>You can also edit docs on Github — look for "Propose edits" links at the bottom of each page!</p>
         <a class="button" target="_blank" href="https://github.com/ct-js/docs.ctjs.rocks">Visit the repo →</a>
     </div>
 </div>

@@ -99,4 +99,4 @@ There is a number of properties we can use in such way:
 * `emitter.clear();` instantly clears all the particles.
 * `emitter.kill` is a property similar to copies' `kill` property: setting it to `true` will instantly destroy the effect with all its particles.
 * `emitter.frozen` stops updating the effect if set to `true`.
-* `emitter.paused` stops spawning new particles if set to `true`. The remaining particles are still animated. You can resume the spawning back with `emitter.paused = false;`.
+* `emitter.pause()` stops spawning new particles, but the remaining particles are still animated. You can resume the spawning back with `emitter.resume();`.

@@ -229,6 +229,10 @@ Do the same for another asteroid.
 
 Save the project and click the "Play" button at the top. The hostile ship will slowly move to the bottom, while asteroids will move more chaotically. If you refresh the page, asteroids will move to a new direction.
 
+::: tip
+Do you have errors with `ct.random`? Make sure that you've enabled the `random` module at the Project tab -> Catmods panel.
+:::
+
 ![](./images/tutSpaceShooter_RandomMovement.gif)
 
 ## Projectiles & Collision
