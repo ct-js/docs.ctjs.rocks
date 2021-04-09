@@ -12,7 +12,7 @@ Now we want to add a touch action from the 'Actions and Input Methods' menu. Cli
 
 We will use the action we just created to register touch events such as press and release.
 
-Now let's start actually making the dragging. Head on to your types `On Create` tab and declare a variable called `this.dragging`.
+Now let's start actually making the dragging. Head on to your type's `On Create` tab and declare a variable called `this.dragging`.
 
 ```js
 this.dragging = false;
@@ -61,7 +61,10 @@ this.yOffset = 0;
 Now we want to change these variables when the copy is picked up. So let's head back to the `On Step` tab and change them inside the if statement where the dragging begins (the copy gets picked up).
 
 ```js
+<<<<<<< HEAD
+=======
 
+>>>>>>> ca165d98a6bb8aab82735c0c10a011828927fea2
 if (ct.touch.hovers(this) && ct.actions.TouchAction.pressed) {
     this.dragging = true;
     this.xOffset = ct.mouse.x - this.x;
