@@ -29,7 +29,7 @@ footer: Ct.js documentation. Except where otherwise noted, content is licensed u
         <a href="/ct-concepts.html" class="button">Go to ct.js docs →</a>
     </div>
     <div class="feature" style="flex-basis: 65%; max-width: 65%;">
-        <h2>Notable additions in ct.js v1.6</h2>
+        <h2>Notable additions in ct.js v1.6 and v1.7</h2>
         <ul>
             <li>Qewer wrote a nice tutorial about <a href="/dragging-copies.html">making <b>drag-and-drop</b> interactions</a> in your game.</li>
             <li>Two dope modules added for spectacular visual effects: <code>ct.light</code> for dynamic lighting system by Comigo and <code>ct.filters</code> with premade visual effects and for adding custom shaders, made by SN. See them in your engine!</li>
