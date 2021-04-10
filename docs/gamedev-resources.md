@@ -13,6 +13,7 @@
 
 * [Freesound](https://freesound.org/). Check the license for each sound.
 * [SFX packs by Kenney](https://kenney.nl/assets?q=audio). Public domain license.
+* [jsfxr](https://sfxr.me/) — a web-based tool for procederally generating game sounds.
 
 ### Free music
 
