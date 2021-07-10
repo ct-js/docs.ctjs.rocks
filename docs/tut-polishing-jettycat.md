@@ -10,7 +10,7 @@ The game is complete mechanic-wise, but there is a lot of ways to improve it aes
 
 ## Transition between rooms
 
-Ct.js has a module called `ct.transision`. It allows you to easily create nice transitions between levels. The idea is that you start the first half of a transition on button press or some other event, then switch to another room and call the second half of a transition in its On Create code.
+Ct.js has a module called `ct.transition`. It allows you to easily create nice transitions between levels. The idea is that you start the first half of a transition on button press or some other event, then switch to another room and call the second half of a transition in its On Create code.
 
 Enable the module `transition` in the Catmods tab. It signals that it depends on the `tween` catmod, so enable it as well.
 
