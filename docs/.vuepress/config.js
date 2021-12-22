@@ -92,7 +92,6 @@ module.exports = {
                     },
                     'ct.res',
                     'ct.rooms',
-                    'ct.sound',
                     'ct.styles',
                     'ct.tilemaps',
                     'ct.timer',
@@ -244,7 +243,6 @@ module.exports = {
                             },
                             '/ru/ct.res',
                             '/ru/ct.rooms',
-                            '/ru/ct.sound',
                             '/ru/ct.styles',
                             '/ru/ct.types',
                             {
@@ -310,7 +308,6 @@ module.exports = {
                             },
                             '/pt_BR/ct.res',
                             '/pt_BR/ct.rooms',
-                            '/pt_BR/ct.sound',
                             '/pt_BR/ct.styles',
                             '/pt_BR/ct.types',
                             {
