@@ -1,4 +1,4 @@
-# Streamline texture import with magic numbers <badge>new in v1.3</badge>
+# Streamline texture import with magic numbers
 
 Ct.js has a bit of heuristic that helps to import groups of assets at once.
 

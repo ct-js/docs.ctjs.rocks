@@ -3,8 +3,9 @@ home: true
 # heroImage: /assets/img/logo.png
 heroText: Welcome to the official ct.js docs!
 tagline: Learn ct.js, complete tutorials, and contribute to ct.js documentation
-actionText: Read the docs →
-actionLink: /ct-concepts.html
+actions:
+    - text: Read the docs →
+      link: /ct-concepts.html
 footer: Ct.js documentation. Except where otherwise noted, content is licensed under a Creative Commons Attribution 4.0 International License.
 ---
 

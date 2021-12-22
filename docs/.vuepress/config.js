@@ -2,7 +2,12 @@ module.exports = {
     title: 'ct.js Documentation',
     description: 'Docs, tutorials, guides',
 
-    plugins: ['@vuepress/medium-zoom'],
+    plugins: [
+        '@vuepress/plugin-medium-zoom',
+        ['@vuepress/plugin-search', {
+            maxSuggestions: 15
+        }]
+    ],
 
     head: [
         ['script', {
@@ -38,7 +43,7 @@ module.exports = {
         editLinks: true,
         editLinkText: 'Propose edits',
 
-        nav: [{
+        navbar: [{
             text: 'Home',
             link: '/'
         }, {
@@ -49,14 +54,15 @@ module.exports = {
             link: 'https://discord.gg/CggbPkb'
         }, {
             text: 'Forum',
-            link: 'https://comigo.itch.io/ct/community'
+            link: 'https://forum.ctjs.rocks/'
         }],
 
+        sidebarDepth: 1,
         sidebar: [
             [
                 '/', 'Home'
             ], {
-                title: 'Introduction to JS',
+                text: 'Introduction to JS',
                 collapsable: false,
                 children: [
                     'jsintro_pt1',
@@ -64,7 +70,7 @@ module.exports = {
                 ],
             }, {
                 collapsable: false,
-                title: 'Tutorials',
+                text: 'Tutorials',
                 children: [
                     'tut-making-shooter',
                     'tut-making-platformer',
@@ -72,7 +78,7 @@ module.exports = {
                     'tut-polishing-jettycat'
                 ],
             }, {
-                title: 'The `core` library',
+                text: 'The `core` library',
                 collapsable: false,
                 children: [
                     'ct-concepts',
@@ -80,7 +86,10 @@ module.exports = {
                     'ct.backgrounds',
                     'ct.camera',
                     'ct.emitters',
-                    ['ct.inputs', 'ct.inputs and ct.actions'],
+                    {
+                        link: '/ct.inputs',
+                        text: 'ct.inputs and ct.actions'
+                    },
                     'ct.res',
                     'ct.rooms',
                     'ct.sound',
@@ -88,19 +97,32 @@ module.exports = {
                     'ct.tilemaps',
                     'ct.timer',
                     'ct.types',
-                    ['ct.u', 'ct.u (utilities)'],
-                    ['catmoddocs.md', 'Where are the other ct.* docs?']
+                    {
+                        link: '/ct.u',
+                        text: 'ct.u (utilities)'
+                    },
+                    {
+                        link: '/catmoddocs.md',
+                        text: 'Where are the other ct.* docs?'
+                    }
                 ]
             }, {
-                title: 'Built-in ct.js classes',
+                text: 'Built-in ct.js classes',
                 collapsable: false,
                 children: [
-                    ['Background.md', 'Background'],
-                    ['Copy.md', 'Copy'],
-                    ['Room.md', 'Room']
+                    {
+                        link: '/Background',
+                        text: 'Background'
+                    }, {
+                        link: '/Copy',
+                        text: 'Copy'
+                    }, {
+                        link: '/Room',
+                        text: 'Room'
+                    }
                 ]
             }, {
-                title: 'Tips & tricks',
+                text: 'Tips & tricks',
                 collapsable: false,
                 children: [
                     'actions',
@@ -114,38 +136,71 @@ module.exports = {
                     'gamedev-resources'
                 ]
             }, {
-                title: 'Working with assets',
+                text: 'Working with assets',
                 collapsable: false,
                 children: [
-                    ['bitmap-fonts.md', 'Using bitmap fonts'],
-                    ['skeletal-animation.md', 'Using skeletal animation']
+                    {
+                        link: '/bitmap-fonts',
+                        text: 'Using bitmap fonts'
+                    },
+                    {
+                        link: '/skeletal-animation',
+                        text: 'Using skeletal animation'
+                    }
                 ]
             }, {
-                title: 'Technical stuff',
+                text: 'Technical stuff',
                 collapsable: true,
                 children: [
-                    'event-order.md'
+                    '/event-order'
                 ]
             }, {
-                title: 'Modding ct.js',
+                text: 'Modding ct.js',
                 collapsable: true,
                 children: [
-                    ['modding-structure', 'Directory structure and module\'s manifest'],
-                    ['modding-events-and-injections', 'Extending events with injections'],
-                    ['modding-settings-and-extensions', 'Settings and additional fields'],
-                    ['modding-input-methods', 'Adding new input methods'],
-                    ['modding-typings-and-intellisense', 'Autocompletion and IntelliSense'],
-                    ['modding-fields-declaration', 'Fields reference']
+                    {
+                        link: '/modding-structure',
+                        text: 'Directory structure and module\'s manifest'
+                    },  {
+                        link: '/modding-events-and-injections',
+                        text: 'Extending events with injections'
+                    },  {
+                        link: '/modding-settings-and-extensions',
+                        text: 'Settings and additional fields'
+                    },  {
+                        link: '/modding-input-methods',
+                        text: 'Adding new input methods'
+                    },  {
+                        link: '/modding-typings-and-intellisense',
+                        text: 'Autocompletion and IntelliSense'
+                    },  {
+                        link: '/modding-fields-declaration',
+                        text: 'Fields reference'
+                    }
                 ]
             }, {
-                title: 'Troubleshooting',
+                text: 'Troubleshooting',
                 collapsable: false,
                 children: [
-                    ['migration-0to1', 'Migration from 0.x to 1.x'],
-                    ['migration-1-2to1-3', 'Migration from 1.2 to 1.3'],
-                    ['troubleshooting-teared-background', 'Background splits into squares!'],
-                    ['troubleshooting-leaking-pixels', 'Textures have leaked pixels!'],
-                    ['troubleshooting-sounds-not-playing', 'Sounds don\'t play at game start!']
+                    {
+                        link: '/migration-0to1',
+                        text: 'Migration from 0.x to 1.x'
+                    }, {
+                        link: '/migration-1-2to1-3',
+                        text: 'Migration from 1.2 to 1.3'
+                    }, {
+                        link: '/migration-1to2',
+                        text: 'Migration from 1.x to 2.0'
+                    }, {
+                        link: '/troubleshooting-teared-background',
+                        text: 'Background splits into squares!'
+                    }, {
+                        link: '/troubleshooting-leaking-pixels',
+                        text: 'Textures have leaked pixels!'
+                    }, {
+                        link: '/troubleshooting-sounds-not-playing',
+                        text: 'Sounds don\'t play at game start!'
+                    }
                 ]
             }
         ],
@@ -165,31 +220,44 @@ module.exports = {
                 // text for the edit-on-github link
                 editLinkText: 'Помогите сделать эту страницу лучше!',
                 sidebar: [
-                    ['/', 'Русская документация пока что неполная и может расходиться с английской!'],
-                    ['ru/', 'Главная'], {
+                    {
+                        link: '/',
+                        text: 'Русская документация пока что неполная и может расходиться с английской!'
+                    }, {
+                        link: '/ru/',
+                        text: 'Главная'
+                    }, {
                         collapsable: false,
-                        title: 'Уроки',
+                        text: 'Уроки',
                         children: [
-                            'ru/tut-making-platformer',
-                            'ru/tut-making-shooter'
+                            '/ru/tut-making-platformer',
+                            '/ru/tut-making-shooter'
                         ],
                     }, {
-                        title: 'Ядро',
+                        text: 'Ядро',
                         collapsable: false,
                         children: [
-                            'ru/ct',
-                            ['ru/ct.inputs', 'ct.inputs и ct.actions'],
-                            'ru/ct.res',
-                            'ru/ct.rooms',
-                            'ru/ct.sound',
-                            'ru/ct.styles',
-                            'ru/ct.types',
-                            ['ru/ct.u', 'ct.u (утилиты)'],
-                            ['ru/catmoddocs', 'Где документация к модулям?']
+                            '/ru/ct',
+                            {
+                                link: '/ru/ct.inputs',
+                                text: 'ct.inputs и ct.actions'
+                            },
+                            '/ru/ct.res',
+                            '/ru/ct.rooms',
+                            '/ru/ct.sound',
+                            '/ru/ct.styles',
+                            '/ru/ct.types',
+                            {
+                                link: '/ru/ct.u',
+                                text: 'ct.u (утилиты)'
+                            }, {
+                                link: '/ru/catmoddocs',
+                                text: 'Где документация к модулям?'
+                            }
                         ]
                     },
                     {
-                        title: 'Подсказки и советы',
+                        text: 'Подсказки и советы',
                         collapsable: false,
                         children: [
                             'ru/actions'
@@ -211,62 +279,88 @@ module.exports = {
                 // text for the edit-on-github link
                 editLinkText: 'Ajude a melhorar esta página!',
                 sidebar: [
-                    ['/', 'A documentação em português ainda está incompleta e pode divergir do inglês!'],
-                    ['pt_BR/', 'Página Inicial'], {
-                        title: 'Introdução ao JS',
+                    {
+                        link: '/',
+                        text: 'A documentação em português ainda está incompleta e pode divergir do inglês!'
+                    }, {
+                        link: '/pt_BR/',
+                        text: 'Página Inicial'
+                    }, {
+                        text: 'Introdução ao JS',
                         collapsable: false,
                         children: [
-                            'pt_BR/jsintro_pt1',
-                            'pt_BR/jsintro_pt2'
+                            '/pt_BR/jsintro_pt1',
+                            '/pt_BR/jsintro_pt2'
                         ],
                     }, {
                         collapsable: false,
-                        title: 'Tutoriais',
+                        text: 'Tutoriais',
                         children: [
-                            'pt_BR/tut-making-shooter',
-                            'pt_BR/tut-making-platformer'
+                            '/pt_BR/tut-making-shooter',
+                            '/pt_BR/tut-making-platformer'
                         ],
                     }, {
-                        title: 'Biblioteca Principal',
+                        text: 'Biblioteca Principal',
                         collapsable: false,
                         children: [
-                            'pt_BR/ct',
-                            ['pt_BR/ct.inputs', 'ct.inputs e ct.actions'],
-                            'pt_BR/ct.res',
-                            'pt_BR/ct.rooms',
-                            'pt_BR/ct.sound',
-                            'pt_BR/ct.styles',
-                            'pt_BR/ct.types',
-                            ['pt_BR/ct.u', 'ct.u (Utilitários)'],
-                            ['pt_BR/catmoddocs', 'Onde está a documentação para os outros módulos ct.*?']
+                            '/pt_BR/ct',
+                            {
+                                link: '/pt_BR/ct.inputs',
+                                text: 'ct.inputs e ct.actions'
+                            },
+                            '/pt_BR/ct.res',
+                            '/pt_BR/ct.rooms',
+                            '/pt_BR/ct.sound',
+                            '/pt_BR/ct.styles',
+                            '/pt_BR/ct.types',
+                            {
+                                link: '/pt_BR/ct.u',
+                                text: 'ct.u (Utilitários)'
+                            },  {
+                                link: '/pt_BR/catmoddocs',
+                                text: 'Onde está a documentação para os outros módulos ct.*?'
+                            }
                         ]
                     }, {
-                        title: 'Dicas & truques',
+                        text: 'Dicas & truques',
                         collapsable: false,
                         children: [
-                            'pt_BR/actions',
-                            'pt_BR/localstorage',
-                            'pt_BR/game-pause'
+                            '/pt_BR/actions',
+                            '/pt_BR/localstorage',
+                            '/pt_BR/game-pause'
                         ]
                     }, {
-                        title: 'Trabalhando com assets',
+                        text: 'Trabalhando com assets',
                         collapsable: false,
                         children: [
-                            ['pt_BR/skeletal-animation.md', 'Usando animação skeletal']
+                            {
+                                link: '/pt_BR/skeletal-animation.md',
+                                text: 'Usando animação skeletal'
+                            }
                         ]
                     }, {
-                        title: 'Estendendo ct.js',
+                        text: 'Estendendo ct.js',
                         collapsable: false,
                         children: [
-                            ['pt_BR/making-mods', 'Criando os seus próprios mods']
+                            {
+                                link: '/pt_BR/making-mods',
+                                text: 'Criando os seus próprios mods'
+                            }
                         ]
                     }, {
-                        title: 'Solução de problemas',
+                        text: 'Solução de problemas',
                         collapsable: false,
                         children: [
-                            ['pt_BR/migration-0to1', 'Migrando de 0.x para 1.x'],
-                            ['pt_BR/troubleshooting-teared-background', 'Minha imagem de fundo dividida em quadrados!'],
-                            ['pt_BR/troubleshooting-sounds-not-playing', 'Som não toca no início do jogo!']
+                            {
+                                link: '/pt_BR/migration-0to1',
+                                text: 'Migrando de 0.x para 1.x'
+                            }, {
+                                link: '/pt_BR/troubleshooting-teared-background',
+                                text: 'Minha imagem de fundo dividida em quadrados!'
+                            }, {
+                                link: '/pt_BR/troubleshooting-sounds-not-playing',
+                                text: 'Som não toca no início do jogo!'
+                            }
                         ]
                     }
                 ]
