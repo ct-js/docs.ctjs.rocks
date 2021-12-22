@@ -335,10 +335,10 @@ Let's write some code to red bullets. Add this code to `On Create` section of La
 this.speed = 8;
 this.direction = 270;
 
-this.rotation = ct.random.deg();
+this.angle = ct.random.deg();
 ```
 
-`this.rotation` rotates a copy's texture. `ct.random.deg()` returns a random value between 0 and 360, which is handy while defining angular values.
+`this.angle` rotates a copy's texture. `ct.random.deg()` returns a random value between 0 and 360, which is handy while defining angular values.
 
 ::: tip
 There is also `this.scale.x` and `this.scale.y`, which sets a copy's horizontal and vertical scale accordingly, and `this.alpha` which manipulates its opacity (0 means fully transparent, 1 — fully opaque).
@@ -353,10 +353,10 @@ if (this.y > ct.viewHeight + 40) {
 
 this.move();
 
-this.rotation += 4 * ct.delta;
+this.angle -= 4 * ct.delta;
 ```
 
-`this.rotation += 4 * ct.delta;` means that we will rotate a Copy by approximately 4 degrees at each step.
+`this.angle -= 4 * ct.delta;` means that we will rotate a Copy by approximately 4 degrees at each step. `ct.delta` will balance out stuff if the game suffers from inconsistent FPS.
 
 We will define logic for destroying player's ship later. For now, it's time to add enemy and asteroid generation during the playtime.
 
