@@ -22,11 +22,11 @@ Gets the distance between points (x1;y1) and (x2;y2).
 
 ### `ct.u.rotate(x, y, deg)`
 
-Rotates a given vector by a given angle. Returns an array with two entries: `x` and `y` components.
+Rotates a given vector by a given angle. Returns an object (`PIXI.Point`) with two properties: `x` and `y` components.
 
 ### `ct.u.rotateRad(x, y, rad)`
 
-The same as `ct.u.rotate`, but the angle is given in radians.
+The same as `ct.u.rotate`, but the angle is given in radians. Returns an object (`PIXI.Point`) with two properties: `x` and `y` components.
 
 ### `ct.u.degToRad(deg)`
 
@@ -44,11 +44,11 @@ Returns a difference between two directions, in degrees.
 
 ### `ct.u.uiToGameCoord(x, y)`
 
-Converts from UI coordinates to game coordinates. Returns an array with two elements: x and y coordinates.
+Converts from UI coordinates to game coordinates. Returns an object (`PIXI.Point`) with two properties: `x` and `y` components.
 
 ### `ct.u.gameToUiCoord(x, y)`
 
-Converts from game coordinates to ui coordinates. Returns an array with two elements: x and y coordinates.
+Converts from game coordinates to ui coordinates. Returns an object (`PIXI.Point`) with two properties: `x` and `y` components.
 
 ## Math
 
