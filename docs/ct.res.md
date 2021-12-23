@@ -1,29 +1,84 @@
 # ct.res
 
-This object manages all the resources needed for your game, including images and sounds. Usually its methods are not used as all the needed work is done by ct.IDE, though you may find it useful while loading additional or dynamic assets during the game process.
+This module is responsible for loading resources in your game projects. With this module, you can load additional resources during your play.
 
-## Methods and properties
+## `ct.res.loadScript(url: string): Promise<void>;`
 
-### `ct.res.registry`
+Loads and executes a script by its URL. The URL of the script file can be relative or absolute.
 
-An object with metadata of loaded textures, including these textures, their axes, collision shapes.
+## `ct.res.loadTexture(url: string, name: string, textureOptions: ITextureOptions): Promise<PIXI.Texture[]>;`
 
-### `ct.res.skelRegistry`
+Loads an individual image as a named ct.js texture.
 
-Contains data of all imported skeletal animations of the game.
+* `url` - The path to the source image.
+* `name` - The name of the resulting ct.js texture as it will be used in your code.
+* `textureOptions` - Information about texture's axis and collision shape:
+    * `shape`: see "Creating collision shapes dynamically" for ct.place inside your ct.IDE.
+    * `anchor`:
+        * `x`: a number from 0 to 1, with 0 being the left side, 0.5 being the center and 1 being the right side.
+        * `y`: a number from 0 to 1, with 0 being the top side, 0.5 being the center and 1 being the bottom side.
 
-### `ct.res.sounds`
+### Example: loading an additional texture into ct.js
 
-An object with metadata of all the sounds in the game.
+```js
+ct.res.loadTexture('Background_42.png', 'Background_42', {
+    anchor: {
+        x: 0,
+        y: 0
+    }
+})
+.then(textureName => {
+    // Adds a background to the current room at depth -100.
+    ct.backgrounds.add(textureName, 0, -100);
+});
+```
 
-### `ct.res.getTexture(name: String, frame: Number)`
+## `ct.res.loadDragonBonesSkeleton(ske: string, tex: string, png: string, name: string): void;`
 
-Returns a Pixi texture of a given ct.js texture, that is required for making custom UI elements and other stuff, e.g. for adding [Pixi's Sprites](http://pixijs.download/release/docs/PIXI.Sprite.html).
+Loads a skeleton made in DragonBones into the game
+* `ske` -  the path to the `_ske.json` file that contains the armature and animations.
+* `tex` - the path to the `_tex.json` file that describes the atlas with the skeleton's textures.
+* `png` - the path to the `_tex.png` atlas that contains all the textures of the skeleton.
+* `name` - the name of the skeleton as it will be used in your ct.js game.
 
-If `name` is equal to `-1`, then an empty texture is returned.
+## `ct.res.loadAtlas(url: string): Promise<string[]>;`
 
-If `frame` is specified, then a single texture is returned. Otherwise, all the textures in a ct.js animation are returned as an array.
+Loads a Texture Packer compatible .json file with its source image,
+adding ct.js textures to the game.
 
-### `ct.res.fetchImage(url: String, callback: Function)`
+* `url` - The path to the JSON file that describes the atlas' textures.
 
-Loads an image and adds it to the current image collection (`ct.res.registry`). When provided with a callback, it sends a collection of loaded resources.
+The method returns a promise that resolves into an array of all the loaded ct.js textures (an array of texture names).
+
+## `ct.res.loadBitmapFont(url: string, name: string): Promise<string>;`
+
+Loads a bitmap font by its XML file.
+* `url` - The path to the XML file that describes the bitmap fonts.
+* `name` - The name of the font.
+
+Returns a promise that resolves into the font's name (the one you've passed with `name`).
+
+## `ct.res.getTexture(name: string): PIXI.Texture[];`
+
+Gets a pixi.js texture from a ct.js' texture name, so that it can be used in pixi.js objects.
+
+* `name` The name of the ct.js texture. If `-1` (a number) is provided instead of the texture's name, then an empty texture will be returned.
+
+Returns an array with all the frames of this ct.js' texture. There is an expanded form of ct.res.getTexture that returns individual frames below.
+
+## `ct.res.getTexture(name: string, frame: number): PIXI.Texture;`
+
+Gets a pixi.js texture from a ct.js' texture name, so that it can be used in pixi.js objects.
+* `name` — The name of the ct.js texture. If `-1` (a number) is provided instead of the texture's name, then an empty texture will be returned.
+* `frame` — The frame to extract.
+
+Returns a single PIXI.Texture.
+
+## `ct.res.makeSkeleton(name: string, skin?: string): unknown;`
+Creates a DragonBones skeleton, ready to be added to your copies.
+* `name` - The name of the skeleton asset.
+* `skin` - Optional; allows you to specify the needed skin.
+
+Returns the created skeleton.
+
+See also: [Using Skeletal Animation in ct.js Projects](skeletal-animation)
