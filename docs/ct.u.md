@@ -8,6 +8,15 @@ This object contains a number of handy utility functions to ease the development
 
 Gets the horizontal part of a vector.
 
+#### Example: Spawn a bullet relative to the hero sprite
+
+```js
+var dx = ct.u.ldx(40, this.angle),
+    dy = ct.u.ldy(40, this.angle);
+var bullet = ct.types.copy('Bullet', this + dx, this + dy);
+bullet.direction = this.angle;
+```
+
 ### `ct.u.ldy(length, direction)` and `ct.u.lengthDirY(length, direction)`
 
 Gets the vertical part of a vector.
