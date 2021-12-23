@@ -24,3 +24,9 @@ There are now two separate methods for spawning copies, though:
 * [`ct.types.copy(type, x, y, exts)`]()
 
 Note that arguments shifted a bit in `ct.types.copyIntoRoom(type, x, y, container, exts)` compared to the previous `ct.types.copy` method.
+
+## `ct.u.rotate`, `ct.u.rotateRad`, `ct.u.uiToGameCoord`, `ct.u.gameToUiCoord` now return `PIXI.Point` instead of arrays
+
+`PIXI.Point` are objects with `x`, `y` properties plus a few handy methods for copying them.
+
+`ct.camera.uiToGameCoord`, `ct.camera.gameToUiCoord`, and all `ct.camera.get(XY)Corner` do the same as well as they are dependant on these methods.
