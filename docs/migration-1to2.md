@@ -30,3 +30,7 @@ Note that arguments shifted a bit in `ct.types.copyIntoRoom(type, x, y, containe
 `PIXI.Point` are objects with `x`, `y` properties plus a few handy methods for copying them.
 
 `ct.camera.uiToGameCoord`, `ct.camera.gameToUiCoord`, and all `ct.camera.get(XY)Corner` do the same as well as they are dependant on these methods.
+
+## Default `ct.sound` is now a catmod
+
+Usually it won't cause any issues, but in case you have errors from ct.res about no sound systems, turn one of the sound catmods on in your project's settings.
