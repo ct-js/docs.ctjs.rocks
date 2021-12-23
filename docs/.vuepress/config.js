@@ -170,6 +170,9 @@ module.exports = {
                         link: '/modding-input-methods',
                         text: 'Adding new input methods'
                     },  {
+                        link: '/modding-adding-sound-module',
+                        text: 'Adding a new sound package'
+                    },  {
                         link: '/modding-typings-and-intellisense',
                         text: 'Autocompletion and IntelliSense'
                     },  {
