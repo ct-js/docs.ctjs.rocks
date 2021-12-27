@@ -72,6 +72,12 @@ module.exports = {
                     'tut-polishing-jettycat'
                 ],
             }, {
+                collapsable: false,
+                title: 'Building and Deployment',
+                children: [
+                    'building-your-game',
+                ],
+            }, {
                 title: 'The `core` library',
                 collapsable: false,
                 children: [
