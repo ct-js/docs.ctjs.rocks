@@ -27,20 +27,6 @@ Open the `Project` tab, select the `Branding` side tab, here we have some brandi
 2. **Accent:** This changes the accent color of the loading screen.
 3. Here you can change whether the accent color affects the background or fill by inverting it. You can also hide the "Made with ct.js" loading screen here.
 
-## Render Options
-
-In the `Project` tab, select the `Render Options` side tab, in this area we have all available render specific options.
-
-![](./images/buildingAndDeployment/building-your-game-render-options.png)
-
-1. **Frame Rate:** This is the number of FPS (Frames Per Second) that your game will render at.
-2. Here you will find various options that affect how your game gets rendered.
-3. **Launch Mode:** When building a desktop version of your game, you can choose how the game gets launched.
-
-:::tip
-If you are making a pixel art game and you would like to preserve the sharp pixel look, you should make sure the `Disable image smoothing` option is checked.
-:::
-
 ## Export Settings
 
 In the `Project` tab, select the `Export Settings`side tab.
@@ -57,13 +43,13 @@ In the `Main Menu` tab, you will see two export options under the `Deployment` h
 
 ### Export for web
 
-Exporting for the web is as easy as pressing the button. Once the game is finished exporting, you will be presented with the exported zip file containing your game.
+Exporting for the web is as easy as pressing the button. Once the game is finished exporting, you will be presented with the exported zip file containing your game files.
 
 ![](./images/buildingAndDeployment/building-your-game-builds-web.png)
 
 ### Export for desktop
 
-Exporting for desktop is as easy as pressing the button and choosing the OS you want to build an executable for.
+When exporting for Desktop you will need to choose the OS that you want to build an executable for.
 
 ![](./images/buildingAndDeployment/building-your-game-export-desktop.png)
 
