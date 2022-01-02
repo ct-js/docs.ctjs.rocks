@@ -1,2 +1,6 @@
+# Mac
+.DS_Store
+# Editor Specific
+.vscode
 node_modules
 docs/.vuepress/dist
