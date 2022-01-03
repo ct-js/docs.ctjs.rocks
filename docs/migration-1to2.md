@@ -34,3 +34,7 @@ Note that arguments shifted a bit in `ct.types.copyIntoRoom(type, x, y, containe
 ## Default `ct.sound` is now a catmod
 
 Usually it won't cause any issues, but in case you have errors from ct.res about no sound systems, turn one of the sound catmods on in your project's settings.
+
+## `ct.mouse` and `ct.touch` are now deprecated in favor of `ct.pointer`
+
+This causes no immediate issues, but consider using `ct.pointer` module in your future projects. It covers functionality of both `ct.mouse` and `ct.touch` with familiar API, as well as supports additional features like pressure reading, pen position, and an abstraction over Pointer Lock API.
