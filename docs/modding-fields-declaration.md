@@ -60,6 +60,7 @@ declare interface IExtensionField {
         name: string,
         help?: string
     }>,
+    if?: string, // Tells to show this field only if another field in this module is set (or true-ish)
     fields?: Array<IExtensionField>, // These are for type === 'table'
     // These three are used with type === 'number', 'slider', or 'sliderAndNumber'
     min?: number,
@@ -74,16 +75,16 @@ declare interface IExtensionField {
 
 Here we mark optional fields in form of `key?: type`. The required fields are `name` and `type`. The former is a text label that is shown before an input field; the latter is a string that defines input method displayed for a user. It can be one of these strings:
 
-* `input` – a simple text input for short strings;
-* `textfield` – a large textarea for a long input;
-* `code` – similar to `textfield`, but with monospace font and usually wider than `textfield`;
-* `number` – an input field for integers;
-* `slider` ­– a slider (aka range) input for inputs that are better inputed with mouse; <badge>new in v1.4.2</badge>
-* `sliderAndNumber` ­– displays both a slider and a number in one row; <badge>new in v1.4.2</badge>
-* `checkbox` – a checkbox for Boolean variables;
-* `radio` – a list of predefined values to choose from. This type also requires an `options` array to be set;
-* `texture` – a link to an asset in a project; <badge>new in v1.4</badge>
-* `type` – same as `texture`, but for types; <badge>new in v1.4</badge>
+* `input` — a simple text input for short strings;
+* `textfield` — a large textarea for a long input;
+* `code` — similar to `textfield`, but with monospace font and usually wider than `textfield`;
+* `number` — an input field for integers;
+* `slider` — a slider (aka range) input for inputs that are better inputed with mouse; <badge>new in v1.4.2</badge>
+* `sliderAndNumber` — displays both a slider and a number in one row; <badge>new in v1.4.2</badge>
+* `checkbox` — a checkbox for Boolean variables;
+* `radio` — a list of predefined values to choose from. This type also requires an `options` array to be set;
+* `texture` — a link to an asset in a project; <badge>new in v1.4</badge>
+* `type` — same as `texture`, but for types; <badge>new in v1.4</badge>
 * `point2D` — displays a pair of number inputs with X and Y labels. Stores values as an array of two numbers; <badge>new in v1.4</badge>
 * `h1`, `h2`, `h3` and `h4`. These are not really for any input, but display a heading to categorize fields in catmod's settings tab. Such fields require `type` and `name` only; <badge>new in v1.4</badge>
 * `table` — editable series of complex objects in a table form. <badge>new in v1.5</badge>
