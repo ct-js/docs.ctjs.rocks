@@ -48,6 +48,15 @@ Note that arguments shifted a bit in `ct.templates.copyIntoRoom(type, x, y, cont
 
 `ct.camera.uiToGameCoord`, `ct.camera.gameToUiCoord`, and all `ct.camera.get(XY)Corner` do the same as well as they are dependant on these methods.
 
+## `ct.place` changed to be both more efficient and easy to use
+
+1. `ct.place.occupied`, `ct.place.free` now work both for copies and tiles, so you need just them instead of adding an additional `ct.place.tile` check. Additionally, all the tracing functions now work with tiles as well.
+2. The `multiple` argument was removed from `ct.place.meet` and `ct.place.occupied`. Instead, there are now methods `ct.place.meetMultiple` and `ct.place.occupiedMultiple`, to make code more readable. You may need to rewrite some code to make it work for multiple copies again.
+3. `ct.place.tile` is renamed to `ct.place.tiles`, and is accompanied with `ct.place.copies`.
+4. Additionally, `ct.place` now supports and respects collision shapes of tiles. It is currently of little use with large tilesets, but you can now have individual tiles of circular and other shapes!
+
+See the new docs for ct.place in your ct.js' side panel.
+
 ## Default `ct.sound` is now a catmod
 
 Usually it won't cause any issues, but in case you have errors from ct.res about no sound systems, turn one of the sound catmods on in your project's settings.
