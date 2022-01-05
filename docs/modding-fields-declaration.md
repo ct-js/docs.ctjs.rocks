@@ -79,19 +79,19 @@ Here we mark optional fields in form of `key?: type`. The required fields are `n
 * `textfield` — a large textarea for a long input;
 * `code` — similar to `textfield`, but with monospace font and usually wider than `textfield`;
 * `number` — an input field for integers;
-* `slider` — a slider (aka range) input for inputs that are better inputed with mouse; <badge>new in v1.4.2</badge>
-* `sliderAndNumber` — displays both a slider and a number in one row; <badge>new in v1.4.2</badge>
+* `slider` — a slider (aka range) input for inputs that are better inputed with mouse;
+* `sliderAndNumber` — displays both a slider and a number in one row;
 * `checkbox` — a checkbox for Boolean variables;
 * `radio` — a list of predefined values to choose from. This type also requires an `options` array to be set;
-* `texture` — a link to an asset in a project; <badge>new in v1.4</badge>
-* `type` — same as `texture`, but for types; <badge>new in v1.4</badge>
-* `point2D` — displays a pair of number inputs with X and Y labels. Stores values as an array of two numbers; <badge>new in v1.4</badge>
-* `h1`, `h2`, `h3` and `h4`. These are not really for any input, but display a heading to categorize fields in catmod's settings tab. Such fields require `type` and `name` only; <badge>new in v1.4</badge>
-* `table` — editable series of complex objects in a table form. <badge>new in v1.5</badge>
+* `texture` — a link to an asset in a project;
+* `type` — same as `texture`, but for types;
+* `point2D` — displays a pair of number inputs with X and Y labels. Stores values as an array of two numbers;
+* `h1`, `h2`, `h3` and `h4`. These are not really for any input, but display a heading to categorize fields in catmod's settings tab. Such fields require `type` and `name` only; 
+* `table` — editable series of complex objects in a table form.
 
 For settings, field's `key` must be unique for a module. For extended fields of types and other assets, it should be unique all across a user's codebase, so naming a key in form of `mymodMyfieldname` is a good idea.
 
-## Additional tweaks for number and range inputs <badge>new in v1.4.2</badge>
+## Additional tweaks for number and range inputs
 
 `number`, `slider`, `sliderAndNumber` input types accept additional fields for setting restrictions on input:
 
@@ -129,7 +129,7 @@ You can present a number of choices for your user in a group, and allow them to 
 }
 ```
 
-## Tables <badge>new in v1.5</badge>
+## Tables
 
 Tables allow users to describe an array of entities of a specific structure. Users can add/remove rows, and reorder them. Nested tables are supported, though they look terrible.
 
@@ -206,7 +206,7 @@ The exported value will then be the name of an asset, as it is displayed in IDE 
 
 This works both for injections and extensions for types. For injections, if you have a `key` in form of `yourVarName@@assetType`, matches with `/*%yourVarName%*/` or `%yourVarName%` will be replaced.
 
-## Field groups <badge>new in v1.6.0</badge>
+## Field groups
 
 You can create a collapsable group of fields by setting `type` parameter of a field to `group`. This helps saving space at type and room editors or simlpy hiding less-used fields.
 
