@@ -30,14 +30,12 @@ footer: Ct.js documentation. Except where otherwise noted, content is licensed u
         <a href="/ct-concepts.html" class="button">Go to ct.js docs →</a>
     </div>
     <div class="feature" style="flex-basis: 65%; max-width: 65%;">
-        <h2>Notable additions in ct.js v1.6 and v1.7</h2>
+        <h2>Notable changes and additions in ct.js v2.0</h2>
         <ul>
-            <li>Qewer wrote a nice tutorial about <a href="/dragging-copies.html">making <b>drag-and-drop</b> interactions</a> in your game.</li>
-            <li>Two dope modules added for spectacular visual effects: <code>ct.light</code> for dynamic lighting system by Comigo and <code>ct.filters</code> with premade visual effects and for adding custom shaders, made by SN. See them in your engine!</li>
-            <li>Another cool catmod is <code>ct.nakama</code> that integrates ct.js with an open-source online gaming platform Nakama. This one comes with <a href="https://www.youtube.com/watch?v=Glo9t3TV1vg&list=PLOoNs4RDYDKDtF5LO-LwuJiRD6m81rI8e">tutorial video series</a> by Alexandar Gyurov!</li>
-            <li>Oh yeah, there is also <code>ct.matter</code> named after 2D physics engine Matter.js. Shortly, it is time to create Angry Birbs in ct.js!</li>
-            <li>We added a small <a href="/gamedev-resources.html">list of <b>free gamedev resources</b></a> to help newcomers with their journey. All the linked resources are free!</li>
-            <li>Catmods can now <a href="/modding-fields-declaration.html#field-groups-new-in-v1-6-0">group their fields</a> into collapsible sections with a special <code>group</code> input. See live inside <code>ct.light</code> module!</li>
+            <li>API has changed! The first thing you will notice is that `ct.types` is now `ct.templates`, but there is much more in our <a href="/migration-1to2">migration guide</a>. Do check it out.</li>
+            <li><code>ct.res</code> got a major rewrite and now allows you to <a href="/ct.res.html">dynamically load textures, fonts, and skeletal animations</a> into your game. More to come!</li>
+            <li>There is now a doc page for the room editor, and as the practice shows, not everyone knows about everything it can do. <a href="/room-editor.html">Have a look</a>, won't ya?</li>
+            <li><a href="/modding-fields-declaration.html">Catmods now have an `if` key in their fields</a>, allowing catmod developers to display controls conditionally.</li>
         </ul>
         <a href="https://ctjs.rocks/changelog/" target="_blank">Changelog →</a>
     </div>
