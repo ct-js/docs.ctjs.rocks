@@ -135,9 +135,13 @@ module.exports = {
                     'gamedev-resources'
                 ]
             }, {
-                text: 'Working with assets',
+                text: 'Working with the editor',
                 collapsable: false,
                 children: [
+                    {
+                        link: '/room-editor',
+                        text: 'Using the room editor'
+                    },
                     {
                         link: '/bitmap-fonts',
                         text: 'Using bitmap fonts'
