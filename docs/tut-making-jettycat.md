@@ -8,7 +8,7 @@ That's what we will do:
 
 [[toc]]
 
-::: warn
+:::warning
 As you can see, this is not a "Hello world" example, but rather a guide to create a full game from scratch. Give yourself plenty of time to finish it!
 :::
 
