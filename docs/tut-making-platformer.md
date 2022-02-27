@@ -69,15 +69,15 @@ Save your asset. If you look into other textures, you will see that they all hav
 
 ## Creating a Robot Character and Ground
 
-Open the "Types" tab and create a new type. Call it "Robot", set its sprite to `Robot_Idle`, and save it.
+Open the "Template" tab and create a new template. Call it "Robot", set its sprite to `Robot_Idle`, and save it.
 
-![Editing a type](./images/tutPlatformer_09.png)
+![Editing a template](./images/tutPlatformer_09.png)
 
 ::: tip
-Types are like templates, from which copies are created. We fill our levels (a.k.a. rooms) with copies, and they are the things that interact with each other on the screen, but each copy was created from a certain type.
+Template are used to create specific identical copies. We fill our levels (a.k.a. rooms) with copies, and they are the things that interact with each other on the screen, but each copy was created from a certain template.
 :::
 
-Create additional types in the same way:
+Create additional templates in the same way:
 
 * `Rocks`;
 * `Rocks_Top`;
@@ -89,7 +89,7 @@ Click on the "Rooms" tab at the top and create a new room. Set its name to "Leve
 
 ![Editing a room](./images/tutPlatformer_10.png)
 
-Then draw a level by clicking on a type on the left and then placing it with your mouse in the big area on the right. Hold `Shift` to add multiple copies at once. Don't forget about the robot!
+Then draw a level by clicking on a template on the left and then placing it with your mouse in the big area on the right. Hold `Shift` to add multiple copies at once. Don't forget about the robot!
 
 You can expand your level to any side, and copies don't need to be inside the blue frame. This frame, which is manipulated by view's size, just sets the initially visible part of your level.
 
@@ -137,15 +137,15 @@ Though this scheme may be simplified down to just two actions (see [examples in 
 
 ### Coding Collision Detection and Movement
 
-Now, move to the "Types" tab at the top of the screen and open the `Rocks` type. In the left column, fill the field called "Collision group" with `Solid`:
+Now, move to the "Templates" tab at the top of the screen and open the `Rocks` template. In the left column, fill the field called "Collision group" with `Solid`:
 
-![Adding a collision group to a type](./images/tutPlatformer_26.png)
+![Adding a collision group to a template](./images/tutPlatformer_26.png)
 
-This will tell the `ct.place` catmod that this particular type belongs to a special collision group called "Solid". The name of this group can be of any value, and the number of such groups is unlimited. For now, one group will be enough.
+This will tell the `ct.place` catmod that this particular template belongs to a special collision group called "Solid". The name of this group can be of any value, and the number of such groups is unlimited. For now, one group will be enough.
 
 Add the same line to `Rocks_Top` and `Rocks_Platform`.
 
-Now open the `Robot` type. If you completed the "Space Shooter" tutorial before, you may recall that movement is made using either direct manipulation of a copy's parameters or by using built-in variables like `this.speed` or `this.direction`. The truth is that the latter never worked with platformers, even outside ct.js! We will need to write something more complicated. Be prepared! 😃
+Now open the `Robot` template. If you completed the "Space Shooter" tutorial before, you may recall that movement is made using either direct manipulation of a copy's parameters or by using built-in variables like `this.speed` or `this.direction`. The truth is that the latter never worked with platformers, even outside ct.js! We will need to write something more complicated. Be prepared! 😃
 
 The idea of a side-view movement is that we will have a value by which we would like to move to, and then we will check whether we are colliding with something or not, pixel-by-pixel.
 
@@ -250,7 +250,7 @@ If we launch the game now, we will be able to move the Robot around. There is an
 
 It is not a hard issue, though. If we dig into the ct.js docs, we will find a `ct.camera` entity with `ct.camera.follow`, `ct.camera.borderX` and `ct.camera.borderY` exactly for following a copy.
 
-Open the `Robot` type and its "On Create" Code. Add this code to the end:
+Open the `Robot` template and its "On Create" Code. Add this code to the end:
 
 ```js
 ct.camera.follow = this;
@@ -264,7 +264,7 @@ The camera will now follow the Robot.
 
 We will now add deadly traps and water moats, and checkpoints so the player restarts at them and not at the beginning of the level.
 
-Create new types for `Water`, `Water_Top`, `Spikes` and `Checkpoint` assets.
+Create new templates for `Water`, `Water_Top`, `Spikes` and `Checkpoint` assets.
 
 Create a new room and call it `Level_02`. Set its size to 1024x576 and add a background. Create a dangerous level with spikes and lakes.
 
@@ -274,7 +274,7 @@ Place checkpoint boxes before and/or after hazardous places. Don't be afraid to 
 
 Here the supposed level's end is placed on the top middle platform. I also placed some platforms outside the screenshot for gathering future crystals.
 
-Now let's move to the `Checkpoint`'s type and edit its "On Step" code.
+Now let's move to the `Checkpoint`'s template and edit its "On Step" code.
 
 We will check for collision with the Robot, and when it happens, we will store a rescue point inside the Robot's copy. Remove the line `this.move();` and add this code:
 
@@ -289,22 +289,18 @@ if (robot) {
 ::: tip
 The line `this.move();` is responsible for moving copies that use standard ct variables around. In this case, the checkpoint shouldn't move at all. 😉
 
-`ct.place.meet` is almost the same as `ct.place.occupied`, but it checks against copies' types, not their collision group.
+`ct.place.meet` is almost the same as `ct.place.occupied`, but it checks against copies' templates, not their collision group.
 :::
 
 Here we also shift the stored point by 32x32 pixels, because the checkpoint's axis is placed in its top-left corner, but the Robot's axis is placed at the middle bottom point. Because of that, the Robot would respawn a bit left and above the desired central point.
 
 Go to the "On Create" tab and add a line `this.visible = false;`. This will make checkpoints invisible during the gameplay.
 
-Now go to the `Spikes` type and mark them as a "Deadly" collision:
-
-```js
-this.ctype = 'Deadly';
-```
+Now go to the `Spikes` template and set their collision as "Deadly" in the left column, right under template's name.
 
 Do the same with `Water` and `Water_Top`.
 
-Now open the `Robot` type again, and add this code to the top of its `On Step` code:
+Now open the `Robot` template again, and add this code to the top of its `On Step` code:
 
 ```js
 if (ct.place.occupied(this, this.x, this.y, 'Deadly')) {
@@ -400,7 +396,7 @@ Here's the idea:
 * There will be level exits that will collide with the Robot.
 * When they collide, the exit will read the room's variable and switch to the next room.
 
-Create a new type and call it an `Exit`. Set its texture. Then open the "On Step" tab and write this code:
+Create a new template and call it an `Exit`. Set its texture. Then open the "On Step" tab and write this code:
 
 ```js
 // Are there next rooms defined?
@@ -435,7 +431,7 @@ Create additional exits leading to secret sublevels and back. Get [more assets f
 
 ### Adding Crystals
 
-Create a new type called `GreenCrystal` and set its sprite. Write this code to its "On Step" event:
+Create a new template called `GreenCrystal` and set its sprite. Write this code to its "On Step" event:
 
 ```js
 if (ct.place.meet(this, this.x, this.y, 'Robot')) {
@@ -463,12 +459,12 @@ Call a new script as `inGameRoomStart`. Write this code:
 ```js
 var inGameRoomStart = function (room) {
     room.crystals = 0;
-    room.crystalsTotal = ct.types.list['GreenCrystal'].length;
+    room.crystalsTotal = ct.templates.list['GreenCrystal'].length;
 };
 ```
 
 ::: tip
-`ct.types.list['TypeName']` returns an array of all the copies of the given type in the room. `length` returns the size of an array.
+`ct.templates.list['TemplateName']` returns an array of all the copies of the given template in the room. `length` returns the size of an array.
 :::
 
 ![Creating a reusable script](./images/tutPlatformer_21.png)
@@ -499,7 +495,7 @@ We can also add a thick white line to our text. Open the "Stroke" tab, then set 
 
 ![Setting a style's line style](./images/tutPlatformer_23.png)
 
-We should now create a new type called `CrystalsWidget`. It will display a crystal icon and a counter. Set its sprite to `GreenCrystal`, and write the following in its OnCreate code:
+We should now create a new template called `CrystalsWidget`. It will display a crystal icon and a counter. Set its sprite to `GreenCrystal`, and write the following in its OnCreate code:
 
 ```js
 this.text = new PIXI.Text('0 / ' + ct.room.crystalsTotal, ct.styles.get('CrystalCounter'));
@@ -555,7 +551,7 @@ This is mostly similar to gathering crystals, though there are some changes:
 Try making it all by yourself! If you get lost, just look for instructions below. Now, stop scrolling! 😃
 :::
 
-Create a new type called `Heart` and set a corresponding sprite. Add this code to its "On Step" tab:
+Create a new template called `Heart` and set a corresponding sprite. Add this code to its "On Step" tab:
 
 ```js
 if (ct.place.meet(this, this.x, this.y, 'Robot')) {
@@ -570,7 +566,7 @@ Don't forget to place actual heart bonuses on your levels!
 
 We will also need a style for a counter. The process is the same, and a suitable color is `#E85017`. We can even duplicate the existing style! Let's call this style a `HeartCounter`.
 
-We will need another widget for health, too. Create a new type called `HeartsWidget`, set its sprite to the `Heart`, and set its OnCreate code to this:
+We will need another widget for health, too. Create a new template called `HeartsWidget`, set its sprite to the `Heart`, and set its OnCreate code to this:
 
 ```js
 this.text = new PIXI.Text(ct.room.lives, ct.styles.get('HeartCounter'));
@@ -587,7 +583,7 @@ Now add this to HeartsWidget's OnDraw code:
 this.text.text = ct.room.lives;
 ```
 
-Then add a copy of this type to the room `LayerUI`.
+Then add a copy of this template to the room `LayerUI`.
 
 Now modify the respawn code of the `Robot` so it loses one heart at each respawn:
 
@@ -611,7 +607,7 @@ That's it! Time for little testing.
 
 ## Adding moving platforms
 
-Create a new type called `Platform` and select its corresponding sprite. Create a new level called `Level_03` that features wide moats or long traps with platforms that move you around.
+Create a new template called `Platform` and select its corresponding sprite. Create a new level called `Level_03` that features wide moats or long traps with platforms that move you around.
 
 ![Comigo's third level](./images/tutPlatformer_22.png)
 
@@ -621,12 +617,13 @@ The moving platforms will act in this way:
 * If a platform detects that it will touch a `Solid` object in the next frame, it flips their direction.
 * Platforms move the player if it appears to be right above the platform.
 
-Let's open a `Platform`'s type and initialize its speed and collision group:
+Let's open a `Platform`'s template and initialize its speed:
 
 ```js
 this.speed = 2;
-this.ctype = 'Solid';
 ```
+
+Also, set its collision group as Solid in the left column.
 
 Then, add some code to the "On Step" tab to move our Robot:
 
@@ -656,9 +653,9 @@ Here is a better code:
 ```js
 var robot = ct.place.meet(this, this.x, this.y, 'Robot');
 if (robot) {
-    this.ctype = undefined;
+    this.cgroup = undefined;
 } else {
-    this.ctype = 'Solid';
+    this.cgroup = 'Solid';
     robot = ct.place.meet(this, this.x, this.y - 1, 'Robot');
     if (robot) {
         robot.x += ct.u.ldx(this.speed, this.direction);
@@ -672,7 +669,7 @@ if (ct.place.occupied(this, this.x + this.speed * ct.delta, this.y, 'Solid')) {
 this.move();
 ```
 
-What happens here? First of all, we check whether a robot is already overlapping with a platform. If it does, we tell that the platform should stop being solid by `this.ctype = undefined;`, so that the robot can fall through the platform instead of getting stuck in it. But if there is no collision between the platform and the robot, the platform becomes solid (`this.ctype = 'Solid';`), and we look for the robot once again, but now one pixel above the platform. As we have pixel-perfect collisions, one pixel will be enough.
+What happens here? First of all, we check whether a robot is already overlapping with a platform. If it does, we tell that the platform should stop being solid by `this.cgroup = undefined;`, so that the robot can fall through the platform instead of getting stuck in it. `cgroup` is that collision group field we were editing in the left column of the template editor! If there is no collision between the platform and the robot, the platform becomes solid (`this.cgroup = 'Solid';`), and we look for the robot once again, but now one pixel above the platform. As we have pixel-perfect collisions, one pixel will be enough.
 
 ::: tip On your own!
 Add vertically moving platforms! And make sure they don't squash the Robot. 😉

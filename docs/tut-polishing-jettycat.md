@@ -67,7 +67,7 @@ ct.tween.add({
 
 Firstly, we make a room fully transparent by setting its `alpha` to 0. Then, we call `ct.tween.add` to start a smooth transition. `obj` points to an object that should be animated, and `fields` lists all the properties and values we want to change. The `duration` key sets the length of the effect, in milliseconds. Finally, the `useUiDelta` key tells that animation should run in UI time scale, ignoring our "paused" game state.
 
-We can fade out a UI layer, too. Let's gradually hide the pause menu when the player hits the "continue" button. Open the type `Button_Continue`, and modify its code:
+We can fade out a UI layer, too. Let's gradually hide the pause menu when the player hits the "continue" button. Open the template `Button_Continue`, and modify its code:
 
 ```js
 if (ct.touch.collideUi(this)) {
@@ -97,7 +97,7 @@ Then we start animation for `this.getRoom()`, which will return the room `UI_Pau
 
 Though the "paused" menu fades out slowly, it is still hard for a player to catch up and prevent the cat from bumping into the ground. To prevent that, we can use `ct.tween` to… animate time! `ct.pixiApp.ticker.speed = 1;` can be not just 0 and 1, but also anything in between, and even beyond 1. Large values will make the game run faster, while values close to 0 will slow the game. Thus, we can animate the value `ct.pixiApp.ticker.speed` to make the game transition from paused to fully running state.
 
-Open the type `Button_Continue` again, and modify the script so it fires another `ct.tween.add` after it finishes the first one:
+Open the template `Button_Continue` again, and modify the script so it fires another `ct.tween.add` after it finishes the first one:
 
 ```js {13,14,15,16,17,18,19,20}
 if (ct.touch.collideUi(this)) {
@@ -156,7 +156,7 @@ Here are some directions on how to make this effect:
 
 When you're ready, hit the "Apply" button at the bottom of the left column.
 
-To create a burst of stars when a big one is collected, open the type `Star`, navigate to the "On Destroy" tab and write a line `ct.emitters.fire('StarBurst', this.x, this.y);`. Ta-da!
+To create a burst of stars when a big one is collected, open the template `Star`, navigate to the "On Destroy" tab and write a line `ct.emitters.fire('StarBurst', this.x, this.y);`. Ta-da!
 
 ::: tip
 Here we read the position of the star (`this.x, this.y`) and tell to spawn an effect `StarBurst`.
@@ -179,7 +179,7 @@ Here are some hints:
 * Precisely position the emitter so that it spawns right from the jet by tweaking the emitter's position, in the section called "Shape and Positioning".
 * Change the value Spawning » Time between bursts to change the density of a jet. Smaller values spawn larger amounts of particles.
 
-To add the effect to the cat, open its type and put this code to the end of its On Create code:
+To add the effect to the cat, open its template and put this code to the end of its On Create code:
 
 ```js
 this.jet = ct.emitters.follow(this, 'Jet');
@@ -239,7 +239,7 @@ this.angle = -this.vspeed * 0.3;
 
 With stars, we can't simply tie `this.angle` to some ct.js' value. We can define our own, though, an apply a bit of math to turn numbers into nice wiggles. This all will remind you of spawning timers.
 
-Open the `Star` type, and add this line to its On Create tab:
+Open the `Star` template, and add this line to its On Create tab:
 
 ```js
 this.wiggleTime = 0;
@@ -260,9 +260,9 @@ Here we change `this.wiggleTime` at each frame by the elapsed time, multiplied b
 
 Let's use the same approach to create a visual hint for a user to start tapping! It will be a pulsating hand icon.
 
-Create a new type called `PressHint` with a texture `PressHint`. Make sure the texture has its axis centered.
+Create a new template called `PressHint` with a texture `PressHint`. Make sure the texture has its axis centered.
 
-In the type's On Create code, add a line `this.pulsePhase = 0;`. In its On Step code, put this snippet:
+In the template's On Create code, add a line `this.pulsePhase = 0;`. In its On Step code, put this snippet:
 
 ```js
 this.pulsePhase += ct.delta * 0.2;

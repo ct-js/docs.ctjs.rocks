@@ -1,21 +1,21 @@
-# ct.types
+# ct.templates
 
 This object allows you to create new Copies and manipulate them.
 
-### `ct.types.copy(type, x, y, exts)`
+### `ct.templates.copy(template, x, y, exts)`
 
-Creates a new Copy of a given type. `type` must be a string — the name of the type. If `x` or `y` is omitted, they are set to 0. Returns the newly created copy.
+Creates a new Copy of a given template. `template` must be a string — the name of the template. If `x` or `y` is omitted, they are set to 0. Returns the newly created copy.
 
 The `extensions` object can be used to add parameters that will be available in a Copy's OnCreate event.
 
 ::: tip Note
-By default, this method puts the new copy in the current main room (`ct.room`). If you want to create a copy in, say, a UI room that is stacked on top of your main room, see the `ct.types.copyIntoRoom` method below.
+By default, this method puts the new copy in the current main room (`ct.room`). If you want to create a copy in, say, a UI room that is stacked on top of your main room, see the `ct.templates.copyIntoRoom` method below.
 :::
 
 #### Example: Create a bullet at the current copy's position and send it in a particular direction
 
 ```js
-var bullet = ct.types.copy('Bullet', this.x, this.y);
+var bullet = ct.templates.copy('Bullet', this.x, this.y);
 bullet.direction = this.direction;
 ```
 
@@ -25,27 +25,27 @@ You will need an action called `Press` that reacts to mouse left button. [Read m
 
 ```js
 if (ct.actions.Press.down) {
-    ct.types.copy('Fruit', ct.mouse.x, ct.mouse.y);
+    ct.templates.copy('Fruit', ct.mouse.x, ct.mouse.y);
 }
 ```
 
-### `ct.types.copyIntoRoom(type, x, y, parentRoom, extensions)`
+### `ct.templates.copyIntoRoom(template, x, y, parentRoom, extensions)`
 
-An advanced form of `ct.types.copy` that puts a copy into a particular `parentRoom`. Other arguments match the ones used in `ct.types.copy`.
+An advanced form of `ct.templates.copy` that puts a copy into a particular `parentRoom`. Other arguments match the ones used in `ct.templates.copy`.
 
 #### Example: Create a copy in a layered room "UI_Layer" with additional parameters
 
 ```js
 var uiLayer = ct.rooms.list['UI_Layer'][0];
 if (uiLayer) {
-    ct.types.copy('UI_Message', 35, 65, uiLayer, {
+    ct.templates.copy('UI_Message', 35, 65, uiLayer, {
         message: 'Your warriors have engaged the enemy!',
         type: 'alert'
     });
 }
 ```
 
-### `ct.types.each(func: Function)`
+### `ct.templates.each(func: Function)`
 
 Applies a function to all the active copies.
 
@@ -53,7 +53,7 @@ Applies a function to all the active copies.
 
 ```js
 var me = this;
-ct.types.each(function () {
+ct.templates.each(function () {
     if (this !== me) { // aren't we trying to destroy ourselves?
         if (ct.u.pdc(this.x, this.y, me.x, me.y) <= 150) {
             this.kill = true;
@@ -66,21 +66,21 @@ ct.types.each(function () {
 `ct.u.pdc` computes distance between two points. This and other similar functions can be found [here](ct.u.html).
 :::
 
-### `ct.types.exists(copy)` <badge>new in v1.3</badge>
+### `ct.templates.exists(copy)` <badge>new in v1.3</badge>
 
 Checks whether a given argument is a copy that exists in ct.js' world. Falsey variables like undefined ones will return `false`, as well as destroyed copies; the other times, it will return `true`. This method also works with most PIXI entities, e.g. with `PIXI.Text` and `PIXI.Graphics`.
 
-### `ct.types.isCopy(obj)` <badge>new in v1.5</badge>
+### `ct.templates.isCopy(obj)` <badge>new in v1.5</badge>
 Checks whether a given object is a ct.js copy. Returns `true` if the passed object is a copy; `false` otherwise.
 
-### `ct.types.list['TypeName']`
+### `ct.templates.list['TemplateName']`
 
-Returns an array with all the existing copies of the specified type.
+Returns an array with all the existing copies of the specified template.
 
 #### Example: make an order to destroy all the 'Bonus' Copies
 
 ```js
-for (var bonus of ct.types.list['Bonus']) {
+for (var bonus of ct.templates.list['Bonus']) {
     bonus.kill = true;
 }
 ```
@@ -88,15 +88,15 @@ for (var bonus of ct.types.list['Bonus']) {
 This can be also written as following:
 
 ```js
-for (var bonus of ct.types.list.Bonus) {
+for (var bonus of ct.templates.list.Bonus) {
     bonus.kill = true;
 }
 ```
 
-### `ct.types.withCopy(copy: Copy, func: Function)`
+### `ct.templates.withCopy(copy: Copy, func: Function)`
 
-Works like `ct.types.each`, but only for the specified Copy.
+Works like `ct.templates.each`, but only for the specified Copy.
 
-### `ct.types.withType(type: string, func: Function)`
+### `ct.templates.withTemplate(template: string, func: Function)`
 
-Works like `ct.types.each`, but only for the specified type.
+Works like `ct.templates.each`, but applies a function to every copy of the specified template.

@@ -153,7 +153,7 @@ var cat = 'Albert',
 cat === dog; // false
 cat !== dog; // true
 
-/* There are also non-strict comparisons, which compare values but transform variables' types */
+/* There are also non-strict comparisons, which compare values but transform variables' templates */
 
 5 === '5'; // false, because '5' is String, not a Number
 5 == '5'; // true
@@ -183,4 +183,4 @@ this.powerFromRight = true;
 this.poweredOn = this.powerFromLeft || this.powerFromRight; // true
 ```
 
-In the next part we will talk about conditional statements and loops. For now, I recommend you to read about default [properties of Copies](ct.types.html) and [Rooms](ct.rooms.html).
+In the next part we will talk about conditional statements and loops. For now, I recommend you to read about default [properties of Copies](ct.templates.html) and [Rooms](ct.rooms.html).

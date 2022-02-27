@@ -15,7 +15,7 @@ Here is a generic example on how to use actions in your game:
 this.hspeed = 8 * ct.actions.MoveX.value; // Move by X axis
 this.vspeed = 8 * ct.actions.MoveY.value; // Move by Y axis
 if (ct.actions.Shoot.pressed) {
-    ct.types.copy('Bullet', this.x, this.y);
+    ct.templates.copy('Bullet', this.x, this.y);
 }
 ```
 

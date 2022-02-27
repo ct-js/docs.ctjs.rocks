@@ -173,7 +173,7 @@ Backgrounds for these bars can be made in the same way.
 
 Two ways to do that exist:
 
-1. Creating a new type that will display the needed image;
+1. Creating a new template that will display the needed image;
 2. Or creating a PIXI.Sprite and adding it to the room (or to the object).
 
 The second approach can be made in this way:

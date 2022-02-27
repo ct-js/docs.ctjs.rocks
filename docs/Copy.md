@@ -3,7 +3,7 @@
 Copies are the entities that interact with each other on the screen and what drives the game's logic. They derive from Pixi's `AnimatedSprite` class, so you can find [much more parameters](https://pixijs.download/release/docs/PIXI.AnimatedSprite.html) at their docs site.
 
 ::: tip
-To create and find copies, see the [`ct.types` reference](ct.types.html).
+To create and find copies, see the [`ct.templates` reference](ct.templates.html).
 :::
 
 ## Moving Copies Around
@@ -93,6 +93,6 @@ OnStep code [will still be executed](ct.html#Event-sequence) to its end. Copies 
 
 Returns the room that owns the current copy. This is useful when working with different rooms in a stage. Returns an instance of `Room` class.
 
-### `copy.type`
+### `copy.template`
 
-The name of the Type from which a Copy was created (a `string`).
+The name of the template from which a Copy was created (a `string`).

@@ -76,13 +76,13 @@ Set sky's depth value to -20, and ground's depth to -10. That's how ct.js will u
 
 ![Setting background's depth in ct.js](./images/tutJettyCat_09.png)
 
-### Cat's type
+### Cat's template
 
-Textures are essential to most games, but they don't do anything on their own. We used *backgrounds* already, and they are for purely decorative textures. *Types*, on the other hand, can include gameplay logic and are used to create *copies*. Copies are the things we add to our rooms, and these copies are the entities that interact with each other on the screen.
+Textures are essential to most games, but they don't do anything on their own. We used *backgrounds* already, and they are for purely decorative textures. *Templates*, on the other hand, can include gameplay logic and are used to create *copies*. Copies are the things we add to our rooms, and these copies are the entities that interact with each other on the screen.
 
-Let's create a type for our cat! Open the "Types" tab at the top of the ct.js window, and press the "Create" button. Name it as `PotatoCat`, and set its texture by clicking the "Change sprite" square and selecting the cat's texture.
+Let's create a template for our cat! Open the "Templates" tab at the top of the ct.js window, and press the "Create" button. Name it as `PotatoCat`, and set its texture by clicking the "Change sprite" square and selecting the cat's texture.
 
-![Setting a texture and the name of a type in ct.js](./images/tutJettyCat_10.png)
+![Setting a texture and the name of a template in ct.js](./images/tutJettyCat_10.png)
 
 We can now add the cat to our room! Navigate to it by switching back to the "Rooms" tab and opening our only room. Our cat will appear in the left column under the "Copies" tab. Click on it, and then click once again in a place where you want your copy to appear in the level. We will need just one cat for now.
 
@@ -92,7 +92,7 @@ If you click the "Play button" now, it will run the debugger, and we will see a 
 
 ![Testing the game in ct.js](./images/tutJettyCat_12.png)
 
-Open the "Types" tab again, and open the cat's type. Here we have four tabs for code:
+Open the "Templates" tab again, and open the cat's template. Here we have four tabs for code:
 
 * "On Create" for code that runs once when a copy is created;
 * "On Step" that runs at each frame;
@@ -188,19 +188,19 @@ If we run the game now, the camera will nicely follow our cat. Yay!
 
 ## Writing code for collisions
 
-It's a good time to implement actual gameplay. We will add a type for tubes, place some of them in the level, and code collisions both for pipes and ground. Then, we will randomize pipe's textures, thus changing their height.
+It's a good time to implement actual gameplay. We will add a template for tubes, place some of them in the level, and code collisions both for pipes and ground. Then, we will randomize pipe's textures, thus changing their height.
 
 ### Adding pipes
 
-Create a new type and call it `Tube`. Select its texture as one of the relatively long pipes in our collection. Then, set its collision shape to "Obstacle".
+Create a new template and call it `Tube`. Select its texture as one of the relatively long pipes in our collection. Then, set its collision shape to "Obstacle".
 
-![Creating a tube type with a collision group](./images/tutJettyCat_18.png)
+![Creating a tube template with a collision group](./images/tutJettyCat_18.png)
 
 Then, open our room and add pipes on the ground, so we can check the collisions. Open the room `InGame`, select the tube in the left column, and then add them by clicking in the level view where you want to spawn them. We won't need many for testing.
 
 ![Creating a series of obstacles in the level](./images/tutJettyCat_19.png)
 
-Then, open the cat's type, and select its On Step tab. We will do the following:
+Then, open the cat's template, and select its On Step tab. We will do the following:
 
 * We will check for a collision between a cat and a potential obstacle.
 * If we hit a tube, we will throw the cat to the right, change its texture, and set a flag that we've lost.
@@ -244,7 +244,7 @@ Time for some testing! If the cat jerks sharply during a collision, check that i
 
 ### Making the cat lose if it touches ground or screen's top edge
 
-For some reason, the floor — and even the sky — is as deadly as tubes in flappy bird-like games. Now, the ground does not have a type and won't work with `ct.place`, as well as sky, as it is not a game's entity at all. But they are flat, horizontal, and we can augment our collision logic with rules that check the cat's position in space.
+For some reason, the floor — and even the sky — is as deadly as tubes in flappy bird-like games. Now, the ground does not have a template and won't work with `ct.place`, as well as sky, as it is not a game's entity at all. But they are flat, horizontal, and we can augment our collision logic with rules that check the cat's position in space.
 
 If we now open our room and move the mouse over the level, we will see current coordinates in the bottom left corner. The top side of the initial view frame is always at 0 pixels on the Y-axis, and the ground's top edge is somewhere at 1750 pixels. Copies' position is defined by `this.x` and `this.y`, and we can read them and compare to some other values.
 
@@ -293,7 +293,7 @@ Time for testing! If your pipes spawn misaligned, check that you set up collisio
 
 ## Spawning pipes through time
 
-As types, rooms can have their own logic as well — they are hidden under the button "Room events" in a room editor. There are four events as well:
+Like templates, rooms can have their own logic as well — they are hidden under the button "Room events" in a room editor. There are four events as well:
 
 * "On Create" that runs once when you switch to this room or start a game in this room;
 * "On Step' that runs at each frame after any other On Step events of copies;
@@ -330,8 +330,8 @@ if (this.spawnTimer <= 0) {
     this.spawnTimer += ct.speed * 2;
 
     // Create two tubes
-    var tube1 = ct.types.copy('Tube', ct.camera.right + 250, ct.camera.bottom - 130); // At the bottom of the camera
-    var tube2 = ct.types.copy('Tube', ct.camera.right + 250, ct.camera.top - 70); // At the top
+    var tube1 = ct.templates.copy('Tube', ct.camera.right + 250, ct.camera.bottom - 130); // At the bottom of the camera
+    var tube2 = ct.templates.copy('Tube', ct.camera.right + 250, ct.camera.top - 70); // At the top
 
     // Change second tube's texture depending on which texture is used in the first tube
     if (tube1.tex === 'Tube_01') { // Shortest tube will result in the longest tube
@@ -354,7 +354,7 @@ There's a lot of code!
 
 `this.spawnTimer` is decremented at each frame and will eventually turn to zero, or to a smaller value. When it happens, we set its value again to a positive number so that it fires again later. Here we add 2 seconds. (`ct.speed` is a number of frames in one second.)
 
-We create two copies with `ct.types.copy(typeName, xPosition, yPosition)` and store references to them to variables `tube1` and `tube2`. At the start, their height will be completely normal as their On Create code with `ct.random.dice` will be run instantly after their creation. This will result in a blocked pathway in a good portion of cases when both tubes turned out to be the long ones. To fix this, we read the texture's name of a first tube `tube1` with `tube1.tex` and set the texture of the second tube `tube2` depending on the extracted value.
+We create two copies with `ct.templates.copy(templateName, xPosition, yPosition)` and store references to them to variables `tube1` and `tube2`. At the start, their height will be completely normal as their On Create code with `ct.random.dice` will be run instantly after their creation. This will result in a blocked pathway in a good portion of cases when both tubes turned out to be the long ones. To fix this, we read the texture's name of a first tube `tube1` with `tube1.tex` and set the texture of the second tube `tube2` depending on the extracted value.
 
 `ct.camera.right`, `ct.camera.left`, `ct.camera.top`, `ct.camera.bottom` represent coordinates of view boundaries in game coordinates. Here we use them to create tubes off-screen, a bit to the right where the viewport ends, and above the bottom and top edge of the viewport.
 
@@ -387,17 +387,17 @@ Here we compare a copy's horizontal coordinate to a camera's left side. We also 
 
 ## Adding stars
 
-Let's add a type for star bonuses that will increment score when collected. We will do the following:
+Let's add a template for star bonuses that will increment score when collected. We will do the following:
 
 1. Set up a score variable in our room's "On Create" code.
-2. Create a new type for star bonuses.
+2. Create a new template for star bonuses.
 3. Add a bit of logic to the star's "On Step" event that will destroy the star when collided with the cat.
-4. Create a new room and a type for it to display a score counter.
+4. Create a new room and a template for it to display a score counter.
 5. Put this new room into the main one.
 
 Now, open the `InGame` room's events and add a line `this.score = 0;`. This will create a variable we will be able to edit and read in any other copy.
 
-Create a new type, and call it a `Star`. Set its texture.
+Create a new template, and call it a `Star`. Set its texture.
 
 In its On Step code, put this script:
 
@@ -408,7 +408,7 @@ if (ct.place.meet(this, 'PotatoCat')) {
 }
 ```
 
-`ct.place.meet` is like `ct.place.occupied`, though it checks not against collision groups but against a specific type. Here we check whether a star collides with our cat. If it does, `this.kill = true` tells that the star should be removed. `ct.room.score += 1;` increments our score variable that was created before in the room's "On Create" code.
+`ct.place.meet` is like `ct.place.occupied`, though it checks not against collision groups but against a specific template. Here we check whether a star collides with our cat. If it does, `this.kill = true` tells that the star should be removed. `ct.room.score += 1;` increments our score variable that was created before in the room's "On Create" code.
 
 ::: tip
 `ct.room` always points to the current room. If you have nested rooms, the `ct.room` will always point to the main one.
@@ -435,8 +435,8 @@ if (this.spawnTimer <= 0) {
     this.spawnTimer += ct.speed * 2;
 
     // Create two tubes
-    var tube1 = ct.types.copy('Tube', ct.camera.right + 250, ct.camera.bottom - 130); // At the bottom of the camera
-    var tube2 = ct.types.copy('Tube', ct.camera.right + 250, ct.camera.top - 70); // At the top
+    var tube1 = ct.templates.copy('Tube', ct.camera.right + 250, ct.camera.bottom - 130); // At the bottom of the camera
+    var tube2 = ct.templates.copy('Tube', ct.camera.right + 250, ct.camera.top - 70); // At the top
 
     // Change second tube's texture depending on which texture is used in the first tube
     if (tube1.tex === 'Tube_01') { // Shortest tube will result in the longest tube
@@ -455,7 +455,7 @@ if (this.spawnTimer <= 0) {
 
     // Create a star bonus with 30% chance somewhere in between top and bottom edge, with 300px padding.
     if (ct.random.chance(30)) {
-        ct.types.copy('Star', ct.camera.right + 250 + 500, ct.random.range(ct.camera.top + 300, ct.camera.bottom - 300));
+        ct.templates.copy('Star', ct.camera.right + 250 + 500, ct.random.range(ct.camera.top + 300, ct.camera.bottom - 300));
     }
 }
 ```
@@ -482,9 +482,9 @@ Then, switch to the "Stroke" tab, and activate it. Set stroke's color as dark br
 
 ![Setting stroke's properties in ct.js text style](./images/tutJettyCat_26.png)
 
-We can save the style now. After that, we will need a new type that will display a star icon and a score counter.
+We can save the style now. After that, we will need a new template that will display a star icon and a score counter.
 
-Create a new type and call it `StarCounter`. As its texture, we will reuse our `Star` texture. In its On Create code, put the following snippet:
+Create a new template and call it `StarCounter`. As its texture, we will reuse our `Star` texture. In its On Create code, put the following snippet:
 
 ```js
 this.label = new PIXI.Text('0', ct.styles.get('Orange'));
@@ -523,13 +523,13 @@ We will now add more rooms with usual menus so that our game feels complete:
 
 ### Main menu
 
-Open the texture `Jetty_Cat` and make sure that its axis is placed in the center of it. Then, create a new type with it. It will be purely decorative, so we won't write any code here.
+Open the texture `Jetty_Cat` and make sure that its axis is placed in the center of it. Then, create a new template with it. It will be purely decorative, so we won't write any code here.
 
 Then, open the texture "Button_Play" and make sure that its axis is at the center, and its collision shape is **circular**.
 
 ![The collision shape of a "Play" button](./images/tutJettyCat_28.png)
 
-After that, create a new type with this texture. In its On Step code, put the following:
+After that, create a new template with this texture. In its On Step code, put the following:
 
 ```js
 if (ct.touch.collideUi(this)) {
@@ -555,9 +555,9 @@ If we now run the game, it will still start in our main room. To change that, op
 
 For a pause menu, we will need a couple of new buttons and a new room that will overlay over our main room and UI.
 
-Create a type for texture `Button_Pause`. Make sure the texture `Button_Pause` has its axis put to center and has a proper **rectangular** shape that covers the whole texture.
+Create a template for texture `Button_Pause`. Make sure the texture `Button_Pause` has its axis put to center and has a proper **rectangular** shape that covers the whole texture.
 
-The type `Button_Pause` will have this code in its On Step event:
+The template `Button_Pause` will have this code in its On Step event:
 
 ```js
 // If the button was pressed,
@@ -579,9 +579,9 @@ Remember the name `UI_Paused`. We will need to create a room with this name a bi
 
 `ct.pixiApp.ticker.speed` is the multiplayer that affects how ct.delta is calculated. When it is set to 0, it will effectively pause the game as everyone's `ct.delta` will turn to 0. Our cat and timers are dependant on `ct.delta`.
 
-Open the room `UI_InGame` and place the created type at the top right corner.
+Open the room `UI_InGame` and place the created template at the top right corner.
 
-After that, create two new types similar to those created for `MainMenu`. Use textures `Button_Play` and `Pause`. The button should be called `Button_Continue`, though.
+After that, create two new templates similar to those created for `MainMenu`. Use textures `Button_Play` and `Pause`. The button should be called `Button_Continue`, though.
 
 This button will have the following code in its On Step event:
 ```js
@@ -597,9 +597,9 @@ The final step is to create this nested room that will have an unpause button an
 
 ### Score screen
 
-The final step is making a score screen that will be displayed after a player loses. We will need one more header and a type that will display the final score. For a button that will replay the game, we will reuse the type `Button_Play`.
+The final step is making a score screen that will be displayed after a player loses. We will need one more header and a template that will display the final score. For a button that will replay the game, we will reuse the template `Button_Play`.
 
-Create a type with a texture `OhNo`. It won't have any logic.
+Create a template with a texture `OhNo`. It won't have any logic.
 
 The other one, `EndGame_ScoreCounter`, won't have any texture at all. Instead, it will display a text label through code. It will also remember and display the player's high score. Put this code to its On Create event:
 
@@ -629,11 +629,11 @@ var scoreText = 'Your score: ' + ct.room.score + '\nHighscore: ' + localStorage[
 ```
 saves a string to a temporary variable. Everything defined with the `var` keyword exists only one frame and in one event. Though it doesn't serve much purpose, it allows to write cleaner code and reuse temporary variables. The combination `\n` tells that there will be a line break there. By using the `+` operator, we join our strings with the current score and the saved one. Lastly, we create a new text label and set its text to the created variable's value (by using it as an argument in `new PIXI.Text(scoreText, ct.styles.get('Orange'));`).
 
-Now, create a room called `UI_OhNo` with the created types.
+Now, create a room called `UI_OhNo` with the created templates.
 
 ![Setting a starting room in ct.js](./images/tutJettyCat_31.png)
 
-The last thing we need is creating this room when the cat hits an obstacle. Open the type `PotatoCat` and find the place where we detect collision with surface or obstacles in its On Step event. Add this code right after the line with `ct.camera.follow = false;`:
+The last thing we need is creating this room when the cat hits an obstacle. Open the template `PotatoCat` and find the place where we detect collision with surface or obstacles in its On Step event. Add this code right after the line with `ct.camera.follow = false;`:
 
 ```js
 // Wait for 1000 milliseconds (for one second)

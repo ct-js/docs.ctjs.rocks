@@ -95,7 +95,7 @@ module.exports = {
                     'ct.styles',
                     'ct.tilemaps',
                     'ct.timer',
-                    'ct.types',
+                    'ct.templates',
                     {
                         link: '/ct.u',
                         text: 'ct.u (utilities)'

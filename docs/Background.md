@@ -17,7 +17,7 @@ Property | Type | Description
 
 ### Removing a background
 
-Similar to types, a background can be removed with `bg.kill = true;`, where `bg` is the backgrond that needs to be removed.
+Similar to templates, a background can be removed with `bg.kill = true;`, where `bg` is the backgrond that needs to be removed.
 
 ### Other interesting properties
 

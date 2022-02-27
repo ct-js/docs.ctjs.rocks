@@ -13,7 +13,7 @@ Gets the horizontal part of a vector.
 ```js
 var dx = ct.u.ldx(40, this.angle),
     dy = ct.u.ldy(40, this.angle);
-var bullet = ct.types.copy('Bullet', this + dx, this + dy);
+var bullet = ct.templates.copy('Bullet', this + dx, this + dy);
 bullet.direction = this.angle;
 ```
 

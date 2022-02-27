@@ -1,6 +1,6 @@
 # Fields reference for module settings and additional fields
 
-Both [module settings](modding-settings-and-extensions.html) and extensions for built-in types are implemented by writing a declaration of editable fields in `module.json`. A declaration is an array of objects, with each object being one editable field. Let's take a look at `ct.place` module and its `module.json` (look at the `fields` array):
+Both [module settings](modding-settings-and-extensions.html) and extensions for built-in templates are implemented by writing a declaration of editable fields in `module.json`. A declaration is an array of objects, with each object being one editable field. Let's take a look at `ct.place` module and its `module.json` (look at the `fields` array):
 
 ```json
 {
@@ -84,12 +84,12 @@ Here we mark optional fields in form of `key?: type`. The required fields are `n
 * `checkbox` — a checkbox for Boolean variables;
 * `radio` — a list of predefined values to choose from. This type also requires an `options` array to be set;
 * `texture` — a link to an asset in a project;
-* `type` — same as `texture`, but for types;
+* `template` — same as `texture`, but for templates;
 * `point2D` — displays a pair of number inputs with X and Y labels. Stores values as an array of two numbers;
 * `h1`, `h2`, `h3` and `h4`. These are not really for any input, but display a heading to categorize fields in catmod's settings tab. Such fields require `type` and `name` only; 
 * `table` — editable series of complex objects in a table form.
 
-For settings, field's `key` must be unique for a module. For extended fields of types and other assets, it should be unique all across a user's codebase, so naming a key in form of `mymodMyfieldname` is a good idea.
+For settings, field's `key` must be unique for a module. For extended fields of templates and other assets, it should be unique all across a user's codebase, so naming a key in form of `mymodMyfieldname` is a good idea.
 
 ## Additional tweaks for number and range inputs
 
@@ -195,16 +195,16 @@ For tables themselves, the `default` key must be an array of default elements in
 
 For tables' fields, the `default` key sets the default values for newly added rows.
 
-## Unwrapping UIDs of types and textures
+## Unwrapping UIDs of templates and textures
 
-When you define a field with type `texture` or `type` and a user selects an asset for this field, a UID of a resource is stored. To tell ct.js to turn this UID into a name of a particular asset, you should add a postfix `@@assetType` at the end, writing the correct asset type:
+When you define a field with type `texture` or `template` and a user selects an asset for this field, a UID of a resource is stored. To tell ct.js to turn this UID into a name of a particular asset, you should add a postfix `@@assetType` at the end, writing the correct asset type:
 
-* `yourVarName@@type` for types;
+* `yourVarName@@template` for templates;
 * `yourVarName@@texture` for textures.
 
 The exported value will then be the name of an asset, as it is displayed in IDE and is usually used in code.
 
-This works both for injections and extensions for types. For injections, if you have a `key` in form of `yourVarName@@assetType`, matches with `/*%yourVarName%*/` or `%yourVarName%` will be replaced.
+This works both for injections and extensions for assets. For injections, if you have a `key` in form of `yourVarName@@assetType`, matches with `/*%yourVarName%*/` or `%yourVarName%` will be replaced.
 
 ## Field groups
 
@@ -216,11 +216,11 @@ The `group` type requires three additional properties to be set:
 * `lsKey` — a key in local storage to store whether a user left this group opened or not. It should be unique, and it is recommended to contain your module's name to avoid collisions with other modules.
 * `items` — the array of fields inside a group. These are the same fields you would define outside of one.
 
-### Example: creating one regular field and a group of fields for ct.js types
+### Example: creating one regular field and a group of fields for ct.js templates
 
 ```json
 // ...
-"typeExtends": [
+"templateExtends": [
     {
         "name": "Create a hoverboard",
         "type": "checkbox",
