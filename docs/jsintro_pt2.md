@@ -82,7 +82,7 @@ if (this.y < 0) {
 
 "While" loops execute some code multiple times until some statement becomes false.
 
-```js 
+```js
 while (/* this statement is true */) {
     /* do something  */
 }

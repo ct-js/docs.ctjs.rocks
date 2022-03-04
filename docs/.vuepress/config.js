@@ -66,7 +66,8 @@ module.exports = {
                 collapsable: false,
                 children: [
                     'jsintro_pt1',
-                    'jsintro_pt2'
+                    'jsintro_pt2',
+                    'jsintro_pt3'
                 ],
             }, {
                 collapsable: false,

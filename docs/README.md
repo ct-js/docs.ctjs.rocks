@@ -34,6 +34,7 @@ footer: Ct.js documentation. Except where otherwise noted, content is licensed u
         <ul>
             <li>API has changed! The first thing you will notice is that `ct.types` is now `ct.templates`, but there is much more in our <a href="/migration-1to2">migration guide</a>. Do check it out.</li>
             <li><code>ct.res</code> got a major rewrite and now allows you to <a href="/ct.res.html">dynamically load textures, fonts, and skeletal animations</a> into your game. More to come!</li>
+            <li>A new part of Introduction to JavaScript was released: <a href="/jsintro_pt3.html">now on Arrays and Objects</a>.</li>
             <li>There is now a doc page for the room editor, and as the practice shows, not everyone knows about everything it can do. <a href="/room-editor.html">Have a look</a>, won't ya?</li>
             <li><a href="/modding-fields-declaration.html">Catmods now have an `if` key in their fields</a>, allowing catmod developers to display controls conditionally.</li>
         </ul>
