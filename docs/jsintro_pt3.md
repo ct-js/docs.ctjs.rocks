@@ -79,14 +79,14 @@ if (!ct.templates.isValid(this.enemy)) {
 
 ### If strings and numbers are constants, why can we use methods on them?
 
-Because JavaScript is smart! There are actually objects that are based on simple strings and numbers, and you can create such with `new String('Divine sausage')`, `new Number(42)`, and even `new Boolean(true)`. But these methods are not recommended, because 99.99% of the time you don't need this functionality. And it is *quite a funky* functionality that is beyond the scope of this introduction page.
+Because JavaScript is smart! There are actually objects based on simple strings and numbers, and you can create such with `new String('Divine sausage')`, `new Number(42)`, and even `new Boolean(true)`. But these methods are not recommended, because 99.99% of the time you don't need this functionality. And it is *quite a funky* functionality that is beyond the scope of this introduction page.
 
-What you do need is all the methods that Number and String have, to format these values and to manipulate the strings. And JavaScript provides them when you write `'  oh no '.trim()` or `(99.9).toFixed(2)`.
+What you *do* need, is all the methods that `Number` and `String` have; to format these values and manipulate the strings. And JavaScript provides them when you write `'  oh no '.trim()` or `(99.9).toFixed(2)`.
 
 ## Arrays
 
-Arrays can be thought of as objects with numerical, ordered properties, and a ton of helper functions for them.
-Declaring a new array is quite different from declaring an object:
+Arrays can be thought of as objects with numerical, ordered properties, with a *ton* of helper functions for them.
+Declaring a new array is quite different from declaring a new object:
 
 ```js
 var groceryList = ['potato', 'carrot', 'thyme'];
@@ -128,9 +128,9 @@ Here we access a whole object with `[0]`, `[1]`, `[2]`, etc., and then read the 
 
 ### Getting array's length
 
-Arrays have several functions to streamline the processing of any gameplay-data you need.
+Arrays have several functions to streamline the processing of any gameplay data you need.
 
-Firstly, there is a `length` property, which is the number of elements in the array.
+First, there's the `length` property, which is the number of elements in the array.
 
 How can it be used? Say you want to limit the amount of junk in your player's inventory:
 
