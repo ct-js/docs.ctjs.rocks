@@ -67,9 +67,9 @@ console.log(this.gear.body.name); // Will return 'The chestplate of ignorance'.
 
 ### Deleting objects' properties completely
 
-You can write `this.enemy = undefined`, and in most cases it will be fine, but if you are [working with localStorage](localstorage.html) or other persistent data, or if you loop over object's properties, you will most likely need to remove the property without a trace — otherwise it is still there, though without a defined value.
+You can write `this.enemy = undefined`, and in most cases, it will be fine, but if you are [working with localStorage](localstorage.html) or other persistent data, or if you loop over an object's properties, you will most likely need to remove the property without a trace — otherwise it is still there, though without a defined value.
 
-You can use a keyword `delete` to remove any property from an object:
+You can use the keyword `delete` to remove any property from an object:
 
 ```js
 if (!ct.templates.isValid(this.enemy)) {
@@ -79,14 +79,14 @@ if (!ct.templates.isValid(this.enemy)) {
 
 ### If strings and numbers are constants, why can we use methods on them?
 
-Because JavaScript is smart! There are actually objects that are based on simple strings and numbers, and you can create such with `new String('Divine sausage')`, `new Number(42)`, and even `new Boolean(true)`. But these methods are not recommended, because 99.99% of the time you don't need this functionality. And it is *quite a funky* functionality that is beyond the scope of this introduction page.
+Because JavaScript is smart! There are actually objects based on simple strings and numbers, and you can create such with `new String('Divine sausage')`, `new Number(42)`, and even `new Boolean(true)`. But these methods are not recommended, because 99.99% of the time you don't need this functionality. And it is *quite a funky* functionality that is beyond the scope of this introduction page.
 
-What you do need is all the methods that Number and String have, to format these values and to manipulate the strings. And JavaScript provides them when you write `'  oh no '.trim()` or `(99.9).toFixed(2)`.
+What you *do* need, is all the methods that `Number` and `String` have; to format these values and manipulate the strings. And JavaScript provides them when you write `'  oh no '.trim()` or `(99.9).toFixed(2)`.
 
 ## Arrays
 
-Arrays can be thought of as objects with numerical, ordered properties, and a ton of helper functions for them.
-Declaring a new array is quite different from declaring an object:
+Arrays can be thought of as objects with numerical, ordered properties, with a *ton* of helper functions for them.
+Declaring a new array is quite different from declaring a new object:
 
 ```js
 var groceryList = ['potato', 'carrot', 'thyme'];
@@ -97,7 +97,7 @@ console.log(groceryList[1]); // Will log 'carrot'
 console.log(this.waveEnemyAmount); // Will output the whole array
 ```
 
-Note how we access elements of the array: we us a number in square brackets, starting with `[0]`, to get the value.
+Note how we access elements of the array: we use a number in square brackets, starting with `[0]`, to get the value.
 
 You can store complex objects in arrays, too:
 
@@ -128,9 +128,9 @@ Here we access a whole object with `[0]`, `[1]`, `[2]`, etc., and then read the 
 
 ### Getting array's length
 
-Arrays have several functions to streamline the processing of any gameplay-data you need.
+Arrays have several functions to streamline the processing of any gameplay data you need.
 
-Firstly, there is a `length` property, which is the number of elements in the array.
+First, there's the `length` property, which is the number of elements in the array.
 
 How can it be used? Say you want to limit the amount of junk in your player's inventory:
 
@@ -176,7 +176,7 @@ pizza.shift(); // Removes the first element of the array
 console.log(pizza); // Will output an empty array!
 ```
 
-:::tip More on array.splice method
+:::tip More on the array.splice method
 You can see that `pizza.splice` was used in three different cases: for adding, removing, and replacing values. How does the method work?
 
 This function is used to replace one set of elements with another one. Its full form is `.splice(startFromIndex, deleteCount, addOne, addTwo, addThree, …)`. But you can delete several elements and add nothing to remove items in the array, or do the opposite — delete nothing and add new elements:
@@ -254,7 +254,7 @@ console.log(purchaseableWeapon);
 
 #### Array's `sort` method
 
-The `array.sort` method can work as is with text items:
+The `array.sort` method can work as-is with text items:
 
 ```js
 var groceryList = [
@@ -317,9 +317,9 @@ if (!buffs.includes('blessed')) {
 }
 ```
 
-##### Get if there are some elements in an array that satisfy a condition with `array.some`
+##### Check if some elements in an array satisfy a condition with `array.some`
 
-This is a higher-order function for testing whether at least one of the elements satisfy your condition. It accepts a predicate that walks over every element, and returns `true` only if at least one call of this function returned `true`.
+This is a higher-order function for testing whether at least one of the elements satisfies your condition. It accepts a predicate that walks over every element, and returns `true` only if at least one call of this function returned `true`.
 
 ```js
 this.gear = [{
@@ -395,7 +395,7 @@ if (carrotIndex !== -1) { // Make sure we did find an item
 
 The `array.reduce` method walks over every element of an array, executing your function (predicate), and passing the result of this function to its next call. It is usually used to quickly gather different statistics from an array, and by writing a different predicate you can calculate different statistical values.
 
-Say you write a tower defence game, and you have a final boss at the last wave. You want to calculate the time before the boss spawns, and for that you want to sum up all the waves' delays.
+Say you write a tower defense game, and you have a final boss at the last wave. You want to calculate the time before the boss spawns, and for that, you want to sum up all the waves' delays.
 
 Considering the following structure, we can use array's `.reduce` method to get a sum of all the delays:
 
@@ -460,7 +460,7 @@ Was it easy to understand? Maybe. Could we do the same with regular loops? Of co
 
 #### Two-dimensional arrays
 
-In JavaScript, arrays as is are one-dimensional: it's just a list. But if you create a list of lists, it suddenly becomes similar to two-dimensional arrays in other languages!
+In JavaScript, arrays as-is are one-dimensional: it's just a list. But if you create a list of lists, it suddenly becomes similar to two-dimensional arrays in other languages!
 
 ```js
 var myMap = [
@@ -472,13 +472,13 @@ var myMap = [
 ];
 ```
 
-You would then get a value with `myMap[2][0]`. (This example would return `2` — the element in the second row and zero column.)
+You would then get a value with `myMap[2][0]`. (This example would return `2` — the element in the second row and in column zero.)
 
 #### Special, array-like accessor for objects' properties
 
-Do you remember that almost everything in JavaScript is an object? And arrays too? Why do you think arrays have a special syntax for accessing its elements?
+Do you remember that almost everything in JavaScript is an object? And arrays too? Why do you think arrays have a special syntax for accessing their elements?
 
-Because it is actually not exclusive to arrays! Every object can have its properties read, deleted, and changed with array-like property accessor:
+Because it is actually not exclusive to arrays! Every object can have its properties read, deleted, and changed with an array-like property accessor:
 
 ```js
 var myObject = {
@@ -536,7 +536,7 @@ But strings don't have all those smart methods like `.forEach`, `.map`, or `.fil
 
 ## Conclusion
 
-Objects and arrays are powerful — they're mostly free-form structures that can fit everything you put into them. Knowing how to manipulate them efficiently will allow you make more faster and easier. But don't fret if you can't remember everything right now — perfection comes with practice, and practice needs time. Not like I use every method once in a month or so, he-he.
+Objects and arrays are powerful — they're mostly free-form structures that can fit everything you put into them. Knowing how to manipulate them efficiently will allow you to write code faster and easier. But don't fret if you can't remember everything right now — perfection comes with practice, and practice needs time. Not like I use every method once in a month or so, he-he.
 
 Happy coding!  
 CoMiGo
