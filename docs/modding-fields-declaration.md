@@ -55,13 +55,14 @@ declare interface IExtensionField {
     key?: string, // The name of a JSON key to write into the `opts.entity`. Not needed for hN types, but required otherwise
     default?: any, // The default value; it is not written to the `opts.entity`, but is shown in inputs.
     help?: string, // A text label describing the purpose of a field
-    options?: Array<{ // Used with type === 'radio'.
+    options?: Array<{ // Used with type === 'radio' and type === 'select'.
         value: any,
         name: string,
         help?: string
     }>,
     if?: string, // Tells to show this field only if another field in this module is set (or true-ish)
     fields?: Array<IExtensionField>, // These are for type === 'table'
+    array?: boolean, // Whether to make an editable list of inputs instead of just one input
     // These three are used with type === 'number', 'slider', or 'sliderAndNumber'
     min?: number,
     max?: number,
@@ -83,11 +84,11 @@ Here we mark optional fields in form of `key?: type`. The required fields are `n
 * `sliderAndNumber` — displays both a slider and a number in one row;
 * `checkbox` — a checkbox for Boolean variables;
 * `radio` — a list of predefined values to choose from. This type also requires an `options` array to be set;
-* `texture` — a link to an asset in a project;
-* `template` — same as `texture`, but for templates;
+* `select` — a dropdown with a list of predefined values. Requires an `options` array to be set. If any option has value equal to `''` (to an empty string), then this option will be blank and won't be selectable, acting as a divider;
+* `texture`, `template`, `room`, `sound`, `tandem` — a link to an asset in a project;
 * `point2D` — displays a pair of number inputs with X and Y labels. Stores values as an array of two numbers;
-* `h1`, `h2`, `h3` and `h4`. These are not really for any input, but display a heading to categorize fields in catmod's settings tab. Such fields require `type` and `name` only; 
-* `table` — editable series of complex objects in a table form.
+* `h1`, `h2`, `h3` and `h4`. These are not really for any input, but display a heading to categorize fields in catmod's settings tab. Such fields require `type` and `name` only;
+* `table` — editable series of complex objects in a table form. Requires `fields` to be set.
 
 For settings, field's `key` must be unique for a module. For extended fields of templates and other assets, it should be unique all across a user's codebase, so naming a key in form of `mymodMyfieldname` is a good idea.
 
