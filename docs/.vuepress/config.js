@@ -122,20 +122,6 @@ module.exports = {
                     }
                 ]
             }, {
-                text: 'Tips & tricks',
-                collapsable: false,
-                children: [
-                    'actions',
-                    'game-and-ui-coordinates',
-                    'movement',
-                    'game-pause',
-                    'localstorage',
-                    'viewport-management',
-                    'textures-magic-properties',
-                    'dragging-copies',
-                    'gamedev-resources'
-                ]
-            }, {
                 text: 'Working with the editor',
                 collapsable: false,
                 children: [
@@ -150,7 +136,25 @@ module.exports = {
                     {
                         link: '/skeletal-animation',
                         text: 'Using skeletal animation'
+                    },
+                    {
+                        link: '/content-subsystem',
+                        text: 'Content editor'
                     }
+                ]
+            }, {
+                text: 'Tips & tricks',
+                collapsable: false,
+                children: [
+                    'actions',
+                    'game-and-ui-coordinates',
+                    'movement',
+                    'game-pause',
+                    'localstorage',
+                    'viewport-management',
+                    'textures-magic-properties',
+                    'dragging-copies',
+                    'gamedev-resources'
                 ]
             }, {
                 text: 'Technical stuff',
