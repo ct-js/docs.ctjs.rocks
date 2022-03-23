@@ -125,6 +125,7 @@ module.exports = {
                 text: 'Working with the editor',
                 collapsible: false,
                 children: [
+                    'actions',
                     {
                         link: '/room-editor',
                         text: 'Using the room editor'
@@ -146,7 +147,6 @@ module.exports = {
                 text: 'Tips & tricks',
                 collapsible: false,
                 children: [
-                    'actions',
                     'game-and-ui-coordinates',
                     'movement',
                     'game-pause',
