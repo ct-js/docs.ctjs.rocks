@@ -63,14 +63,14 @@ module.exports = {
                 '/', 'Home'
             ], {
                 text: 'Introduction to JS',
-                collapsable: false,
+                collapsible: false,
                 children: [
                     'jsintro_pt1',
                     'jsintro_pt2',
                     'jsintro_pt3'
                 ],
             }, {
-                collapsable: false,
+                collapsible: false,
                 text: 'Tutorials',
                 children: [
                     'tut-making-shooter',
@@ -80,7 +80,7 @@ module.exports = {
                 ],
             }, {
                 text: 'The `core` library',
-                collapsable: false,
+                collapsible: false,
                 children: [
                     'ct-concepts',
                     'ct',
@@ -108,7 +108,7 @@ module.exports = {
                 ]
             }, {
                 text: 'Built-in ct.js classes',
-                collapsable: false,
+                collapsible: false,
                 children: [
                     {
                         link: '/Background',
@@ -123,7 +123,7 @@ module.exports = {
                 ]
             }, {
                 text: 'Working with the editor',
-                collapsable: false,
+                collapsible: false,
                 children: [
                     {
                         link: '/room-editor',
@@ -144,7 +144,7 @@ module.exports = {
                 ]
             }, {
                 text: 'Tips & tricks',
-                collapsable: false,
+                collapsible: false,
                 children: [
                     'actions',
                     'game-and-ui-coordinates',
@@ -158,13 +158,13 @@ module.exports = {
                 ]
             }, {
                 text: 'Technical stuff',
-                collapsable: true,
+                collapsible: true,
                 children: [
                     '/event-order'
                 ]
             }, {
                 text: 'Modding ct.js',
-                collapsable: true,
+                collapsible: true,
                 children: [
                     {
                         link: '/modding-structure',
@@ -191,7 +191,7 @@ module.exports = {
                 ]
             }, {
                 text: 'Troubleshooting',
-                collapsable: false,
+                collapsible: false,
                 children: [
                     {
                         link: '/migration-0to1',
@@ -238,7 +238,7 @@ module.exports = {
                         link: '/ru/',
                         text: 'Главная'
                     }, {
-                        collapsable: false,
+                        collapsible: false,
                         text: 'Уроки',
                         children: [
                             '/ru/tut-making-platformer',
@@ -246,7 +246,7 @@ module.exports = {
                         ],
                     }, {
                         text: 'Ядро',
-                        collapsable: false,
+                        collapsible: false,
                         children: [
                             '/ru/ct',
                             {
@@ -268,7 +268,7 @@ module.exports = {
                     },
                     {
                         text: 'Подсказки и советы',
-                        collapsable: false,
+                        collapsible: false,
                         children: [
                             'ru/actions'
                         ]
@@ -297,13 +297,13 @@ module.exports = {
                         text: 'Página Inicial'
                     }, {
                         text: 'Introdução ao JS',
-                        collapsable: false,
+                        collapsible: false,
                         children: [
                             '/pt_BR/jsintro_pt1',
                             '/pt_BR/jsintro_pt2'
                         ],
                     }, {
-                        collapsable: false,
+                        collapsible: false,
                         text: 'Tutoriais',
                         children: [
                             '/pt_BR/tut-making-shooter',
@@ -311,7 +311,7 @@ module.exports = {
                         ],
                     }, {
                         text: 'Biblioteca Principal',
-                        collapsable: false,
+                        collapsible: false,
                         children: [
                             '/pt_BR/ct',
                             {
@@ -332,7 +332,7 @@ module.exports = {
                         ]
                     }, {
                         text: 'Dicas & truques',
-                        collapsable: false,
+                        collapsible: false,
                         children: [
                             '/pt_BR/actions',
                             '/pt_BR/localstorage',
@@ -340,7 +340,7 @@ module.exports = {
                         ]
                     }, {
                         text: 'Trabalhando com assets',
-                        collapsable: false,
+                        collapsible: false,
                         children: [
                             {
                                 link: '/pt_BR/skeletal-animation.md',
@@ -349,7 +349,7 @@ module.exports = {
                         ]
                     }, {
                         text: 'Estendendo ct.js',
-                        collapsable: false,
+                        collapsible: false,
                         children: [
                             {
                                 link: '/pt_BR/making-mods',
@@ -358,7 +358,7 @@ module.exports = {
                         ]
                     }, {
                         text: 'Solução de problemas',
-                        collapsable: false,
+                        collapsible: false,
                         children: [
                             {
                                 link: '/pt_BR/migration-0to1',
