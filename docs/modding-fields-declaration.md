@@ -62,7 +62,9 @@ declare interface IExtensionField {
     }>,
     if?: string, // Tells to show this field only if another field in this module is set (or true-ish)
     fields?: Array<IExtensionField>, // These are for type === 'table'
-    array?: boolean, // Whether to make an editable list of inputs instead of just one input
+    arrayType?: string, // The type of the fields used for the array editor (when `type` is 'array').
+                        // It supports a subset of moddable fields,
+                        // excluding headers, groups, tables, icons, radio, select, and arrays.
     // These three are used with type === 'number', 'slider', or 'sliderAndNumber'
     min?: number,
     max?: number,
@@ -88,6 +90,7 @@ Here we mark optional fields in form of `key?: type`. The required fields are `n
 * `texture`, `template`, `room`, `sound`, `tandem` — a link to an asset in a project;
 * `point2D` — displays a pair of number inputs with X and Y labels. Stores values as an array of two numbers;
 * `h1`, `h2`, `h3` and `h4`. These are not really for any input, but display a heading to categorize fields in catmod's settings tab. Such fields require `type` and `name` only;
+* `array` — editable series of simple values. Requires `arrayType` to be set;
 * `table` — editable series of complex objects in a table form. Requires `fields` to be set.
 
 For settings, field's `key` must be unique for a module. For extended fields of templates and other assets, it should be unique all across a user's codebase, so naming a key in form of `mymodMyfieldname` is a good idea.
