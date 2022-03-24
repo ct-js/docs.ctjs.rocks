@@ -36,7 +36,7 @@ footer: Ct.js documentation. Except where otherwise noted, content is licensed u
             <li><code>ct.res</code> got a major rewrite and now allows you to <a href="/ct.res.html">dynamically load textures, fonts, and skeletal animations</a> into your game. More to come!</li>
             <li>A new part of Introduction to JavaScript was released: <a href="/jsintro_pt3.html">now on Arrays and Objects</a>.</li>
             <li>There is now a doc page for the room editor, and as the practice shows, not everyone knows about everything it can do. <a href="/room-editor.html">Have a look</a>, won't ya?</li>
-            <li><a href="/modding-fields-declaration.html">Catmods now have an `if` key in their fields</a>, allowing catmod developers to display controls conditionally.</li>
+            <li><a href="/modding-fields-declaration.html">Catmods now have an `if` key in their fields</a>, allowing catmod developers to display controls conditionally, and an `array` type with a companion key `arrayType`.</li>
         </ul>
         <a href="https://ctjs.rocks/changelog/" target="_blank">Changelog →</a>
     </div>
