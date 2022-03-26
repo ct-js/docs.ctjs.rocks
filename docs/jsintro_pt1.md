@@ -6,7 +6,7 @@ Ct.js games are all written in JavaScript. You define logic for your Copies and 
 
 ## Variables
 
-Variables are like memory cells. You can store any information in them, e.g. a number of lives, resources or experience, an NPC's name, etc. 
+Variables are like memory cells. You can store any information in them, e.g. a number of lives, resources or experience, an NPC's name, etc.
 
 Variables can also contain more complex data, like a list of inventory items or a deck of cards.
 
@@ -39,7 +39,7 @@ var invincible = true, // These are Boolean values
 
 Variables are great for temporal values, but they disappear after a ct.js event completes (e.g., after 'On Destroy', 'On Step'). This makes variables useful for quick operations but unusable for a long run. We should use *properties* to store information so that we can use it later.
 
-You can use properties in the same way you use variables, but they may only exist inside *Objects*. Objects are very abstract things, and they include all the Copies and Rooms. You will create your own Objects soon, too. But for now, let's look how to create and use properties: 
+You can use properties in the same way you use variables, but they may only exist inside *Objects*. Objects are very abstract things, and they include all the Copies and Rooms. You will create your own Objects soon, too. But for now, let's look how to create and use properties:
 
 ```js
 this.maxHealth = 100;
@@ -65,7 +65,7 @@ We can use a `this` keyword inside a room's code. In this case, values will be s
 
 Variables and properties are quite useless “as is”. With conditional statements, loops and operations they become a powerful mechanism defining your game's logic. We will talk about loops and conditionals later. For now, let's look at operations.
 
-Operations with numbers are familiar to everyone. They are like arithmetic equations: 
+Operations with numbers are familiar to everyone. They are like arithmetic equations:
 
 ```js
 this.level = 10;
@@ -153,7 +153,7 @@ var cat = 'Albert',
 cat === dog; // false
 cat !== dog; // true
 
-/* There are also non-strict comparisons, which compare values but transform variables' types */
+/* There are also non-strict comparisons, which compare values but transform variables' templates */
 
 5 === '5'; // false, because '5' is String, not a Number
 5 == '5'; // true
@@ -183,4 +183,4 @@ this.powerFromRight = true;
 this.poweredOn = this.powerFromLeft || this.powerFromRight; // true
 ```
 
-In the next part we will talk about conditional statements and loops. For now, I recommend you to read about default [properties of Copies](ct.types.html) and [Rooms](ct.rooms.html).
+In the next part we will talk about conditional statements and loops. For now, I recommend you to read about default [properties of Copies](ct.templates.html) and [Rooms](ct.rooms.html).

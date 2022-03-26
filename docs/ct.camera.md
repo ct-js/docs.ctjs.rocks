@@ -1,4 +1,4 @@
-# ct.camera <badge>new in v1.3</badge>
+# ct.camera
 
 ::: tip Hey,
 This page describes the methods and parameters of `ct.camera` object in a form of a reference. You can learn about techniques and usage in a more free form at the ["Working with Viewport" page](/viewport-management.html).
@@ -40,13 +40,13 @@ Both move the camera to a new position. `ct.camera.moveTo` is useful for cutscen
 
 ### `ct.camera.uiToGameCoord(x, y)` and `ct.camera.gameToUiCoord(x, y)`
 
-Convert a point from one coordinate space to another. These return an array with two elements: x and y coordinates.
+Convert a point from one coordinate space to another. Returns an object (`PIXI.Point`) with two properties: `x` and `y` components.
 
 There are also `ct.u.uiToGameCoord` and `ct.u.gameToUiCoord`, that call these methods of the current `ct.camera` object.
 
 ### `ct.camera.getTopLeftCorner()`, `ct.camera.getTopRightCorner()`, `ct.camera.getBottomLeftCorner()`, `ct.camera.getBottomRightCorner()`
 
-Return an array with two elements, x and y coordinates. These are in game coordinates, and take rotation and scaling into account.
+ Returns an object (`PIXI.Point`) with two properties: `x` and `y` components. These are in game coordinates, and take rotation and scaling into account.
 
 ### `ct.camera.getBoundingBox()`
 

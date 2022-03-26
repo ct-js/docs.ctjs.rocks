@@ -22,7 +22,7 @@ Existing rooms to switch to.
 
 ### `ct.rooms.list['RoomName']`
 
-Similar to `ct.types.list`, this object contains arrays of rooms on the current stage. These may be useful when you have a lot of UI widgets on the screen and need to manage them.
+Similar to `ct.templates.list`, this object contains arrays of rooms on the current stage. These may be useful when you have a lot of UI widgets on the screen and need to manage them.
 
 ### `ct.rooms.remove(room)`
 

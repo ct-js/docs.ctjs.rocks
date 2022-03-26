@@ -46,21 +46,21 @@ The `EnemyShip`'s shape can be treated as a **Polygon**.
 
 The background image may be left as is, because it won't collide with other things in the game.
 
-## Making First Types and Laying Things Out
+## Making First Templates and Laying Things Out
 
-**Textures** don't do much on their own, and in order to display them in game, we need to create **Types** with these assets. Types are used to create **Copies**, and the latter are the things that you place inside **Rooms**, that interact with each other and respond to your inputs.
+**Textures** don't do much on their own, and in order to display them in game, we need to create **templates** with these assets. Templates are used to create **Copies**, and the latter are the things that you place inside **Rooms**, that interact with each other and respond to your inputs.
 
-Press the "Types" tab on top of the screen, and create a new Type for the player. After clicking the "Create" button, click on the big ghostly cat in the left column. It will show you all your textures. Press the card with your ship. It should now appear in the left column of the editor.
+Press the "Templates" tab on top of the screen, and create a new template for the player's ship. After clicking the "Create" button, click on the big ghostly cat in the left column. It will show you all your textures. Press the card with your ship. It should now appear in the left column of the editor.
 
-Now, change the Type's name to `PlayerShip` so we won't need to remember these numbers while coding.
+Now, change the template's name to `PlayerShip` so we won't need to remember these numbers while coding.
 
 ![](./images/tutSpaceShooter_06.png)
 
-Create Types for all the other textures but the background image. Background images don't move or interact with anything, and is often tiled, so it is not a Type. We will add it later in a **Room**.
+Create templates for all the other textures but the background image. Background images don't move or interact with anything, and is often tiled, so it is not a template. We will add it later in a **Room**.
 
 ![](./images/tutSpaceShooter_07.png)
 
-Let's place created Types somewhere on the map. To create this map, or Room, press the "Rooms" tab on top of the ct.IDE windows, and click an "Add new" button. Then, open the newly created room by clicking it.
+Let's place created templates somewhere on the map. To create this map, or Room, press the "Rooms" tab on top of the ct.IDE windows, and click an "Add new" button. Then, open the newly created room by clicking it.
 
 ![](./images/tutSpaceShooter_08.png)
 
@@ -116,7 +116,7 @@ Create three actions as in the picture above. Set multiplier value to `-1` for `
 
 ### Coding the movement
 
-Open the "Types" tab on the top, then click on the `PlayerShip` type and move to `On Step` event.
+Open the "Templates" tab on the top, then click on the `PlayerShip` template and move to `On Step` event.
 
 ::: tip
 `On Step` event occurs every frame before drawing, while `Draw` happens after all the `On Step` events in the room to draw a new frame. `On Create` happens when you spawn a new Copy, and  `On Destroy` occurs before the `Draw` event if a Copy is killed.
@@ -165,7 +165,7 @@ Enemies should move, too. For this tutorial, our hostile ship will move from top
 
 ### Enemy ships
 
-Open the "Types" tab, then click on the `EnemyShip`. Navigate to the `On Create` event and add this code:
+Open the "Templates" tab, then click on the `EnemyShip`. Navigate to the `On Create` event and add this code:
 
 ```js
 this.speed = 3;
@@ -188,7 +188,7 @@ this.move();
 
 This line reads built-in variables and moves the Copy according to them. Without it, `this.speed` and `this.direction` will be meaningless.
 
-There are more built-in variables, which you can find on the [`ct.types` page](ct.types.html).
+There are more built-in variables, which you can find on the [`ct.templates` page](ct.templates.html).
 
 We will modify the `Step` code so enemies will destroy themselves if they fall off the screen.
 
@@ -208,7 +208,7 @@ What if enemy ships could move diagonally, zig-zagging?
 
 Asteroids will contain the same `Step` code, but their `direction` variable will be defined randomly.
 
-Open the `Asteroid_Medium` in the "Types" tab, then write the code below in the `On Create` event.
+Open the `Asteroid_Medium` in the "Templates" tab, then write the code below in the `On Create` event.
 
 ```js On Create event
 this.speed = ct.random.range(1, 3);
@@ -243,14 +243,14 @@ Open the `PlayerShip`'s `Step` event, and add this code:
 
 ```js
 if (ct.actions.Shoot.pressed) {
-    ct.types.copy('Laser_Blue', this.x, this.y);
+    ct.templates.copy('Laser_Blue', this.x, this.y);
 }
 ```
 
 This is the first time we add new copies programmatically. Hooray!
 
 ::: tip
-`ct.types.copy` is a very important function that spawns a new Copy in the current room. Firstly, we write an enquoted Type's name to copy. Then, we write coordinates at which we should create it, by horizontal and vertical axes accordingly. `this.x` means a horizontal location of current copy, and `this.y` means a vertical one.
+`ct.templates.copy` is a very important function that spawns a new Copy in the current room. Firstly, we write an enquoted Template's name to copy. Then, we write coordinates at which we should create it, by horizontal and vertical axes accordingly. `this.x` means a horizontal location of current copy, and `this.y` means a vertical one.
 :::
 
 With all the data combined, we make a laser bullet right under our ship. Bullets will spawn when the Space key is pressed.
@@ -284,7 +284,7 @@ if (collided) {
 }
 ```
 
-The method `ct.place.meet` checks whether a given copy collides with other copies of a certain type like if it was placed in the given coordinates. For this example, we need to check whether our current Copy (`this`) of enemy ships collides in its current position (`this.x, this.y`) with laser bullets (`'Laser_Blue'`). The method returns either a collided copy or `false`, so we need to check whether it returned a valid value.
+The method `ct.place.meet` checks whether a given copy collides with other copies of a certain template like if it was placed in the given coordinates. For this example, we need to check whether our current Copy (`this`) of enemy ships collides in its current position (`this.x, this.y`) with laser bullets (`'Laser_Blue'`). The method returns either a collided copy or `false`, so we need to check whether it returned a valid value.
 
 ::: tip
 There are even more methods in the `ct.place` module. Open the 'Catmods' sections, and then click the `place` module on the left. Open the documentation by clicking the 'Reference' tab on the right.
@@ -299,8 +299,8 @@ var collided = ct.place.meet(this, this.x, this.y, 'Laser_Blue');
 if (collided) {
     collided.kill = true;
     this.kill = true;
-    ct.types.copy('Asteroid_Medium', this.x, this.y);
-    ct.types.copy('Asteroid_Medium', this.x, this.y);
+    ct.templates.copy('Asteroid_Medium', this.x, this.y);
+    ct.templates.copy('Asteroid_Medium', this.x, this.y);
 }
 ```
 
@@ -321,7 +321,7 @@ Add this code to `On Step` section:
 this.bulletTimer -= ct.delta;
 if (this.bulletTimer <= 0) {
     this.bulletTimer = 180;
-    ct.types.copy('Laser_Red', this.x, this.y + 32);
+    ct.templates.copy('Laser_Red', this.x, this.y + 32);
 }
 ```
 
@@ -335,10 +335,10 @@ Let's write some code to red bullets. Add this code to `On Create` section of La
 this.speed = 8;
 this.direction = 270;
 
-this.rotation = ct.random.deg();
+this.angle = ct.random.deg();
 ```
 
-`this.rotation` rotates a copy's texture. `ct.random.deg()` returns a random value between 0 and 360, which is handy while defining angular values.
+`this.angle` rotates a copy's texture. `ct.random.deg()` returns a random value between 0 and 360, which is handy while defining angular values.
 
 ::: tip
 There is also `this.scale.x` and `this.scale.y`, which sets a copy's horizontal and vertical scale accordingly, and `this.alpha` which manipulates its opacity (0 means fully transparent, 1 — fully opaque).
@@ -353,10 +353,10 @@ if (this.y > ct.viewHeight + 40) {
 
 this.move();
 
-this.rotation += 4 * ct.delta;
+this.angle -= 4 * ct.delta;
 ```
 
-`this.rotation += 4 * ct.delta;` means that we will rotate a Copy by approximately 4 degrees at each step.
+`this.angle -= 4 * ct.delta;` means that we will rotate a Copy by approximately 4 degrees at each step. `ct.delta` will balance out stuff if the game suffers from inconsistent FPS.
 
 We will define logic for destroying player's ship later. For now, it's time to add enemy and asteroid generation during the playtime.
 
@@ -388,13 +388,13 @@ Then add this code in the `On Step` tab to generate enemies through time:
 this.asteroidTimer -= ct.delta;
 if (this.asteroidTimer <= 0) {
     this.asteroidTimer = ct.random.range(20, 200);
-    ct.types.copy(ct.random.dice('Asteroid_Big', 'Asteroid_Medium'), ct.random(ct.camera.width), -100);
+    ct.templates.copy(ct.random.dice('Asteroid_Big', 'Asteroid_Medium'), ct.random(ct.camera.width), -100);
 }
 
 this.enemyTimer -= ct.delta;
 if (this.enemyTimer <= 0) {
     this.enemyTimer = ct.random.range(180, 400);
-    ct.types.copy('EnemyShip', ct.random(ct.camera.width), -100);
+    ct.templates.copy('EnemyShip', ct.random(ct.camera.width), -100);
 }
 ```
 
@@ -426,7 +426,7 @@ this.scoreLabel.y = 30;
 this.scoreLabel.depth = 1000;
 ```
 
-Here, we create a variable called `score`. Then, we construct a text label with `new PIXI.Text('Some text')`, save it `this.scoreLabel` and add it to the room with `this.addChild(this.scoreLabel);`. Later, we position it so that it shows at the top-left corner, with 30px padding on each side. We also set its depth — this is the same parameter we use in types' settings, and this large positive value will place the `scoreLabel` above other entities in our room.
+Here, we create a variable called `score`. Then, we construct a text label with `new PIXI.Text('Some text')`, save it `this.scoreLabel` and add it to the room with `this.addChild(this.scoreLabel);`. Later, we position it so that it shows at the top-left corner, with 30px padding on each side. We also set its depth — this is the same parameter we use in templates' settings, and this large positive value will place the `scoreLabel` above other entities in our room.
 
 We also need this code at `Draw` to keep the label up-to-date:
 
@@ -453,7 +453,7 @@ if (collided) {
 this.bulletTimer -= ct.delta;
 if (this.bulletTimer <= 0) {
     this.bulletTimer = 180;
-    ct.types.copy('Laser_Red', this.x, this.y + 32);
+    ct.templates.copy('Laser_Red', this.x, this.y + 32);
 }
 ```
 
@@ -515,15 +515,9 @@ this.livesLabel.depth = 1000;
 Create a new style and apply it to the 'Lives' label.
 :::
 
-Then we should add logic so that player's ship removes one life on collision. We could use `ct.place.meet` as we used it in asteroids' and enemies' code to test against a particular type, but let's group them into one _collision group_. It will allow us to write less code and won't require any changes if we add more enemies, missiles or asteroids of different size.
+Then we should add logic so that player's ship removes one life on collision. We could use `ct.place.meet` as we used it in asteroids' and enemies' code to test against a particular template, but let's group them into one _collision group_. It will allow us to write less code and won't require any changes if we add more enemies, missiles or asteroids of different size.
 
-To add copies to a collision group, we should add this line of code to all the needed types' `On Create` code:
-
-```js
-this.ctype = 'Hostile';
-```
-
-Add this line to `On Create` code of asteroids, enemy ship and red lasers.
+To add copies to a collision group, we should write in the name of the collision group in the left column of the template editor. Let's write in the word `Hostile`. Do it for all the asteroids, for the enemy ship and red lasers.
 
 Now add this code to the player ship's `On Step` code:
 
@@ -541,7 +535,7 @@ if (hostile) {
 }
 ```
 
-`ct.place.occupied` is similar to `ct.place.meet` which we were using before, but works with _collision groups_, not types.
+`ct.place.occupied` is similar to `ct.place.meet` which we were using before, but works with _collision groups_, not templates.
 
 `ct.rooms.switch` unloads the current room and loads a new one. By pointing to the same room as we were playing, we restart it.
 

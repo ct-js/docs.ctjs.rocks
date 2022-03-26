@@ -36,9 +36,9 @@ if (ct.actions.Pause.pressed) {
 
         ct.pixiApp.ticker.speed = 0;
 
-        // This type can simply be a texture that aligns itself to the view
+        // This template can simply be a texture that aligns itself to the view
         // and tells to press a device-specific button to unpause (e.g. "Press Escape to unpause" for desktop keyboards).
-        this.unpauseHint = ct.types.copy('PauseHint', ct.room.x + ct.viewWidth / 2, ct.room.y + ct.viewHeight / 2);
+        this.unpauseHint = ct.templates.copy('PauseHint', ct.room.x + ct.viewWidth / 2, ct.room.y + ct.viewHeight / 2);
         // Coordinates are set so the copy is placed exactly in the middle of a player's screen.
         // See "Working with Viewport" in other tips & tricks.
     } else {

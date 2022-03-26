@@ -2,7 +2,7 @@
 
 In this tutorial we are going to take a look at how we can do a drag and drop implementation for copies in ct.js!
 
-We have a placeholder block type that we are going to drag around. Let's start by going to the the 'Catmods' menu under the Project tab and enable the `ct.touch` catmod. We are going to be using this catmod because we want to be able to drag our cube in mobile and touchscreen devices with our fingers. And don't worry, we will also be able to use our mouse to drag because  `ct.touch` can also handle mouse events by default. If you need to, you can disable this behavior from the Touch menu under Catmods' Settings.
+We have a placeholder block template that we are going to drag around. Let's start by going to the the 'Catmods' menu under the Project tab and enable the `ct.touch` catmod. We are going to be using this catmod because we want to be able to drag our cube in mobile and touchscreen devices with our fingers. And don't worry, we will also be able to use our mouse to drag because  `ct.touch` can also handle mouse events by default. If you need to, you can disable this behavior from the Touch menu under Catmods' Settings.
 
 ![Dragging the block](./images/draggingCopies_01.png)
 
@@ -12,7 +12,7 @@ Now we want to add a touch action from the 'Actions and Input Methods' menu. Cli
 
 We will use the action we just created to register touch events such as press and release.
 
-Now let's start actually making the dragging. Head on to your type's `On Create` tab and declare a variable called `this.dragging`.
+Now let's start actually making the dragging. Head on to your template's `On Create` tab and declare a variable called `this.dragging`.
 
 ```js
 this.dragging = false;
@@ -34,7 +34,7 @@ if (this.dragging && ct.actions.TouchAction.released) {
 }
 ```
 
-And we want to set the position of out type to the current position of the touch while dragging.
+And we want to set the position of our copy to the current position of the touch while dragging.
 
 ```js
 if (this.dragging) {

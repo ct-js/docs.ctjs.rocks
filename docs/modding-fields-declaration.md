@@ -1,6 +1,6 @@
 # Fields reference for module settings and additional fields
 
-Both [module settings](modding-settings-and-extensions.html) and extensions for built-in types are implemented by writing a declaration of editable fields in `module.json`. A declaration is an array of objects, with each object being one editable field. Let's take a look at `ct.place` module and its `module.json` (look at the `fields` array):
+Both [module settings](modding-settings-and-extensions.html) and extensions for built-in templates are implemented by writing a declaration of editable fields in `module.json`. A declaration is an array of objects, with each object being one editable field. Let's take a look at `ct.place` module and its `module.json` (look at the `fields` array):
 
 ```json
 {
@@ -55,12 +55,16 @@ declare interface IExtensionField {
     key?: string, // The name of a JSON key to write into the `opts.entity`. Not needed for hN types, but required otherwise
     default?: any, // The default value; it is not written to the `opts.entity`, but is shown in inputs.
     help?: string, // A text label describing the purpose of a field
-    options?: Array<{ // Used with type === 'radio'.
+    options?: Array<{ // Used with type === 'radio' and type === 'select'.
         value: any,
         name: string,
         help?: string
     }>,
+    if?: string, // Tells to show this field only if another field in this module is set (or true-ish)
     fields?: Array<IExtensionField>, // These are for type === 'table'
+    arrayType?: string, // The type of the fields used for the array editor (when `type` is 'array').
+                        // It supports a subset of moddable fields,
+                        // excluding headers, groups, tables, icons, radio, select, and arrays.
     // These three are used with type === 'number', 'slider', or 'sliderAndNumber'
     min?: number,
     max?: number,
@@ -74,23 +78,24 @@ declare interface IExtensionField {
 
 Here we mark optional fields in form of `key?: type`. The required fields are `name` and `type`. The former is a text label that is shown before an input field; the latter is a string that defines input method displayed for a user. It can be one of these strings:
 
-* `input` – a simple text input for short strings;
-* `textfield` – a large textarea for a long input;
-* `code` – similar to `textfield`, but with monospace font and usually wider than `textfield`;
-* `number` – an input field for integers;
-* `slider` ­– a slider (aka range) input for inputs that are better inputed with mouse; <badge>new in v1.4.2</badge>
-* `sliderAndNumber` ­– displays both a slider and a number in one row; <badge>new in v1.4.2</badge>
-* `checkbox` – a checkbox for Boolean variables;
-* `radio` – a list of predefined values to choose from. This type also requires an `options` array to be set;
-* `texture` – a link to an asset in a project; <badge>new in v1.4</badge>
-* `type` – same as `texture`, but for types; <badge>new in v1.4</badge>
-* `point2D` — displays a pair of number inputs with X and Y labels. Stores values as an array of two numbers; <badge>new in v1.4</badge>
-* `h1`, `h2`, `h3` and `h4`. These are not really for any input, but display a heading to categorize fields in catmod's settings tab. Such fields require `type` and `name` only; <badge>new in v1.4</badge>
-* `table` — editable series of complex objects in a table form. <badge>new in v1.5</badge>
+* `input` — a simple text input for short strings;
+* `textfield` — a large textarea for a long input;
+* `code` — similar to `textfield`, but with monospace font and usually wider than `textfield`;
+* `number` — an input field for integers;
+* `slider` — a slider (aka range) input for inputs that are better inputed with mouse;
+* `sliderAndNumber` — displays both a slider and a number in one row;
+* `checkbox` — a checkbox for Boolean variables;
+* `radio` — a list of predefined values to choose from. This type also requires an `options` array to be set;
+* `select` — a dropdown with a list of predefined values. Requires an `options` array to be set. If any option has value equal to `''` (to an empty string), then this option will be blank and won't be selectable, acting as a divider;
+* `texture`, `template`, `room`, `sound`, `tandem` — a link to an asset in a project;
+* `point2D` — displays a pair of number inputs with X and Y labels. Stores values as an array of two numbers;
+* `h1`, `h2`, `h3` and `h4`. These are not really for any input, but display a heading to categorize fields in catmod's settings tab. Such fields require `type` and `name` only;
+* `array` — editable series of simple values. Requires `arrayType` to be set;
+* `table` — editable series of complex objects in a table form. Requires `fields` to be set.
 
-For settings, field's `key` must be unique for a module. For extended fields of types and other assets, it should be unique all across a user's codebase, so naming a key in form of `mymodMyfieldname` is a good idea.
+For settings, field's `key` must be unique for a module. For extended fields of templates and other assets, it should be unique all across a user's codebase, so naming a key in form of `mymodMyfieldname` is a good idea.
 
-## Additional tweaks for number and range inputs <badge>new in v1.4.2</badge>
+## Additional tweaks for number and range inputs
 
 `number`, `slider`, `sliderAndNumber` input types accept additional fields for setting restrictions on input:
 
@@ -128,7 +133,7 @@ You can present a number of choices for your user in a group, and allow them to 
 }
 ```
 
-## Tables <badge>new in v1.5</badge>
+## Tables
 
 Tables allow users to describe an array of entities of a specific structure. Users can add/remove rows, and reorder them. Nested tables are supported, though they look terrible.
 
@@ -194,18 +199,18 @@ For tables themselves, the `default` key must be an array of default elements in
 
 For tables' fields, the `default` key sets the default values for newly added rows.
 
-## Unwrapping UIDs of types and textures
+## Unwrapping UIDs of templates and textures
 
-When you define a field with type `texture` or `type` and a user selects an asset for this field, a UID of a resource is stored. To tell ct.js to turn this UID into a name of a particular asset, you should add a postfix `@@assetType` at the end, writing the correct asset type:
+When you define a field with type `texture` or `template` and a user selects an asset for this field, a UID of a resource is stored. To tell ct.js to turn this UID into a name of a particular asset, you should add a postfix `@@assetType` at the end, writing the correct asset type:
 
-* `yourVarName@@type` for types;
+* `yourVarName@@template` for templates;
 * `yourVarName@@texture` for textures.
 
 The exported value will then be the name of an asset, as it is displayed in IDE and is usually used in code.
 
-This works both for injections and extensions for types. For injections, if you have a `key` in form of `yourVarName@@assetType`, matches with `/*%yourVarName%*/` or `%yourVarName%` will be replaced.
+This works both for injections and extensions for assets. For injections, if you have a `key` in form of `yourVarName@@assetType`, matches with `/*%yourVarName%*/` or `%yourVarName%` will be replaced.
 
-## Field groups <badge>new in v1.6.0</badge>
+## Field groups
 
 You can create a collapsable group of fields by setting `type` parameter of a field to `group`. This helps saving space at type and room editors or simlpy hiding less-used fields.
 
@@ -215,11 +220,11 @@ The `group` type requires three additional properties to be set:
 * `lsKey` — a key in local storage to store whether a user left this group opened or not. It should be unique, and it is recommended to contain your module's name to avoid collisions with other modules.
 * `items` — the array of fields inside a group. These are the same fields you would define outside of one.
 
-### Example: creating one regular field and a group of fields for ct.js types
+### Example: creating one regular field and a group of fields for ct.js templates
 
 ```json
 // ...
-"typeExtends": [
+"templateExtends": [
     {
         "name": "Create a hoverboard",
         "type": "checkbox",

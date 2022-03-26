@@ -12,7 +12,7 @@
 * [ct.styles](ct.styles.html) for reusing UI styles;
 * [ct.tilemaps](ct.tilemaps.html) for dynamically generating levels made of tiles;
 * [ct.timer](ct.timer.html) for asynchronous events;
-* [ct.types](ct.types.html) for creating, finding and managing types and copies;
+* [ct.templates](ct.templates.html) for creating, finding and managing templates and copies;
 * [ct.u](ct.u.html) for vector functions, among other utilities.
 
 You will usually use the API above, as well ass those APIs provided by ct.js modules.
@@ -43,7 +43,7 @@ You can use this delta while designing movement, so things move uniformly at any
 this.x += 10 * ct.delta;
 ```
 
-But this delta is mostly useful while designing complex or logic-driven movement, as [the default movement system](ct.types.html#moving-copies-around) already takes `ct.delta` into account.
+But this delta is mostly useful while designing complex or logic-driven movement, as [the default movement system](ct.templates.html#moving-copies-around) already takes `ct.delta` into account.
 
 ### `ct.deltaUi`
 

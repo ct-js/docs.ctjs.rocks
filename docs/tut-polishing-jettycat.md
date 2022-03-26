@@ -46,7 +46,7 @@ ct.transition.circleIn(500, 0x446ADB);
 
 We can also show up our UI layers (the pause menu and the score screen) by making them transparent but slowly turning them opaque. We will use `ct.tween` there — that one catmod that is used by `ct.transition`.
 
-Most entities in ct.js have the same parameters that allow you to tweak their look and feel. We've been using `this.scale.x` and `this.scale.y` to set a copy's scale, but we can also apply it to rooms, text labels, special effects, and so on. Besides scaling, there are parameters `this.rotation`, `this.alpha` and `this.tint` that rotate an object, set its opacity and color correspondingly.
+Most entities in ct.js have the same parameters that allow you to tweak their look and feel. We've been using `this.scale.x` and `this.scale.y` to set a copy's scale, but we can also apply it to rooms, text labels, special effects, and so on. Besides scaling, there are parameters `this.angle`, `this.alpha` and `this.tint` that rotate an object, set its opacity and color correspondingly.
 
 We will change the property `this.alpha` through time. It is a number between 0 and 1. When set to 1 — its initial value —, a copy or a room will be fully opaque. When set to 0, it will be invisible. Any numbers in-between will bake an object partially transparent. The module `ct.tween` will help create a smooth transition of it.
 
@@ -67,7 +67,7 @@ ct.tween.add({
 
 Firstly, we make a room fully transparent by setting its `alpha` to 0. Then, we call `ct.tween.add` to start a smooth transition. `obj` points to an object that should be animated, and `fields` lists all the properties and values we want to change. The `duration` key sets the length of the effect, in milliseconds. Finally, the `useUiDelta` key tells that animation should run in UI time scale, ignoring our "paused" game state.
 
-We can fade out a UI layer, too. Let's gradually hide the pause menu when the player hits the "continue" button. Open the type `Button_Continue`, and modify its code:
+We can fade out a UI layer, too. Let's gradually hide the pause menu when the player hits the "continue" button. Open the template `Button_Continue`, and modify its code:
 
 ```js
 if (ct.touch.collideUi(this)) {
@@ -97,7 +97,7 @@ Then we start animation for `this.getRoom()`, which will return the room `UI_Pau
 
 Though the "paused" menu fades out slowly, it is still hard for a player to catch up and prevent the cat from bumping into the ground. To prevent that, we can use `ct.tween` to… animate time! `ct.pixiApp.ticker.speed = 1;` can be not just 0 and 1, but also anything in between, and even beyond 1. Large values will make the game run faster, while values close to 0 will slow the game. Thus, we can animate the value `ct.pixiApp.ticker.speed` to make the game transition from paused to fully running state.
 
-Open the type `Button_Continue` again, and modify the script so it fires another `ct.tween.add` after it finishes the first one:
+Open the template `Button_Continue` again, and modify the script so it fires another `ct.tween.add` after it finishes the first one:
 
 ```js {13,14,15,16,17,18,19,20}
 if (ct.touch.collideUi(this)) {
@@ -156,7 +156,7 @@ Here are some directions on how to make this effect:
 
 When you're ready, hit the "Apply" button at the bottom of the left column.
 
-To create a burst of stars when a big one is collected, open the type `Star`, navigate to the "On Destroy" tab and write a line `ct.emitters.fire('StarBurst', this.x, this.y);`. Ta-da!
+To create a burst of stars when a big one is collected, open the template `Star`, navigate to the "On Destroy" tab and write a line `ct.emitters.fire('StarBurst', this.x, this.y);`. Ta-da!
 
 ::: tip
 Here we read the position of the star (`this.x, this.y`) and tell to spawn an effect `StarBurst`.
@@ -179,7 +179,7 @@ Here are some hints:
 * Precisely position the emitter so that it spawns right from the jet by tweaking the emitter's position, in the section called "Shape and Positioning".
 * Change the value Spawning » Time between bursts to change the density of a jet. Smaller values spawn larger amounts of particles.
 
-To add the effect to the cat, open its type and put this code to the end of its On Create code:
+To add the effect to the cat, open its template and put this code to the end of its On Create code:
 
 ```js
 this.jet = ct.emitters.follow(this, 'Jet');
@@ -219,27 +219,27 @@ Particles help liven up the game, but it still may feel stiff and static. Let's 
 
 ### Rotating the cat
 
-Every copy has a parameter `this.rotation`, that sets the visual rotation of a texture in degrees. Each copy also has `this.speed` and `this.direction` we've used, and they both define additional parameters `this.vspeed` and `this.hspeed` — the vertical and horizontal speed decomposed from speed and direction. These two can be negative values when a copy moves in the opposite direction from how the axis goes. (E.g. the X-axis points to the right, its values grow from left to right. Moving to the right makes positive `hspeed`, moving to the left makes negative `hspeed`.)
+Every copy has a parameter `this.angle`, that sets the visual angle of a texture in degrees. Each copy also has `this.speed` and `this.direction` we've used, and they both define additional parameters `this.vspeed` and `this.hspeed` — the vertical and horizontal speed decomposed from speed and direction. These two can be negative values when a copy moves in the opposite direction from how the axis goes. (E.g. the X-axis points to the right, its values grow from left to right. Moving to the right makes positive `hspeed`, moving to the left makes negative `hspeed`.)
 
-We can tie `this.vspeed` and `this.rotation` of a cat together so that it rotates when falling or flying up. It is done by simply assigning one value to another in the Draw tab.
+We can tie `this.vspeed` and `this.angle` of a cat together so that it rotates when falling or flying up. It is done by simply assigning one value to another in the Draw tab.
 
 This line will work:
 
 ```js
-this.rotation = this.vspeed;
+this.angle = -this.vspeed;
 ```
 
 Though it will result in a too strong rotation. Adding a multiplier will make it look better:
 
 ```js
-this.rotation = this.vspeed * 0.3;
+this.angle = -this.vspeed * 0.3;
 ```
 
 ### Rotating the stars
 
-With stars, we can't simply tie `this.rotation` to some ct.js' value. We can define our own, though, an apply a bit of math to turn numbers into nice wiggles. This all will remind you of spawning timers.
+With stars, we can't simply tie `this.angle` to some ct.js' value. We can define our own, though, an apply a bit of math to turn numbers into nice wiggles. This all will remind you of spawning timers.
 
-Open the `Star` type, and add this line to its On Create tab:
+Open the `Star` template, and add this line to its On Create tab:
 
 ```js
 this.wiggleTime = 0;
@@ -249,7 +249,7 @@ Then, in the Draw tab, add this tab:
 
 ```js
 this.wiggleTime += ct.delta * 0.2;
-this.rotation = Math.sin(this.wiggleTime) * 5;
+this.angle = Math.sin(this.wiggleTime) * 5;
 ```
 
 Here we change `this.wiggleTime` at each frame by the elapsed time, multiplied by 0.2 to slow down the animation. Then we use `Math.sin` to get a sinus of the `wiggleTime` — changing the latter at each frame will result in a smooth oscillation between -1 and 1. By multiplying it by 5, we make the effect five times stronger.
@@ -260,9 +260,9 @@ Here we change `this.wiggleTime` at each frame by the elapsed time, multiplied b
 
 Let's use the same approach to create a visual hint for a user to start tapping! It will be a pulsating hand icon.
 
-Create a new type called `PressHint` with a texture `PressHint`. Make sure the texture has its axis centered.
+Create a new template called `PressHint` with a texture `PressHint`. Make sure the texture has its axis centered.
 
-In the type's On Create code, add a line `this.pulsePhase = 0;`. In its On Step code, put this snippet:
+In the template's On Create code, add a line `this.pulsePhase = 0;`. In its On Step code, put this snippet:
 
 ```js
 this.pulsePhase += ct.delta * 0.2;

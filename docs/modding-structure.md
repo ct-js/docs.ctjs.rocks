@@ -121,7 +121,7 @@ Depending on your needs, you will probably need to:
 * Write your core logic in `index.js` file;
 * [Inject custom code](modding-events-and-injections.html) into ct.js' events and procedures;
 * [Add settings to your module](modding-events-and-injections.html) editable from ct.IDE and read them back though injections;
-* [Add new editable fields](modding-events-and-injections.html) for types and other few asset types;
+* [Add new editable fields](modding-events-and-injections.html) for templates and other few asset types;
 * [Implement new input methods](modding-input-methods.html) to integrate them into [Actions system](actions.html);
 * [Add typings](modding-typings-and-intellisense.html) for smart autocompletion and type checks.
 

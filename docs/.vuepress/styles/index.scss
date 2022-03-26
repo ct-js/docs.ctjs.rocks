@@ -1,0 +1,56 @@
+:root {
+  --c-brand: #446adb;
+  --c-brand-light: #446adb;
+}
+
+td p:first-child{
+  margin-block-start: 0;
+}
+td p:last-child {
+  margin-block-end: 0;
+}
+td {
+  line-height: 1.7;
+  vertical-align: top;
+}
+thead {
+  text-align: left;
+}
+.button, button {
+  display: inline-block;
+  font: inherit;
+  color: #446adb;
+  border: 1px solid #446adb;
+  padding: 0.8rem 1.2rem;
+  border-radius: 4px;
+  transition: 0.2s ease all;
+  box-sizing: border-box;
+  &:hover {
+    color: white;
+    background-color: #446adb;
+  }
+}
+.toggle-dark-button {
+  padding: 0.35rem 0.5rem;
+}
+button + button, .button + .button {
+  margin-left: 0.5rem;
+}
+html.dark {
+  // brand colors
+  --c-brand: #44dbb5;
+  --c-brand-light: #44dbb5;
+  --c-bg: #07060E;
+  --c-bg-light: #0c0d17;
+  --c-bg-lighter: #0c0d17;
+  --c-border: #213548;
+  --c-border-dark: #142035;
+  .button, button {
+    color: #44dbb5;
+    border: 1px solid #44dbb5;
+    &:hover {
+      background-color: #44dbb5;
+      color: #fff
+    }
+  }
+}

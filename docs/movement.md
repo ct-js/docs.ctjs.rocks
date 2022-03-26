@@ -24,7 +24,7 @@ By themselves, only `this.x` and `this.y` affect the visual position of objects.
 
 ## `this.move()`
 
-`this.move()` can be called at the On Step code at any type to make a copy move according to `this.speed` and `this.direction` parameters. It doesn't check for collisions on its own, so you will need to program your collision handling logic with it or use other methods. (See below.) But it may be the only thing you need for, say, arcade space shooters. It is also the way to move bullets and other things that get destroyed on collision.
+`this.move()` can be called at the On Step code of any template to make a copy move according to `this.speed` and `this.direction` parameters. It doesn't check for collisions on its own, so you will need to program your collision handling logic with it or use other methods. (See below.) But it may be the only thing you need for, say, arcade space shooters. It is also the way to move bullets and other things that get destroyed on collision.
 
 ### Example: Set the speed of a copy according to a player's input and move it.
 
@@ -51,14 +51,14 @@ On Step code:
 this.move();
 ```
 
-### Example: Follow a copy of a type called "Character"
+### Example: Follow a copy of a template called "Character"
 
 On Step code:
 
 ```js
-var character = ct.types.list['Character'][0];
+var character = ct.templates.list['Character'][0];
 // Check whether the character exists.
-if (ct.types.exists(character)) {
+if (ct.templates.exists(character)) {
     this.speed = 5;
     // Compute direction from current location to character's position.
     this.direction = ct.u.pointDirection(this.x, this.y, character.x, character.y);
@@ -122,7 +122,7 @@ var obstacle = this.moveContinuous('Solid');
 // You probably will never have a tile with an "Enemy" collision group,
 // but let's do an additional check :)
 // Make sure that there was an obstacle and it was a copy.
-if (obstacle && ct.types.isCopy(obstacle)) {
+if (obstacle && ct.templates.isCopy(obstacle)) {
     // Contact!
     // The obstacle is a copy, and we can write directly to it.
     obstacle.kill = true;
@@ -344,7 +344,7 @@ On Step:
 ```js
 const obstacle = ct.place.occupied(this, 'Solid');
 // If there was an obstacle and it is a copy…
-if (ct.types.isCopy(obstacle)) {
+if (ct.templates.isCopy(obstacle)) {
     // Get the direction from the obstacle to the copy
     const repelDirection = ct.u.pointDirection(obstacle.x, obstacle.y, this.x, this.y);
     // These two lines will move the copy by 3 pixels in the given direction

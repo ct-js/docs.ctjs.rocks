@@ -3,7 +3,7 @@
 Copies are the entities that interact with each other on the screen and what drives the game's logic. They derive from Pixi's `AnimatedSprite` class, so you can find [much more parameters](https://pixijs.download/release/docs/PIXI.AnimatedSprite.html) at their docs site.
 
 ::: tip
-To create and find copies, see the [`ct.types` reference](ct.types.html).
+To create and find copies, see the [`ct.templates` reference](ct.templates.html).
 :::
 
 ## Moving Copies Around
@@ -17,9 +17,9 @@ Property | Type | Description
 `xstart`, `ystart` | `number` | The coordinates at which a copy was created.
 `speed` | `number` | Movement speed (or the length of vector `[hspeed; vspeed]`).
 `hspeed`, `vspeed` | `number` | Horizontal and vertical speed.
-`direction` | `number` | Movement direction (from 0 to 360).
+`direction` | `number` | Movement direction (from 0 to 360, from right side going clock-wise).
 `gravity` | `number` | Gravity force, as an amount of `speed` added at each frame.
-`gravityDir` | `number` | Gravity direction (from 0 to 360, default is 270).
+`gravityDir` | `number` | Gravity direction (from 0 to 360, default is 90).
 
 You can also call `this.addSpeed` to add speed vector to a Copy in a given direction.
 
@@ -38,7 +38,7 @@ There are a number of parameters that can be changed:
 |`alpha` | `number` | The opacity of the copy. 0 makes a copy invisible, 1 is the default (fully opaque) mode. All in between will make a gradual transparency change.|
 |`blendMode` | `PIXI.BLEND_MODES` (`number`) | How to mix the copy with the rest of the world. Defaults to `PIXI.BLEND_MODES.NORMAL`. Can be one of: <ul><li>`PIXI.BLEND_MODES.NORMAL`</li> <li>`PIXI.BLEND_MODES.ADD`</li> <li>`PIXI.BLEND_MODES.MULTIPLY`</li><li>`PIXI.BLEND_MODES.SCREEN`</li></ul>|
 |`depth` | `number` | The drawing layer.|
-|`rotation` | `number` | The rotation of the copy in degrees.|
+|`angle` | `number` | The rotation of the copy in degrees ranging from 0 to 360, starting from right side and going clock-wise.|
 |`scale` | `PIXI.ObservablePoint` | The scale factor of the object. You can either assign a simple value (`this.scale = 0.5;`) for uniform scaling or access its `x` and `y` compounds (`this.scale.x = 0.5;`).|
 |`tex` | `string` | The name of a ct.js texture to use. Setting `this.tex = 'NewTexture';` will change the displayed texture and reset animation. |
 |`tint` | `number` | The tint applied to the sprite. This is a hex value. A value of `0xFFFFFF` will remove any tint effect. The colors are the same as in CSS but with `0x` instead of `#`, e.g. `0xFF0000` is red, `0x00FFFF` is cyan, ect.|
@@ -93,6 +93,6 @@ OnStep code [will still be executed](ct.html#Event-sequence) to its end. Copies 
 
 Returns the room that owns the current copy. This is useful when working with different rooms in a stage. Returns an instance of `Room` class.
 
-### `copy.type`
+### `copy.template`
 
-The name of the Type from which a Copy was created (a `string`).
+The name of the template from which a Copy was created (a `string`).
