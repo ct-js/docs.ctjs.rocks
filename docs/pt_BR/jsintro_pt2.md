@@ -7,48 +7,55 @@ Variáveis é um bom lugar para guardar as coisas, mas apenas isso não faz um j
 Vamos iniciar com a estrutura de um "if":
 
 ```js
-if (/* this statement is true*/) {
-    /* do some stuff */
+if (/* essa instrução é verdadeira */) {
+    /* então faça algo útil */
 } else {
-    /* do another stuff */
+    /* caso contrário, faça outra coisa útil */
 }
 ```
 
 Podemos omitir a parte "else" se não precisarmos dele:
 
 ```js
-if (/* this statement is true */) {
-    /* do some stuff */
+if (/* essa instrução é verdadeira */) {
+    /* então faça algo útil */
 }
 ```
 
 Para fazer as coisas funcionarem, precisamos passar um valor Booleano entre os parênteses e em seguida escrever algum código. Podemos fazer um monte de coisas com essa simples instrução:
 
-```js Destrói uma Copy se health for menor ou igual a zero
+::: tip Destrói uma Copy se health for menor ou igual a zero
+```js 
 if (this.health <= 0) {
     this.kill = true;
 }
 ```
+:::
 
-```js Realiza uma compra
+::: tip Realiza uma compra
+```js 
 var price = 500;
 this.money = 1230;
 
 if (this.money >= price) {
     this.money -= price;
-    this.inventory.push(/* some item */);
+    this.inventory.push(/* algum item */);
 }
 ```
+:::
 
-```js dá um pulo
+::: tip Dá um pulo
+```js 
 this.onGround = true;
 var keyUp = ct.keyboard.down['up'];
 if (this.onGround && keyUp) {
     this.addSpeed(this, 10, 270);
 }
 ```
+:::
 
-```js Não pula fora dos limites da tela
+::: tip Não pula fora dos limites da tela
+```js 
 if (this.x < 0) {
     this.x = 0;
 }
@@ -62,10 +69,12 @@ if (this.y > ct.viewHeight) {
     this.y = ct.viewHeight;
 }
 ```
+:::
 
 Vamos otimizar um pouco o código anterior:
 
-```js Não pula fora dos limites da tela
+::: tip Não pula fora dos limites da tela
+```js
 if (this.x < 0) {
     this.x = 0;
 } else if (this.x > ct.viewWidth) {
@@ -77,21 +86,22 @@ if (this.y < 0) {
     this.y = ct.viewHeight;
 }
 ```
+:::
 
 ## Loops "while"
 
 loops "while" executa o código múltiplas vezes até que a instrução se torna `false`.
 
 ```js 
-while (/* this statement is true */) {
-    /* do something  */
+while (/* essa instrução é verdadeira */) {
+    /* faz alguma coisa  */
 }
 ```
 
 Imagine que a gente precise criar um monte de Copies iguais, e que esse número alto de Copies não possa ser codificado ou que seja uma quantidade relativamente alta pra escrever na "mão grande". Nesse caso, um loop "while" pode automatizar o processo de criação dessas Copies.
 
 ```js
-var counter = 20; // We need to create 20 Copies
+var counter = 20; // Precisamos criar 20 Copies
 
 while (counter > 0) {
     ct.types.copy('Enemy', this.x, this.y);
@@ -112,14 +122,14 @@ for (var counter = 20; counter > 0; counter--) {
 Observe que nós juntamos todas as coisas relacionadas ao loop em uma única linha! Loops "for" são criados exatamente para isso:
 
 ```js
-for (/*define variables here*/; /*set a condition*/; /*change variables after each iteration*/) {
-    /* loop body */
+for (/*declaração das variáveis vão aqui*/; /* define uma condição*/; /*altera as variáveis a cada interação*/) {
+    /* corpo do loop */
 }
 ```
 
 Mas ainda existem outros tipos de loops "for". Por exemplo, nós podemos manipular *arrays* e *objetos* com um loop "for…of" e "for…in".
 
-:::tip
+:::tip Dica
 Os loops for abaixo são opcionais e bastante avançados, mas eles também são um poderoso instrumento para a manipulação de dados complexos.
 :::
 
@@ -141,7 +151,7 @@ while (ind < this.monsterPowers.length) {
 }
 ```
 
-:::tip
+:::tip Dica
 A propriedade `length` existe em todos os Arrays, e ela define o número de elementos do array. Você pode tanto ler como alterar essa propriedade.
 :::
 
@@ -179,7 +189,7 @@ var magicWand = {
 };
 
 console.log(magicWand.name);
-console.log(magicWand['forces']); // Another way to get values from Objects — Array-styled!
+console.log(magicWand['forces']); // Uma outra forma de obter os valores dos objeto no estilo array!
 ```
 
 Podemos utilizar dois tipos de loop "for" para percorrer todos os elementos de uma array, mas nós precisaremos de um loop "for…in" para percorrer todas as propriedades de um Objeto:

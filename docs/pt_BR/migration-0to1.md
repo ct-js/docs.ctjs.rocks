@@ -78,6 +78,10 @@ this.alpha = 0.5;
 
 Em vez de usar `ct.room.width` e `ct.room.height`, use apenas `ct.viewWidth` e `ct.viewHeight`. Existe um conceito diferente agora, e `ct.room.width` e `ct.room.height` muda a todo instante.
 
+::: warning Alerta
+Alterações na versão 1.3. [ Veja o guia de migração](./migration-1-2to1-3.html). Em poucas palavras, `ct.room.width` agora é `ct.camera.width`, e `ct.room.height` é `ct.camera.height`, mas existem pequenas diferenças uma vez que você inicia o redimensionamento ou rotação da câmera.
+:::
+
 ### Temporizadores
 
 Em vez de:
@@ -147,11 +151,11 @@ Adicione isso em seu código `OnCreate`:
 ```js
 this.healthBar = new PIXI.mesh.NineSlicePlane(
     ct.res.getTexture('Healthbar', 0),
-    8, 8, 8, 16); /* this can be also written in one line */
+    8, 8, 8, 16); /* isso pode ser escrito em uma linha */
 this.addChild(this.healthBar);
-this.healthBar.x = this.healthBar.y = 32; /* where to place this bar */
+this.healthBar.x = this.healthBar.y = 32; /* posição da barra */
 this.healthBar.height = 64;
-this.healthBar.width = ct.game.health * 2; // Assuming that the max health is 100 and you want 100×2 = 200px wide bar
+this.healthBar.width = ct.game.health * 2; // Supondo que o health máximo seja 100 e que você queira uma barra com 100×2 = 200px de largura
 ```
 
 E atualize o mesmo a cada momento com esse código:	
@@ -190,7 +194,7 @@ Para trabalhar com difrentes resoluções, você agora deve uar `ct.viewWidth` e
 
 ### Suporte para teclado e mouse
 
-ct.js agora usa Actions para mapear as entradas do usuário com os eventos do jogo. Você pode lê sobre Actions [aqui](/actions.html). Por causa disso, `ct.mouse` foi removido do núcleo da ferramenta para o catmod.
+ct.js agora usa Actions para mapear as entradas do usuário com os eventos do jogo. Você pode lê sobre Actions [aqui](./actions.html). Por causa disso, `ct.mouse` foi removido do núcleo da ferramenta para o catmod.
 
 Todos os projetos antigos automaticamente vão funcionar com o `ct.mouse.legacy` e, se necessário, `ct.keyboard.legacy`. Eles representam o comportamento anterior desse módulos e não devem causar problemas de compatibilidade.
 

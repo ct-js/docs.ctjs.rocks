@@ -1,6 +1,6 @@
 # ct.styles
 
-Esse objeto permite criar, armazenar e usa estilos predefinidos para o desenho de texto. Em conformidade com as propriedades da [classe TextStyle](https://pixijs.download/release/docs/PIXI.TextStyle.html) do Pixi.
+Esse objeto permite criar, armazenar e usa estilos predefinidos para a renderização de texto. Em conformidade com as propriedades da [classe TextStyle](https://pixijs.download/release/docs/PIXI.TextStyle.html) do Pixi.
 
 ## Usando estilos
 
@@ -35,4 +35,4 @@ this.details = new PIXI.Text(this.info, multiline);
 
 ### `ct.styles.new(name, options)`
 
-Cria um novo estilo com o nome fornecido em `name`. O `options` são os mesmos que encontrados em [criando um TextStyle](https://pixijs.download/release/docs/PIXI.TextStyle.html) do Pixi.
+Cria um novo estilo com o nome fornecido em `name`. O `options` são os mesmos que encontrados em [criando um TextStyle](https://pixijs.download/release/docs/PIXI.TextStyle.html) do PixiJS.

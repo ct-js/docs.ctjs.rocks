@@ -120,7 +120,7 @@ No `ct.camera.realign` | With `ct.camera.realign`
 -|-
 ![UI elements are scaled, but appear displaced if screen proportions change](./images/ctCameraAlign_notIncluded.gif) | ![UI elements are both scaled and evenly distributed accross the screen](./images/ctCameraAlign_included.gif)
 
-#### Example: Realing UI elements in a room
+#### Example: Realign UI elements in a room
 
 On Draw code of your UI room:
 

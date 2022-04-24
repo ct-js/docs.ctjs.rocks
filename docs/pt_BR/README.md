@@ -1,32 +1,61 @@
-# Olá!
+---
+home: true
+# heroImage: /assets/img/logo.png
+heroText: Seja bem-vindo à documentação oficial do ct.js!
+tagline: Aprenda ct.js, complete os tutoriais e contribua com a documentação do ct.js
+actions:
+    - text: Leia a documentação →
+      link: ./ct-concepts.html
+footer: Documentação ct.js. Exceto onde for indicado de outra forma, o conteúdo é licenciado sob uma Licença Creative Commons Atribuição 4.0 Internacional.
+---
 
-Prazer em conhecer você! Aqui você encontrará toda a documentação e tutorial oficial para o ct.js.
-
-ct.js (`ct` é lido como `kΛtæ`) é um framework e editor de jogos destinado para a criação de jogos 2D. Ele é baseado em tecnologias web e suporta um monte de plataformas. O framework foi desenhado para ser modular, o que permite a criação de módulos adicionais para expandir as possibilidades e para um processo de desenvolvimento mais fácil.
-
-## Por onde iniciar?
-
-Comece por um dos nossos tutoriais. Eles te ensinarão como usar o ct.js, como a biblioteca funciona, como criar as características básica de um jogo e muito mais. E então veja os exemplos disponíveis na pasta `ctjs/examples` e observe como os projetos mais sérios são feitos.
-
-Use essa documentação sempre que quiser a partir do painel lateral do ct.js e aprenda a sua biblioteca principal.
-
-Alguns módulos adicionais são vitais para a criação de um bom jogo. Você precisará aprender como usar essas bibliotecas como `ct.place` e `ct.keyboard`. Cada módulo tem a sua própria documentação de referência dentro do ct.js na aba "Catmods". `ct.place` e `ct.keyboard` também são frequentemente utilizados em nossos tutoriais, e eles são bons para mostrar como usar essas bibliotecas.
-
-Se você tiver alguma dificuldade, crie um tópico em [nosso fórum ct.js](https://comigo.itch.io/ct/community) para que outras pessoas possam te ajudar.
-
-## Conceitos básicos
-
-* **Ct.js** é uma biblioteca modular escrita em JavaScript e com um editor visual. Esse editor visual também é referenciado como **ct.IDE**.
-* Esses módulos são combinados em um game engine básico. Esses módulos funcionam com entradas de mouse, desenhando objetos, com rooms e com o carregamento de imagens e sons. Eles existem em cada jogo e referenciados como **A biblioteca principal**.
-* Existem **módulos adicionais** que complementam a biblioteca principal, adicionando novas ferramentas de desenvolvimento e novas funcionalidades ao game engine.
-
-Os jogos em ct.js são escritos em JavaScript. Ela é uma linguagem de programação flexível e de tipagem fraca, não precisa especificar o tipo das variáveis, para a web.
-
-Qualquer jogo em ct.js consiste de **assets gráficos**, **sons**, **estilos**, **types**, e **rooms**.
-
-* Um **asset gráfico**  é uma imagem que não faz muito por si só, mas ela é usada pelas copies e podem ser desenhadas usando código. Esse asset também é referenciado como um sprite, mas ele também pode ser um tileset, uma background, etc.
-* Uma **copy** é uma entidade lógica em seu jogo que pode interagir com as entradas do usuário e com outras copies. Inimigos, árvores, balas, gemas, bônus, gatos, todas essas coisas é uma copy. Copies são frequentemente chamadas de *"objetos"*, *"atores"* ou *"instâncias"* em outras game engines.
-* Cada copy é de um **type** específico. Um **type** é um modelo para as novas copies com configurações e comportamentos em comum. Ele pode ser chamado de uma *classe* ou de *objeto* em outras engines.
-* Uma **room** é um espaço 2D onde você coloca as suas copies. Rooms podem ter o seus próprios comportamentos adicionais (level scripts). Rooms tmabém são frequentemente associadas a *levels* ou *maps*. Uma notável diferença é que rooms em ct.js são de tamanhos ilimitados, enquanto que outras engines 2D tende a especificar um tamanho.
-* **Estilos** são modelos de desenho para serem usados enquanto se cria a interface de usuário.
-* **Sons** são audios que podem ser tocados via código.
+<div class="features">
+    <div class="feature">
+        <h2>Aprenda JavaScript</h2>
+        <p>Jogos feitos em ct.js usa JavaScript ou simplesmente JS para codificar a sua lógica de jogo. Aprenda essa parte necessária em nossa pequena <a href="./jsintro_pt1.html">Introdução ao JS</a>.</p>
+        <a href="./jsintro_pt1.html" class="button">Aprenda JavaScript →</a>
+    </div>
+    <div class="feature">
+        <h2>Complete os tutoriais</h2>
+        <p>A melhor forma de aprender é <i>praticando</i>, e você pode criar jogos reais com os nossos tutoriais de passa a passo:</p>
+        <ul>
+            <li><a href="./tut-making-shooter.html">Crie um jogo de nave →</a></li>
+            <li><a href="./tut-making-platformer.html">Crie um jogo de plataforma →</a></li>
+            <li><a href="./tut-making-jettycat.html">Crie o Jetty Cat, um jogo no estilo flappy bird →</a></li>
+        </ul>
+    </div>
+    <div class="feature">
+        <h2>Aprenda o principal do ct.js</h2>
+        <p>Veja métodos e propriedades adicionais das copies, câmera, rooms, e crie tilemaps, backgrounds e novas copies de forma procedural.</p>
+        <a href="./ct-concepts.html" class="button">Vá para a documentação ct.js →</a>
+    </div>
+    <div class="feature" style="flex-basis: 65%; max-width: 65%;">
+        <h2>Notáveis alterações e adicições no ct.js v2.0</h2>
+        <ul>
+            <li>API foi alterada! A primeira coisa que você notará é que o `ct.types` agora é `ct.templates`, mas existe muito mais em nosso <a href="./migration-1to2">guia de migração</a>. Vá lá e confira.</li>
+            <li><code>ct.res</code> foi quase que totalmente reescrito e agora permite que você <a href="./ct.res.html">dinamicamente carregue texturas, fontes e animações por ossos</a> em seu jogo. E tá vindo mais coisas por aí!</li>
+            <li>Uma nova parte de Introdução ao JavaScript foi liberada: <a href="./jsintro_pt3.html">agora com Arrays e Objetos</a>.</li>
+            <li>Agora existe uma página de documentação para o editor de room, e como mostra a prática, nem todo mundo sabe o que ele pode fazer. <a href="./room-editor.html">Dê uma olhada</a>, né?</li>
+            <li><a href="./modding-fields-declaration.html">Catmods agora tem uma chave `if` em seus campos</a>,  permitindo que desenvolvedores de catmod mostre controle condicionalmente e um tipo de `array` com uma chave complementar `arrayType`.</li>
+        </ul>
+        <a href="https://ctjs.rocks/changelog/" target="_blank">Changelog →</a>
+    </div>
+    <div class="feature">
+        <h2>Obtenha o cheatsheet</h2>
+        <a class="button" target="_blank" href="https://comigo.itch.io/ct-cheat-sheet">Baixe o cheatsheet →</a>
+        <p></p>
+        <img src="/assets/img/CheatsheetThumbnail.png">
+    </div>
+    <div class="feature"  style="flex-basis: 47.5%; max-width: 47.5%;">
+        <h2>Junte-se à comunidade</h2>
+        <p>Junte-se ao nosso servidor Discord para conhecer outros desenvolvedores de jogos, tire dúvidas, ajude aos outros e compartilhe as suas criações. Além disso, você tmbém pode também postar em nosso fórum.</p>
+        <a class="button" target="_blank" href="https://discord.gg/CggbPkb">Servidor Discord →</a>
+        <a class="button" target="_blank" href="https://comigo.itch.io/ct/community">Fórum →</a>
+    </div>
+    <div class="feature"  style="flex-basis: 47.5%; max-width: 47.5%;">
+        <h2>Contribua</h2>
+        <p>Configure um ambiente de desenvolvimento local para rodar o servidor de documentos e usa a simples sintaxe do Markdown para escrever novos tutoriais e enviar correções.</p>
+        <p>Você também pode editar a documentação no Github — procure pelo link "Propose edits" na parte inferior de cada página!</p>
+        <a class="button" target="_blank" href="https://github.com/ct-js/docs.ctjs.rocks">Visite o repositório →</a>
+    </div>
+</div>

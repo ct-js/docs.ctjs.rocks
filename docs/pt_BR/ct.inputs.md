@@ -79,6 +79,9 @@ Recalcula o valor digital de uma ação.
 
 **Retorna**: <code>Number</code> – Um valor escalar entre -1 e 1.
 
+### ctAction.reset() ⇒ <code>void</code>
+Reseta o estado da ação, definindo o seu `value` para `0` e os estados de `pressed`, `down` e `released` para `false`.
+
 ## Criando e removendo novas ações programaticamente
 
 ### ct.inputs.addAction(name, methods) ⇒ <code>CtAction</code>
