@@ -9,7 +9,7 @@ The room editor has four tabs that define its state. These tabs are located in t
 * Tiles tab for adding new tiles and managing already placed ones.
 * Properties tab with room's and camera's settings.
 
-![The four tabs that define room editor's state](./images/roomEditor_fourTabs.png)
+![The four tabs that define room editor's state](../images/roomEditor_fourTabs.png)
 
 ## Navigating around the room
 
@@ -47,7 +47,7 @@ Backgrounds are added in the second tab in the left column of the room editor. I
 
 You can change background's texture by clicking on the current texture. Other properties are hidden in a panel that you can open by clicking the ⚙ cog icon.
 
-![Open the background settings by clicking the cog icon](./images/roomEditor_backgroundSettings.png)
+![Open the background settings by clicking the cog icon](../images/roomEditor_backgroundSettings.png)
 
 * Depth changes the drawing order relative to copies, tiles, and other backgrounds. Setting it to higher value will cause it to be drawn on top of other things.
 * Shift fields position your background in the room.
@@ -66,7 +66,7 @@ To work with tiles, you need a texture that is setup properly — make sure that
 
 Here is an example of a properly set tileset:
 
-![An example of a properly set tileset](./images/roomEditor_tilesetSettings.png)
+![An example of a properly set tileset](../images/roomEditor_tilesetSettings.png)
 
 To start working with tiles, press the "Tiles" tab in the left column of the room editor and press the "Find a Tileset" button. Then select a tile on the texture you've imported and place it inside the room with a click. You can also select multiple tiles by pressing and dragging your pointer across several frames.
 
