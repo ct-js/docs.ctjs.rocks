@@ -1,6 +1,6 @@
 # Content subsystem (content editor and ct.content)
 
-Content subsystem is a set of editors and exporter procedures to allow you to design, create, and use structured data for your game. It can be thought of as a local database for your project, and can be used to design, for example, loot drops, levels and waves in a tower defence game, quests or dialogues in an RPG, and other stuff similar in its structure to a table.
+Content subsystem is a set of editors and exporter procedures to allow you to design, create, and use structured data for your game. It can be thought of as a local database for your project. For example, it can be used to design loot drops, levels, or waves in a tower defence game, or quests or dialogues in an RPG, or anything else similar in structure to a table.
 
 Content subsystem can store simple values like numbers, strings, boolean values, and also references to your assets, like templates and rooms.
 
@@ -21,9 +21,9 @@ Every content type has these fields:
 * **An icon** that is displayed in ct.IDE's UI.
 * **The content schema.** This is a list of all the fields each entry in your content type has.
 
-The content schema is described with a table. Each row will be a field in an object. Similarly to the content types themselves, fields have a regular and readable names as well. If you name your field as `title`, you will be able to access the title of the first entry in your content type with `ct.content.Quests[0].title`.
+The content schema is described with a table. Each row will be a field in an object. Similar to the content types themselves, fields have a regular and readable name as well. If you name your field as `title`, you will be able to access the title of the first entry in your content type with `ct.content.Quests[0].title`.
 
-Besides a name, each field has a type. Fields can have simple values like strings, numbers, and booleans, but they can also refer to assets in your project: to textures, templates, sounds, particle emitters, and rooms. In code, such references will become strings — the names of your assets.
+Besides a name, each field has a type. Fields can have simple values like strings, numbers, and booleans, but they can also refer to assets in your project: such as textures, templates, sounds, particle emitters, and rooms. In code, such references will become strings — the names of your assets.
 
 There are also two checkboxes for each field: "Required" and "Array".
 
@@ -46,7 +46,7 @@ Create entries with the "Add a row" button, and fill in the table. Note that you
 
 ## Using the data
 
-The simplest way to explore the resulting structure of your data is to write `ct.content.TypeName` in debugger's console and expand its fields:
+The simplest way to explore the resulting structure of your data is to write `ct.content.TypeName` in the debugger's console and expand its fields:
 
 ![](./images/contentEditor_Inspect.png)
 
