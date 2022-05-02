@@ -9,11 +9,11 @@ Any ct.js game consists of **textures**, **copies**, **templates**, and **rooms*
 * Each copy corresponds to a specific **template**. A **template** is a template for new copies with common settings and behavior. It may be called a *class* or an *object* in other game engines.
 * A **room** is a 2D space in your game where you place your copies. Rooms may have their own additional behavior (level scripts). Rooms are also often referred to as *levels* or *maps*. A notable difference is that rooms in ct.js are boundless when other 2D engines tend to set a specific size to it.
 
-There are additional resources that help make games jucier, better, fun to play, and easier to develop:
+There are additional resources that help make games juicier, better, fun to play, and easier to develop:
 
-* [**Actions**](actions.html) that combine different input methods into one API, so you can code once for keyboards, gamepads, virtual joysticks and for other stuff.
-* **Catmods** are additional modules that hack on the core library, add new tools for programming and new features to the engine.
-* **Custom fonts** allow you to use .ttf files in your games, so your game looks nicely in every browser or PC.
+* [**Actions**](actions.html) that combine different input methods into one API, so you can code once for keyboards, gamepads, virtual joysticks, and other stuff.
+* **Catmods** are additional modules that hack on the core library and add new tools for programming and new features to the engine.
+* **Custom fonts** allow you to use .ttf files in your games, so your game looks nice in every browser or PC.
 * **Emitter tandems,** or simply particle systems, are flexible visual effects made of textures. Explosions, magic effects, rain, snow, and many other special effects may be made with these.
 * [**Skeletal animations**](skeletal-animation.html) for skinnable characters with smooth animations.
 * **Sounds** are audio assets that are played by code.
