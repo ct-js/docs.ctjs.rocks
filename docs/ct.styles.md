@@ -1,6 +1,6 @@
 # ct.styles
 
-This object allows to create, store and use predefined styles for drawing text. These styles conform to Pixi's [TextStyle class](https://pixijs.download/release/docs/PIXI.TextStyle.html) properties.
+This object allows you to create, store, and use predefined styles for drawing text. These styles conform to Pixi's [TextStyle class](https://pixijs.download/release/docs/PIXI.TextStyle.html) properties.
 
 ## Using styles
 
