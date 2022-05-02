@@ -1,6 +1,6 @@
 # ct.inputs, ct.actions
 
-This module (`ct.inputs`) allows to manipulate [Actions](/actions.html). You can create new actions during the game, modify or delete them.
+This module (`ct.inputs`) allows you to manipulate [Actions](/actions.html). You can create, modify, or delete new actions during the game.
 
 `ct.actions` stores existing actions. If you have created an action `Move`, then it will be available at `ct.actions.Move`. Each of them is an instance of JS class `CtAction`.
 
@@ -9,7 +9,7 @@ Here is a generic example on how to use actions in your game:
 ```js
 /**
  * Move the copy around.
- * See Settings > Edit actions panel
+ * See "Project" > "Actions and input methods"
  * and "Actions" in the docs.
  */
 this.hspeed = 8 * ct.actions.MoveX.value; // Move by X axis
@@ -23,7 +23,7 @@ if (ct.actions.Shoot.pressed) {
 
 ### ctAction.value ⇒ <code>Number</code>
 
-A scalar value between -1 and 1. 0 means that there is no input at the current frame, e.g. all the gamepad's thumbsticks are in the resting position or all buttons were released. When used with keyboard and mouse, actions' values will alternate between 0, 1, and -1 (if multipliers were used). Gamepad thumbsticks and other custom manipulators may produce other values.
+A scalar value between -1 and 1. 0 means that there is no input at the current frame, e.g. all the gamepad's thumbsticks are in the resting position or all buttons were released. When used with a keyboard and mouse, actions' values will alternate between 0, 1, and -1 (if multipliers were used). Gamepad thumbsticks and other custom manipulators may produce other values.
 
 ### ctAction.pressed ⇒ <code>Boolean</code>
 Returns whether the action became active in the current frame, either by a button just pressed or by using a scalar input.
@@ -69,7 +69,7 @@ Removes the provided input method from an action.
 
 ### ctAction.setMultiplier(code, multiplier) ⇒ <code>void</code>
 Changes the multiplier for an input method with the provided code.
-This method will produce a warning if one is trying to change an input method that is not listened by this action.
+This method will produce a warning if one is trying to change an input method that is not listened to by this action.
 
 | Param | Type | Description |
 | --- | --- | --- |
@@ -124,7 +124,7 @@ name|String|The name of an action
 
 **Returns:** `void`
 
-## Creating new actions without adding it to ct.actions
+## Creating new actions without adding them to ct.actions
 
 ### new CtAction(name)
 Creates a new ct action.
