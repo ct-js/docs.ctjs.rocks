@@ -12,6 +12,10 @@ The current room's object.
 
 Calls the latest room's `onleave` event and moves to a new room.
 
+### `ct.rooms.restart()`
+
+Calls this room's `onleave` event and restarts it.
+
 ### `ct.rooms.clear()`
 
 Destroys all the existing copies in the room.
