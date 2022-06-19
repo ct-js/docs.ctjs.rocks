@@ -113,7 +113,7 @@ this.direction = 0;
 
 `this.speed = 10;` means that we need to move the cat by 10 pixels at each frame. With 60 FPS per second, it will be 600 pixels in a second — about half of our room.
 
-`this.direction = 0;` means that we move the cat in a given direction at 0 degrees. 0 degrees mean that it will move to the right, 90 — to the top, 180 — to the left, and 270 — downwards.
+`this.direction = 0;` means that we move the cat in a given direction at 0 degrees. 0 degrees mean that it will move to the right, 270 — to the top, 180 — to the left, and 90 — downwards.
 
 Now, let's move our cat whenever a player presses the screen. We will need to support both mouse and mobile touch events, thus we will need to enable a module that provides support for these. It's easy, though: open the "Project" tab at the top of the ct.js window, then "Catmods" on the left. Find the module `touch` in the section with available modules. Click it to enable it — it will have a green checkbox with a tiny spinning circle around it:
 
@@ -142,7 +142,7 @@ Add this code to cat's On Step event:
 ```js
 if (ct.actions.Poof.down) {
     this.gravity = 2;
-    this.addSpeed(ct.delta * 4, 90);
+    this.addSpeed(ct.delta * 4, 270);
 }
 ```
 
