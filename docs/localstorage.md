@@ -71,7 +71,7 @@ For anything beyound simple strings and numbers we need special encoding and dec
 var inventory = [{
     name: 'A rusty axe',
     type: 'weapon',
-    twoHanded: true
+    twoHanded: true,
     durability: 0.87,
     damage: [8, 11],
     effects: {
@@ -93,10 +93,12 @@ var inventory = [{
     // …other stuff
 }];
 
+// Save the inventory
 localStorage.heroInventory = JSON.stringify(inventory);
 
 // …later
 
+// Load the inventory from the previously saved string
 this.inventory = JSON.parse(localStorage.heroInventory);
 ```
 

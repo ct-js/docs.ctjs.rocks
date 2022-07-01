@@ -22,6 +22,6 @@ More about this concept at [Game and UI Coordinates](game-and-ui-coordinates.htm
 
 |Property | Type | Description|
 |-|-|-|
-|`alpha` | `number` | A value from 0 to 1 that sets room's opacity. You can use it, for example, to gradually fade in/fade out UI layers. `0` means fully transparent, and `1` means fully opaque.|
+|`alpha` | `number` | A value from 0 to 1 that sets the room's opacity. You can use it, for example, to gradually fade in/fade out UI layers. `0` means fully transparent, and `1` means fully opaque.|
 |`isUi` | `boolean` | If set to `true`, the room will be unaffected by camera scaling, movement, and rotation. See more at [Game and UI Coordinates](game-and-ui-coordinates.html).|
-|`x`, `y` | `number` | The location of a room. Changing these have no effect if the room is in gameplay coordinates (if its `isUi` property is `false`)|
+|`x`, `y` | `number` | The location of a room. Changing these has no effect if the room is in gameplay coordinates (if its `isUi` property is `false`)|
