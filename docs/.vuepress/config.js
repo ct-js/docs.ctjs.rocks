@@ -171,7 +171,7 @@ module.exports = {
                       text: 'Directory structure and module\'s manifest'
                   },  {
                       link: '/modding-events-and-injections',
-                      text: 'Extending events with injections'
+                      text: 'Extending ct.js code with injections'
                   },  {
                       link: '/modding-settings-and-extensions',
                       text: 'Settings and additional fields'
@@ -179,8 +179,8 @@ module.exports = {
                       link: '/modding-input-methods',
                       text: 'Adding new input methods'
                   },  {
-                      link: '/modding-adding-sound-module',
-                      text: 'Adding a new sound package'
+                      link: '/modding-modded-events',
+                      text: 'Adding new events'
                   },  {
                       link: '/modding-typings-and-intellisense',
                       text: 'Autocompletion and IntelliSense'

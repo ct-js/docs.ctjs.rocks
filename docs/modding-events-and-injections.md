@@ -1,4 +1,4 @@
-# Extending ct.js' events with injections
+# Extending ct.js' gameplay loop with injections
 
 Injections are a powerful instrument to extend functionality of ct.js framework beyond adding methods or properties. It allows you to add logic to a game loop, load resources, create bundled Templates, etc.
 
