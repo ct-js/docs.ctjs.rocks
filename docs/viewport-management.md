@@ -125,7 +125,7 @@ The first step you need to do is to enable the `ct.fittoscreen` catmod. Then, se
 * Scaling with letterboxing works for **any type of projects**, and can also give nice transforms to your pixelart games. This will remain your designed aspect ratio.
 * Scaling without letterboxing ensures both the best quality and use of a full screen. It is often preferable over scaling with letterboxing.
 
-If you are making a pixelart game, make sure you disable image smoothing at the "Settings" tab.
+If you are making a pixelart game, make sure you disable image smoothing at the "Project" tab -> "Render Options" on the left side.
 
 In general, you should follow these rules:
 

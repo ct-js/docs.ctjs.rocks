@@ -298,7 +298,7 @@ Like templates, rooms can have their own logic as well — they are hidden under
 * "On Create" that runs once when you switch to this room or start a game in this room;
 * "On Step' that runs at each frame after any other On Step events of copies;
 * "On Draw" that runs at the very end of each frame;
-* and "On Leave' that is run when you either switch to another room or remove a nested room from the stage.
+* and "On Leave" that is run when you either switch to another room or remove a nested room from the stage.
 
 We will do the following to spawn new pipes through time:
 

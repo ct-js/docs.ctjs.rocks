@@ -1,10 +1,10 @@
-# Streamline texture import with magic numbers
+# Simplifique a importação de texturas com números mágicos
 
-Ct.js has a bit of heuristic that helps to import groups of assets at once.
+Ct.js tem um pouco de heurística que ajuda a importar grupos de assets de uma só vez.
 
-Firstly, it names an asset by the basename of the imported file. For example, if you have a file `Player_Walk.png`, then the asset will be named as `Player_Walk`. If you correctly name your files, you won't have to rename them to ct.js.
+Primeiro, ele chama um asset pelo nome base do arquivo importado. Por exemplo, se você tem um arquivo chamado de `Player_Walk.png`, então o asset será renomeado para `Player_Walk`. Se você nomear corretamente os seus arquivos, você não terá que renomeá-los no ct.js.
 
-Secondly, you can add magic suffixes to the file's name to automatically divide them into frames. There are two variants:
+Segundo, você pode adicionar sufixos mágicos ao nome do arquivo para dividi-los automaticamente em frames. Existem duas variantes:
 
-* `Name_NxM.format`, e.g. `Asteroid_3x2.png`, `Player_Running_8x1.png`. Here, N is the number of columns, and M is the number of rows. `Player_Running_8x1.png` will turn into `Player_Running` split into 8 columns and 1 row.
-* `Name_NxM@U.format`, e.g. `SmokeParticles_3x2@5.png`, `Player_Girl_8x5@37.png`. Here U stands for the number of frames used inside ct.js, which is helpful for large grids that are not 100% filled with frames or tiles. `Player_Girl_8x5@37.png` will be imported as a sprite split into 8 columns, 5 rows, and using 37 frames in total. Without the last parameter, it would use all the 40 frames, though the last 3 could be empty.
+* `Name_NxM.format`, por exemplo, `Asteroid_3x2.png`, `Player_Running_8x1.png`. Aqui, `N` é o número de colunas, e `M` é o número de linhas. `Player_Running_8x1.png` se transformará em, `Player_Running` dividido em 8 colunas e uma linha.
+* `Name_NxM@U.format`, por exemplo, `SmokeParticles_3x2@5.png`, `Player_Girl_8x5@37.png`. Aqui `U` significa o número de frames utilizados pelo ct.js, o que é útil para grids(grades) grandes que não são 100% preenchidas com frames ou tiles. `Player_Girl_8x5@37.png` será importado como um sprite dividido em 8 colunas, 5 linhas e usará um total de 37. Sem o último parâmetro, seria utilizado todos os 40 frames, sendo que os 3 últimos poderiam está vazios.

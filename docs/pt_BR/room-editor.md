@@ -1,110 +1,110 @@
-# Using the room editor
+# Usando o editor de salas(room)
 
-Rooms are the spaces where your actual game happens. A room can represent a level, a menu, a UI widget, and is a place where you place your copies (instances of your templates), backgrounds, and tiles. Knowing how to use it to the fullest will ease the level design process.
+As Salas(Rooms) são os espaços onde á mágica real do seu acontece. Uma room pode representar uma fase, um menu, um widget de UI e é um espaço onde você coloca as suas copies (instâncias dos seus templates), backgrounds e tiles. Saber como usá-lo ao máximo tornará processo de level design muito mais fácil.
 
-The room editor has four tabs that define its state. These tabs are located in the left column of the room editor, right under the "Room events" button.
+O editor de room tem quatro abas que define o seu stado. Essas abas estão localizadas do lado esquerdo do editor de room, embaixo do botão "Room events".
 
-* Copies tab for adding new and manipulating existing copies.
-* Backgrounds tab for adding and tweaking backgrounds.
-* Tiles tab for adding new tiles and managing already placed ones.
-* Properties tab with room's and camera's settings.
+* A aba Copies é para a adição de novas e para a minupalçao das copies existentes.
+* Aba Backgrounds para adição e ajuste de backgrounds.
+* Aba Tiles para a adição de novos tiles e gerenciamento dos já adicionados.
+* Aba Properties com as definições da room e da câmera.
 
-![The four tabs that define room editor's state](../images/roomEditor_fourTabs.png)
+![A quatros abas que define o estado do editor de room](../images/roomEditor_fourTabs.png)
 
-## Navigating around the room
+## Navegando pelas room
 
-Moving around:
+Movendo por aí:
 
-* Hold the middle mouse button (the wheel) down and move the cursor to move the camera.
-* Holding the left button and moving your pointer also works while the Backgrounds or Properties tabs are open.
-* When the Copies tab is open, clicking on the "Select and move" swatch will also allow you to move around with the left mouse button. This is mostly made for touchpads as there is rarely a middle button there.
+* Matenha pressionado o botão do meio do mouse (a roda) e mova o cursor para mover a câmera.
+* Segurar o botão esquerdo e mover o mouse também funciona enquanto as abas de Backgrounds ou Properties estão abertas.
+* Quando a aba Copies estiver aberta, clicando em  "Select and move" também permitirá que você se mova com o botão esquerdo do mouse. Isso é feito principalmente para touchpads, pois raramente há um botão do meio.
 
-To zoom in and out, use mouse wheel or the zoom slider in the top-right corner of the room editor.
+Para aumentar e diminuir o zoom, use a roda do mouse ou o slider de zoom no canto superior direito do editor de room.
 
-## Managing copies
+## Gerenciando copies
 
-Copies management is only possible while the "Copies" tab in the left column is opened. While this is opened, you can do various things:
+O gerencioamento das copies apenas é possível enquanto a aba "Copies" do lado esquerdo estiver aberta. Enquanto ela estiver aberta, você pode várias coisas:
 
-* When a template is selected in the left column, you can click on the room view to place a new copy.
-  * Hold the `Shift` key while moving the cursor to create multiple copies (similar to painting with a brush).
-  * Holding the `Alt` key will place copies ignoring the grid.
-  * Holding the `Ctrl` key will enable the eraser mode, where you can remove copies by dragging the red circle around the room.
-* Right-clicking anywhere will find the nearest copy, select it and show a context menu with some goodies:
-  * Delete the selected copy;
-  * Move, rotate, or scale it;
-  * Add or change its custom properties. These will then be available as `this.yourPropertyName` inside templates' events.
-* While "Select and Move" is active, holding `Shift` key while moving the cursor will allow you to select multiple copies.
-  * Selected copies can be moved together by dragging them around with your pointer.
-  * When multiple copies are selected, a context menu appears while right-clicking on them. It allows shifting them by a set value and deleting them.
-* Clicking with a `Shift` key pressed will also work; it will select the nearest copy. An additional dialogue will appear where you can view and change a copy's scale, rotation, and position.
+* Quando um template é selecionado do lado esquerdo, você pode clicar no visualizador da room para adicionar uma nova copy.
+  * Mantenha a tecla `Shift` pressionada enquanto move o cursor para criar múltiplas copies (semelhante ao pintar com um pincel).
+  * Pressionando a tecla `Alt` fará com que a grid seja ignorada ao adicionar as copies.
+  * Pressionando a tecla `Ctrl` ativará o modo apagar, onde você pode remover as copies simplesmente arrastando o círculo vermelho pela room.
+* Clicando com o botão direito em qualquer lugar encontrará a copy mais próxima e automaticamente a selecionará mostrando um popup com algumas opções:
+  * Apagar a copy selecionada;
+  * Mover, rotacionar ou redimensionar;
+  * Adicionar ou alterar as propriedades personalizadas. Elas então estarão disponíveis como `this.yourPropertyName` através das abas de eventos do templates.
+* Enquanto a opção "Select and Move" estiver ativa e matendo a tecla `Shift` pressionada enquanto move o cursor permitirá que você selecione várias copies de uma vez.
+  * As copies selecionadas poden ser movidas juntas enquanto você as arrastar por aí com o mouse.
+  * Quando várias copies estão selecionadas de uma vez, um popup aparecerá quando clicar nas mesmas com o botão direito do mouse. Isso permite alterá-las por um valor definido e apagá-las.
+* Clicando com uma tecla de `Shift` pressionada também funcionará; será selecionada a copy mais próxima. Um popup exibido onde você pode ver e alterar a rotação, posição e a escala da copy.
 
-## Adding backgrounds
+## Adicionando backgrounds
 
-Backgrounds are added in the second tab in the left column of the room editor. Inside it, there is a button "Add a Background" that opens a texture selector. There are several things to consider while using backgrounds:
+Backgrounds são adicionadas na segunda aba a esquerda do editor de room. Dentro dela, existe um botão "Add a Background" que abre um seletor de textura. Existem várias coisas que você deve levar em considerção quando usar backgrounds:
 
-* A texture should be marked as a background; otherwise it will have rips and holes in its seams. There will be a warning message if you try to use a regular texture.
-* Multi-frame backgrounds are not supported, at least yet.
+* Um textrura deve ser marcada como um background; caso contrário, haverá lacunas nela, um efeito desagradável que você não quer em seu jogo. Uma mensagem de alerta será exibida se você tentar utilizar usa uma textura regular (uma textura que não foi marcada como um background).
+* Backgrounds com vários frames não são suportados, pelo menos por enquanto.
 
-You can change background's texture by clicking on the current texture. Other properties are hidden in a panel that you can open by clicking the ⚙ cog icon.
+Você pode alterar a textura do background clicando  na textura atual. Outras propriedades estão ocultas no painel que você pode abrir clicando no ícone engrenagem ⚙.
 
-![Open the background settings by clicking the cog icon](../images/roomEditor_backgroundSettings.png)
+![Abrir as definições de background clicando no ícone engrenagem](../images/roomEditor_backgroundSettings.png)
 
-* Depth changes the drawing order relative to copies, tiles, and other backgrounds. Setting it to higher value will cause it to be drawn on top of other things.
-* Shift fields position your background in the room.
-* Scaling fields stretch your background. Values smaller than 1 will make it smaller, while values greater than 1 will make it larger. Using negative values will flip the background.
-* Movement speed allows making moving backgrounds. This can be used to create effects of rain falling down, or clouds moving.
-* Parallax changes how the background moves relative to the camera. You can make the values lower than 1 to create a sense of depth. Values greater than 1 are usually used for foregrounds.
-* The "Repeat" box lets you choose how the background will be tiled:
-  * `repeat` means that the background will tile in both directions.
-  * `repeat-x` will tile the background only horizontally.
-  * `repeat-y` will tile the background vertically.
-  * `no-repeat` won't tile the background at all.
+* Depth altera a ordem de renderização relativa as copies, tiles e outros backgrounds. Definindo um valor maior causará que ela seja renderizada acima das outras com valores inferiores.
+* O campo Shift posiciona o seu background na room.
+* O campo Scaling estica o seu background. Valores menores que 1 a fará menor, enquanto que valores maiores que 1 a fará maior. Usar valores negativos inverterá (flip) o background.
+* Movement é a velocidade permite os backgrounds se mover. Isso pode ser usado criar efeitos de chuva caindo ou de nuvens se movendo pelo céu.
+* Parallax altera como o background se move em relação a câmera. Você pode definir valores menores que 1 para criar um sensação de profundidade. Valores maiores que 1 são normalmente usados para foregrounds.
+* A caixa "Repeat" deixa você escolher como o background será alocado:
+  * `repeat` significa que o background será alocado lado a lado em ambas direções, verticalmente e horizontalmente.
+  * `repeat-x` alocará o background lado a lado horizontalmente.
+  * `repeat-y` alocará o background lado a lado verticalmente.
+  * `no-repeat` não colocará o background lado a lado.
 
-## Working with tiles and tilesets
+## Trabalhando com tiles e tilesets
 
-To work with tiles, you need a texture that is setup properly — make sure that you've set a proper frame size and the count of columns and rows in your tilesets. In any way, any ct.js texture can work as a tile, even if it has just one frame. You can use it to place static decorations inside your rooms.
+Para trabalhar com tiles, você de uma textura adequada e que esteja definida corretamente — esteja certo que você definiu o tamanho de cada frame corretamente e a quantidade de colunas e linhas em seu tilesets. De qualquer forma, qualquer textura ct.js pode ser usada como um tile, mesmo se ele tiver apenas um único frame. Você pode usá-lo para pôr decorações estáticas dentro das suas rooms.
 
-Here is an example of a properly set tileset:
+Aqui está um exemplo de um tileset definido corretamente:
 
-![An example of a properly set tileset](../images/roomEditor_tilesetSettings.png)
+![Um exemplo de um tileset definido corretamente](../images/roomEditor_tilesetSettings.png)
 
-To start working with tiles, press the "Tiles" tab in the left column of the room editor and press the "Find a Tileset" button. Then select a tile on the texture you've imported and place it inside the room with a click. You can also select multiple tiles by pressing and dragging your pointer across several frames.
+Para começar a trabalhar com os tiles, click na aba "Tiles" do lado esquerdo do editor de room e click no botão "Find a Tileset". Em seguida escolha um tile na textura que você importou e a coloque dentro da room com um click. Você também pode vários tiles de uma vez pressionando e arrastando o mouse pelos frames.
 
-:::tip
-Remember that each tile is placed on a tile layer of a particular depth. You can move tiles to another layer with a context menu and also change the depth of any tile layer, but placing every tile on an arbitrary depth level is not possible.
+:::tip Dica
+Lembre-se de que cada tile é colocado em uma camada tile de uma profundidade específica. Você pode mover os tiles para uma outra camada através do popup e também alterar a profundidade a profundidade de qualquer tile, mas colocar cada tile em um nível de profundidade arbitrário não é possivel.
 
-Creating a ton of layers is also not recommended, because 1) it is dumb, and 2) each tile layer caches its contexts to boost rendering performance, so you better minimize the amount of tile layers you use to get the most of it.
+Criar trocentas camadas também não é recomendado, porque 1) não é inteligente e 2) cada camada de tile armazena os seus contextos em cache para aumentar o desempenho de renderização, então é melhor minimizar a quantidades de camadas de tile que você usa para obter o máximo dela.
 :::
 
-:::warning
-Ct.IDE becomes funky when one tries to use multiple tiles from a texture that uses margins and offsets. It works perfectly in a game, but looks broken inside the room editor. Consider remaking the texture so it has no offsets.
+:::warning Alerta
+Ct.IDE tarna-se estranho quando se tenta usar vários tiles de uma textura que usa margens e deslocamentos (offsets). Funciona perfeitamente no jogo, mas no editor de rooms aparece bugado. Considere refazer a textura para não conter deslocamentos (offsets).
 
-This issue will be fixed with a new room editor.
+Esse problema será corrigido com um novo editor de room.
 :::
 
-The tile mode has controls similar to the copy tab:
+O modo tile tem os controles semelhantes à aba copy:
 
-* Clicking with a tile selected places it inside the room.
-  * Hold the `Shift` key while moving the cursor to create multiple tiles.
-  * Holding the `Alt` key will position tiles with grid being ignored.
-  * Holding the `Ctrl` key will enable the eraser mode, where you can remove tiles by dragging the red circle around the room.
-* Right-clicking anywhere will find the nearest tile and show a context menu to delete it.
-* Holding `Shift` key while moving the cursor will allow you to select multiple tiles.
-  * Clicking with a `Shift` key pressed will also work; it will select the nearest tile.
-  * When multiple tiles are selected, a context menu appears while right-clicking on them.
-    * One menu item allows to delete them. Pretty simple, eh?
-    * "Move to layer" opens a modal to input a new depth for the selected tiles. If there is no tile layer with the specified depth, a new one will be created.
-    * "Shift tiles" shifts all the selected tiles by a set amount of pixels.
+* Clicando com um tile selecionado, faz com que o mesmo seja adicionado dentro da sala.
+  * Segurando a tecla `Shift` enquanto arrasta o mouse com o botão esquerdo pressionado, faz com que múltiplos tiles sejam criados.
+  * Segurando a tecla `Alt` fará com que seja ignorada a grid ao posicionar os tiles.
+  * Seguraando a tecla `Ctrl` habilitará o modo apagar, onde você pode remover os tiles enquanto arrasta o círculo vermelho pela sala.
+* Clicando com o botão direito do mouse em qualquer lugar da sala fará com que o tile mais próximo do ponteiro do mouse seja encontrado e um menu seja exibido com a opção de deletar o mesmo.
+* Com a opção de selecionar e mover habilitada, segurando a tecla `Shift` enquanto arrasta o ponteiro do mouse pela sala, fará com que múltiplos tiles sejam selecionados.
+  * Clicar com a tecla `Shift` pressionada sobre a sala também funcionará; será selecionado o tile mais próximo do ponteiro do mouse.
+  * Quando vários tiles são selecionados, um menu será exibido quando for clicado com o botão direito do mouse sobre eles.
+    * Um desses itens de menu permite que você delete o tile. Bem simples, né?
+    * "Move to layer(Mover para camada)" abre um modal para a entrada de uma nova profundidade para os tiles selecionados. Se não houver nenhuma camada de tile com a profundidade especificada, uma nova será criada.
+    * "Shift tiles(Deslocar tiles)" desloca todos os tiles selecionados por uma quantidade de pixels definida
 
-## Room properties
+## Propriedades da Room(Sala)
 
-The "Properties" tab of the room editor has options for render and camera tweaks.
+A aba "Properties(Propriedades)" do editor de sala tem opções para ajustes de renderização e de câmera.
 
-* View width/height define the starting size of the camera — the area it shows. As resolution and the size of the rendered canvas is a stretchy thing in ct.js, thanks to `ct.fittoscreen`, these do not correspond to screen resolution — they only set how much your camera shows and what aspect ratio it has. Everything else is done by `ct.fittoscreen` (and you can change its settings in the Project tab).
-* The checkbox "Keep camera in a rectangle" shows controls to limit what a camera can show. By default, rooms and cameras in ct.js are boundless, but when enabled, camera borders won't exceed the specified region.
-* "Background color" sets the color of the areas not covered by copies, tiles, or background textures.
-* The checkbox "Is a UI layer" tells how the room should be positioned if used inside another room. UI layers follow the camera and are not affected by zooming, perfect for UI controls.
+* O View width/height define o tamanho inicial da câmera — a área que é mostrada. Como a resolução e o tamanho da tela de renderização são uma coisa elástica no ct.js, graças ao `ct.fittoscreen`, eles não correspondem à resolução da tela - eles apenas definem o quanto sua câmera mostra e qual proporção ela tem. Tudo é feito pelo `ct.fittoscreen` (e você pode alterar essas definições na aba Project(Projeto)).
+* A caixa de seleção "Keep camera in a rectangle(Manter a câmera no retângulo)" mostra os controles que limitam o que a câmera pode mostrar. Por padrão, as salas e câmeras em ct.js são infinitas, mas quando habilitado, as bordas da câmera não excederão a região especificada.
+* "Background color(Cor de fundo)" define a cor das áreas não coberta pelas copies, tiles e/ou texturas de fundo.
+* A caixa de seleção "Is a UI layer(É uma camada de UI" diz como a sala deve ser posicionada se usada dentro de uma outra sala. As camada de UI seguem a câmera e não são afetadas pelo zoom, são perfeitas para os controles de UI.
 
-:::tip
-To read more about UI layers, see [the reference for append/prepend methods](ct.rooms.html#ct-rooms-append-nameoftheroom-ext-and-ct-rooms-prepend-nameoftheroom-ext), or [see how it is done in the JettyCat tutorial](tut-making-jettycat.html#creating-menus).
+:::tip Dica
+Para saber mais sobre as camada de UI, veja [a referência para os métodos append/prepend](ct.rooms.html#ct-rooms-append-nameoftheroom-ext-and-ct-rooms-prepend-nameoftheroom-ext), ou [veja como é feito no tutorial JettyCat](tut-making-jettycat.html#creating-menus).
 :::

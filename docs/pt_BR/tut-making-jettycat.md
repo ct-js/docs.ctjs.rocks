@@ -1,143 +1,144 @@
-# Making Games: Jetty Cat
+# Criando Jogos: Jetty Cat
 
-Like the Flappy Bird, Jetty Cat will be a game where a cat, manipulated by tapping or clicking, avoids infinite obstacles by using its jetpack. We will firstly implement main game logic, then — UI. After that, we will polish the game by adding nice transitions, particle systems, and subtle effects.
+Da mesma forma como Flappy Bird, Jetty Cat será um jogo onde um gato, manipulado pelo toque ou pelo click, evita infinitos obstáculos através do uso do seu jetpack. Primeiramente, nós implementaremos a lógica principal do jogo, em seguida — UI(Interface de Usuário). E por fim, vamos polir o jogo adicionando belas transições, sistema de partículas e efeitos sutis.
 
-![The result of the tutorial](./images/tutJettyCat_Result.gif)
+![O resultado do tutorial](./../images/tutJettyCat_Result.gif)
 
-That's what we will do:
+Isto é o que nós faremos:
 
 [[toc]]
 
-:::warning
-As you can see, this is not a "Hello world" example, but rather a guide to create a full game from scratch. Give yourself plenty of time to finish it!
+:::warning Alerta
+Como você pode ver, isso não é apenas um exemplo de "Hello world", mas sim, um guia para criar um jogo completo do zero. Dê a você mesmo, bastante tempo, paciência e dedicação para terminá-lo!
 :::
 
-## Creating the project and importing assets
+## Criando o projeto e importando os assets
 
-Open ct.js and create a new project by writing the name of your project and clicking the "Create" button. Tell ct.js where to save your project. A folder like "My Documents" would be a good choice.
+Abra o ct.js e crie um novo projeto definindo o nome do seu projeto e clicando no botão "Create". Informe ao ct.js onde salvar o seu projeto. Uma pasta como "My Documents" seria uma boa escolha.
 
-![Creating a new project](./images/tutJettyCat_01.png)
+![Criando um novo projeto](./../images/tutJettyCat_01.png)
 
-Click the "Textures" tab at the top of the ct.js' window. Then, open your file explorer, and find the folder `examples/JettyCat_assets` inside ct.js' folder. Inside, there are the assets we will use. Drag the assets from your file viewer to ct.js, and ct will quickly import them to the project.
+Click na aba "Textures" na parte superior da janela do ct.js. Em seguida a abra o seu explorador de arquivos, e localize a pasta `examples/JettyCat_assets` dentro da pasta do ct.js. Lá dentro, existem os assets que nós usaremos. Arraste os assets do seu visualizador de arquivos para o ct.js, e o ct rapidamente importará os mesmos para o projeto.
 
-We will need to prepare these textures: properly mark backgrounds as such, and set collision shapes so that copies inside your game precisely interact with each other. Firstly, let's open the background for our project. Click the `BG_Ground` card:
+Precisamos preparar essas texturas: informar de forma adequada ao ct.js quais são os backgrounds(planos de fundo) e definir as formas de colisão para que as copies em seu jogo possam interagir de forma precisa uma com as outras. Primeiro vamos abrir o background(plano de fundo) do nosso projeto. Click no cartão `BG_Ground`:
 
-![Opening a texture asset in ct.js](./images/tutJettyCat_02.png)
+![Abrindo uma textura no ct.js](./../images/tutJettyCat_02.png)
 
-Here, we will need to click the checkbox "Use as a background?" This tells ct.js to pack this texture differently and allows it to repeat in our levels.
+Aqui vamos precisar clicar na caixa de seleção "Use as a background?"(Usar como um background?). Dessa forma, informamos ao ct.js que ele deve tratar essa textura de forma diferente e assim permitir que a mesma se repita em nossa fase.
 
-![Changing texture's type to background in ct.js](./images/tutJettyCat_03.png)
+![Alterando o tipo de textura para background no ct.js](./../images/tutJettyCat_03.png)
 
-Hit "Save" at the bottom left corner. Now, do the same with `BG_Sky` texture.
+Click em "Save"(Salvar) no canto inferior esquerdo. Agora faça o mesmo com a textura `BG_Sky`.
 
-The backgrounds are ready! Time to set collision shapes of our sprites. We don't need to set them everywhere, but we do need to set them for objects that collide with each other, and for those that we click at while in a game. Headers like `Jetty_Cat`, `OhNo`, and `Pause` won't be interactive and will be just decorations, as well as `PressHint` will have an informing role and won't directly receive clicks as well. But the cat and tubes will collide, and stars need to know when a cat overlaps them.
+Os planos de fundo(backgrounds) estão prontos! Agora é a vez de definir a máscara de colisão de nossos sprites. Não precisamos definir todas elas, apenas para os objetos que colidem uns com os outros e para aqueles que clicamos durante o jogo. Sprites de cabeçalho como `Jetty_Cat`, `OhNo` e `Pause` não são interativos, são apenas de decoração e portanto não precisam de máscaras de colisão, assim como `PressHint` será apenas um sprite informativo e dessa forma não receberá clicks e também não precisa de uma máscara de colisão. Mas o gato e os canos colidirão, assim como as estrelas precisam saber quando o gato colide com elas.
 
-Let's open the `PotatoCat`! The first thing we should do is move the axis of the texture. It shows as a square axis, which is at the top left corner by default. An axis is a point around which a copy scales and rotates around. Put the axis at the center of the cat's body. Then, let's define its collision shape. The cat doesn't look like a circle or a rectangle, so set its collision shape as a polygon in the left column. A pentagon will appear: you can drag its corners and add new points by clicking on yellow lines to better outline the cat's silhouette. 15 points are enough to outline it.
+Vamos abrir o `PotatoCat`! A primeira coisa que devemos fazer é alterar a origem do eixo da textura. Que inicialmente é mostrado como um eixo quadrado que por padrão está localizado no canto superior esquerdo. Um eixo é um ponto pelo qual uma copy é redimensionada e rotacionada em torno dele. Coloque o eixo no centro do corpo do gato. Em seguida, vamos definir a máscara de colisão. O gato não se parece com um círculo ou com um retângulo, então vamos definir a máscara de colisão como sendo um polígono(polygon) na coluna esquerda. Um pentágono aparecerá: Você pode arrastar os vértices(os cantos com os pontos) e adicionar novos vértices clicando nas arestas(linhas) amarelas para uma melhor definição da silhueta do gato. Uns 15 vértices nos parece ser suficiente para descrever a sua silhueta.
 
-![Defining the axis and collision shape of a texture in ct.js](./images/tutJettyCat_04.png)
+![Definindo o eixo e a máscara de colisão de uma textura no ct.js](./../images/tutJettyCat_04.png)
 
-::: tip
-It would be a good idea not to outline the tail, as well as ears. When a tail hits a tube and a player loses, they may think that it is unfair. In any way, a tail is too flexible to cause lethal collisions 😺
+::: tip Dica
+Seria uma boa ideia deixa de fora da silhueta a calda e as orelhas do gato. Pois a calda colidir com um cano e perder por conta disso pode parecer injusto aos olhos do jogador. Até porque, uma calda é muito flexível para causar colisões fatais 😺
 :::
 
-After defining the shape, click the "Save" button to return to the list of assets. We will need to tune the texture `PotatoCat_Stunned` in the same way, as well as `Star`.
+Depois de definir a máscara de colisão, click no botão "Save"(Salvar) para retornar para a lista de assets. Nós também precisaremos ajustar a textura `PotatoCat_Stunned` da mesma forma, assim como a textura `Star`.
 
-For pipes, we will use something *a bit* different. Open the first one, `Tube_01`, and place its axis nearly at the bottom at the sprite. Remember that axis affects not only rotation but also scaling? We will reuse the same texture for both the pipes that hang from the top of the screen and that grow from the bottom of it. To make the upper ones work, we will scale them negatively around their bottom axis to flip their end down. We can even rotate them later, and they will nicely wave with their base rooted in place.
+Para os canos, usaremos alguma coisa *um pouco* diferente. Abra o primeiro, `Tube_01`, em seguida coloque o seu eixo bem próximo da parte inferior do sprite. Você lembra que o eixo não afeta apenas a rotação mas o redimensionamento tambṕem? Vamos reutilizar a mesma textura tanto para os canos que ficam pendurados na parte superior da tela bem como para os que crescem na parte inferior também. Para fazer com que o cano superior funcione de forma correta, nós faremos com que a sua escala seja um valor negativo, dessa forma o mesmo vai fazer um flip(giro) vertical em torno do eixo X, dando a ideia que ele está de cabeça para baixo. Nós podemos até rotacioná-lo depois, mas nesse caso a sua base será fixa e chegaremos ao mesmo resultado do procedimento anterior.
 
-![Defining axis and collision shape for a tube texture in ct.js](./images/tutJettyCat_05.png)
+![Definindo o eixo e a máscara de colisão para um cano em ct.js](./../images/tutJettyCat_05.png)
 
-We will need to do it for all the four tube textures. Then, we can start creating our level and coding movement!
+Precisamos fazer isso para todas as 4 texturas de cano. Depois disso, poderemos iniciar a criação da nossa fase e da codificação do movimento!
 
-## Creating our main room and moving the cat
+## Criando a nossa room(sala) principal e movendo o gato
 
-Let's create a room where all the fun will be happening! Rooms are often called levels. These are the places where all your resources get combined, and where they can interact with each other. Open the "Rooms" tab at the top of the ct.js window, and create a new one.
+Vamos criar uma room(sala) onde toda a diversão acontecerá! As salas(rooms) são frequentemente chamadas de cenas, fases ou níveis. Esses são os lugares onde todos os seus recursos são combinados e onde os mesmos interagem uns com os outros. Click na aba "Rooms" no canto superior da janela do ct.js e crie uma sala(room) nova.
 
-![Creating a new room in ct.js](./images/tutJettyCat_06.png)
+![Criando uma nova room(sala) no ct.js](./../images/tutJettyCat_06.png)
 
-A room editor for this exact room will appear. Call the room as `InGame` — we will use this particular name later in code. There are no rules in naming them, though; we just need something we can remember later while coding menus :)
+Um editor de room(sala) para essa room aparecerá. Chame essa room de `InGame` — pois usaremos esse nome depois em nosso código. Não há regras para a definição de nomes, apenas note que precisamos de um nome que possamos lembrar quando estivermos codificando os menus :)
 
-Then, on the Properties tab with a gear icon, we need to set the size of our room. Set it to 1080x1920 pixels.
+Em seguida, na aba `Properties` com o ícone de engrenagem, precisamos definir o tamanho da nossa room(sala). Defina um tamanho de 1080x1920 pixels.
 
-![Setting room's name and viewport size in ct.js](./images/tutJettyCat_07.png)
+![Definindo o nome da room e o tamanho do viewport no ct.js](./../images/tutJettyCat_07.png)
 
-Now, let's add our backgrounds. Click the tab "Backgrounds", then add two of them: for the sky and for ground. The sky looks good as is, but the ground needs tweaking. Click the cog next to the background's texture in the left column, and find the drop-down "Repeat". Set it to "repeat-x": it will make the background tile horizontally only, as X is the horizontal axis (Y is the vertical one). Then, we will need to shift the ground right to the bottom of the room's frame by changing the Shift Y field.
+Agora, vamos adicionar os nossos backgrounds(planos de fundo). Click na aba "Backgrounds" e adicione os dois existentes: para o céu e para o chão. O céu parace bom do jeito que está, mas o chão precisa de alguns ajustes. Click na engrenagem do lado nome a textura na coluna esquerda, em seguida localize o menu suspenso "Repeat". Definindoo o mesmo para "repeat-x": fará com que o plano de fundo se repita apenas no eixo horizontal, pnote que como o X é o eixo horizontal(Y é o eixo vertical
+). Depois, precisaremos deslocar o chão verticalmente através do campo `Shift(X, Y)`, altere esse campo verticalmente como mostrado na imagem abaixo.
 
-![Opening a texture asset in ct.js](./images/tutJettyCat_08.png)
+![Abrindo um asset de textura no ct.js](./../images/tutJettyCat_08.png)
 
-::: tip Hint:
-You can navigate the room by dragging it with mouse and zooming with a mouse wheel, or with "zoom" buttons in the left-right corner.
+::: tip Dica:
+Você pode navegar pela sala(room) arrastando-a com o mouse ou através da roda do mesmo, ou ainda, com os botões de "zoom" no canto superior direito.
 :::
 
-We will also set the depth of both backgrounds so that they are aligned properly. Depth is a 3rd dimension that tells ct.js how to sort our objects, so that sky doesn't accidentally overlap everything else. Positive values bring stuff closer to the camera, and thus objects with positive depth will overlap those with a negative one.
+Nós também precisaremos definir a profundidade dos dois planos de fundo para que assim eles fiquem alinhados de forma correta. A profundidade(depth) é uma dimensão que determina como o ct.js deve organizar os nossos objetos, para que assim o céu não fique sobre todos os outros. Valores positivos deixas as coisas mais próximo da câmera, dessa forma, os objetos com valores de profundidade positivos ficam sobre os que têm valores de profundidade menor ou negativa.
 
-Set sky's depth value to -20, and ground's depth to -10. That's how ct.js will understand these configs:
+Defina a profundidade do céu para o valor de -20 e o do chão para uma profundidade de -10. É dessa forma que o ct.js entenderá essas configurações:
 
-![Explanation of depth in ct.js](./images/tutJettyCat_DepthIllustration.png)
+![Explicação da prfundidade no ct.js](./../images/tutJettyCat_DepthIllustration.png)
 
-![Setting background's depth in ct.js](./images/tutJettyCat_09.png)
+![Definindo a profundidade do plano de fundo no ct.js](./../images/tutJettyCat_09.png)
 
-### Cat's template
+### O template(modelo) do gato
 
-Textures are essential to most games, but they don't do anything on their own. We used *backgrounds* already, and they are for purely decorative textures. *Templates*, on the other hand, can include gameplay logic and are used to create *copies*. Copies are the things we add to our rooms, and these copies are the entities that interact with each other on the screen.
+As texturas são essenciais em muitos jogos, mas elas não fazem nada sozinhas. Já usamos *backgrounds*(planos de fundo), e eles são texturas puramente decorativa. *Templates*(modelos) por outro lado, podem conter a lógica do jogo e são usados para criar *copies*. As copies são as coisas que adicionamos para as nossas rooms(salas), e essas copies são as entidades que interagem uma com as outras na tela.
 
-Let's create a template for our cat! Open the "Templates" tab at the top of the ct.js window, and press the "Create" button. Name it as `PotatoCat`, and set its texture by clicking the "Change sprite" square and selecting the cat's texture.
+Vamos criar um template(modelo) para o nosso gato! Abra a aba "Templates" na parte superior da janela do ct.js, e click no botão "Create". Chame-o como `PotatoCat` e defina a sua textura clicando no quadro "Select" e em seguida escolha a textura do gato.
 
-![Setting a texture and the name of a template in ct.js](./images/tutJettyCat_10.png)
+![Definindo uma textura e o nome de um template no ct.js](./../images/tutJettyCat_10.png)
 
-We can now add the cat to our room! Navigate to it by switching back to the "Rooms" tab and opening our only room. Our cat will appear in the left column under the "Copies" tab. Click on it, and then click once again in a place where you want your copy to appear in the level. We will need just one cat for now.
+Agora podemos adicionar o gato para a nossa room(sala)! Click em `Done` e navegue de volta até a aba "Rooms", em seguida abra a nossa única room. O nosso gato aparecerá na coluna esquerda abaixo da aba "Copies". Click nele e em seguida click em algum lugar que você queira que a copy apareça na fase. Nesse momento precisaremos de apenas um gato.
 
-![Placing a copy in the level in ct.js](./images/tutJettyCat_11.png)
+![Colocando uma copy na fase no in ct.js](./../images/tutJettyCat_11.png)
 
-If you click the "Play button" now, it will run the debugger, and we will see a static screen with our backgrounds and our cat. The cat doesn't move yet, and that's what we will change now!
+Se você clicar no "Play button" agora, o debugger será executado e veremos apenas uma tela estática com os nossos backgrounds e com o nosso gato. O gato não se move ainda, e é isso o que faremos agora!
 
-![Testing the game in ct.js](./images/tutJettyCat_12.png)
+![Testando o jogo no ct.js](./../images/tutJettyCat_12.png)
 
-Open the "Templates" tab again, and open the cat's template. Here we have four tabs for code:
+Abra a aba "Templates" outra vez e o template do nosso gato. Aqui teremos 4 abas de codificação:
 
-* "On Create" for code that runs once when a copy is created;
-* "On Step" that runs at each frame;
-* "Draw" that runs at the end of each frame after other computations and movement updates;
-* "On Destroy" that runs once a copy is removed.
+* "On Create" para o código que executa apenas uma vez quando a copy é criada;
+* "On Step" executa a cada frame;
+* "Draw" executa ao final de cada frame depois de todos os outros cáculos e atualizações de movimentos;
+* "On Destroy" executa apenas uma vez quando uma copy é removida.
 
-That's what we will do:
+Isto é o que nós faremos:
 
-* We will set our cat flying to the right by defining its speed and direction in the On Create tab;
-* We will also check for mouse and touch events at each frame in the On Step event, and will accelerate the cat so that it can fly up.
+* Determinaremos que o nosso gato voe para a direita definindo a velocidade e direção na aba `On Create`;
+* Também checaremos por eventos de mouse e touch a cada frame na aba `On Step` e vamos acelerar o gato para que ele possa voar.
 
-In the On Create tab, put this code:
+Na aba `On Create`, coloque o código abaixo:
 
 ``` js
 this.speed = 10;
 this.direction = 0;
 ```
 
-`this.speed = 10;` means that we need to move the cat by 10 pixels at each frame. With 60 FPS per second, it will be 600 pixels in a second — about half of our room.
+`this.speed = 10;` significa que precisaremos mover o gato 10 pixels a cada frame. Com 60 FPS( frames por segundos) teremos 600 pixels em 1 segundo — metade da nossa room.
 
-`this.direction = 0;` means that we move the cat in a given direction at 0 degrees. 0 degrees mean that it will move to the right, 90 — to the top, 180 — to the left, and 270 — downwards.
+`this.direction = 0;` significa que vamos mover o gato na direção de 0 graus. 0 é o mesmo que mover para a direita, 90 — para cima, 180 — para esquerda e 270 — para baixo.
 
-Now, let's move our cat whenever a player presses the screen. We will need to support both mouse and mobile touch events, thus we will need to enable a module that provides support for these. It's easy, though: open the "Project" tab at the top of the ct.js window, then "Catmods" on the left. Find the module `touch` in the section with available modules. Click it to enable it — it will have a green checkbox with a tiny spinning circle around it:
+Agora vamos mover o nosso gato sempre que o player clicar ou tocar na tela. Nós precisaremos fornecer o suporte para ambos, os eventos de mouse e de touch, dessa forma precisaremos habilitar um módulo que dê suporte para isso. É muito simples: abra a aba "Project" na parte superior da janela do ct.js e em seguida o "Catmods" no painel à esquerda. Localize o módulo `touch` na seção de módulos disponíveis, "Available modules". Click nele para habilitá-lo — ele ficará com uma caixa de seleção verde com um pequeno círculo giratório ao redor, como ilustrado na imagem abaixo:
 
-![Enabling a touch module in ct.js](./images/tutJettyCat_13.png)
+![Habilitando o módulo touch no ct.js](./../images/tutJettyCat_13.png)
 
-There is an option in the `touch` module that will help our code stay cleaner. Settings for enabled modules appear on the left, under the "Catmods' settings" header. Click the Touch tab, then tick the option "Detect mouse events as touch events". With this option, we can write code for touch events only, and it will automatically work for a mouse as well.
+Existe uma opção no módulo `touch` que ajudará o nosso código a ficar mais legível. As definições para os módulos habilitados aparecem à esquerda abaixo do cabeçalho "Catmods' settings". Click na aba Touch e em seguida click na opção "Detect mouse events as touch events" para marcar a mesma caso ela não esteja marcada, como mostrado na imagem abaixo. Com essa opção, podemos escrever apenas o código para eventos de touch(toque) e ele automaticamente funcionará para o evento de mouse também.
 
-![Detecting mouse events as touch events in ct.touch module](./images/tutJettyCat_14.png)
+![Detectando eventos de mouse como sendo eventos touch no módulo ct.touch](./../images/tutJettyCat_14.png)
 
-Now, in ct.js, input methods are grouped into *Actions*. In this project, we will use just one input method — touching the screen. On the "Project" tab at the top of the screen, press the "Actions and input methods" tab on the left.
+Agora, em ct.js, os métodos de entrada são agrupados em *Actions*. Nesse projeto, usaremos apenas um método de entrada — tocando a tela. Na aba "Project" na parte superior da tela click em "Actions and input methods" no painel lateral à esquerda.
 
-Add our first action, name it `Poof`. Yea. Then, click "Add an input method" on the right, and find the "Any touch" method under the Touch heading. You can use the search to quickly filter out the results.
+Adicione a nossa primeira ação clicando no botão "Make from scratch" e chame-a de `Poof`. Em seguida click "Add an input method" e loalize o método "Any touch" sob o cabeçalho Touch. Você pode usar a pesquisa para filtrar os resultados.
 
-![A set up action for touch events in ct.js](./images/tutJettyCat_16.png)
+![Definindo uma ação para eventos de touch no ct.js](./../images/tutJettyCat_16.png)
 
-The action is done, we can save it and move back to our cat.
+A ação está pronta, podemos agora salvá-la e voltar para o nosso gato.
 
-::: tip Actions? Why?
-For seasoned developers, actions might look as an extraneous step here, but they shine when you need to support a number of different input methods. Say, you create a game that supports both keyboard and gamepad, and the keyboard supports the WASD movement and moving with arrows. One action will support all the three methods, and your code will stay slim, even if you add new input methods later. Besides that, they all can be used with the same code!
+::: tip Ações? Por quê?
+Para desenvolvedores experientes, as ações podem parecer uma etapa irrelevante aqui, mas elas brilham quando você precisa oferecer suporte a vários métodos de entrada diferentes. Digamos que você crie um jogo que suporte teclado e gamepad, e que o teclado deve suportar o movimento com as teclas WASD e o movimento com setas. Uma ação dará suporte a todos os três métodos e seu código permanecerá pequeno, mesmo que depois você adicione novos métodos de entrada. Além disso, todos eles podem ser usados ​​com o mesmo código!
 
-You can [read more about actions here](actions.html).
+Você pode [ler mais sobre ações aqui](actions.html).
 :::
 
-Add this code to cat's On Step event:
+Adicione o código abaixo no evento `On Step` do nosso gato:
 
 ```js
 if (ct.actions.Poof.down) {
@@ -146,31 +147,31 @@ if (ct.actions.Poof.down) {
 }
 ```
 
-`if (ct.actions.Poof.down)` work only when a player presses the screen. If it works, we will define a gravity force that pulls the cat down and add speed that pulls the cat upwards. We need to multiply the added speed with `ct.delta` to make it run smoothly on every occasion.
+`if (ct.actions.Poof.down)` funciona apenas quando o player clica ou toca a tela. Se houve uma interação dessa com a tela, definimos uma força gravitacional que faz o gato cair e adcionaremos uma velocidade que faz o gato subir. Precisamos multiplicar a velocidade adicionada com `ct.delta` para que funcione sem problemas em todas as ocasiões.
 
 ::: tip ct.delta
-`ct.delta` will be equal to 1 most of the time, but this multiplier should not be overlooked. If a player's framerate drops or the game lags for some reason, `ct.delta` will become a larger value to compensate these frame drops and lags. For example, if framerate drops from 60 frames per second to 30, then `ct.delta` will temporarily be equal to 2.
+`ct.delta` será igual a 1 na maior parte do tempo, mas este multiplicador não deve ser esquecido. Se a framerate(taxa de quadros) de um player cair ou o jogo atrasar por algum motivo, `ct.delta` se tornará um valor maior para compensar essas quedas e atrasos de frames. Por exemplo, se a framerate(taxa de quadros) cair de 60 frames por segundo para 30, então `ct.delta` será temporariamente igual a 2.
 
-Besides that, `ct.delta` supports in-game time stretching and allows for creating slow-mo effects and game pauses. (And we will implement these features!)
+Além disso, o `ct.delta` suporta stretching(alongamento) de tempo no jogo e permite criar efeitos de câmera lenta e pausas no jogo. (E vamos implementar esses recursos!)
 :::
 
-::: tip
-There are also `ct.actions.Poof.pressed` and `ct.actions.Poof.released` that return `true` when a player starts and stops pressing the screen.
+::: tip Dica
+Também existe o `ct.actions.Poof.pressed` e `ct.actions.Poof.released` que retorna `true` quando um player inicia e para de clicar ou tocar a tela.
 :::
 
-The gravity that is defined in the On Step seems strange, right? It is indeed a constant that would be better placed in the On Create event so that it is set once from the beginning and doesn't change. But placing it inside the clause with an input check adds a little trick: the cat will start falling only after the player interacts with the game! Thus they won't instantly lose as the cat would quickly hit the ground otherwise.
+A gravidade definida em "On Step" parece estranha, certo? Na verdade ela é uma constante que seria melhor colocada no evento "On Create" para que seja definida apenas uma vez no início e assim não mude mais. Mas deixar onde ela está nesse momento, permite que tenhamos o nosso pulo do gato, sacaram o trocadilho ? ;-), o que significa que o gato só vai começar a cair quando o player iniciar interação com o jogo! Assim o player não pederá o jogo instantaneamente, uma vez que o gato atingiria o chão rapidamente.
 
-Now, make sure that you have the default line `this.move();` in your On Step tab. This line handles a copy's position. It should be the last line in your On Step code.
+Agora confira se você tem a linha padrão `this.move();` em sua aba "On Step". Essa linha manipula a posição de uma copy. Ela deve ser a última linha em seu código "On Step".
 
-![The resulting code](./images/tutJettyCat_17.png)
+![O código resultante](./../images/tutJettyCat_17.png)
 
-If we run the project now, we will see that the cat moves from left to right, and then reacts to clicks and starts flying and falling. It quickly flies out of the viewport though. Set's change it!
+Se você executar o projeto, verá que o nosso gato se move da esquerda para a direita e reage aos click ou toques na tela, iniciando assim a sua jornada de voar e cair. Ele rapidamente voa para fora do nosso viewport(janela de visualização). Vamos alterar esse comprtamento!
 
-### Moving the camera
+### Movendo a câmera
 
-Ct.js has an entity `ct.camera` which is responsible for showing stuff on your screen. It has lots of features, and one of them is following a copy.
+Ct.js tem uma entidade `ct.camera` a qual é responsável por mostrar as coisas em sua tela. Ela tem um monte de recursos, e um deles é o de seguir uma copy.
 
-Open the tab "On Create" of our cat, and add this code:
+Abra a aba "On Create" do nosso gato e adicione o código abaixo:
 
 ```js
 ct.camera.follow = this;
@@ -178,105 +179,105 @@ ct.camera.followY = false;
 ct.camera.shiftX = 250;
 ```
 
-`ct.camera.follow` links to a copy it should follow, and we tell it to follow the cat by setting it to `this`. `this` refers to the copy that runs the code. Rooms have their events and `this` keyword, too.
+`ct.camera.follow` se conecta com uma copy que ele deve seguir, e determinamos que que ele deve seguir o gato através do `this`. `this` representa uma referência para a copy que executa o código. As rooms(salas) também têm os seus eventos e a palavra reservada `this`.
 
-`ct.camera.followY = false;` tells that we don't need to move the camera vertically (by Y-axis). We will only slide it to the right.
+`ct.camera.followY = false;` determina que não precisamos mover a câmera verticalmente, eixo Y.Precisamos apenas mover a câmera para a direita.
 
-`ct.camera.shiftX = 250;` tells that we want the camera to stay 250 pixels to the right relative to the cat. By default, it focuses so that the cat stays in the center of the viewport.
+`ct.camera.shiftX = 250;` determina que queremos que a câmera fique 250 pixels à direita do gato. Por padrão, o foco é que o gato fique no centro do viewport(janela de visualização).
 
-If we run the game now, the camera will nicely follow our cat. Yay!
+Se executarmos o jogo agora, a câmera seguirá o nosso gato graciosamente. Maravilha!
 
-## Writing code for collisions
+## Escrevendo o código para colisões
 
-It's a good time to implement actual gameplay. We will add a template for tubes, place some of them in the level, and code collisions both for pipes and ground. Then, we will randomize pipe's textures, thus changing their height.
+É uma boa hora para implementar a jogabilidade real. Adicionaremos um template(modelo) para os canos, colocaremos alguns deles na fase e codificaremos as colisões para os canos e chão. Em seguida vamos randomizar as texturas dos canos, alterando assim a sua altura.
 
-### Adding pipes
+### Adicionando os canos
 
-Create a new template and call it `Tube`. Select its texture as one of the relatively long pipes in our collection. Then, set its collision shape to "Obstacle".
+Crie um novo template(modelo) e chame-o de `Tube`. Selecione a sua textura como um dos canos relativamente longo em nossa coleção. Em seguida, defina o seu grupo de colisão para o "Obstacle".
 
-![Creating a tube template with a collision group](./images/tutJettyCat_18.png)
+![Criando um template de cano com um grupo de colisão](./../images/tutJettyCat_18.png)
 
-Then, open our room and add pipes on the ground, so we can check the collisions. Open the room `InGame`, select the tube in the left column, and then add them by clicking in the level view where you want to spawn them. We won't need many for testing.
+Em seguida abra a nossa room(sala) e adicione os canos ao chão, para que assim possamos verificar as colisões. Abra a room `InGame`, selecione o cano na coluna esquerda e então adicione os mesmos clicando onde você quiser na fase. Não preciamos de muitos canos para testar.
 
-![Creating a series of obstacles in the level](./images/tutJettyCat_19.png)
+![Creiando uma série de obstáculos na fase](./../images/tutJettyCat_19.png)
 
-Then, open the cat's template, and select its On Step tab. We will do the following:
+Em seguida, abra o template do gato e click na aba "On Step". Nela faremos o seguinte:
 
-* We will check for a collision between a cat and a potential obstacle.
-* If we hit a tube, we will throw the cat to the right, change its texture, and set a flag that we've lost.
-* This flag will be checked at the very beginning of the code and will prevent the player's input and other logic if needed.
+* Verificaremos por colisões entre o gato e um obstáculo em potencial.
+* Se houver uma colisão com um cano, jogaremos o gato para trás, mudaremos a sua textura e definiremos uma flag(indicação) de que perdemos.
+* Essa flag será verificada a cada início de código e caso seja necessário, prevenirá a interação de entrada do player e de outras lógicas com o jogo.
 
-That's the code that checks for collisions. Place it after the code that checks for player's input, but before `this.move();` line:
+Este é o código que verifica se houve colisões. Coloque-o entre o código que verifica as entradas do player e método `this.move();`:
 
 ```js
-// If the cat bumped into something solid and the game is not over
+// Verifica se o gato colidiu com alguma coisa sólida e se o jogo ainda não terminou
 if (!this.gameover && ct.place.occupied(this, 'Obstacle')) {
-    // Change the texture
+    // Altera a textura
     this.tex = 'PotatoCat_Stunned';
-    // Set a flag that we will use to stop other logic
+    // Define a flag que usaremos para parar outra lógica
     this.gameover = true;
-    // Jump to the left
+    // Salta para a esquerda
     this.speed = 25;
     this.direction = 135;
-    // Stop camera movement
+    // Para o movimento da câmera
     ct.camera.follow = false;
 }
 ```
 
-`ct.place.occupied` checks for a collision of a given copy with a specific collision group. This method is provided by `ct.place` module, and you can find its reference for other methods in the "Catmods" tab.
+`ct.place.occupied` verifica se há uma colisão entre a copy passada e um grupo de colisão específico. Esse recurso é fornececido pelo módulo `ct.place` e você pode encontrar a sua referência para outros métodos na aba "Catmods".
 
-We will also need this block of code right at the beginning of On Step event:
+Também precisaremos deste bloco de código no início do evento "On Step":
 
 ```js
 if (this.gameover) {
     this.gravity = 2;
     this.move();
     return;
-    // No code below will be executed if "return" was executed.
+    // Nenhum código abaixo será executado se "return" foi executado.
 }
 ```
 
-`this.gravity = 2;` will make sure that there is a gravity set to the cat even if the player hasn't interacted with a game yet (in the case when they lose by no interaction). `return;` stops further execution, and we place `this.move()` above that, because the same line at the bottom won't run.
+`this.gravity = 2;` garantirá que haja uma gravidade para o gato mesmo se o player não tiver interagido com o jogo ainda (no caso de perder por nenhuma interação). `return;` para o fluxo de execução e por isso colocamos `this.move()` acima dele, porque qualquer coisa abaixo do `return;` não executará.
 
-![The current OnStep code of the cat](./images/tutJettyCat_20.png)
+![O código atual do gato em OnStep](./../images/tutJettyCat_20.png)
 
-Time for some testing! If the cat jerks sharply during a collision, check that its collision shape and axis are set in the same way as in the starting texture.
+É chegada a hora de fazer alguns testes! Se o gato balançar ou sacurdir de forma brusca durante uma colisão, verifique se a sua forma de colisão e eixo estão definidos do mesmo modo como na textura inicial.
 
-### Making the cat lose if it touches ground or screen's top edge
+### Fazendo o gato perder se ele tocar o chão ou a parte superior da tela
 
-For some reason, the floor — and even the sky — is as deadly as tubes in flappy bird-like games. Now, the ground does not have a template and won't work with `ct.place`, as well as sky, as it is not a game's entity at all. But they are flat, horizontal, and we can augment our collision logic with rules that check the cat's position in space.
+Por algum motivo, o chão — e até mesmo o céu — é tão mortal como os canos em jogos no estilo flappy bird. Nesse momento, o chão não tem um template e não funciona com o `ct.place`, o mesmo acontece com o céu, uma vez que eles não são uma entidade do jogo. Mas eles são planos horizontais e podemos aumentar a nossa lógica de colisão com regras que verifica a posição do gato no espaço.
 
-If we now open our room and move the mouse over the level, we will see current coordinates in the bottom left corner. The top side of the initial view frame is always at 0 pixels on the Y-axis, and the ground's top edge is somewhere at 1750 pixels. Copies' position is defined by `this.x` and `this.y`, and we can read them and compare to some other values.
+Se abrirmos a nossa room e mover o mouse sobre a fase, veremos as coordenadas no canto inferior esquerdo. O canto superior do quadro inicial de visualização é sempre 0 pixel no eixo Y, e a parte superior do chão em algum lugar dos 1750 pixels. A posição das copies é definida por `this.x` e `this.y`, e podemos lê-las e compará-las com alguns outros valores.
 
-![](./images/tutJettyCat_21.png)
+![](./../images/tutJettyCat_21.png)
 
-Modify the cat's collision logic as following so the cat gets stunned from hitting the ground and sky as well. Note that we added parenthesis around new comparisons and `ct.place.occupied` to divide them:
+Modifique a lógica de colisão do gato da forma seguinte para que o mesmo fique atordoado ao colidir com o chão e/ou com o céu também. Observe que adicionamos parênteses em torno das novas comparações e `ct.place.occupied` com o bjetivo de dividir as mesmas:
 
-```js {3,4,5,6}
-// If the game is not over, the cat bumped into something solid, or
+```js {3-6}
+// Se o jogo não terminou, o gato colidiu em algo sólido, ou
 if (!this.gameover && (ct.place.occupied(this, 'Obstacle') ||
-    // the cat is below the ground minus its approximate height, or
+    // o gato está abaixo do chão menos a sua altura aproximada, ou
     this.y > 1750 - 200) ||
-    // the cat flew off the upper boundary,
+    // o gato voou para fora do limite superior da tela,
     this.y < 0
 ) {
-    // Change the texture
+    // Altera a textura
     this.tex = 'PotatoCat_Stunned';
-    // Set a flag that we will use to stop other logic
+    // Define uma flag que usaremos para parar outra lógica
     this.gameover = true;
-    // Jump to the left
+    // Salta para a esquerda
     this.speed = 25;
     this.direction = 135;
-    // Stop camera movement
+    // Para o movimento da câmera
     ct.camera.follow = false;
 }
 ```
 
-### Randomizing pipe's height by changing its texture
+### Randomizando a altura dos canos através da alteração da sua textura
 
-We changed the cat's texture before with `this.tex = 'NewTextureName';`. We can do the same with our pipes to randomize their height, as we have four different textures for them.
+Anteriormente alteramos a textura do gato com `this.tex = 'NewTextureName';`. Podemos fazer o mesmo com os nossos canos para randomizar as suas alturas, uma vez que temos quatro texturas de diferentes para eles.
 
-Ct.js has a built-in module called `ct.random` that helps to generate random values. Find it in the Catmods tab at the top and enable it. Then, open the tube's OnCreate code and add this snippet:
+Ct.js tem um móduo interno chamado de `ct.random` que ajuda a gerar valores randômicos ou aleatórios. Localize-o na aba "Catmods" e o habilite. Em seguida abra a aba "OnCreate" do nosso cano na aba "Templates" localizado na parte superior da janela do ct.js e adicione o trecho de código abaixo:
 
 ```js
 this.tex = ct.random.dice(
@@ -287,95 +288,95 @@ this.tex = ct.random.dice(
 );
 ```
 
-`ct.random.dice` is a function that accepts any number of arguments and returns one of them randomly at each time it is called.
+`ct.random.dice` é uma função que aceita qualquer quantidade de argumentos e retorna randomicamente um deles a cada vez que ela é chamada.
 
-Time for testing! If your pipes spawn misaligned, check that you set up collision shapes for all the four textures and put their axis to the bottom of a pipe.
+É uma boa hora para testar! Se os seus canos aparecerem de forma desalinhada, verifique se você definiu as formas de colisão para todas as quatro texturas e colocou o seu eixo na parte inferior do cano.
 
-## Spawning pipes through time
+## Gerando canos ao decorrer do tempo
 
-Like templates, rooms can have their own logic as well — they are hidden under the button "Room events" in a room editor. There are four events as well:
+Da mesma forma que os templates, rooms pode ter a sua própria lógica também — elas estão escondidas sob o botão "Room events" no editor de room. Lá você vai encontrar quatro eventos também:
 
-* "On Create" that runs once when you switch to this room or start a game in this room;
-* "On Step' that runs at each frame after any other On Step events of copies;
-* "On Draw" that runs at the very end of each frame;
-* and "On Leave' that is run when you either switch to another room or remove a nested room from the stage.
+* "On Create" executa apenas uma vez quando você alterna para essa room ou quando um jogo inicia nessa room;
+* "On Step' executa a cada frame depois de qualquer outro evento "On Step" das copies;
+* "On Draw" executa ao final de cada frame;
+* e "On Leave" é executado quando você alterna da room atual para uma outro ou quando você remove uma room interna da fase.
 
-We will do the following to spawn new pipes through time:
+Faremos o seguinte para gerar novos canos ao decorrer do tempo:
 
-1. We will set up a variable in On Create event that will be our timer — it will count remaining frames before spawning new tubes;
-2. At each frame, we will decrement this variable by one frame. More precisely — by `ct.delta`.
-3. If the variable is equal or below zero, that means that the time is up, and we will wind it up again and create new tubes relative to the camera position.
-    * We will also create tubes at the top of the viewport and use scaling to flip these tubes so that they point downwards.
+1. Definiremos uma variável nop evento "On Create" que será o nosso temporizador — ele contará os frames restantes antes de gerar novos canos;
+2. A cada frame, vamos decrementar essa variável em um frame. Mais precisamente — via `ct.delta`.
+3. Se a variável é menor ou igual a zero, isso significa que o tempo acabou, e vamos reiniciar o temporizador e criar novos canos em relação a posição da câmera.
+    * Também criaremos novos canos na parte superior da viewport(janela de visualização) e usaremos o scaling(redimensionamento) para fazer um flip(giro) nos canos para que assim eles apontem para baixo.
 
-Open our only room `InGame`. Remove existing tubes by holding Control key and dragging the mouse, or by right-clicking these copies and using the context menu. Then, click the button "Room events" in the left column.
+Abra nossa única room `InGame`. Remove os canos existentes segurando a tecla Control e arrastando o mouse, ou clicando com o botão direito do mouse nessas copies e usando o menu que aparece. Em seguida click no botão "Room events" na coluna à esquerda.
 
-![](./images/tutJettyCat_22.png)
+![](./../images/tutJettyCat_22.png)
 
-Put this line in the OnCreate code:
+Coloque essa linha de código em "OnCreate":
 
 ```js
 this.spawnTimer = ct.speed * 5;
 ```
 
-Here, `ct.speed` is a number of frames in a second, so we will wait for exactly 5 seconds before spawning our first tube.
+Aqui, `ct.speed` é quantidade de frames em um segundo, então aguardaremos por exatos 5 segundos antes de gerar o nosso primeiro cano.
 
-In On Step, put this code:
+Em "On Step", coloque o código abaixo:
 
 ```js
-// Substract elapsed time from the timer
+// Subtrai o tempo decorrido do temporizador
 this.spawnTimer -= ct.delta;
-// If the timer is up…
+// Se o tempo acabou…
 if (this.spawnTimer <= 0) {
-    // Wind it again
+    // Reinicia novamente
     this.spawnTimer += ct.speed * 2;
 
-    // Create two tubes
-    var tube1 = ct.templates.copy('Tube', ct.camera.right + 250, ct.camera.bottom - 130); // At the bottom of the camera
-    var tube2 = ct.templates.copy('Tube', ct.camera.right + 250, ct.camera.top - 70); // At the top
+    // Cria dois canos
+    var tube1 = ct.templates.copy('Tube', ct.camera.right + 250, ct.camera.bottom - 130); // Na parte inferior da câmera
+    var tube2 = ct.templates.copy('Tube', ct.camera.right + 250, ct.camera.top - 70); // No topo
 
-    // Change second tube's texture depending on which texture is used in the first tube
-    if (tube1.tex === 'Tube_01') { // Shortest tube will result in the longest tube
+    // Altera a segunda textura do cano dependendo de qual textura é usada no primeiro cano
+    if (tube1.tex === 'Tube_01') { // Cano mais curto resultará em cano mais longo
         tube2.tex = 'Tube_04';
     } else if (tube1.tex === 'Tube_02') {
         tube2.tex = 'Tube_03';
     } else if (tube1.tex === 'Tube_03') {
         tube2.tex = 'Tube_02';
-    } else if (tube1.tex === 'Tube_04') { // Longest will result in the shortest one
+    } else if (tube1.tex === 'Tube_04') { // O mais longo resultará no mais curto
         tube2.tex = 'Tube_01';
     }
-    // Thus we will always get gaps of the same size, but with random tubes.
+    // Dessa forma sempre obteremos lacunas de mesmo tamanho, mas com canos randômicos.
 
-    // Now, flip the upper (second) tube
+    // Agora, flip(gira) o cano para cima
     tube2.scale.y = -1;
 }
 ```
 
-There's a lot of code!
+Existe um monte de código!
 
-`this.spawnTimer` is decremented at each frame and will eventually turn to zero, or to a smaller value. When it happens, we set its value again to a positive number so that it fires again later. Here we add 2 seconds. (`ct.speed` is a number of frames in one second.)
+`this.spawnTimer` é decrementado a cada frame e em algum momento será igual a zero ou um valor menor que zero. Quando isso acontecer, definiremos o seu valor novamente para um valor positivo para que possa ser acionado novamente depois. Aqui adicionamos 2 segundos. (`ct.speed` é a quantidade de frames em um segundo.)
 
-We create two copies with `ct.templates.copy(templateName, xPosition, yPosition)` and store references to them to variables `tube1` and `tube2`. At the start, their height will be completely normal as their On Create code with `ct.random.dice` will be run instantly after their creation. This will result in a blocked pathway in a good portion of cases when both tubes turned out to be the long ones. To fix this, we read the texture's name of a first tube `tube1` with `tube1.tex` and set the texture of the second tube `tube2` depending on the extracted value.
+Criamos duas copoes com `ct.templates.copy(templateName, xPosition, yPosition)` e guardamos as suas referências nas variáveis `tube1` e `tube2`. No início, a sua altura será completamente normal, uma que o código com `ct.random.dice` em "On Create" executará imediatamente após a sua criação. Isso resultará em um caminho bloqueado em boa parte dos casos quando os dois canos forem os longos. Para corrigir isso, lemos o nome da primeira textura do primeiro cano `tube1` com `tube1.tex` e definimos a textura do segundo cano `tube2` dependendo do valor extraído.
 
-`ct.camera.right`, `ct.camera.left`, `ct.camera.top`, `ct.camera.bottom` represent coordinates of view boundaries in game coordinates. Here we use them to create tubes off-screen, a bit to the right where the viewport ends, and above the bottom and top edge of the viewport.
+`ct.camera.right`, `ct.camera.left`, `ct.camera.top`, `ct.camera.bottom` representa as coordenadas que limita a visualização nas coordenadas de jogo. Aqui as usamos para criar canos fora da tela, um pouco à direita de onde a viewport(janela de visualiação) finaliza e acima da aresta inferior e superior da viewport.
 
-Lastly, we flip the second tube by running `tube2.scale.y = -1`. It is exactly the same operation we would make when flipping an image vertically in a graphics editor. For reference, there also exists `tube2.scale.x` that sets its horizontal scale.
+E por fim, fazemos um flip(giro) no segundo cano através da execução da linha `tube2.scale.y = -1`. É exatamente a mesma operação feita quando flipping(giramos) uma imagem verticalmente em um editor gráfico. Apenas como informação, também existe `tube2.scale.x` para redimensionamento e flip horizontal.
 
-If we run the project now, we will see nicely generated tubes that leave a small gap between them to fly through. But wait, the cat is way too big to fly through! Oh no, maybe I should have called this tutorial as "Fatty Cat"…
+Se executarmos o projeto agora, veremos os canos sendo gerados de forma linda e graciosa com uma pequena lacuna entre eles para voar. Mas espere, o gato é muito grande para voar através dessas lacunas! Essa não, talvez devesse ter chamado esse tutorial como "Fatty Cat"(Gato Gordo)…
 
-No worries, there is a solution ✨ We will use the same scaling to make the cat a bit smaller. The scale values can be not just `1` and `-1`, but also anything in between to make an object smaller or larger than 1 to make objects bigger.
+Não se preocupe, existe uma solução ✨ Usaremos o mesmo método de redimensionamento para fazer o gato um pouco menor. Os valores de redimensionamento não podem ser `1` e `-1`, mas alguma coisa entre para tornar um objeto menor ou maior que 1 para tornar os objetos maiores.
 
-There are two methods to scaling the cat:
+Existem duas formas de redimensionar o gato:
 
-* we can add a line `this.scale.x = this.scale.y = 0.65;` to the cat's "On Create" event;
-* or we can do the same by right-clicking it in the room editor and changing its scale.
+* podemos adicionar uma linha `this.scale.x = this.scale.y = 0.65;` ao gato em sua aba de evento "On Create";
+* ou podemos fazer o mesmo clicando nele com o botão direito do mouse no editor de room e alterar o scale(redimensionamento).
 
-![Changing a copy's scale in the room editor](./images/tutJettyCat_23.png)
+![Redimensionando uma copy no edito de room](./../images/tutJettyCat_23.png)
 
-### Cleaning useless copies
+### Limpando as copies não usadas
 
-When we spawn copies through time, their number will constantly rise. If we don't do anything with it, the game will slowly eat so much PC's memory it will eventually crash. To prevent it, we will delete copies that went past the left side of the camera.
+Quando geramos copies ao decorrer do tempo, a sua quantidade aumentará constantemente. Se não fizermos alguma coisa com elas, o jogo ficará lento e aumentará o consume de memoria do PC e o mesmo irá travar em algum momento. Para prevenir isso, delete as copies que já passaram pelo lado esquerda da câmera e que portanto não são mais visíveis.
 
-Add this code to the tube's On Step event:
+Adicione o código abaixo na aba "On Step" do nosso cano:
 
 ```js
 if (this.x < ct.camera.left - 150) {
@@ -383,23 +384,23 @@ if (this.x < ct.camera.left - 150) {
 }
 ```
 
-Here we compare a copy's horizontal coordinate to a camera's left side. We also watch 150 pixels to the left so the tube can fully escape the viewport before being removed.
+Aqui comparamos a coordenada horizontal da copy com o lado esquerdo da câmera. Também subtraímos  150 pixels à esquerda para que ter a certeza que o cano tenha passado por completo pela viewport antes de ser removido.
 
-## Adding stars
+## Adicionando estrelas
 
-Let's add a template for star bonuses that will increment score when collected. We will do the following:
+Vamos adicionar um template para uma estrela bônus que aumentará a pontuação quando coletada. faremos o seguinte:
 
-1. Set up a score variable in our room's "On Create" code.
-2. Create a new template for star bonuses.
-3. Add a bit of logic to the star's "On Step" event that will destroy the star when collided with the cat.
-4. Create a new room and a template for it to display a score counter.
-5. Put this new room into the main one.
+1. Definiremos uma variável de pontuação(score) na aba "On Create" da nossa room.
+2. Criaremos um novo template de estrela bônus.
+3. Adicionaremos um pouco de lógica ao evento "On Step" da nossa estrela que a removerá do jogo quando coletada pelo gato.
+4. Criaremos uma nova room e um template para ela mostrar um contandor de score(pontuação).
+5. Colocaremos essa nova room dentro da room principal.
 
-Now, open the `InGame` room's events and add a line `this.score = 0;`. This will create a variable we will be able to edit and read in any other copy.
+Agora, abra a aba "On Create" da nossa room `InGame` e adicione a seguinte linha: `this.score = 0;`. Isso criará uma variável em que seremos capazes de editar e ler em qualquer outra copy.
 
-Create a new template, and call it a `Star`. Set its texture.
+Crie um novo templae e chame-o de `Star`. Em seguida defina a sua textura.
 
-In its On Step code, put this script:
+Na aba "On Step" adicione o trecho de código abaixo:
 
 ```js
 if (ct.place.meet(this, 'PotatoCat')) {
@@ -408,13 +409,13 @@ if (ct.place.meet(this, 'PotatoCat')) {
 }
 ```
 
-`ct.place.meet` is like `ct.place.occupied`, though it checks not against collision groups but against a specific template. Here we check whether a star collides with our cat. If it does, `this.kill = true` tells that the star should be removed. `ct.room.score += 1;` increments our score variable that was created before in the room's "On Create" code.
+`ct.place.meet` é como `ct.place.occupied`, com a diferença que ele não verifica colisão contra um grupo e sim contra um template específico. Aqui verificamos se uma estrela colidiu com o nosso gato. Em caso positivo, faremos `this.kill = true` para indicar que a estrela dever removida do jogo. `ct.room.score += 1;` incrementa a nossa variável de pontuação(score) que criamos anteriormente na aba "On Create" da nossa room.
 
-::: tip
-`ct.room` always points to the current room. If you have nested rooms, the `ct.room` will always point to the main one.
+::: tip Dica
+`ct.room` sempre aponta para a room atual. Se você tiver rooms internas, o `ct.room` sempre apontará para room principal.
 :::
 
-We will also need this code to prevent memory leaks and remove stars that were not collected:
+Também precisaremos evitar o vazamento de memória e remover as estrelas que não foram coletadas:
 
 ```js
 if (this.x < ct.camera.left - 150) {
@@ -422,69 +423,70 @@ if (this.x < ct.camera.left - 150) {
 }
 ```
 
-### Spawning stars
+### Gerando estrelas
 
-In the room's On Step code, add a couple of lines (the highlighted ones) that will add a star with a 30% chance somewhere in between the next two tubes. It will use methods from `ct.random` module:
+Na aba "On Step" da nossa room, adicione as poucas linhas destacadas abaixo que adicionará uma estrela com 30% de chance de está em algum lugar entre os próximos dois canos. Usaremos os métodos do módulo `ct.random`:
 
-```js {27,28,29,30}
-// Substract elapsed time from the timer
+```js {27-30}
+// Subtrai o tempo decorrido do temporizador
 this.spawnTimer -= ct.delta;
-// If the timer is up…
+this.spawnTimer -= ct.delta;
+//  Se o tempo acabou…
 if (this.spawnTimer <= 0) {
-    // Wind it again
+    // Reinicia novamente
     this.spawnTimer += ct.speed * 2;
 
-    // Create two tubes
-    var tube1 = ct.templates.copy('Tube', ct.camera.right + 250, ct.camera.bottom - 130); // At the bottom of the camera
-    var tube2 = ct.templates.copy('Tube', ct.camera.right + 250, ct.camera.top - 70); // At the top
+    // Cria dois canos
+    var tube1 = ct.templates.copy('Tube', ct.camera.right + 250, ct.camera.bottom - 130); // // Na parte inferior da câmera
+    var tube2 = ct.templates.copy('Tube', ct.camera.right + 250, ct.camera.top - 70); // No topo
 
-    // Change second tube's texture depending on which texture is used in the first tube
-    if (tube1.tex === 'Tube_01') { // Shortest tube will result in the longest tube
+    // Altera a segunda textura do cano dependendo de qual textura é usada no primeiro cano
+    if (tube1.tex === 'Tube_01') { // Cano mais curto resultará em cano mais longo
         tube2.tex = 'Tube_04';
     } else if (tube1.tex === 'Tube_02') {
         tube2.tex = 'Tube_03';
     } else if (tube1.tex === 'Tube_03') {
         tube2.tex = 'Tube_02';
-    } else if (tube1.tex === 'Tube_04') { // Longest will result in the shortest one
+    } else if (tube1.tex === 'Tube_04') { // O mais longo resultará no mais curto
         tube2.tex = 'Tube_01';
     }
-    // Thus we will always get gaps of the same size, but with random tubes.
+    // Dessa forma sempre obteremos lacunas de mesmo tamanho, mas com canos randômicos.
 
-    // Now, flip the upper (second) tube
+    // Agora, flip(gira) o cano para cima
     tube2.scale.y = -1;
 
-    // Create a star bonus with 30% chance somewhere in between top and bottom edge, with 300px padding.
+    // Cria uma estrela bônus com 30% de chance de está em algum lugar entre a parte superior e inferior, com um espaço de 300px entre a parte superior e inferior.
     if (ct.random.chance(30)) {
         ct.templates.copy('Star', ct.camera.right + 250 + 500, ct.random.range(ct.camera.top + 300, ct.camera.bottom - 300));
     }
 }
 ```
 
-`ct.random.chance(30)` returns `true` 30 times out of 100, and `false` otherwise. You can tweak the number to make stars appear more or less often.
+De cada 100 chamadas ao`ct.random.chance(30)` ele retorna `true` em 30 delas e `false` nas outras. Você pode ajustar o valor para que as estrelas apareçam com mais ou menos frequência.
 
-`ct.random.range(a, b)` picks a random value in between the given range. In our case, we calculate two coordinates relatively to our camera so that stars don't spawn near the ground or top edge.
+`ct.random.range(a, b)` obtém um valor aleatório entre o intervalo passado. Em nosso caso, calculamos esses dois valores de acordo com as coordenadas da nossa câmera para que assim a estrela não seja criada próxima ao chão ou da parte superior do nosso céu.
 
-### Creating a UI element with a counter
+### Criando um elemento de Ui com um contador
 
-In ct.js, as of v1.3, UI elements are usually created in a separate room that then gets embedded into other rooms. These nested rooms are also often referred to as "layers".
+Em ct.js, desde a versão 1.3, elementos de UI são geralmente criados em uma room separada que então é incluída dentro de outras rooms. Essas rooms internas que foram incluídas em outras rooms são chamadas de "layers".
 
-Go to the UI tab at the top of the ct.js window, and create a new text style. Call it Orange. Here, we will create a text style that we will use to display our score, as well as other text lines.
+Click para a aba UI localizada na parte superior da janela do ct.js e crie um novo estilo de texto. Chame-o de `Orange`(Laranja). Aqui criaremos um estilo de texto que usaremos para mostrar a nossa pontuação assim como outras linhas de texto.
 
-On the first tab, "Font", set the font size to 80, and its weight to 900. Then align it to center. This will make the text bolder and bigger.
+Na primeira aba, "Font", defina o tamanho da fonte para 80 e o seu peso para 900. Em seguida alinhe ao centro. Isso fará com que o texto seja mais ousado e maior.
 
-![Setting a font's properties in ct.js text style](./images/tutJettyCat_24.png)
+![Definindo uma propriedade de font do estilo do texto em ct.js](./../images/tutJettyCat_24.png)
 
-Switch to the "Fill" tab, and activate it. Let's create a vertical gradient fill. We will use a pale yellow and orange colors.
+Vá para a aba "Fill" e ative-a. Vamos criar um preenchimento gradiente vertical. Usaremos as cores laranja e amarelo pálido.
 
-![Setting fill's properties in ct.js text style](./images/tutJettyCat_25.png)
+![Definindo as propriedades de preenchimento do estilo do texto em ct.js](./../images/tutJettyCat_25.png)
 
-Then, switch to the "Stroke" tab, and activate it. Set stroke's color as dark brown, and its weight to 10.
+Em seguida vá para a aba "Stroke" e ative-o. Defina a cor da linha como marrom escuro e o seu peso para 10.
 
-![Setting stroke's properties in ct.js text style](./images/tutJettyCat_26.png)
+![Definindo as propriedades da linha do estilo do texto em ct.js](./../images/tutJettyCat_26.png)
 
-We can save the style now. After that, we will need a new template that will display a star icon and a score counter.
+Agora podemos salvar o estilo. Depois disso, precisaremos mostrar um ícone de estrela e um contador de pontuação.
 
-Create a new template and call it `StarCounter`. As its texture, we will reuse our `Star` texture. In its On Create code, put the following snippet:
+Crie um novo template e chame-o de `StarCounter`. Comno textura, reutilizaremos a nossa textura `Star`. Na sua aba "On Create" adicione o trecho de código abaixo:
 
 ```js
 this.label = new PIXI.Text('0', ct.styles.get('Orange'));
@@ -493,17 +495,17 @@ this.label.y = -60;
 this.addChild(this.label);
 ```
 
-This code is sorcery made in Pixi.js' API. Pixi.js is the graphics framework ct.js is built upon, and when we need to display something beyond copies and backgrounds, we will use their API. Here, `new PIXI.Text` creates a new text label. Its first argument is a string that will be displayed: we have 0 score points at room start, and thus will write `'0'` as an initial text. The second argument is a text style — we load it from our created style `'Orange'`.
+Esse código é uma feitiçaria feita na API do  Pixi.js. Pixi.js é uma ferramenta de renderização gráfica sobre a qual o ct.js é construído, e quando precisarmos mostrar alguma coisa além de copies e backgrounds, usaremos a sua API. Aqui, `new PIXI.Text` uma novo rótulo de texto. O primeiro argumento é uma string que será exibida: teremos 0 de pontuação no início da room, dessa forma escreveremos `'0'` como um texto inicial. O segundo argumento é um estitlo de texto — o carregaremos através do nosso estilo `'Orange'` criado.
 
-By writing `this.label = new Pixi.Text(…)`, we instantly remember the reference to the created label and save it as a copy's parameter `this.label`. We then position it by writing `this.label.x = 130;` and `this.label.y = -60`, but we are doing it relative to the copy. The copy `StarCounter` itself is more a container we use to display our text, though it still displays an icon. The line `this.addChild(this.label)` finally puts the created text label into the copy.
+Escrevendo `this.label = new Pixi.Text(…)`, guardamos a referência criada como um objeto da copy `this.label`. Nós então definimos a sua posição escrevendo `this.label.x = 130;` e `this.label.y = -60`, mas estamos fazendo isso relativo à copy. A copy `StarCounter` é mais como um painel que usamos para mostra o nosso texto, embora ainda exiba um ícone. A linha `this.addChild(this.label)` finalmente coloca o rótulo de texto criado dentro da copy.
 
-We need to update the text label at each frame. In the On Draw event, put the line `this.label.text = ct.room.score;`.
+Precisamremos atualizar o rótulo de texto a cada frame. Na aba "On Draw" adicione a linha `this.label.text = ct.room.score;`.
 
-Finally, let's create a room for this counter and put this room inside the main one. Create a new room, and call it `UI_InGame`. Then, set its view size to 1080x1920 to match the main room's viewport, and put a counter's copy in the top-left corner:
+E finalmente, vamos criar uma room para esse contador e colocar essa room dentro da room principal. Crie uma nova room e chame-a de `UI_InGame`. Em seguida, defina o tamanho da sua visualização para 1080x1920 para que assim seja igual ao viewport da room principal, e adicione a copy contador no canto superior esquerdo:
 
-![Creating a UI layer in ct.js](./images/tutJettyCat_27.png)
+![Criando uma camada de UI em ct.js](./../images/tutJettyCat_27.png)
 
-Then open the room `InGame`, and add this code to the bottom of its OnCreate code:
+Então abra a room `InGame`, click naba "On Create" e adicione o trecho abaixo na última linha de código:
 
 ```js
 ct.rooms.append('UI_InGame', {
@@ -511,25 +513,25 @@ ct.rooms.append('UI_InGame', {
 });
 ```
 
-After that, you should have stars spawning in the level, that increment score displayed in the top-left corner of the viewport.
+Depois disso, você deve ter estrelas sendo geradas na fase, que aumenta a pontuação exibida na canmto superior do viewport.
 
-## Creating menus
+## Criando menus
 
-We will now add more rooms with usual menus so that our game feels complete:
+Agora adicionaremos mais rooms com menus mais usuais ou mais comuns para que o nosso jogo seja um pouco mais completo:
 
-* the main menu;
-* a pause screen;
-* and a score screen that will be shown on failure.
+* o menu principal;
+* uma tela de pausa;
+* e uma tela de pontuação que será exibida em caso de game over.
 
-### Main menu
+### Menu principal
 
-Open the texture `Jetty_Cat` and make sure that its axis is placed in the center of it. Then, create a new template with it. It will be purely decorative, so we won't write any code here.
+Abra a textura `Jetty_Cat` e verifique se o seu eixo está no centro dele. Em seguida, crie um novo template com ele. Ele será puramente decorativo, o que significa que não escreveremos qualquer código aqui.
 
-Then, open the texture "Button_Play" and make sure that its axis is at the center, and its collision shape is **circular**.
+Agora abra a textura "Button_Play" e certifique-se que o seu eixo esteja no centro e que a sua máscara de colisão seja **circular**.
 
-![The collision shape of a "Play" button](./images/tutJettyCat_28.png)
+![A máscara de colisão do botão "Play"](./../images/tutJettyCat_28.png)
 
-After that, create a new template with this texture. In its On Step code, put the following:
+Depois disso, crie um novo template com essa textura. Na sua aba "On Step" adicione o código abaixo:
 
 ```js
 if (ct.touch.collideUi(this)) {
@@ -537,53 +539,54 @@ if (ct.touch.collideUi(this)) {
 }
 ```
 
-There's something new! `ct.touch.collideUi(this)` checks whether a given copy was touched. It works with UI layers; there is also `ct.touch.collide(copy)` if you will need it for gameplay elements in your future projects. With other lines, `ct.touch.collideUi` checks whether a player pressed the button, and if they did, it switches to our main room.
+Existe algo novo aqui! `ct.touch.collideUi(this)` verifica se a copy passada foi tocada. Ele funciona com as camadas de UI; existe também o `ct.touch.collide(copy)` caso você precise dele para a mecânica de seus elementos em seus projetos futuros. Em outras palavras, `ct.touch.collideUi` verifica se o player pressionou o botão, e em caso positivo, mudaremos para a nossa room principal.
 
-Create a new room and call it `MainMenu`. Add backgrounds to it, and layout recently created copies so that it looks like this:
+Crie uma nova room e a chame-a de `MainMenu`. Adicione os backgrounds nela e construa um layout com as copies criadas anteriormente para que fique assim:
 
-![A layout of the main menu](./images/tutJettyCat_29.png)
+![A layout of the main menu](./../images/tutJettyCat_29.png)
 
-Hold the Alt button on your keyboard to place copies precisely.
+Pressione o botão `Alt` em seu teclado para adicionar as copies com precisão.
 
-If your copies seem to disappear or not being placed, check that you set the depth of your backgrounds to -20 and -10. They may be overlapping your elements!
+Se as suas copies parecem desaperecer ou não estão sendo adicionadas, verifique se você definiu a profundidade dos seus backgrounds para -20 e -10. Eles podem está sobrepondo os seus elementos!
 
-If we now run the game, it will still start in our main room. To change that, open the Rooms tab and right-click the `MainMenu` room. In the context menu, select "Set as the starting room".
+Se executarmos o jogo agora, ainda será iniciada a nossa room principal. Para alterar isso, abra a aba Rooms e click com o botão direito sobre a room `MainMenu`. No menu que será mostrado, click em "Set as the starting room".
 
-![Setting a starting room in ct.js](./images/tutJettyCat_30.png)
+![Definindo uma room inicial em ct.js](./../images/tutJettyCat_30.png)
 
-### Pause menu
+### Menu de pausa
 
-For a pause menu, we will need a couple of new buttons and a new room that will overlay over our main room and UI.
+Para um menu de pausa, precisaremos de mais alguns botões novos e de uma room nova que sobreponha a nossa room principal e UI.
 
-Create a template for texture `Button_Pause`. Make sure the texture `Button_Pause` has its axis put to center and has a proper **rectangular** shape that covers the whole texture.
+Crie um template para a textura `Button_Pause`. Certifique-se que a textura `Button_Pause` esteja com o seu eixo posicionado no centro e que a sua máscara de colisão seja **rectangular** e que cubra toda a textura.
 
-The template `Button_Pause` will have this code in its On Step event:
+O template `Button_Pause` terá o trecho de código abaixo em sua aba "On Step":
 
 ```js
-// If the button was pressed,
+// Se o botão foi pressionado,
 if (ct.touch.collideUi(this)) {
-    // Check if we don't have any rooms called 'UI_Paused'
+    // verifica se não temos qualquer room chamada 'UI_Paused'
     if (ct.rooms.list['UI_Paused'].length === 0) {
-        // Create a room UI_Paused, put it above the current one (append it),
-        // and specify that it is a UI layer (isUi: true)
+        // Cria uma room UI_Paused, adicionando-a acima da atual (append it),
+        // e determina que ela é uma camada de UI (isUi: true)
         ct.rooms.append('UI_Paused', {
             isUi: true
         });
-        // Turns ct.delta into 0, effectively stopping the game
+        // Transforma o ct.delta em 0, parando assim efetivamente o jogo
         ct.pixiApp.ticker.speed = 0;
     }
 }
 ```
 
-Remember the name `UI_Paused`. We will need to create a room with this name a bit later.
+Lembre-se do nome `UI_Paused`. Porque precisaremos dele depois para criar uma room com esse nome.
 
-`ct.pixiApp.ticker.speed` is the multiplayer that affects how ct.delta is calculated. When it is set to 0, it will effectively pause the game as everyone's `ct.delta` will turn to 0. Our cat and timers are dependant on `ct.delta`.
+`ct.pixiApp.ticker.speed` é o multiplayer que afeta como o ct.delta é calculado. Quando ele está definido para 0, ele efetivamente pausará o jogo, pois o `ct.delta` usando em todos lugares se tornará 0. Nosso gato e temporizadores são dependentes de `ct.delta`.
 
-Open the room `UI_InGame` and place the created template at the top right corner.
+Abra a room `UI_InGame` e adicione o template criado no canto superior direito.
 
-After that, create two new templates similar to those created for `MainMenu`. Use textures `Button_Play` and `Pause`. The button should be called `Button_Continue`, though.
+Depois disso, crie dois novos templates semelhantes aos criados para `MainMenu`. Use a textura `Button_Play` e `Pause`. O botão deve ser chamado de `Button_Continue`, no entanto.
 
-This button will have the following code in its On Step event:
+Esse botão terá o trecho de código abaixo em sua aba "On Step":
+
 ```js
 if (ct.touch.collideUi(this)) {
     ct.rooms.remove(this.getRoom());
@@ -591,17 +594,17 @@ if (ct.touch.collideUi(this)) {
 }
 ```
 
-`ct.rooms.remove(room);` removes previously added room. It cannot remove the main one, but is created to remove nested ones. `this.getRoom()` looks up for a room that owns the current copy. `ct.pixiApp.ticker.speed = 1;` reverts `ct.delta` back to normal behavior, unpausing the game.
+`ct.rooms.remove(room);` remove a room adicionada anteriormente. Ele não pode remover a principal, porque foi criado para remover as internas. `this.getRoom()` procura por uma room que possui a copy atual. `ct.pixiApp.ticker.speed = 1;` reverte o `ct.delta` para o seu comportamento normal, despausando o jogo.
 
-The final step is to create this nested room that will have an unpause button and a decorative header. Create a room called `UI_Paused`, and place a `Button_Continue` copy and a "Paused" header. Make sure you set its viewport size to 1080x1920 as well!
+O passo final é criar essa room interna que terá um botão de despausar e um título decorativo. Crie uma room chamada `UI_Paused` e adicione uma copy `Button_Continue` e um título "Paused". Certifique-se que você também definiu o tamanho do seu viewport para 1080x1920!
 
-### Score screen
+### Tela de pontuação
 
-The final step is making a score screen that will be displayed after a player loses. We will need one more header and a template that will display the final score. For a button that will replay the game, we will reuse the template `Button_Play`.
+O passo final é criar uma tela de pontuação será exibida depois após o player perder. Precisaremos de mais um título e um template que mostrará a pontuação final. Para um botão que reinicie o jogo após o player perder, reutilizaremos o template `Button_Play`.
 
-Create a template with a texture `OhNo`. It won't have any logic.
+Crie um template com uma textura `OhNo`. Ele não terá qualquer lógica.
 
-The other one, `EndGame_ScoreCounter`, won't have any texture at all. Instead, it will display a text label through code. It will also remember and display the player's high score. Put this code to its On Create event:
+O outro, `EndGame_ScoreCounter`, não terá nenhuma textura. Em vez disso, mostrará um rótulo de texto via código. Ele também lembrará e mostrará a maior potuação do player. Adicione o trecho de código abaixo em sua aba "On Create":
 
 ```js
 if (!('JettyCat_HighScore' in localStorage)) {
@@ -617,50 +620,50 @@ this.label.anchor.x = this.label.anchor.y = 0.5;
 this.addChild(this.label);
 ```
 
-`localStorage` is a built-in object that allows you to store textual data in browser. You can find more about it and saving progress [here](localstorage.html).
+`localStorage` é um objeto interno que permite você armazenar dados em forma de texto no navegador. Você pode saber mais sobre isso e salvar o progresso [aqui](localstorage.html).
 
-`if (!('JettyCat_HighScore' in localStorage))` checks whether a property `JettyCat_HighScore` exists inside the object `localStorage`. It is a good way to check whether there is any saved data. By the way, it works with copies, rooms, and other objects as well.
+`if (!('JettyCat_HighScore' in localStorage))` verifica se uma propriedade `JettyCat_HighScore` existe dentro do objeto `localStorage`. É uma boa forma de verificar se existe algum dado salvo. A propósito, ele funciona com copies, rooms e outros objetos também.
 
-If there is no such record in the browser, the line `localStorage['JettyCat_HighScore'] = ct.room.score;` will write it to the storage. Otherwise, we perform another check: `localStorage['JettyCat_HighScore'] < ct.room.score` checks whether the saved result is smaller than the current one. If it is, hooray! The player has just beaten their record. The record is updated again.
+Se não existir nenhum registro salvo no navegador, a linha `localStorage['JettyCat_HighScore'] = ct.room.score;` o salvará para o armazenamento local. Caso contrário, realizamos uma outra verificação: `localStorage['JettyCat_HighScore'] < ct.room.score` verifica se o resultado salvo é menor que o atual. Se ele for, aí sim, estamos bem na fita! O player bateu o recorde. O registro é então atualizado novamente.
 
-This line:
+Esta linha:
 ```js
 var scoreText = 'Your score: ' + ct.room.score + '\nHighscore: ' + localStorage['JettyCat_HighScore'];
 ```
-saves a string to a temporary variable. Everything defined with the `var` keyword exists only one frame and in one event. Though it doesn't serve much purpose, it allows to write cleaner code and reuse temporary variables. The combination `\n` tells that there will be a line break there. By using the `+` operator, we join our strings with the current score and the saved one. Lastly, we create a new text label and set its text to the created variable's value (by using it as an argument in `new PIXI.Text(scoreText, ct.styles.get('Orange'));`).
+armazena uma string para uma variável temporária. Tudo o que é definido com a palavra reservada `var` existe apenas em um frame e em um evento. Embora não sirva muito, permite escrever um código mais limpo e reutilizar variáveis ​​temporárias. A combinação `\n` indica que temos uma quebra de linha aqui. Ao usar o operador `+`, estamos concatenando/juntando as nossas strings com a potuação atual e com a que está salva. E por fim, criamos um novo rótulo de texto e definimos o seu texto para o valor da variável criada (usando-a como um argumento em `new PIXI.Text(scoreText, ct.styles.get('Orange'));`).
 
-Now, create a room called `UI_OhNo` with the created templates.
+Agora criaremos uma room chamada `UI_OhNo` com os templates criados.
 
-![Setting a starting room in ct.js](./images/tutJettyCat_31.png)
+![Definindo uma room inicial em ct.js](./../images/tutJettyCat_31.png)
 
-The last thing we need is creating this room when the cat hits an obstacle. Open the template `PotatoCat` and find the place where we detect collision with surface or obstacles in its On Step event. Add this code right after the line with `ct.camera.follow = false;`:
+A última coisa que precisamos é criar essa room quando o gato colidir com um obstáculo. Abra o template `PotatoCat` e localize o lugar onde detectamos as colisões com o chão e com os obstáculos em sua aba "On Step". Adicione o trecho de código abaixo após a linha com `ct.camera.follow = false;`:
 
 ```js
-// Wait for 1000 milliseconds (for one second)
+// Espera por 1000 milissegundos (um segundo)
 ct.u.wait(1000)
 .then(() => {
-    // Add a layer with "Lose" UI
+    // Adiciona uma camada de UI "Lose"
     ct.rooms.append('UI_OhNo', {
         isUi: true
     });
 });
 ```
 
-A-a-and… ta-da! You did it! The game is fully-featured and playable!
+A-a-and… ta-da! Você fez isso! O jogo completo e jogável!
 
-::: tip
-`ct.u.wait(1000)` is an asynchronous method that waits for one second, then executes a given code in the `.then(() => {…})` part. "Asynchronous" means that the code is executed outside the On Step event, and happens later in the game.
+::: tip Dica
+`ct.u.wait(1000)` é um método assíncrono que espera por um segundo, então executa o código fornecido na parte `.then(() => {…})`. "Assíncrono" significa que o código é executado fora do evento "On Step" e acontece mais tarde no jogo.
 
-You will always find the structure `method().then(() => {…})` while working with asynchronous actions. In JavaScript world, such actions are also called "Promises". When you don't need to use them, though, you can omit the part with `.then(() => {…})`.
+Você sempre encontrará a estrutura `method().then(() => {…})` ao trabalhar com ações assíncronas. No mundo JavaScript, ações assim também são chamadas de "Promises". Quando você não precisar usá-las, você pode omitir a parte com `.then(() => {…})`.
 :::
 
-## That's it!
+## Isso é tudo!
 
-For transitions, particle effects and other fancy stuff, visit [the second part of this tutorial](tut-polishing-jettycat.html) where we polish the game.
+Para transições, efeitos de partículas e outras coisas legais, visite [a segunda parte desse tutorial](tut-polishing-jettycat.html) onde polimos o jogo.
 
-Try changing this stuff to train yourself in coding:
+Tente alterar estas coisas para treinar a sua codificação:
 
-* Change the cat's movement so that it is more close to what happens in Flappy Bird: make the cat fly upwards abruptly when a player taps the screen, but do nothing if they then press the screen continuously.
-* Make rotating tubes to make the game more challenging.
-* Add a life counter, and allow a player to take 3 hits before loosing.
-* Add sounds! Visit [ct.sound](ct.sound.html) documentation on how to play sounds in your game.
+* Altere o movimento do gato para algo que fique mais próximo do que acontece no Flappy Bird: Faça o gato voar de forma abrupta quando um player5 tocar na tela, mas não faça nada se ele pressionar a tela continuamente.
+* Faça canos giratórios para um jogo mais desafiador.
+* Adicione um contador de vidas e permita que um player receba 3 danos antes de perder.
+* Adicione sons! Visite a documentão de [ct.sound](ct.sound.html) sobre como reproduzir sons em seu jogo.

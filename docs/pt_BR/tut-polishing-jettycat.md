@@ -1,20 +1,20 @@
-# Polishing the JettyCat
+# Polindo o JettyCat
 
 ::: tip Hey,
-This tutorial assumes that you have finished the tutorial [Making Games: Jetty Cat](tut-making-jettycat.html). You should complete it first.
+Esse tutorial assume que você concluiu o tutorial [Criando Jogos: Jetty Cat](tut-making-jettycat.html). Você deve completá-lo primeiro.
 :::
 
-The game is complete mechanic-wise, but there is a lot of ways to improve it aesthetically and gameplay-wise! This section also highlights some new v1.3 features.
+O jogo é completo em termos de mecânica, mas há várias maneiras de melhorá-lo esteticamente em termos de jogabilidade! Esta seção também destaca alguns recursos novos da versão 1.3 do ct.js.
 
 [[toc]]
 
-## Transition between rooms
+## Transição entre rooms(salas)
 
-Ct.js has a module called `ct.transition`. It allows you to easily create nice transitions between levels. The idea is that you start the first half of a transition on button press or some other event, then switch to another room and call the second half of a transition in its On Create code.
+O ct.js tem um módulo chamado `ct.transition`. Ele permite que você facilmente crie boas transições entre as fases. A ideia é que você comece a primeira parte de uma transição ao pressionar um botão ou em algum outro evento, então mude para uma outra room e chame a segunda parte da transição em sua aba "On Create".
 
-Enable the module `transition` in the Catmods tab. It signals that it depends on the `tween` catmod, so enable it as well.
+Habilite o módulo `transition` em "Catmods" na aba "Project localizada na parte superior da janela do ct.js. No próprio módulo está descrito que depende do `tween` catmod, então o habilite também.
 
-Now, modify the `Button_Play` On Step code so that it shows a blue circled transition when clicked:
+Agora modifique o botão `Button_Play` em sua aba "On Step" para que ele mostre quando clicado uma transição circular azul:
 
 ```js
 if (ct.touch.collideUi(this)) {
@@ -28,29 +28,33 @@ if (ct.touch.collideUi(this)) {
 }
 ```
 
-`this.pressed` is our custom variable that remembers that a button was pressed. It will help us prevent occasional double clicking, that may have negative effects on game's logic.
+`this.pressed` ie a nossa variável de controle que guarda quando um botão foi pressionado. Ela ajudará a prevenir duplo clicks involuntários, que poderia ocasionar efeitos negativos na lógica do jogo.
 
-The first argument in `ct.transition.circleOut(1000, 0x446ADB)` is the duration of the effect (1000 milliseconds = 1 second), and the second one is the color of the transition. It is like the hex color, but with `0x` instead of `#` in the beginning.
+O primeiro argumento em `ct.transition.circleOut(1000, 0x446ADB)` é a duração do efeito (1000 milissegundos = 1 segundo), e o segundo é a cor da transição. Ela é como as cores em hexadecimal, mas começando com o `0x` em vez do `#`.
 
-::: tip
-There are much more methods and examples in the module's "Info" and "Reference" tabs.
+::: tip Dica
+Existem muito mais métodos e exemplos na aba da documentação de referência. Para acessá-la, click na seta(<) do painel recolhido à direita do ct.IDE, em seguida click na aba Module's docs, na coluna esquerda dessa aba você notará os itens `ct.transition` e `ct.tween`.
+
+![](./../images/access_modules_docs.png)
+
+![](./../images/jettycat_modules_docs_access.png)
 :::
 
-The transition itself is an asynchronous action! We use `.then(() => {…})` to switch to the next room right when the transition ends.
+A própria transição é uma ação assíncrona! Usamos o `.then(() => {…})` para mudar para a próxima room quando a transição terminar.
 
-That was the first part of the transition. The second one will go to the `InGame` On Create code. Open the room, and put this line:
+E essa foi a primeira parte da transição. Nessa segunda parte vá para a room `InGame` e em sua aba "On Create" adicione o trecho de código abaixo:
 
-```
+```js
 ct.transition.circleIn(500, 0x446ADB);
 ```
 
-We can also show up our UI layers (the pause menu and the score screen) by making them transparent but slowly turning them opaque. We will use `ct.tween` there — that one catmod that is used by `ct.transition`.
+Podemos também mostrar as nossas camadas de UI (o menu de pausa e tela de pontuação) deixando-as transparentes, mas lentamente tornanado-as opaca. Usaremos o `ct.tween`, aquele mesmo catmod que utilizado pelo `ct.transition`.
 
-Most entities in ct.js have the same parameters that allow you to tweak their look and feel. We've been using `this.scale.x` and `this.scale.y` to set a copy's scale, but we can also apply it to rooms, text labels, special effects, and so on. Besides scaling, there are parameters `this.angle`, `this.alpha` and `this.tint` that rotate an object, set its opacity and color correspondingly.
+Várias entidades em ct.js têm os mesmos parâmetros que permite que você ajuste a sua aparência. Já usamos o `this.scale.x` e `this.scale.y` para definir o redimensionamento de uma copy, mas podemos aplicá-lo também para rooms, rótulos de texto, efeitos especiais e por aí vai. Além do redimensionamento, existem os parâmetros `this.angle`, `this.alpha` e `this.tint` que rotaciona o objeto, define a sua opacidade e a sua cor, respectivamente.
 
-We will change the property `this.alpha` through time. It is a number between 0 and 1. When set to 1 — its initial value —, a copy or a room will be fully opaque. When set to 0, it will be invisible. Any numbers in-between will bake an object partially transparent. The module `ct.tween` will help create a smooth transition of it.
+Mudaremos a propriedade `this.alpha` ao longo do tempo. Ele é um número entre 0 e 1. Quando definido para 1 — que é o seu valor inicial —, uma copy ou uma room será completamente opaca. Quando defindo para 0, ele será completamente invisível. Qualquer número entre eles fará com que o objeto seja translúcido ou parcialmente transparente. O módulo `ct.tween` ajudará a criar uma transição suave.
 
-So, to fade in a UI layer, we need to put this code in On Create of rooms `UI_OhNo` and `UI_Paused`:
+Então, para fazer a camada de UI aparecer de forma gradual, precisamos adicionar o trecho de código abaixo na aba "On Create" das rooms `UI_OhNo` e `UI_Paused`:
 
 ```js
 this.alpha = 0;
@@ -65,9 +69,9 @@ ct.tween.add({
 });
 ```
 
-Firstly, we make a room fully transparent by setting its `alpha` to 0. Then, we call `ct.tween.add` to start a smooth transition. `obj` points to an object that should be animated, and `fields` lists all the properties and values we want to change. The `duration` key sets the length of the effect, in milliseconds. Finally, the `useUiDelta` key tells that animation should run in UI time scale, ignoring our "paused" game state.
+Primeiro fazemos com que a room fique completamente transparente com a definição da sua propriedade `alpha` para `0`. Em seguida chamamos o método `ct.tween.add` para iniciar uma transição suave. `obj` se refere ao objeto que deve ser animado, e `fields` lista todas as propriedades e valores que queremos alterar. A propriedade `duration` define a duração do efeito, em milissegundos. E finalmente, a pripriedade `useUiDelta` define que a animação deve executar em uma escala de tempo de UI, ingnorando assim o nosso estado de jogo "paused"(pausado).
 
-We can fade out a UI layer, too. Let's gradually hide the pause menu when the player hits the "continue" button. Open the template `Button_Continue`, and modify its code:
+Também podemos fazer uma camada de UI desaparecer. Vamos ocultar gradualmente o menu de pausa quando o player clicar/tocar no botão "continue". Abra o template `Button_Continue` e modifique o seu código:
 
 ```js
 if (ct.touch.collideUi(this)) {
@@ -89,15 +93,15 @@ if (ct.touch.collideUi(this)) {
 }
 ```
 
-We create a flag `this.pressed` to make sure that the code that runs the animation only once. Running it multiple times won't hurt, but keeps the debugger's log clean as `ct.tween` will warn about interrupted animations otherwise.
+Criamos uma flag `this.pressed` para ter a certeza que o código executará a animnação apenas uma vez. Executá-lo várias vezes não vai doer, mas mantém o log(registro) do debugger(depurador) limpo, uma vez que o `ct.tween` alertará sobre as animações interrompidas.
 
-Then we start animation for `this.getRoom()`, which will return the room `UI_Paused` that owns this button, and change its alpha value back to 0. After that, we can see that `ct.tween.add` creates an asynchronous event, and we remove the room and unpause the game inside the `.then(() => {…});` clause.
+Então iniciamos a animação para `this.getRoom()`, a qual retornará a room `UI_Paused` que é a dona desse botão, e altera o seu valor de opacidade( alpha) para 0. depois disso, podemos ver que `ct.tween.add` cria um evento assíncrono, e removemos a room e retomamos o jogo dentro da cláusula `.then(() => {…});`.
 
-## Smoothly resuming the game after it has been paused
+## Retomando suavemente o jogo após ter sido pausado
 
-Though the "paused" menu fades out slowly, it is still hard for a player to catch up and prevent the cat from bumping into the ground. To prevent that, we can use `ct.tween` to… animate time! `ct.pixiApp.ticker.speed = 1;` can be not just 0 and 1, but also anything in between, and even beyond 1. Large values will make the game run faster, while values close to 0 will slow the game. Thus, we can animate the value `ct.pixiApp.ticker.speed` to make the game transition from paused to fully running state.
+Embora o menu "paused" desapareça lentamente, ainda é complicado para o player manipular e prevenir que o gato caia no chão. Para prevenir isso, podemos usar o `ct.tween` para… animar o tempo! `ct.pixiApp.ticker.speed = 1;` não precisa ser apenas 0 e 1, mas qualquer coisa entre eles e até mesmo maior que 1. Valores altos farão com que o jogo execute mais rápido, enquanto que valores próximos de 0 executarão o jogo mais lentamente. Desse modo, podemos animar o valor `ct.pixiApp.ticker.speed` para fazer a transição do estado pausado para executando por completo.
 
-Open the template `Button_Continue` again, and modify the script so it fires another `ct.tween.add` after it finishes the first one:
+Mais uma vez abra template `Button_Continue` e modifique o código para que dispare um outro `ct.tween.add` depois que o primeiro terminar:
 
 ```js {13,14,15,16,17,18,19,20}
 if (ct.touch.collideUi(this)) {
@@ -126,78 +130,78 @@ if (ct.touch.collideUi(this)) {
 }
 ```
 
-Now players can catch up with the game and save their cat from falling.
+Agora o player consegue manipular o jogo e evitar que o gato caia.
 
-## Cat's jet smoke and star particles
+## O jato de fumaça do gato e as partículas de estrela
 
-From v1.3, ct.js allows you to visually design particle effects and play them in your game. And it's cool! Let's create two effects: one will be a jet smoke for the cat. The other will show a burst of smaller stars when you collect one.
+Desde a versão 1.3 que o ct.js permite que você crie efeitos de partículas visualmente e as reproduzas em seu jogo. E isso é perfeito! Vamos criar dois efeitos: uma será o jato de fumaça para o gato. O outro mostrará uma explosão de pequenas estrelas ao coletar uma estrela.
 
-### Making a starburst
+### Criando uma explosão de estrelas
 
-Open the "FX" tab at the top, and create a new particle emitter. Call it `StarBurst`.
+Abra a aba "FX" localizada no topo da janela do ct.js e crie um novo emissor de partículas. Chame-o de `StarBurst`.
 
-Select its texture in the left top corner, and start tweaking values! There are lots of folding categories that manipulate how particles move, change over time and spawn.
+Escolha a sua textura no canto superior esquerdo e comece a ajustar os valores! Exitem várias que manipulam como as partículas se movem, como são alteradas ao longo do tempo e como são criadas.
 
-Try making it look like this one:
+Tente fazer algo que pareça com isso:
 
-![An effect with a star burst](./images/tutJettyCat_Stars.gif)
+![Um efeito com uma explosão de estrelas](./../images/tutJettyCat_Stars.gif)
 
-::: tip
-You can set a preview texture in the right bottom corner to see how your effect looks compared to a star bonus.
+::: tip Dica
+Você pode definir uma textura de visualização no canto inferior direito para ver como o seu efeito se parece em comparação com a estrela bônus.
 :::
 
-Here are some directions on how to make this effect:
+Aqui estão algumas instruções de como você pode criar esse efeito:
 
-* To make the burst and not an infinite stream, open the "Spawning" section and set emitter's lifetime. This is a fast effect, so you will need small values like 0.1 seconds.
-* The "Gravity" section will make stars falling down after they burst out. You will need the vertical, Y-axis, and pretty large values: I used ~1400 for my effect.
-* When gravity is enabled, only the first velocity point will affect particles' motion.
-* To make the effect uneven and less artificial, make sure particles have a different lifetime at the "Spawning" category, so they become more random. Tweaking minimum velocity and size also helps.
-* A relatively large circular area that covers most of the preview texture will make the effect more like it was a big star breaking down into smaller pieces. You can set the spawn shape and its size under the category "Shape and Positioning". Check the box "Show shape visualizer" to see the shape.
+* Para fazer uma explosão e não um fluxo infinito, abra a seção "Spawning" e defina o clico de vida do emissor. Esse é um efeito tão rápido que você pricisará de valores pequenos como 0.1 segundos.
+* A seção "Gravity" fará a estrelas cairem após explodirem. Você precisará editar os valores da vertical, o eixo Y, e com valores bem altos: Para esse efeito usei um valor em torno de 1400.
+* Quando a gravidade está ativada, apenas o primeiro ponto de velocidade afeterá o movimento das partículas.
+* Para fazer com que o efeito seja mais desigual e menos artificial, certifique-se que as partículas tenha um ciclo de vida diferente na categoria "Spawning", para que assim se tornem mais aleatória. Ajustar a velocidade mínima e o tamanho também ajuda.
+* Um área circular relativamente grande que cobre a maior parte da textura de visualização fará com que o efeito se pareça mais como uma grande estrela se partindo em pedaços menores. Você pode definir a forma de gerar as partículas e o tamanho dessa forma na ctegoria "Shape and Positioning". Marque a caixa "Show shape visualizer" para ver a forma.
 
-When you're ready, hit the "Apply" button at the bottom of the left column.
+Quando você tiver terminado, click no botão "Apply" na parte inferior da coluna esquerda.
 
-To create a burst of stars when a big one is collected, open the template `Star`, navigate to the "On Destroy" tab and write a line `ct.emitters.fire('StarBurst', this.x, this.y);`. Ta-da!
+Para criar uma explosão de estrelas quando uma maior é coletada, vá para aba "Templates" e click em `Star`, navegue até a aba "On Destroy" e escreve a linha `ct.emitters.fire('StarBurst', this.x, this.y);`. Ta-da!
 
-::: tip
-Here we read the position of the star (`this.x, this.y`) and tell to spawn an effect `StarBurst`.
+::: tip Dica
+Aqui estamos lendo a posição da estrela (`this.x, this.y`) e dizendo para gerar um efeito `StarBurst`.
 :::
 
-### Making a jet smoke
+### Criando um jato de fumaça
 
-Open the "FX" tab at the top, and create a new particle emitter. Call it `Jet`.
+Abara a aba "FX" no topo da janela e crie um novo emissor de partículas. Chame-o de `Jet`.
 
-As a start, press the button `Import default…` and load the texture called `Circle_08`. In the right bottom corner, find the button "Set preview texture", and select our cat. After that, feel free to tinker around the editor to make the effect you want. I made a jet of white bubbles of different size:
+Para iniciar, click no botão `Select` na categoria "Texture" e escolha a textura chamada `Circle_08`. No canto inferior direito, click no botão "Set preview texture" e selecione o nosso gato. Depois disso, sinta-se livre para escolher a melhor forma de construir o efeito desejado. Eu fiz um jato de bolhas brancas de tamanhos diferentes:
 
-![A jet particle effect in ct.js](./images/tutJettyCat_Jet.gif)
+![Um efeito de partículas do jato em ct.js](./../images/tutJettyCat_Jet.gif)
 
-Here are some hints:
+Aqui estão algumas instruções:
 
-* Change the background color in the top-right corner of the window to better see white bubbles;
-* Start by changing the Direction tab » Starting direction fields so the particles flow downwards. A good range is between 90 and 110 degrees.
-* The default texture's size will be way too big; tweak its scale in the graph under the folding section called "Scaling", so it is somewhere around `0.3`.
-* Tweak the value Scaling » Minimum size to spawn particles of different sizes.
-* Precisely position the emitter so that it spawns right from the jet by tweaking the emitter's position, in the section called "Shape and Positioning".
-* Change the value Spawning » Time between bursts to change the density of a jet. Smaller values spawn larger amounts of particles.
+* Para uma melhor visualização das bolhas brancas, altere a cor de fundo clicando no botão "Change Background" no canto inferior direito;
+* Comece alterando os campos de direção, localizado na aba Direction » Starting direction, para que as partículas fluam para baixo. Um bom intervalo de valores está entre 90 e 110 graus.
+* O tamanho da textura padrão será muito grande; ajuste o seu tamanho no gráfico da seção chamada "Scaling", para alguma coisa em torno de `0.3`.
+* Ajuste o valor de Scaling » Minimum size para gerar partículas de tamanhos diferentes.
+* Posicione com precisão o emissor para que as partículas sejam geradas diretamente do jato, ajuste a posição do emissor na seção chamada "Shape and Positioning".
+* Altere o valor de Spawning » Time between bursts para alterar a densidade do jato. Valores menores geram maiores quantidades de partículas.
 
-To add the effect to the cat, open its template and put this code to the end of its On Create code:
+Para adicionar o efeito ao gato, abra o seu template e vá para a aba "On Create", em seguida adicione depois da última linha o trecho de código abaixo:
 
 ```js
 this.jet = ct.emitters.follow(this, 'Jet');
 ```
 
-`ct.emitters.follow` tells to create a particle effect and make it follow a copy. It will look attached to the cat. The first argument is the copy we want to attach the effect to (`this` is our cat), the second one — the name of the effect (`'Jet'`).
+`ct.emitters.follow` diz para criar um efeito de partícula e determina que ele deve seguir a copy. Pra gente, ele parecerá que está anexado ao gato. O primeiro argumento é a cópia à qual queremos anexar o efeito (`this` é o nosso gato), o segundo é o nome do efeito (`'Jet'`).
 
-We also save a reference to this emitter to a parameter `this.jet`. This will allow us to manipulate the emitter later.
+Também guardamos uma referência desse emissor para a propriedade `this.jet`. Isso nos permitirá manipular o emissor depois.
 
-::: tip
-Read [the docs for `ct.emitters`](ct.emitters.html) to learn more about other methods for creating effects and their options.
+::: tip Dica
+Leia [a documentação para o `ct.emitters`](ct.emitters.html) para aprender mais sobre outros métodos para a criação de efeitos e as suas opções.
 :::
 
-The cat should now have a jet of smoke running from its jetpack. You may need to tweak the jet's particle size and its speed on the "FX" tab.
+O gato agora deve ter um jato de fumaça saindo de sua jetpack(mochila a jato). Você pode precisar ajustar o tamanho das partículas do jato e a sua velocidade na aba "FX".
 
-Let's add a bit of dynamic to this jet: we will spawn new particles only when the cat flies up. We have the reference `this.jet`, and we can use it to pause emitter and unpause it when the player presses or releases the screen.
+Vamos adicionar um pouco de dinamismo para esse jato: vamos gerar novas partículas apenas quando o gato voar. Temos a referência `this.jet` e podemos usá-la para pausar o emissor e retomar o mesmo quando o player clicar/tocar ou soltar a tela.
 
-Open the cat's "On Step" tab and place this piece of code after the "game over" condition:
+Abara a aba "On Step" e adicione o trecho de código abaixo depois da condição "game over":
 
 ```js
 if (ct.actions.Poof.released) {
@@ -205,64 +209,64 @@ if (ct.actions.Poof.released) {
 }
 ```
 
-This will pause the effect. To unpause it, add this line to the condition with `if (ct.actions.Poof.down) {…}`:
+Isso pausará o efeito. Para retomá-lo, adicione o trecho de código abaixo para a condição com `if (ct.actions.Poof.down) {…}`:
 
 ```js
 this.jet.resume();
 ```
 
-And that is it for particles; time for some testing!
+E isso é tudo para as partículas; é hora de fazer algum teste!
 
-## Adding subtle animations to the cat and stars
+## Adicionando animações sutis para o gato e para as estrelas
 
-Particles help liven up the game, but it still may feel stiff and static. Let's add little animations to the cat and stars. We will rotate the cat depending on its vertical speed, and the star by time.
+As partículas ajudam a dá vida ao jogo. Mas ele ainda podem parecer rígido e estático. Vamos adicionar pequenas animação ao gato e às estrelas. Rotacionaremos o gato de acordo com a sua velocidade vertical e as estrelas de acordo com o tempo.
 
-### Rotating the cat
+### Rotacionando o gato
 
-Every copy has a parameter `this.angle`, that sets the visual angle of a texture in degrees. Each copy also has `this.speed` and `this.direction` we've used, and they both define additional parameters `this.vspeed` and `this.hspeed` — the vertical and horizontal speed decomposed from speed and direction. These two can be negative values when a copy moves in the opposite direction from how the axis goes. (E.g. the X-axis points to the right, its values grow from left to right. Moving to the right makes positive `hspeed`, moving to the left makes negative `hspeed`.)
+Toda copy tem um parâmetro `this.angle`, que define em graus o ângulo de uma textura. Toda copy também tem o parâmetro `this.speed` e `this.direction`, que já usamos anteriormente, ambas definem parâmetros adicionais `this.vspeed` e `this.hspeed` — a velocidade vertical e horizontal decomposta a partir de speed(velocidade) e direction(direção). Eles, speed e direction, podem ser valores negativos quando uma copy se move na direção oposta do sentido de percuso do eixo. (Por exemplo, o sentido de percurso do eixo X é para direita, o que significa que os seus valores vão crescendo da esquerda para a direita. Mover para direita vai tornar `hspeed` positivo, enquanto que movê-lo para a esquerda vai torná-lo negativo.)
 
-We can tie `this.vspeed` and `this.angle` of a cat together so that it rotates when falling or flying up. It is done by simply assigning one value to another in the Draw tab.
+Podemos amarrar `this.vspeed` e `this.angle` ao gato para que ele rotacione/gire ao cair ou ao voar. Isso é feito simplesmente atribuíndo uma linha de instrução na aba "Draw".
 
-This line will work:
+Abaixo segue a linha que vai fazer isso funcionar:
 
 ```js
 this.angle = -this.vspeed;
 ```
 
-Though it will result in a too strong rotation. Adding a multiplier will make it look better:
+Embora isso resulte em uma rotação muito forte. Adicionar um fator multiplicador fará com que se pareça melhor:
 
 ```js
 this.angle = -this.vspeed * 0.3;
 ```
 
-### Rotating the stars
+### Rotacionando as estrelas
 
-With stars, we can't simply tie `this.angle` to some ct.js' value. We can define our own, though, an apply a bit of math to turn numbers into nice wiggles. This all will remind you of spawning timers.
+Com as estrelas não podemos simplesmente amarrar o `this.angle` a alguma valor do ct.js. Podemos definir o nosso próprio, entretanto precisaremos de um pouco de mátemática para obter bons números de rotação. Tudo isso pode fazer você lembrar dos nossos temporizadores de geração/criação.
 
-Open the `Star` template, and add this line to its On Create tab:
+Abara o template `Star`, e adicione o trecho de código abaixo na aba "On Create":
 
 ```js
 this.wiggleTime = 0;
 ```
 
-Then, in the Draw tab, add this tab:
+Em seguida, na aba sua "Draw", adicone o trecho de código abaixo:
 
 ```js
 this.wiggleTime += ct.delta * 0.2;
 this.angle = Math.sin(this.wiggleTime) * 5;
 ```
 
-Here we change `this.wiggleTime` at each frame by the elapsed time, multiplied by 0.2 to slow down the animation. Then we use `Math.sin` to get a sinus of the `wiggleTime` — changing the latter at each frame will result in a smooth oscillation between -1 and 1. By multiplying it by 5, we make the effect five times stronger.
+Aqui alteramos o `this.wiggleTime` a cada frame pelo tempo decorrido, multiplicado por 0.2 para desacelerar a animação. Então usamos `Math.sin` para obter seno de `wiggleTime` — alterar o último a cada frame resultará em uma oscilação suave entre -1 e 1. Multiplicando o mesmo por 5, faremos com que o efeito seja cinco vezes mais forte.
 
-![A wiggling, animated star](./images/tutJettyCat_StarWiggle.gif)
+![A wiggling, animated star](./../images/tutJettyCat_StarWiggle.gif)
 
-## Adding a hint to start tapping
+## Adicionando uma dica para começar a click/tocar na tela
 
-Let's use the same approach to create a visual hint for a user to start tapping! It will be a pulsating hand icon.
+Vamos usar a mesma abordagem para criar uma dica visual para que o usuário comece a clicar/tocar na tela! Será um ícone de mão pulsante.
 
-Create a new template called `PressHint` with a texture `PressHint`. Make sure the texture has its axis centered.
+Creie um novo template chamado `PressHint` com a `PressHint`. Certifique-se que a textura tem o seu eixo no centro.
 
-In the template's On Create code, add a line `this.pulsePhase = 0;`. In its On Step code, put this snippet:
+Na aba "On Create" do template, adicione uma linha `this.pulsePhase = 0;`. E em sua aba "On Step", adicone o trecho de código abaixo:
 
 ```js
 this.pulsePhase += ct.delta * 0.2;
@@ -274,28 +278,28 @@ if (ct.actions.Poof.pressed) {
 }
 ```
 
-Here we again change the property that is used inside `Math.sin`. We set a copy's horizontal and vertical scale to this sinus wave plus add `1` so that the copy is not shrunk into a point. (Without this `1 +`, the sine wave would oscillate around 0, meaning near 0% of a copy's size.)
+Aqui estamos passando a propriedade `this.pulsePhase` para `Math.sin`. Definimos um redimensionamento vertical e horizontal da copy para uma onda senoidal mais `1`, esse `1` é para que a copy não seja reduzida de tal forma que nem possamos vê-la. (Sem esse `1 +`, a onda seno oscilaria próximo de 0, o significa perto de 0% do tamanho da copy.)
 
-When a user presses the screen, `ct.actions.Poof.pressed` becomes `true`, and that's where we remove the copy as the user starts manipulating their cat.
+Quando o usuário clicar/tocar na tela, `ct.actions.Poof.pressed` torna-se `true`, e aqui é onde removemos a copy tão logo o usuário comece a manipular o gato.
 
-The last step is adding this copy to `UI_InGame`, somewhere in the center of the view.
+O último passo é adicioinar essa copy para `UI_InGame`, em algum lugar no centro da view.
 
-## Animating background in the main menu + parallax effect
+## Animando o background no menu principal + efeito parallax
 
-The parallax effect is used in gamedev since ancient times — once console's processors got strong enough to draw backgrounds. The effect is made by moving several background layers at different speeds to create an effect of depth. Though we won't get a strong effect in this tutorial, we will learn how to config backgrounds in ct.js, and liven up our main menu and overall view.
+O efeito parallax é utilizado no desenvolvimento de jogos desde muito tempo atrás — uma vez que os processadores dos console ficaram fortes o suficiente para renderizar os backgrounds(planos de fundo). O efeito é feito através do movimento de várias camada de background em diferentes velocidades para produzir o efeito de profundidade. Embora não tenhamos um efeito forte nesse tutorial, aprenderemos como definir backgrounds em ct.js e como animar o nosso menu principal e a view de forma geral.
 
-Go to the room `MainMenu`, and open the "Backgrounds" tab in the left column. Then, click the gear icon next to the background `BG_Sky`. We will need to slowly move the background from left to right so that our clouds get moving. Set the Movement speed to `-1`, `0`. These values tell the background to move against the X-axis one pixel at second.
+Vá para a room `MainMenu` e abra a aba "Backgrounds" na coluna esquerda. Em seguida, click no ícone de engrenagem próximo ao background `BG_Sky`. Precisaremos mover o background lentamente da esquerda para a direita para que assim as nossas nuvens se movam. Defina a "Movement speed"(Velocidade de movmento) para `-1`, `0`. Esses valores dizem ao background para ele se mover no sentido contrário(da direita para a esquerda) ao do eixo x, um pixel por segundo.
 
-![Setting a background's movement speed in ct.js](./images/tutJettyCat_32.png)
+![Definindo uma velocidade de movimento para um background em ct.js](./../images/tutJettyCat_32.png)
 
-Then, go to the room called `InGame`. Open the same settings of the background `BG_Sky`. Set its parallax values to 0.25: it will tell the background to move four times slower than the rest of the room, creating the effect of depth.
+Em seguida, vá para a room chamada `InGame`. Abra as mesmas definições de background `BG_Sky`. Defina o seu valor parallax para 0.25:  isso dirá ao background para se mover quatro vezes mais lento que o restante da room, criando assim o efeito de profundidade.
 
-![Setting a background's movement speed in ct.js](./images/tutJettyCat_33.png)
+![Definindo uma velocidade de movimento para um background em ct.js](./../images/tutJettyCat_33.png)
 
-The main menu will now have an animated sky, and the sky at the main game's room will slide noticeably slower than any other object in the room. Neat!
+O menu principal agora terá um céu animado, o céu da room principal se moverá visivielmente mais devagar que qualquer outro objeto na room. Limpo, elegante e agradável!
 
-## That's it!
+## E isso é tudo!
 
-The game is polished and looks juicy, hooray! Time to read other tutorials, or to create a new game from scratch!
+O jogo está polido e parece bastante agradável, show de bola! É hora de ler outros tutoriais ou criar um novo jogo do zero!
 
-Happy coding!
+Boa codificação!

@@ -340,7 +340,7 @@ module.exports = {
         sidebar: [
           {
             link: "/",
-            text: "A documentação em português ainda está incompleta e pode divergir do inglês!",
+            // text: "A documentação em português ainda está incompleta e pode divergir do inglês!",
           },
           {
             link: "/pt_BR/",

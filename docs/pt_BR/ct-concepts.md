@@ -1,6 +1,6 @@
 # Conceitos básicos
 
-**Ct.js** é uma ferramenta modular escrita em JavaScript, com um editor visual embutido. O editor também é chamado como **ct.IDE**. Os jogos criados com o ct.js também são escritos em JavaScript: ela é uma linguagem de programação para a web, é flexível, fácil de aprender, e infinitamente profunda com muitos recursos que você pode usar.
+**Ct.js** é uma ferramenta modular escrita em JavaScript e com um editor visual embutido. O editor também é chamado como **ct.IDE**. Os jogos criados com o ct.js também são escritos em JavaScript: ela é uma linguagem de programação para a web, é flexível, fácil de aprender, e infinitamente rica com muitos recursos que você pode usar.
 
 Qualquer jogo em ct.js consites de **texturas**, **copies**, **templates**, and **rooms**.
 

@@ -1,72 +1,72 @@
-# Working with Viewport
+# Trablahando com Viewport(Janela de Visualização)
 
-Since v1.3, ct.js has a Camera object that manipulates the viewport. It supports scaling and rotation, and can also follow a copy and create screen shake effects.
+Desde a versaõ 1.3 que o ct.js tem um objeto Camera que manipula o viewport(janela de visualização). Ele suporta o redimensionamento e rotação e pode seguir uma copy, além de poder criar efeitos de tremer a tela.
 
-## Moving the camera around
+## Movendo a câmera por aí
 
-To move the camera around, you can:
+Para mover a câmera por aí, você pode:
 
-* use `ct.camera.teleportTo`, `ct.camera.moveTo`;
-* use the built-in variables to follow things on the screen;
-* change the camera's parameters by yourself.
+* usar `ct.camera.teleportTo`, `ct.camera.moveTo`;
+* usas as variáveis internas para seguir coisas pela tela;
+* alterar os parâmetros da câmera você mesmo.
 
-### Moving and teleporting <badge>new in v1.3</badge>
+### Movendo e teletransportando <badge>novo na v1.3</badge>
 
-`ct.camera.moveTo(x, y)` and `ct.camera.teleportTo(x, y)` both move the camera to a new position. There are differences, though:
+`ct.camera.moveTo(x, y)` e `ct.camera.teleportTo(x, y)` movem a câmera para uma nova posição. Existem diferenças, embora:
 
-* `ct.camera.moveTo(x, y)` is useful for cutscenes and smooth transitions between objects, as it works with `ct.camera.drift`;
-* `ct.camera.teleportTo(x, y)` does not cause transitions and reset screen shake effects. It is useful for instant precise changes, e.g. when moving a camera to a distant location
+* `ct.camera.moveTo(x, y)` é útil para cutscenes e transições suaves entre objetos, pois funcionam com `ct.camera.drift`;
+* `ct.camera.teleportTo(x, y)` não faz transições e reinicia os efeitos de tremer a tela.  É útil para alterações em momentos específicos e instantâneos, por exemplo, quando mover a câmera para um local distante.
 
-### Following a copy
+### Seguindo uma copy
 
-A simple line `ct.camera.follow = this;` inside the On Create code of your main character will set up automagical camera movement ✨
+Uma simples linha com a instrução de código`ct.camera.follow = this;` dentro da aba "On Create" do seu personagem cprincipal definirá um movimento de câmera automático e mágico ✨
 
-`ct.camera.borderX` and `ct.camera.borderY` define the area at which the camera shifts when the followed copy enters these borders. These values are in UI coordinates.
+`ct.camera.borderX` e `ct.camera.borderY` defina a área na qual a câmera se desloca quando a copy seguida entra nessas bordas. Esses valores são em coordenadas de UI(Interface do Usuário).
 
-```js Example: following a copy with borders
-// Place this code, e.g, to your hero's `OnCreate` code
+```js Exemplo: seguindo uma copy com limites
+// Adicione este código, por exemplo, na aba `OnCreate` do seu herói.
 ct.camera.follow = this;
 
-// Follow the hero so it cannot be closer than 300 px to any side of the screen
+// Segue o herói até que ele não possa está mais perto que 300px de qualquer lado da tela
 ct.camera.borderX = 300;
 ct.camera.borderY = 300;
 ```
 
-You can also disable following logic for one axis. Setting `ct.camera.followX` to `false` will disable horizontal movement, and setting `ct.camera.followY` will disable vertical movement. This still allows you to move the camera with `teleportTo` and `moveTo` methods. <badge>new in v1.3</badge>
+Você também pode desativar a lógica de seguir para um dos eixos. Definindo `ct.camera.followX` para `false` desativará o movimento horizontal, e definindo `ct.camera.followY` para `false` desativará o movimento vertical. Isso ainda permite que você mova a câmera com os métodos `teleportTo` e `moveTo`. <badge>novo na v1.3</badge>
 
-### Manual positioning
+### Posicionamento manual
 
-If you ever find that above methods are not enough for you, use these parameters:
+Se você achar que os métodos acima não são suficientes para você, use estes parâmetros:
 
 * `ct.camera.x`,
 * `ct.camera.y`,
 * `ct.camera.targetX`,
 * `ct.camera.targetY`.
 
-`x` and `y` are the current position of the camera without screen shake and effects of `shiftX` and `shiftY`.
-`targetX` and `targetY` will be different if `ct.camera.drift` is larger than 0, and you should firstly edit these values.
+`x` e `y` represneta a posição atual da câmera sem o tremer da tela e os efeitos `shiftX` e `shiftY`.
+`targetX` e `targetY` será diferente se `ct.camera.drift` é maior que 0 e você deve primeiro editar esses valores.
 
-## Zooming and rotation <badge>new in v1.3</badge>
+## Zoom e rotação <badge>novo na v1.3</badge>
 
-To scale the viewport, use `ct.camera.scale.x` and `ct.camera.scale.y`, similarly to scaling copies. This is not a zoom level, but a scaling factor of a capturing rectangle: when using values larger than 1, you will see a larger portion of a room.
+Para redimensionar a viewport use `ct.camera.scale.x` e `ct.camera.scale.y`, semelhante ao redimensionamento de copies. Esse não é um nível de zoom, mas um fator de redimensionamento de um retângulo de captura: ao usar valores maiores que 1, você verá uma porção maior da room.
 
-To rotate the viewport, use `ct.camera.rotation` (in degrees). Again, you rotate a capturing rectangle, so the stuff on the screen will rotate clockwise.
+Para rotacionar a viewport use `ct.camera.rotation` (em graus). Mais uma vez, você rotaciona um retângulo de captura, para que as coisas na tela girem no sentido horário.
 
-::: warning A little caveat
-You should not change the camera's values in the "On Draw" event, as the camera updates after the "On Step" event and before "On Draw" event. If you do, you will notice some inconsistencies when converting UI coordinates to game ones. That's because `ct.u.uiToGameCoord` and others will use new values though the room is not yet repositioned.
+::: warning Uma pequena observação
+Você não deve alterar os valores da câmera no evento "On Draw", uma vez que a atualização da câmera acontece depois do evento "On Step" antes do evento "On Draw". Se você o fizer, você notará algumas inconsistências ao converter as coordenadas de UI para as de jogo. Isso porque `ct.u.uiToGameCoord` e outros usarão novos valores, muito embora a room ainda não tenha sido reposicionada ainda.
 :::
 
-## Modifiers and smooth transition
+## Modificadores e transições suaves
 
-* `ct.camera.drift` is a value between [0; 1] that defines how fast the camera reacts to movement. The default is `0` (no drift). Try setting `ct.camera.drift` to `0.9` to create a smooth transition.
-* `ct.camera.shiftX` and `ct.camera.shiftY` allow placing the camera higher/lower/etc than the target. This is especially useful while following a copy: you may need to show more stuff on the left when a game character looks there, or below when it crouches, etc.
+* `ct.camera.drift` é um valor entre [0; 1] que define o quão rápido a câmera reage ao movimento. O padrão é `0` (sem drift). Tente definir `ct.camera.drift` para `0.9` criar uma transição suave.
+* `ct.camera.shiftX` e `ct.camera.shiftY` permite colocar a câmera mais acima/mais abaixo/etc que o objeto alvo. Isso é especialmente útil ao seguir uma copy: você pode precisar mostrar mais coisas à esquerda quando um personagem do jogo olhar pra lá, ou para baixo quando ele estiver agachado e etc.
 
-`ct.camera.shiftX` and `ct.camera.shiftY` are interpolated in a separate pass than other camera movements but still use `ct.camera.drift`.
+`ct.camera.shiftX` e `ct.camera.shiftY` são interpolados em uma passagem separada que outros movimentos de câmera mas ainda usa `ct.camera.drift`.
 
-::: tip
-For smooth scaling and rotation, change values `ct.camera.angle`, `ct.camera.scale.x`, `ct.camera.scale.y` continuously with `ct.delta`, or use `ct.tween` module.
+::: tip Dica
+Para um redimensionamento e rotação suave, altere os valores de `ct.camera.angle`, `ct.camera.scale.x`, `ct.camera.scale.y` continuamente com `ct.delta` ou use o módulo `ct.tween`.
 
-For example, to zoom in, you could use this code:
+Por exemplo, para aumentar o zoom, você pode usar o trecho de código abaixo:
 ```js
 ct.tween.add({
   obj: ct.camera.scale,
@@ -78,7 +78,7 @@ ct.tween.add({
 });
 ```
 
-Or you could manipulate camera angle by user input (in "On Step" event):
+Ou você poderia manipular o ângulo da câmera através de entradas de usuário (no evento "On Step"):
 
 ```js
 ct.camera.angle += ct.actions.CameraRotate.value * ct.delta * 5;
@@ -86,64 +86,64 @@ ct.camera.angle += ct.actions.CameraRotate.value * ct.delta * 5;
 
 :::
 
-## Screen shake effects <badge>new in v1.3</badge>
+## Efeitos de tremer a tela<badge>novo na v1.3</badge>
 
-Yes, there is a built-in feature for that 😅 Its design is as follows:
+Sim, existe tal recurso para isso no ct.js. 😅 O seu design é o seguinte:
 
-* a screen shakes by two blended harmonious functions on each axis, with their phases unsynced;
-* the power of a screen shake is set by `ct.camera.shake` and represents the largest possible amplitude of the effect. A value of `10` is 10% of the viewport size;
-* the effect gradually decays through time — this can be tweaked by `ct.camera.shakeDecay` parameter, or disabled by setting it to `0`.
+* uma tela treme por duas funções harmoniosas combinadas em cada eixo, com suas fases não sincronizadas;
+* o poder de um tremor de tela é definido por `ct.camera.shake` e representa a maior amplitude possível do efeito. Um valor de `10` e 10% do tamanho da viewport(janela de visualização);
+* o efeito diminue gradualmente com o passar do tempo — isso pode ser ajustado pelo parâmetro `ct.camera.shakeDecay` ou desativando atrabés da definição do seu valor para `0`.
 
-::: warning DISCLAIMER
-* **Do remember** that there are lots of people (e.g. me, the creator of ct.js) that quickly get dizzy because of screen wobble and shaking. There are also people with epilepsy.
-* **Do provide controls** for screen shake/wobble and don't overuse the effect.
-* **Put warnings** about screen shake/wobbling at the start of your game and inside your game's description.
+::: warning TERMO DE RESPONSABILIDADE
+* **Lembre-se** que há muitas pessoas (inclisuve eu, o criador do ct.js) que rapidamente ficam tontas com as oscilações e tremores de tela. Há também as pessoas com epilepsia.
+* **Proporcione controles** para o tremor/osciliação de tela e não abuse do efeito.
+* **Adicione alertas** sobre o tremor/oscilação de tela no início do seu jogo e também dentro da descrição do mesmo.
 :::
 
-There are many parameters [described here](/ct.camera.html) to control its feel, but default values are good as well. Here are the examples:
+Há muitos parâmetros [descritos aqui](/ct.camera.html) para controlar a sua sensibilidade, mas os valores padrão também são bons. Abaixo segue alguns exemplos:
 
 ```js
-// Add an impulse that will accumulate on repetitive calls
+// Adiciona um impulso que acumulará em repetitivas chamadas
 ct.camera.shake += 1;
 ```
 
 ```js
-// Make a constant, slow camera wobble
+// Cria uma oscilação constante e lenta da câmera
 ct.camera.shakeFrequency = 1;
 ct.camera.shakeDecay = 0;
 ct.camera.shake = 2;
 ```
 
-## Making an adaptive UI
+## Criando uma UI adaptável
 
-Contemporary devices all have various resolutions, and thus your app should adapt to them and still give the best quality.
+Todos os dispositivos contemporâneos têm várias resoluções e, portanto, seu aplicativo deve se adaptar a elas e ainda oferecer a melhor qualidade.
 
-The first step you need to do is to enable the `ct.fittoscreen` catmod. Then, select the "Settings" tab and select a scaling mode that suits your game project more:
+O primeiro passo que você precisa fazer é habilitar o catmod `ct.fittoscreen`. Em seguida, click na aba "Settings" e escolha o modo de redimensionamento mais adequado ao seu projeto de jogo:
 
-* Fast scaling with letterboxing is suitable for purely **pixelart games**, or when performance is vital;
-* Expansion works well when the more player sees on the screen, the better (e.g. RTS or games like Factorio);
-* Scaling with letterboxing works for **any type of projects**, and can also give nice transforms to your pixelart games. This will remain your designed aspect ratio.
-* Scaling without letterboxing ensures both the best quality and use of a full screen. It is often preferable over scaling with letterboxing.
+* O redimensionamento rápido com letterboxing é adequado apenas para **jogos em pixelart** ou quando o desempenho é vital;
+* A expansão funciona bem quando mais o player vê na tela, o melhor (por exemplo, RTS ou jogos como Factorio);
+* O redimensionamento com letterboxing funciona para **qualquer tipo de projeto** e também pode fornecer boas transformações para os seus jogos em pixelart. Isso manterá a proporção de tela projetada.
+* O redimensionamento sem o letterboxing garante a melhor qualidade e uso de uma tela cheia. Muitas das vezes ela é preferível em vez do redimensionamento com letterboxing.
 
-If you are making a pixelart game, make sure you disable image smoothing at the "Settings" tab.
+Se você estiver criando um jogo em pixelart, certifique-se que desativou a image smoothing, suavização de imagem, na aba "Project" -> "Render Options".
 
-In general, you should follow these rules:
+De modo geral, você deve seguir as regras abaixo:
 
-* design UI in a separate room, and then import it with `ct.rooms.append('NameOfTheRoom', {isUi: true})`;
-* use `ct.camera.width` and `ct.camera.height` to position UI elements;
-* use `ct.camera.realign(this)` <badge>new in v1.3</badge> in "On Draw" of the UI layer to quickly get decent results;
-* update the position of UI elements regularly, as any resolution change may crop your elements. This can be caused by resizing a windowed version, at random unplug of an external monitor, etc;
-* when using "Scaling with/without letterboxing", start designing your rooms, graphic assets, and UI at a relatively big view size at rooms' settings, e.g. at 1920x1080px, so it will scale down on other resolutions nicely.
+* crie uma UI em uma room separada e a importe com `ct.rooms.append('NameOfTheRoom', {isUi: true})`;
+* use `ct.camera.width` e `ct.camera.height` para posicionar os elementos de UI;
+* use `ct.camera.realign(this)` <badge>novo na v1.3</badge> em "On Draw" da camada de UI para obter resultados melhores;
+* atualize a posição dos elementos de UI regularmente, pois qualquer alteração na resolução pode cortar os seus elementos. Isso pode ser causado pelo redimensionamento de uma versão com janel, pela desconexão aleatória de um monitor externo e etc;
+* quando for usar "Scaling with/without letterboxing", comece planejando as suas rooms, assets gráficos e UI em uma definição de tamanho de resolução da room relativamente alto, como por exemplo, 1920x1080px, assim ele reduzirá em outras resoluções de forma agradável.
 
-Don't forget to test your UI on different screen sizes and devices!
+Não esqueça de testar a sua UI em diferentes tamanhos de tela e dispositivos!
 
-## Resizing the viewport
+## Redimensionando a viewport(janela de visualização)
 
-Usually, it is best to use `ct.fittoscreen` so that it manages the renderer and viewport for you. In other cases, use `ct.camera.scale.x` and `ct.camera.scale.y`.
+Normalmente é melhor usar o `ct.fittoscreen` para que ele gerencie a renderização e a viewport(janela de visualização) para você. Em outros casos, use o `ct.camera.scale.x` e `ct.camera.scale.y`.
 
-If you still want to resize the viewport manually, use these parameters (this affects the renderer!):
+Se ainda assim você quiser fazer o redimensionamento da viewport manualmente, use estes parâmetros (isso afeta a renderização!):
 
 * `ct.width`;
 * `ct.height`.
 
-These can still be used with most of `ct.fittoscreen`'s  modes, except for "expand" mode, as `ct.fittoscreen` overrides `ct.width` and `ct.height`.
+Eles ainda podem ser usados com a maioria dos modos do `ct.fittoscreen`, exceto para o modo "expand"(expandir), pois o `ct.fittoscreen` substitui o `ct.width` e o `ct.height`.

@@ -64,7 +64,7 @@ Funciona apenas se `follow` foi definido para uma copy. Definindo um desses para
 
 ### `ct.camera.borderX`, `ct.camera.borderY`
 
-Funciona apenas se `follow` foi definido para uma copy. Define o limite no qual a copy será mantida, em pixel de jogo. Pode ser `null` para que a copy seja definida no centro da tela.
+Funciona apenas se `follow` foi definido para uma copy. Define o limite no qual a copy será mantida, em coordenadas de UI. Pode ser `null` para que a copy seja definida no centro da tela.
 
 ## Oscilação e Tremor de Tela
 

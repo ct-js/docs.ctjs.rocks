@@ -1,27 +1,27 @@
-# `Room` class
+# A classe `Room`
 
-Rooms are the entities that contain all the copies, backgrounds, tile layers, and advanced entities, too. They are also referred to as maps and levels.
+As salas(rooms) são entidades que contém todas as copies, planos de fundo(backgrounds), tile layers(camadas de tile), e entidades avançadas também. Elas também são chamadas de mapas e níveis.
 
-Rooms derive from [PIXI.Container](https://pixijs.download/release/docs/PIXI.Container.html) class, and inherit all its methods and properties.
+As salas(rooms) são derivadas da classe [PIXI.Container](https://pixijs.download/release/docs/PIXI.Container.html), e herda todos os seus métodos e propriedades.
 
-## The current room, `ct.room`.
+## A sala(room) atual, `ct.room`.
 
-`ct.room` always points to the current room. If you have multiple rooms layered on top of each other, `ct.room` will point to the initial room that was created at the start of a game, or after calling [`ct.rooms.switch`](ct.rooms.html#ct-rooms-switch-newroomname).
+`ct.room` sempre aponta para a sala(room) atual. Se você tem várias salas(rooms) em camadas umas sobre as outras, o `ct.room` apontará para a sala(room) inicial que foi criada no início do jogo, ou apontará para a sala(room) definida após a chamada do método [`ct.rooms.switch`](ct.rooms.html#ct-rooms-switch-newroomname).
 
-To get layered rooms, you can use [`ct.rooms.list`](ct.rooms.html#ct-rooms-list-roomname), or [`this.getRoom`](Copy.html#copy-getroom) inside copies' events.
+Para obter as salas(rooms) que estão em camdas, você pode usar [`ct.rooms.list`](ct.rooms.html#ct-rooms-list-roomname), ou [`this.getRoom`](Copy.html#copy-getroom) de dentro dos eventos das copies.
 
-## UI and Gameplay rooms
+## Salas(rooms) de UI e de Jogo
 
-Rooms can be put either into UI coordinate space or gameplay coordinate space. Gameplay rooms are managed by `ct.camera`, and cannot be moved manually. But UI rooms can be: for example, to move smaller widgets around the viewport.
+As salas(rooms) ponde ser colocadas no espaço de coordenadas de UI ou no espaço de coordenadas de jogo. As salas(rooms) de jogo são gerenciadas por `ct.camera` e não podem ser movidas manualmente. Mas as salas(rooms) de UI podem: por exemplo, para mover pequenos widgets pela viewport(janela de visualização).
 
-::: tip
-More about this concept at [Game and UI Coordinates](game-and-ui-coordinates.html). For viewport management, see [Working with Viewport](viewport-management.html).
+::: tip Dica
+Mais sobre esse conceito em [Coordenadas de Jogo e de UI](game-and-ui-coordinates.html). Para saber como gerenciar a viewport(janela de visualização), veja [Trabalhando com a Viewport(Janela de Visualização)](viewport-management.html).
 :::
 
-## Notable properties
+## Propriedades notáveis
 
-|Property | Type | Description|
+|Propriedade | Tipo | Descrição|
 |-|-|-|
-|`alpha` | `number` | A value from 0 to 1 that sets room's opacity. You can use it, for example, to gradually fade in/fade out UI layers. `0` means fully transparent, and `1` means fully opaque.|
-|`isUi` | `boolean` | If set to `true`, the room will be unaffected by camera scaling, movement, and rotation. See more at [Game and UI Coordinates](game-and-ui-coordinates.html).|
-|`x`, `y` | `number` | The location of a room. Changing these have no effect if the room is in gameplay coordinates (if its `isUi` property is `false`)|
+|`alpha` | `number` | Um valor de 0 até 1 que define a opacidade da sala(room). Você pode usar os mesmo para, por exemplo, criar um efeito de aparecimento e desaparecimento das camadas de UI. `0` significa completamente transparente e `1` significa completamente opaco.|
+|`isUi` | `boolean` | Se definido como `true`, a sala(room) não será afetada pelo redimensionamento, movimento e rotação da câmera. Veja mais em [Coordenadas de Jogo e de UI](game-and-ui-coordinates.html).|
+|`x`, `y` | `number` | A posição da sala(room). Se a sala(room) estiver no sistema de coordenadas de jogo, que é quando se define a propriedade `isUi` para `false`, qualquer alteração nessas coordenadas não terão efeito.|
