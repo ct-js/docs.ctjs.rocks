@@ -12,7 +12,7 @@ O jogo é completo em termos de mecânica, mas há várias maneiras de melhorá-
 
 O ct.js tem um módulo chamado `ct.transition`. Ele permite que você facilmente crie boas transições entre as fases. A ideia é que você comece a primeira parte de uma transição ao pressionar um botão ou em algum outro evento, então mude para uma outra room e chame a segunda parte da transição em sua aba "On Create".
 
-Habilite o módulo `transition` em "Catmods" na aba "Project localizada na parte superior da janela do ct.js. No próprio módulo está descrito que depende do `tween` catmod, então o habilite também.
+Habilite o módulo `transition` em "Catmods" na aba "Project localizada na parte superior da janela do ct.js. No próprio módulo está descrito que ele depende do `tween` catmod, então o habilite também.
 
 Agora modifique o botão `Button_Play` em sua aba "On Step" para que ele mostre quando clicado uma transição circular azul:
 
@@ -28,9 +28,9 @@ if (ct.touch.collideUi(this)) {
 }
 ```
 
-`this.pressed` ie a nossa variável de controle que guarda quando um botão foi pressionado. Ela ajudará a prevenir duplo clicks involuntários, que poderia ocasionar efeitos negativos na lógica do jogo.
+`this.pressed` é a nossa variável de controle que guarda quando um botão foi pressionado. Ela ajudará a prevenir duplo clicks involuntários, que poderia ocasionar efeitos negativos na lógica do jogo.
 
-O primeiro argumento em `ct.transition.circleOut(1000, 0x446ADB)` é a duração do efeito (1000 milissegundos = 1 segundo), e o segundo é a cor da transição. Ela é como as cores em hexadecimal, mas começando com o `0x` em vez do `#`.
+O primeiro argumento em `ct.transition.circleOut(1000, 0x446ADB)` é a duração do efeito (1000 milissegundos = 1 segundo), e o segundo é a cor da transição. Ela é como as cores em hexadecimal, mas começando com o `0x` em vez de `#`.
 
 ::: tip Dica
 Existem muito mais métodos e exemplos na aba da documentação de referência. Para acessá-la, click na seta(<) do painel recolhido à direita do ct.IDE, em seguida click na aba Module's docs, na coluna esquerda dessa aba você notará os itens `ct.transition` e `ct.tween`.
