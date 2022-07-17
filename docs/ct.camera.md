@@ -64,7 +64,7 @@ Works if `follow` is set to a copy. Setting one of these to `false` will disable
 
 ### `ct.camera.borderX`, `ct.camera.borderY`
 
-Works if `follow` is set to a copy. Sets the frame inside which the copy will be kept, in game pixels. Can be set to `null` so the copy is set to the center of the screen.
+Works if `follow` is set to a copy. Sets the frame inside which the copy will be kept, in UI coordinate system. Can be set to `null` so the copy is set to the center of the screen.
 
 ## Screen Shake and Wobble
 
