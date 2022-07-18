@@ -4,20 +4,19 @@ Ações são uma camada de abstração sobre vários métodos de entrada que per
 
 ![](./../images/actions.png)
 
-Para a ação funcionar, você precisa conectar um módulo particular: provedores de métodos de entrada. As próprias ações são descritas "Actions and input methods", localizado painel esquerdo da aba "Project". Ct.js vem com um número de provedores de entrada padrão: `ct.pointer` que reage aos eventos de mouse e de touch, `ct.keyboard` para o pressionamento de teclas e `ct.gamepad` para joystick.
+Para que as ações funcionem, você precisa conectar módulos específicos: provedores de métodos de entrada. As próprias ações são descritas em "Actions and input methods", localizado no painel esquerdo da aba "Project". Ct.js vem com vários provedores de entrada padrão: `ct.pointer` que reage aos eventos de mouse e de touch, `ct.keyboard` para o pressionamento de teclas e `ct.gamepad` para joystick.
 
 Todos esses módulos podem ser encontrados e habilitados na aba catmods nas configurações do projeto, na categoria "Input methods":
 
-<!-- ![](./../images/actions_magicIcon.png) -->
 ![](./../images/actions_filterInputProviders.png)
 
 ## Criando novas ações
 
-Para cria uma nova ação, vá para a aba "Project", e click na guia à esquerda "Actions and input methods". Um painel aparecerá no qual as ações são definidas na coluna esquerda, e os métodos de entradas na coluna direita.
+Para cria uma nova ação, vá para a aba "Project", e click em "Actions and input methods" localizado à esquerda. Um painel aparecerá no qual as ações são definidas na coluna esquerda, e os métodos de entradas na coluna direita.
 
 ![Opening actions editor](./../images/actions_02.png)
 
-Click no botão "Add Action". Por exemplo, nós descreveremos o padrão e, talvez, o mais importante recurso em qualquer jogo ­– "Movimento". Se você tem um jogo de plataforma, então você precisa apenas de movimento horizontal. Caso contrário, você pode precisar de movimento vertical também. Defina essas ações, `MoveX` e `MoveY` para os movimentos horizontais e verticais, respectivamente.
+Click no botão "Add Action". Por exemplo, descreveremos o padrão e, talvez, o mais importante recurso em qualquer jogo ­– "Movimento". Se você tem um jogo de plataforma, então você precisa apenas de movimento horizontal. Caso contrário, você pode precisar de movimento vertical também. Defina essas ações, `MoveX` e `MoveY` para os movimentos horizontais e verticais, respectivamente.
 
 Adicione o primeiro método de entrada como movimento horizontal com um botão correspondente. No formulário exibido, localize o botão `A` (Você pode inseri-lo através da barra de pesquisa), e então click em "Select". Faça a mesma coisa para os botões `D`, `ArrowLeft` e `ArrowRight`. Devendo ficar assim:
 
