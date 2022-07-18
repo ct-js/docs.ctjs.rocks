@@ -4,7 +4,7 @@ Ações são uma camada de abstração sobre vários métodos de entrada que per
 
 ![](./../images/actions.png)
 
-Para a ação funcionar, você precisa conectar um módulo particular: provedores de métodos de entrada. As próprias ações são descritas na aba "Settings", atrás do botão "Actions and input methods". Ct.js vem com um número de provedores de entrada padrão: `ct.pointer` que reage aos eventos de mouse e de touch, `ct.keyboard` para o pressionamento de teclas e `ct.gamepad` para joystick.
+Para a ação funcionar, você precisa conectar um módulo particular: provedores de métodos de entrada. As próprias ações são descritas "Actions and input methods", localizado painel esquerdo da aba "Project". Ct.js vem com um número de provedores de entrada padrão: `ct.pointer` que reage aos eventos de mouse e de touch, `ct.keyboard` para o pressionamento de teclas e `ct.gamepad` para joystick.
 
 Todos esses módulos podem ser encontrados e habilitados na aba catmods nas configurações do projeto, na categoria "Input methods":
 
