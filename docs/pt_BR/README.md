@@ -17,7 +17,7 @@ footer: Documentação ct.js. Exceto onde for indicado de outra forma, o conteú
     </div>
     <div class="feature">
         <h2>Complete os tutoriais</h2>
-        <p>A melhor forma de aprender é <i>praticando</i>, e você pode criar jogos reais com os nossos tutoriais de passa a passo:</p>
+        <p>A melhor forma de aprender é <i>praticando</i>, e você pode criar jogos reais com os nossos tutoriais de passo a passo:</p>
         <ul>
             <li><a href="./tut-making-shooter.html">Crie um jogo de nave →</a></li>
             <li><a href="./tut-making-platformer.html">Crie um jogo de plataforma →</a></li>
@@ -30,7 +30,7 @@ footer: Documentação ct.js. Exceto onde for indicado de outra forma, o conteú
         <a href="./ct-concepts.html" class="button">Vá para a documentação ct.js →</a>
     </div>
     <div class="feature" style="flex-basis: 65%; max-width: 65%;">
-        <h2>Notáveis alterações e adicições no ct.js v2.0</h2>
+        <h2>Notáveis alterações e adições no ct.js v2.0</h2>
         <ul>
             <li>API foi alterada! A primeira coisa que você notará é que o `ct.types` agora é `ct.templates`, mas existe muito mais em nosso <a href="./migration-1to2">guia de migração</a>. Vá lá e confira.</li>
             <li><code>ct.res</code> foi quase que totalmente reescrito e agora permite que você <a href="./ct.res.html">dinamicamente carregue texturas, fontes e animações por ossos</a> em seu jogo. E tá vindo mais coisas por aí!</li>
@@ -48,13 +48,13 @@ footer: Documentação ct.js. Exceto onde for indicado de outra forma, o conteú
     </div>
     <div class="feature"  style="flex-basis: 47.5%; max-width: 47.5%;">
         <h2>Junte-se à comunidade</h2>
-        <p>Junte-se ao nosso servidor Discord para conhecer outros desenvolvedores de jogos, tire dúvidas, ajude aos outros e compartilhe as suas criações. Além disso, você tmbém pode também postar em nosso fórum.</p>
+        <p>Junte-se ao nosso servidor Discord para conhecer outros desenvolvedores de jogos, tire dúvidas, ajude aos outros e compartilhe as suas criações. Além disso, você pode também postar em nosso fórum.</p>
         <a class="button" target="_blank" href="https://discord.gg/CggbPkb">Servidor Discord →</a>
         <a class="button" target="_blank" href="https://comigo.itch.io/ct/community">Fórum →</a>
     </div>
     <div class="feature"  style="flex-basis: 47.5%; max-width: 47.5%;">
         <h2>Contribua</h2>
-        <p>Configure um ambiente de desenvolvimento local para rodar o servidor de documentos e usa a simples sintaxe do Markdown para escrever novos tutoriais e enviar correções.</p>
+        <p>Configure um ambiente de desenvolvimento local para rodar o servidor de documentos e usar a simples sintaxe do Markdown para escrever novos tutoriais e enviar correções.</p>
         <p>Você também pode editar a documentação no Github — procure pelo link "Propose edits" na parte inferior de cada página!</p>
         <a class="button" target="_blank" href="https://github.com/ct-js/docs.ctjs.rocks">Visite o repositório →</a>
     </div>

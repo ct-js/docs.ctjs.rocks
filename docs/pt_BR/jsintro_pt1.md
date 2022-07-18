@@ -2,7 +2,7 @@
 
 JavaScript é uma ótima linguagem de programação para websites, games, apps como ct.js e até mesmo para robôs! Ela é muito fácil de aprender e é similar a outras linguagens de programação como C#, C++ ou Java.
 
-Jogos em ct.js são totalmente escritos em JavaScript. Você define a lógica para as suas Copies e Rooms além de escrever extensões com ela. Aqui nós ensinaremos os conceitos básicos da linguagem.
+Jogos em ct.js são totalmente escritos em JavaScript. Você define a lógica para as suas Copies e Rooms, além de escrever extensões com ela. Aqui ensinaremos os conceitos básicos da linguagem.
 
 ## Variáveis
 
@@ -10,7 +10,7 @@ Variáveis são como gavetas, assim como a gaveta de suas meias. Dentro dessas g
 
 Variáveis também podem conter estrutura de dados mais complexa, como uma lista de inventários ou uma lista de cartas de baralho.
 
-Você pode *declarar* novas variáveis com as palavras reservadas `var`, `let` e `const` e *assinar valores para elas* com um sinal de igualdade: 
+Você pode *declarar* novas variáveis com as palavras reservadas `var`, `let`, `const` e *atribuir valores para elas* com um sinal de igualdade: 
 
 ```js
 var maxHealth;
@@ -33,11 +33,11 @@ var invincible = true, // Esses são valores booleanos
 
 O processo de *Declaração* diz ao ct.js que nós queremos criar uma nova variável. Sem isso, o ct.js lançaria um erro, porque nós não podemos armazenar informações em um local que não existe.
 
-*Assinatura* escreve um novo valor para a variável. Quando *declarada*, as variáveis são `undefined`. Elas armazenarão informações úteis apenas depois da *assinatura*. Você pode assinar as novas variáveis quantas vezes você quiser.
+*Atribuição* escreve um novo valor para a variável. Quando *declarada*, as variáveis são `undefined`. Elas armazenarão informações úteis apenas após a sua *atribuição*. Você pode atribuir novas variáveis quantas vezes você quiser.
 
 ## Propriedades
 
-Variáveis são excelentes para valores temporários, mas elas desaparecem depois que um ct.js termina (por exemplo, depois de 'On Destroy', 'On Step'). Isso faz com que as variáveis sejam úteis para operações rápidas, mas inúteis para uma execução a longo prazo. Nós devemos usar *propriedades* para armazenar informações que podemos utilizar depois.
+Variáveis são excelentes para valores temporários, mas elas desaparecem depois que um evento em ct.js termina (por exemplo, depois de 'On Destroy', 'On Step'). Isso faz com que as variáveis sejam úteis para operações rápidas, mas inúteis para uma execução a longo prazo. Nós devemos usar *propriedades* para armazenar informações que podemos utilizar depois.
 
 Você pode usar propriedades da mesma forma que você usa variáveis, mas elas existem apenas dentro de *Objetos*. Objetos são coisas muito abstratas, e isso inclui todas as Copies e Rooms. Você irá criar os seus próprios objetos em breve, mas agora, vamos ver como criar e usar propriedades: 
 
