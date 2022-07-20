@@ -2,42 +2,42 @@
 
 JavaScript é uma ótima linguagem de programação para websites, games, apps como ct.js e até mesmo para robôs! Ela é muito fácil de aprender e é similar a outras linguagens de programação como C#, C++ ou Java.
 
-Jogos em ct.js são totalmente escritos em JavaScript. Você define a lógica para as suas Copies e Rooms além de escrever extensões com ela. Aqui nós ensinaremos os conceitos básico da linguagem.
+Jogos em ct.js são totalmente escritos em JavaScript. Você define a lógica para as suas Copies e Rooms, além de escrever extensões com ela. Aqui ensinaremos os conceitos básicos da linguagem.
 
 ## Variáveis
 
 Variáveis são como gavetas, assim como a gaveta de suas meias. Dentro dessas gavetas você pode armazenar qualquer informação, por exemplo, número de vidas, recursos ou experiência, um nome de um NPC (non-player character) e etc. 
 
-Variáveis também podem conter estrutura de dados mais complexa, como uma lista de inventários ou um baralho de cartas.
+Variáveis também podem conter estrutura de dados mais complexa, como uma lista de inventários ou uma lista de cartas de baralho.
 
-Você pode *declarar* novas variáveis com as palavras reservadas `var`, `let` e `const` e *assinar valores para elas* com um sinal de igualdade: 
+Você pode *declarar* novas variáveis com as palavras reservadas `var`, `let`, `const` e *atribuir valores para elas* com um sinal de igualdade: 
 
 ```js
 var maxHealth;
 maxHealth = 100;
 var health;
-health = maxHealth; // You can copy a value from one variable (maxHealth) to another (health)
+health = maxHealth; // Você pode copiar o valor da variável (maxHealth) para a variável (health)
 
-var mana, maxMana; // You can combine a number of declarations in one 'var' keyword
-maxMana = mana = 100; // You can assign a value (100) to different values at once
+var mana, maxMana; // Você pode fazer múltiplas declarações com o uso de apenas uma única palavra reservada 'var'
+maxMana = mana = 100; //  Você também pode atribuir um valor (100) para múltiplas variáveis de uma vez
 
 var name;
-name = 'ct.js'; // Text values, or Strings, are enclosed in quotation marks
+name = 'ct.js'; // Valores de texto ou String, são colocados entre aspas
 
-var title = 'The Almighty Cat'; // You can combine both declaration process and assignment
+var title = 'The Almighty Cat'; // Você pode combinar o processo de declaração e atribuição em uma única instrução
 
-var invincible = true, // These are Boolean values
+var invincible = true, // Esses são valores booleanos
     stunned = false,
-    bleed = false; // You can combine multiple declarations and assignments with comma!
+    bleed = false; // Você pode combinar múltiplas declarações e atribuições com o uso da vírgula!
 ```
 
 O processo de *Declaração* diz ao ct.js que nós queremos criar uma nova variável. Sem isso, o ct.js lançaria um erro, porque nós não podemos armazenar informações em um local que não existe.
 
-*Assinatura* escreve um novo valor para a variável. Quando *declarada*, as variáveis são `undefined`. Elas armazenarão informações úteis apenas depois da *assinatura*. Você pode assinar as novas variáveis quantas vezes você quiser.
+*Atribuição* escreve um novo valor para a variável. Quando *declarada*, as variáveis são `undefined`. Elas armazenarão informações úteis apenas após a sua *atribuição*. Você pode atribuir novas variáveis quantas vezes você quiser.
 
 ## Propriedades
 
-Variáveis são excelentes para valores temporários, mas elas desaparecem depois que um ct.js termina (por exemplo, depois de 'On Destroy', 'On Step'). Isso faz com que as variáveis sejam úteis para operações rápidas, mas inúteis para uma execução a longo prazo. Nós devemos usar *propriedades* para armazenar informações que podemos utilizar depois.
+Variáveis são excelentes para valores temporários, mas elas desaparecem depois que um evento em ct.js termina (por exemplo, depois de 'On Destroy', 'On Step'). Isso faz com que as variáveis sejam úteis para operações rápidas, mas inúteis para uma execução a longo prazo. Nós devemos usar *propriedades* para armazenar informações que podemos utilizar depois.
 
 Você pode usar propriedades da mesma forma que você usa variáveis, mas elas existem apenas dentro de *Objetos*. Objetos são coisas muito abstratas, e isso inclui todas as Copies e Rooms. Você irá criar os seus próprios objetos em breve, mas agora, vamos ver como criar e usar propriedades: 
 
@@ -75,15 +75,15 @@ this.inventoryCapacity = (5 + 10) * 8; // 120
 this.magicPower = 5 + 10 * 8; // 85
 this.magicDamage = this.magicPower + this.level * 5; // 135
 this.magicResistance = this.magicPower / 10; // 8.5
-/* What if we need to get a remainder of division? */
-this.remainder = 11 % 4; // 3, because 11 / 4 = 2 and 3 as a remainder;
+/* E se precisarmos obter o resto da divisão? */
+this.remainder = 11 % 4; // 3, porque 11 / 4 = 2 e 3 é resto da divisão;
 ```
 
 Quando precisamos *alterar* o valor numérico de uma variável ou propriedade, podemos simplesmente unir a atribuição e operação em uma única assinatura ou instrução:
 
 ```js
 this.health = 10;
-this.health += 5; // health is now 15
+this.health += 5; // health agora é 15
 this.health /= 5; // 3
 this.health *= 10; // 30
 this.health -= 20; // 10
@@ -93,9 +93,9 @@ Existe também um operador que modifica o valor da variável em `1` unidade:
 
 ```js
 this.counter = 10;
-this.counter++; // this.counter is now 11
+this.counter++; // this.counter agora é 11
 this.counter++; // 12
-this.counter--; // 11 again
+this.counter--; // 11 outra vez
 ```
 
 Strings também tem os seus próprios operadores. Usamos um operador de `+` para *concatenar* as Strings: 
@@ -153,11 +153,11 @@ var cat = 'Albert',
 cat == dog; // false
 cat != dog; // true
 
-/* There are also strict comparisons, which compare both values and variables' types */
+/* Existe também as comparções estritas, a qual compara os valores e os tipos das variáveis*/
 
 5 == '5'; // true
-5 === '5'; // false, because '5' is String, not a Number
-5 === parseFloat('5') // true, because parseFloat returns a Number, and so is 5
+5 === '5'; // false, porque '5' é uma String e não um número
+5 === parseFloat('5') // true, porque parseFloat retorna um número e assim, 5 é igual a 5
 ```
 
 Os valores booleanos têm os seus próprios operadores também. O mais básico é a `!`, o qual nega o valor booleano.
@@ -175,7 +175,7 @@ Também existe os operadores `&&` e `||`. O primeiro representa "E", enquanto qu
 
 ```js Use of '&&' and '||'
 this.onGround = true;
-var keyUp = ct.keyboard.down['up'], // it will be 'true' if an upper arrow key is held down
+var keyUp = ct.keyboard.down['up'], // será 'true' se a tecla de seta para cima for pressionada
     canJump = this.onGround && keyUp;
 
 this.powerFromLeft = false;
@@ -183,4 +183,4 @@ this.powerFromRight = true;
 this.poweredOn = this.powerFromLeft || this.powerFromRight; // true
 ```
 
-Na próxima parte nós falaremos um pouco mais sobre instruções condicionais e loops. Por hora, recomendo que você leia sobre as [propriedades das Copies](ct.types.html) e [Rooms](ct.rooms.html).
+Na próxima parte nós falaremos um pouco mais sobre instruções condicionais e loops. Por hora, recomendo que você leia sobre as [propriedades das Copies](ct.templates.html) e [Rooms](ct.rooms.html).

@@ -4,66 +4,88 @@ Esse objeto gerencia todas as suas rooms e o view atual (câmera).
 
 ## Métodos e propriedades
 
-### `ct.rooms.switch(newRoom: String)`
+### `ct.room`
 
-Invoca o evento `onleave` da última room e vai para a nova room.
+O objeto room atual.
+
+### `ct.rooms.switch('NewRoomName')`
+
+Chama o evento `onleave` da última room e vai para a nova room.
 
 ### `ct.rooms.clear()`
 
 Destrói todas as copies existentes na room.
 
-### `ct.room`
-
-O objeto room atual.
-
 ### `ct.rooms.templates`
 
 As rooms existentes para alternância.
 
-### `ct.rooms.make`
+### `ct.rooms.list['RoomName']`
 
-Uma função que é invocada por uma room para criar as suas copies, backgrounds e tiles no carregamento. Ela é meramente uma função interna que não precisa ser utilizada na ct.IDE, mas ainda assim vcoê pode usar esse método para adicionar copies de uma room para uma outra room existente. O método retorna um array com todas as copies criadas, incluindo os tile layers e backgrounds. Exemplo:
+Semelhante ao `ct.templates.list`, esse objeto contém um array de rooms da fase atual. Isso pode ser útil quando você tem um monte de widgets de UI na tela e precisa gerenciá-los.
+
+### `ct.rooms.remove(room)`
+
+Esse método seguramente remove da fase a room anexada ou prefixada anteriormente. Ele disparará o evento "On Leave" para a room e "On Destroy" para todas as copies da room removida. A room também terá `this.kill` definido para `true` em seu evento. Esse método não pode remover o `ct.room`, a room principal. O parâmetro `room` deve ser uma referência para uma room criada anteriormente, por exemplo:
+
+```js Criando um menu de pausa usando uma room de UI
+if (ct.actions.TogglePause.released) {
+    if (!this.pauseMenu) { // se um parâmetro `pauseMenu` não foi definido
+        this.pauseMenu = ct.rooms.append('UI_Pause'); // cria uma room e define o parâmetro `pauseMenu`
+    } else {
+        ct.rooms.remove(this.pauseMenu);
+    }
+}
+```
+
+Como uma copy sabe que o seu evento "On Destroy" foi disparado ao remover a room que não era a principal? Bem, cada copy tem um método `getRoom()`, e você pode usá-lo com a propriedade `room.kill`:
 
 ```js
-this.interfaceCopies = ct.rooms.make.apply(ct.rooms.templates.MainInterface);
+// Vamos supor que temos um nível modular e que algumas partes devem ser carregadas/descarregadas dinamicamente,
+// e essa copy específica é uma bomba que não deve ser acionada se a sua parte for descarregada.
+if (this.getRoom().kill) {
+    return; // efetivamente para a execução do próximo código
+}
+ct.sound.spawn('Explosion');
+this.killEverythingNearby();
 ```
+
+### `ct.rooms.append('NameOfTheRoom', ext)` e `ct.rooms.prepend('NameOfTheRoom', ext)`
+
+Adiciona uma nova room a fase atual e a coloca depois ou antes de todas as copies da sua room. Com esses métodos, você pode reutilizar a UI, backgrounds e efeitos de ambiente. Note que essas camadas terão uma pilha de renderização diferente da sua room principa e não serão organizadas juntas. Para ter esse tipo de comportamento, use em vez disso, `ct.rooms.merge` (veja abaixo).
+
+O parâmetro `ext` pode ser usado aplicar prâmetros adicionais a nova room. Por exemplo, se você chamar `ct.rooms.append('Background', {color: 0x446ADB})`, então a room "Background" terá a propriedade `this.color` disponível em seu evento "On Create" e nos  outros também.
+
+Para criar uma [camada de UI](/game-and-ui-coordinates.html), use este código:
+
+```js
+ct.rooms.append('YourUiRoom', {
+    isUi: true
+});
+```
+
+### `ct.rooms.merge('NameOfTheRoom')`
+
+Esse método coloca todas as entidades da room passada como parâmetro dentro da room atual. Isso é útil para a geração processual e pré-fabricadas. Note que o evento "On Create" da room, bem como os outros, **não são chamados**. Esse método retorna um objeto três propriedades, `copies`, `tileLayers`, e `backgrounds`. Você pode interagir sobre elas para ajustar a posição das mesmas, por exemplo:
+
+```js
+var spawnX = 100,
+    spawnY = 500;
+var merged = ct.rooms.merge('AssasinsSet');
+
+// Suponha que não vamos precisar de nenhum backgroud ou camadas de tile
+for (const copy of merged.copies) {
+    copy.xstart += spawnX;
+    copy.x += spawnX;
+    copy.ystart += spawnY;
+    copy.y += spawnY;
+}
+```
+
+::: warning Alerta:
+O resultado dessa função não é atualizada e deve ser usada apenas durante o processo de criação inicial. Ela não deve ser armazenada como uma propriedade de um objeto para evitar o vazamento de memoria. Use a palavra reservada `var`, como mostrado acima. Você também pode usar `let` ou `const`.
+:::
 
 ## Gerenciando o viewport atual
 
-Você pode gerenciar o viewport em qualquer momento editando as propriedades listadas abaixo do objeto`ct.room`. Você também pode utilizar a palavra reservada `this` nos eventos da room.
-
-### `ct.room.x`, `ct.room.y`
-
-Altera as coordenadas horizontais e verticais do view.
-
-### `ct.room.follow`
-
-Você pode definir uma copy a ser seguida aqui, o que faz com que a câmera a siga automaticamente.
-
-### `ct.room.borderX`, `ct.room.borderY`
-
-Define um limite a partir do canto superior do canvas onde a câmera se move.
-
-```js Example: following a copy
-// Place this code, e.g, to your hero's `OnCreate` code
-var room = ct.room;
-room.follow = this;
-
-// Follow the hero so it is always at the center of the screen
-// Define o limite da câmera como sendo o centro da tela,
-// o que faz com que o héroi sempre fique no centro da mesma.
-room.borderX = ct.viewWidth / 2;
-room.borderY = ct.viewHeight / 2;
-```
-
-### `ct.room.center`
-
-Quando configurado para `true`, a copy sendo seguida sempre estará no meio do viewport. Esse parâmetro tem uma prioridade maior sobre `ct.room.borderX`, `ct.room.borderY`.
-
-### `ct.room.followDrift`
-
-Um valor entre `0` e `1`. Define o quão rápido a room reage ao movimento da copy sendo seguida. `0` determina o movimento instantâneo da câmera, enquanto que um valor maior representa um movimento mais suave.
-
-### `ct.room.followShiftX`, `ct.room.followShiftY`
-
-Desloca a câmera para que ela fique acima/abaixo/etc da copy sendo seguida.
+Desde a versão 1.3, que viewport é gerenciado pelo objeto especial [ct.camera](/ct.camera.html).

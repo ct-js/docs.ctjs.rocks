@@ -64,7 +64,7 @@ Works if `follow` is set to a copy. Setting one of these to `false` will disable
 
 ### `ct.camera.borderX`, `ct.camera.borderY`
 
-Works if `follow` is set to a copy. Sets the frame inside which the copy will be kept, in game pixels. Can be set to `null` so the copy is set to the center of the screen.
+Works if `follow` is set to a copy. Sets the frame inside which the copy will be kept, in UI coordinates. Can be set to `null` so the copy is set to the center of the screen.
 
 ## Screen Shake and Wobble
 
@@ -120,7 +120,7 @@ No `ct.camera.realign` | With `ct.camera.realign`
 -|-
 ![UI elements are scaled, but appear displaced if screen proportions change](./images/ctCameraAlign_notIncluded.gif) | ![UI elements are both scaled and evenly distributed accross the screen](./images/ctCameraAlign_included.gif)
 
-#### Example: Realing UI elements in a room
+#### Example: Realign UI elements in a room
 
 On Draw code of your UI room:
 

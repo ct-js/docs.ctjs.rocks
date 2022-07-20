@@ -40,7 +40,7 @@ The transition itself is an asynchronous action! We use `.then(() => {…})` to 
 
 That was the first part of the transition. The second one will go to the `InGame` On Create code. Open the room, and put this line:
 
-```
+```js
 ct.transition.circleIn(500, 0x446ADB);
 ```
 
@@ -48,7 +48,7 @@ We can also show up our UI layers (the pause menu and the score screen) by makin
 
 Most entities in ct.js have the same parameters that allow you to tweak their look and feel. We've been using `this.scale.x` and `this.scale.y` to set a copy's scale, but we can also apply it to rooms, text labels, special effects, and so on. Besides scaling, there are parameters `this.angle`, `this.alpha` and `this.tint` that rotate an object, set its opacity and color correspondingly.
 
-We will change the property `this.alpha` through time. It is a number between 0 and 1. When set to 1 — its initial value —, a copy or a room will be fully opaque. When set to 0, it will be invisible. Any numbers in-between will bake an object partially transparent. The module `ct.tween` will help create a smooth transition of it.
+We will change the property `this.alpha` through time. It is a number between 0 and 1. When set to 1 — its initial value —, a copy or a room will be fully opaque. When set to 0, it will be invisible. Any numbers in-between will take an object partially transparent. The module `ct.tween` will help create a smooth transition of it.
 
 So, to fade in a UI layer, we need to put this code in On Create of rooms `UI_OhNo` and `UI_Paused`:
 
@@ -166,13 +166,13 @@ Here we read the position of the star (`this.x, this.y`) and tell to spawn an ef
 
 Open the "FX" tab at the top, and create a new particle emitter. Call it `Jet`.
 
-As a start, press the button `Import default…` and load the texture called `Circle_08`. In the right bottom corner, find the button "Set preview texture", and select our cat. After that, feel free to tinker around the editor to make the effect you want. I made a jet of white bubbles of different size:
+As a start, press the button `Select` under "Texture" section and load the texture called `Circle_08`. In the right bottom corner, find the button "Set preview texture", and select our cat. After that, feel free to tinker around the editor to make the effect you want. I made a jet of white bubbles of different size:
 
 ![A jet particle effect in ct.js](./images/tutJettyCat_Jet.gif)
 
 Here are some hints:
 
-* Change the background color in the top-right corner of the window to better see white bubbles;
+* Change the background color in the bottom-right corner of the window to better see white bubbles;
 * Start by changing the Direction tab » Starting direction fields so the particles flow downwards. A good range is between 90 and 110 degrees.
 * The default texture's size will be way too big; tweak its scale in the graph under the folding section called "Scaling", so it is somewhere around `0.3`.
 * Tweak the value Scaling » Minimum size to spawn particles of different sizes.
