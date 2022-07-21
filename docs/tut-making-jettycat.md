@@ -110,7 +110,7 @@ Open the "Templates" tab again, and open the cat's template. You should see the 
 Here's what we will do:
 
 * We will set our cat flying to the right by defining its speed and direction in the Creation event;
-* We will add a Pointer event that, when executed, will accelerate the cat so that it can fly up.
+* We will add an action event that, when executed, will accelerate the cat so that it can fly up.
 
 Click on the "Add an event" button, then find the Creation event and select it. In the Creation event that now appears on the left, click it to bring up its code block on the right side, then put this code:
 
@@ -144,16 +144,14 @@ For seasoned developers, actions might look as an extraneous step here, but they
 You can [read more about actions here](actions.html).
 :::
 
-Add this code to the cat's Frame start event:
+Create a new Action down event for the cat. This is a parameterized event, so you can specify which action you want! Select the Poof action from the dropdown list, then add this to the event:
 
 ```js
-if (ct.actions.Poof.down) {
-    this.gravity = 2;
-    this.addSpeed(ct.delta * 4, 270);
-}
+this.gravity = 2;
+this.addSpeed(ct.delta * 4, 270);
 ```
 
-`if (ct.actions.Poof.down)` works only when a player presses the screen. If it works, we will define a gravity force that pulls the cat down and add speed that pulls the cat upwards. We need to multiply the added speed with `ct.delta` to make it run smoothly on every occasion.
+This code will run only when a player presses the screen. If it works, we will define a gravity force that pulls the cat down and add speed that pulls the cat upwards. We need to multiply the added speed with `ct.delta` to make it run smoothly on every occasion.
 
 ::: tip ct.delta
 `ct.delta` will be equal to 1 most of the time, but this multiplier should not be overlooked. If a player's framerate drops or the game lags for some reason, `ct.delta` will become a larger value to compensate these frame drops and lags. For example, if framerate drops from 60 frames per second to 30, then `ct.delta` will temporarily be equal to 2.
@@ -162,20 +160,16 @@ Besides that, `ct.delta` supports in-game time stretching and allows for creatin
 :::
 
 ::: tip
-There are also `ct.actions.Poof.pressed` and `ct.actions.Poof.released` that return `true` when a player starts and stops pressing the screen.
+There are also `Action Poof press` and `Action Poof release` parameterized events that run when a player starts and stops pressing the screen.
 :::
 
-The gravity that is defined in the Frame start event seems strange, right? It is indeed a constant that would be better placed in the On Create event so that it is set once from the beginning and doesn't change. But placing it inside the clause with an input check adds a little trick: the cat will start falling only after the player interacts with the game! Thus they won't instantly lose as the cat would quickly hit the ground otherwise.
-
-Now, make sure that you have the default line `this.move();` in your Frame start event code. This line handles a copy's position. It should be the last line in your Frame start event code.
-
-![The resulting code](./images/tutJettyCat_17.png)
+The gravity that is defined in the On Poof down event seems strange, right? It is indeed a constant that would be better placed in the On Create event so that it is set once from the beginning and doesn't change. But placing it inside the clause with an input check adds a little trick: the cat will start falling only after the player interacts with the game! Thus they won't instantly lose as the cat would quickly hit the ground otherwise.
 
 If we run the project now, we will see that the cat moves from left to right, and then reacts to clicks and starts flying and falling. It quickly flies out of the viewport though. Let's change it!
 
 ### Moving the camera
 
-Ct.js has an entity `ct.camera` which is responsible for showing stuff on your screen. It has lots of features, and one of them is following a template.
+Ct.js has an entity `ct.camera` which is responsible for showing stuff on your screen. It has lots of features, and one of them is following a copy.
 
 Open the "Creation" event of our cat, and add this code:
 
@@ -230,7 +224,7 @@ if (!this.gameover && ct.place.occupied(this, 'Obstacle')) {
 }
 ```
 
-`ct.place.occupied` checks for a collision of a given copy with a specific collision group. This method is provided by `ct.place module`, and you can find its reference for other methods in the "Catmods" tab.
+`ct.place.occupied` checks for a collision of a given copy with a specific collision group. This method is provided by `ct.place` module, and you can find its reference for other methods in the "Catmods" tab.
 
 We will also need this block of code right at the beginning of the Frame start event:
 
@@ -309,9 +303,9 @@ Like templates, rooms can have their own logic as well — they are hidden under
 
 We will do the following to spawn new pipes through time:
 
-1. We will set up a variable in the Room start event that will be our timer — it will count remaining frames before spawning new tubes;
-2. At each frame, we will decrement this variable by one frame. More precisely — by `ct.delta`.
-3. If the variable is equal or below zero, that means that the time is up, and we will wind it up again and create new tubes relative to the camera position.
+1. We will set up a variable in the Room start event that will be our timer — it will count remaining seconds before spawning new tubes;
+2. We will create a timer event that waits for the timer variable to hit zero.
+3. When the timer event is fired we will wind it up again and create new tubes relative to the camera position.
     * We will also create tubes at the top of the viewport and use scaling to flip these tubes so that they point downwards.
 
 Open our only room `InGame`. Remove existing tubes by holding Control key and dragging the mouse, or by right-clicking these copies and using the context menu. Then, click the button "Room events" in the left column.
@@ -321,45 +315,40 @@ Open our only room `InGame`. Remove existing tubes by holding Control key and dr
 Put this line in the Room start code:
 
 ```js
-this.spawnTimer = ct.speed * 5;
+this.timer1 = 5;
 ```
 
-Here, `ct.speed` is a number of frames in a second, so we will wait for exactly 5 seconds before spawning our first tube.
+Here, `this.timer1` is a special variable name that will count down to 0 automatically without additional programming. This corresponds to the Timer 1 event.
 
-In Frame start, put this code:
+Add the Timer 1 event and in the code put this:
 
 ```js
-// Substract elapsed time from the timer
-this.spawnTimer -= ct.delta;
-// If the timer is up…
-if (this.spawnTimer <= 0) {
-    // Wind it again
-    this.spawnTimer += ct.speed * 2;
+// Wind it again
+this.timer1 = 2
 
-    // Create two tubes
-    var tube1 = ct.templates.copy('Tube', ct.camera.right + 250, ct.camera.bottom - 130); // At the bottom of the camera
-    var tube2 = ct.templates.copy('Tube', ct.camera.right + 250, ct.camera.top - 70); // At the top
+// Create two tubes
+var tube1 = ct.templates.copy('Tube', ct.camera.right + 250, ct.camera.bottom - 130); // At the bottom of the camera
+var tube2 = ct.templates.copy('Tube', ct.camera.right + 250, ct.camera.top - 70); // At the top
 
-    // Change second tube's texture depending on which texture is used in the first tube
-    if (tube1.tex === 'Tube_01') { // Shortest tube will result in the longest tube
-        tube2.tex = 'Tube_04';
-    } else if (tube1.tex === 'Tube_02') {
-        tube2.tex = 'Tube_03';
-    } else if (tube1.tex === 'Tube_03') {
-        tube2.tex = 'Tube_02';
-    } else if (tube1.tex === 'Tube_04') { // Longest will result in the shortest one
-        tube2.tex = 'Tube_01';
-    }
-    // Thus we will always get gaps of the same size, but with random tubes.
-
-    // Now, flip the upper (second) tube
-    tube2.scale.y = -1;
+// Change second tube's texture depending on which texture is used in the first tube
+if (tube1.tex === 'Tube_01') { // Shortest tube will result in the longest tube
+    tube2.tex = 'Tube_04';
+} else if (tube1.tex === 'Tube_02') {
+    tube2.tex = 'Tube_03';
+} else if (tube1.tex === 'Tube_03') {
+    tube2.tex = 'Tube_02';
+} else if (tube1.tex === 'Tube_04') { // Longest will result in the shortest one
+    tube2.tex = 'Tube_01';
 }
+// Thus we will always get gaps of the same size, but with random tubes.
+
+// Now, flip the upper (second) tube
+tube2.scale.y = -1;
 ```
 
 There's a lot of code!
 
-`this.spawnTimer` is decremented at each frame and will eventually turn to zero, or to a smaller value. When it happens, we set its value again to a positive number so that it fires again later. Here we add 2 seconds. (`ct.speed` is a number of frames in one second.)
+`this.timer1` will be zero when this event calls. When it happens, we set its value again to a positive number so that it fires again later. Here we add 2 seconds. ct.js will count it down automatically again because it is a special variable.
 
 We create two copies with `ct.templates.copy(templateName, xPosition, yPosition)` and store references to them to variables `tube1` and `tube2`. At the start, their height will be completely normal as their Creation code with `ct.random.dice` will be run instantly after their creation. This will result in a blocked pathway in a good portion of cases when both tubes turned out to be the long ones. To fix this, we read the texture's name of a first tube `tube1` with `tube1.tex` and set the texture of the second tube `tube2` depending on the extracted value.
 
@@ -398,7 +387,7 @@ Let's add a template for star bonuses that will increment score when collected. 
 
 1. Set up a score variable in our room's "Creation" code.
 2. Create a new template for star bonuses.
-3. Add a bit of logic to the star's "Frame start" event that will destroy the star when colliding with the cat.
+3. Add a bit of logic to the star's collision with a template event that will destroy the star when colliding with the cat.
 4. Create a new room and a template for it to display a score counter.
 5. Put this new room into the main one.
 
@@ -406,22 +395,24 @@ Now, open the `InGame` room's events and add a line `this.score = 0;` to the Roo
 
 Create a new template, and call it a `Star`. Set its texture.
 
-In its Frame start code, put this script:
+Create a Collision with a template event, and select PotatoCat as the template. Then, put this script in:
 
 ```js
-if (ct.place.meet(this, 'PotatoCat')) {
-    this.kill = true;
-    ct.room.score += 1;
-}
+this.kill = true;
+ct.room.score += 1;
 ```
 
-`ct.place.meet` is like `ct.place.occupied`, though it checks not against collision groups but against a specific template. Here we check whether a star collides with our cat. If it does, `this.kill = true` tells that the star should be removed. `ct.room.score += 1;` increments our score variable that was created before in the room's "Creation" code.
+::: tip
+An alternative to using the collision event is calling `ct.place.meet` in an if statement before executing this code in the Frame start event. `ct.place.meet` is like `ct.place.occupied`, though it checks not against collision groups but against a specific template.
+:::
+
+This event checks whether a star collides with our cat. If it does, `this.kill = true` tells that the star should be removed. `ct.room.score += 1;` increments our score variable that was created before in the room's "Creation" code.
 
 ::: tip
 `ct.room` always points to the current room. If you have nested rooms, the `ct.room` will always point to the main one.
 :::
 
-We will also need this code to prevent memory leaks and remove stars that were not collected:
+We will also need this code in the Frame start event to prevent memory leaks and remove stars that were not collected:
 
 ```js
 if (this.x < ct.camera.left - 150) {
@@ -431,39 +422,34 @@ if (this.x < ct.camera.left - 150) {
 
 ### Spawning stars
 
-In the room's Frame start code, add a couple of lines (the highlighted ones) that will add a star with a 30% chance somewhere in between the next two tubes. It will use methods from the `ct.random` module:
+In the room's Timer 1 event code, add a couple of lines (the highlighted ones) that will add a star with a 30% chance somewhere in between the next two tubes. It will use methods from the `ct.random` module:
 
-```js {27,28,29,30}
-// Substract elapsed time from the timer
-this.spawnTimer -= ct.delta;
-// If the timer is up…
-if (this.spawnTimer <= 0) {
-    // Wind it again
-    this.spawnTimer += ct.speed * 2;
+```js {23,24,25,26}
+// Wind it again
+this.timer1 = 2
 
-    // Create two tubes
-    var tube1 = ct.templates.copy('Tube', ct.camera.right + 250, ct.camera.bottom - 130); // At the bottom of the camera
-    var tube2 = ct.templates.copy('Tube', ct.camera.right + 250, ct.camera.top - 70); // At the top
+// Create two tubes
+var tube1 = ct.templates.copy('Tube', ct.camera.right + 250, ct.camera.bottom - 130); // At the bottom of the camera
+var tube2 = ct.templates.copy('Tube', ct.camera.right + 250, ct.camera.top - 70); // At the top
 
-    // Change second tube's texture depending on which texture is used in the first tube
-    if (tube1.tex === 'Tube_01') { // Shortest tube will result in the longest tube
-        tube2.tex = 'Tube_04';
-    } else if (tube1.tex === 'Tube_02') {
-        tube2.tex = 'Tube_03';
-    } else if (tube1.tex === 'Tube_03') {
-        tube2.tex = 'Tube_02';
-    } else if (tube1.tex === 'Tube_04') { // Longest will result in the shortest one
-        tube2.tex = 'Tube_01';
-    }
-    // Thus we will always get gaps of the same size, but with random tubes.
+// Change second tube's texture depending on which texture is used in the first tube
+if (tube1.tex === 'Tube_01') { // Shortest tube will result in the longest tube
+    tube2.tex = 'Tube_04';
+} else if (tube1.tex === 'Tube_02') {
+    tube2.tex = 'Tube_03';
+} else if (tube1.tex === 'Tube_03') {
+    tube2.tex = 'Tube_02';
+} else if (tube1.tex === 'Tube_04') { // Longest will result in the shortest one
+    tube2.tex = 'Tube_01';
+}
+// Thus we will always get gaps of the same size, but with random tubes.
 
-    // Now, flip the upper (second) tube
-    tube2.scale.y = -1;
+// Now, flip the upper (second) tube
+tube2.scale.y = -1;
 
-    // Create a star bonus with 30% chance somewhere in between top and bottom edge, with 300px padding.
-    if (ct.random.chance(30)) {
-        ct.templates.copy('Star', ct.camera.right + 250 + 500, ct.random.range(ct.camera.top + 300, ct.camera.bottom - 300));
-    }
+// Create a star bonus with 30% chance somewhere in between top and bottom edge, with 300px padding.
+if (ct.random.chance(30)) {
+    ct.templates.copy('Star', ct.camera.right + 250 + 500, ct.random.range(ct.camera.top + 300, ct.camera.bottom - 300));
 }
 ```
 
@@ -536,15 +522,17 @@ Then, open the texture "Button_Play" and make sure that its axis is at the cente
 
 ![The collision shape of a "Play" button](./images/tutJettyCat_28.png)
 
-After that, create a new template with this texture. In its Frame start code, put the following:
+After that, create a new template with this texture. Create a Pointer click event and put the following:
 
 ```js
-if (ct.pointer.collidesUi(this)) {
-    ct.rooms.switch('InGame');
-}
+ct.rooms.switch('InGame');
 ```
 
-There's something new! `ct.pointer.collidesUi(this)` checks whether a given copy was touched. It works with UI layers; there is also `ct.pointer.collides(copy)` if you will need it for gameplay elements in your future projects. With other lines, `ct.pointer.collidesUi` checks whether a player pressed the button, and if they did, it switches to our main room.
+This checks whether a player pressed the button, and if they did, it switches to our main room.
+
+::: tip
+If you want to use ct.pointer instead for checking clicks, because the play button is on the UI layer you will need to use `ct.pointer.collidesUi(this)` instead of `ct.pointer.collides(copy)`.
+:::
 
 Create a new room and call it `MainMenu`. Add backgrounds to it, and layout recently created copies so that it looks like this:
 
@@ -564,22 +552,20 @@ For a pause menu, we will need a couple of new buttons and a new room that will 
 
 Create a template for texture `Button_Pause`. Make sure the texture `Button_Pause` has its axis put to center and has a proper **rectangular** shape that covers the whole texture.
 
-The template `Button_Pause` will have this code in its Frame start event:
+The template `Button_Pause` will have this code in its Pointer click event:
 
 ```js
-// If the button was pressed,
-if (ct.pointer.collidesUi(this)) {
-    // Check if we don't have any rooms called 'UI_Paused'
-    if (ct.rooms.list['UI_Paused'].length === 0) {
-        // Create a room UI_Paused, put it above the current one (append it),
-        // and specify that it is a UI layer (isUi: true)
-        ct.rooms.append('UI_Paused', {
-            isUi: true
-        });
-        // Turns ct.delta into 0, effectively stopping the game
-        ct.pixiApp.ticker.speed = 0;
-    }
+// Check if we don't have any rooms called 'UI_Paused'
+if (ct.rooms.list['UI_Paused'].length === 0) {
+    // Create a room UI_Paused, put it above the current one (append it),
+    // and specify that it is a UI layer (isUi: true)
+    ct.rooms.append('UI_Paused', {
+        isUi: true
+    });
+    // Turns ct.delta into 0, effectively stopping the game
+    ct.pixiApp.ticker.speed = 0;
 }
+
 ```
 
 Remember the name `UI_Paused`. We will need to create a room with this name a bit later.
@@ -588,14 +574,12 @@ Remember the name `UI_Paused`. We will need to create a room with this name a bi
 
 Open the room `UI_InGame` and place the created template at the top right corner.
 
-After that, create two new templates similar to those created for `MainMenu`. Use textures `Button_Play` and `Jetty_Cat`. The button should be called `Button_Continue`, though.
+After that, create two new templates similar to those created for `MainMenu`. Use textures `Button_Play` and `Pause`. The button should be called `Button_Continue`, though.
 
-The button will have the following code in its Frame start event:
+The button will have the following code in its Pointer click event:
 ```js
-if (ct.pointer.collidesUi(this)) {
-    ct.rooms.remove(this.getRoom());
-    ct.pixiApp.ticker.speed = 1;
-}
+ct.rooms.remove(this.getRoom());
+ct.pixiApp.ticker.speed = 1;
 ```
 
 `ct.rooms.remove(room);` removes the previously added room. It cannot remove the main one, but it is created to remove nested ones. `this.getRoom()` looks up for a room that owns the current copy. `ct.pixiApp.ticker.speed = 1;` reverts `ct.delta` back to normal behavior, unpausing the game.
@@ -660,6 +644,11 @@ A-a-and… ta-da! You did it! The game is fully-featured and playable!
 
 You will always find the structure `method().then(() => {…})` while working with asynchronous actions. In the JavaScript world, such actions are also called "Promises". When you don't need to use them, though, you can omit the part with `.then(() => {…})`.
 :::
+
+::: tip
+`ct.u.wait` is just another way to wait for a second before running code. You can also use a Timer 1 event and `this.timer1` to do the same thing! 
+:::
+
 
 ## That's it!
 

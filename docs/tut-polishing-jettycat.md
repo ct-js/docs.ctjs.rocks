@@ -4,7 +4,7 @@
 This tutorial assumes that you have finished the tutorial [Making Games: Jetty Cat](tut-making-jettycat.html). You should complete it first.
 :::
 
-The game is complete mechanic-wise, but there is a lot of ways to improve it aesthetically and gameplay-wise! This section also highlights some v1.3 features.
+The game is complete mechanic-wise, but there are a lot of ways to improve it aesthetically and gameplay-wise!
 
 [[toc]]
 
@@ -14,17 +14,15 @@ Ct.js has a module called `ct.transition`. It allows you to easily create nice t
 
 Enable the module `transition` in the Catmods tab. It signals that it depends on the `tween` catmod, so enable it as well.
 
-Now, modify the `Button_Play` Frame start code so that it shows a blue circled transition when clicked:
+Now, modify the `Button_Play` Pointer click event code so that it shows a blue circled transition when clicked:
 
 ```js
-if (ct.pointer.collidesUi(this)) {
-    if (!this.pressed) {
-        this.pressed = true;
-        ct.transition.circleOut(1000, 0x446ADB)
-        .then(() => {
-            ct.rooms.switch('InGame');
-        });
-    }
+if (!this.pressed) {
+    this.pressed = true;
+    ct.transition.circleOut(1000, 0x446ADB)
+    .then(() => {
+        ct.rooms.switch('InGame');
+    });
 }
 ```
 
@@ -67,25 +65,23 @@ ct.tween.add({
 
 Firstly, we make a room fully transparent by setting its `alpha` to 0. Then, we call `ct.tween.add` to start a smooth transition. `obj` points to an object that should be animated, and `fields` lists all the properties and values we want to change. The `duration` key sets the length of the effect, in milliseconds. Finally, the `useUiDelta` key tells that animation should run in UI time scale, ignoring our "paused" game state.
 
-We can fade out a UI layer, too. Let's gradually hide the pause menu when the player hits the "continue" button. Open the template `Button_Continue`, and modify its Frame start code:
+We can fade out a UI layer, too. Let's gradually hide the pause menu when the player hits the "continue" button. Open the template `Button_Continue`, and modify its Pointer click event code:
 
 ```js
-if (ct.pointer.collidesUi(this)) {
-    if (!this.pressed) {
-        this.pressed = true;
-        ct.tween.add({
-            obj: this.getRoom(),
-            fields: {
-                alpha: 0
-            },
-            duration: 1000,
-            useUiDelta: true
-        })
-        .then(() => {
-            ct.pixiApp.ticker.speed = 1;
-            ct.rooms.remove(this.getRoom());
-        });
-    }
+if (!this.pressed) {
+    this.pressed = true;
+    ct.tween.add({
+        obj: this.getRoom(),
+        fields: {
+            alpha: 0
+        },
+        duration: 1000,
+        useUiDelta: true
+    })
+    .then(() => {
+        ct.pixiApp.ticker.speed = 1;
+        ct.rooms.remove(this.getRoom());
+    });
 }
 ```
 
@@ -99,30 +95,28 @@ Though the "paused" menu fades out slowly, it is still hard for a player to catc
 
 Open the template `Button_Continue` again, and modify the script so it fires another `ct.tween.add` after it finishes the first one:
 
-```js {13,14,15,16,17,18,19,20}
-if (ct.pointer.collidesUi(this)) {
-    if (!this.pressed) {
-        this.pressed = true;
+```js {12,13,14,15,16,17,18,19}
+if (!this.pressed) {
+    this.pressed = true;
+    ct.tween.add({
+        obj: this.getRoom(),
+        fields: {
+            alpha: 0
+        },
+        duration: 1000,
+        useUiDelta: true
+    })
+    .then(() => {
         ct.tween.add({
-            obj: this.getRoom(),
+            obj: ct.pixiApp.ticker,
             fields: {
-                alpha: 0
+                speed: 1
             },
             duration: 1000,
             useUiDelta: true
-        })
-        .then(() => {
-            ct.tween.add({
-                obj: ct.pixiApp.ticker,
-                fields: {
-                    speed: 1
-                },
-                duration: 1000,
-                useUiDelta: true
-            });
-            ct.rooms.remove(this.getRoom());
         });
-    }
+        ct.rooms.remove(this.getRoom());
+    });
 }
 ```
 
@@ -164,15 +158,19 @@ Here we read the position of the star (`this.x, this.y`) and tell to spawn an ef
 
 ### Making a jet smoke
 
+First we'll need a smoke-like texture. Go to the textures tab and click on the Gallery button near the top. This game engine comes with texture packs you can import right into your game! Go into the Jumperpack and import the Smoke texture. Now close out of the gallery and see that the smoke texture is part of your project!
+
+![Importing a gallery texture in ct.js](./images/tutJettyCat_gallery.png)
+
 Open the "FX" tab at the top, and create a new particle emitter. Call it `Jet`.
 
-As a start, press the button `Import default…` and load the texture called `Circle_08`. In the right bottom corner, find the button "Set preview texture", and select our cat. After that, feel free to tinker around the editor to make the effect you want. I made a jet of white bubbles of different size:
+As a start, go to the texture select and load your Smoke texture. In the right bottom corner, find the button "Set preview texture", and select our cat. After that, feel free to tinker around the editor to make the effect you want. I made a jet of white smoke of different sizes:
 
 ![A jet particle effect in ct.js](./images/tutJettyCat_Jet.gif)
 
 Here are some hints:
 
-* Change the background color in the bottom-right corner of the window to better see white bubbles;
+* Change the background color in the bottom-right corner of the window to better see white smoke;
 * Start by changing the Direction tab » Starting direction fields so the particles flow downwards. A good range is between 90 and 110 degrees.
 * The default texture's size will be way too big; tweak its scale in the graph under the folding section called "Scaling", so it is somewhere around `0.3`.
 * Tweak the value Scaling » Minimum size to spawn particles of different sizes.
@@ -197,15 +195,13 @@ The cat should now have a jet of smoke running from its jetpack. You may need to
 
 Let's add a bit of dynamics to this jet: we will spawn new particles only when the cat flies up. We have the reference `this.jet`, and we can use it to pause the emitter and unpause it when the player presses or releases the screen.
 
-Open the cat's "Frame start" tab and place this piece of code after the "game over" condition:
+Create a new Action release event, select the Poof action, and place this piece of code in it:
 
 ```js
-if (ct.actions.Poof.released) {
-    this.jet.pause();
-}
+this.jet.pause();
 ```
 
-This will pause the effect. To unpause it, add this line to the condition with `if (ct.actions.Poof.down) {…}`:
+This will pause the effect. To unpause it, go to the On Poof down event and add this line:
 
 ```js
 this.jet.resume();
@@ -268,15 +264,13 @@ In the template's Creation code, add a line `this.pulsePhase = 0;`. In its Frame
 this.pulsePhase += ct.delta * 0.2;
 
 this.scale.x = this.scale.y = 1 + Math.sin(this.pulsePhase) * 0.1;
-
-if (ct.actions.Poof.pressed) {
-    this.kill = true;
-}
 ```
+
+And in the Action Poof press event, add this: `this.kill = true`
 
 Here we again change the property that is used inside `Math.sin`. We set a copy's horizontal and vertical scale to this sine wave plus add `1` so that the copy is not shrunk into a point. (Without this `1 +`, the sine wave would oscillate around 0, meaning near 0% of a copy's size.)
 
-When a user presses the screen, `ct.actions.Poof.pressed` becomes `true`, and that's where we remove the copy as the user starts manipulating their cat.
+When a user presses the screen, the Poof press event runs and we remove the copy as the user starts manipulating their cat.
 
 The last step is adding this copy to `UI_InGame`, somewhere in the center of the view.
 
