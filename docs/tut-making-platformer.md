@@ -279,10 +279,8 @@ Now let's move to the `Checkpoint`'s template and edit its "Frame start" code.
 We will check for collision with the Robot, and when it happens, we will store a rescue point inside the Robot's copy. Make a new Collision with a template event and select the Robot. Then add this code in the event:
 
 ```js
-if (other) {
-    other.savedX = this.x + 32;
-    other.savedY = this.y + 32;
-}
+other.savedX = this.x + 32;
+other.savedY = this.y + 32;
 ```
 
 ::: tip
@@ -291,7 +289,9 @@ The Collision with a template event has a special variable you can access in the
 
 Here we also shift the stored point by 32x32 pixels, because the checkpoint's axis is placed in its top-left corner, but the Robot's axis is placed at the middle bottom point. Because of that, the Robot would respawn a bit left and above the desired central point.
 
-Go to the "Creation" event and add a line `this.visible = false;`. This will make checkpoints invisible during the gameplay.
+We want to make checkpoints invisible during the gameplay. Open the appearance section on the right side and uncheck the "Visible" checkbox.
+
+![Making the Checkpoint Invisible](./images/tutPlatformer_CheckpointVisible.png)
 
 Now go to the `Spikes` template and set their collision as "Deadly" in the right column, under "Collision group".
 
@@ -426,7 +426,7 @@ this.kill = true;
 ```
 
 ::: tip
-`this.kill = true;` tells that the current copy should be removed from the current room. It will happen after all "On Step" events but before the "Draw" event.
+`this.kill = true;` tells that the current copy should be removed from the current room. It will happen after all "Frame start" events but before the "Frame end" event.
 :::
 
 As you may already guess, the number of gathered crystals will be stored in the room.
@@ -502,12 +502,14 @@ We should now create a special room for our UI elements. Create it in the "Rooms
 
 ![Adding a crystals widget to a UI layer](./images/tutPlatformer_28.png)
 
-Adding UI elements to a separate room allows you to design UI visually, and then import them into other rooms through code. Ct.js also has a special flag that locks UI layers in place, so you can freely move, scale and even rotate the camera, and UI elements will remain properly positioned. Now, to import a UI room into another, go to our script `inGameRoomStart` created at the Project -> Custom scripts tab before, and add this code before the closing brace of the function:
+Adding UI elements to a separate room allows you to design UI visually, and then import them into other rooms through code. Ct.js also has a special flag that locks UI layers in place, so you can freely move, scale and even rotate the camera, and UI elements will remain properly positioned. Go to the room settings, and check the "Is a UI layer?" checkbox so that `LayerUI` will be fixated to the game view.
+
+![Enabling the layer as a UI layer](./images/tutPlatformer_LayerUICheckbox.png)
+
+ Now, to import a UI room into another, go to our script `inGameRoomStart` created at the Project -> Custom scripts tab before, and add this code before the closing brace of the function:
 
 ```js
-ct.rooms.append('LayerUI', {
-    isUi: true
-});
+ct.rooms.append('LayerUI');
 ```
 
 It should look like this:
@@ -516,8 +518,6 @@ It should look like this:
 
 ::: tip
 The method `ct.rooms.append` (as well as `ct.rooms.prepend`) may be also used for reusing other stuff than UI layers. For example, we can place all the backgrounds to a separate room, and then call `ct.rooms.prepend("YourBackgroundRoom");` to import them. This is especially useful while making complex layered backgrounds with a parallax effect.
-
-But what is important is the `isUi: true` flag. This particular parameter differentiates UI layers from other ones, e.g. from that background room.
 :::
 
 If you now run your game, you should see the crystal counter in the top-left corner:
