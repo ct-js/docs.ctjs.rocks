@@ -70,7 +70,7 @@ In ct.js, Rooms are infinite and can pan in any direction. You can place objects
 
 Then we have Room events. It is a section that defines game logic specifically for this room. You can define UI or level scenario here.
 
-Under this button we have a panel with Copies and Backgrounds. We pick a Copy from the according tab and place it to the map by clicking on a large area on the right. To disable adding new copies, select a ghostly cat on the left. You can pan the editor's view by dragging your mouse on the left side when nothing is selected. You can change zoom level by using buttons on the top, or by mouse wheel.
+Under this button we have a panel with Copies and Backgrounds. We pick a Copy from the according tab and place it to the map by clicking on a large area on the right. To disable adding new copies, select a ghostly cat on the left. You can pan the editor's view by dragging your mouse on the left side when nothing is selected. You can change zoom level by using the zoom slider on the top, or by mouse wheel.
 
 If you feel lost, press the "To center" button to return to (0, 0) coordinates.
 
@@ -108,7 +108,7 @@ Actions in ct.js are entities that group different input methods into events, an
 
 For now, let's create a basic input scheme for our shooter. Open the "Project" tab, then the "Actions and input methods" tab on the left side. We will need to define three different actions: for shooting laser bullets, for moving horizontally, and for moving vertically.
 
-First, click the "Add an action" button. Then, input the name of the first action. Click the button called "Add an input method" to bind specific buttons to your action. Use its search to quickly filter available input methods.
+First, click the "Make from scratch" button. Then, input the name of the first action. Click the button called "Add an input method" to bind specific buttons to your action. Use its search to quickly filter available input methods. Click the "Add an action" button to continue creating more actions.
 
 ![](./images/tutSpaceShooter_15.png)
 
@@ -116,10 +116,10 @@ Create three actions as in the picture above. Set multiplier value to `-1` for `
 
 ### Coding the movement
 
-Open the "Templates" tab on the top, then click on the `PlayerShip` template and move to `On Step` event.
+Open the "Templates" tab on the top, then click on the `PlayerShip` template and move to `Frame start` event.
 
 ::: tip
-`On Step` event occurs every frame before drawing, while `Draw` happens after all the `On Step` events in the room to draw a new frame. `On Create` happens when you spawn a new Copy, and  `On Destroy` occurs before the `Draw` event if a Copy is killed.
+`Frame start` event occurs every frame before drawing, while `Frame end` happens after all the `Frame start` events in the room to draw a new frame. `Creation` happens when you spawn a new Copy, and  `Destruction` occurs before the `Frame end` event if a Copy is killed.
 :::
 
 Write the following code:
@@ -165,7 +165,7 @@ Enemies should move, too. For this tutorial, our hostile ship will move from top
 
 ### Enemy ships
 
-Open the "Templates" tab, then click on the `EnemyShip`. Navigate to the `On Create` event and add this code:
+Open the "Templates" tab, then click on the `EnemyShip`. Navigate to the `Creation` event and add this code:
 
 ```js
 this.speed = 3;
@@ -180,7 +180,7 @@ In ct.js, direction is measured in degrees, moving from the left side counter-cl
 ![](./images/tutSpaceShooter_Direction.png)
 :::
 
-If we navigate to the `Step` event, we will see this little code:
+If we navigate to the `Frame start` event, we will see this little code:
 
 ```js
 this.move();
@@ -190,7 +190,7 @@ This line reads built-in variables and moves the Copy according to them. Without
 
 There are more built-in variables, which you can find on the [`ct.templates` page](ct.templates.html).
 
-We will modify the `Step` code so enemies will destroy themselves if they fall off the screen.
+We will modify the `Frame start` code so enemies will destroy themselves if they fall off the screen.
 
 ```js
 this.move();
@@ -206,18 +206,18 @@ What if enemy ships could move diagonally, zig-zagging?
 
 ### Asteroids
 
-Asteroids will contain the same `Step` code, but their `direction` variable will be defined randomly.
+Asteroids will contain the same `Frame start` code, but their `direction` variable will be defined randomly.
 
-Open the `Asteroid_Medium` in the "Templates" tab, then write the code below in the `On Create` event.
+Open the `Asteroid_Medium` in the "Templates" tab, then write the code below in the `Creation` event.
 
 ```js On Create event
 this.speed = ct.random.range(1, 3);
 this.direction = ct.random.range(270 - 30, 270 + 30);
 ```
 
-The `Step` event will be the same as in `EnemyShip`.
+The `Frame start` event will be the same as in `EnemyShip`.
 
-```js Step event
+```js Frame start event
 this.move();
 
 if (this.y > ct.viewHeight + 80) {
@@ -239,12 +239,10 @@ Do you have errors with `ct.random`? Make sure that you've enabled the `random` 
 
 Now it is time to bring the guns 😎
 
-Open the `PlayerShip`'s `Step` event, and add this code:
+Open the `PlayerShip` template, and add the "Action press" event. A window should then pop up to ask you which action you want to use. Select the "Shoot" action and then hit apply. Now inside the "On Shoot press" event add this code:
 
 ```js
-if (ct.actions.Shoot.pressed) {
-    ct.templates.copy('Laser_Blue', this.x, this.y);
-}
+ct.templates.copy('Laser_Blue', this.x, this.y);
 ```
 
 This is the first time we add new copies programmatically. Hooray!
@@ -262,7 +260,7 @@ this.speed = 18;
 this.direction = 90;
 ```
 
-Next, let's make that these laser bullets will disappear after they flew out the view. As they always fly to top, we may write a condition for the upper border only.
+Next, let's make sure that these laser bullets will disappear after they fly out the view. As they always fly to top, we may write a condition for the upper border only.
 
 ```js Step code
 if (this.y < -40) {
@@ -274,20 +272,15 @@ this.move();
 
 The next thing is handling collisions. It is better to write all the collision logic in enemy ships' and asteroids' code because they will respond differently, making no clutter in the bullet's code.
 
-Go to the `EnemyShip`'s On Step code. Add the following code:
+Go to the `EnemyShip` template and create a "Collision with a template" event, then select `Laser_Blue`. In the code, add the following:
 
 ``` js
-var collided = ct.place.meet(this, this.x, this.y, 'Laser_Blue');
-if (collided) {
-    collided.kill = true;
-    this.kill = true;
-}
+other.kill = true;
+this.kill = true;
 ```
 
-The method `ct.place.meet` checks whether a given copy collides with other copies of a certain template like if it was placed in the given coordinates. For this example, we need to check whether our current Copy (`this`) of enemy ships collides in its current position (`this.x, this.y`) with laser bullets (`'Laser_Blue'`). The method returns either a collided copy or `false`, so we need to check whether it returned a valid value.
-
 ::: tip
-There are even more methods in the `ct.place` module. Open the 'Catmods' sections, and then click the `place` module on the left. Open the documentation by clicking the 'Reference' tab on the right.
+`other` is a special variable that can be referenced when inside collision event code. `other` refers to the other colliding copy. Look out for other local variables that may be accessible in certain events!
 :::
 
 If a ship collides with a laser bullet, then both the bullet and the ship should be destroyed.
@@ -295,41 +288,34 @@ If a ship collides with a laser bullet, then both the bullet and the ship should
 Copy exactly the same code to `Asteroid_Medium`. We will need this code in `Asteroid_Big` too, but we will make it so that big asteroids break into two smaller ones:
 
 ``` js
-var collided = ct.place.meet(this, this.x, this.y, 'Laser_Blue');
-if (collided) {
-    collided.kill = true;
-    this.kill = true;
-    ct.templates.copy('Asteroid_Medium', this.x, this.y);
-    ct.templates.copy('Asteroid_Medium', this.x, this.y);
-}
+other.kill = true;
+this.kill = true;
+ct.templates.copy('Asteroid_Medium', this.x, this.y);
+ct.templates.copy('Asteroid_Medium', this.x, this.y);
 ```
 
 If you run the game, you will be able to destroy enemy ships and asteroids. Bigger asteroids should break into smaller ones.
 
 ### Enemy bullets
 
-Enemy ships should be able to shoot, too. Add the following code to `EnemyShip`'s On Create code:
+Enemy ships should be able to shoot, too. Add the following code to `EnemyShip`'s `Creation` code:
 
 ``` js
-this.bulletTimer = 60;
+this.timer1 = 1;
 ```
-With this, we will set up our timer so that the enemy ship will shoot with precise intervals. We will decrease the value of `this.bulletTimer` each step and reset it after shooting. `60` means that we will wait for 1 second (60 frames) before shooting the first bullet.
 
-Add this code to `On Step` section:
+With this, we will set up our timer so that the enemy ship will shoot at precise intervals. `timer1` is a special variable that ct.js will automatically countdown for us, 1 per second. The `Timer 1` event will fire once this value reaches 0. This means we will wait for 1 second before shooting the first bullet.
+
+Add this code to the `Timer 1` event:
 
 ```js
-this.bulletTimer -= ct.delta;
-if (this.bulletTimer <= 0) {
-    this.bulletTimer = 180;
-    ct.templates.copy('Laser_Red', this.x, this.y + 32);
-}
+this.timer1 = 3;
+ct.templates.copy('Laser_Red', this.x, this.y + 32);
 ```
 
-`this.bulletTimer -= ct.delta;` means that we lower the value of `this.bulletTimer` by one frame. `ct.delta` is usually equal to `1`, but on low framerate it will be larger to balance game speed and make things move uniformly with any FPS value.
+When the `timer1` variable goes down to zero, we wind it back up by setting it to 3 and then create a red laser bullet. Now the next bullet will shoot in 3 seconds automatically. As you can see, by writing `this.y + 32` we spawn it a bit lower than the ship.
 
-When the timer variable goes down to zero, we wind it up by setting `this.bulletTimer` to a new number and create a red laser bullet. As you can see, by writing `this.y + 32` we spawn it a bit lower than the ship.
-
-Let's write some code to red bullets. Add this code to `On Create` section of Laser_Red:
+Let's write some code to red bullets. Add this code to `Creation` section of Laser_Red:
 
 ```js
 this.speed = 8;
@@ -344,7 +330,7 @@ this.angle = ct.random.deg();
 There is also `this.scale.x` and `this.scale.y`, which sets a copy's horizontal and vertical scale accordingly, and `this.alpha` which manipulates its opacity (0 means fully transparent, 1 — fully opaque).
 :::
 
-The code of On Step section will look as following:
+The code of `Frame start` will look as following:
 
 ``` js
 if (this.y > ct.viewHeight + 40) {
@@ -368,34 +354,34 @@ Next, Press the `Room events` button on the left.
 
 Rooms have all the same events like Copies have.
 
-* `On Create` is called when you launch the game or move to this room programmatically;
-* `Step` is called each frame, after Copies' `On Step`;
-* `Draw` is called after drawing all the level. It is useful for updating UI;
-* `On Leave` is called before moving to another room.
+* `Room start` is called when you launch the game or move to this room programmatically;
+* `Frame start` is called each frame, after Copies' `Frame start`;
+* `Frame end` is called after drawing all the level. It is useful for updating UI;
+* `Room end` is called before moving to another room.
 
 We will generate enemies in almost the same way as enemy ships generate their bullets. We will have a couple of timers and will place copies above the player's view.
 
-To do this, setup two timers in the `On Create` code:
+To do this, setup two timers in the `Room start` code:
 
 ```js
-this.asteroidTimer = 20;
-this.enemyTimer = 180;
+this.timer1 = 0.3; // asteroid timer
+this.timer2 = 3; // enemy timer
 ```
 
-Then add this code in the `On Step` tab to generate enemies through time:
+Then add this code in the `Timer 1` tab to generate asteroids through time:
 
 ```js
-this.asteroidTimer -= ct.delta;
-if (this.asteroidTimer <= 0) {
-    this.asteroidTimer = ct.random.range(20, 200);
-    ct.templates.copy(ct.random.dice('Asteroid_Big', 'Asteroid_Medium'), ct.random(ct.camera.width), -100);
-}
+// asteroid timer
+this.timer1 = ct.random.range(0.3, 3);
+ct.templates.copy(ct.random.dice('Asteroid_Big', 'Asteroid_Medium'), ct.random(ct.camera.width), -100);
+```
 
-this.enemyTimer -= ct.delta;
-if (this.enemyTimer <= 0) {
-    this.enemyTimer = ct.random.range(180, 400);
-    ct.templates.copy('EnemyShip', ct.random(ct.camera.width), -100);
-}
+Then add this code in the `Timer 2` tab to generate enemies through time:
+
+```js
+// enemy timer
+this.timer2 = ct.random.range(3, 6);
+ct.templates.copy('EnemyShip', ct.random(ct.camera.width), -100);
 ```
 
 That's all what you need for generating asteroids and enemies!
@@ -414,7 +400,7 @@ Let's add score counting to the game and player ship's reaction to hostiles.
 
 ### Adding and drawing score
 
-Score is a numerical variable that is stored globally. In our case it is better to place it inside the room. Open the `Main` room, and then click on 'Room events' button. Add this code to the `On Create` section:
+Score is a numerical variable that is stored globally. In our case it is better to place it inside the room. Open the `Main` room, and then click on 'Room events' button. Add this code to the `Room start` section:
 
 ```js
 this.score = 0;
@@ -428,33 +414,18 @@ this.scoreLabel.depth = 1000;
 
 Here, we create a variable called `score`. Then, we construct a text label with `new PIXI.Text('Some text')`, save it `this.scoreLabel` and add it to the room with `this.addChild(this.scoreLabel);`. Later, we position it so that it shows at the top-left corner, with 30px padding on each side. We also set its depth — this is the same parameter we use in templates' settings, and this large positive value will place the `scoreLabel` above other entities in our room.
 
-We also need this code at `Draw` to keep the label up-to-date:
+We also need this code at `Frame end` to keep the label up-to-date:
 
 ```js
 this.scoreLabel.text = 'Score: ' + this.score;
 ```
 
-Now, move to `EnemyShip`'s `On Step` code, and add `ct.room.score += 100;` to a place where a ship is destroyed after colliding with a bullet, so the whole code looks like this:
+Now, move to `EnemyShip`'s `Collides Laser_Blue template` code, and add `ct.room.score += 100;` to a place where a ship is destroyed after colliding with a bullet, so the whole code looks like this:
 
 ```js
-this.move();
-
-if (this.y > ct.viewHeight + 80) {
-    this.kill = true;
-}
-
-var collided = ct.place.meet(this, this.x, this.y, 'Laser_Blue');
-if (collided) {
-    collided.kill = true;
-    this.kill = true;
-    ct.room.score += 100;
-}
-
-this.bulletTimer -= ct.delta;
-if (this.bulletTimer <= 0) {
-    this.bulletTimer = 180;
-    ct.templates.copy('Laser_Red', this.x, this.y + 32);
-}
+other.kill = true;
+this.kill = true;
+ct.room.score += 100;
 ```
 
 ::: tip
@@ -479,11 +450,11 @@ Add shadow, or border, or both! Then save the changes by clicking the "Apply" bu
 
 Name the created style as `ScoreText`. You can rename it by right-clicking it in the list view.
 
-Now let's return to the room's events. Open the `On Create` tab, and modify the code to apply the created style:
+Now let's return to the room's events. Open the `Room start` tab, and modify the code to apply the created style:
 
 ```js{5}
-this.asteroidTimer = 20;
-this.enemyTimer = 180;
+this.timer1 = 0.3; // asteroid timer
+this.timer2 = 3; // enemy timer
 
 this.score = 0;
 this.scoreLabel = new PIXI.Text('Score: ' + this.score, ct.styles.get('ScoreText'));
@@ -500,7 +471,7 @@ If you launch the game, the score will be drawn in your created style. Hooray!
 
 ### Drawing and managing lives
 
-Managing lives is similar to managing score points. Add this code to the room's `On Create` code so that it stores and draws the number of lives, too:
+Managing lives is similar to managing score points. Add this code to the room's `Room start` code so that it stores and draws the number of lives, too:
 
 ```js
 this.lives = 3;
@@ -517,25 +488,23 @@ Create a new style and apply it to the 'Lives' label.
 
 Then we should add logic so that player's ship removes one life on collision. We could use `ct.place.meet` as we used it in asteroids' and enemies' code to test against a particular template, but let's group them into one _collision group_. It will allow us to write less code and won't require any changes if we add more enemies, missiles or asteroids of different size.
 
-To add copies to a collision group, we should write in the name of the collision group in the left column of the template editor. Let's write in the word `Hostile`. Do it for all the asteroids, for the enemy ship and red lasers.
+To add copies to a collision group, we should write in the name of the collision group in the right column of the template editor. Let's write in the word `Hostile`. Do it for all the asteroids, for the enemy ship and red lasers.
 
-Now add this code to the player ship's `On Step` code:
+Go to the player ship and create a new "Collision with a group" event. Specify "Hostile" in the appearing text field. Now add this code to the player ship's `Collides Hostile group` code:
 
 ```js
-var hostile = ct.place.occupied(this, this.x, this.y, 'Hostile');
-if (hostile) {
-    hostile.kill = true;
-    ct.room.lives --;
-    if (ct.room.lives <= 0) {
-        this.kill = true;
-        setTimeout(function() {
-            ct.rooms.switch('Main');
-        }, 1000);
-    }
+if(ct.templates.isCopy(other)) {
+    other.kill = true;    
+}
+
+ct.room.lives --;
+if (ct.room.lives <= 0) {
+    this.kill = true;
+    setTimeout(function() {
+        ct.rooms.switch('Main');
+    }, 1000);
 }
 ```
-
-`ct.place.occupied` is similar to `ct.place.meet` which we were using before, but works with _collision groups_, not templates.
 
 `ct.rooms.switch` unloads the current room and loads a new one. By pointing to the same room as we were playing, we restart it.
 
