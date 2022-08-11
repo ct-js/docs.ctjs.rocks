@@ -195,7 +195,7 @@ We will modify the `Frame start` code so enemies will destroy themselves if they
 ```js
 this.move();
 
-if (this.y > ct.viewHeight + 80) {
+if (this.y > ct.camera.height + 80) {
     this.kill = true;
 }
 ```
@@ -220,7 +220,7 @@ The `Frame start` event will be the same as in `EnemyShip`.
 ```js Frame start event
 this.move();
 
-if (this.y > ct.viewHeight + 80) {
+if (this.y > ct.camera.height + 80) {
     this.kill = true;
 }
 ```
@@ -333,7 +333,7 @@ There is also `this.scale.x` and `this.scale.y`, which sets a copy's horizontal 
 The code of `Frame start` will look as following:
 
 ``` js
-if (this.y > ct.viewHeight + 40) {
+if (this.y > ct.camera.height + 40) {
     this.kill = true;
 }
 
