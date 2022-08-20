@@ -80,7 +80,7 @@ Set sky's depth value to -20, and ground's depth to -10. That's how ct.js will u
 
 Textures are essential to most games, but they don't do anything on their own. We used *backgrounds* already, and they are for purely decorative textures. *Templates*, on the other hand, can include gameplay logic and are used to create *copies*. Copies are the things we add to our rooms, and these copies are the entities that interact with each other on the screen.
 
-Let's create a template for our cat! Open the "Templates" tab at the top of the ct.js window, and press the "Create" button. Name it as `PotatoCat`, and set its texture by clicking the "Change sprite" square and selecting the cat's texture.
+Let's create a template for our cat! Open the "Templates" tab at the top of the ct.js window, and press the "Create" button. Name it as `PotatoCat`, and set its texture by clicking the "Select" square and selecting the cat's texture.
 
 ![Setting a texture and the name of a template in ct.js](./images/tutJettyCat_10.png)
 
@@ -88,7 +88,7 @@ We can now add the cat to our room! Navigate to it by switching back to the "Roo
 
 ![Placing a copy in the level in ct.js](./images/tutJettyCat_11.png)
 
-If you click the "Play button" now, it will run the debugger, and we will see a static screen with our backgrounds and our cat. The cat doesn't move yet, and that's what we will change now!
+If you click the play button "Launch" now, it will run the debugger, and we will see a static screen with our backgrounds and our cat. The cat doesn't move yet, and that's what we will change now!
 
 ![Testing the game in ct.js](./images/tutJettyCat_12.png)
 
@@ -192,7 +192,7 @@ It's a good time to implement actual gameplay. We will add a template for tubes,
 
 ### Adding pipes
 
-Create a new template and call it `Tube`. Select its texture as one of the relatively long pipes in our collection. Then, set its collision shape to "Obstacle".
+Create a new template and call it `Tube`. Select its texture as one of the relatively long pipes in our collection. Then, set its collision group to "Obstacle".
 
 ![Creating a tube template with a collision group](./images/tutJettyCat_18.png)
 
@@ -203,7 +203,7 @@ Then, open our room and add pipes on the ground, so we can check the collisions.
 Then, open the cat's template, and select its On Step tab. We will do the following:
 
 * We will check for a collision between a cat and a potential obstacle.
-* If we hit a tube, we will throw the cat to the right, change its texture, and set a flag that we've lost.
+* If we hit a tube, we will throw the cat to the left, change its texture, and set a flag that we've lost.
 * This flag will be checked at the very beginning of the code and will prevent the player's input and other logic if needed.
 
 That's the code that checks for collisions. Place it after the code that checks for player's input, but before `this.move();` line:
@@ -311,7 +311,7 @@ Open our only room `InGame`. Remove existing tubes by holding Control key and dr
 
 ![](./images/tutJettyCat_22.png)
 
-Put this line in the OnCreate code:
+Put this line in the On Create code:
 
 ```js
 this.spawnTimer = ct.speed * 5;
