@@ -38,7 +38,7 @@ The transition itself is an asynchronous action! We use `.then(() => {…})` to 
 
 That was the first part of the transition. The second one will go to the `InGame` Room start code. Open the room, and put this line:
 
-```
+```js
 ct.transition.circleIn(500, 0x446ADB);
 ```
 

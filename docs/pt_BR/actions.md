@@ -4,25 +4,25 @@ Ações são uma camada de abstração sobre vários métodos de entrada que per
 
 ![](./../images/actions.png)
 
-Para a ação funcionar, você precisa conectar um módulo particular: provedores de métodos de entrada. As próprias ações são descritas na aba "Settings", atrás do botão "Actions and input methods". Ct.js vem com um número de provedores de entrada padrão: `ct.mouse` que rastreia clicks do mouse e `ct.keyboard` para o pressionamento de teclas.
+Para que as ações funcionem, você precisa conectar módulos específicos: provedores de métodos de entrada. As próprias ações são descritas em "Actions and input methods", localizado no painel esquerdo da aba "Project". Ct.js vem com vários provedores de entrada padrão: `ct.pointer` que reage aos eventos de mouse e de touch, `ct.keyboard` para o pressionamento de teclas e `ct.gamepad` para joystick.
 
-Todos esses módulos devem estar habilitados por padrão para todos os projetos novos. Se não estiver, ative `ct.mouse` e `ct.keyboard` na aba "Catmods". Outros provedores de entrada são marcados com um ícone mágico:
+Todos esses módulos podem ser encontrados e habilitados na aba catmods nas configurações do projeto, na categoria "Input methods":
 
-![](./../images/actions_magicIcon.png)
+![](./../images/actions_filterInputProviders.png)
 
 ## Criando novas ações
 
-Para cria uma nova ação, vá para a aba "Settings", e click no botão "Actions and input methods". Um painel que preenche a tela é exibido, as ações são definidas na coluna da esquerda, enquanto que os métodos de entrada são definidos na coluna da direita.
+Para cria uma nova ação, vá para a aba "Project", e click em "Actions and input methods" localizado à esquerda. Um painel aparecerá no qual as ações são definidas na coluna esquerda, e os métodos de entradas na coluna direita.
 
 ![Opening actions editor](./../images/actions_02.png)
 
-Click no botão "Add Action". Por exemplo, nós descreveremos o padrão e, talvez, o mais importante recurso em qualquer jogo ­– "Movimento". Se você tem um jogo de plataforma, então você precisa apenas de movimento horizontal. Caso contrário, você pode precisar de movimento vertical também. Defina essas ações, `MoveX` e `MoveY` para os movimentos horizontais e verticais, respectivamente.
+Click no botão "Add Action". Por exemplo, descreveremos o padrão e, talvez, o mais importante recurso em qualquer jogo ­– "Movimento". Se você tem um jogo de plataforma, então você precisa apenas de movimento horizontal. Caso contrário, você pode precisar de movimento vertical também. Defina essas ações, `MoveX` e `MoveY` para os movimentos horizontais e verticais, respectivamente.
 
 Adicione o primeiro método de entrada como movimento horizontal com um botão correspondente. No formulário exibido, localize o botão `A` (Você pode inseri-lo através da barra de pesquisa), e então click em "Select". Faça a mesma coisa para os botões `D`, `ArrowLeft` e `ArrowRight`. Devendo ficar assim:
 
 ![Creating a horizontal platformer movement](./../images/actions_01.png)
 
-Espera aí, `A` e `D` aponta para direções diferentes! Como fazer o código entender para qual direção o personagem deve ir? O fato é que no código, ações têm valores de -1 ate 1, e ao usar um valor negativo, podemos determinar que devemos ir, digamos, para a esquerda, e usar um valor positivo - ir para a direita. Isso é feito utilizando a coluna **multipliers**. Se você especificar o multiplicador -1 para o botão `A`, então quando você pressioná-lo, a ação retornará o valor -1, e se `D` for deixado como 1, então quando você pressionar `D`, ele será 1.
+Espera aí, `A` e `D` aponta para direções diferentes! Como fazer o código entender para qual direção o personagem deve ir? O fato é que no código, ações têm valores de -1 até 1, e ao usar um valor negativo, podemos determinar que devemos ir, digamos, para a esquerda, e usar um valor positivo - ir para a direita. Isso é feito utilizando a coluna **multipliers**. Se você especificar o multiplicador -1 para o botão `A`, então quando você pressioná-lo, a ação retornará o valor -1, e se `D` for deixado como 1, então quando você pressionar `D`, ele será 1.
 
 Em ct.js, o valor `X` cresce da esquerda para a direita, e o `Y` cresce de cima para baixo. Se você não rotacionar a câmera e se você tem um teclado QWERTY, então `A` levará para a esquerda — contra o movimento da coordenada `X` —, e `D` apontará para a direita junto com o movimento da coordenada `X`. Então, assinaremos o multiplicador -1 para `A` e para a seta esquerda de navegação.
 

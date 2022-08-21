@@ -7,17 +7,17 @@ Salvar o progresso do jogo é um recurso necessário. Talvez você queira també
 Salvar e lê valores string é muito fácil:
 
 ```js
-// Writing values to localStorage
+// Escrevendo valores para o localStorage
 localStorage.heroName = 'Isaac Newcat';
 localStorage.heroTitle = 'The Allmighty';
 
-// Reading values back
-if ('heroName' in localStorage) { // was anything saved before?
-    // Read the values
+// Lendo os valores armazenados
+if ('heroName' in localStorage) { // alguma coisa foi salva anteriormente?
+    // Leia os valores
     this.name = localStorage.heroName;
     this.title = localStorage.heroTitle;
 } else {
-    // Do something with a missing data
+    // Faz alguma com os dados inexistentes
     requestNameAndTitle();
 }
 ```
@@ -25,31 +25,31 @@ if ('heroName' in localStorage) { // was anything saved before?
 Quando os dados lindos são números, datas, booleanos ou qualquer outra coisa, precisamos converter esses valores antes de usá-los.
 
 ```js
-// WRONG WAY
+// JEITO ERRADO
 localStorage.heroLevel = 15;
 
-// …later…
+// …depois…
 this.level = localStorage.heroLevel;
-// this.level is now '15'. Wait, it's a string!
+// this.level agora é '15'. Espera aí, é uma string!
 this.level += 1;
 console.log(this.level);
 ```
 
-![Wrong use of localStorage](./../images/tutLocalStorage.png)
+![Uso errado do localStorage](./../images/tutLocalStorage.png)
 
 `this.level` agora é `'151'`! Isso definitivamente não erá o que esperávamos. E a razão é porque o `localStorage` pode apenas fazer armazenamento em strings. E por causa disso, precisamos converter os valores de `localStorage` para os tipos que precisamos.
 
 ```js
-// BETTER WAY
+// UM JEITO MELHOR
 localStorage.heroLevel = 15;
-// …later…
+// …depois…
 this.level = Number(localStorage.heroLevel);
-// this.level is now 15. It's a number!
+// this.level agora é 15. É um número!
 this.level += 1;
 console.log(this.level);
 ```
 
-![Proper use of localStorage](./../images/tutLocalStorage_Yaaay.png)
+![Uso apropriado do localStorage](./../images/tutLocalStorage_Yaaay.png)
 
 Aqui está como podemos converter os objetos do tipo Date e do tipo Boolean:
 
@@ -57,7 +57,7 @@ Aqui está como podemos converter os objetos do tipo Date e do tipo Boolean:
 localStorage.gameStartTime = new Date();
 localStorage.hardcoreMode = false;
 
-// later…
+// depois…
 
 this.startTime = new Date(localStorage.gameStartTime);
 this.hardcoreMode = localStorage.hardcoreMode === 'true';
@@ -65,7 +65,7 @@ this.hardcoreMode = localStorage.hardcoreMode === 'true';
 
 ## Armazenando Objetos Complexos
 
-Para qualquer coisa além das simples strings e números, precisamos de funções especiais para a codificação e decodificação. Mas como o javascript é marivilhoso, temos uma função assim para isso! Elas são`JSON.parse(encodedString)` e `JSON.stringify(complexObject)`.
+Para qualquer coisa além das simples strings e números, precisamos de funções especiais para a codificação e decodificação. Mas como o javascript é maravilhoso, temos uma função assim para isso! Elas são`JSON.parse(encodedString)` e `JSON.stringify(complexObject)`.
 
 ```js
 var inventory = [{
@@ -90,12 +90,12 @@ var inventory = [{
     icon: 'Potion_Red',
     stack: 15
 }, {
-    // …other stuff
+    // …outras coisas
 }];
 
 localStorage.heroInventory = JSON.stringify(inventory);
 
-// …later
+// …depois
 
 this.inventory = JSON.parse(localStorage.heroInventory);
 ```

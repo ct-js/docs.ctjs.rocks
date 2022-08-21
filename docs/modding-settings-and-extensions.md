@@ -12,7 +12,7 @@ Settings are defined in `module.json` file, under the `fields` key, and are an a
 
 Here is how the screen above was implemented:
 
-```json Example from default ct.plae module
+```json Example from default ct.place module
 {
     "main": {
         "name": "ct.place",

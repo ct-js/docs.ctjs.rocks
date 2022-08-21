@@ -90,7 +90,7 @@ Though backgrounds are always drawn before Copies of the same depth level (`0` b
 
 ![](./images/tutSpaceShooter_Depth.png)
 
-After that, save the project and click a 'play' button. At this point, you will have a game project with immovable ships and asteroids.
+After that, save the project and click a 'Launch' button. At this point, you will have a game project with immovable ships and asteroids.
 
 ![](./images/tutSpaceShooter_11.png)
 
@@ -175,7 +175,7 @@ this.direction = 270;
 Here, we use built-in variables for moving. Manually editing coordinates is good for handling player's input, but for most tasks it is better to use these vars as they automate most of the things. For example, you don't need to use `ct.delta` while using `this.speed` and `this.direction`. Here, `this.speed` means the speed of the Copy, and `this.direction` refers to its direction.
 
 ::: tip
-In ct.js, direction is measured in degrees, moving from the left side counter-clockwise. 0° means right, 90° means up, 180° is for left, and 270° points to the bottom.
+In ct.js, direction is measured in degrees, moving clockwise. 0° means right, 90° means bottom, 180° is for left, and 270° points to the up.
 
 ![](./images/tutSpaceShooter_Direction.png)
 :::
@@ -227,7 +227,7 @@ if (this.y > ct.camera.height + 80) {
 
 Do the same for another asteroid.
 
-Save the project and click the "Play" button at the top. The hostile ship will slowly move to the bottom, while asteroids will move more chaotically. If you refresh the page, asteroids will move to a new direction.
+Save the project and click the "Launch" button at the top. The hostile ship will slowly move to the bottom, while asteroids will move more chaotically. If you refresh the page, asteroids will move to a new direction.
 
 ::: tip
 Do you have errors with `ct.random`? Make sure that you've enabled the `random` module at the Project tab -> Catmods panel.

@@ -646,7 +646,7 @@ You will always find the structure `method().then(() => {…})` while working wi
 :::
 
 ::: tip
-`ct.u.wait` is just another way to wait for a second before running code. You can also use a Timer 1 event and `this.timer1` to do the same thing! 
+`ct.u.wait` is just another way to wait for a second before running code. You can also use a Timer 1 event and `this.timer1` to do the same thing!
 :::
 
 
