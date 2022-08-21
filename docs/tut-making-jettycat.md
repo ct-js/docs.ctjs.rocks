@@ -80,7 +80,7 @@ Set sky's depth value to -20, and ground's depth to -10. That's how ct.js will u
 
 Textures are essential to most games, but they don't do anything on their own. We used *backgrounds* already, and they are for purely decorative textures. *Templates*, on the other hand, can include gameplay logic and are used to create *copies*. Copies are the things we add to our rooms, and these copies are the entities that interact with each other on the screen.
 
-Let's create a template for our cat! Open the "Templates" tab at the top of the ct.js window, and press the "Create" button. Name it as `PotatoCat`, and set its texture by clicking the "Change sprite" square and selecting the cat's texture.
+Let's create a template for our cat! Open the "Templates" tab at the top of the ct.js window, and press the "Create" button. Name it as `PotatoCat`, and set its texture by clicking the "Select" square and selecting the cat's texture.
 
 ![Setting a texture and the name of a template in ct.js](./images/tutJettyCat_10.png)
 
@@ -88,7 +88,7 @@ We can now add the cat to our room! Navigate to it by switching back to the "Roo
 
 ![Placing a copy in the level in ct.js](./images/tutJettyCat_11.png)
 
-If you click the "Play button" now, it will run the debugger, and we will see a static screen with our backgrounds and our cat. The cat doesn't move yet, and that's what we will change now!
+If you click the play button "Launch" now, it will run the debugger, and we will see a static screen with our backgrounds and our cat. The cat doesn't move yet, and that's what we will change now!
 
 ![Testing the game in ct.js](./images/tutJettyCat_12.png)
 
@@ -192,7 +192,7 @@ It's a good time to implement actual gameplay. We will add a template for tubes,
 
 ### Adding pipes
 
-Create a new template and call it `Tube`. Select its texture as one of the relatively long pipes in our collection. Then, set its collision shape to "Obstacle".
+Create a new template and call it `Tube`. Select its texture as one of the relatively long pipes in our collection. Then, set its collision group to "Obstacle".
 
 ![Creating a tube template with a collision group](./images/tutJettyCat_18.png)
 
@@ -203,7 +203,7 @@ Then, open our room and add pipes on the ground, so we can check the collisions.
 Then, open the cat's template, and select its On Step tab. We will do the following:
 
 * We will check for a collision between a cat and a potential obstacle.
-* If we hit a tube, we will throw the cat to the right, change its texture, and set a flag that we've lost.
+* If we hit a tube, we will throw the cat to the left, change its texture, and set a flag that we've lost.
 * This flag will be checked at the very beginning of the code and will prevent the player's input and other logic if needed.
 
 That's the code that checks for collisions. Place it after the code that checks for player's input, but before `this.move();` line:
@@ -238,7 +238,7 @@ if (this.gameover) {
 
 `this.gravity = 2;` will make sure that there is a gravity set to the cat even if the player hasn't interacted with a game yet (in the case when they lose by no interaction). `return;` stops further execution, and we place `this.move()` above that, because the same line at the bottom won't run.
 
-![The current OnStep code of the cat](./images/tutJettyCat_20.png)
+![The current On Step code of the cat](./images/tutJettyCat_20.png)
 
 Time for some testing! If the cat jerks sharply during a collision, check that its collision shape and axis are set in the same way as in the starting texture.
 
@@ -276,7 +276,7 @@ if (!this.gameover && (ct.place.occupied(this, 'Obstacle') ||
 
 We changed the cat's texture before with `this.tex = 'NewTextureName';`. We can do the same with our pipes to randomize their height, as we have four different textures for them.
 
-Ct.js has a built-in module called `ct.random` that helps to generate random values. Find it in the Catmods tab at the top and enable it. Then, open the tube's OnCreate code and add this snippet:
+Ct.js has a built-in module called `ct.random` that helps to generate random values. Find it in the Catmods tab at the top and enable it. Then, open the tube's On Create code and add this snippet:
 
 ```js
 this.tex = ct.random.dice(
@@ -311,7 +311,7 @@ Open our only room `InGame`. Remove existing tubes by holding Control key and dr
 
 ![](./images/tutJettyCat_22.png)
 
-Put this line in the OnCreate code:
+Put this line in the On Create code:
 
 ```js
 this.spawnTimer = ct.speed * 5;
@@ -503,7 +503,7 @@ Finally, let's create a room for this counter and put this room inside the main 
 
 ![Creating a UI layer in ct.js](./images/tutJettyCat_27.png)
 
-Then open the room `InGame`, and add this code to the bottom of its OnCreate code:
+Then open the room `InGame`, and add this code to the bottom of its On Create code:
 
 ```js
 ct.rooms.append('UI_InGame', {
@@ -577,7 +577,7 @@ if (ct.touch.collideUi(this)) {
 
 Remember the name `UI_Paused`. We will need to create a room with this name a bit later.
 
-`ct.pixiApp.ticker.speed` is the multiplayer that affects how ct.delta is calculated. When it is set to 0, it will effectively pause the game as everyone's `ct.delta` will turn to 0. Our cat and timers are dependant on `ct.delta`.
+`ct.pixiApp.ticker.speed` is the multiplier that affects how `ct.delta` is calculated. When it is set to 0, it will effectively pause the game as everyone's `ct.delta` will turn to 0. Our cat and timers are dependant on `ct.delta`.
 
 Open the room `UI_InGame` and place the created template at the top right corner.
 
