@@ -238,7 +238,7 @@ if (this.gameover) {
 
 `this.gravity = 2;` will make sure that there is a gravity set to the cat even if the player hasn't interacted with a game yet (in the case when they lose by no interaction). `return;` stops further execution, and we place `this.move()` above that, because the same line at the bottom won't run.
 
-![The current OnStep code of the cat](./images/tutJettyCat_20.png)
+![The current On Step code of the cat](./images/tutJettyCat_20.png)
 
 Time for some testing! If the cat jerks sharply during a collision, check that its collision shape and axis are set in the same way as in the starting texture.
 
@@ -276,7 +276,7 @@ if (!this.gameover && (ct.place.occupied(this, 'Obstacle') ||
 
 We changed the cat's texture before with `this.tex = 'NewTextureName';`. We can do the same with our pipes to randomize their height, as we have four different textures for them.
 
-Ct.js has a built-in module called `ct.random` that helps to generate random values. Find it in the Catmods tab at the top and enable it. Then, open the tube's OnCreate code and add this snippet:
+Ct.js has a built-in module called `ct.random` that helps to generate random values. Find it in the Catmods tab at the top and enable it. Then, open the tube's On Create code and add this snippet:
 
 ```js
 this.tex = ct.random.dice(
@@ -503,7 +503,7 @@ Finally, let's create a room for this counter and put this room inside the main 
 
 ![Creating a UI layer in ct.js](./images/tutJettyCat_27.png)
 
-Then open the room `InGame`, and add this code to the bottom of its OnCreate code:
+Then open the room `InGame`, and add this code to the bottom of its On Create code:
 
 ```js
 ct.rooms.append('UI_InGame', {
@@ -577,7 +577,7 @@ if (ct.touch.collideUi(this)) {
 
 Remember the name `UI_Paused`. We will need to create a room with this name a bit later.
 
-`ct.pixiApp.ticker.speed` is the multiplayer that affects how ct.delta is calculated. When it is set to 0, it will effectively pause the game as everyone's `ct.delta` will turn to 0. Our cat and timers are dependant on `ct.delta`.
+`ct.pixiApp.ticker.speed` is the multiplier that affects how `ct.delta` is calculated. When it is set to 0, it will effectively pause the game as everyone's `ct.delta` will turn to 0. Our cat and timers are dependant on `ct.delta`.
 
 Open the room `UI_InGame` and place the created template at the top right corner.
 
