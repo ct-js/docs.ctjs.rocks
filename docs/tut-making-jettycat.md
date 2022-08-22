@@ -163,7 +163,7 @@ Besides that, `ct.delta` supports in-game time stretching and allows for creatin
 There are also `Action Poof press` and `Action Poof release` parameterized events that run when a player starts and stops pressing the screen.
 :::
 
-The gravity that is defined in the On Poof down event seems strange, right? It is indeed a constant that would be better placed in the On Create event so that it is set once from the beginning and doesn't change. But placing it inside the clause with an input check adds a little trick: the cat will start falling only after the player interacts with the game! Thus they won't instantly lose as the cat would quickly hit the ground otherwise.
+The gravity that is defined in the On Poof down event seems strange, right? It is indeed a constant that would be better placed in the Creation event so that it is set once from the beginning and doesn't change. But placing it inside the clause with an input check adds a little trick: the cat will start falling only after the player interacts with the game! Thus they won't instantly lose as the cat would quickly hit the ground otherwise.
 
 If we run the project now, we will see that the cat moves from left to right, and then reacts to clicks and starts flying and falling. It quickly flies out of the viewport though. Let's change it!
 
