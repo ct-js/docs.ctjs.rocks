@@ -50,7 +50,7 @@ L'immagine di sfondo deve essere lasciata così com'è, perché non entrerà in 
 
 **Le texture** non fanno molto da sole e per visualizzarle nel gioco, dobbiamo creare dei **template** usando queste risorse grafiche. I template verranno poi utilizzati per creare **Copies** (Copie, cioè le entità grafiche che compariranno nel gioco) e queste ultime sono gli oggetti che metterai all'interno di **Rooms** (stanze o livelli di gioco) che interagiscono tra loro e rispondono ai tuoi input.
 
-Premi la scheda "Template" nella parte superiore dello schermo e crea un nuovo template per la nave del giocatore. Dopo aver fatto clic sul pulsante "Crea", fai clic sul grande gatto tratteggiato nella colonna di sinistra sopra la scritta "Select". Ti mostrerà tutte le tue trame. Premi la miniatura della tua nave. Ora dovrebbe apparire nella colonna di sinistra dell'editor.
+Premi la scheda "Templates" nella parte superiore dello schermo e crea un nuovo template per la nave del giocatore. Dopo aver fatto clic sul pulsante "Crea", fai clic sul grande gatto tratteggiato nella colonna di sinistra sopra la scritta "Select". Ti mostrerà tutte le tue trame. Premi la miniatura della tua nave. Ora dovrebbe apparire nella colonna di sinistra dell'editor.
 
 Ora, cambia il nome del template in `PlayerShip` in modo da identificarlo facilmente durante la scrittura del codice.
 
@@ -116,7 +116,7 @@ Crea tre azioni come nell'immagine qui sopra. Cambia il valore del moltiplicator
 
 ### Codice del movimento
 
-Apri la scheda "Template" in alto, quindi fai clic su `PlayerShip` e quindi clicca l'evento `Frame start`.
+Apri la scheda "Templates" in alto, quindi fai clic su `PlayerShip` e quindi clicca l'evento `Frame start`.
 
 ::: tip L'evento `Frame start` viene eseguito ad ogni fotogramma prima del suo disegno, mentre `Frame end` viene eseguito subito dopo e serve per disegnare un nuovo fotogramma aggiuntivo, come vedrai più avanti nei tutorial. L'evento`Creation` si verifica, e viene eseguito una sola volta, quando si genera una nuova copia usando il template e `Destruction` viene eseguito prima di `Frame end` se una copia viene eliminata. :::
 
@@ -161,7 +161,7 @@ Anche i nemici dovrebbero muoversi. Per questo tutorial, la nostra nave ostile s
 
 ### Navi nemiche
 
-Apri la scheda "Template", quindi fai clic su `EnemyShip`. Aggiungi l'evento `Creation` e il seguente codice al suo interno:
+Apri la scheda "Templates", quindi fai clic su `EnemyShip`. Aggiungi l'evento `Creation` e il seguente codice al suo interno:
 
 ```js
 this.speed = 3;
@@ -201,7 +201,7 @@ if (this.y > ct.camera.height + 80) {
 
 Gli asteroidi conterranno lo stesso codice nell'evento `Frame start`, ma la loro `direction` sarà definita in modo casuale.
 
-Apri il `Asteroid_Medium` nella scheda "Template", quindi scrivi il codice qui sotto riportato nell'evento `Creation` (ricordati che devi cliccare "Add an event" per aggiungerlo).
+Apri il `Asteroid_Medium` nella scheda "Templates", quindi scrivi il codice qui sotto riportato nell'evento `Creation` (ricordati che devi cliccare "Add an event" per aggiungerlo).
 
 ```js On Create event
 this.speed = ct.random.range(1, 3);
