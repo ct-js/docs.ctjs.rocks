@@ -329,7 +329,7 @@ this.animationSpeed = 0.2;
 
 Open the `Robot`'s "Frame start" code and modify the moving section so it changes the drawn texture depending on user inputs and the robot's position in space:
 
-```js{4,5,6,7,8,9,13,14,15,16,17,18,22,38,39}
+```js {4,5,6,7,8,9,13,14,15,16,17,18,22,38,39}
 if (ct.actions.MoveLeft.down) {
     // If the A key on keyboard is down, then move to left
     this.hspeed = -this.movespeed;
@@ -585,7 +585,7 @@ if (ct.room.lives <= 0) {
 
 And make sure to edit the `inGameRoomStart` function to initialize the room lives:
 
-```js{3}
+```js {3}
 var inGameRoomStart = function (room) {
     room.crystals = 0;
     room.lives = 3;
