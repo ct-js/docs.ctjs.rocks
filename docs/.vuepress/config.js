@@ -34,8 +34,8 @@ module.exports = {
      '/it/': {
        lang: 'it',
        title: 'Documentazione ct.js',
-       description: 'Docs, tutorial, guide'
-    }
+       description: 'Docs, tutorial, guide',
+    },
   },
 
   themeConfig: {
