@@ -648,7 +648,7 @@ Troverai sempre la struttura `method().then(() => {…})`mentre lavori con azion
 
 ## Questo è tutto!
 
-Per transizioni, effetti particellari e altre cose stravaganti, visita [la seconda parte di questo tutorial](https://docs.ctjs.rocks/tut-polishing-jettycat.html) in cui miglioriamo il gioco.
+Per transizioni, effetti particellari e altre cose stravaganti, visita [la seconda parte di questo tutorial](https://docs.ctjs.rocks/it/tut-polishing-jettycat.html) in cui miglioriamo il gioco.
 
 Prova a cambiare queste cose per allenarti nella programmazione:
   - Cambia il movimento del gatto in modo che sia più simile a quello che succede in Flappy Bird: fai volare il gatto verso l'alto all'improvviso quando un giocatore tocca lo schermo, ma non fare nulla se poi preme continuamente lo schermo.
