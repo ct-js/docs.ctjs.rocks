@@ -124,7 +124,7 @@ Ogni modulo ha la propria documentazione nella scheda "Modules' docs". Evidenzie
 
 ### Aggiunta di azioni per eventi da tastiera
 
-Le azioni consentono di ascoltare gli eventi da tastiera, mouse, gamepad, ecc. Puoi leggere di più su di essi [qui](/actions.html) . Con loro creeremo "listeners" di tasti e frecce WASD.
+Le azioni consentono di ascoltare gli eventi da tastiera, mouse, gamepad, ecc. Puoi leggere di più su di essi [qui](../actions.html) . Con loro creeremo "listeners" di tasti e frecce WASD.
 
 Vai al pannello "Project", quindi premi la scheda "Actions and input methods" a sinistra.
 
@@ -133,7 +133,7 @@ Quindi, crea uno schema di input come nell'immagine qui sotto. Per farlo, premi 
 ![Mapping dell'input per un semplice platform in ct.js](../images/tutPlatformer_25.png)
 
 ::: tip
-Sebbene questo schema potrebbe essere semplificato a due sole azioni (vedi [esempi nella pagina Azioni](/actions.html#examples) ), useremo due azioni separate per spostarci a sinistra o a destra per non complicare eccessivamente il tutorial.
+Sebbene questo schema potrebbe essere semplificato a due sole azioni (vedi [esempi nella pagina Azioni](../actions.html#examples) ), useremo due azioni separate per spostarci a sinistra o a destra per non complicare eccessivamente il tutorial.
 :::
 
 ### Codice collisioni e spostamenti
