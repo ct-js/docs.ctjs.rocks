@@ -546,6 +546,15 @@ module.exports = {
             text: "Home",
           },
           {
+            text: "Introduzione a JS",
+            collapsible: false,
+            children: [
+              "/it/jsintro_pt1",
+              "/it/jsintro_pt2",
+              "/it/jsintro_pt3",
+            ],
+          },
+          {
             collapsible: false,
             text: "Tutorial",
             children: [
