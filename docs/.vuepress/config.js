@@ -43,9 +43,10 @@ module.exports = {
     logo: "/assets/img/logo.png",
     lastUpdated: "Last Updated",
 
-    repo: "https://github.com/CosmoMyzrailGorynych/docs.ctjs.rocks",
+    repo: "ct-js/docs.ctjs.rocks",
     repoLabel: "Contribute!",
     docsDir: "docs",
+    docsBranch: 'master',
     editLinks: true,
     editLinkText: "Propose edits",
 
