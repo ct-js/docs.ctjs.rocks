@@ -2,14 +2,13 @@
 
 Come in Flappy Bird, Jetty Cat sarà un gioco in cui un gatto, guidato toccando o facendo clic, evita infiniti ostacoli utilizzando il suo jetpack. In primo luogo implementeremo la logica principale di gioco ed in seguito l'interfaccia utente. Infine, miglioreremo il gioco abbellendo il gioco con transizioni, sistemi di particelle ed effetti sottili.
 
-![Il risultato del tutorial](./images/tutJettyCat_Result.gif)
+![Il risultato del tutorial](../images/tutJettyCat_Result.gif)
 
 Ecco ciò che realizzeremo:
 
 [[toc]]
 
 :::warning
-
 Come avrai capito, questo non è un esempio base in stile "Hello world", ma piuttosto una guida per creare un gioco completo da zero. Concediti tutto il tempo necessario per realizzarlo.
 :::
 
@@ -17,17 +16,17 @@ Come avrai capito, questo non è un esempio base in stile "Hello world", ma piut
 
 Apri ct.js e crea un nuovo progetto scrivendo il nome del tuo progetto e facendo clic sul pulsante "Create". Dì a ct.js dove salvare il tuo progetto; una cartella come "Documenti" andrà benissimo.
 
-![Creazione di un nuovo progetto](./images/tutJettyCat_01.png)
+![Creazione di un nuovo progetto](../images/tutJettyCat_01.png)
 
 Fai clic sulla scheda "Textures" nella parte superiore della finestra di ct.js. Quindi, apri Esplora file, dal tuo sistema operativo, e cerca la cartella `examples/JettyCat_assets` all'interno della cartella ct.js; contiene gli assets che useremo. Se hai utilizzato l'app itch.io per installare ct.js, puoi fare clic con il pulsante destro del mouse sull'icona del programma installato nella tua libreria per aprire la sua posizione nel file manager. Trascina le risorse da Esplora file dentro ct.js così da importarle rapidamente nel progetto.
 
 Dovremo preparare queste texture: contrassegnare correttamente ciò che useremo come sfondi e impostare i contorni di collisione in modo che le copie ("Copies" ovvero gli sprite) all'interno del gioco interagiscano con precisione tra loro. Innanzitutto, apriamo lo sfondo del nostro progetto. Fai clic sulla scheda `BG_Ground`:
 
-![Apertura di una risorsa di texture in ct.js](./images/tutJettyCat_02.png)
+![Apertura di una risorsa di texture in ct.js](../images/tutJettyCat_02.png)
 
 Qui, dovremo cliccare la casella di controllo "Use as a background?" ("Usa come sfondo?") Questo dice a ct.js di considerare questa texture in modo diverso permettendogli di ripetersi nei vari livelli.
 
-![Modifica del tipo di texture per lo sfondo in ct.js](./images/tutJettyCat_03.png)
+![Modifica del tipo di texture per lo sfondo in ct.js](../images/tutJettyCat_03.png)
 
 Premi "Save" (Salva) nell'angolo in basso a sinistra. Ora, fai lo stesso con la texture `BG_Sky`.
 
@@ -35,7 +34,7 @@ Gli sfondi sono pronti! È ora di impostare i contorni di collisione dei nostri 
 
 Apriamo il `PotatoCat`! La prima cosa che dovremmo fare è spostare l'asse (Axis nell'originale, potrebbe tradursi come baricentro) della texture. Viene visualizzato come un quadratino, che si trova nell'angolo in alto a sinistra per impostazione predefinita. Un asse è un punto attorno al quale una copia (ogni futuro sprite che utilizzerà questa texture) viene ridimensionata e ruotata. Metti l'asse al centro del corpo del gatto. Quindi, definiamo il suo perimentro di collisione. Il gatto non assomiglia ad un cerchio o un rettangolo, quindi devi selezionare la sua forma di collisione scegliendo l'opzione "Line Strip / Polygon" (spezzata/poligono) nella colonna di sinistra. Apparirà un pentagono: puoi trascinarne gli angoli e aggiungere nuovi punti cliccando sulle linee gialle per delineare meglio la sagoma del gatto. 15 punti possono bastare per delinearlo bene.
 
-![Definizione dell'asse e della forma di collisione di una trama in ct.js](./images/tutJettyCat_04.png)
+![Definizione dell'asse e della forma di collisione di una trama in ct.js](../images/tutJettyCat_04.png)
 
 ::: tip
 È meglio non delineare la coda, così come le orecchie. Quando una coda colpisce un tubo, potrebbe essere eccessivo far perdere il giocatore. In ogni caso, una coda è troppo flessibile per causare collisioni letali 😺
@@ -43,15 +42,15 @@ Apriamo il `PotatoCat`! La prima cosa che dovremmo fare è spostare l'asse (Axis
 
 Dopo aver definito la forma, dovremo creare la stessa maschera di collisione per la texture `PotatoCat_Stunned`. Ma invece di rifare tutto il lavoro nella creazione della maschera punto per punto, possiamo copiarlo! Fare clic sul pulsante copia maschera di collisione e quindi nella texture `PotatoCat_Stunned` fai clic sul pulsante incolla. Non dimenticare di regolare il punto dell'asse!
 
-![Copia della forma di collisione di una trama in ct.js](./images/tutJettyCat_04_2.png)
+![Copia della forma di collisione di una trama in ct.js](../images/tutJettyCat_04_2.png)
 
-![Incollare la forma di collisione di una trama in ct.js](./images/tutJettyCat_04_3.png)
+![Incollare la forma di collisione di una trama in ct.js](../images/tutJettyCat_04_3.png)
 
 Dopo aver definito la forma, fare clic sul pulsante "Save" per tornare all'elenco degli asset. Dovremo anche mettere a punto la texture `Star`.
 
 Per i tubi, useremo qualcosa *di leggermente* diverso. Apri il primo, `Tube_01`, e posiziona il suo asse quasi in fondo allo sprite. Ricordi che l'asse influisce non solo sulla rotazione ma anche sul ridimensionamento? Riutilizzeremo la stessa trama sia per i tubi che pendono dalla parte superiore dello schermo che per quelli che crescono dalla parte inferiore. Per creare quelli superiori, li scaleremo usando un valore negativo attorno al loro asse inferiore per capovolgere la loro estremità verso il basso. Possiamo anche ruotarli in un secondo momento e farli ondeggiare piacevolmente, mantenendo la base fissa.
 
-![Definizione dell'asse e della forma di collisione per un tubo in ct.js](./images/tutJettyCat_05.png)
+![Definizione dell'asse e della forma di collisione per un tubo in ct.js](../images/tutJettyCat_05.png)
 
 Dovremo farlo per tutte e quattro le texture del tubo. Ora, possiamo iniziare a creare il nostro di livello e creare il codice per i movimenti!
 
@@ -59,17 +58,17 @@ Dovremo farlo per tutte e quattro le texture del tubo. Ora, possiamo iniziare a 
 
 Creiamo una stanza dove il gioco prenderà vita! Le stanze sono spesso chiamate livelli di gioco. Questi sono i luoghi in cui tutte le tue risorse grafiche vengono combinate e dove possono interagire tra loro. Apri la scheda "Rooms" (Stanze) nella parte superiore della finestra di ct.js e creane una nuova.
 
-![Creazione di una nuova room in ct.js](./images/tutJettyCat_06.png)
+![Creazione di una nuova room in ct.js](../images/tutJettyCat_06.png)
 
 Apparirà un editor di stanze per questa stanza. Chiama la stanza `InGame` — useremo questo nome particolare più avanti nel codice. Non ci sono regole per scegleire i nomi, però; abbiamo solo bisogno di qualcosa di semplice da ricordare in seguito durante la codifica dei menu 😃
 
 Successivamente, nella scheda Proprietà, individuata da un'icona a forma di ingranaggio, dobbiamo impostare le dimensioni della nostra stanza. Impostale su 1080x1920 pixel.
 
-![Impostazione di nome e dimensione della vista della room in ct.js](./images/tutJettyCat_07.png)
+![Impostazione di nome e dimensione della vista della room in ct.js](../images/tutJettyCat_07.png)
 
 Ora aggiungiamo gli sfondi. Fai clic sulla scheda "Backgrounds" (Sfondi), quindi aggiungine due: per il cielo e per la terra. Il cielo sembra andar bene così com'è, il terreno invece ha bisogno di un ritocco. Fai clic sull'ingranaggio accanto alla miniatura dello sfondo nella colonna di sinistra e trova, in basso, il menu a discesa "Repeat" (Ripeti). Impostalo su "repeat-x": ripeterà il riquadro dello sfondo solo orizzontalmente, poiché X è l'asse orizzontale (Y è quello verticale). Quindi, dovremo spostare il terreno nella parte bassa della cornice della stanza, cambiando valore del campo Shift Y.
 
-![Apertura di una texture in ct.js](./images/tutJettyCat_08.png)
+![Apertura di una texture in ct.js](../images/tutJettyCat_08.png)
 
 ::: tip Suggerimento:
 Puoi navigare nella stanza trascinandola con il mouse e zoomando con la rotellina del mouse, oppure con lo slider "zoom" che trovi nell'angolo in alto a destra.
@@ -79,9 +78,9 @@ Imposteremo anche la profondità di entrambi gli sfondi in modo che siano alline
 
 Imposta il valore della profondità del cielo a -20 e la profondità del suolo a -10. Ecco come ct.js interpreterà queste configurazioni:
 
-![Spiegazione della profondità in ct.js](./images/tutJettyCat_DepthIllustration.png)
+![Spiegazione della profondità in ct.js](../images/tutJettyCat_DepthIllustration.png)
 
-![Impostazione della profondità dello sfondo in ct.js](./images/tutJettyCat_09.png)
+![Impostazione della profondità dello sfondo in ct.js](../images/tutJettyCat_09.png)
 
 ### Template del gatto
 
@@ -89,15 +88,15 @@ Le texture sono essenziali per la maggior parte dei giochi, ma non fanno nulla d
 
 Creiamo un template per il nostro gatto! Apri la scheda "Templates" nella parte superiore della finestra di ct.js e premi il pulsante "Create" (Crea). Assegnagli un nome `PotatoCat`e imposta la sua texture facendo clic sul quadrato "Select" e selezionando la texture del gatto.
 
-![Impostazione di una texture e il nome di un template in ct.js](./images/tutJettyCat_10.png)
+![Impostazione di una texture e il nome di un template in ct.js](../images/tutJettyCat_10.png)
 
 Ora possiamo aggiungere il gatto alla nostra "Room"! Torna alla scheda "Rooms" e apri il nostro unico livello di gioco. Il nostro gatto apparirà nella colonna di sinistra sotto la scheda "Copies" (Copie). Fai clic su di esso, quindi fai di nuovo clic in un punto in cui desideri che la tua copia appaia all'interno del livello. Avremo bisogno di un solo gatto per ora.
 
-![Posizionamento di una copia nel livello in ct.js](./images/tutJettyCat_11.png)
+![Posizionamento di una copia nel livello in ct.js](../images/tutJettyCat_11.png)
 
 Se fai clic sul tasto "Launch" (il tasto play), verrà eseguito il debugger e vedremo una schermata statica con i nostri sfondi e il gatto. Il gatto non si muove ancora, ma è quello che faremo ora!
 
-![Testare il gioco in ct.js](./images/tutJettyCat_12.png)
+![Testare il gioco in ct.js](../images/tutJettyCat_12.png)
 
 Apri di nuovo la scheda "Templates" e apri il template del gatto. Dovresti vedere l'evento "Frame start" selezionato, con del codice sulla destra. ct.js esegue blocchi di codice a seconda dell'evento che si sta verificando. Fare clic sul pulsante "Add an event" (Aggiungi un evento) per visualizzare altre opzioni. Ecco alcuni eventi da considerare:
 
@@ -106,7 +105,7 @@ Apri di nuovo la scheda "Templates" e apri il template del gatto. Dovresti veder
 - "Frame end" che viene eseguito alla termine di ogni frame dopo altri calcoli e aggiornamenti sul movimento degli sprite;
 - "Destruction" per il codice che viene eseguito quando una copia viene eliminata dal gioco.
 
-![Vedere un evento in ct.js](./images/tutJettyCat_12_2.png)
+![Vedere un evento in ct.js](../images/tutJettyCat_12_2.png)
 
 Questo è quello che faremo:
 
@@ -120,7 +119,7 @@ this.speed = 10;
 this.direction = 0;
 ```
 
-![Vedere l'elenco degli eventi in ct.js](./images/tutJettyCat_12_3.png)
+![Vedere l'elenco degli eventi in ct.js](../images/tutJettyCat_12_3.png)
 
 `this.speed = 10;` definisce la velocità di spostamento del gatto pari a 10 pixel ad ogni fotogramma. Con 60 FPS (frames per second) al secondo, saranno 600 pixel in un secondo, circa la metà della nostra "Room".
 
@@ -128,20 +127,20 @@ this.direction = 0;
 
 Ora muoviamo il nostro gatto ogni volta che un giocatore tocca lo schermo. Dovremo supportare sia gli eventi del mouse che quelli del tocco su dispositivi mobile, quindi dovremo abilitare un modulo che fornisca supporto per ciò. Fortunatamente è molto facile: apri la scheda "Project" (progetto) nella parte superiore della finestra di ct.js, quindi "Catmods" a sinistra. Cerca il modulo `Pointer` nella sezione "Enabled modules" (moduli disponibili). Fai clic per abilitarlo - ora avrà una casella di controllo verde con un piccolo cerchio rotante attorno:
 
-![Abilitare un modulo touch in ct.js](./images/tutJettyCat_13.png)
+![Abilitare un modulo touch in ct.js](../images/tutJettyCat_13.png)
 
 Ora, in ct.js, i metodi di input sono raggruppati in *Actions* . In questo progetto, utilizzeremo un solo metodo di input - toccare lo schermo. Nella scheda "Project" nella parte superiore dello schermo, premi la scheda "Actions and input methods" (Azioni e metodi di input) in alto a sinistra.
 
 Ci sono dei preset che impostano le azioni per noi, ma per ora facciamone di personalizzati facendo clic sul pulsante "Make from scratch". Aggiungi la prima azione, chiamala `Poof`. Quindi, fai clic su "Add an input method" a destra e trova il metodo "Qualsiasi stampa" sotto l'intestazione Puntatore. Puoi utilizzare la ricerca per filtrare rapidamente i contenuti.
 
-![Configurazione azione per eventi touch in ct.js](./images/tutJettyCat_16.png)
+![Configurazione azione per eventi touch in ct.js](../images/tutJettyCat_16.png)
 
 L'azione è terminata, possiamo salvarla e tornare al nostro gatto.
 
-::: tip Actions (Azioni)? Come mai?
+::: tip Azioni? Come mai?
 Per gli sviluppatori esperti, le definizioni delle "Actions" potrebbero sembrare un passaggio strano, ma torneranno molto utili quando sarà necessario supportare una serie di metodi di input diversi. Supponiamo di creare un gioco che supporti sia la tastiera che il gamepad e la tastiera supporti il movimento WASD e anche quello con le frecce. Un'unica *Action* supporterà tutti e tre i metodi e il tuo codice rimarrà snello, e se aggiungerai nuovi metodi di input in un secondo momento, dovrai solo aggiornare questa sezione e non il codice!
 
-Puoi [leggere di più sulle "Actions" qui](actions.html).
+Puoi [leggere di più sulle "Actions" qui](../actions.html).
 :::
 
 Crea un nuovo evento "Action down" per il gatto. Questo è un evento parametrizzato, quindi puoi specificare quale azione desideri! Seleziona l'azione `Poof` dall'elenco a discesa, quindi aggiungi questo codice all'evento:
@@ -195,11 +194,11 @@ Ora è giunto il momento per implementare il gameplay vero e proprio. Aggiungere
 
 Crea un nuovo template e chiamalo `Tube`. Seleziona come texture per il tubo una di quelle lunghe della nostra collezione. Quindi, imposta "Collision group" (gruppo di collisione) scrivendo `Obstacle` per esempio.
 
-![Creazione di un template di tubo con un gruppo di collisione](./images/tutJettyCat_18.png)
+![Creazione di un template di tubo con un gruppo di collisione](../images/tutJettyCat_18.png)
 
 Quindi, apri il livello e aggiungi tubi a terra, così possiamo controllarne le collisioni. Per farlo apri la room `InGame`, seleziona il tubo nella colonna di sinistra, quindi aggiungilo facendo clic nella vista del livello, nel punto in cui desideri che compaia. Non ne avremo bisogno di molti per il test.
 
-![Creare una serie di ostacoli nel livello](./images/tutJettyCat_19.png)
+![Creare una serie di ostacoli nel livello](../images/tutJettyCat_19.png)
 
 Quindi, apri il template del gatto e seleziona "Frame start". Faremo quanto segue:
 
@@ -239,7 +238,7 @@ if (this.gameover) {
 
 `this.gravity = 2;`si assicurerà che ci sia una gravità impostata per il gatto anche se il giocatore non ha ancora interagito con un gioco (nel caso in cui perda per nessuna interazione). `return;` interrompe l'ulteriore esecuzione in questo punto, è quindi necessario aggiungere nuovamente `this.move()`, perché la stessa riga in fondo al codice non verrà mai eseguita e quindi l'animazione.
 
-![Il codice del Frame start del gatto](./images/tutJettyCat_20.png)
+![Il codice del Frame start del gatto](../images/tutJettyCat_20.png)
 
 È tempo di test! Se il gatto sussulta bruscamente durante una collisione, controlla che il suo perimetro di collisione e l'asse siano impostati allo stesso modo nelle rispettive texture.
 
@@ -249,7 +248,7 @@ Per qualche ragione, il pavimento - e persino il cielo - sono letali come tubi n
 
 Se ora apriamo la nostra room e spostiamo il mouse sullo sfono, vedremo le coordinate correnti nell'angolo in basso a sinistra. Il bordo superiore del riquadro di visualizzazione è sempre a 0 pixel sull'asse Y e il bordo superiore del terreno è a 1750 pixel. La posizione delle copie inserite nel livello è definita da `this.x` e `this.y`, e possiamo leggerle e confrontarle con altri valori.
 
-![](./images/tutJettyCat_21.png)
+![](../images/tutJettyCat_21.png)
 
 Modifica il codice della collisione del gatto come segue, in modo che il gatto rimanga sbalordito dall'urtare terra e cielo. Nota che abbiamo aggiunto parentesi attorno ai nuovi controlli e `ct.place.occupied` per separarli:
 
@@ -310,7 +309,7 @@ Faremo quanto segue per generare nuovi tubi in modo temporizzato:
 
 Apri l'unica stanza `InGame`. Rimuovi i tubi esistenti tenendo premuto il tasto Control e trascinando il mouse, oppure facendo clic con il pulsante destro del mouse su queste copie e utilizzando il menu contestuale. Quindi, fai clic sul pulsante "Events" nella colonna di sinistra.
 
-![](./images/tutJettyCat_22.png)
+![](../images/tutJettyCat_22.png)
 
 Inserisci questa riga nel codice "Room start":
 
@@ -365,7 +364,7 @@ Esistono due metodi per ridimensionare il gatto:
 * possiamo aggiungere una riga `this.scale.x = this.scale.y = 0.65; ` all'evento "Creation" del gatto;
 * oppure possiamo fare lo stesso facendo clic con il pulsante destro del mouse nell'editor della stanza e modificandone la scala.
 
-![Modifica del fattore di scala di una copia nell'editor del livello](./images/tutJettyCat_23.png)
+![Modifica del fattore di scala di una copia nell'editor del livello](../images/tutJettyCat_23.png)
 
 ### Pulizia di copie inutili
 
@@ -402,7 +401,9 @@ this.kill = true;
 ct.room.score += 1;
 ```
 
-::: tip Un'alternativa all'utilizzo dell'evento di collisione è chiamare `ct.place.meet` in un'istruzione if prima di eseguire questo codice all'interno dell'evento "Frame start". :::
+::: tip
+Un'alternativa all'utilizzo dell'evento di collisione è chiamare `ct.place.meet` in un'istruzione if prima di eseguire questo codice all'interno dell'evento "Frame start".
+:::
 
 `ct.place.meet` è come `ct.place.occupied` ma mentre il secondo controlla gruppi di collisione, il primo controlla la collisione con un template.
 
@@ -465,15 +466,15 @@ Vai alla scheda UI nella parte superiore della finestra ct.js e crea un nuovo st
 
 Nella prima scheda, "Font" (tipo di carattere), imposta la dimensione del carattere su 80 e il suo "Weight" (spessore) su 900. Quindi allinealo al centro. Questo renderà il testo più marcato e grande.
 
-![Impostazione delle proprietà di un carattere nello stile di testo in ct.js](./images/tutJettyCat_24.png)
+![Impostazione delle proprietà di un carattere nello stile di testo in ct.js](../images/tutJettyCat_24.png)
 
 Passa alla scheda "Fill" (riempimento) e attivala. Creiamo un riempimento sfumato verticale. Useremo un giallo pallido e colori arancioni.
 
-![Impostazione delle proprietà Fill](./images/tutJettyCat_25.png)
+![Impostazione delle proprietà Fill](../images/tutJettyCat_25.png)
 
 Quindi, passa alla scheda "Stroke" (bordo) e attivala. Imposta il colore del tratto su marrone scuro e il suo vallore su 10.
 
-![Impostazione delle proprietà Stroke](./images/tutJettyCat_26.png)
+![Impostazione delle proprietà Stroke](../images/tutJettyCat_26.png)
 
 Possiamo salvare lo stile ora. Successivamente, avremo bisogno di un nuovo template che visualizzerà un'icona a forma di stella e un contatore del punteggio che utilizzi questo stile di testo.
 
@@ -494,7 +495,7 @@ Abbiamo bisogno di aggiornare l'etichetta di testo in ogni fotogramma. Nell'even
 
 Infine, creiamo una room per questo contatore e mettiamola all'interno del livello di gioco principale. Per farlo, crea una nuova stanza e chiamala `UI_InGame`. Quindi, imposta la dimensione della visualizzazione su 1080x1920 in modo che corrisponda alla finestra della room principale e metti una copia del contatore appena creato nell'angolo in alto a sinistra:
 
-![Creazione di un livello UI in ct.js](./images/tutJettyCat_27.png)
+![Creazione di un livello UI in ct.js](../images/tutJettyCat_27.png)
 
 Quindi apri la room `InGame`e aggiungi questo codice in fondo al suo codice "Room start":
 
@@ -520,7 +521,7 @@ Apri la texture `Jetty_Cat`e assicurati che il suo asse sia posizionato al centr
 
 Poi, apri la texture "Button_Play" e assicurati che il suo asse sia al centro e che la sua forma di collisione sia **circolare** .
 
-![La forma di collisione di un pulsante "Play"](./images/tutJettyCat_28.png)
+![La forma di collisione di un pulsante "Play"](../images/tutJettyCat_28.png)
 
 Successivamente, crea un nuovo template con questa texture. Crea un evento pointer di tipo "Click" ed inserisci quanto segue:
 
@@ -530,11 +531,13 @@ ct.rooms.switch('InGame');
 
 Questo controlla se un giocatore ha premuto l'immagine del pulsante e, se lo ha fatto, passa alla nostra stanza principale.
 
-::: tip Se desideri utilizzare `ct.pointer` per controllare i clic, poiché il pulsante di riproduzione si trova sul livello dell'interfaccia utente, dovrai utilizzare `ct.pointer.collidesUi(this)` invece di `ct.pointer.collides(copy)` :::
+::: tip
+Se desideri utilizzare `ct.pointer` per controllare i clic, poiché il pulsante di riproduzione si trova sul livello dell'interfaccia utente, dovrai utilizzare `ct.pointer.collidesUi(this)` invece di `ct.pointer.collides(copy)`
+:::
 
 Crea una nuova stanza e chiamala `MainMenu`. Aggiungi gli sfondi e impagina le copie create di recente in modo che assomigli a questo:
 
-![Il layout del menu principale](./images/tutJettyCat_29.png)
+![Il layout del menu principale](../images/tutJettyCat_29.png)
 
 Tieni premuto il pulsante Alt sulla tastiera per posizionare le copie con precisione.
 
@@ -542,7 +545,7 @@ Se le tue copie sembrano scomparire o non vengono posizionate, controlla di aver
 
 Se ora eseguiamo il gioco, verrà comunque avviato dal livello principale. Per cambiarlo, apri la scheda "Rooms" e fai clic con il pulsante destro del mouse sul livello `MainMenu`. Dal menu contestuale, seleziona "Set as the starting room" (Imposta come stanza di partenza).
 
-![Impostazione della stanza di partenza in ct.js](./images/tutJettyCat_30.png)
+![Impostazione della stanza di partenza in ct.js](../images/tutJettyCat_30.png)
 
 ### Menù di pausa
 
@@ -623,7 +626,7 @@ salva una stringa in una variabile temporanea. Tutto ciò che è definito con la
 
 Ora crea una stanza chiamata `UI_OhNo` con i template creati.
 
-![Impostazione della stanza di partenza in ct.js](./images/tutJettyCat_31.png)
+![Impostazione della stanza di partenza in ct.js](../images/tutJettyCat_31.png)
 
 L'ultima cosa di cui abbiamo bisogno è creare questa stanza quando il gatto incontra un ostacolo. Apri il modello `PotatoCat`e trova il punto in cui rileviamo la collisione con la superficie o gli ostacoli nel suo evento "Frame start". Aggiungi questo codice subito dopo la riga con `ct.camera.follow = false;`:
 
