@@ -104,7 +104,7 @@ Per gestire gli input da tastiera, dobbiamo abilitare il modulo Tastiera. Premi 
 
 ### Aggiunta di azioni
 
-Le "Action" (azioni) in ct.js sono entità che raggruppano diversi metodi di input in  eventi e ti consentono di ascoltare l'input del giocatore nel codice. Puoi leggere di più su di loro [qui](/actions.html) .
+Le "Action" (azioni) in ct.js sono entità che raggruppano diversi metodi di input in  eventi e ti consentono di ascoltare l'input del giocatore nel codice. Puoi leggere di più su di loro [qui](../actions.html) .
 
 Per ora, creiamo uno schema di input di base per il nostro sparatutto. Apri la scheda "Project", quindi la scheda "Actions and input methods" (azioni e metodi di input) sul lato sinistro. Dovremo definire tre diverse azioni: per sparare proiettili laser, per spostarsi in orizzontale e per spostarsi in verticale.
 
@@ -188,7 +188,7 @@ this.move();
 
 Questa riga legge le variabili integrate e sposta la copia in base ad esse. Senza di essa, `this.speed` e `this.direction` sarebbero inutili.
 
-Ci sono anche altre variabili integrate, le puoi trovare nella [`ct.templates` pagina](ct.templates.html) .
+Ci sono anche altre variabili integrate, le puoi trovare nella [`ct.templates` pagina](../ct.templates.html) .
 
 Modificheremo il codice di `Frame start` in modo che i nemici vengano eliminati se escono dallo schermo, ciò per liberare memoria.
 
