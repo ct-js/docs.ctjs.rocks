@@ -4,7 +4,7 @@ home: true
 heroText: Benvenuto nella documentazione ufficiale di ct.js!
 tagline: Impara ct.js, completa i tutorial e contribuisci alla documentazione di ct.js
 actions:
-    - text: Imapra partendo da qui! →
+    - text: Impara partendo da qui! →
       link: /ct-concepts.html
 footer: Ct.js documentazione. Salvo diversa indicazione, al contenuto si applica una licenza Creative Commons Attribution 4.0 International.
 ---
