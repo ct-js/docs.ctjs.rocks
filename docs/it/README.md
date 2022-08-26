@@ -12,8 +12,8 @@ footer: Ct.js documentazione. Salvo diversa indicazione, al contenuto si applica
 <div class="features">
     <div class="feature">
         <h2>Impara JavaScript</h2>
-        <p>I giochi realizzati in ct.js utilizzano JavaScript, o semplicemente JS, per codificare la logica di gioco. Impara il necessario nella nostra piccola <a href="/jsintro_pt1.html">Introduzione a JS</a>.</p>
-        <a href="/jsintro_pt1.html" class="button">Impara JavaScript →</a>
+        <p>I giochi realizzati in ct.js utilizzano JavaScript, o semplicemente JS, per codificare la logica di gioco. Impara il necessario nella nostra piccola <a href="../jsintro_pt1.html">Introduzione a JS</a>.</p>
+        <a href="../jsintro_pt1.html" class="button">Impara JavaScript →</a>
     </div>
     <div class="feature">
         <h2>Tutorial completi</h2>
@@ -33,10 +33,10 @@ footer: Ct.js documentazione. Salvo diversa indicazione, al contenuto si applica
         <h2>Importanti modifiche e aggiunte di ct.js v2.0</h2>
         <ul>
             <li>L'API è cambiata! La prima cosa che noterai è che `ct.types` ora è `ct.templates`, ma c'è molto di più nella nostra <a href="/migration-1to2">guida alla migrazione</a>. Dai un'occhiata.</li>
-            <li><code>ct.res</code> ha ottenuto un'importante riscrittura e ora ti consente <a href="/ct.res.html">di caricare dinamicamente texture, font e animazioni con scheletro</a> nel tuo gioco. E c'è dell'altro!</li>
-            <li>È stata aggiunta un nuovo paragrafo nell'Introduzione a JavaScript: <a href="/jsintro_pt3.html">ora su Array e Oggetti</a>.</li>
+            <li><code>ct.res</code> ha ottenuto un'importante riscrittura e ora ti consente <a href="../ct.res.html">di caricare dinamicamente texture, font e animazioni con scheletro</a> nel tuo gioco. E c'è dell'altro!</li>
+            <li>È stata aggiunta un nuovo paragrafo nell'Introduzione a JavaScript: <a href="../jsintro_pt3.html">ora su Array e Oggetti</a>.</li>
             <li>Ora c'è una pagina della guida che spiega come usare l'editor dei livelli e, come mostra la pratica, non tutti lo sanno. <a href="/room-editor.html">Dai un'occhiata</a>, non vuoi?</li>
-            <li><a href="/modding-fields-declaration.html">I catmod ora hanno una chiave `if` nei loro campi</a>, che consente agli sviluppatori delle catmod di visualizzare i controlli in modo condizionale e un tipo `array` con una chiave complementare `arrayType`.</li>
+            <li><a href="../modding-fields-declaration.html">I catmod ora hanno una chiave `if` nei loro campi</a>, che consente agli sviluppatori delle catmod di visualizzare i controlli in modo condizionale e un tipo `array` con una chiave complementare `arrayType`.</li>
         </ul>
         <a href="https://ctjs.rocks/changelog/" target="_blank">Vedi tutte le modifiche (changelog) →</a>
     </div>
