@@ -2,45 +2,85 @@
 
 Rooms are the spaces where your actual game happens. A room can represent a level, a menu, a UI widget, and is a place where you place your copies (instances of your templates), backgrounds, and tiles. Knowing how to use it to the fullest will ease the level design process.
 
-The room editor has four tabs that define its state. These tabs are located in the left column of the room editor, right under the "Room events" button.
+As of version 3.0, room editor has five tools located in the left panel:
 
-* Copies tab for adding new and manipulating existing copies.
-* Backgrounds tab for adding and tweaking backgrounds.
-* Tiles tab for adding new tiles and managing already placed ones.
-* Properties tab with room's and camera's settings.
+* Selection tool for moving, scaling, rotating and tweaking your objects in other ways. It supports both copies and tiles.
+* "Add copies" tool to place new copies in the level — instances of your templates.
+* "Add tiles" for placing immobile texture pieces for making your level structure, and just for decoration.
+* "Manage backgrounds" tool that opens a panel in which you can add and manage your backgrounds — repeating backdrops with decorative purposes.
+* "Room properties" tool with room's and camera's settings.
 
-![The four tabs that define room editor's state](./images/roomEditor_fourTabs.png)
+![Room editor's toolbar](./images/roomEditor_toolbar.png)
 
 ## Navigating around the room
 
 Moving around:
 
 * Hold the middle mouse button (the wheel) down and move the cursor to move the camera.
-* Holding the left button and moving your pointer also works while the Backgrounds or Properties tabs are open.
-* When the Copies tab is open, clicking on the "Select and move" swatch will also allow you to move around with the left mouse button. This is mostly made for touchpads as there is rarely a middle button there.
+* You can zoom in and out with mouse wheel — it will zoom into the place you point at.
 
-To zoom in and out, use mouse wheel or the zoom slider in the top-right corner of the room editor.
+::: tip
+If you get lost, you can press `H` key to return to the center of your level and reset zoom. You can also find this command in the zoom dropdown:
 
-## Managing copies
+![Reset view command in the zoom menu](./images/roomEditor_resetView.png)
+:::
 
-Copies management is only possible while the "Copies" tab in the left column is opened. While this is opened, you can do various things:
+## Adding copies and tiles
 
-* When a template is selected in the left column, you can click on the room view to place a new copy.
-  * Hold the `Shift` key while moving the cursor to create multiple copies (similar to painting with a brush).
-  * Holding the `Alt` key will place copies ignoring the grid.
-  * Holding the `Ctrl` key will enable the eraser mode, where you can remove copies by dragging the red circle around the room.
-* Right-clicking anywhere will find the nearest copy, select it and show a context menu with some goodies:
-  * Delete the selected copy;
-  * Move, rotate, or scale it;
-  * Add or change its custom properties. These will then be available as `this.yourPropertyName` inside templates' events.
-* While "Select and Move" is active, holding `Shift` key while moving the cursor will allow you to select multiple copies.
-  * Selected copies can be moved together by dragging them around with your pointer.
-  * When multiple copies are selected, a context menu appears while right-clicking on them. It allows shifting them by a set value and deleting them.
-* Clicking with a `Shift` key pressed will also work; it will select the nearest copy. An additional dialogue will appear where you can view and change a copy's scale, rotation, and position.
+Tools for adding new copies and tiles have pretty similar functionality.
+
+* By default, you can draw multiple copies or tiles by pressing your mouse and making a stroke with it. If you have grid enabled, every copy and tile will snap to it; otherwise, they will be placed freely with spacing depending on your previously configured grid size.
+* If you hold the `Shift` key before starting placing a tile or a copy, your copies and tiles will form a straight line — diagonal, vertical, or horizontal.
+* If you hold the `Alt` key, grid snapping will be disabled temporarily.
+* Lastly, if you hold the `Ctrl` key, you will be able to remove stuff with your cursor, like with an eraser.
+
+### Working with tiles
+
+To work with tiles, you need a texture that is setup properly — make sure that you've set a proper frame size and the count of columns and rows in your tilesets. In any way, any ct.js texture can work as a tile, even if it has just one frame. You can use it to place static decorations inside your rooms.
+
+Here is an example of a properly set tileset:
+
+![An example of a properly set tileset](./images/roomEditor_tilesetSettings.png)
+
+To start working with tiles, press the "Add tiles" tool in the left toolbar of the room editor and press the "Find a Tileset" button. Make sure you have a tile layer — they are listed right under the selected texture. If you don't have one, click the "Add tile layer" button and input its depth.
+
+Then select a tile on the texture you've imported and place it inside the room with a click. You can also select multiple tiles by pressing and dragging your pointer across several frames. After that, draw with tiles with your mouse.
+
+:::tip
+Remember that each tile is placed on a tile layer of a particular depth — placing every tile on an arbitrary depth level is not possible.
+
+Creating a ton of layers is also not recommended, because 1) it is dumb, and 2) each tile layer caches its contexts to boost rendering performance, and if you do use tons of layers, it nullifies the performance boost and worsens the situation with RAM.
+:::
+
+## Selection tool
+
+Selection tool is probably the most powerful creative instrument in the room editor — it works sililarly to image editors, as you can reposition, rotate, scale, and even recolor multiple entities at once.
+
+When the select tool is active, drag your mouse around copies or tiles to draw a rectangle and select them. You can also select individual objects by clicking on them.
+
+::: tip
+You can change which entities are selected, and which are ignored, by toggling them next to the "Select:" heading.
+:::
+
+When you have something selected, a rectangle with several colored handles will appear:
+
+* Handles in the corners of the rectangle will scale the selection when you drag them;
+* Handles on the sides scale the selection either horizontally or vertically.
+* A handle floating on the right side rotates the selection.
+
+While working with the scale handles, you can use these modifier keys:
+
+* Holding `Shift` key will make diagonal handles scale your selection proportionately;
+* Holding `Alt` key will ignore grid;
+* Using `Ctrl` key will make the selection scale in both directions.
+
+While rotating objects, hold the `Shift` key to rotate by a muliple of 15 degrees.
+
+You can also change values in the properties panel on the left, but note that contrary to the selection frame which transforms everything as a group, the properties panel changes values for each object individually.
 
 ## Adding backgrounds
 
-Backgrounds are added in the second tab in the left column of the room editor. Inside it, there is a button "Add a Background" that opens a texture selector. There are several things to consider while using backgrounds:
+Backgrounds are added in the fourth tool of the room editor. Inside it, there is a button "Add a Background" that opens a texture selector. There are several things to consider while using backgrounds:
 
 * A texture should be marked as a background; otherwise it will have rips and holes in its seams. There will be a warning message if you try to use a regular texture.
 * Multi-frame backgrounds are not supported, at least yet.
@@ -60,42 +100,6 @@ You can change background's texture by clicking on the current texture. Other pr
   * `repeat-y` will tile the background vertically.
   * `no-repeat` won't tile the background at all.
 
-## Working with tiles and tilesets
-
-To work with tiles, you need a texture that is setup properly — make sure that you've set a proper frame size and the count of columns and rows in your tilesets. In any way, any ct.js texture can work as a tile, even if it has just one frame. You can use it to place static decorations inside your rooms.
-
-Here is an example of a properly set tileset:
-
-![An example of a properly set tileset](./images/roomEditor_tilesetSettings.png)
-
-To start working with tiles, press the "Tiles" tab in the left column of the room editor and press the "Find a Tileset" button. Then select a tile on the texture you've imported and place it inside the room with a click. You can also select multiple tiles by pressing and dragging your pointer across several frames.
-
-:::tip
-Remember that each tile is placed on a tile layer of a particular depth. You can move tiles to another layer with a context menu and also change the depth of any tile layer, but placing every tile on an arbitrary depth level is not possible.
-
-Creating a ton of layers is also not recommended, because 1) it is dumb, and 2) each tile layer caches its contexts to boost rendering performance, so you better minimize the amount of tile layers you use to get the most of it.
-:::
-
-:::warning
-Ct.IDE becomes funky when one tries to use multiple tiles from a texture that uses margins and offsets. It works perfectly in a game, but looks broken inside the room editor. Consider remaking the texture so it has no offsets.
-
-This issue will be fixed with a new room editor.
-:::
-
-The tile mode has controls similar to the copy tab:
-
-* Clicking with a tile selected places it inside the room.
-  * Hold the `Shift` key while moving the cursor to create multiple tiles.
-  * Holding the `Alt` key will position tiles with grid being ignored.
-  * Holding the `Ctrl` key will enable the eraser mode, where you can remove tiles by dragging the red circle around the room.
-* Right-clicking anywhere will find the nearest tile and show a context menu to delete it.
-* Holding `Shift` key while moving the cursor will allow you to select multiple tiles.
-  * Clicking with a `Shift` key pressed will also work; it will select the nearest tile.
-  * When multiple tiles are selected, a context menu appears while right-clicking on them.
-    * One menu item allows to delete them. Pretty simple, eh?
-    * "Move to layer" opens a modal to input a new depth for the selected tiles. If there is no tile layer with the specified depth, a new one will be created.
-    * "Shift tiles" shifts all the selected tiles by a set amount of pixels.
-
 ## Room properties
 
 The "Properties" tab of the room editor has options for render and camera tweaks.
@@ -108,3 +112,31 @@ The "Properties" tab of the room editor has options for render and camera tweaks
 :::tip
 To read more about UI layers, see [the reference for append/prepend methods](ct.rooms.html#ct-rooms-append-nameoftheroom-ext-and-ct-rooms-prepend-nameoftheroom-ext), or [see how it is done in the JettyCat tutorial](tut-making-jettycat.html#creating-menus).
 :::
+
+## Additional tools
+
+There are several additional tools at the top bar of the room editor.
+
+![Top toolbar of the room editor](./images/roomEditor_topToolbar.png)
+
+* First two buttons undo or redo your latest changes in the room (`Ctrl+Z`, `Ctrl+Shift+Z` hotkeys). Remeber that history size is limited to about 30 actions!
+* "Simulate" switch enables or disables animations of sprites and backgrounds in the room.
+* Zoom selector allows you to change zoom if you don't have a pointer with a wheel input, and also has an option to return to the center of the room.
+* "Grid" button has a submenu with several items:
+  * Enabling/disabling the grid (`Ctrl+G` hotkey);
+  * Enabling diagonal grid. If you want a pseudo-isometric grid, you will need to set the grid size to 1:2 ration;
+  * Changing the grid size.
+* The "eye" menu has switches to hide/show specific entities in the level. It also has two special view options:
+  * X-ray mode: makes everything transparent, allowing to see through objects. Useful for placing secrets and for finding overlap issues.
+  ![X-ray mode](./images/roomEditor_xRay.png)
+  * Colored tile layers: color-codes each tile layer to visually distinguish which tiles are where.
+  ![Colored tile layers](./images/roomEditor_colorizeTileLayers.png)
+* "Events" button opens a script editor with all the events of the current room.
+
+## Hotkeys
+
+* `Q`, `W`, `E`, `R`, `T` keys switch tools — `Q` will enable the select tool, `W` will switch to adding copies, and so on.
+* `Ctrl+Z` undos the latest change. `Ctrl+Shift+Z` redos it.
+* `Ctrl+C` copies the current selection, `Ctrl+V` pastes it (works with the select tool only).
+* `Ctrl+G` toggles the grid.
+* When you have objects selected, you can use arrow keys to move them. Use arrow keys + `Ctrl` key to disable snapping to the grid.
