@@ -2,7 +2,7 @@
 
 Facciamo un piccolo gioco di guerre stellari con asteroidi, laser e cannoni nemici! Questo tutorial ti insegnerà come importare risorse, gestire l'input dell'utente, spostare oggetti e rispondere alle collisioni.
 
-![](./images/tutSpaceShooter_Result.gif)
+![](../images/tutSpaceShooter_Result.gif)
 
 Ecco cosa faremo:
 
@@ -12,7 +12,7 @@ Ecco cosa faremo:
 
 Apri ct.js e crea un nuovo progetto e chiamalo "SpaceShooter".
 
-![](./images/tutSpaceShooter_01.png)
+![](../images/tutSpaceShooter_01.png)
 
 Quindi, [scarica un pacchetto di risorse](http://www.kenney.nl/assets/space-shooter-redux) dal sito di Kenney. È gratuito ed è ottimo per la prototipazione, l'apprendimento o semplicemente per fare dei test.
 
@@ -20,7 +20,7 @@ Puoi anche utilizzare le risorse collocate all'interno della cartella `ct.js/exa
 
 Queste sono tutte le risorse di cui avremo bisogno oggi:
 
-![](./images/tutSpaceShooter_02.png)
+![](../images/tutSpaceShooter_02.png)
 
 Ora apri la scheda "Texture" nella parte superiore della finestra di ct.IDE e trascina e rilascia queste risorse all'interno della finestra di  ct.IDE. Puoi anche premere il pulsante "Import" per farlo manualmente.
 
@@ -30,17 +30,17 @@ Innanzitutto, premi il pulsante "Image's center", in modo che il suo asse (il ba
 
 Quindi, seleziona l' opzione " **Line Strip / Polygon** " sotto l'etichetta "Collision shape" (forma della collisione). Aggiungi un paio di punti aggiuntivi e spostali con il mouse in modo che il poligono risultante contenga la forma della nave.
 
-![](./images/tutSpaceShooter_03.png)
+![](../images/tutSpaceShooter_03.png)
 
 Premi "Save" e passa alla trama successiva: "LaserRed". Come per la nave, imposta il suo asse al centro cliccando "Image's center". Quindi, seleziona una forma di collisione di tipo **Circle** proprio sotto questo pulsante. Ora la forma della collisione gialla è circolare.
 
 Anche la texture successiva, `Laser_Blue`, dovrà essere centrata e poiché la forma della collisione dovrebbe  coprire tutta l'immagine, clicca sul pulsante "Fill" (riempi).
 
-![](./images/tutSpaceShooter_04.png)
+![](../images/tutSpaceShooter_04.png)
 
 Entrambi gli asteroidi sono definiti da poligoni dalle loro forme concave o taglienti. Imposta la loro forma di collisione su **Line Strip / Polygon** e non dimenticare di impostare il loro asse al centro.
 
-![](./images/tutSpaceShooter_05.png)
+![](../images/tutSpaceShooter_05.png)
 
 La forma della tecture `EnemyShip` forma può essere trattata come un **Poliygon** .
 
@@ -54,15 +54,15 @@ Premi la scheda "Template" nella parte superiore dello schermo e crea un nuovo t
 
 Ora, cambia il nome del template in `PlayerShip` in modo da identificarlo facilmente durante la scrittura del codice.
 
-![](./images/tutSpaceShooter_06.png)
+![](../images/tutSpaceShooter_06.png)
 
 Crea template per tutte le altre texture ad eccezione dell'immagine di sfondo (BG). Le immagini di sfondo non si spostano o interagiscono con nulla e sono spesso ripetute, quindi non serve un template. Aggiungeremo lo sfondo in seguito in una **room**  (stanza, il livello di gioco).
 
-![](./images/tutSpaceShooter_07.png)
+![](../images/tutSpaceShooter_07.png)
 
 Posizioniamo i template creati da qualche parte sulla mappa. Per creare questa mappa (o room o stanza o livello di gioco), premi la scheda "Rooms" (Stanze) nella parte superiore delle finestre di ct.IDE e fai clic sul pulsante "Add new" (aggiungi nuova). Quindi, apri la room appena creata facendo clic su di essa.
 
-![](./images/tutSpaceShooter_08.png)
+![](../images/tutSpaceShooter_08.png)
 
 Qui ci fermeremo un po' per spiegare come utilizzare l'editor delle "Room". In primo luogo, possiamo impostare il nome di un livello e le dimensioni del suo riquadro di visualizzazione.
 
@@ -80,19 +80,19 @@ Infine, puoi spostare tutte le copie nella stanza contemporaneamente usando lo s
 
 Per ora, posizioniamo la nave di un giocatore, una nemica e un paio di asteroidi.
 
-![](./images/tutSpaceShooter_10.png)
+![](../images/tutSpaceShooter_10.png)
 
 Quindi aggiungi uno sfondo. Fare clic sull'icona degli sfondi "Manage backgrounds" e premere "Add a background", quindi selezionare `BG`. Apparirà come una texture ripetuta più volte (tiled) nella vista principale.
 
-![](./images/tutSpaceShooter_09.png)
+![](../images/tutSpaceShooter_09.png)
 
 Sebbene gli sfondi vengano sempre disegnati prima delle copie dello stesso livello di profondità ( `0` per impostazione predefinita), è meglio cambiare il loro livello di profondità. Fai clic sull'ingranaggio a sinistra della miniatura dello sfondo e inserisci `-5` nel campo "Depth" (profondità). In questo modo comunichiamo al motore che questo sfondo è posizionato più in basso rispetto ad altre copie e sfondi. La profondità rappresenta un terzo asse di coordinate che va verso l'alto, mentre X e Y vanno verso i lati.
 
-![](./images/tutSpaceShooter_Depth.png)
+![](../images/tutSpaceShooter_Depth.png)
 
 Successivamente, salva il progetto e fai clic sul pulsante "Launch" (Avvia). A questo punto, avrai un progetto di gioco con navi e asteroidi immobili.
 
-![](./images/tutSpaceShooter_11.png)
+![](../images/tutSpaceShooter_11.png)
 
 ## Aggiunta del movimento per il giocatore
 
@@ -100,7 +100,7 @@ La gestione dell'input dell'utente è l'attività più importante. In questa sez
 
 Per gestire gli input da tastiera, dobbiamo abilitare il modulo Tastiera. Premi la scheda "Project" (progetto), quindi la scheda "Catmods" a sinistra, e  cerca il modulo "Keyboard" (tastiera) nella sezione con i moduli disponibili. Fai clic per abilitarlo (potrebbe essere abilitato per impostazione  predefinita, tuttavia: una casella di controllo verde con un piccolo cerchio rotante indica che il modulo è abilitato). Quindi assicurati che anche i moduli `mouse`, `random` e `place` siano abilitati, poiché ne avremo bisogno in seguito.
 
-![](./images/tutSpaceShooter_12.png)
+![](../images/tutSpaceShooter_12.png)
 
 ### Aggiunta di azioni
 
@@ -110,7 +110,7 @@ Per ora, creiamo uno schema di input di base per il nostro sparatutto. Apri la s
 
 Innanzitutto, fai clic sul pulsante "Make from scratch" (crea da zero). Quindi, inserisci il nome della prima azione. Fai clic sul pulsante "Add an input method" per associare pulsanti specifici alla tua azione. Usa la sua ricerca per filtrare rapidamente i metodi di input disponibili. Fai clic sul pulsante "Add an action" per continuare a creare le altre azioni.
 
-![](./images/tutSpaceShooter_15.png)
+![](../images/tutSpaceShooter_15.png)
 
 Crea tre azioni come nell'immagine qui sopra. Cambia il valore del moltiplicatore su `-1` per `keyboard.ArrowUp`, `keyboard.KeyW`, `keyboard.ArrowLeft` e per `keyboard.KeyA`, in modo che questi tasti spostino la nave nella direzione opposta.
 
@@ -118,7 +118,9 @@ Crea tre azioni come nell'immagine qui sopra. Cambia il valore del moltiplicator
 
 Apri la scheda "Template" in alto, quindi fai clic su `PlayerShip` e quindi clicca l'evento `Frame start`.
 
-::: tip L'evento `Frame start` viene eseguito ad ogni fotogramma prima del suo disegno, mentre `Frame end` viene eseguito subito dopo e serve per disegnare un nuovo fotogramma aggiuntivo, come vedrai più avanti nei tutorial. L'evento`Creation` si verifica, e viene eseguito una sola volta, quando si genera una nuova copia usando il template e `Destruction` viene eseguito prima di `Frame end` se una copia viene eliminata. :::
+::: tip
+L'evento `Frame start` viene eseguito ad ogni fotogramma prima del suo disegno, mentre `Frame end` viene eseguito subito dopo e serve per disegnare un nuovo fotogramma aggiuntivo, come vedrai più avanti nei tutorial. L'evento`Creation` si verifica, e viene eseguito una sola volta, quando si genera una nuova copia usando il template e `Destruction` viene eseguito prima di `Frame end` se una copia viene eliminata.
+:::
 
 Scrivi il seguente codice:
 
@@ -153,7 +155,9 @@ Infine, moltiplichiamo il nostro valore di velocità intermedia per la velocità
 
 Successivamente controlliamo se la sua coordinata X risulta fuori dallo schermo. Qui `0` indica il lato sinistro del livello e `ct.camera.width` indica la dimensione orizzontale della finestra, che definisce il lato destro.
 
-::: tip Da solo! Aggiungi un movimento verticale al giocatore. Quindi, prova a limitare il suo movimento in modo che la nave non possa volare al di sopra del centro dello schermo. :::
+::: tip Da solo!
+Aggiungi un movimento verticale al giocatore. Quindi, prova a limitare il suo movimento in modo che la nave non possa volare al di sopra del centro dello schermo.
+:::
 
 ## Spostamento di nemici e asteroidi
 
@@ -170,9 +174,10 @@ this.direction = 270;
 
 Qui, utilizziamo le variabili integrate per lo spostamento. La modifica manuale delle coordinate è utile per gestire l'input del  giocatore, ma per la maggior parte delle attività è meglio utilizzare  queste variabili poiché automatizzano la maggior parte delle cose. Ad esempio, non è necessario utilizzare `ct.delta` durante l'utilizzo `this.speed` e `this.direction`. Qui, `this.speed` indica la velocità della copia e `this.direction` si riferisce alla sua direzione di movimento.
 
-::: tip In ct.js, la direzione è misurata in gradi, muovendosi in senso orario. 0° significa destra, 90° significa in basso, 180° è per sinistra e 270° indica in alto.
+::: tip
+In ct.js, la direzione è misurata in gradi, muovendosi in senso orario. 0° significa destra, 90° significa in basso, 180° è per sinistra e 270° indica in alto.
 
-![](./images/tutSpaceShooter_Direction.png)
+![](../images/tutSpaceShooter_Direction.png)
 :::
 
 Se clicchil'evento `Frame start`, vedrai questo piccolo codice:
@@ -195,7 +200,9 @@ if (this.y > ct.camera.height + 80) {
 }
 ```
 
-::: tip Da solo! E se le navi nemiche potessero muoversi in diagonale, a zig zag? :::
+::: tip Da solo!
+E se le navi nemiche potessero muoversi in diagonale, a zig zag?
+:::
 
 ### Asteroidi
 
@@ -222,9 +229,11 @@ Fai lo stesso per l'altro asteroide.
 
 Salva il progetto e fai clic sul pulsante "Launch" in alto. La nave nemica si sposterà lentamente verso il basso, mentre gli asteroidi si muoveranno in modo più caotico. Se aggiorni la pagina, gli asteroidi si sposteranno in una nuova direzione.
 
-::: tip Hai errori con `ct.random`? Assicurati di aver abilitato il modulo `random` nella scheda "Project" -> "Catmods". :::
+::: tip
+Hai errori con `ct.random`? Assicurati di aver abilitato il modulo `random` nella scheda "Project" -> "Catmods".
+:::
 
-![](./images/tutSpaceShooter_RandomMovement.gif)
+![](../images/tutSpaceShooter_RandomMovement.gif)
 
 ## Proiettili e collisione
 
@@ -238,7 +247,9 @@ ct.templates.copy('Laser_Blue', this.x, this.y);
 
 Questa è la prima volta che aggiungiamo nuove copie a livello di codice. Evviva!
 
-::: tip `ct.templates.copy` è una funzione molto importante che genera un nuovo oggetto all'interno della stanza corrente. In primo luogo, scriviamo il nome di un template esistente tra virgolette. Quindi, scriviamo le coordinate in cui vorremmo, indicando le coordinate orizzontale e verticale rispettivamente. `this.x` indica l'ascissa della copia corrente e `this.y` l'ordinata. :::
+::: tip
+`ct.templates.copy` è una funzione molto importante che genera un nuovo oggetto all'interno della stanza corrente. In primo luogo, scriviamo il nome di un template esistente tra virgolette. Quindi, scriviamo le coordinate in cui vorremmo, indicando le coordinate orizzontale e verticale rispettivamente. `this.x` indica l'ascissa della copia corrente e `this.y` l'ordinata.
+:::
 
 Con i dati forniti creiamo un proiettile laser proprio sotto la nostra nave. I proiettili verranno generati quando viene premuto il tasto Spazio o il tasto del mouse.
 
@@ -268,7 +279,9 @@ other.kill = true;
 this.kill = true;
 ```
 
-::: tip `other` è una variabile speciale a cui è possibile fare riferimento all'interno del codice dell'evento di collisione. `other` si riferisce all'altra copia in collisione con il proiettile. Cerca altre variabili locali che potrebbero essere accessibili in determinati eventi! :::
+::: tip
+`other` è una variabile speciale a cui è possibile fare riferimento all'interno del codice dell'evento di collisione. `other` si riferisce all'altra copia in collisione con il proiettile. Cerca altre variabili locali che potrebbero essere accessibili in determinati eventi!
+:::
 
 Se una nave si scontra con un proiettile laser, sia il proiettile che la nave andranno distrutti.
 
@@ -313,7 +326,9 @@ this.angle = ct.random.deg();
 
 `this.angle` ruota la texture della copia. `ct.random.deg()` restituisce un valore casuale compreso tra 0 e 360, utile durante la definizione di valori angolari.
 
-::: tip C'è anche `this.scale.x` e `this.scale.y`, che impostano la scala orizzontale e verticale di una copia e `this.alpha` che manipola l'opacità (0 significa completamente trasparente, 1 completamente opaco). :::
+::: tip
+C'è anche `this.scale.x` e `this.scale.y`, che impostano la scala orizzontale e verticale di una copia e `this.alpha` che manipola l'opacità (0 significa completamente trasparente, 1 completamente opaco).
+:::
 
 Il codice di `Frame start` sarà il seguente:
 
@@ -371,11 +386,13 @@ ct.templates.copy('EnemyShip', ct.random(ct.camera.width), -100);
 
 Questo è tutto ciò di cui abbiamo bisogno per generare asteroidi e nemici!
 
-::: tip `ct.random.dice` restituisce uno dei valori forniti tra parentesi. Puoi inserire qualsiasi valore qui, inclusi numeri, stringhe, oggetti complessi. Qui, c'è una probabilità del 50% che `'Asteroid_Big'` venga restituito e ugualmente che lo sia `'Asteroid_Medium'`.
+::: tip
+`ct.random.dice` restituisce uno dei valori forniti tra parentesi. Puoi inserire qualsiasi valore qui, inclusi numeri, stringhe, oggetti complessi. Qui, c'è una probabilità del 50% che `'Asteroid_Big'` venga restituito e ugualmente che lo sia `'Asteroid_Medium'`.
 
 `ct.random.range(a, b)` restituisce un valore numerico casuale compreso tra `a` e `b`.
 
-`ct.random(b)` è lo stesso di `ct.random.range(0, b)`. :::
+`ct.random(b)` è lo stesso di `ct.random.range(0, b)`.
+:::
 
 ## Vite, punteggio e GUI
 
@@ -411,7 +428,9 @@ this.kill = true;
 ct.room.score += 100;
 ```
 
-::: tip `ct.room` punta all'oggetto della stanza corrente. :::
+::: tip
+`ct.room` punta all'oggetto della stanza corrente.
+:::
 
 Fai lo stesso anche per gli asteroidi. Modifica il numero di punti assegnati come desideri.
 
@@ -421,11 +440,11 @@ Il testo può essere disegnato con stili predefiniti che contengono il colore di
 
 Rendiamo il carattere più grande ed evidente. Cambia le sue dimensioni e imposta "Weight" (peso) a 800. Quindi allinealo a sinistra.
 
-![](./images/tutSpaceShooter_13.png)
+![](../images/tutSpaceShooter_13.png)
 
 Fare clic sulla scheda `Fill`, attivala, quindi seleziona il tipo di riempimento "Diffuse". Seleziona un colore appropriato; io ho scelto qualcosa di simile ai colori della nave del giocatore.
 
-![](./images/tutSpaceShooter_14.png)
+![](../images/tutSpaceShooter_14.png)
 
 Aggiungi ombreggiatura, bordo o entrambi! Quindi salva le modifiche facendo clic sul pulsante "Appy" (applica) nell'angolo in basso a sinistra.
 
@@ -444,7 +463,9 @@ this.scoreLabel.x = 30;
 this.scoreLabel.y = 30;
 ```
 
-::: tip `ct.styles.get('Style');` carica lo stile dato. Puoi usarlo all'interno del costruttore PIXI.Text per definire lo stile dell'etichetta creata. :::
+::: tip
+`ct.styles.get('Style');` carica lo stile dato. Puoi usarlo all'interno del costruttore PIXI.Text per definire lo stile dell'etichetta creata.
+:::
 
 Se avvii il gioco, il punteggio verrà disegnato nello stile che hai creato. Evviva!
 
@@ -461,7 +482,9 @@ this.livesLabel.y = 30;
 this.livesLabel.depth = 1000;
 ```
 
-::: tip Da solo! Crea un nuovo stile e applicalo all'etichetta `livesLabel`. :::
+::: tip Da solo!
+Crea un nuovo stile e applicalo all'etichetta `livesLabel`.
+:::
 
 Ora dovremmo aggiungere la logica in modo che la nave del giocatore perda una vita in caso di collisione. Potremmo procedere come già fatto per nemici e asteroidi in relazione ai laser del giocatore, ma è meglio usare un'altra strategia e cioè usare il *gruppo di collisioni* . Ciò ci consentirà di scrivere meno codice e non richiederà alcuna modifica se aggiungeremo altri nemici, missili o asteroidi di dimensioni diverse.
 
@@ -487,9 +510,11 @@ if (ct.room.lives <= 0) {
 
 `setTimeout` è una funzione standard del browser che esegue una funzione dopo un determinato numero di millisecondi. Qui aspettiamo un secondo (1000 millisecondi) e poi riavviamo la stanza.
 
-::: tip `setTimeout` può sembrare un modo migliore per lavorare con eventi ritardati rispetto alla scrittura di timer. La differenza è che i timer esistono mentre esiste il suo proprietario, mentre `setTimeout` verrà eseguita in qualsiasi circostanza, anche se la copia che lo ha chiamato è stata rimossa da una stanza. (In realtà, c'è *un* modo per annullare un `setTimeout`, ma non è così utile quando si lavora con copie diverse. Ok, dimentica quello che ho detto.)
+::: tip
+`setTimeout` può sembrare un modo migliore per lavorare con eventi ritardati rispetto alla scrittura di timer. La differenza è che i timer esistono mentre esiste il suo proprietario, mentre `setTimeout` verrà eseguita in qualsiasi circostanza, anche se la copia che lo ha chiamato è stata rimossa da una stanza. (In realtà, c'è *un* modo per annullare un `setTimeout`, ma non è così utile quando si lavora con copie diverse. Ok, dimentica quello che ho detto.)
 
-Nel nostro caso, vogliamo che la stanza venga riavviata anche se non ci  sono navi dei giocatori sullo schermo, quindi utilizziamo `setTimeout`. Usiamo i timer per sparare e generare i nemici perché non vogliamo che i  proiettili appaiano casualmente dopo che i nemici sono stati distrutti. :::
+Nel nostro caso, vogliamo che la stanza venga riavviata anche se non ci  sono navi dei giocatori sullo schermo, quindi utilizziamo `setTimeout`. Usiamo i timer per sparare e generare i nemici perché non vogliamo che i  proiettili appaiano casualmente dopo che i nemici sono stati distrutti.
+:::
 
 Salva il tuo progetto e provalo. Ora hai uno sparatutto spaziale piccolo ma perfettamente funzionante! Ci sono molti modi per migliorare ulteriormente questo gioco:
 
