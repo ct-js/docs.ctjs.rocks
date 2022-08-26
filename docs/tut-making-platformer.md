@@ -211,31 +211,14 @@ if (ct.place.occupied(this, this.x, this.y + 1, 'Solid')) {
 By multiplying values to `ct.delta`, we make sure that everything moves uniformly at any framerate.
 :::
 
-This will set variables `hspeed` and `vspeed`, but they won't do anything as is. And we don't want to clip into a wall or move when we are next to a 'Solid'. Add more code to actually move the Robot around:
+This will set variables `hspeed` and `vspeed`, but they won't do anything as is. And we don't want to clip into a wall or move when we are next to a 'Solid'. Gladly, we can add this magical line to the end to make the character properly collide with solid objects:
 
 ```js
-// Move by horizontal axis, pixel by pixel
-for (var i = 0; i < Math.abs(this.hspeed); i++) {
-    if (ct.place.free(this, this.x + Math.sign(this.hspeed), this.y, 'Solid')) {
-        this.x += Math.sign(this.hspeed);
-    } else {
-        break;
-    }
-}
-// Do the same for vertical speed
-for (var i = 0; i < Math.abs(this.vspeed); i++) {
-    if (ct.place.free(this, this.x, this.y + Math.sign(this.vspeed), 'Solid')) {
-        this.y += Math.sign(this.vspeed);
-    } else {
-        break;
-    }
-}
+this.moveContinuousByAxes('Solid');
 ```
 
 ::: tip
-`ct.place.free` is an opposite equivalent of `ct.place.occupied`. It has the same parameters and returns either `true` or `false`.
-
-`Math.abs` returns the absolute value of a given number, meaning that negative numbers will become positive. `Math.sign` returns -1 if the given value is negative, 1 if it is positive, and 0 if it is 0. Combined together, they create a `for` loop which works in both directions and checks collisions pixel by pixel.
+`this.moveContinuousByAxes` is a method from `ct.place` module that gradually moves a copy pixel by pixel, stopping near the obstacles. It is great for platformers and when you need precise sliding movements.
 :::
 
 We can now move our Robot around!
