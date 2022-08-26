@@ -169,7 +169,7 @@ Open the "Templates" tab, then click on the `EnemyShip`. Navigate to the `Creati
 
 ```js
 this.speed = 3;
-this.direction = 270;
+this.direction = 90;
 ```
 
 Here, we use built-in variables for moving. Manually editing coordinates is good for handling player's input, but for most tasks it is better to use these vars as they automate most of the things. For example, you don't need to use `ct.delta` while using `this.speed` and `this.direction`. Here, `this.speed` means the speed of the Copy, and `this.direction` refers to its direction.
@@ -212,7 +212,7 @@ Open the `Asteroid_Medium` in the "Templates" tab, then write the code below in 
 
 ```js On Create event
 this.speed = ct.random.range(1, 3);
-this.direction = ct.random.range(270 - 30, 270 + 30);
+this.direction = ct.random.range(90 - 30, 90 + 30);
 ```
 
 The `Frame start` event will be the same as in `EnemyShip`.
@@ -257,7 +257,7 @@ Now let's move to the `Laser_Blue` itself. We will define its movement with defa
 
 ```js On Create code
 this.speed = 18;
-this.direction = 90;
+this.direction = 270;
 ```
 
 Next, let's make sure that these laser bullets will disappear after they fly out the view. As they always fly to top, we may write a condition for the upper border only.
@@ -319,7 +319,7 @@ Let's write some code to red bullets. Add this code to `Creation` section of Las
 
 ```js
 this.speed = 8;
-this.direction = 270;
+this.direction = 90;
 
 this.angle = ct.random.deg();
 ```
