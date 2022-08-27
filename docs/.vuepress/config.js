@@ -152,7 +152,9 @@ module.exports = {
           {
             link: '/content-subsystem',
             text: 'Content editor'
-          }
+          },
+          "building-your-game",
+          "deployment-itch-io"
         ]
       }, {
         text: 'Tips & tricks',
