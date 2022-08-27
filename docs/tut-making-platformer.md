@@ -85,11 +85,11 @@ Create additional templates in the same way:
 
 ### Adding a Room
 
-Click on the "Rooms" tab at the top and create a new room. Set its name to "Level_01". In the "Properties" tab with a cog icon, set view's size to 1024x576.
+Click on the "Rooms" tab at the top and create a new room. In the "Properties" panel with a cog icon, set its name to "Level_01" and view's size to 1024x576.
 
 ![Editing a room](./images/tutPlatformer_10.png)
 
-Then draw a level by clicking on a template on the left and then placing it with your mouse in the big area on the right. Hold `Shift` to add multiple copies at once. Don't forget about the robot!
+Then draw a level! Select the "Add copies" tool, click on a template on the left and draw with them with your mouse in the big area on the right. Don't forget about the robot!
 
 You can expand your level to any side, and copies don't need to be inside the blue frame. This frame, which is manipulated by view's size, just sets the initially visible part of your level.
 
@@ -97,7 +97,7 @@ I drew this. It is hard to get stuck here as a player, but it teaches how to jum
 
 ![Comigo's platformer level](./images/tutPlatformer_11.png)
 
-Now let's add a background. Click the "Backgrounds" tab on the left, press "Add", and select the `BG` asset. Now click the cog near our new background and change its depth to `-10`. Thus we tell the engine that the background should be drawn 10 layers below the default 0 layer.
+Now let's add a background. Click the "Backgrounds" tool on the left, press "Add background", and select the `BG` asset. Now click the cog near our new background and change its depth to `-10`. Thus we tell the engine that the background should be drawn 10 layers below the default 0 layer.
 
 ![](./images/tutPlatformer_27.png)
 
@@ -437,7 +437,7 @@ var inGameRoomStart = function (room) {
 
 ![Creating a reusable script](./images/tutPlatformer_21.png)
 
-Now go to each room's "Room start" code and add this line:
+Now go to each room, click the "Events" button in the top toolbar, add an event "Room start", and add this line there:
 
 ```js
 inGameRoomStart(this);
