@@ -62,16 +62,16 @@ Let's create a room where all the fun will be happening! Rooms are often called 
 
 A room editor for this exact room will appear. Call the room as `InGame` — we will use this particular name later in code. There are no rules in naming them, though; we just need something we can remember later while coding menus :)
 
-Then, on the Properties tab with a gear icon, we need to set the size of our room. Set it to 1080x1920 pixels.
+Then, on the Properties panel with a gear icon, we need to set the size of our room. Set it to 1080x1920 pixels.
 
 ![Setting room's name and viewport size in ct.js](./images/tutJettyCat_07.png)
 
-Now, let's add our backgrounds. Click the tab "Backgrounds", then add two of them: for the sky and for ground. The sky looks good as is, but the ground needs tweaking. Click the cog next to the background's texture in the left column, and find the drop-down "Repeat". Set it to "repeat-x": it will make the background tile horizontally only, as X is the horizontal axis (Y is the vertical one). Then, we will need to shift the ground right to the bottom of the room's frame by changing the Shift Y field.
+Now, let's add our backgrounds. Click the "Backgrounds" tool on the left, then add two of them: for the sky and for ground. The sky looks good as is, but the ground needs tweaking. Click the cog next to the background's texture in the left column, and find the drop-down "Repeat". Set it to "repeat-x": it will make the background tile horizontally only, as X is the horizontal axis (Y is the vertical one). Then, we will need to shift the ground right to the bottom of the room's frame by changing the Shift Y field.
 
 ![Opening a texture asset in ct.js](./images/tutJettyCat_08.png)
 
 ::: tip Hint:
-You can navigate the room by dragging it with mouse and zooming with a mouse wheel, or with the zoom slider in the upper-right corner.
+You can navigate the room by dragging it while pressing the mouse wheel and zooming with it.
 :::
 
 We will also set the depth of both backgrounds so that they are aligned properly. Depth is a 3rd dimension that tells ct.js how to sort our objects, so that sky doesn't accidentally overlap everything else. Positive values bring stuff closer to the camera, and thus objects with positive depth will overlap those with a negative one.
@@ -90,11 +90,11 @@ Let's create a template for our cat! Open the "Templates" tab at the top of the 
 
 ![Setting a texture and the name of a template in ct.js](./images/tutJettyCat_10.png)
 
-We can now add the cat to our room! Navigate to it by switching back to the "Rooms" tab and opening our only room. Our cat will appear in the left column under the "Copies" tab. Click on it, and then click once again in a place where you want your copy to appear in the level. We will need just one cat for now.
+We can now add the cat to our room! Navigate to it by switching back to the "Rooms" tab and opening our only room. When we click the "Add copies" tool, our cat will appear in a new panel. Click on the cat, and then click once again in a place where you want your copy to appear in the level. We will need just one cat for now.
 
 ![Placing a copy in the level in ct.js](./images/tutJettyCat_11.png)
 
-If you click the "Play button" now, it will run the debugger, and we will see a static screen with our backgrounds and our cat. The cat doesn't move yet, and that's what we will change now!
+If you click the "Launch" button now, it will run the debugger, and we will see a static screen with our backgrounds and our cat. The cat doesn't move yet, and that's what we will change now!
 
 ![Testing the game in ct.js](./images/tutJettyCat_12.png)
 
@@ -197,7 +197,7 @@ Create a new template and call it `Tube`. Select its texture as one of the relat
 
 ![Creating a tube template with a collision group](./images/tutJettyCat_18.png)
 
-Then, open our room and add pipes on the ground, so we can check the collisions. Open the room `InGame`, select the tube in the left column, and then add them by clicking in the level view where you want to spawn them. We won't need many for testing.
+Then, open our room and add pipes on the ground, so we can check the collisions. Open the room `InGame`, select the "Add copies" tool, select the tube in the panel with the templates, and then add them by clicking in the level view where you want to spawn them. We won't need many for testing.
 
 ![Creating a series of obstacles in the level](./images/tutJettyCat_19.png)
 
@@ -294,7 +294,7 @@ Time for testing! If your pipes spawn misaligned, check that you set up collisio
 
 ## Spawning pipes through time
 
-Like templates, rooms can have their own logic as well — they are hidden under the button "Room events" in a room editor. There are four events as well:
+Like templates, rooms can have their own logic as well — they are hidden under the button "Events" in the top bar of a room editor. There are four basic events as well, and additional ones, too:
 
 * "Room start" that runs once when you switch to this room or start a game in this room;
 * "Frame start" that runs at each frame after any other Frame start events of copies;
@@ -308,7 +308,7 @@ We will do the following to spawn new pipes through time:
 3. When the timer event is fired we will wind it up again and create new tubes relative to the camera position.
     * We will also create tubes at the top of the viewport and use scaling to flip these tubes so that they point downwards.
 
-Open our only room `InGame`. Remove existing tubes by holding Control key and dragging the mouse, or by right-clicking these copies and using the context menu. Then, click the button "Room events" in the left column.
+Open our only room `InGame`. Remove existing tubes by holding Control key and dragging the mouse while the copy tool is active, or by selecting them with the Select tool and pressing `Delete` on your keyboard. Then, click the button "Events" in the top bar.
 
 ![](./images/tutJettyCat_22.png)
 
@@ -363,7 +363,7 @@ No worries, there is a solution ✨ We will use the same scaling to make the cat
 There are two methods to scaling the cat:
 
 * we can add a line `this.scale.x = this.scale.y = 0.65;` to the cat's "Creation" event;
-* or we can do the same by right-clicking it in the room editor and changing its scale.
+* or we can do the same by resizing it in the room editor with the "Select" tool.
 
 ![Changing a copy's scale in the room editor](./images/tutJettyCat_23.png)
 
@@ -492,16 +492,14 @@ By writing `this.label = new Pixi.Text(…)`, we instantly remember the referenc
 
 We need to update the text label at each frame. In the Frame end event, put the line `this.label.text = ct.room.score;`.
 
-Finally, let's create a room for this counter and put this room inside the main one. Create a new room, and call it `UI_InGame`. Then, set its view size to 1080x1920 to match the main room's viewport, and put a counter's copy in the top-left corner:
+Finally, let's create a room for this counter and put this room inside the main one. Create a new room, and call it `UI_InGame`. Then, set its view size to 1080x1920 to match the main room's viewport, mark it as a UI layer, and put a counter's copy in the top-left corner:
 
 ![Creating a UI layer in ct.js](./images/tutJettyCat_27.png)
 
 Then open the room `InGame`, and add this code to the bottom of its Room start code:
 
 ```js
-ct.rooms.append('UI_InGame', {
-    isUi: true
-});
+ct.rooms.append('UI_InGame');
 ```
 
 After that, you should have stars spawning in the level, and the increment score displayed in the top-left corner of the viewport.
