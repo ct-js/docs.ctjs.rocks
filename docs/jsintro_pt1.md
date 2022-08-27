@@ -37,7 +37,7 @@ var invincible = true, // These are Boolean values
 
 ## Properties
 
-Variables are great for temporal values, but they disappear after a ct.js event completes (e.g., after 'On Destroy', 'On Step'). This makes variables useful for quick operations but unusable for a long run. We should use *properties* to store information so that we can use it later.
+Variables are great for temporal values, but they disappear after a ct.js event completes (e.g., after 'Destruction', 'Frame start'). This makes variables useful for quick operations but unusable for a long run. We should use *properties* to store information so that we can use it later.
 
 You can use properties in the same way you use variables, but they may only exist inside *Objects*. Objects are very abstract things, and they include all the Copies and Rooms. You will create your own Objects soon, too. But for now, let's look how to create and use properties:
 
@@ -57,7 +57,7 @@ this.bleed = false;
 
 As you can see, the most significant difference is that we don't need to declare properties. We can start writing values to them directly.
 
-There is also a new keyword: `this`. `this` stands for the current object which calls the code. If you write a code for an 'On Step' event of a Copy, then `this` will point to this exact copy. Writing `this.health = 100;` means that we store a property `health` inside the current copy, with a value `100`.
+There is also a new keyword: `this`. `this` stands for the current object which calls the code. If you write a code for an 'Frame start' event of a Copy, then `this` will point to this exact copy. Writing `this.health = 100;` means that we store a property `health` inside the current copy, with a value `100`.
 
 We can use a `this` keyword inside a room's code. In this case, values will be stored in a room.
 
