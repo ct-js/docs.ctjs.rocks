@@ -563,6 +563,7 @@ module.exports = {
               "/it/tut-making-platformer",
               "/it/tut-making-jettycat",
               "/it/tut-polishing-jettycat",
+              "/it/deployment-itch-io.md"
             ],
           },
         ],
