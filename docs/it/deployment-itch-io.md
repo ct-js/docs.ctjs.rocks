@@ -1,7 +1,5 @@
 # Deploying to itch.io
 
-Before deploying your game to [itch.io](https://itch.io/) you will need to have your exported game files. You will also need an account and some screenshots of your project. If you are unsure how to export your game, please see the [Creazione del gioco](/building-your-game.md) section.
-
 Prima di distribuire il tuo gioco su [itch.io](https://itch.io/) dovrai esportare i file necessari. Avrai anche bisogno di un account su itch.io e di alcuni screenshot del tuo progetto. Se non sei sicuro di come esportare il tuo gioco, consulta la sezione [Creazione del gioco](/building-your-game.md).
 
 Ecco cosa faremo:
@@ -39,7 +37,8 @@ Una volta caricato, seleziona la casella di controllo denominata: **[x] This fil
 ::: tip
 There are some additional options here if you are uploading the executable files. For detailed explanations on these options, please consult the [itch.io docs](https://itch.io/docs/itch/)
 
-Ci sono alcune opzioni aggiuntive qui nel caso tu stia caricando i file eseguibili. Per dettagli su queste opzioni consulta i [documenti itch.io docs](https://itch.io/docs/itch/)::
+Ci sono alcune opzioni aggiuntive qui nel caso tu stia caricando i file eseguibili. Per dettagli su queste opzioni consulta i [documenti itch.io docs](https://itch.io/docs/itch/)
+::
 
 ## Visualizza in anteprima la pagina del gioco
 
