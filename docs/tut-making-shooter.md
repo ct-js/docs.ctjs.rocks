@@ -64,29 +64,21 @@ Let's place created templates somewhere on the map. To create this map, or Room,
 
 ![](./images/tutSpaceShooter_08.png)
 
-Here we will stop a bit to explain how to use the Room editor. Firstly, we can set up a Room's name and its viewport size.
+Here we will stop a bit to explain how to use the Room editor. The extended explanation can be found [here](/room-editor.html), but right now we will use just a few tools of it. Firstly, we should set up a Room's name and its viewport size in room's properties, by clicking the cog button in the left toolbar.
 
 In ct.js, Rooms are infinite and can pan in any direction. You can place objects inside and outside the viewport.
 
-Then we have Room events. It is a section that defines game logic specifically for this room. You can define UI or level scenario here.
+You can navigate the room by holding the mouse wheel and dragging your mouse. You can change zoom level by mouse wheel, or by changing zoom in the dropdown in the top toolbar. If you feel lost, press the "Reset viewport" menu item in the zoom dropdown to return to (0, 0) coordinates — or just press the `H` key.
 
-Under this button we have a panel with Copies and Backgrounds. We pick a Copy from the according tab and place it to the map by clicking on a large area on the right. To disable adding new copies, select a ghostly cat on the left. You can pan the editor's view by dragging your mouse on the left side when nothing is selected. You can change zoom level by using the zoom slider on the top, or by mouse wheel.
-
-If you feel lost, press the "To center" button to return to (0, 0) coordinates.
-
-You can set a grid by clicking on the button in the bottom right corner. Clicking it again will disable the grid.
-
-Lastly, you can move all the copies in the room at once by clicking a button with a "move" icon in the top left corner.
-
-For now, let's place a player's ship, a hostile one and a couple of asteroids.
+For now, let's place a player's ship, a hostile one and a couple of asteroids. Select the "Add copies" tool in the left toolbar, pick a template, and position a copy of it onto a level with a mouse click.
 
 ![](./images/tutSpaceShooter_10.png)
 
-Then add a background. Click the "Backgrounds" tab and press "Add", then select our `BG`. It will appear as a tiled texture in the main view.
+Then add a background. Click the "Backgrounds" tool on the left and press the "Add a background" button, then select our `BG`. It will appear as a tiled texture in the main view.
 
 ![](./images/tutSpaceShooter_09.png)
 
-Though backgrounds are always drawn before Copies of the same depth level (`0` by default), it is better to change their Depth level. Click on the cog on the left to the background's icon in the left column and input `-5` in the "Depth" field. By doing this, we tell the engine that this background is placed lower than other Copies and backgrounds. Depth represents a third coordinate axis that goes upwards, when X and Y go to the sides.
+Though backgrounds are always drawn before Copies of the same depth level (`0` by default), it is better to change their Depth level. Click on the cog on the right to the background's thumbnail and input `-5` in the "Depth" field. By doing this, we tell the engine that this background is placed lower than other Copies and backgrounds. Depth represents a third coordinate axis that goes upwards, when X and Y go to the sides.
 
 ![](./images/tutSpaceShooter_Depth.png)
 
