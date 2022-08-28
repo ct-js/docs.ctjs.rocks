@@ -32,7 +32,7 @@ Quindi, seleziona l' opzione " **Line Strip / Polygon** " sotto l'etichetta "Col
 
 ![](../images/tutSpaceShooter_03.png)
 
-Premi "Save" e passa alla trama successiva: "LaserRed". Come per la nave, imposta il suo asse al centro cliccando "Image's center". Quindi, seleziona una forma di collisione di tipo **Circle** proprio sotto questo pulsante. Ora la forma della collisione gialla è circolare.
+Premi "Save" e passa alla texture successiva: "LaserRed". Come per la nave, imposta il suo asse al centro cliccando "Image's center". Quindi, seleziona una forma di collisione di tipo **Circle** proprio sotto questo pulsante. Ora la forma della collisione gialla è circolare.
 
 Anche la texture successiva, `Laser_Blue`, dovrà essere centrata e poiché la forma della collisione dovrebbe  coprire tutta l'immagine, clicca sul pulsante "Fill" (riempi).
 
@@ -126,22 +126,22 @@ Scrivi il seguente codice:
 
 ```js
 /**
- * Move the ship
- * See Project > Actions and input methods panel
- * and "Actions" in the docs.
+ * Sposta la nave
+ * Vedi Project > Pannello Actions and input methods
+ * e "Actions" nella documentazione.
  */
 
-this.x += 8 * ct.delta * ct.actions.MoveX.value; // Move by X axis
+this.x += 8 * ct.delta * ct.actions.MoveX.value; // Spostamento lungo l'asse x
 
 
 /**
- * Check whether the ship fell off the viewport
+ * Controlla se la nave è uscita dalla schermata
  */
-if (this.x < 0) { // Have the ship crossed the left border?
-    this.x = 0; // Go back to the left border
+if (this.x < 0) { // La nave ha oltrepassato il bordo sinistro?
+    this.x = 0; // Torna al bordo sinistro
 }
-if (this.x > ct.camera.width) { // Have the ship crossed the right border?
-    this.x = ct.camera.width; // Go back to the right border
+if (this.x > ct.camera.width) { // La nave ha oltrepassato il bordo destro?
+    this.x = ct.camera.width; // Torna al bordo destro
 }
 
 this.move();
@@ -210,7 +210,7 @@ Gli asteroidi conterranno lo stesso codice nell'evento `Frame start`, ma la loro
 
 Apri il `Asteroid_Medium` nella scheda "Template", quindi scrivi il codice qui sotto riportato nell'evento `Creation` (ricordati che devi cliccare "Add an event" per aggiungerlo).
 
-```js On Create event
+```js Creation event
 this.speed = ct.random.range(1, 3);
 this.direction = ct.random.range(90 - 30, 90 + 30);
 ```
@@ -255,14 +255,14 @@ Con i dati forniti creiamo un proiettile laser proprio sotto la nostra nave. I p
 
 Ora passiamo al template del `Laser_Blue`. Definiremo il suo movimento con questi valori di default.
 
-```js On Create code
+```js Creation code
 this.speed = 18;
 this.direction = 270;
 ```
 
 Quindi, assicuriamoci che questi proiettili laser scompaiano dopo che escono fuori dalla visuale. Poiché si spostano solo verso l'alto, potremmo scrivere un'unica condizione per il bordo superiore.
 
-```js Step code
+```js Frame start code
 if (this.y < -40) {
     this.kill = true;
 }
@@ -364,14 +364,14 @@ Genereremo nemici quasi nello stesso modo in cui le navi nemiche generano i loro
 Per fare ciò, imposta due timer nel codice `Room start`:
 
 ```js
-this.timer1 = 0.3; // asteroid timer
-this.timer2 = 3; // enemy timer
+this.timer1 = 0.3; // Timer per gli asteroidi
+this.timer2 = 3; // Timer per i nemici
 ```
 
 Quindi aggiungi questo codice nell'evento `Timer 1` per generare gli asteroidi nel corso della partita:
 
 ```js
-// asteroid timer
+// Timer per gli asteroidi
 this.timer1 = ct.random.range(0.3, 3);
 ct.templates.copy(ct.random.dice('Asteroid_Big', 'Asteroid_Medium'), ct.random(ct.camera.width), -100);
 ```
@@ -379,7 +379,7 @@ ct.templates.copy(ct.random.dice('Asteroid_Big', 'Asteroid_Medium'), ct.random(c
 Quindi aggiungi questo codice nell'evento `Timer 2` per generare i nemici:
 
 ```js
-// enemy timer
+// Timer per i nemici
 this.timer2 = ct.random.range(3, 6);
 ct.templates.copy('EnemyShip', ct.random(ct.camera.width), -100);
 ```
@@ -453,8 +453,8 @@ Assegna un nome allo stile creato tipo `ScoreText`. Puoi rinominarlo facendo cli
 Ora torniamo agli eventi della room. Seleziona `Room start` e modifica il codice per applicare lo stile appena creato:
 
 ```js{5}
-this.timer1 = 0.3; // asteroid timer
-this.timer2 = 3; // enemy timer
+this.timer1 = 0.3; // Timer per gli asteroidi
+this.timer2 = 3; // Timer per i nemici
 
 this.score = 0;
 this.scoreLabel = new PIXI.Text('Score: ' + this.score, ct.styles.get('ScoreText'));
