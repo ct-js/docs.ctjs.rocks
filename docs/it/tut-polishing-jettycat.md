@@ -1,7 +1,7 @@
 # Migliorare JettyCat
 
 ::: tip Ehi,
-Questo tutorial presuppone che tu abbia terminato il tutorial [Making Games: Jetty Cat](https://docs.ctjs.rocks/it/tut-making-jettycat.html) . Dovresti completare questo prima.
+Questo tutorial presuppone che tu abbia terminato il tutorial [Making Games: Jetty Cat](tut-making-jettycat.html). Dovresti completare questo prima.
 :::
 
 Il gioco è già completo dal punto di vista meccanico, ma ci sono molti modi per migliorarlo esteticamente e dal punto di vista del gameplay! Questa sezione evidenzia anche alcune nuove funzionalità della v1.3.
@@ -19,6 +19,7 @@ Ora, modifica il codice dell'evento pointer "Click" del template `Button_Play` i
 ```js
 if (!this.pressed) {
     this.pressed = true;
+    // Effetto grafico: un cerchio blu che si ingrandisce in 1 secondo
     ct.transition.circleOut(1000, 0x446ADB)
     .then(() => {
         ct.rooms.switch('InGame');
@@ -55,6 +56,7 @@ this.alpha = 0;
 
 ct.tween.add({
     obj: this,
+    // Transizione da trasparente ad opaco in 500 millisecondi (mezzo secondo)
     fields: {
         alpha: 1
     },
@@ -72,6 +74,7 @@ if (!this.pressed) {
     this.pressed = true;
     ct.tween.add({
         obj: this.getRoom(),
+        // Transizione da opaco a trasparente in 500 millisecondi (mezzo secondo)
         fields: {
             alpha: 0
         },
@@ -79,6 +82,7 @@ if (!this.pressed) {
         useUiDelta: true
     })
     .then(() => {
+        // Imposta nuovamente ct.delta ad 1 e il gioco riprende
         ct.pixiApp.ticker.speed = 1;
         ct.rooms.remove(this.getRoom());
     });
@@ -100,6 +104,7 @@ if (!this.pressed) {
     this.pressed = true;
     ct.tween.add({
         obj: this.getRoom(),
+        // Transizione da opaco a trasparente in 500 millisecondi (mezzo secondo)
         fields: {
             alpha: 0
         },
@@ -108,6 +113,7 @@ if (!this.pressed) {
     })
     .then(() => {
         ct.tween.add({
+            // ct.delta viene aumentato fino ad 1 in modo graduale
             obj: ct.pixiApp.ticker,
             fields: {
                 speed: 1
@@ -130,7 +136,7 @@ Dalla v1.3, ct.js ti consente di progettare visivamente effetti particellari e r
 
 Apri la scheda "FX" in alto e crea un nuovo emettitore di particelle. Chiamalo `StarBurst`.
 
-Seleziona la sua trama nell'angolo in alto a sinistra e inizia a modificare i valori! Ci sono molte categorie che manipolano il modo in cui le particelle si muovono, cambiano nel tempo e si generano.
+Seleziona la sua texture nell'angolo in alto a sinistra e inizia a modificare i valori! Ci sono molte categorie che manipolano il modo in cui le particelle si muovono, cambiano nel tempo e si generano.
 
 Prova a farlo sembrare così:
 
@@ -158,13 +164,13 @@ Qui leggiamo la posizione della stella ( `this.x, this.y`) e diciamo di generare
 
 ### Creare un getto di fumo
 
-Per prima cosa avremo bisogno di una texture che assomigli a fumo. Vai nella scheda delle texture e fai clic sul pulsante Galleria nella parte superiore. Questo game engine include pacchetti di texture che puoi importare direttamente nel tuo gioco! Entra nel Jumperpack e importa la texture Smoke. Ora chiudi la galleria e vedrai che la trama del fumo fa parte del tuo progetto!
+Per prima cosa avremo bisogno di una texture che assomigli a fumo. Vai nella scheda delle texture e fai clic sul pulsante Galleria nella parte superiore. Questo game engine include pacchetti di texture che puoi importare direttamente nel tuo gioco! Entra nel Jumperpack e importa la texture Smoke. Ora chiudi la galleria e vedrai che la texture del fumo fa parte del tuo progetto!
 
 ![Importare una texture dalla galleria](../images/tutJettyCat_gallery.png)
 
 Apri la scheda "FX" in alto e crea un nuovo emettitore di particelle. Chiamalo `Jet`.
 
-Per iniziare, premi il pulsante `Select` nella sezione "Texture" e carica la trama chiamata `Smoke`. Nell'angolo in basso a destra, trova il pulsante "Imposta texture di anteprima" e seleziona il nostro gatto. Dopodiché, sentiti libero di armeggiare con l'editor per ottenere l'effetto che desideri. Io ho realizzato un getto di bolle bianche di diverse dimensioni:
+Per iniziare, premi il pulsante `Select` nella sezione "Texture" e carica la texture chiamata `Smoke`. Nell'angolo in basso a destra, trova il pulsante "Imposta texture di anteprima" e seleziona il nostro gatto. Dopodiché, sentiti libero di armeggiare con l'editor per ottenere l'effetto che desideri. Io ho realizzato un getto di bolle bianche di diverse dimensioni:
 
 ![Un effetto particellare di un jet in ct.js](../images/tutJettyCat_Jet.gif)
 
@@ -256,7 +262,7 @@ Qui cambiamo `this.wiggleTime` ad ogni fotogramma per il tempo trascorso, moltip
 
 Usiamo lo stesso approccio per creare un suggerimento visivo per suggerire ad un utente di iniziare a toccare! Sarà un'icona a forma di mano.
 
-Crea un nuovo template chiamato `PressHint` con una texture `PressHint`. Assicurati che la trama abbia il suo asse centrato.
+Crea un nuovo template chiamato `PressHint` con una texture `PressHint`. Assicurati che la texture abbia il suo asse centrato.
 
 Nel codice "Creation" del template, aggiungi una riga `this.pulsePhase = 0;`. Nel suo codice "Frame start", inserisci questo snippet:
 
@@ -296,4 +302,7 @@ Il menu principale ora avrà un cielo animato e il cielo nel livello di gioco pr
 
 Il gioco è rifinito e sembra fantastico, evviva! È ora di leggere altri tutorial o di creare un nuovo gioco da zero!
 
-Buona codifica!
+Ricorda che puoi pubblicare i tuoi giochi su **itch.io** o piattaforme di giochi on line simili. È facile, [leggi le istruzioni nella guida](deployment-itch-io.html).
+
+**Happy coding!**
+Comigo
