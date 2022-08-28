@@ -34,7 +34,7 @@ Gli sfondi sono pronti! È ora di impostare i contorni di collisione dei nostri 
 
 Apriamo il `PotatoCat`! La prima cosa che dovremmo fare è spostare l'asse (Axis nell'originale, potrebbe tradursi come baricentro) della texture. Viene visualizzato come un quadratino, che si trova nell'angolo in alto a sinistra per impostazione predefinita. Un asse è un punto attorno al quale una copia (ogni futuro sprite che utilizzerà questa texture) viene ridimensionata e ruotata. Metti l'asse al centro del corpo del gatto. Quindi, definiamo il suo perimentro di collisione. Il gatto non assomiglia ad un cerchio o un rettangolo, quindi devi selezionare la sua forma di collisione scegliendo l'opzione "Line Strip / Polygon" (spezzata/poligono) nella colonna di sinistra. Apparirà un pentagono: puoi trascinarne gli angoli e aggiungere nuovi punti cliccando sulle linee gialle per delineare meglio la sagoma del gatto. 15 punti possono bastare per delinearlo bene.
 
-![Definizione dell'asse e della forma di collisione di una trama in ct.js](../images/tutJettyCat_04.png)
+![Definizione dell'asse e della forma di collisione di una texture in ct.js](../images/tutJettyCat_04.png)
 
 ::: tip
 È meglio non delineare la coda, così come le orecchie. Quando una coda colpisce un tubo, potrebbe essere eccessivo far perdere il giocatore. In ogni caso, una coda è troppo flessibile per causare collisioni letali 😺
@@ -42,13 +42,13 @@ Apriamo il `PotatoCat`! La prima cosa che dovremmo fare è spostare l'asse (Axis
 
 Dopo aver definito la forma, dovremo creare la stessa maschera di collisione per la texture `PotatoCat_Stunned`. Ma invece di rifare tutto il lavoro nella creazione della maschera punto per punto, possiamo copiarlo! Fare clic sul pulsante copia maschera di collisione e quindi nella texture `PotatoCat_Stunned` fai clic sul pulsante incolla. Non dimenticare di regolare il punto dell'asse!
 
-![Copia della forma di collisione di una trama in ct.js](../images/tutJettyCat_04_2.png)
+![Copia della forma di collisione di una texture in ct.js](../images/tutJettyCat_04_2.png)
 
-![Incollare la forma di collisione di una trama in ct.js](../images/tutJettyCat_04_3.png)
+![Incollare la forma di collisione di una texture in ct.js](../images/tutJettyCat_04_3.png)
 
 Dopo aver definito la forma, fare clic sul pulsante "Save" per tornare all'elenco degli asset. Dovremo anche mettere a punto la texture `Star`.
 
-Per i tubi, useremo qualcosa *di leggermente* diverso. Apri il primo, `Tube_01`, e posiziona il suo asse quasi in fondo allo sprite. Ricordi che l'asse influisce non solo sulla rotazione ma anche sul ridimensionamento? Riutilizzeremo la stessa trama sia per i tubi che pendono dalla parte superiore dello schermo che per quelli che crescono dalla parte inferiore. Per creare quelli superiori, li scaleremo usando un valore negativo attorno al loro asse inferiore per capovolgere la loro estremità verso il basso. Possiamo anche ruotarli in un secondo momento e farli ondeggiare piacevolmente, mantenendo la base fissa.
+Per i tubi, useremo qualcosa *di leggermente* diverso. Apri il primo, `Tube_01`, e posiziona il suo asse quasi in fondo allo sprite. Ricordi che l'asse influisce non solo sulla rotazione ma anche sul ridimensionamento? Riutilizzeremo la stessa texture sia per i tubi che pendono dalla parte superiore dello schermo che per quelli che crescono dalla parte inferiore. Per creare quelli superiori, li scaleremo usando un valore negativo attorno al loro asse inferiore per capovolgere la loro estremità verso il basso. Possiamo anche ruotarli in un secondo momento e farli ondeggiare piacevolmente, mantenendo la base fissa.
 
 ![Definizione dell'asse e della forma di collisione per un tubo in ct.js](../images/tutJettyCat_05.png)
 
@@ -209,16 +209,16 @@ Quindi, apri il template del gatto e seleziona "Frame start". Faremo quanto segu
 Questo è il codice che controlla le collisioni. Posizionalo dopo il codice che controlla l'input del giocatore, ma prima della riga `this.move();`:
 
 ```js
-// If the cat bumped into something solid and the game is not over
+// Se il gatto si è imbattuto in qualcosa di solido e il gioco non è finito
 if (!this.gameover && ct.place.occupied(this, 'Obstacle')) {
-    // Change the texture
+    // Cambia la texture
     this.tex = 'PotatoCat_Stunned';
-    // Set a flag that we will use to stop other logic
+    // Imposta un flag che useremo per fermare la logica del gioco
     this.gameover = true;
-    // Jump to the left
+    // Salta a sinistra
     this.speed = 25;
     this.direction = 135;
-    // Stop camera movement
+    // Fermare il movimento della telecamera
     ct.camera.follow = false;
 }
 ```
@@ -232,7 +232,7 @@ if (this.gameover) {
     this.gravity = 2;
     this.move();
     return;
-    // No code below will be executed if "return" was executed.
+    // Nessun codice verrà eseguito dopo un'istruzione "return".
 }
 ```
 
@@ -253,26 +253,26 @@ Se ora apriamo la nostra room e spostiamo il mouse sullo sfono, vedremo le coord
 Modifica il codice della collisione del gatto come segue, in modo che il gatto rimanga sbalordito dall'urtare terra e cielo. Nota che abbiamo aggiunto parentesi attorno ai nuovi controlli e `ct.place.occupied` per separarli:
 
 ```js {3,4,5,6}
-// If the game is not over, the cat bumped into something solid, or
+// Se il gioco non è finito, il gatto si è imbattuto in qualcosa di solido, o
 if (!this.gameover && (ct.place.occupied(this, 'Obstacle') ||
-    // the cat is below the ground minus its approximate height, or
+    // il gatto è sotto il terreno meno la sua altezza approssimativa, o
     this.y > 1750 - 200) ||
-    // the cat flew off the upper boundary,
+    // il gatto è volato oltre il confine superiore,
     this.y < 0
 ) {
-    // Change the texture
+    // cambia la texture
     this.tex = 'PotatoCat_Stunned';
-    // Set a flag that we will use to stop other logic
+    // imposta un flag che useremo per fermare la logica del gioco
     this.gameover = true;
-    // Jump to the left
+    // salta a sinistra
     this.speed = 25;
     this.direction = 135;
-    // Stop camera movement
+    // ferma il movimento della telecamera
     ct.camera.follow = false;
 }
 ```
 
-### Randomizzare l'altezza del tubo cambiandone la trama
+### Randomizzare l'altezza del tubo cambiandone la texture
 
 Abbiamo già cambiato la texture del gatto con `this.tex = 'NewTextureName';`. Possiamo fare lo stesso con i nostri tubi per randomizzare la loro altezza, poiché abbiamo quattro diverse texture per rappresentarli.
 
@@ -322,26 +322,26 @@ Qui `this.timer1` è un nome di variabile speciale che conta automaticamente fin
 Clicca "Add an event" e scegli tra i "Timers"  l'evento "Timer 1" ed inserisci questo codice:
 
 ```js
-// Wind it again
+// Riavvialo di nuovo
 this.timer1 = 2
 
-// Create two tubes
+// Crea due tubi
 var tube1 = ct.templates.copy('Tube', ct.camera.right + 250, ct.camera.bottom - 130); // At the bottom of the camera
 var tube2 = ct.templates.copy('Tube', ct.camera.right + 250, ct.camera.top - 70); // At the top
 
-// Change second tube's texture depending on which texture is used in the first tube
-if (tube1.tex === 'Tube_01') { // Shortest tube will result in the longest tube
+// Cambia la texture del secondo tubo a seconda della texture utilizzata nel primo tubo
+if (tube1.tex === 'Tube_01') { // Il tubo più corto verrà sostituito da un tubo più lungo
     tube2.tex = 'Tube_04';
 } else if (tube1.tex === 'Tube_02') {
     tube2.tex = 'Tube_03';
 } else if (tube1.tex === 'Tube_03') {
     tube2.tex = 'Tube_02';
-} else if (tube1.tex === 'Tube_04') { // Longest will result in the shortest one
+} else if (tube1.tex === 'Tube_04') { // Il più lungo verrà sostituito dal più breve
     tube2.tex = 'Tube_01';
 }
-// Thus we will always get gaps of the same size, but with random tubes.
+// Quindi manterremo lo stesso passo tra i tubi, ma questi saranno di altezza casuale.
 
-// Now, flip the upper (second) tube
+// Ora, capovolgi il tubo superiore (il secondo)
 tube2.scale.y = -1;
 ```
 
@@ -392,7 +392,7 @@ Aggiungiamo un template per i bonus stella che aumenteranno il punteggio una vol
 
 Ora apri l'evento "Creation" del livello `InGame` e aggiungi una riga  `this.score = 0;`. Questo comando creerà una variabile che potremo modificare e leggere in qualsiasi altra copia.
 
-Crea un nuovo modello e chiamalo `Star`. Imposta la sua trama.
+Crea un nuovo modello e chiamalo `Star`. Imposta la sua texture.
 
 Crea un evento "Collision with a template" usando il modello che trovi cliccando "Add an event"  e seleziona PotatoCat come template. Quindi, inserisci questo script:
 
@@ -426,29 +426,29 @@ if (this.x < ct.camera.left - 150) {
 Nel codice dell'evento "Timer1" della romma `InGame`, aggiungi un paio di righe (quelle evidenziate) che aggiungeranno una stella con una probabilità del 30% da qualche parte tra i prossimi due tubi. Utilizzerà i metodi del modulo `ct.random`:
 
 ```js {27,28,29,30}
-// Wind it again
+// Riavvialo di nuovo
 this.timer1 = 2
 
-// Create two tubes
+// Crea due tubi
 var tube1 = ct.templates.copy('Tube', ct.camera.right + 250, ct.camera.bottom - 130); // At the bottom of the camera
 var tube2 = ct.templates.copy('Tube', ct.camera.right + 250, ct.camera.top - 70); // At the top
 
-// Change second tube's texture depending on which texture is used in the first tube
-if (tube1.tex === 'Tube_01') { // Shortest tube will result in the longest tube
+// Cambia la texture del secondo tubo a seconda della texture utilizzata nel primo tubo
+if (tube1.tex === 'Tube_01') { // Il tubo più corto verrà sostituito da un tubo più lungo
     tube2.tex = 'Tube_04';
 } else if (tube1.tex === 'Tube_02') {
     tube2.tex = 'Tube_03';
 } else if (tube1.tex === 'Tube_03') {
     tube2.tex = 'Tube_02';
-} else if (tube1.tex === 'Tube_04') { // Longest will result in the shortest one
+} else if (tube1.tex === 'Tube_04') { // Il più lungo verrà sostituito dal più breve
     tube2.tex = 'Tube_01';
 }
-// Thus we will always get gaps of the same size, but with random tubes.
+// Quindi manterremo lo stesso passo tra i tubi, ma questi saranno di altezza casuale.
 
-// Now, flip the upper (second) tube
+// Ora, capovolgi il tubo superiore (il secondo)
 tube2.scale.y = -1;
 
-// Create a star bonus with 30% chance somewhere in between top and bottom edge, with 300px padding.
+// Crea un bonus a stella con una probabilità del 30% da qualche parte tra il bordo superiore e inferiore, a 300px dalle estremità.
 if (ct.random.chance(30)) {
     ct.templates.copy('Star', ct.camera.right + 250 + 500, ct.random.range(ct.camera.top + 300, ct.camera.bottom - 300));
 }
@@ -556,14 +556,14 @@ Crea un template per la texture `Button_Pause`. Assicurati che la texture `Butto
 Il template `Button_Pause` avrà questo codice nel suo "Pointer events Click":
 
 ```js
-// Check if we don't have any rooms called 'UI_Paused'
+// Controlla se esistono stanze chiamate "UI_Paused"
 if (ct.rooms.list['UI_Paused'].length === 0) {
-    // Create a room UI_Paused, put it above the current one (append it),
-    // and specify that it is a UI layer (isUi: true)
+    // crea una stanza "UI_Paused", mettila al di sopra di quella attuale (append),
+    // e specificare che si tratta di un livello dell'interfaccia utente (isUi: true)
     ct.rooms.append('UI_Paused', {
         isUi: true
     });
-    // Turns ct.delta into 0, effectively stopping the game
+    // Imposta ct.delta a 0, fermando di fatto il gioco
     ct.pixiApp.ticker.speed = 0;
 }
 ```
@@ -631,10 +631,10 @@ Ora crea una stanza chiamata `UI_OhNo` con i template creati.
 L'ultima cosa di cui abbiamo bisogno è creare questa stanza quando il gatto incontra un ostacolo. Apri il modello `PotatoCat`e trova il punto in cui rileviamo la collisione con la superficie o gli ostacoli nel suo evento "Frame start". Aggiungi questo codice subito dopo la riga con `ct.camera.follow = false;`:
 
 ```js
-// Wait for 1000 milliseconds (for one second)
+// Aspetta 1000 millisecondi (un secondo)
 ct.u.wait(1000)
 .then(() => {
-    // Add a layer with "Lose" UI
+    // Aggiungi un livello di interfaccia utente "Oh no!"
     ct.rooms.append('UI_OhNo', {
         isUi: true
     });
@@ -658,3 +658,5 @@ Prova a cambiare queste cose per allenarti nella programmazione:
   - Crea tubi rotanti per rendere il gioco più impegnativo.
   - Aggiungi un contatore per le vite e consenti a un giocatore di subire 3 scontri prima di perdere.
   - Aggiungi suoni! Visita la documentazione di [ct.sound](/ct.sound.html) per capire come riprodurre i suoni nel tuo gioco.
+
+Ricorda che puoi pubblicare i tuoi giochi su **itch.io** o piattaforme di giochi on line simili. È facile, [leggi le istruzioni nella guida](deployment-itch-io.html).
