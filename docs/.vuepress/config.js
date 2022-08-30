@@ -565,6 +565,13 @@ module.exports = {
               "/it/tut-making-platformer",
               "/it/tut-making-jettycat",
               "/it/tut-polishing-jettycat",
+            ]
+          }, {
+            text: 'Utilizzare l\'editor',
+            collapsible: false,
+            children: [
+              "/it/building-your-game",
+              "/it/deployment-itch-io"
             ],
           },
         ],
