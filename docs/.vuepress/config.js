@@ -571,7 +571,8 @@ module.exports = {
             collapsible: false,
             children: [
               "/it/building-your-game",
-              "/it/deployment-itch-io"
+              "/it/deployment-itch-io",
+              "/it/actions"
             ],
           },
         ],
