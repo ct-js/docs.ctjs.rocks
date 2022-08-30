@@ -565,14 +565,15 @@ module.exports = {
               "/it/tut-making-platformer",
               "/it/tut-making-jettycat",
               "/it/tut-polishing-jettycat",
-            ]
+            ],
           }, {
-            text: 'Utilizzare l\'editor',
+            text: "Utilizzare l\'editor",
             collapsible: false,
             children: [
+              "/it/actions",
+              "/it/room-editor",
               "/it/building-your-game",
               "/it/deployment-itch-io",
-              "/it/actions"
             ],
           },
         ],
