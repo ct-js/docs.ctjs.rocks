@@ -14,13 +14,13 @@ Tutti questi moduli si trovano e si possono abilitare nella scheda "Catmods" nel
 
 Per creare una nuova azione, vai alla scheda "Project", quindi fai clic sulla scheda "Actions and input methods" in alto a sinistra. Viene visualizzato un pannello in cui le azioni sono specificate nella parte a sinistra e i metodi di input a destra.
 
-![Opening actions editor](../images/actions_02.png)
+![Apertura editor per le azioni](../images/actions_02.png)
 
 Fare clic sul pulsante "Add Action". Descriveremo ora lo standard e, forse, la caratteristica più importante di qualsiasi gioco ­– "Il movimento". Se hai un gioco platform, avrai solo bisogno del movimento orizzontale, ma potrebbe essere necessario anche il movimento verticale. Definisci quindi queste due azioni `MoveX` e `MoveY` per lo spostamento orizzontale e verticale rispettivamente.
 
 Aggiungi il primo metodo di input al movimento orizzontale con il pulsante corrispondente. Clicca "Add an input method" e nel modulo che appare, individua il pulsante `A` (puoi inserirlo nella barra di ricerca e se non lo trovi verifica di aver attivato il modulo "Keyboard" in "Catmods"), quindi fai clic su "Select". Fai lo stesso per i tasti `D`, `ArrowLeft` e `ArrowRight`. Dovrebbe apparire così:
 
-![Creating a horizontal platformer movement](../images/actions_01.png)
+![Creazione di un movimento orizzontale per platform](../images/actions_01.png)
 
 Ma aspetta `A` e `D` puntano in direzioni opposte! Come fa il codice a capire dove spostare il personaggio del gioco? Il fatto è che nel codice, le azioni assumono valori da -1 a 1, e usando numeri negativi possiamo indicare che dobbiamo andare, diciamo, a sinistra e usando quelli positivi a destra. Questo viene fatto usando la colonna **multiplier**, dei moltiplicatori . Se specifichi il moltiplicatore -1 ad `A`, quando lo premi, l'azione restituirà il valore -1 e se `D` viene lasciato a 1, quando premi `D`, l'azione varrà 1.
 
@@ -28,7 +28,7 @@ In ct.js, il valore orizzontale `X` cresce da sinistra a destra e il valore `Y` 
 
 Dopo aver aggiunto un'altra azione, `MoveY`, assegneremo il moltiplicatore -1 ai tasti pulsanti `ArrowUp` e `W` (la direzione verso l'alto è quella negativa per l'asse verticale).
 
-Se dovessimo definire un'azione elementare (ad esempio il salto), non avremmo bisogno di moltiplicatori. Se utilizzassimo un joystick, potrebbe essere necessario un moltiplicatore nel caso in cui il personaggio del gioco si muovesse nella direzione sbagliata.
+Se dovessimo definire un'azione elementare (ad esempio il salto), non avremmo bisogno di moltiplicatori. Se utilizzassimo il joystick di un gamepad, potrebbe essere necessario un moltiplicatore nel caso in cui il personaggio del gioco si muovesse nella direzione sbagliata.
 
 ## Esempi
 
