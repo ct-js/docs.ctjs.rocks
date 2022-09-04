@@ -658,5 +658,3 @@ Prova a cambiare queste cose per allenarti nella programmazione:
   - Crea tubi rotanti per rendere il gioco più impegnativo.
   - Aggiungi un contatore per le vite e consenti a un giocatore di subire 3 scontri prima di perdere.
   - Aggiungi suoni! Visita la documentazione di [ct.sound](/ct.sound.html) per capire come riprodurre i suoni nel tuo gioco.
-
-Ricorda che puoi pubblicare i tuoi giochi su **itch.io** o piattaforme di giochi on line simili. È facile, [leggi le istruzioni nella guida](deployment-itch-io.html).

@@ -529,5 +529,3 @@ Salva il tuo progetto e provalo. Ora hai uno sparatutto spaziale piccolo ma perf
 Questo è quello che ho realizzato io personalizzando questo tutorial: [Catsteroids](https://comigo.itch.io/catsteroids) .
 
 Puoi anche iniziare un nuovo progetto se non ti piacciono gli sparatutto spaziali :D
-
-Ricorda che puoi pubblicare i tuoi giochi su **itch.io** o piattaforme di giochi on line simili. È facile, [leggi le istruzioni nella guida](deployment-itch-io.html).

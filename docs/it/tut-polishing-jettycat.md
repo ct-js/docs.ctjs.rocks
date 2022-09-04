@@ -302,7 +302,5 @@ Il menu principale ora avrà un cielo animato e il cielo nel livello di gioco pr
 
 Il gioco è rifinito e sembra fantastico, evviva! È ora di leggere altri tutorial o di creare un nuovo gioco da zero!
 
-Ricorda che puoi pubblicare i tuoi giochi su **itch.io** o piattaforme di giochi on line simili. È facile, [leggi le istruzioni nella guida](deployment-itch-io.html).
-
 **Happy coding!**
 Comigo
