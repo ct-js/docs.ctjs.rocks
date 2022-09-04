@@ -9,8 +9,6 @@ O editor de room tem quatro abas que define o seu stado. Essas abas estão local
 * Aba Tiles para a adição de novos tiles e gerenciamento dos já adicionados.
 * Aba Properties com as definições da room e da câmera.
 
-![A quatros abas que define o estado do editor de room](../images/roomEditor_fourTabs.png)
-
 ## Navegando pelas room
 
 Movendo por aí:
