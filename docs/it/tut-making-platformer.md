@@ -156,8 +156,8 @@ Impostiamo alcune variabili nell'evento "Creation", per farlo clicca "Add an eve
 this.jumpSpeed = -9;
 this.gravity = 0.5;
 
-this.hspeed = 0; // Horizontal speed
-this.vspeed = 0; // Vertical speed
+this.hspeed = 0; // Velocità orizzontale
+this.vspeed = 0; // Velocità verticale
 ```
 
 ::: tip
@@ -167,31 +167,31 @@ this.vspeed = 0; // Vertical speed
 Ora vai alla scheda "Frame start". Rimuovi `this.move();` la riga predefinita e aggiungi questo codice:
 
 ```js
-this.movespeed = 4 * ct.delta; // Max horizontal speed
+this.movespeed = 4 * ct.delta; // Velocità orizzontale massima
 
 if (ct.actions.MoveLeft.down) {
-    // If the A key or left arrow on a keyboard is down, then move to left
+    // Se il tasto A o la freccia sinistra è mantenuta premuta, spostati a sinistra
     this.hspeed = -this.movespeed;
 } else if (ct.actions.MoveRight.down) {
-    // If the D key or right arrow on a keyboard is down, then move to right
+    // Se il tasto D o la freccia destra è mantenuta premuta, spostati a destra
     this.hspeed = this.movespeed;
 } else {
-    // Don't move horizontally if no input
+    // Non muoverti orizzontalmente se nessun tasto è premuto
     this.hspeed = 0;
 }
 
-// If there is ground underneath the Robot…
+// Se c'è terreno sotto il robot ...
 if (ct.place.occupied(this, this.x, this.y + 1, 'Solid')) {
-    // …and the W key or the spacebar is down…
+    // ... e il tasto W o la barra spaziale è premuta ...
     if (ct.actions.Jump.down) {
-        // …then jump!
+        // ... allora salta!
         this.vspeed = this.jumpSpeed;
     } else {
-        // Reset our vspeed. We don't want to be buried underground!
+        // Azzera lo spostamento verticale.Non andare sottoterra!
         this.vspeed = 0;
     }
 } else {
-    // If there is no ground
+    // Se non c'è terreno
     this.vspeed += this.gravity * ct.delta;
 }
 ```
@@ -215,7 +215,7 @@ Moltiplicando i valori per `ct.delta`, ci assicuriamo che tutto si muova uniform
 Questo imposterà le variabili `hspeed`e `vspeed`, che comunque non bastano ancora per spostare effettivamente il giocatore. Vogliamo anche evitare che questo entri in un muro o si possa spostare quando è accanto ad un "Solid". Per fare ciò spostiamo, aggiornando il valore di `this.x` e `this.y`, il giocatore un pixel alla volta, verificando in continuazione la presenza di ostacoli, con questo codice aggiuntivo:
 
 ```js
-// Move by horizontal axis, pixel by pixel
+// Spostati lungo l'asse orizzontale, pixel per pixel
 for (var i = 0; i < Math.abs(this.hspeed); i++) {
     if (ct.place.free(this, this.x + Math.sign(this.hspeed), this.y, 'Solid')) {
         this.x += Math.sign(this.hspeed);
@@ -223,7 +223,7 @@ for (var i = 0; i < Math.abs(this.hspeed); i++) {
         break;
     }
 }
-// Do the same for vertical speed
+// Fai lo stesso per la velocità verticale
 for (var i = 0; i < Math.abs(this.vspeed); i++) {
     if (ct.place.free(this, this.x, this.y + Math.sign(this.vspeed), 'Solid')) {
         this.y += Math.sign(this.vspeed);
@@ -332,43 +332,43 @@ Apri il codice "Frame start" del `Robot` e modifica la sezione dei movimenti in 
 
 ```js {4,5,6,7,8,9,13,14,15,16,17,18,22,38,39}
 if (ct.actions.MoveLeft.down) {
-    // If the A key on keyboard is down, then move to left
+    // Se il tasto A è premuto, spostati a sinistra
     this.hspeed = -this.movespeed;
-    // Set the walking animation and transform the robot to the left
+    // Imposta l'animazione della camminata
     if (this.tex !== 'Robot_Walking') {
         this.tex = 'Robot_Walking';
         this.play();
     }
-    this.scale.x = -1;
+    this.scale.x = -1;  // e fai guardare verso sinistra
 } else if (ct.actions.MoveRight.down) {
-    // If the D key on keyboard is down, then move to right
+    // Se il tasto D è premuto, spostati a destra
     this.hspeed = this.movespeed;
-    // Set the walking animation and transform the robot to the right
+    // Imposta l'animazione della camminata
     if (this.tex !== 'Robot_Walking') {
         this.tex = 'Robot_Walking';
         this.play();
     }
-    this.scale.x = 1;
+    this.scale.x = 1; // e fai guardare verso sinistra
 } else {
-    // Don't move horizontally if no input
+    // Non muoverti orizzontalmente se nessun tasto è premuto
     this.hspeed = 0;
     this.tex = 'Robot_Idle';
 }
 
-// If there is ground underneath the Robot…
+//  Se c'è terreno sotto il robot ...
 if (ct.place.occupied(this, this.x, this.y + 1, 'Solid')) {
-    // …and the W key or the spacebar is down…
+    // ... e il tasto W o la barra spaziale è premuta ...
     if (ct.actions.Jump.down) {
-        // …then jump!
+        // ... allora salta!
         this.vspeed = this.jumpSpeed;
     } else {
-        // Reset our vspeed. We don't want to be buried underground!
+        // Azzera lo spostamento verticale.Non andare sottoterra!
         this.vspeed = 0;
     }
 } else {
-    // If there is no ground
+    // Se non c'è terreno
     this.vspeed += this.gravity * ct.delta;
-    // Set jumping animation!
+    // Imposta l'animazione per saltare!
     this.tex = 'Robot_Jump';
 }
 ```
@@ -387,12 +387,12 @@ Ecco l'idea:
 - Ci saranno uscite dal livello verso cui il Robot dovrà dirigersi.
 - Quando collideranno, l'uscita leggerà la variabile della stanza e passerà alla stanza successiva indicata nella variabile appena letta.
 
-Crea un nuovo template e chiamalo `Exit`. Imposta la sua trama. Quindi crea un "Collides Robot event" e scrivi questo codice al suo interno:
+Crea un nuovo template e chiamalo `Exit`. Imposta la sua texture. Quindi crea un "Collides Robot event" e scrivi questo codice al suo interno:
 
 ```js
-// Are there next rooms defined?
+// Ci sono livelli di gioco successivi a questo?
 if (ct.room.nextRoom) {
-    // Switch to the next room
+    // Allora passa alla stanza successiva
     ct.rooms.switch(ct.room.nextRoom);
 }
 ```
@@ -681,11 +681,12 @@ Ecco come puoi migliorare questo gioco:
 - Migliora il processo di respawn. Assicurati che il robot non cada nelle trappole dopo il respawn. Questo può essere fatto bloccando l'input di un giocatore per mezzo secondo o  semplicemente rendendo più sicure le aree dei checkpoint.
 - Aggiungi suoni! Niente rende un gioco più vivo di alcuni effetti sonori di buona qualità.
 - Assicurati che il robot venga respawnato se occasionalmente cade da un livello.
+- Basta aggiungere più livelli.  😉 Decorale con le piante, crea mondi di diversi colori.
 
-* Basta aggiungere più livelli.  😉 Decorale con le piante, crea mondi di diversi colori.
+Ricorda che puoi pubblicare i tuoi giochi su **itch.io** o piattaforme di giochi on line simili. È facile, [leggi le istruzioni nella guida](deployment-itch-io.html).
 
-::: tip
-Una nota a margine Guarda come le nuove funzionalità nel tuo codice appaiono gradualmente nei tuoi livelli! Questo è anche un buon modo per introdurre nuove cose a un giocatore. Offri loro un nuovo concetto alla volta, ma preserva quelli precedenti con difficoltà crescenti. *Questo è stato un suggerimento professionale sul level design di Comigo* 😎
+::: tip Una nota a margine
+Guarda come le nuove funzionalità nel tuo codice appaiono gradualmente nei tuoi livelli! Questo è anche un buon modo per introdurre nuove cose a un giocatore. Offri loro un nuovo concetto alla volta, ma preserva quelli precedenti con difficoltà crescenti. *Questo è stato un suggerimento professionale sul level design di Comigo* 😎
 :::
 
 **Happy coding!**
