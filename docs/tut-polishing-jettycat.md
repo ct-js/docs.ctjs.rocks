@@ -278,11 +278,11 @@ The last step is adding this copy to `UI_InGame`, somewhere in the center of the
 
 The parallax effect is used in gamedev since ancient times — once console's processors got strong enough to draw backgrounds. The effect is made by moving several background layers at different speeds to create an effect of depth. Though we won't get a strong effect in this tutorial, we will learn how to configure backgrounds in ct.js, and liven up our main menu and overall view.
 
-Go to the room `MainMenu`, and open the "Backgrounds" tab in the left column. Then, click the gear icon next to the background `BG_Sky`. We will need to slowly move the background from left to right so that our clouds get moving. Set the Movement speed to `-1`, `0`. These values tell the background to move against the X-axis one pixel at second.
+Go to the room `MainMenu`, and click the "Backgrounds" tool in the left toolbar. Then, click the gear icon next to the background `BG_Sky`. We will need to slowly move the background from left to right so that our clouds get moving. Set the Movement speed to `-0.5`, `0`. These values tell the background to move against the X-axis half a pixel each second.
 
 ![Setting a background's movement speed in ct.js](./images/tutJettyCat_32.png)
 
-Then, go to the room called `InGame`. Open the same settings of the background `BG_Sky`. Set its parallax values to 0.25: it will tell the background to move four times slower than the rest of the room, creating the effect of depth.
+Then, go to the room called `InGame`. Open the same settings of the background `BG_Sky`. Set its parallax values to 0.5: it will tell the background to move twice as slow than the rest of the room, creating the effect of depth.
 
 ![Setting a background's movement speed in ct.js](./images/tutJettyCat_33.png)
 
