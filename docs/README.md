@@ -30,13 +30,15 @@ footer: Ct.js documentation. Except where otherwise noted, content is licensed u
         <a href="/ct-concepts.html" class="button">Go to ct.js docs →</a>
     </div>
     <div class="feature" style="flex-basis: 65%; max-width: 65%;">
-        <h2>Notable changes and additions in ct.js v2.0</h2>
+        <h2>Notable changes and additions in ct.js v3.0</h2>
         <ul>
-            <li>API has changed! The first thing you will notice is that `ct.types` is now `ct.templates`, but there is much more in our <a href="/migration-1to2">migration guide</a>. Do check it out.</li>
-            <li><code>ct.res</code> got a major rewrite and now allows you to <a href="/ct.res.html">dynamically load textures, fonts, and skeletal animations</a> into your game. More to come!</li>
-            <li>A new part of Introduction to JavaScript was released: <a href="/jsintro_pt3.html">now on Arrays and Objects</a>.</li>
-            <li>There is now a doc page for the room editor, and as the practice shows, not everyone knows about everything it can do. <a href="/room-editor.html">Have a look</a>, won't ya?</li>
-            <li><a href="/modding-fields-declaration.html">Catmods now have an `if` key in their fields</a>, allowing catmod developers to display controls conditionally, and an `array` type with a companion key `arrayType`.</li>
+            <li>New room editor, woop-woop! <a href="/room-editor.html">Docs for the room editor was updated</a> — it has a dozen of handy hotkeys. If you have any issues with it, see <a href="/migration-2to3.html">the migration guide</a>!</li>
+            <li>There are now more events in the template editor — tutorials have been updated accordingly (thanks to Firecakes!)</li>
+            <li>Physics2D example was updated and now uses newly added events. Making physics games became much easier!</li>
+            <li>There are new explanations to ct.js license in the License panel. TL;DR: ct.js is just awesome.</li>
+            <li>A wild <code><a href="/ct.rooms.html">ct.rooms.restart()</a></code> appears.</li>
+            <li>Firecakes released a <code>vgui</code> catmod that adds API for making a textbox input!</li>
+            <li>EhanAhamed updated <code>ct.desktop</code> module, it now has tons of new features and supports both Electron and NW.js runtimes! See its updated docs in ct.js.</li>
         </ul>
         <a href="https://ctjs.rocks/changelog/" target="_blank">Changelog →</a>
     </div>
