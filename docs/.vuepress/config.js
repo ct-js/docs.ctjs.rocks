@@ -216,6 +216,9 @@ module.exports = {
             link: '/migration-1to2',
             text: 'Migration from 1.x to 2.0'
           }, {
+            link: '/migration-2to3',
+            text: 'Migration from 2.x to 3.0'
+          }, {
             link: '/troubleshooting-teared-background',
             text: 'Background splits into squares!'
           }, {
