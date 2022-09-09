@@ -69,7 +69,7 @@ Save your asset. If you look into other textures, you will see that they all hav
 
 ## Creating a Robot Character and Ground
 
-Open the "Template" tab and create a new template. Call it "Robot", set its sprite to `Robot_Idle`, and save it.
+Open the "Templates" tab and create a new template. Call it "Robot", set its sprite to `Robot_Idle`, and save it.
 
 ![Editing a template](./images/tutPlatformer_09.png)
 
@@ -85,11 +85,11 @@ Create additional templates in the same way:
 
 ### Adding a Room
 
-Click on the "Rooms" tab at the top and create a new room. Set its name to "Level_01". In the "Properties" tab with a cog icon, set view's size to 1024x576.
+Click on the "Rooms" tab at the top and create a new room. In the "Properties" panel with a cog icon, set its name to "Level_01" and view's size to 1024x576.
 
 ![Editing a room](./images/tutPlatformer_10.png)
 
-Then draw a level by clicking on a template on the left and then placing it with your mouse in the big area on the right. Hold `Shift` to add multiple copies at once. Don't forget about the robot!
+Then draw a level! Select the "Add copies" tool, click on a template on the left and draw with them with your mouse in the big area on the right. Don't forget about the robot!
 
 You can expand your level to any side, and copies don't need to be inside the blue frame. This frame, which is manipulated by view's size, just sets the initially visible part of your level.
 
@@ -97,7 +97,7 @@ I drew this. It is hard to get stuck here as a player, but it teaches how to jum
 
 ![Comigo's platformer level](./images/tutPlatformer_11.png)
 
-Now let's add a background. Click the "Backgrounds" tab on the left, press "Add", and select the `BG` asset. Now click the cog near our new background and change its depth to `-10`. Thus we tell the engine that the background should be drawn 10 layers below the default 0 layer.
+Now let's add a background. Click the "Backgrounds" tool on the left, press "Add background", and select the `BG` asset. Now click the cog near our new background and change its depth to `-10`. Thus we tell the engine that the background should be drawn 10 layers below the default 0 layer.
 
 ![](./images/tutPlatformer_27.png)
 
@@ -127,7 +127,7 @@ Actions allow to listen to events from keyboard, mouse, gamepad, etc. You can re
 
 Go to the Project panel, then press the "Actions and input methods" tab on the left.
 
-Then, create an input scheme as in the picture below. To do that, firstly press the button "Add an action", name it, and then add input methods in the right column. You can use search to quickly add the needed keys.
+Then, create an input scheme as in the picture below. To do that, firstly press the button "Make from scratch" to not use a preset. Next, click "Add an action", name it, and then add input methods in the right column. You can use search to quickly add the needed keys.
 
 ![Input mappings for a simple platformer in ct.js](./images/tutPlatformer_25.png)
 
@@ -137,7 +137,7 @@ Though this scheme may be simplified down to just two actions (see [examples in 
 
 ### Coding Collision Detection and Movement
 
-Now, move to the "Templates" tab at the top of the screen and open the `Rocks` template. In the left column, fill the field called "Collision group" with `Solid`:
+Now, move to the "Templates" tab at the top of the screen and open the `Rocks` template. In the right column, fill the field called "Collision group" with `Solid`:
 
 ![Adding a collision group to a template](./images/tutPlatformer_26.png)
 
@@ -149,7 +149,7 @@ Now open the `Robot` template. If you completed the "Space Shooter" tutorial bef
 
 The idea of a side-view movement is that we will have a value by which we would like to move to, and then we will check whether we are colliding with something or not, pixel-by-pixel.
 
-Let's set up some variables on the "On Create" tab:
+Let's set up some variables on the "Creation" event. Click on "Add an event" to bring up the events menu and find the "Creation" event, then add:
 
 ```js
 this.jumpSpeed = -9;
@@ -163,7 +163,7 @@ this.vspeed = 0; // Vertical speed
 `this` is a copy that is executing the written code. In this case, it is a `Robot` copy.
 :::
 
-Now move to the "On Step" tab. Remove default `this.move();` line and add this code:
+Now move to the "Frame start" tab. Remove default `this.move();` line and add this code:
 
 ```js
 this.movespeed = 4 * ct.delta; // Max horizontal speed
@@ -196,7 +196,7 @@ if (ct.place.occupied(this, this.x, this.y + 1, 'Solid')) {
 ```
 
 ::: tip
-"On Step" code is executed each frame for each copy. Movement and other game logic usually go here.
+"Frame start" event code is executed each frame for each copy. Movement and other game logic usually go here.
 :::
 
 ::: tip
@@ -206,36 +206,19 @@ if (ct.place.occupied(this, this.x, this.y + 1, 'Solid')) {
 :::
 
 ::: tip
-`ct.delta` describes how much the previous frame took time to process. If everything is ok and game performs at smooth FPS, it is eqal to `1`, and is larger if a game can't reach the target FPS value.
+`ct.delta` describes how much the previous frame took time to process. If everything is ok and game performs at smooth FPS, it is equal to `1`, and is larger if a game can't reach the target FPS value.
 
 By multiplying values to `ct.delta`, we make sure that everything moves uniformly at any framerate.
 :::
 
-This will set variables `hspeed` and `vspeed`, but they won't do anything as is. And we don't want to clip into wall or move when we are next to a 'Solid'. Add more code to actually move the Robot around:
+This will set variables `hspeed` and `vspeed`, but they won't do anything as is. And we don't want to clip into a wall or move when we are next to a 'Solid'. Gladly, we can add this magical line to the end to make the character properly collide with solid objects:
 
 ```js
-// Move by horizontal axis, pixel by pixel
-for (var i = 0; i < Math.abs(this.hspeed); i++) {
-    if (ct.place.free(this, this.x + Math.sign(this.hspeed), this.y, 'Solid')) {
-        this.x += Math.sign(this.hspeed);
-    } else {
-        break;
-    }
-}
-// Do the same for vertical speed
-for (var i = 0; i < Math.abs(this.vspeed); i++) {
-    if (ct.place.free(this, this.x, this.y + Math.sign(this.vspeed), 'Solid')) {
-        this.y += Math.sign(this.vspeed);
-    } else {
-        break;
-    }
-}
+this.moveContinuousByAxes('Solid');
 ```
 
 ::: tip
-`ct.place.free` is an opposite equivalent of `ct.place.occupied`. It has the same parameters and returns either `true` or `false`.
-
-`Math.abs` returns the absolute value of a given number, meaning that negative numbers will become positive. `Math.sign` returns -1 if the given value is negative, 1 if it is positive, and 0 if it is 0. Combined together, they create a `for` loop which works in both directions and checks collisions pixel by pixel.
+`this.moveContinuousByAxes` is a method from `ct.place` module that gradually moves a copy pixel by pixel, stopping near the obstacles. It is great for platformers and when you need precise sliding movements.
 :::
 
 We can now move our Robot around!
@@ -250,7 +233,7 @@ If we launch the game now, we will be able to move the Robot around. There is an
 
 It is not a hard issue, though. If we dig into the ct.js docs, we will find a `ct.camera` entity with `ct.camera.follow`, `ct.camera.borderX` and `ct.camera.borderY` exactly for following a copy.
 
-Open the `Robot` template and its "On Create" Code. Add this code to the end:
+Open the `Robot` template and its "Creation" Code. Add this code to the end:
 
 ```js
 ct.camera.follow = this;
@@ -274,49 +257,39 @@ Place checkpoint boxes before and/or after hazardous places. Don't be afraid to 
 
 Here the supposed level's end is placed on the top middle platform. I also placed some platforms outside the screenshot for gathering future crystals.
 
-Now let's move to the `Checkpoint`'s template and edit its "On Step" code.
+Now let's move to the `Checkpoint`'s template and edit its "Frame start" code.
 
-We will check for collision with the Robot, and when it happens, we will store a rescue point inside the Robot's copy. Remove the line `this.move();` and add this code:
+We will check for collision with the Robot, and when it happens, we will store a rescue point inside the Robot's copy. Make a new Collision with a template event and select the Robot. Then add this code in the event:
 
 ```js
-var robot = ct.place.meet(this, this.x, this.y, 'Robot');
-if (robot) {
-    robot.savedX = this.x + 32;
-    robot.savedY = this.y + 32;
-}
+other.savedX = this.x + 32;
+other.savedY = this.y + 32;
 ```
 
 ::: tip
-The line `this.move();` is responsible for moving copies that use standard ct variables around. In this case, the checkpoint shouldn't move at all. 😉
-
-`ct.place.meet` is almost the same as `ct.place.occupied`, but it checks against copies' templates, not their collision group.
+The Collision with a template event has a special variable you can access in the event code called `other`. This variable stores the reference to the collided copy, which in this case is our Robot. Watch out for these special local variables when you're writing event code!
 :::
 
 Here we also shift the stored point by 32x32 pixels, because the checkpoint's axis is placed in its top-left corner, but the Robot's axis is placed at the middle bottom point. Because of that, the Robot would respawn a bit left and above the desired central point.
 
-Go to the "On Create" tab and add a line `this.visible = false;`. This will make checkpoints invisible during the gameplay.
+We want to make checkpoints invisible during the gameplay. Open the appearance section on the right side and uncheck the "Visible" checkbox.
 
-Now go to the `Spikes` template and set their collision as "Deadly" in the left column, right under template's name.
+![Making the Checkpoint Invisible](./images/tutPlatformer_CheckpointVisible.png)
+
+Now go to the `Spikes` template and set their collision as "Deadly" in the right column, under "Collision group".
 
 Do the same with `Water` and `Water_Top`.
 
-Now open the `Robot` template again, and add this code to the top of its `On Step` code:
+Now open the `Robot` template again, and add a new "Collision with a group" event. In the group name, use "Deadly". Then in the event code, add this code:
 
 ```js
-if (ct.place.occupied(this, this.x, this.y, 'Deadly')) {
-    this.x = this.savedX;
-    this.y = this.savedY;
-    this.hspeed = 0;
-    this.vspeed = 0;
-    return;
-}
+this.x = this.savedX;
+this.y = this.savedY;
+this.hspeed = 0;
+this.vspeed = 0;
 ```
 
-::: tip
-Here, the `return;` statement stops the execution of a function. We won't need movement and other checks if we need to respawn the Robot at some other position.
-:::
-
-We should also write this code to "On Create" tab so that respawn point will be at creation location by default, in case something ever goes wrong:
+We should also write this code to the "Creation" event so that the respawn point will be at the creation location by default, in case something ever goes wrong:
 
 ```js
 this.savedX = this.x;
@@ -329,7 +302,7 @@ To test a specific room, open the "Rooms" tab at the top, then right-click the d
 
 At this point, it will be wise to add little animations to our robot. As you remember, we have three different assets called `Robot_Idle`, `Robot_Jump`, and `Robot_Walking`.
 
-Add this line to `Robot`'s "On Create" code:
+Add this line to `Robot`'s "Creation" code:
 
 ```js
 this.animationSpeed = 0.2;
@@ -337,9 +310,9 @@ this.animationSpeed = 0.2;
 
 `0.2` means that we want to play 0.2×60 (which is 12) frames per second. For more readability, we could also write it as `12/60`.
 
-Open the `Robot`'s "On Step" code and modify the moving section so it changes the drawn texture depending on user inputs and the robot's position in space:
+Open the `Robot`'s "Frame start" code and modify the moving section so it changes the drawn texture depending on user inputs and the robot's position in space:
 
-```js{4,5,6,7,8,9,13,14,15,16,17,18,22,38,39}
+```js {4,5,6,7,8,9,13,14,15,16,17,18,22,38,39}
 if (ct.actions.MoveLeft.down) {
     // If the A key on keyboard is down, then move to left
     this.hspeed = -this.movespeed;
@@ -396,16 +369,13 @@ Here's the idea:
 * There will be level exits that will collide with the Robot.
 * When they collide, the exit will read the room's variable and switch to the next room.
 
-Create a new template and call it an `Exit`. Set its texture. Then open the "On Step" tab and write this code:
+Create a new template and call it an `Exit`. Set its texture. Then make a Collides Robot event and write this code:
 
 ```js
 // Are there next rooms defined?
 if (ct.room.nextRoom) {
-    // Do we collide with the Robot?
-    if (ct.place.meet(this, this.x, this.y, 'Robot')) {
-        // Switch to the next room
-        ct.rooms.switch(ct.room.nextRoom);
-    }
+    // Switch to the next room
+    ct.rooms.switch(ct.room.nextRoom);
 }
 ```
 
@@ -413,7 +383,7 @@ if (ct.room.nextRoom) {
 Here `ct.room` points to the current room. `ct.rooms.switch` exits the current room and opens another room with a given name.
 :::
 
-Now go to the "Rooms" tab at the top, open the `Level_01`, click the button called "Room's events" and write the following to its "On Create" code:
+Now go to the "Rooms" tab at the top, open the `Level_01`, click the button called "Room's events" and write the following to its "Room start" code:
 
 ```js
 this.nextRoom = 'Level_02';
@@ -431,17 +401,15 @@ Create additional exits leading to secret sublevels and back. Get [more assets f
 
 ### Adding Crystals
 
-Create a new template called `GreenCrystal` and set its sprite. Write this code to its "On Step" event:
+Create a new template called `GreenCrystal` and set its sprite. Create a Collides Robot event and write this code to it:
 
 ```js
-if (ct.place.meet(this, this.x, this.y, 'Robot')) {
-    ct.room.crystals ++;
-    this.kill = true;
-}
+ct.room.crystals ++;
+this.kill = true;
 ```
 
 ::: tip
-`this.kill = true;` tells that the current copy should be removed from the current room. It will happen after all "On Step" events but before the "Draw" event.
+`this.kill = true;` tells that the current copy should be removed from the current room. It will happen after all "Frame start" events but before the "Frame end" event.
 :::
 
 As you may already guess, the number of gathered crystals will be stored in the room.
@@ -469,7 +437,7 @@ var inGameRoomStart = function (room) {
 
 ![Creating a reusable script](./images/tutPlatformer_21.png)
 
-Now go to each room's "On Create" code and add this line:
+Now go to each room, click the "Events" button in the top toolbar, add an event "Room start", and add this line there:
 
 ```js
 inGameRoomStart(this);
@@ -481,7 +449,7 @@ When `inGameRoomStart(this);` is called it will set `crystals` and `crystalsTota
 
 So that's how we gather and count the crystals, but we also need to create a simple interface to draw their count and do it with *style*. ✨
 
-Gladly, there is a tool for designing nifty text styles inside the ct.js. Open the "UI" tab at the top of the screen and create a new style. Call it as a `CrystalCounter`.
+Gladly, there is a tool for designing nifty text styles inside the ct.js. Open the "UI" tab at the top of the screen and create a new style. Call it `CrystalCounter`.
 
 Then activate the "Font" section, set the font size to 24 and its weight to 600. Align it to the left.
 
@@ -495,7 +463,7 @@ We can also add a thick white line to our text. Open the "Stroke" tab, then set 
 
 ![Setting a style's line style](./images/tutPlatformer_23.png)
 
-We should now create a new template called `CrystalsWidget`. It will display a crystal icon and a counter. Set its sprite to `GreenCrystal`, and write the following in its OnCreate code:
+We should now create a new template called `CrystalsWidget`. It will display a crystal icon and a counter. Set its sprite to `GreenCrystal`, and write the following in its Creation code:
 
 ```js
 this.text = new PIXI.Text('0 / ' + ct.room.crystalsTotal, ct.styles.get('CrystalCounter'));
@@ -507,7 +475,7 @@ this.addChild(this.text);
 
 Here we create a new text label and attach it to our icon. `this.text.anchor.y = 0.5;` tells that the vertical axis of the label should be aligned to the middle of our icon.
 
-To finish it off, add this to CrystalsWidget's OnDraw code:
+To finish it off, add this to CrystalsWidget's Frame end code:
 
 ```js
 this.text.text = `${ct.room.crystals} / ${ct.room.crystalsTotal}`;
@@ -517,12 +485,14 @@ We should now create a special room for our UI elements. Create it in the "Rooms
 
 ![Adding a crystals widget to a UI layer](./images/tutPlatformer_28.png)
 
-Adding UI elements to a separate room allows you to design UI visually, and then import them into other rooms through code. Ct.js also has a special flag that locks UI layers in place, so you can freely move, scale and even rotate camera, and UI elements will remain properly positioned. Now, to import a UI room into another, go to our script `inGameRoomStart` created at the Project -> Custom scripts tab before, and add this code before the closing brace of the function:
+Adding UI elements to a separate room allows you to design UI visually, and then import them into other rooms through code. Ct.js also has a special flag that locks UI layers in place, so you can freely move, scale and even rotate the camera, and UI elements will remain properly positioned. Go to the room settings, and check the "Is a UI layer?" checkbox so that `LayerUI` will be fixated to the game view.
+
+![Enabling the layer as a UI layer](./images/tutPlatformer_LayerUICheckbox.png)
+
+ Now, to import a UI room into another, go to our script `inGameRoomStart` created at the Project -> Custom scripts tab before, and add this code before the closing brace of the function:
 
 ```js
-ct.rooms.append('LayerUI', {
-    isUi: true
-});
+ct.rooms.append('LayerUI');
 ```
 
 It should look like this:
@@ -531,8 +501,6 @@ It should look like this:
 
 ::: tip
 The method `ct.rooms.append` (as well as `ct.rooms.prepend`) may be also used for reusing other stuff than UI layers. For example, we can place all the backgrounds to a separate room, and then call `ct.rooms.prepend("YourBackgroundRoom");` to import them. This is especially useful while making complex layered backgrounds with a parallax effect.
-
-But what is important is the `isUi: true` flag. This particular parameter differentiates UI layers from other ones, e.g. from that background room.
 :::
 
 If you now run your game, you should see the crystal counter in the top-left corner:
@@ -551,14 +519,12 @@ This is mostly similar to gathering crystals, though there are some changes:
 Try making it all by yourself! If you get lost, just look for instructions below. Now, stop scrolling! 😃
 :::
 
-Create a new template called `Heart` and set a corresponding sprite. Add this code to its "On Step" tab:
+Create a new template called `Heart` and set a corresponding sprite. Add this code to its Collides Robot event:
 
 ```js
-if (ct.place.meet(this, this.x, this.y, 'Robot')) {
-    if (ct.room.lives < 3) {
-        ct.room.lives++;
-        this.kill = true;
-    }
+if (ct.room.lives < 3) {
+    ct.room.lives++;
+    this.kill = true;
 }
 ```
 
@@ -566,7 +532,7 @@ Don't forget to place actual heart bonuses on your levels!
 
 We will also need a style for a counter. The process is the same, and a suitable color is `#E85017`. We can even duplicate the existing style! Let's call this style a `HeartCounter`.
 
-We will need another widget for health, too. Create a new template called `HeartsWidget`, set its sprite to the `Heart`, and set its OnCreate code to this:
+We will need another widget for health, too. Create a new template called `HeartsWidget`, set its sprite to the `Heart`, and set its Creation code to this:
 
 ```js
 this.text = new PIXI.Text(ct.room.lives, ct.styles.get('HeartCounter'));
@@ -577,7 +543,7 @@ this.text.anchor.x = 1;
 this.addChild(this.text);
 ```
 
-Now add this to HeartsWidget's OnDraw code:
+Now add this to HeartsWidget's Frame end code:
 
 ```js
 this.text.text = ct.room.lives;
@@ -588,22 +554,33 @@ Then add a copy of this template to the room `LayerUI`.
 Now modify the respawn code of the `Robot` so it loses one heart at each respawn:
 
 ```js
-if (ct.place.occupied(this, this.x, this.y, 'Deadly')) {
-    this.x = this.savedX;
-    this.y = this.savedY;
-    this.hspeed = 0;
-    this.vspeed = 0;
-    // remove one life
-    ct.room.lives --;
-    if (ct.room.lives <= 0) {
-        // Restart a room: switch to the room of its own name
-        ct.rooms.switch(ct.room.name);
-    }
-    return;
+this.x = this.savedX;
+this.y = this.savedY;
+this.hspeed = 0;
+this.vspeed = 0;
+// remove one life
+ct.room.lives --;
+if (ct.room.lives <= 0) {
+    // Restart a room: switch to the room of its own name
+    ct.rooms.switch(ct.room.name);
 }
 ```
 
-That's it! Time for little testing.
+And make sure to edit the `inGameRoomStart` function to initialize the room lives:
+
+```js {3}
+var inGameRoomStart = function (room) {
+    room.crystals = 0;
+    room.lives = 3;
+    room.crystalsTotal = ct.templates.list['GreenCrystal'].length;
+
+    ct.rooms.append('LayerUI', {
+        isUi: true
+    });
+};
+```
+
+That's it! Time for a little testing.
 
 ## Adding moving platforms
 
@@ -623,9 +600,9 @@ Let's open a `Platform`'s template and initialize its speed:
 this.speed = 2;
 ```
 
-Also, set its collision group as Solid in the left column.
+Also, set its collision group as Solid in the right column.
 
-Then, add some code to the "On Step" tab to move our Robot:
+Then, add some code to the "Frame start" tab to move our Robot:
 
 ```js
 var robot = ct.place.meet(this, this.x, this.y - 1, 'Robot');

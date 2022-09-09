@@ -1,5 +1,14 @@
 # Dragging Copies Around
 
+:::warning
+This page uses outdated practices and has old screenshots. Notable differences:
+
+* `ct.touch` is deprecated; use `ct.pointer` instead.
+* "On Step" tab is now "Frame Start" event. "On Create" is "Creation" event.
+
+You can help ct.js by updating these docs in [our repository](https://github.com/ct-js/docs.ctjs.rocks).
+:::
+
 In this tutorial we are going to take a look at how we can do a drag and drop implementation for copies in ct.js!
 
 We have a placeholder block template that we are going to drag around. Let's start by going to the the 'Catmods' menu under the Project tab and enable the `ct.touch` catmod. We are going to be using this catmod because we want to be able to drag our cube in mobile and touchscreen devices with our fingers. And don't worry, we will also be able to use our mouse to drag because  `ct.touch` can also handle mouse events by default. If you need to, you can disable this behavior from the Touch menu under Catmods' Settings.

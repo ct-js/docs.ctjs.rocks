@@ -1,47 +1,46 @@
 module.exports = {
-  title: "ct.js Documentation",
-  description: "Docs, tutorials, guides",
+  title: 'ct.js Documentation',
+  description: 'Docs, tutorials, guides',
 
   plugins: [
-    "@vuepress/plugin-medium-zoom",
-    [
-      "@vuepress/plugin-search",
-      {
-        maxSuggestions: 15,
-      },
-    ],
+    '@vuepress/plugin-medium-zoom',
+    ['@vuepress/plugin-search', {
+      maxSuggestions: 15
+    }]
   ],
 
   head: [
-    [
-      "script",
-      {
-        src: "/themeSwitcher.js",
-      },
-    ],
+    ['script', {
+      src: '/themeSwitcher.js'
+    }]
   ],
 
   locales: {
-    "/": {
-      lang: "en-US", // this will be set as the lang attribute on <html>
-      title: "ct.js Documentation",
-      description: "Docs, tutorials, guides",
+    '/': {
+      lang: 'en-US', // this will be set as the lang attribute on <html>
+      title: 'ct.js Documentation',
+      description: 'Docs, tutorials, guides',
     },
-    "/ru/": {
-      lang: "ru",
-      title: "Документация к игровому движку ct.js",
-      description: "Референсы, туториалы, гайды",
+    '/ru/': {
+      lang: 'ru',
+      title: 'Документация к игровому движку ct.js',
+      description: 'Референсы, туториалы, гайды'
     },
-    "/pt_BR/": {
-      lang: "pt-BR",
-      title: "Documentação ct.js",
-      description: "Docs, tutoriais, guias",
+    '/pt_BR/': {
+      lang: 'pt-BR',
+      title: 'Documentação ct.js',
+      description: 'Docs, tutoriais, guias'
+    },
+     '/it/': {
+       lang: 'it',
+       title: 'Documentazione ct.js',
+       description: 'Docs, tutorial, guide',
     },
   },
 
   themeConfig: {
-    logo: "/assets/img/logo.png",
-    lastUpdated: "Last Updated",
+    logo: '/assets/img/logo.png',
+    lastUpdated: 'Last Updated',
 
     repo: "ct-js/docs.ctjs.rocks",
     repoLabel: "Contribute!",
@@ -71,175 +70,166 @@ module.exports = {
 
     sidebarDepth: 1,
     sidebar: [
-      ["/", "Home"],
-      {
-        text: "Introduction to JS",
-        collapsible: false,
-        children: ["jsintro_pt1", "jsintro_pt2", "jsintro_pt3"],
-      },
-      {
-        collapsible: false,
-        text: "Tutorials",
-        children: [
-          "tut-making-shooter",
-          "tut-making-platformer",
-          "tut-making-jettycat",
-          "tut-polishing-jettycat",
-        ],
-      },
-      {
-        text: "The `core` library",
+      [
+        '/', 'Home'
+      ], {
+        text: 'Introduction to JS',
         collapsible: false,
         children: [
-          "ct-concepts",
-          "ct",
-          "ct.backgrounds",
-          "ct.camera",
-          "ct.emitters",
-          {
-            link: "/ct.inputs",
-            text: "ct.inputs and ct.actions",
-          },
-          "ct.res",
-          "ct.rooms",
-          "ct.styles",
-          "ct.tilemaps",
-          "ct.timer",
-          "ct.templates",
-          {
-            link: "/ct.u",
-            text: "ct.u (utilities)",
-          },
-          {
-            link: "/catmoddocs.md",
-            text: "Where are the other ct.* docs?",
-          },
+          'jsintro_pt1',
+          'jsintro_pt2',
+          'jsintro_pt3'
         ],
-      },
-      {
-        text: "Built-in ct.js classes",
+      }, {
+        collapsible: false,
+        text: 'Tutorials',
+        children: [
+          'tut-making-shooter',
+          'tut-making-platformer',
+          'tut-making-jettycat',
+          'tut-polishing-jettycat'
+        ],
+      }, {
+        text: 'The `core` library',
+        collapsible: false,
+        children: [
+          'ct-concepts',
+          'ct',
+          'ct.backgrounds',
+          'ct.camera',
+          'ct.emitters',
+          {
+            link: '/ct.inputs',
+            text: 'ct.inputs and ct.actions'
+          },
+          'ct.res',
+          'ct.rooms',
+          'ct.styles',
+          'ct.tilemaps',
+          'ct.timer',
+          'ct.templates',
+          {
+            link: '/ct.u',
+            text: 'ct.u (utilities)'
+          },
+          {
+            link: '/catmoddocs.md',
+            text: 'Where are the other ct.* docs?'
+          }
+        ]
+      }, {
+        text: 'Built-in ct.js classes',
         collapsible: false,
         children: [
           {
-            link: "/Background",
-            text: "Background",
-          },
-          {
-            link: "/Copy",
-            text: "Copy",
-          },
-          {
-            link: "/Room",
-            text: "Room",
-          },
-        ],
-      },
-      {
-        text: "Working with the editor",
+            link: '/Background',
+            text: 'Background'
+          }, {
+            link: '/Copy',
+            text: 'Copy'
+          }, {
+            link: '/Room',
+            text: 'Room'
+          }
+        ]
+      }, {
+        text: 'Working with the editor',
         collapsible: false,
         children: [
-          "actions",
+          'actions',
           {
-            link: "/room-editor",
-            text: "Using the room editor",
+            link: '/room-editor',
+            text: 'Using the room editor'
           },
           {
-            link: "/bitmap-fonts",
-            text: "Using bitmap fonts",
+            link: '/bitmap-fonts',
+            text: 'Using bitmap fonts'
           },
           {
-            link: "/skeletal-animation",
-            text: "Using skeletal animation",
+            link: '/skeletal-animation',
+            text: 'Using skeletal animation'
           },
           {
-            link: "/content-subsystem",
-            text: "Content editor",
+            link: '/content-subsystem',
+            text: 'Content editor'
           },
-        ],
-      },
-      {
-        text: "Tips & tricks",
+          "building-your-game",
+          "deployment-itch-io"
+        ]
+      }, {
+        text: 'Tips & tricks',
         collapsible: false,
         children: [
-          "game-and-ui-coordinates",
-          "movement",
-          "game-pause",
-          "localstorage",
-          "viewport-management",
-          "textures-magic-properties",
-          "dragging-copies",
-          "gamedev-resources",
-        ],
-      },
-      {
-        text: "Technical stuff",
-        collapsible: true,
-        children: ["/event-order"],
-      },
-      {
-        text: "Modding ct.js",
+          'game-and-ui-coordinates',
+          'movement',
+          'game-pause',
+          'localstorage',
+          'viewport-management',
+          'textures-magic-properties',
+          'dragging-copies',
+          'gamedev-resources'
+        ]
+      }, {
+        text: 'Technical stuff',
         collapsible: true,
         children: [
+          '/event-order'
+        ]
+      }, {
+        text: 'Modding ct.js',
+        collapsible: true,
+        children: [
           {
-            link: "/modding-structure",
-            text: "Directory structure and module's manifest",
-          },
-          {
-            link: "/modding-events-and-injections",
-            text: "Extending events with injections",
-          },
-          {
-            link: "/modding-settings-and-extensions",
-            text: "Settings and additional fields",
-          },
-          {
-            link: "/modding-input-methods",
-            text: "Adding new input methods",
-          },
-          {
-            link: "/modding-adding-sound-module",
-            text: "Adding a new sound package",
-          },
-          {
-            link: "/modding-typings-and-intellisense",
-            text: "Autocompletion and IntelliSense",
-          },
-          {
-            link: "/modding-fields-declaration",
-            text: "Fields reference",
-          },
-        ],
-      },
-      {
-        text: "Troubleshooting",
+            link: '/modding-structure',
+            text: 'Directory structure and module\'s manifest'
+          }, {
+            link: '/modding-events-and-injections',
+            text: 'Extending ct.js code with injections'
+          }, {
+            link: '/modding-settings-and-extensions',
+            text: 'Settings and additional fields'
+          }, {
+            link: '/modding-input-methods',
+            text: 'Adding new input methods'
+          }, {
+            link: '/modding-modded-events',
+            text: 'Adding new events'
+          }, {
+            link: '/modding-typings-and-intellisense',
+            text: 'Autocompletion and IntelliSense'
+          }, {
+            link: '/modding-fields-declaration',
+            text: 'Fields reference'
+          }
+        ]
+      }, {
+        text: 'Troubleshooting',
         collapsible: false,
         children: [
           {
-            link: "/migration-0to1",
-            text: "Migration from 0.x to 1.x",
-          },
-          {
-            link: "/migration-1-2to1-3",
-            text: "Migration from 1.2 to 1.3",
-          },
-          {
-            link: "/migration-1to2",
-            text: "Migration from 1.x to 2.0",
-          },
-          {
-            link: "/troubleshooting-teared-background",
-            text: "Background splits into squares!",
-          },
-          {
-            link: "/troubleshooting-leaking-pixels",
-            text: "Textures have leaked pixels!",
-          },
-          {
-            link: "/troubleshooting-sounds-not-playing",
-            text: "Sounds don't play at game start!",
-          },
-        ],
-      },
+            link: '/migration-0to1',
+            text: 'Migration from 0.x to 1.x'
+          }, {
+            link: '/migration-1-2to1-3',
+            text: 'Migration from 1.2 to 1.3'
+          }, {
+            link: '/migration-1to2',
+            text: 'Migration from 1.x to 2.0'
+          }, {
+            link: '/migration-2to3',
+            text: 'Migration from 2.x to 3.0'
+          }, {
+            link: '/troubleshooting-teared-background',
+            text: 'Background splits into squares!'
+          }, {
+            link: '/troubleshooting-leaking-pixels',
+            text: 'Textures have leaked pixels!'
+          }, {
+            link: '/troubleshooting-sounds-not-playing',
+            text: 'Sounds don\'t play at game start!'
+          }
+        ]
+      }
     ],
 
     locales: {
@@ -525,6 +515,68 @@ module.exports = {
             ],
           },
         ],
+      },
+      "/it/": {
+        // text for the language dropdown
+        selectLanguageText: "Lingua",
+        // label for this locale in the language dropdown
+        selectLanguageName: "Italiano",
+        // text for the edit-on-github link
+        editLinkText: "Aiutare a migliorare questa pagina!",
+        repoLabel: "Contribuisci!",
+        navbar: [
+          {
+            text: "Home",
+            link: "/",
+          },
+          {
+            text: "Scarica ct.js",
+            link: "https://ctjs.rocks",
+          },
+          {
+            text: "Discord",
+            link: "https://discord.gg/CggbPkb",
+          },
+          {
+            text: "Forum",
+            link: "https://forum.ctjs.rocks/",
+          },
+        ],
+        sidebar: [
+          {
+            link: "/",
+            // text: "La documentazione italiana è ancora incompleta e può differire da quella originale!",
+          },
+          {
+            link: "/it/",
+            text: "Home",
+          },
+          {
+            text: "Introduzione a JS",
+            collapsible: false,
+            children: [
+              "/it/jsintro_pt1",
+              "/it/jsintro_pt2",
+              "/it/jsintro_pt3",
+            ],
+          },
+          {
+            collapsible: false,
+            text: "Tutorial",
+            children: [
+              "/it/tut-making-shooter",
+              "/it/tut-making-platformer",
+              "/it/tut-making-jettycat",
+              "/it/tut-polishing-jettycat",
+            ],
+          },
+        ],
+        serviceWorker: {
+          updatePopup: {
+            message: "Sono disponibili nuovi contenuti.",
+            buttonText: "Ricarica la pagina",
+          },
+        },
       },
     },
 

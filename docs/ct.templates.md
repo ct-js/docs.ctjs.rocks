@@ -66,11 +66,14 @@ ct.templates.each(function () {
 `ct.u.pdc` computes distance between two points. This and other similar functions can be found [here](ct.u.html).
 :::
 
-### `ct.templates.exists(copy)` <badge>new in v1.3</badge>
+### `ct.templates.exists(templateName)`
 
-Checks whether a given argument is a copy that exists in ct.js' world. Falsey variables like undefined ones will return `false`, as well as destroyed copies; the other times, it will return `true`. This method also works with most PIXI entities, e.g. with `PIXI.Text` and `PIXI.Graphics`.
+ Checks whether there are any copies of this template's name. Will throw an error if you pass an invalid template name. Returns `true` if at least one copy exists in a room; `false` otherwise.
 
-### `ct.templates.isCopy(obj)` <badge>new in v1.5</badge>
+### `ct.templates.valid(obj)`
+Checks whether a given object exists in game's world. Intended to be applied to copies, but may be used with other PIXI entities. Returns `true` if a copy exists and is not marked for removal; `false` otherwise.
+
+### `ct.templates.isCopy(obj)`
 Checks whether a given object is a ct.js copy. Returns `true` if the passed object is a copy; `false` otherwise.
 
 ### `ct.templates.list['TemplateName']`

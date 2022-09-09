@@ -2,7 +2,20 @@
 
 Ct.js is moddable, and the process of making new modules is pretty easy! Modules, or catmods, can put new code into ct.js framework, hack on built-in events and procedures, add new project settings and editable fields for game assets.
 
-Any module is a directory with a following structure, placed at `ct.js/data/ct.libs`:
+Any module is a directory with `module.json` file inside and any additional files needed for your module to work.
+
+:::warn
+The name of the directory itself is the codename of your module. For example, if you look into ct.js folder/data/ct.libs, you will see that the codename of ct.place library is just `place`.
+
+The name should be unique, should have lowercase latin letters and (optionally) dots in it, and must not contain underscores and other special characters, like quotes and commas.
+
+There is also a list of reserved names:
+
+* `core`
+* names of the core ct.js library's objects: `templates`, `actions`, `rooms`, `inputs`, etc.
+:::
+
+Ct.js detects a following module structure, placed at `ct.js/data/ct.libs`:
 
 ```
 mycatmod
@@ -15,9 +28,9 @@ mycatmod
   |-- README.md
   |-- docs
       \-- (any number of .md docs)
-  |
   |-- CHANGELOG.md
   |-- LICENSE (plain text, strongly recommended)
+  |-- types.d.ts (TypeScript declarations for in-editor code completions and type checks)
   |
   |-- includes
   |   \-- (files to be copied to a resulting game)
@@ -27,7 +40,7 @@ mycatmod
 ```
 (more about injections [here](modding-events-and-injections.html))
 
-* `module.json` allows your module to be discoverable by ct.IDE, and contains basic info, list of authors and description of module settings.
+* `module.json` allows your module to be discoverable by ct.IDE, and contains basic info, list of authors and description of module settings. It is the only file that is required.
 
 * `index.js` usually represents the main code of your module, and is bundled with all the remaining code of compiled game. A rule of thumb is to pack all your dependencies in one file. If your dependency is an another ct module, you can list this module as such in `module.json`. (See below for examples.) This file supports [templating](modding-events-and-injections.html#templating).
 
@@ -123,6 +136,7 @@ Depending on your needs, you will probably need to:
 * [Add settings to your module](modding-events-and-injections.html) editable from ct.IDE and read them back though injections;
 * [Add new editable fields](modding-events-and-injections.html) for templates and other few asset types;
 * [Implement new input methods](modding-input-methods.html) to integrate them into [Actions system](actions.html);
+* [Create new events for templates and rooms](modding-modded-events); <badge>new in ct.js v3.0</badge>
 * [Add typings](modding-typings-and-intellisense.html) for smart autocompletion and type checks.
 
 Follow the links to find the examples and references on further implementation.
