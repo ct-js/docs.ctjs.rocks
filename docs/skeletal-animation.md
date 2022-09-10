@@ -22,13 +22,13 @@ You will get three files in the output directory:
 * `Animation_tex.json`;
 * `Animation_tex.png`.
 
-We will need all the three files to be in the same location. Open ct.js, then the Graphics tab, and press the "Import" button. Locate the `Animation_ske.json` file and add it. Ct.js will then import all the three files into your project.
+We will need all the three files to be in the same location. Open ct.js, then the Textures tab, and press the "Import" button next to Skeletal Animation label. Locate the `Animation_ske.json` file and add it. Ct.js will then import all the three files into your project.
 
 ## Using Skeletal Animations
 
 Skeletal animations are different from regular copies' sprites, and thus they will lack such features like collision detection, but they can be added to any regular copy.
 
-To add a skeletal animation to a copy, write this to its On Create code:
+To add a skeletal animation to a copy, write this to its Creation code:
 
 ```js
 this.skel = ct.res.makeSkeleton('YourAnimationName');
@@ -47,7 +47,7 @@ These are some useful functions to manipulate the skeleton:
 Example of adding dynamic skeletal animation with blends:
 
 ```js
-/* Draw event */
+/* Frame end event */
 var anim = this.skel.animation;
 
 if (this.onGround) { // should be defined before
