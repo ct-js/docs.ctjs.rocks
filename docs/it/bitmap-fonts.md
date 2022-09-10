@@ -24,8 +24,6 @@ Dopo aver configurato il tuo font, puoi prendere il nome di questo font come ris
 
 ## Utilizzo di font bitmap nel codice
 
-The process of creating a bitmap text label is similar to canvas-based one: we create a child element with `new PIXI.BitmapText()` and add it to a parent — a type or a room.
-
 Il processo di creazione di un'etichetta di testo bitmap è simile a quella basata su canvas: creiamo un elemento *child* (figlio) con `new PIXI.BitmapText()`e aggiungiamolo a un *parent*, un tipo o una stanza.
 
 ```js
@@ -38,10 +36,6 @@ this.label = new PIXI.BitmapText('Initial text', {
 });
 this.addChild(this.label);
 ```
-
-The size of the font can be different than set in ct.IDE. When you add a number of fonts with different sizes but with one name, ct.js will take the best fit from them.
-
-We can manipulate the font similarly to copies by tinting, scaling, rotating this label:
 
 La dimensione del carattere può essere diversa da quella impostata in ct.IDE. Quando aggiungi un certo numero di caratteri con dimensioni diverse ma con un unico nome, ct.js si adatterà meglio.
 
@@ -58,8 +52,6 @@ Per modificare il testo, modifica il parametro `text`:
 ```js
 this.label.text = 'Score: ' + this.score;
 ```
-
-Finally, when you no longer need the label, you can remove it with `destroy()` method:
 
 Infine, quando non hai più bisogno dell'etichetta, puoi rimuoverla con il metodo`destroy()`:
 
