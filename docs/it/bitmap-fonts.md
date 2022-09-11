@@ -1,4 +1,4 @@
-# Utilizzo di font bitmap
+# Font bitmap - creazione ed utilizzo
 
 Ci sono due tipi di etichette di testo in ct.js: quello basato su font bitmap e quello basato su canvas. Il primo tipo è ottimo per testo dinamico, in movimento e modificabile, mentre il secondo tipo è ottimo per grandi quantità di testo statico. Scegliere il tipo giusto permette di ottimizzare il tuo gioco al meglio. Qualunque tu scelga, entrambe le etichette di testo possono essere trasformate nel loro insieme senza alcun impatto sulle prestazioni, ad esempio spostate, ruotate, colorate con la proprietà `this.tint`.
 

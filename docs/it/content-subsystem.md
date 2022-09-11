@@ -1,4 +1,4 @@
-# Sottosistema dei contenuti (content editor e ct.content)
+# Content subsystem - dati strutturati personalizzati
 
 Il "content subsystem" (sottosistema dei contenuti) è un set contenente editor e procedure di esportazione che ti consentono di progettare, creare e utilizzare dati  strutturati all'interno del tuo gioco. Può immaginarlo come un database locale del tuo progetto. Ad esempio, può essere utilizzato per progettare bottini, livelli o ondate in un gioco tipo difesa della torre, o missioni o dialoghi in un gioco di ruolo o qualsiasi altra cosa simile nella struttura ad una tabella.
 

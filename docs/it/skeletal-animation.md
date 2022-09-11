@@ -1,4 +1,4 @@
-# Utilizzo dell'animazione a scheletro nei progetti ct.js
+# Animazioni basate su scheletro
 
 ct.js supporta l'importazione di animazioni create con DragonBones. È stato testato con DragonBones v5.6 ma, poiché DragonBones ha una buona compatibilità con le versioni precedenti, dovrebbe funzionare anche con la v4.0. Dragonones è gratuito ed è disponibile sul [loro sito ufficiale](http://dragonbones.com/) .
 

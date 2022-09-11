@@ -1,4 +1,4 @@
-# Utilizzare l'editor dei livelli di gioco (Room)
+# Room - l'editor dei livelli di gioco
 
 Per comprendere i termini in grassetto che seguono, leggi [la loro definizione qui](ct-concepts.md).
 

@@ -1,4 +1,4 @@
-# Action - le azioni
+# Action - gestire gli input utente
 
 Le azioni sono un livello di astrazione che riguardano i vari metodi di input, ti consentono di scrivere un'unica istruzione per gestirne vari dispositivi che si  tratti di tastiera, mouse, gamepad, tasti virtuali o tutto ciò che può essere collegato a ct.js per interagire nel gioco. Il vantaggio è che un'unica azione resta in ascolto non solo più dispositivi contemporaneamente ma, ad esempio, anche di più pulsanti di uno specifico dispositivo. Ad esempio, puoi ascoltare contemporaneamente WASD e le frecce della tastiera e il codice sarà come se stessi ascoltando una cosa sola (e anche meno). Se verranno aggiunti controlli di un gamepad, la quantità del tuo codice non cambierà.
 
