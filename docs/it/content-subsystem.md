@@ -6,9 +6,9 @@ Il sottosistema dei contenuti può memorizzare valori semplici come numeri,  str
 
 In sostanza, il "content subsystem" è costituito da:
 
-- l'editor del tipo di contenuto che ti consente di progettare le tue strutture di dati
-- l'editor di voci del contenuto che ti consente di creare e modificare i  tuoi contenuti in un'interfaccia simile a una tabella
-- i dati esportati disponibili sotto il namespace `ct.content`.
+* l'editor del tipo di contenuto che ti consente di progettare le tue strutture di dati
+* l'editor di voci del contenuto che ti consente di creare e modificare i  tuoi contenuti in un'interfaccia simile a una tabella
+* i dati esportati disponibili sotto il namespace `ct.content`.
 
 ## Progettazione dei dati
 
@@ -16,10 +16,10 @@ Puoi creare nuovi tipi di contenuto nella scheda "Project -> Content type editor
 
 Ogni tipo di contenuto ha questi campi:
 
-- **Content type name** (il nome del contenuto) Questo è il nome della proprietà che utilizzerai nel tuo codice JS, quindi pensaci bene e scrivi un nome semplice senza spazi. Ad esempio, se scegli come nome per il tuo contenuto `Quests`, potrai accedervi nel gioco con `ct.content.Quests`.
-- **Readable name** (il nome leggibile) Se il tuo nome principale non è del tutto leggibile, per esempio `BuffsNCurses`, puoi scrivere un nome diverso che verrà visualizzato nella GUI di ct.IDE. Non ha effetto sul codice che scrivi.
-- **Icon** l'icona visualizzata nell'interfaccia utente di ct.IDE.
-- **Content schema** (struttura del contenuto) Questo è un elenco di tutti i campi di ciascuna voce del tuo nuovo contenuto.
+* **Content type name** (il nome del contenuto) Questo è il nome della proprietà che utilizzerai nel tuo codice JS, quindi pensaci bene e scrivi un nome semplice senza spazi. Ad esempio, se scegli come nome per il tuo contenuto `Quests`, potrai accedervi nel gioco con `ct.content.Quests`.
+* **Readable name** (il nome leggibile) Se il tuo nome principale non è del tutto leggibile, per esempio `BuffsNCurses`, puoi scrivere un nome diverso che verrà visualizzato nella GUI di ct.IDE. Non ha effetto sul codice che scrivi.
+* **Icon** l'icona visualizzata nell'interfaccia utente di ct.IDE.
+* **Content schema** (struttura del contenuto) Questo è un elenco di tutti i campi di ciascuna voce del tuo nuovo contenuto.
 
 La struttura del contenuto è descritta con una tabella. Ogni riga sarà un campo dell'oggetto. Analogamente ai tipi di contenuto stessi, anche i campi hanno un nome regolare e uno leggibile. Se nomini il tuo campo `title`, sarai in grado di accedere al titolo della prima voce nel tuo contenuto con `ct.content.Quests[0].title`.
 
@@ -27,8 +27,8 @@ Oltre a un nome, ogni campo ha un tipo. I campi possono contenere valori semplic
 
 Ci sono anche due caselle di controllo per ogni riga: "Required" e "Array".
 
-- **Required** indica i campi obbligatori che devono essere compilati, altrimenti visualizzeranno un avviso nell'interfaccia utente di ct.IDE.
-- Se **Array** è spuntato, un pulsante ti permetterà di editare la lista in corrispondenza di ogni voce, consentendoti di aggiungere un numero arbitrario di valori.
+* **Required** indica i campi obbligatori che devono essere compilati, altrimenti visualizzeranno un avviso nell'interfaccia utente di ct.IDE.
+* Se **Array** è spuntato, un pulsante ti permetterà di editare la lista in corrispondenza di ogni voce, consentendoti di aggiungere un numero arbitrario di valori.
 
 ![An example of a content type with array field](../images/contentEditor_Arrays.png)
 
