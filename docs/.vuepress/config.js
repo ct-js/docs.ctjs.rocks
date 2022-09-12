@@ -569,6 +569,18 @@ module.exports = {
               "/it/tut-making-jettycat",
               "/it/tut-polishing-jettycat",
             ],
+          }, {
+            text: "Utilizzare l\'editor",
+            collapsible: false,
+            children: [
+              "/it/actions",
+              "/it/room-editor",
+              "/it/bitmap-fonts",
+              "/it/skeletal-animation",
+              "/it/content-subsystem",
+              "/it/building-your-game",
+              "/it/deployment-itch-io",
+            ],
           },
         ],
         serviceWorker: {

@@ -30,15 +30,17 @@ footer: Ct.js documentazione. Salvo diversa indicazione, al contenuto si applica
         <a href="/it/ct-concepts.html" class="button">Vai alla documentazione di ct.js →</a>
     </div>
     <div class="feature" style="flex-basis: 65%; max-width: 65%;">
-        <h2>Importanti modifiche e aggiunte di ct.js v2.0</h2>
+        <h2>Importanti modifiche e aggiunte in ct.js v3.0</h2>
         <ul>
-            <li>L'API è cambiata! La prima cosa che noterai è che `ct.types` ora è `ct.templates`, ma c'è molto di più nella nostra <a href="/migration-1to2">guida alla migrazione</a>. Dai un'occhiata.</li>
-            <li><code>ct.res</code> ha ottenuto un'importante riscrittura e ora ti consente <a href="/it/ct.res.html">di caricare dinamicamente texture, font e animazioni con scheletro</a> nel tuo gioco. E c'è dell'altro!</li>
-            <li>È stata aggiunta un nuovo paragrafo nell'Introduzione a JavaScript: <a href="/it/jsintro_pt3.html">ora su Array e Oggetti</a>.</li>
-            <li>Ora c'è una pagina della guida che spiega come usare l'editor dei livelli e, come mostra la pratica, non tutti lo sanno. <a href="/room-editor.html">Dai un'occhiata</a>, non vuoi?</li>
-            <li><a href="/it/modding-fields-declaration.html">I catmod ora hanno una chiave `if` nei loro campi</a>, che consente agli sviluppatori delle catmod di visualizzare i controlli in modo condizionale e un tipo `array` con una chiave complementare `arrayType`.</li>
+            <li>Nuovo editor per i livelli di gioco, woop-woop! <a href="/it/room-editor.html">Le guide per l'editor dei livelli sono state aggiornate</a> — ha dozzine di comodi tasti di scelta rapida. Se incontri problemi, guarda <a href="/migration-2to3.html">la guida per la migrazione</a>!</li>
+            <li>Ora ci sono più eventi nell'editor dei template — i tutorial sono stati aggiornati di conseguenza (grazie a Firecakes!)</li>
+            <li>L'esempio Physics2D è stato aggiornato e ora utilizza i nuovi eventi appena aggiunti. Aggiungere i giochi alla fisica è diventato molto più semplice!</li>
+            <li>Ci sono nuove spiegazioni sulla licenza di ct.js nel pannello della licenza. TL;DR: ct.js è semplicemente fantastico.</li>
+            <li>Un selvaggio<code><a href="/ct.rooms.html">ct.rooms.restart()</a></code> è comparso.</li>
+            <li>Firecakes ha rilasciato un <code>vgui</code> catmod che aggiunge una API per creare una casella di testo per l'input!</li>
+            <li>EhanAhamed ha aggiornato il modulo <code>ct.desktop</code>, ora ha centinaia di nuove funzionalità e supporta sia il runtime Electron che NW.js! Guarda le novità in ct.js.</li>
         </ul>
-        <a href="https://ctjs.rocks/changelog/" target="_blank">Vedi tutte le modifiche (changelog) →</a>
+        <a href="https://ctjs.rocks/changelog/" target="_blank">Vedi il changelog →</a>
     </div>
     <div class="feature">
         <h2>Get the cheatsheet</h2>
