@@ -577,7 +577,7 @@ module.exports = {
               "/it/room-editor",
               "/it/bitmap-fonts",
               "/it/skeletal-animation",
-              "/it/content-subsystem'",
+              "/it/content-subsystem",
               "/it/building-your-game",
               "/it/deployment-itch-io",
             ],
