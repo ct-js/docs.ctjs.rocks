@@ -1,12 +1,17 @@
+import { searchPlugin } from '@vuepress/plugin-search';
+import { mediumZoomPlugin } from '@vuepress/plugin-medium-zoom';
+
+import { defaultTheme } from 'vuepress';
+
 module.exports = {
   title: 'ct.js Documentation',
   description: 'Docs, tutorials, guides',
 
   plugins: [
-    '@vuepress/plugin-medium-zoom',
-    ['@vuepress/plugin-search', {
+    mediumZoomPlugin(),
+    searchPlugin({
       maxSuggestions: 15
-    }]
+    })
   ],
 
   head: [
@@ -38,9 +43,8 @@ module.exports = {
     },
   },
 
-  themeConfig: {
+  theme: defaultTheme({
     logo: '/assets/img/logo.png',
-    lastUpdated: 'Last Updated',
 
     repo: "ct-js/docs.ctjs.rocks",
     repoLabel: "Contribute!",
@@ -48,6 +52,7 @@ module.exports = {
     docsBranch: 'master',
     editLinks: true,
     editLinkText: "Propose edits",
+    lastUpdated: 'Last Updated',
 
     navbar: [
       {
@@ -258,7 +263,10 @@ module.exports = {
           {
             collapsible: false,
             text: "Уроки",
-            children: ["/ru/tut-making-platformer", "/ru/tut-making-shooter"],
+            children: [
+              "/ru/tut-making-shooter",
+              "/ru/tut-making-platformer"
+            ],
           },
           {
             text: "Ядро",
@@ -591,9 +599,7 @@ module.exports = {
         },
       },
     },
-
-    lastUpdated: "Last Updated",
-  },
+  }),
   markdown: {
     toc: {
       level: [2, 3, 4],
