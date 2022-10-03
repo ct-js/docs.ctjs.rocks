@@ -568,7 +568,7 @@ if (ct.rooms.list['UI_Paused'].length === 0) {
 
 Remember the name `UI_Paused`. We will need to create a room with this name a bit later.
 
-`ct.pixiApp.ticker.speed` is the multiplier that affects how ct.delta is calculated. When it is set to 0, it will effectively pause the game as everyone's `ct.delta` will turn to 0. Our cat and timers are dependent on `ct.delta`.
+`ct.pixiApp.ticker.speed` is the multiplier that affects how `ct.delta` is calculated. When it is set to 0, it will effectively pause the game as everyone's `ct.delta` will turn to 0. Our cat and timers are dependant on `ct.delta`.
 
 Open the room `UI_InGame` and place the created template at the top right corner.
 
