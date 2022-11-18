@@ -16,6 +16,8 @@ Enable the module `transition` in the Catmods tab. It signals that it depends on
 
 Now, modify the `Button_Play` Pointer click event code so that it shows a blue circled transition when clicked:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 if (!this.pressed) {
     this.pressed = true;
@@ -25,6 +27,15 @@ if (!this.pressed) {
     });
 }
 ```
+@tab CoffeeScript
+```coffee
+if not @pressed
+    @pressed = yes
+    ct.transition.circleOut 1000, 0x446ADB
+    .then =>
+        ct.rooms.switch 'InGame'
+```
+:::
 
 `this.pressed` is our custom variable that remembers that a button was pressed. It will help us prevent occasional double clicking, that may have negative effects on the game's logic.
 
@@ -38,9 +49,16 @@ The transition itself is an asynchronous action! We use `.then(() => {…})` to 
 
 That was the first part of the transition. The second one will go to the `InGame` Room start code. Open the room, and put this line:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 ct.transition.circleIn(500, 0x446ADB);
 ```
+@tab CoffeeScript
+```coffee
+ct.transition.circleIn 500, 0x446ADB
+```
+:::
 
 We can also show up our UI layers (the pause menu and the score screen) by making them transparent but slowly turning them opaque. We will use `ct.tween` there — that's one catmod that is used by `ct.transition`.
 
@@ -50,6 +68,8 @@ We will change the property `this.alpha` through time. It is a number between 0 
 
 So, to fade in a UI layer, we need to put this code in the Room start event of rooms `UI_OhNo` and `UI_Paused`:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 this.alpha = 0;
 
@@ -62,11 +82,25 @@ ct.tween.add({
     useUiDelta: true
 });
 ```
+@tab CoffeeScript
+```coffee
+@alpha = 0
+
+ct.tween.add
+    obj: this
+    fields:
+        alpha: 1
+    duration: 500
+    useUiDelta: true
+```
+:::
 
 Firstly, we make a room fully transparent by setting its `alpha` to 0. Then, we call `ct.tween.add` to start a smooth transition. `obj` points to an object that should be animated, and `fields` lists all the properties and values we want to change. The `duration` key sets the length of the effect, in milliseconds. Finally, the `useUiDelta` key tells that animation should run in UI time scale, ignoring our "paused" game state.
 
 We can fade out a UI layer, too. Let's gradually hide the pause menu when the player hits the "continue" button. Open the template `Button_Continue`, and modify its Pointer click event code:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 if (!this.pressed) {
     this.pressed = true;
@@ -84,6 +118,21 @@ if (!this.pressed) {
     });
 }
 ```
+@tab CoffeeScript
+```coffee
+if not @pressed
+    @pressed = yes
+    ct.tween.add
+        obj: @getRoom()
+        fields:
+            alpha: 0
+        duration: 1000
+        useUiDelta: yes
+    .then =>
+        ct.pixiApp.ticker.speed = 1
+        ct.rooms.remove @getRoom()
+```
+:::
 
 We create a flag `this.pressed` to make sure that the code runs the animation only once. Running it multiple times won't hurt, but this keeps the debugger's log clean as `ct.tween` will warn about interrupted animations otherwise.
 
@@ -95,6 +144,8 @@ Though the "paused" menu fades out slowly, it is still hard for a player to catc
 
 Open the template `Button_Continue` again, and modify the script so it fires another `ct.tween.add` after it finishes the first one:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js {12,13,14,15,16,17,18,19}
 if (!this.pressed) {
     this.pressed = true;
@@ -119,6 +170,26 @@ if (!this.pressed) {
     });
 }
 ```
+@tab CoffeeScript
+```coffee
+if not @pressed
+    @pressed = yes
+    ct.tween.add
+        obj: @getRoom()
+        fields:
+            alpha: 0
+        duration: 1000
+        useUiDelta: yes
+    .then =>
+        ct.tween.add
+            obj: ct.pixiApp.ticker
+            fields:
+                speed: 1
+            duration: 1000
+            useUiDelta: true
+        ct.rooms.remove @getRoom()
+```
+:::
 
 Now players can catch up with the game and save their cat from falling.
 
@@ -150,7 +221,21 @@ Here are some directions on how to make this effect:
 
 When you're ready, hit the "Apply" button at the bottom of the left column.
 
-To create a burst of stars when a big one is collected, open the template `Star`, add the "Destruction" event and write a line `ct.emitters.fire('StarBurst', this.x, this.y);`. Ta-da!
+To create a burst of stars when a big one is collected, open the template `Star`, add the "Destruction" event and write a line:
+
+
+::: code-tabs#tutorial
+@tab JavaScript
+```js
+ct.emitters.fire('StarBurst', this.x, this.y);
+```
+@tab CoffeeScript
+```coffee
+ct.emitters.fire 'StarBurst', @x, @y
+```
+:::
+
+Ta-da!
 
 ::: tip
 Here we read the position of the star (`this.x, this.y`) and tell to spawn an effect `StarBurst`.
@@ -179,9 +264,16 @@ Here are some hints:
 
 To add the effect to the cat, open its template and put this code to the end of its Creation code:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 this.jet = ct.emitters.follow(this, 'Jet');
 ```
+@tab CoffeeScript
+```coffee
+@jet = ct.emitters.follow this, 'Jet'
+```
+:::
 
 `ct.emitters.follow` tells to create a particle effect and make it follow a copy. It will look attached to the cat. The first argument is the copy we want to attach the effect to (`this` is our cat), the second one — the name of the effect (`'Jet'`).
 
@@ -197,15 +289,29 @@ Let's add a bit of dynamics to this jet: we will spawn new particles only when t
 
 Create a new Action release event, select the Poof action, and place this piece of code in it:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 this.jet.pause();
 ```
+@tab CoffeeScript
+```coffee
+@jet.pause()
+```
+:::
 
 This will pause the effect. To unpause it, go to the On Poof down event and add this line:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 this.jet.resume();
 ```
+@tab CoffeeScript
+```coffee
+@jet.resume()
+```
+:::
 
 And that is it for particles; time for some testing!
 
@@ -221,15 +327,29 @@ We can tie `this.vspeed` and `this.angle` of a cat together so that it rotates w
 
 This line will work:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 this.angle = -this.vspeed;
 ```
+@tab CoffeeScript
+```coffee
+@angle = -@vspeed
+```
+:::
 
 Though it will result in a too strong rotation. Adding a multiplier will make it look better:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 this.angle = -this.vspeed * 0.3;
 ```
+@tab CoffeeScript
+```coffee
+@angle = -@vspeed * 0.3
+```
+:::
 
 ### Rotating the stars
 
@@ -237,16 +357,31 @@ With stars, we can't simply tie `this.angle` to some ct.js' value. We can define
 
 Open the `Star` template, and add this line to its Creation event:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 this.wiggleTime = 0;
 ```
+@tab CoffeeScript
+```coffee
+@wiggleTime = 0
+```
+:::
 
 Then, in the Frame end event, add this code:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 this.wiggleTime += ct.delta * 0.2;
 this.angle = Math.sin(this.wiggleTime) * 5;
 ```
+@tab CoffeeScript
+```coffee
+@wiggleTime += ct.delta * 0.2
+@angle = (Math.sin @wiggleTime) * 5
+```
+:::
 
 Here we change `this.wiggleTime` at each frame by the elapsed time, multiplied by 0.2 to slow down the animation. Then we use `Math.sin` to get a sinus of the `wiggleTime` — changing the latter at each frame will result in a smooth oscillation between -1 and 1. By multiplying it by 5, we make the effect five times stronger.
 
@@ -260,11 +395,19 @@ Create a new template called `PressHint` with a texture `PressHint`. Make sure t
 
 In the template's Creation code, add a line `this.pulsePhase = 0;`. In its Frame start code, put this snippet:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 this.pulsePhase += ct.delta * 0.2;
 
 this.scale.x = this.scale.y = 1 + Math.sin(this.pulsePhase) * 0.1;
 ```
+@tab CoffeeScript
+```coffee
+@pulsePhase += ct.delta * 0.2
+@scale.x = @scale.y = 1 + (Math.sin @pulsePhase) * 0.1
+```
+:::
 
 And in the Action Poof press event, add this: `this.kill = true`
 
