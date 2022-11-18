@@ -36,6 +36,10 @@
     }
 }
 
-.sidebar-group:not(.collapsible) .sidebar-heading:not(.clickable) {
+.sidebar > .sidebar-links > li > .sidebar-link, .sidebar-group .sidebar-heading, .sidebar-group:not(.collapsible) .sidebar-heading:not(.clickable) {
     color: var(--theme-color);
+}
+
+div[class*="language-"] > button.copy:not(.pure) {
+    background: var(--theme-color);
 }
