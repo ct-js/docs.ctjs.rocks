@@ -49,7 +49,7 @@ footer: Ct.js documentation. Except where otherwise noted, content is licensed u
         <p></p>
         <img src="/assets/img/CheatsheetThumbnail.png">
     </div>
-    <div class="feature"  style="flex-basis: 50%;">
+    <div class="feature" style="flex-basis: 50%;">
         <h2>Join the community</h2>
         <p>Join our Discord server to meet other game developers, receive help, aid others, and share your creations. Alternatively, you can also post on our forum.</p>
         <a class="action-button" target="_blank" href="https://discord.gg/CggbPkb">Discord Server →</a>

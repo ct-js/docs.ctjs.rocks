@@ -10,12 +10,12 @@ footer: Документация ct.js. Если не указано иного,
 ---
 
 <div class="features">
-    <div class="feature">
+    <div class="feature" style="flex-basis: 33%">
         <h2>Изучаем JavaScript</h2>
         <p>Игры в ct.js пишутся на JavaScript (он же JS) — языке, которым задаётся геймплейная логика. Нужные для разработки знания можно получить в нашем <a href="/jsintro_pt1.html">Введении в JavaScript</a>.</p>
-        <a href="/jsintro_pt1.html" class="button">Изучить JavaScript →</a>
+        <a href="/jsintro_pt1.html" class="action-button">Изучить JavaScript →</a>
     </div>
-    <div class="feature">
+    <div class="feature" style="flex-basis: 33%">
         <h2>Проходим уроки</h2>
         <p>Лучше всего умения закрепляются <i>на практике</i>, и с нашими пошаговыми туториалами ты научишься делать законченные игры:</p>
         <ul>
@@ -24,12 +24,12 @@ footer: Документация ct.js. Если не указано иного,
             <li><a href="/tut-making-jettycat.html">Сделать Jetty Cat, игру в духе Flappy Bird →</a></li>
         </ul>
     </div>
-    <div class="feature">
-        <h2>Learn the core library</h2>
-        <p>See additional methods and properties of copies, camera, rooms, and procedurally create tilemaps, backgrounds, and new copies.</p>
-        <a href="/ct-concepts.html" class="button">Go to ct.js docs →</a>
+    <div class="feature" style="flex-basis: 33%">
+        <h2>Изучи основную библиотеку</h2>
+        <p>Найди дополнительные методы для работы с шаблонов, камерой, комнатами, и для процедурной генерации тайлов, фонов и копий.</p>
+        <a href="/ct-concepts.html" class="action-button">Перейти к докам →</a>
     </div>
-    <div class="feature" style="flex-basis: 65%; max-width: 65%;">
+    <div class="feature" style="flex-basis: 65%;">
         <h2>Важные изменения в ct.js v3.0</h2>
         <ul>
             <li>Новый редактор комнат, ура! <a href="/room-editor.html">Документация к нему была обновлена</a> — в редакторе появилась масса полезных хоткеев. Если у тебя появились проблемы при использовании старых проектов, <a href="/migration-2to3.html">посмотри указания по миграции</a>!</li>
@@ -42,22 +42,22 @@ footer: Документация ct.js. Если не указано иного,
         </ul>
         <a href="https://ctjs.rocks/changelog/" target="_blank">Список изменений →</a>
     </div>
-    <div class="feature">
+    <div class="feature" style="flex-basis: 35%">
         <h2>Скачай шпаргалку</h2>
-        <a class="button" target="_blank" href="https://comigo.itch.io/ct-cheat-sheet">Скачать шпаргалку →</a>
         <p></p>
         <img src="/assets/img/CheatsheetThumbnail.png">
+        <a class="action-button" target="_blank" href="https://comigo.itch.io/ct-cheat-sheet">Скачать шпаргалку →</a>
     </div>
-    <div class="feature"  style="flex-basis: 47.5%; max-width: 47.5%;">
+    <div class="feature"  style="flex-basis: 50%">
         <h2>Присоединяйся к сообществу</h2>
         <p>Найди других разработчиком, делись опытом, получи помощь, вместе разрабатывайте проекты.</p>
-        <a class="button" target="_blank" href="https://discord.gg/HGbzZw4Prt">Дискорд-сервер →</a>
-        <a class="button" target="_blank" href="https://comigo.itch.io/ct/community">Форум →</a>
+        <a class="action-button" target="_blank" href="https://discord.gg/HGbzZw4Prt">Дискорд-сервер →</a>
+        <a class="action-button" target="_blank" href="https://comigo.itch.io/ct/community">Форум →</a>
     </div>
-    <div class="feature"  style="flex-basis: 47.5%; max-width: 47.5%;">
+    <div class="feature"  style="flex-basis: 50%">
         <h2>Внести вклад</h2>
         <p>Можно поднять локальный сервер-сайт документациии и добавлять новые страницы с простым синтаксисом Markdown.</p>
         <p>Также можно предложить изменения через Github — ищи ссылки "Предложить изменения" в конце страницы!</p>
-        <a class="button" target="_blank" href="https://github.com/ct-js/docs.ctjs.rocks">Открыть репозиторий →</a>
+        <a class="action-button" target="_blank" href="https://github.com/ct-js/docs.ctjs.rocks">Открыть репозиторий →</a>
     </div>
 </div>

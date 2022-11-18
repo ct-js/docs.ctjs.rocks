@@ -10,12 +10,12 @@ footer: Documentação ct.js. Exceto onde for indicado de outra forma, o conteú
 ---
 
 <div class="features">
-    <div class="feature">
+    <div class="feature" style="flex-basis: 33%">
         <h2>Aprenda JavaScript</h2>
         <p>Jogos feitos em ct.js usa JavaScript ou simplesmente JS para codificar a sua lógica de jogo. Aprenda essa parte necessária em nossa pequena <a href="./jsintro_pt1.html">Introdução ao JS</a>.</p>
-        <a href="./jsintro_pt1.html" class="button">Aprenda JavaScript →</a>
+        <a href="./jsintro_pt1.html" class="action-button">Aprenda JavaScript →</a>
     </div>
-    <div class="feature">
+    <div class="feature" style="flex-basis: 33%">
         <h2>Complete os tutoriais</h2>
         <p>A melhor forma de aprender é <i>praticando</i>, e você pode criar jogos reais com os nossos tutoriais de passo a passo:</p>
         <ul>
@@ -24,12 +24,12 @@ footer: Documentação ct.js. Exceto onde for indicado de outra forma, o conteú
             <li><a href="./tut-making-jettycat.html">Crie o Jetty Cat, um jogo no estilo flappy bird →</a></li>
         </ul>
     </div>
-    <div class="feature">
+    <div class="feature" style="flex-basis: 33%">
         <h2>Aprenda o principal do ct.js</h2>
         <p>Veja métodos e propriedades adicionais das copies, câmera, rooms, e crie tilemaps, backgrounds e novas copies de forma procedural.</p>
-        <a href="./ct-concepts.html" class="button">Vá para a documentação ct.js →</a>
+        <a href="./ct-concepts.html" class="action-button">Vá para a documentação ct.js →</a>
     </div>
-    <div class="feature" style="flex-basis: 65%; max-width: 65%;">
+    <div class="feature" style="flex-basis: 65%;">
         <h2>Notáveis alterações e adições no ct.js v2.0</h2>
         <ul>
             <li>API foi alterada! A primeira coisa que você notará é que o `ct.types` agora é `ct.templates`, mas existe muito mais em nosso <a href="./migration-1to2">guia de migração</a>. Vá lá e confira.</li>
@@ -40,22 +40,22 @@ footer: Documentação ct.js. Exceto onde for indicado de outra forma, o conteú
         </ul>
         <a href="https://ctjs.rocks/changelog/" target="_blank">Changelog →</a>
     </div>
-    <div class="feature">
+    <div class="feature" style="flex-basis: 35%;">
         <h2>Obtenha o cheatsheet</h2>
-        <a class="button" target="_blank" href="https://comigo.itch.io/ct-cheat-sheet">Baixe o cheatsheet →</a>
+        <a class="action-button" target="_blank" href="https://comigo.itch.io/ct-cheat-sheet">Baixe o cheatsheet →</a>
         <p></p>
         <img src="/assets/img/CheatsheetThumbnail.png">
     </div>
-    <div class="feature"  style="flex-basis: 47.5%; max-width: 47.5%;">
+    <div class="feature"  style="flex-basis: 50%;">
         <h2>Junte-se à comunidade</h2>
         <p>Junte-se ao nosso servidor Discord para conhecer outros desenvolvedores de jogos, tire dúvidas, ajude aos outros e compartilhe as suas criações. Além disso, você pode também postar em nosso fórum.</p>
-        <a class="button" target="_blank" href="https://discord.gg/CggbPkb">Servidor Discord →</a>
-        <a class="button" target="_blank" href="https://comigo.itch.io/ct/community">Fórum →</a>
+        <a class="action-button" target="_blank" href="https://discord.gg/CggbPkb">Servidor Discord →</a>
+        <a class="action-button" target="_blank" href="https://comigo.itch.io/ct/community">Fórum →</a>
     </div>
-    <div class="feature"  style="flex-basis: 47.5%; max-width: 47.5%;">
+    <div class="feature"  style="flex-basis: 50%;">
         <h2>Contribua</h2>
         <p>Configure um ambiente de desenvolvimento local para rodar o servidor de documentos e usar a simples sintaxe do Markdown para escrever novos tutoriais e enviar correções.</p>
         <p>Você também pode editar a documentação no Github — procure pelo link "Propose edits" na parte inferior de cada página!</p>
-        <a class="button" target="_blank" href="https://github.com/ct-js/docs.ctjs.rocks">Visite o repositório →</a>
+        <a class="action-button" target="_blank" href="https://github.com/ct-js/docs.ctjs.rocks">Visite o repositório →</a>
     </div>
 </div>
