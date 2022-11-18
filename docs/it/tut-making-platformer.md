@@ -107,7 +107,7 @@ Se salviamo ora il progetto e facciamo clic sul pulsante "Launch" in alto, potre
 ![Finestra di debug con copie posizionate e sfondo](../images/tutPlatformer_12.png)
 
 ::: tip
-Il tuo sfondo si divide in quadrati? Vedi [Risoluzione dei problemi: lo sfondo si divide in quadrati! ](./troubleshooting-teared-background.md)
+Il tuo sfondo si divide in quadrati? Vedi [Risoluzione dei problemi: lo sfondo si divide in quadrati! ](./../troubleshooting-teared-background.md)
 :::
 
 ### Aggiunta dei moduli per tastiera e collisioni
