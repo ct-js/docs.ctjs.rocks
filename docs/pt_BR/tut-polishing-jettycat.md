@@ -144,7 +144,7 @@ Escolha a sua textura no canto superior esquerdo e comece a ajustar os valores! 
 
 Tente fazer algo que pareça com isso:
 
-![Um efeito com uma explosão de estrelas](./../images/tutJettyCat_Stars.gif)
+![Um efeito com uma explosão de estrelas](./../images/tutorials/tutJettyCat_Stars.gif)
 
 ::: tip Dica
 Você pode definir uma textura de visualização no canto inferior direito para ver como o seu efeito se parece em comparação com a estrela bônus.
@@ -172,7 +172,7 @@ Abara a aba "FX" no topo da janela e crie um novo emissor de partículas. Chame-
 
 Para iniciar, click no botão `Select` na categoria "Texture" e escolha a textura chamada `Circle_08`. No canto inferior direito, click no botão "Set preview texture" e selecione o nosso gato. Depois disso, sinta-se livre para escolher a melhor forma de construir o efeito desejado. Eu fiz um jato de bolhas brancas de tamanhos diferentes:
 
-![Um efeito de partículas do jato em ct.js](./../images/tutJettyCat_Jet.gif)
+![Um efeito de partículas do jato em ct.js](./../images/tutorials/tutJettyCat_Jet.gif)
 
 Aqui estão algumas instruções:
 
@@ -258,7 +258,7 @@ this.angle = Math.sin(this.wiggleTime) * 5;
 
 Aqui alteramos o `this.wiggleTime` a cada frame pelo tempo decorrido, multiplicado por 0.2 para desacelerar a animação. Então usamos `Math.sin` para obter seno de `wiggleTime` — alterar o último a cada frame resultará em uma oscilação suave entre -1 e 1. Multiplicando o mesmo por 5, faremos com que o efeito seja cinco vezes mais forte.
 
-![A wiggling, animated star](./../images/tutJettyCat_StarWiggle.gif)
+![A wiggling, animated star](./../images/tutorials/tutJettyCat_StarWiggle.gif)
 
 ## Adicionando uma dica para começar a click/tocar na tela
 
@@ -290,11 +290,11 @@ O efeito parallax é utilizado no desenvolvimento de jogos desde muito tempo atr
 
 Vá para a room `MainMenu` e abra a aba "Backgrounds" na coluna esquerda. Em seguida, click no ícone de engrenagem próximo ao background `BG_Sky`. Precisaremos mover o background lentamente da esquerda para a direita para que assim as nossas nuvens se movam. Defina a "Movement speed"(Velocidade de movmento) para `-1`, `0`. Esses valores dizem ao background para ele se mover no sentido contrário(da direita para a esquerda) ao do eixo x, um pixel por segundo.
 
-![Definindo uma velocidade de movimento para um background em ct.js](./../images/tutJettyCat_32.png)
+![Definindo uma velocidade de movimento para um background em ct.js](./../images/tutorials/tutJettyCat_32.png)
 
 Em seguida, vá para a room chamada `InGame`. Abra as mesmas definições de background `BG_Sky`. Defina o seu valor parallax para 0.25:  isso dirá ao background para se mover quatro vezes mais lento que o restante da room, criando assim o efeito de profundidade.
 
-![Definindo uma velocidade de movimento para um background em ct.js](./../images/tutJettyCat_33.png)
+![Definindo uma velocidade de movimento para um background em ct.js](./../images/tutorials/tutJettyCat_33.png)
 
 O menu principal agora terá um céu animado, o céu da room principal se moverá visivielmente mais devagar que qualquer outro objeto na room. Limpo, elegante e agradável!
 

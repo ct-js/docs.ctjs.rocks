@@ -21,7 +21,7 @@ Qualquer room nova adicionada para a room principal pode ser posta nas coordenad
 ::: tip Dica
 Tecnicamente, ct.js transformará cada layer na fase dependendo da posição da câmera, enquanto que as layers de UI serão deixadas como estão. Isso significa que as coordenadas de mundo Pixi são na verdade coordenadas de UI, a qual não é intuitiva, mas é dessa forma que o objeto câmera é codificado. Portanto, não use as coordenadas de mundo Pixi.
 
-O que isso significa para você? Em primeiro lugar, você não pode reposicionar essas rooms que usam coordenadas de jogo por conta própria, pois elas são gerenciadas pelo `ct.camera` e as mesmas são substituídas por ele. Em vez disso, você pode simplesmente manipular a câmera — ela tem alguns recursos interessantes para o gerenciamento do viewport (janela/tela de visualização). Para mais informação sobre isso, acesse [Trabalhando com o Viewport](/viewport-management.md).
+O que isso significa para você? Em primeiro lugar, você não pode reposicionar essas rooms que usam coordenadas de jogo por conta própria, pois elas são gerenciadas pelo `ct.camera` e as mesmas são substituídas por ele. Em vez disso, você pode simplesmente manipular a câmera — ela tem alguns recursos interessantes para o gerenciamento do viewport (janela/tela de visualização). Para mais informação sobre isso, acesse [Trabalhando com o Viewport](/tips-n-tricks/viewport-management.md).
 
 Em segundo lugar, você pode reposicionar as layers de UI! Isso pode ser usado para criar widgets que se movem pela tela e para animações de slides.
 :::

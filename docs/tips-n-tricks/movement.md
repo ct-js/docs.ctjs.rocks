@@ -74,11 +74,11 @@ if (ct.templates.exists(character)) {
 
 If you, for example, have small fast-moving projectiles that fly through considerably narrow walls, the projectiles may fly through these walls. It happens because bullets jump over the walls in one frame, not causing collisions.
 
-![](./images/movement/noMoveContinuous.png)
+![](./../images/movement/noMoveContinuous.png)
 
 To prevent it, you can use `this.moveContinuous(cgroup)` to move the projectiles in steps, performing several collision checks at each frame.
 
-![](./images/movement/moveContinuous.png)
+![](./../images/movement/moveContinuous.png)
 
 `cgroup` is a collision group. There is also a form of the method `this.moveContinuous(cgroup, precision)`, where `precision` is the length of each step in pixels. It is set to 1 by default. For fast-moving projectiles, though, you will often set it to a value somewhere between the radius and the diameter of this projectile.
 
@@ -136,11 +136,11 @@ if (obstacle && ct.templates.isCopy(obstacle)) {
 
 Without `this.moveContinuousByAxes(cgroup)`, a copy will get stuck at the nearest obstacle:
 
-![](./images/movement/noMoveContinuousByAxes.png)
+![](./../images/movement/noMoveContinuousByAxes.png)
 
 With `this.moveContinuousByAxes(cgroup)`, it will slide along the obstacle and then continue its way in the initial direction once there are no more obstacles:
 
-![](./images/movement/moveContinuousByAxes.png)
+![](./../images/movement/moveContinuousByAxes.png)
 
 Due to that, `moveContinuousByAxes` is often a go-to solution to moving characters — and even mobs — in a game. Moreover, it works both with platformers and top-down views! For platformers, you only need to reset `this.vspeed` if there is an obstacle underneath. Otherwise, a copy will smash into the nearest platform at first cosmic speed due to accumulating gravity, as soon as it slips off a ledge. Resetting it when there is an obstacle above will also prevent sticking to ceilings :)
 
@@ -335,7 +335,7 @@ Sometimes you inevitably get clipped into obstacles if following the strategy "f
 * Your copy gets scaled or rotated, clipping inside other objects.
 * Objects around you get rotated and scaled.
 
-![](./images/movement/transformAndClip.png)
+![](./../images/movement/transformAndClip.png)
 
 You can get the obstacle from `ct.place.occupied` and move your copy away from it.
 

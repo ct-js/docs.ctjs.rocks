@@ -1,7 +1,7 @@
 # Polishing the JettyCat
 
 ::: tip Hey,
-This tutorial assumes that you have finished the tutorial [Making Games: Jetty Cat](tut-making-jettycat.html). You should complete it first.
+This tutorial assumes that you have finished the tutorial [Making Games: Jetty Cat](./making-games-jettycat.md). You should complete it first.
 :::
 
 The game is complete mechanic-wise, but there are a lot of ways to improve it aesthetically and gameplay-wise!
@@ -205,7 +205,7 @@ Select its texture in the left top corner, and start tweaking values! There are 
 
 Try making it look like this one:
 
-![An effect with a star burst](./images/tutJettyCat_Stars.gif)
+![An effect with a star burst](./../images/tutorials/tutJettyCat_Stars.gif)
 
 ::: tip
 You can set a preview texture in the right bottom corner to see how your effect looks compared to a star bonus.
@@ -245,13 +245,13 @@ Here we read the position of the star (`this.x, this.y`) and tell to spawn an ef
 
 First we'll need a smoke-like texture. Go to the textures tab and click on the Gallery button near the top. This game engine comes with texture packs you can import right into your game! Go into the Jumperpack and import the Smoke texture. Now close out of the gallery and see that the smoke texture is part of your project!
 
-![Importing a gallery texture in ct.js](./images/tutJettyCat_gallery.png)
+![Importing a gallery texture in ct.js](./../images/tutorials/tutJettyCat_gallery.png)
 
 Open the "FX" tab at the top, and create a new particle emitter. Call it `Jet`.
 
 As a start, go to the texture select and load your Smoke texture. In the right bottom corner, find the button "Set preview texture", and select our cat. After that, feel free to tinker around the editor to make the effect you want. I made a jet of white smoke of different sizes:
 
-![A jet particle effect in ct.js](./images/tutJettyCat_Jet.gif)
+![A jet particle effect in ct.js](./../images/tutorials/tutJettyCat_Jet.gif)
 
 Here are some hints:
 
@@ -280,7 +280,7 @@ this.jet = ct.emitters.follow(this, 'Jet');
 We also save a reference to this emitter to a parameter `this.jet`. This will allow us to manipulate the emitter later.
 
 ::: tip
-Read [the docs for `ct.emitters`](ct.emitters.html) to learn more about other methods for creating effects and their options.
+Read [the docs for `ct.emitters`](./../ct.emitters.md) to learn more about other methods for creating effects and their options.
 :::
 
 The cat should now have a jet of smoke running from its jetpack. You may need to tweak the jet's particle size and its speed on the "FX" tab.
@@ -385,7 +385,7 @@ this.angle = Math.sin(this.wiggleTime) * 5;
 
 Here we change `this.wiggleTime` at each frame by the elapsed time, multiplied by 0.2 to slow down the animation. Then we use `Math.sin` to get a sinus of the `wiggleTime` — changing the latter at each frame will result in a smooth oscillation between -1 and 1. By multiplying it by 5, we make the effect five times stronger.
 
-![A wiggling, animated star](./images/tutJettyCat_StarWiggle.gif)
+![A wiggling, animated star](./../images/tutorials/tutJettyCat_StarWiggle.gif)
 
 ## Adding a hint to start tapping
 
@@ -423,11 +423,11 @@ The parallax effect is used in gamedev since ancient times — once console's pr
 
 Go to the room `MainMenu`, and click the "Backgrounds" tool in the left toolbar. Then, click the gear icon next to the background `BG_Sky`. We will need to slowly move the background from left to right so that our clouds get moving. Set the Movement speed to `-0.5`, `0`. These values tell the background to move against the X-axis half a pixel each second.
 
-![Setting a background's movement speed in ct.js](./images/tutJettyCat_32.png)
+![Setting a background's movement speed in ct.js](./../images/tutorials/tutJettyCat_32.png)
 
 Then, go to the room called `InGame`. Open the same settings of the background `BG_Sky`. Set its parallax values to 0.5: it will tell the background to move twice as slow than the rest of the room, creating the effect of depth.
 
-![Setting a background's movement speed in ct.js](./images/tutJettyCat_33.png)
+![Setting a background's movement speed in ct.js](./../images/tutorials/tutJettyCat_33.png)
 
 The main menu will now have an animated sky, and the sky at the main game's room will slide noticeably slower than any other object in the room. Neat!
 

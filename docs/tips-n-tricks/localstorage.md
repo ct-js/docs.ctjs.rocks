@@ -67,7 +67,7 @@ console.log @level
 ```
 :::
 
-![Wrong use of localStorage](./images/tutLocalStorage.png)
+![Wrong use of localStorage](./../images/tutLocalStorage.png)
 
 `this.level` is now `'151'`! This is definitely not what we would expect. The reason is that `localStorage` can only store strings, and anything else is turned into those. Because of that, we need to convert the values of `localStorage` to the needed types.
 
@@ -95,7 +95,7 @@ console.log @level
 ```
 :::
 
-![Proper use of localStorage](./images/tutLocalStorage_Yaaay.png)
+![Proper use of localStorage](./../images/tutLocalStorage_Yaaay.png)
 
 Here is how we can convert Date objects and Booleans:
 

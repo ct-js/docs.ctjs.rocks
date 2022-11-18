@@ -2,7 +2,7 @@
 
 Vamos criar um jogo de nave com asteróides, lasers e naves inimigas! Esse tutorial te ensinará a importar assets, manipular entradas de usuário, mover objetos e detectar colisões.
 
-![](./../images/tutSpaceShooter_Result.gif)
+![](./../images/tutorials/tutSpaceShooter_Result.gif)
 
 O que faremos:
 
@@ -12,7 +12,7 @@ O que faremos:
 
 Abra o ct.js e crie um novo projeto chamado "SpaceShooter".
 
-![](./../images/tutSpaceShooter_01.png)
+![](./../images/tutorials/tutSpaceShooter_01.png)
 
 Depois, [baixe o pacote de assets](http://www.kenney.nl/assets/space-shooter-redux) do site Kenney. Ele é gratuito para criar um protótipo, aprender, apenas para teste ou criar um jogo comercial.
 
@@ -20,7 +20,7 @@ Você pode também usar esses assets que estão localizados na pasta `ct.js/exam
 
 Esses são todos os assets que precisaremos:
 
-![](./../images/tutSpaceShooter_02.png)
+![](./../images/tutorials/tutSpaceShooter_02.png)
 
 Agora abra a aba "Textures" localizada no topo da janela do ct,js, em seguida click em "import" e na janela que se abrir, localize os assets que precisamos, depois selecione os mesmos com o mouse, você pode selecionar mais de um asset nessa janela deixando a tecla "control" pressionada enquanto seleciona os arquivos com o mouse. Você pode também arrastar os assets para dentro da janela do ct.IDE.
 
@@ -30,17 +30,17 @@ Primeiramente, pressione o botão "Image's center", isso fará com que os eixos 
 
 Depois selecione a opção "**Line Strip / Polygon**" sob "Collision Shape". Adicione alguns pontos adicionais e mova-os com o seu mouse para que o polígono resultante tenha a mesma forma da nave.
 
-![](./../images/tutSpaceShooter_03.png)
+![](./../images/tutorials/tutSpaceShooter_03.png)
 
 Pressione o botão "Save" e vá para a próxima textura — "LaserRed". Da mesma forma que fizemos com a nave, vamos definir os eixos para o centro clicando em "Image's Center". Em seguida selecione a máscara de colisão clicanco em **Circle**. Uma máscara de colisão circular amarela é desenhada sobre a textura.
 
 Vamos para a próxima textura, `Laser_Blue`, ela também deve ter os seus eixos no centro, e como a máscara de colisão deve cobrir toda a imagem, podemos apenas clicar no botão "Fill".
 
-![](./../images/tutSpaceShooter_04.png)
+![](./../images/tutorials/tutSpaceShooter_04.png)
 
 Ambos os asteróides são melhores definidos como polígonos por causa de sua forma côncava ou com pontas. Defina a máscara de colisão como sendo **Line Strip / Polygon**, e não esqueça de definir os eixos para o centro.
 
-![](./../images/tutSpaceShooter_05.png)
+![](./../images/tutorials/tutSpaceShooter_05.png)
 
 A nave `EnemyShip` pode ser tratada como **Line Strip / Polygon**.
 
@@ -54,15 +54,15 @@ Click na aba "Templates" no topo da tela, e crie um novo template para o jogador
 
 Agora mude o nome para `PlayerShip` e dessa forma não precisamos saber de todos esses números enquanto codificamos.
 
-![](./../images/tutSpaceShooter_06.png)
+![](./../images/tutorials/tutSpaceShooter_06.png)
 
 Crie tipos para todas as outras texturas, menos para a imagem de plano de fundo. Imagem de plano de fundo não se move e não interage com nada, sendo assim, ela não é um template. Adicionaremos uma imagem de plano de fundo depois em uma **Room**.
 
-![](./../images/tutSpaceShooter_07.png)
+![](./../images/tutorials/tutSpaceShooter_07.png)
 
 Vamos adicionar agora os templates criados em algum lugar do mapa. Para criar esse mapa ou Room, click na aba "Rooms" localizado no topo da tela, em seguida click no botão "Add new" para criar uma nova room, chame-a de `Main`.
 
-![](./../images/tutSpaceShooter_08.png)
+![](./../images/tutorials/tutSpaceShooter_08.png)
 
 Aqui daremos uma pausa para explicar um pouco melhor como usar o editor de Room. Primeiramente, podemos definir um nome e o tamanho do seu viewport(janela de visualização).
 
@@ -80,19 +80,19 @@ Por fim, você pode mover todas as copies na room de uma vez, para isso selecion
 
 Por enquanto, vamos adicionar nave do player, uma nave inimiga e alguns asteróides.
 
-![](./../images/tutSpaceShooter_10.png)
+![](./../images/tutorials/tutSpaceShooter_10.png)
 
 Então adicione o plano de fundo. Click na aba "Backgrounds" e pressione o botão "Add a Background", depois selecione a nossa textura `BG`. Isso fará com que a imagem preencha a tela inteira.
 
-![](./../images/tutSpaceShooter_09.png)
+![](./../images/tutorials/tutSpaceShooter_09.png)
 
 O plano de fundo é desenhado no mesmo nível de profundidade, `0` por padrão, que as outras copies, então para evitar que o plano de fundo sobreponha as copies, é melhor alterarmos o nível de profundidade dela. Click no ícone de engrenagem localizado na coluna da esquerda sob a aba "Backgrounds" e defina o valor `-5` no campo "Depth". Ao fazer isso, estamos dizendo ao ct.js que a imagem de plano de fundo deve ficar 5 camadas abaixo da camada padrão. A profundidade é representada por três eixos de coordenadas, x,y representa a posição no plano e z representando a profundidade e a posição da camada no espaço.
 
-![](./../images/tutSpaceShooter_Depth.png)
+![](./../images/tutorials/tutSpaceShooter_Depth.png)
 
 Depois disso, salve o projeto e click no botão 'Launch' localizado no topo da tela. Nesse momento, você terá um projeto de jogo com naves e asteróides que não se movem.
 
-![](./../images/tutSpaceShooter_11.png)
+![](./../images/tutorials/tutSpaceShooter_11.png)
 
 ## Adicionando Movimento ao Player (Jogador)
 
@@ -100,7 +100,7 @@ Manipular entradas de usuário é uma tarefa muito importante. Nessa seção nó
 
 Para poder manipular entradas de teclado, nós precisamos habilitar o módulo keyboard. Click na aba "Project" localizada no topo da tela e em seguida na aba "Catmods" à esquerda, então procure pelo módulo `keyboard` na seção de módulos disponíveis, click nele para habilitá-lo, talvez ele já esteja habilitado por padrão com uma caixa de seleção verde e um círculo giratório indicando que o módulo já está habilitado. Certifique-se que os módulos `mouse`, `random` e `place` estão habilitados, pois precisaremos deles mais tarde também.
 
-![](./../images/tutSpaceShooter_12.png)
+![](./../images/tutorials/tutSpaceShooter_12.png)
 
 ### Adicionando Ações
 
@@ -110,7 +110,7 @@ Por enquanto, vamos criar um esquema básico de entrada para a nossa nave. Abra 
 
 Primeiro click no botão "Add an action". Em seguida defina o nome da primeira ação como "Shoot", em seguida click no botão chamado "Add an input method" para especificar os botões dessa ação. Use o campo de pesquisa para filtrar os métodos de entrada disponíveis.
 
-![](./../images/tutSpaceShooter_15.png)
+![](./../images/tutorials/tutSpaceShooter_15.png)
 
 Crie três ações como na imagem acima. Defina o valor do multiplicador como `-1` para os métodos de entrada `keyboard.ArrowUp`, `keyboard.KeyW`, `keyboard.ArrowLeft` e para `keyboard.A`, então essas teclas moverão a nave na direção oposta.
 
@@ -176,7 +176,7 @@ Aqui nós usaremos variáveis internas para o movimento. Editar as coordenadas m
 ::: tip Dica
 Em ct.js, a direção é calculada em graus, movendo-se no sentido horário. 0° representa direita, 90° é para baixo, 180° é para esquerda, e 270° é para cima.
 
-![](./../images/tutSpaceShooter_Direction.png)
+![](./../images/tutorials/tutSpaceShooter_Direction.png)
 :::
 
 Se navegarmos até o evento `On Step`, nós veremos esse pequeno código:
@@ -232,7 +232,7 @@ Salve o projeto e click no botão "Launch" no topo da tela. A nave inimiga se mo
 Você obteve erros com `ct.random`? Certifique-se de que você habilitou o módulo `random` na aba Project -> Catmods.
 :::
 
-![](./../images/tutSpaceShooter_RandomMovement.gif)
+![](./../images/tutorials/tutSpaceShooter_RandomMovement.gif)
 
 ## Projéteis & Colisões
 
@@ -289,9 +289,9 @@ O método `ct.place.meet` verifica se a copy fornecida está colidindo com uma o
 Existe muito mais métodos no módulo `ct.place`. À direita do ct.IDE existe um painel recolhido com uma seta(<), click nessa seta e em seguida click na aba Module's docs, na coluna à esquerda dessa aba você notará o item ct.place e sob esse item várias opções de documentação sobre o `ct.place`.
 :::
 
-![](./../images/tutSpaceShooter_modules_docs_1.png)
+![](./../images/tutorials/tutSpaceShooter_modules_docs_1.png)
 
-![](./../images/tutSpaceShooter_modules_docs_2.png)
+![](./../images/tutorials/tutSpaceShooter_modules_docs_2.png)
 
 Se uma nave colide com um laser, então ambos devem ser destruídos.
 
@@ -473,11 +473,11 @@ O texto pode ser desenhado com estilos predefinidos que declara a cor de preench
 
 Vamos tornar a fonte maior e mais ousada. Mude o seu tamanho e defina a sua espessura para 800. Em seguida alinhe a mesma para ser desenhada no canto superior esquerdo.
 
-![](./../images/tutSpaceShooter_13.png)
+![](./../images/tutorials/tutSpaceShooter_13.png)
 
 Click na aba `Fill` e em seguida em `Active`, depois selecione o tipo de preenchimento "Diffuse". Escolha uma cor apropriada; Eu escolhi alguma coisa similar as cores da nave do player.
 
-![](./../images/tutSpaceShooter_14.png)
+![](./../images/tutorials/tutSpaceShooter_14.png)
 
 Adicione sombra, bordas ou ambos! Depois salve as mudanças clicando no botão "Apply" no canto inferior esquerdo.
 

@@ -2,7 +2,7 @@
 
 Let's make a small space shooting game with asteroids, lasers and hostile gunships! This tutorial will teach you how to import assets, handle user input, move things around and respond to collisions.
 
-![](./images/tutSpaceShooter_Result.gif)
+![](./../images/tutorials/tutSpaceShooter_Result.gif)
 
 Here's what we will do:
 
@@ -12,7 +12,7 @@ Here's what we will do:
 
 Open ct.js and create a new project with a name "SpaceShooter".
 
-![](./images/tutSpaceShooter_01.png)
+![](./../images/tutorials/tutSpaceShooter_01.png)
 
 Next, [download an asset pack](http://www.kenney.nl/assets/space-shooter-redux) from Kenney's site. It is free to use and is great for prototyping, learning or just testing things out.
 
@@ -20,7 +20,7 @@ You can also use assets placed inside a `ct.js/examples/SpaceShooter_assets` fol
 
 These are all the assets we will need today:
 
-![](./images/tutSpaceShooter_02.png)
+![](./../images/tutorials/tutSpaceShooter_02.png)
 
 Now open the "Textures" tab on the top of the ct.IDE window, and drag & drop these assets inside the ct.IDE window. You can also press an "Import" button to find them manually.
 
@@ -30,17 +30,17 @@ Firstly, press a button "Image's center", so its axis is placed at the ship's ce
 
 Next, select the "**Line Strip / Polygon**" option under the label "Collision Shape". Add a couple of additional points and move them with your mouse so that the resulting polygon resembles the ship's shape.
 
-![](./images/tutSpaceShooter_03.png)
+![](./../images/tutorials/tutSpaceShooter_03.png)
 
 Press "Save" and move to the next texture — "LaserRed". As with the ship, let's set its axis to center by clicking "Image's Center". Then, select a **Circle** collision shape right beneath this button. Now a yellow collision shape is drawn as a circle.
 
 The next texture, `Laser_Blue`, should be centered too, and since the collision shape should cover all the image, we can click the "Fill" button to automate it.
 
-![](./images/tutSpaceShooter_04.png)
+![](./../images/tutorials/tutSpaceShooter_04.png)
 
 Both asteroids are better defined as polygons by their concave or sharp shapes. Set their collision shape to **Line Strip / Polygon**, and don't forget to set their axis to center.
 
-![](./images/tutSpaceShooter_05.png)
+![](./../images/tutorials/tutSpaceShooter_05.png)
 
 The `EnemyShip`'s shape can be treated as a **Polygon**.
 
@@ -54,17 +54,17 @@ Press the "Templates" tab on top of the screen, and create a new template for th
 
 Now, change the template's name to `PlayerShip` so we won't need to remember these numbers while coding.
 
-![](./images/tutSpaceShooter_06.png)
+![](./../images/tutorials/tutSpaceShooter_06.png)
 
 Create templates for all the other textures but the background image. Background images don't move or interact with anything, and is often tiled, so it is not a template. We will add it later in a **Room**.
 
-![](./images/tutSpaceShooter_07.png)
+![](./../images/tutorials/tutSpaceShooter_07.png)
 
 Let's place created templates somewhere on the map. To create this map, or Room, press the "Rooms" tab on top of the ct.IDE windows, and click an "Add new" button. Then, open the newly created room by clicking it.
 
-![](./images/tutSpaceShooter_08.png)
+![](./../images/tutorials/tutSpaceShooter_08.png)
 
-Here we will stop a bit to explain how to use the Room editor. The extended explanation can be found [here](/room-editor.html), but right now we will use just a few tools of it. Firstly, we should set up a Room's name and its viewport size in room's properties, by clicking the cog button in the left toolbar.
+Here we will stop a bit to explain how to use the Room editor. The extended explanation can be found [here](./../room-editor.md), but right now we will use just a few tools of it. Firstly, we should set up a Room's name and its viewport size in room's properties, by clicking the cog button in the left toolbar.
 
 In ct.js, Rooms are infinite and can pan in any direction. You can place objects inside and outside the viewport.
 
@@ -72,19 +72,19 @@ You can navigate the room by holding the mouse wheel and dragging your mouse. Yo
 
 For now, let's place a player's ship, a hostile one and a couple of asteroids. Select the "Add copies" tool in the left toolbar, pick a template, and position a copy of it onto a level with a mouse click.
 
-![](./images/tutSpaceShooter_10.png)
+![](./../images/tutorials/tutSpaceShooter_10.png)
 
 Then add a background. Click the "Backgrounds" tool on the left and press the "Add a background" button, then select our `BG`. It will appear as a tiled texture in the main view.
 
-![](./images/tutSpaceShooter_09.png)
+![](./../images/tutorials/tutSpaceShooter_09.png)
 
 Though backgrounds are always drawn before Copies of the same depth level (`0` by default), it is better to change their Depth level. Click on the cog on the right to the background's thumbnail and input `-5` in the "Depth" field. By doing this, we tell the engine that this background is placed lower than other Copies and backgrounds. Depth represents a third coordinate axis that goes upwards, when X and Y go to the sides.
 
-![](./images/tutSpaceShooter_Depth.png)
+![](./../images/tutorials/tutSpaceShooter_Depth.png)
 
 After that, save the project and click a 'Launch' button. At this point, you will have a game project with immovable ships and asteroids.
 
-![](./images/tutSpaceShooter_11.png)
+![](./../images/tutorials/tutSpaceShooter_11.png)
 
 ## Adding Player's Movement
 
@@ -92,17 +92,17 @@ Handling user's input is the most important task. In this section we will make t
 
 In order to handle keyboard inputs, we need to enable the Keyboard module. Press the "Project" tab, then a "Catmods" tab on the left, then find a Keyboard module in the section with available modules. Click it to enable it (it may be enabled by default, though — a green checkbox with a little spinning circle indicates that the module is enabled). Then make sure that modules `mouse`, `random` and `place` are enabled, as we will need them later too.
 
-![](./images/tutSpaceShooter_12.png)
+![](./../images/tutorials/tutSpaceShooter_12.png)
 
 ### Adding actions
 
-Actions in ct.js are entities that group different input methods into events, and allow you to listen to player input in code. You can read more about them [here](/actions.html).
+Actions in ct.js are entities that group different input methods into events, and allow you to listen to player input in code. You can read more about them [here](./../actions.md).
 
 For now, let's create a basic input scheme for our shooter. Open the "Project" tab, then the "Actions and input methods" tab on the left side. We will need to define three different actions: for shooting laser bullets, for moving horizontally, and for moving vertically.
 
 First, click the "Make from scratch" button. Then, input the name of the first action. Click the button called "Add an input method" to bind specific buttons to your action. Use its search to quickly filter available input methods. Click the "Add an action" button to continue creating more actions.
 
-![](./images/tutSpaceShooter_15.png)
+![](./../images/tutorials/tutSpaceShooter_15.png)
 
 Create three actions as in the picture above. Set multiplier value to `-1` for `keyboard.ArrowUp`, `keyboard.KeyW`, `keyboard.ArrowLeft`, and for `keyboard.KeyA`, so that these keys will move the ship in the opposite direction.
 
@@ -200,7 +200,7 @@ If you use CoffeeScript, `this.speed` is `@speed`, `this.direction` is `@directi
 ::: tip
 In ct.js, direction is measured in degrees, moving clockwise. 0° means right, 90° means bottom, 180° is for left, and 270° points to the up.
 
-![](./images/tutSpaceShooter_Direction.png)
+![](./../images/tutorials/tutSpaceShooter_Direction.png)
 :::
 
 If we navigate to the `Frame start` event, we will see this little code:
@@ -218,7 +218,7 @@ this.move();
 
 This line reads built-in variables and moves the Copy according to them. Without it, `this.speed` and `this.direction` will be meaningless.
 
-There are more built-in variables, which you can find on the [`ct.templates` page](ct.templates.html).
+There are more built-in variables, which you can find on the [`ct.templates` page](./../ct.templates.md).
 
 We will modify the `Frame start` code so enemies will destroy themselves if they fall off the screen.
 
@@ -291,7 +291,7 @@ Save the project and click the "Launch" button at the top. The hostile ship will
 Do you have errors with `ct.random`? Make sure that you've enabled the `random` module at the Project tab -> Catmods panel.
 :::
 
-![](./images/tutSpaceShooter_RandomMovement.gif)
+![](./../images/tutorials/tutSpaceShooter_RandomMovement.gif)
 
 ## Projectiles & Collision
 
@@ -638,11 +638,11 @@ Text can be drawn with pre-defined styles that declare fill color, line style, f
 
 Let's make the font bigger and bolder. Change its size and set its weight to 800. Then align it to be drawn from a top left corner.
 
-![](./images/tutSpaceShooter_13.png)
+![](./../images/tutorials/tutSpaceShooter_13.png)
 
 Click the `Fill` tab, activate it, and then select the "Diffuse" fill type. Select an appropriate color; I chose something similar to the player's ship's colors.
 
-![](./images/tutSpaceShooter_14.png)
+![](./../images/tutorials/tutSpaceShooter_14.png)
 
 Add shadow, or border, or both! Then save the changes by clicking the "Apply" button in the bottom-left corner.
 

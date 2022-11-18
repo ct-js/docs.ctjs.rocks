@@ -67,7 +67,7 @@ console.log(this.gear.body.name); // Will return 'The chestplate of ignorance'.
 
 ### Deleting objects' properties completely
 
-You can write `this.enemy = undefined`, and in most cases, it will be fine, but if you are [working with localStorage](localstorage.html) or other persistent data, or if you loop over an object's properties, you will most likely need to remove the property without a trace — otherwise it is still there, though without a defined value.
+You can write `this.enemy = undefined`, and in most cases, it will be fine, but if you are [working with localStorage](tips-n-tricks/localstorage.html) or other persistent data, or if you loop over an object's properties, you will most likely need to remove the property without a trace — otherwise it is still there, though without a defined value.
 
 You can use the keyword `delete` to remove any property from an object:
 

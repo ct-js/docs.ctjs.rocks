@@ -82,6 +82,7 @@ export default {
             text: 'Introduction to JS',
             collapsible: false,
             icon: 'book',
+            prefix: '/learn-js/',
             children: [
                 'jsintro_pt1',
                 'jsintro_pt2',
@@ -91,11 +92,12 @@ export default {
             collapsible: false,
             text: 'Tutorials',
             icon: 'arrows-turn-to-dots',
+            prefix: '/tutorials/',
             children: [
-                'tut-making-shooter',
-                'tut-making-platformer',
-                'tut-making-jettycat',
-                'tut-polishing-jettycat'
+                'making-games-shooter',
+                'making-games-platformer',
+                'making-games-jettycat',
+                'making-games-polishing-jettycat'
             ],
         }, {
             text: 'The `core` library',
@@ -171,6 +173,7 @@ export default {
             text: 'Tips & tricks',
             collapsible: false,
             icon: 'lightbulb',
+            prefix: "/tips-n-tricks/",
             children: [
                 'game-and-ui-coordinates',
                 'movement',
@@ -192,27 +195,28 @@ export default {
             text: 'Modding ct.js',
             collapsible: true,
             icon: 'plug',
+            prefix: "/modding-ctjs/",
             children: [
                 {
-                    link: '/modding-structure',
+                    link: 'mod-structure',
                     text: 'Directory structure and module\'s manifest'
                 }, {
-                    link: '/modding-events-and-injections',
+                    link: 'events-and-injections',
                     text: 'Extending ct.js code with injections'
                 }, {
-                    link: '/modding-settings-and-extensions',
+                    link: 'settings-and-extensions',
                     text: 'Settings and additional fields'
                 }, {
-                    link: '/modding-input-methods',
+                    link: 'input-methods',
                     text: 'Adding new input methods'
                 }, {
-                    link: '/modding-modded-events',
+                    link: 'modded-events',
                     text: 'Adding new events'
                 }, {
-                    link: '/modding-typings-and-intellisense',
+                    link: 'typings-and-intellisense',
                     text: 'Autocompletion and IntelliSense'
                 }, {
-                    link: '/modding-fields-declaration',
+                    link: 'fields-declaration',
                     text: 'Fields reference'
                 }
             ]
@@ -220,27 +224,28 @@ export default {
             text: 'Troubleshooting',
             collapsible: false,
             icon: 'hand',
+            prefix: "/troubleshooting/",
             children: [
                 {
-                    link: '/migration-0to1',
+                    link: 'migration-0to1',
                     text: 'Migration from 0.x to 1.x'
                 }, {
-                    link: '/migration-1-2to1-3',
+                    link: 'migration-1-2to1-3',
                     text: 'Migration from 1.2 to 1.3'
                 }, {
-                    link: '/migration-1to2',
+                    link: 'migration-1to2',
                     text: 'Migration from 1.x to 2.0'
                 }, {
-                    link: '/migration-2to3',
+                    link: 'migration-2to3',
                     text: 'Migration from 2.x to 3.0'
                 }, {
-                    link: '/troubleshooting-teared-background',
+                    link: 'teared-background',
                     text: 'Background splits into squares!'
                 }, {
-                    link: '/troubleshooting-leaking-pixels',
+                    link: 'leaking-pixels',
                     text: 'Textures have leaked pixels!'
                 }, {
-                    link: '/troubleshooting-sounds-not-playing',
+                    link: 'sounds-not-playing',
                     text: 'Sounds don\'t play at game start!'
                 }
             ]

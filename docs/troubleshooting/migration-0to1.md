@@ -143,7 +143,7 @@ this.addChild(overlay);
 
 For these, consider using built-in [9-slice scaling](https://en.wikipedia.org/wiki/9-slice_scaling). You should use an image that can be stretched horizontally and/or vertically, like this:
 
-![](./images/migrationBarSource.png)
+![](./../images/migrationBarSource.png)
 
 Add this to your On Create code:
 
@@ -163,7 +163,7 @@ And update it each step with this code:
 this.healthBar.width = ct.game.health * 2;
 ```
 
-![](./images/migrationBars.gif)
+![](./../images/migrationBars.gif)
 
 Constants `8, 8, 8, 16` tell which areas should not be stretched, in this order: on the left side, on the top, on the right and on the bottom.
 

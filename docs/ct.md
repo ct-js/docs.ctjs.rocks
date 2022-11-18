@@ -54,4 +54,4 @@ But this delta is mostly useful while designing complex or logic-driven movement
 
 ### `ct.deltaUi`
 
-`ct.deltaUi` is similar to `ct.delta`, but it ignores time scaling factors that can happen during slow-mo effects or game pause (see ["Pausing a game"](game-pause.html) for examples).
+`ct.deltaUi` is similar to `ct.delta`, but it ignores time scaling factors that can happen during slow-mo effects or game pause (see ["Pausing a game"](tips-n-tricks/game-pause.html) for examples).

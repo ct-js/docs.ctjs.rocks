@@ -2,7 +2,7 @@
 
 Facciamo un piccolo gioco di guerre stellari con asteroidi, laser e cannoni nemici! Questo tutorial ti insegnerà come importare risorse, gestire l'input dell'utente, spostare oggetti e rispondere alle collisioni.
 
-![](../images/tutSpaceShooter_Result.gif)
+![](../images/tutorials/tutSpaceShooter_Result.gif)
 
 Ecco cosa faremo:
 
@@ -12,7 +12,7 @@ Ecco cosa faremo:
 
 Apri ct.js e crea un nuovo progetto e chiamalo "SpaceShooter".
 
-![](../images/tutSpaceShooter_01.png)
+![](../images/tutorials/tutSpaceShooter_01.png)
 
 Quindi, [scarica un pacchetto di risorse](http://www.kenney.nl/assets/space-shooter-redux) dal sito di Kenney. È gratuito ed è ottimo per la prototipazione, l'apprendimento o semplicemente per fare dei test.
 
@@ -20,7 +20,7 @@ Puoi anche utilizzare le risorse collocate all'interno della cartella `ct.js/exa
 
 Queste sono tutte le risorse di cui avremo bisogno oggi:
 
-![](../images/tutSpaceShooter_02.png)
+![](../images/tutorials/tutSpaceShooter_02.png)
 
 Ora apri la scheda "Texture" nella parte superiore della finestra di ct.IDE e trascina e rilascia queste risorse all'interno della finestra di  ct.IDE. Puoi anche premere il pulsante "Import" per farlo manualmente.
 
@@ -30,17 +30,17 @@ Innanzitutto, premi il pulsante "Image's center", in modo che il suo asse (il ba
 
 Quindi, seleziona l' opzione " **Line Strip / Polygon** " sotto l'etichetta "Collision shape" (forma della collisione). Aggiungi un paio di punti aggiuntivi e spostali con il mouse in modo che il poligono risultante contenga la forma della nave.
 
-![](../images/tutSpaceShooter_03.png)
+![](../images/tutorials/tutSpaceShooter_03.png)
 
 Premi "Save" e passa alla texture successiva: "LaserRed". Come per la nave, imposta il suo asse al centro cliccando "Image's center". Quindi, seleziona una forma di collisione di tipo **Circle** proprio sotto questo pulsante. Ora la forma della collisione gialla è circolare.
 
 Anche la texture successiva, `Laser_Blue`, dovrà essere centrata e poiché la forma della collisione dovrebbe  coprire tutta l'immagine, clicca sul pulsante "Fill" (riempi).
 
-![](../images/tutSpaceShooter_04.png)
+![](../images/tutorials/tutSpaceShooter_04.png)
 
 Entrambi gli asteroidi sono definiti da poligoni dalle loro forme concave o taglienti. Imposta la loro forma di collisione su **Line Strip / Polygon** e non dimenticare di impostare il loro asse al centro.
 
-![](../images/tutSpaceShooter_05.png)
+![](../images/tutorials/tutSpaceShooter_05.png)
 
 La forma della tecture `EnemyShip` forma può essere trattata come un **Poliygon** .
 
@@ -54,15 +54,15 @@ Premi la scheda "Template" nella parte superiore dello schermo e crea un nuovo t
 
 Ora, cambia il nome del template in `PlayerShip` in modo da identificarlo facilmente durante la scrittura del codice.
 
-![](../images/tutSpaceShooter_06.png)
+![](../images/tutorials/tutSpaceShooter_06.png)
 
 Crea template per tutte le altre texture ad eccezione dell'immagine di sfondo (BG). Le immagini di sfondo non si spostano o interagiscono con nulla e sono spesso ripetute, quindi non serve un template. Aggiungeremo lo sfondo in seguito in una **room**  (stanza, il livello di gioco).
 
-![](../images/tutSpaceShooter_07.png)
+![](../images/tutorials/tutSpaceShooter_07.png)
 
 Posizioniamo i template creati da qualche parte sulla mappa. Per creare questa mappa (o room o stanza o livello di gioco), premi la scheda "Rooms" (Stanze) nella parte superiore delle finestre di ct.IDE e fai clic sul pulsante "Add new" (aggiungi nuova). Quindi, apri la room appena creata facendo clic su di essa.
 
-![](../images/tutSpaceShooter_08.png)
+![](../images/tutorials/tutSpaceShooter_08.png)
 
 Qui ci fermeremo un po' per spiegare come utilizzare l'editor delle "Room". In primo luogo, possiamo impostare il nome di un livello e le dimensioni del suo riquadro di visualizzazione.
 
@@ -80,19 +80,19 @@ Infine, puoi spostare tutte le copie nella stanza contemporaneamente usando lo s
 
 Per ora, posizioniamo la nave di un giocatore, una nemica e un paio di asteroidi.
 
-![](../images/tutSpaceShooter_10.png)
+![](../images/tutorials/tutSpaceShooter_10.png)
 
 Quindi aggiungi uno sfondo. Fare clic sull'icona degli sfondi "Manage backgrounds" e premere "Add a background", quindi selezionare `BG`. Apparirà come una texture ripetuta più volte (tiled) nella vista principale.
 
-![](../images/tutSpaceShooter_09.png)
+![](../images/tutorials/tutSpaceShooter_09.png)
 
 Sebbene gli sfondi vengano sempre disegnati prima delle copie dello stesso livello di profondità ( `0` per impostazione predefinita), è meglio cambiare il loro livello di profondità. Fai clic sull'ingranaggio a sinistra della miniatura dello sfondo e inserisci `-5` nel campo "Depth" (profondità). In questo modo comunichiamo al motore che questo sfondo è posizionato più in basso rispetto ad altre copie e sfondi. La profondità rappresenta un terzo asse di coordinate che va verso l'alto, mentre X e Y vanno verso i lati.
 
-![](../images/tutSpaceShooter_Depth.png)
+![](../images/tutorials/tutSpaceShooter_Depth.png)
 
 Successivamente, salva il progetto e fai clic sul pulsante "Launch" (Avvia). A questo punto, avrai un progetto di gioco con navi e asteroidi immobili.
 
-![](../images/tutSpaceShooter_11.png)
+![](../images/tutorials/tutSpaceShooter_11.png)
 
 ## Aggiunta del movimento per il giocatore
 
@@ -100,7 +100,7 @@ La gestione dell'input dell'utente è l'attività più importante. In questa sez
 
 Per gestire gli input da tastiera, dobbiamo abilitare il modulo Tastiera. Premi la scheda "Project" (progetto), quindi la scheda "Catmods" a sinistra, e  cerca il modulo "Keyboard" (tastiera) nella sezione con i moduli disponibili. Fai clic per abilitarlo (potrebbe essere abilitato per impostazione  predefinita, tuttavia: una casella di controllo verde con un piccolo cerchio rotante indica che il modulo è abilitato). Quindi assicurati che anche i moduli `mouse`, `random` e `place` siano abilitati, poiché ne avremo bisogno in seguito.
 
-![](../images/tutSpaceShooter_12.png)
+![](../images/tutorials/tutSpaceShooter_12.png)
 
 ### Aggiunta di azioni
 
@@ -110,7 +110,7 @@ Per ora, creiamo uno schema di input di base per il nostro sparatutto. Apri la s
 
 Innanzitutto, fai clic sul pulsante "Make from scratch" (crea da zero). Quindi, inserisci il nome della prima azione. Fai clic sul pulsante "Add an input method" per associare pulsanti specifici alla tua azione. Usa la sua ricerca per filtrare rapidamente i metodi di input disponibili. Fai clic sul pulsante "Add an action" per continuare a creare le altre azioni.
 
-![](../images/tutSpaceShooter_15.png)
+![](../images/tutorials/tutSpaceShooter_15.png)
 
 Crea tre azioni come nell'immagine qui sopra. Cambia il valore del moltiplicatore su `-1` per `keyboard.ArrowUp`, `keyboard.KeyW`, `keyboard.ArrowLeft` e per `keyboard.KeyA`, in modo che questi tasti spostino la nave nella direzione opposta.
 
@@ -177,7 +177,7 @@ Qui, utilizziamo le variabili integrate per lo spostamento. La modifica manuale 
 ::: tip
 In ct.js, la direzione è misurata in gradi, muovendosi in senso orario. 0° significa destra, 90° significa in basso, 180° è per sinistra e 270° indica in alto.
 
-![](../images/tutSpaceShooter_Direction.png)
+![](../images/tutorials/tutSpaceShooter_Direction.png)
 :::
 
 Se clicchil'evento `Frame start`, vedrai questo piccolo codice:
@@ -233,7 +233,7 @@ Salva il progetto e fai clic sul pulsante "Launch" in alto. La nave nemica si sp
 Hai errori con `ct.random`? Assicurati di aver abilitato il modulo `random` nella scheda "Project" -> "Catmods".
 :::
 
-![](../images/tutSpaceShooter_RandomMovement.gif)
+![](../images/tutorials/tutSpaceShooter_RandomMovement.gif)
 
 ## Proiettili e collisione
 
@@ -440,11 +440,11 @@ Il testo può essere disegnato con stili predefiniti che contengono il colore di
 
 Rendiamo il carattere più grande ed evidente. Cambia le sue dimensioni e imposta "Weight" (peso) a 800. Quindi allinealo a sinistra.
 
-![](../images/tutSpaceShooter_13.png)
+![](../images/tutorials/tutSpaceShooter_13.png)
 
 Fare clic sulla scheda `Fill`, attivala, quindi seleziona il tipo di riempimento "Diffuse". Seleziona un colore appropriato; io ho scelto qualcosa di simile ai colori della nave del giocatore.
 
-![](../images/tutSpaceShooter_14.png)
+![](../images/tutorials/tutSpaceShooter_14.png)
 
 Aggiungi ombreggiatura, bordo o entrambi! Quindi salva le modifiche facendo clic sul pulsante "Appy" (applica) nell'angolo in basso a sinistra.
 

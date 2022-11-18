@@ -2,7 +2,7 @@
 
 In this tutorial, we will create a small platformer with diamonds, checkpoints, moving platforms, and traps! You will learn how to detect collisions, use them to create a side-view movement, and how to manipulate sprites and move the player between levels.
 
-![A screenshot of the final game](./images/tutPlatformer_endResult.png)
+![A screenshot of the final game](./../images/tutorials/tutPlatformer_endResult.png)
 
 Here's what we will do:
 
@@ -12,25 +12,25 @@ Here's what we will do:
 
 Open ct.js and input your project's name into the lower field of the starting window. Let's call it "Platformer". Then, click the "Create" button and select the folder where ct.js will store it, e.g. inside your "Documents" folder.
 
-![Creating a new project](./images/tutPlatformer_01.png)
+![Creating a new project](./../images/tutorials/tutPlatformer_01.png)
 
 ## Importing Textures
 
 We will need some assets from the [simplified platformer pack by Kenney](https://www.kenney.nl/assets/simplified-platformer-pack). The assets are already bundled with ct.js and are named properly; you can find them in the built-in gallery.
 
-![The needed assets](./images/tutPlatformer_02.png)
+![The needed assets](./../images/tutorials/tutPlatformer_02.png)
 
 Open the "Textures" tab, press the "Gallery" button, find the "Simplified Platformer" pack by Kenney and import the needed textures. Then close the gallery — the textures will appear in the textures list.
 
 The first thing that we can notice is that the Robot_Walking animation is counted on as one image, not as two separate frames. Click on the `Robot_Walking` asset.
 
-![Editing an animation stripe](./images/tutPlatformer_03.png)
+![Editing an animation stripe](./../images/tutorials/tutPlatformer_03.png)
 
 The image is a small horizontal stripe. It has one row and two columns. We can tell ct.js to divide the image in this way by setting `Columns` and `Rows` fields and then calibrating the `Width` field.
 
 The whole image is 192 pixels wide so one frame will be 192 : 2 = 96 pixels wide. The robot's frames should now be outlined with two rectangles.
 
-![Editing a texture](./images/tutPlatformer_04.png)
+![Editing a texture](./../images/tutorials/tutPlatformer_04.png)
 
 Now let's edit its collision mask. It determines which areas of an image are counted as solid and which are not, and is displayed as a yellow rectangle over the sprite.
 
@@ -42,7 +42,7 @@ As we have a 96x96 pixels image, we need 48 pixels on the horizontal axis and 96
 
 The robot has a nice rectangular shape so it will be wiser to mark it up as a rectangle. Make sure you have a rectangular shape selected, click the 'Fill' button and calibrate the offsets so the robot's body is covered with a yellow rectangle.
 
-![Editing a texture](./images/tutPlatformer_05.png)
+![Editing a texture](./../images/tutorials/tutPlatformer_05.png)
 
 You can cover both the body and hands, or select the body only.
 
@@ -58,12 +58,12 @@ Now let's set the collision shapes of our crystals and heart bonuses. These can 
 
 Do the same for the `Heart` asset.
 
-![Editing diamonds](./images/tutPlatformer_06.png)
-![Editing hearts](./images/tutPlatformer_07.png)
+![Editing diamonds](./../images/tutorials/tutPlatformer_06.png)
+![Editing hearts](./../images/tutorials/tutPlatformer_07.png)
 
 The last asset we need to modify is the `Spikes`. We don't need to shift its axis, because it will appear misaligned on the map in this way, but we still need to set its collision shape. Set its top offset to a negative value so the top part of the image is not filled with yellow.
 
-![Editing spikes](./images/tutPlatformer_08.png)
+![Editing spikes](./../images/tutorials/tutPlatformer_08.png)
 
 Save your asset. If you look into other textures, you will see that they all have a rectangular shape that fills the whole image. That fits for all other images so we will leave them as is.
 
@@ -71,7 +71,7 @@ Save your asset. If you look into other textures, you will see that they all hav
 
 Open the "Templates" tab and create a new template. Call it "Robot", set its sprite to `Robot_Idle`, and save it.
 
-![Editing a template](./images/tutPlatformer_09.png)
+![Editing a template](./../images/tutorials/tutPlatformer_09.png)
 
 ::: tip
 Template are used to create specific identical copies. We fill our levels (a.k.a. rooms) with copies, and they are the things that interact with each other on the screen, but each copy was created from a certain template.
@@ -87,7 +87,7 @@ Create additional templates in the same way:
 
 Click on the "Rooms" tab at the top and create a new room. In the "Properties" panel with a cog icon, set its name to "Level_01" and view's size to 1024x576.
 
-![Editing a room](./images/tutPlatformer_10.png)
+![Editing a room](./../images/tutorials/tutPlatformer_10.png)
 
 Then draw a level! Select the "Add copies" tool, click on a template on the left and draw with them with your mouse in the big area on the right. Don't forget about the robot!
 
@@ -95,25 +95,25 @@ You can expand your level to any side, and copies don't need to be inside the bl
 
 I drew this. It is hard to get stuck here as a player, but it teaches how to jump. We can also add crystals on the rock platform later, and some secret in a window under the final hill.
 
-![Comigo's platformer level](./images/tutPlatformer_11.png)
+![Comigo's platformer level](./../images/tutorials/tutPlatformer_11.png)
 
 Now let's add a background. Click the "Backgrounds" tool on the left, press "Add background", and select the `BG` asset. Now click the cog near our new background and change its depth to `-10`. Thus we tell the engine that the background should be drawn 10 layers below the default 0 layer.
 
-![](./images/tutPlatformer_27.png)
+![](./../images/tutorials/tutPlatformer_27.png)
 
 If we save the project now and click the "Launch" button at the top, we will be able to see a small portion of our level drawn in a debugger window. Nothing is movable yet, but it's still a good beginning!
 
-![Debug window with placed copies and background](./images/tutPlatformer_12.png)
+![Debug window with placed copies and background](./../images/tutorials/tutPlatformer_12.png)
 
 ::: tip
-Is your background splitting into squares? See [Troubleshooting: Background splits into squares!](./troubleshooting-teared-background.md)
+Is your background splitting into squares? See [Troubleshooting: Background splits into squares!](./../troubleshooting/teared-background.md)
 :::
 
 ### Adding Modules for Keyboard and Collisions
 
 We will need to listen to keyboard events and to detect collisions between the Robot and ground. For such superpowers, we will need Catmods! Click on the "Project" tab, then on the "Catmods" tab on the left. Click the Keyboard module in the section of available modules so it has a green checkbox and a little spinning circle around it. (It may be already enabled, though!) Do the same with the `place` module.
 
-![Enabling a module in ct.js](./images/tutPlatformer_13.png)
+![Enabling a module in ct.js](./../images/tutorials/tutPlatformer_13.png)
 
 ::: tip PRO TIP ✨
 Enable the catmod called `fittoscreen`, then go to its settings tab and enable the option called "Fast scale with letterboxing" for an automagical full-screen view.
@@ -123,23 +123,23 @@ Each module has its own documentation on the "Reference" tab. We will highlight 
 
 ### Adding Actions for Keyboard Events
 
-Actions allow to listen to events from keyboard, mouse, gamepad, etc. You can read more about them [here](/actions.html). With them, we will create listeners to WASD keys and arrows.
+Actions allow to listen to events from keyboard, mouse, gamepad, etc. You can read more about them [here](./../actions.md). With them, we will create listeners to WASD keys and arrows.
 
 Go to the Project panel, then press the "Actions and input methods" tab on the left.
 
 Then, create an input scheme as in the picture below. To do that, firstly press the button "Make from scratch" to not use a preset. Next, click "Add an action", name it, and then add input methods in the right column. You can use search to quickly add the needed keys.
 
-![Input mappings for a simple platformer in ct.js](./images/tutPlatformer_25.png)
+![Input mappings for a simple platformer in ct.js](./../images/tutorials/tutPlatformer_25.png)
 
 ::: tip
-Though this scheme may be simplified down to just two actions (see [examples in the Actions page](/actions.html#examples)), we will have two separate actions for moving left or right to not overcomplicate the tutorial.
+Though this scheme may be simplified down to just two actions (see [examples in the Actions page](./../actions.md#examples)), we will have two separate actions for moving left or right to not overcomplicate the tutorial.
 :::
 
 ### Coding Collision Detection and Movement
 
 Now, move to the "Templates" tab at the top of the screen and open the `Rocks` template. In the right column, fill the field called "Collision group" with `Solid`:
 
-![Adding a collision group to a template](./images/tutPlatformer_26.png)
+![Adding a collision group to a template](./../images/tutorials/tutPlatformer_26.png)
 
 This will tell the `ct.place` catmod that this particular template belongs to a special collision group called "Solid". The name of this group can be of any value, and the number of such groups is unlimited. For now, one group will be enough.
 
@@ -309,7 +309,7 @@ Create a new room and call it `Level_02`. Set its size to 1024x576 and add a bac
 
 Place checkpoint boxes before and/or after hazardous places. Don't be afraid to put a lot of them, as punishing a player for mistakes is never a good idea! 😉
 
-![Comigo's second level](./images/tutPlatformer_16.png)
+![Comigo's second level](./../images/tutorials/tutPlatformer_16.png)
 
 Here the supposed level's end is placed on the top middle platform. I also placed some platforms outside the screenshot for gathering future crystals.
 
@@ -338,7 +338,7 @@ Here we also shift the stored point by 32x32 pixels, because the checkpoint's ax
 
 We want to make checkpoints invisible during the gameplay. Open the appearance section on the right side and uncheck the "Visible" checkbox.
 
-![Making the Checkpoint Invisible](./images/tutPlatformer_CheckpointVisible.png)
+![Making the Checkpoint Invisible](./../images/tutorials/tutPlatformer_CheckpointVisible.png)
 
 Now go to the `Spikes` template and set their collision as "Deadly" in the right column, under "Collision group".
 
@@ -488,7 +488,7 @@ As our vertical movement isn't dependant on the horizontal movement, the animati
 
 The robot will now flip to the current direction and change its texture depending on movement. Look at that boy!
 
-![Animated Robot](./images/tutPlatformer_Animating.gif)
+![Animated Robot](./../images/tutorials/tutPlatformer_Animating.gif)
 
 ## Adding level transitions
 
@@ -574,7 +574,7 @@ So we need to create reusable functions now. This may look strange, but it is ac
 
 Go to the "Project" tab on the top of the screen, then click the "Custom scripts" tab on the left. Press the "Add a New Script" button:
 
-![Creating a reusable script](./images/tutPlatformer_20.png)
+![Creating a reusable script](./../images/tutorials/tutPlatformer_20.png)
 
 Call a new script as `inGameRoomStart`. Write this code:
 
@@ -589,7 +589,7 @@ var inGameRoomStart = function (room) {
 `ct.templates.list['TemplateName']` returns an array of all the copies of the given template in the room. `length` returns the size of an array.
 :::
 
-![Creating a reusable script](./images/tutPlatformer_21.png)
+![Creating a reusable script](./../images/tutorials/tutPlatformer_21.png)
 
 Now go to each room, click the "Events" button in the top toolbar, add an event "Room start", and add this line there:
 
@@ -607,15 +607,15 @@ Gladly, there is a tool for designing nifty text styles inside the ct.js. Open t
 
 Then activate the "Font" section, set the font size to 24 and its weight to 600. Align it to the left.
 
-![Setting a style's font](./images/tutPlatformer_17.png)
+![Setting a style's font](./../images/tutorials/tutPlatformer_17.png)
 
 Then open the "Fill" tab, activate it and set its fill color to green. I chose `#00A847`. Other good choices include the main colors of the crystal, like `#2ECC71` and `#28B463`.
 
-![Setting a style's fill color](./images/tutPlatformer_18.png)
+![Setting a style's fill color](./../images/tutorials/tutPlatformer_18.png)
 
 We can also add a thick white line to our text. Open the "Stroke" tab, then set the color to white and line's width to 5. If you can't see the result on the right, try switching to a dark UI theme for a while by clicking the hamburger menu at the top.
 
-![Setting a style's line style](./images/tutPlatformer_23.png)
+![Setting a style's line style](./../images/tutorials/tutPlatformer_23.png)
 
 We should now create a new template called `CrystalsWidget`. It will display a crystal icon and a counter. Set its sprite to `GreenCrystal`, and write the following in its Creation code:
 
@@ -656,11 +656,11 @@ this.text.text = `${ct.room.crystals} / ${ct.room.crystalsTotal}`;
 
 We should now create a special room for our UI elements. Create it in the "Rooms" tab, and call it `LayerUI`. Set its size identical to other rooms', 1024x576. Then, add the newly created `CrystalsWidget` to the top-left corner of the room:
 
-![Adding a crystals widget to a UI layer](./images/tutPlatformer_28.png)
+![Adding a crystals widget to a UI layer](./../images/tutorials/tutPlatformer_28.png)
 
 Adding UI elements to a separate room allows you to design UI visually, and then import them into other rooms through code. Ct.js also has a special flag that locks UI layers in place, so you can freely move, scale and even rotate the camera, and UI elements will remain properly positioned. Go to the room settings, and check the "Is a UI layer?" checkbox so that `LayerUI` will be fixated to the game view.
 
-![Enabling the layer as a UI layer](./images/tutPlatformer_LayerUICheckbox.png)
+![Enabling the layer as a UI layer](./../images/tutorials/tutPlatformer_LayerUICheckbox.png)
 
  Now, to import a UI room into another, go to our script `inGameRoomStart` created at the Project -> Custom scripts tab before, and add this code before the closing brace of the function:
 
@@ -677,7 +677,7 @@ ct.rooms.append 'LayerUI'
 
 It should look like this:
 
-![A complete code of adding a UI layer in ct.js](./images/tutPlatformer_29.png)
+![A complete code of adding a UI layer in ct.js](./../images/tutorials/tutPlatformer_29.png)
 
 ::: tip
 The method `ct.rooms.append` (as well as `ct.rooms.prepend`) may be also used for reusing other stuff than UI layers. For example, we can place all the backgrounds to a separate room, and then call `ct.rooms.prepend("YourBackgroundRoom");` to import them. This is especially useful while making complex layered backgrounds with a parallax effect.
@@ -685,7 +685,7 @@ The method `ct.rooms.append` (as well as `ct.rooms.prepend`) may be also used fo
 
 If you now run your game, you should see the crystal counter in the top-left corner:
 
-![A crystal counter](./images/tutPlatformer_19.png)
+![A crystal counter](./../images/tutorials/tutPlatformer_19.png)
 
 ### Adding Lives and Heart Bonuses
 
@@ -824,7 +824,7 @@ That's it! Time for a little testing.
 
 Create a new template called `Platform` and select its corresponding sprite. Create a new level called `Level_03` that features wide moats or long traps with platforms that move you around.
 
-![Comigo's third level](./images/tutPlatformer_22.png)
+![Comigo's third level](./../images/tutorials/tutPlatformer_22.png)
 
 The moving platforms will act in this way:
 
@@ -888,7 +888,7 @@ if ct.place.occupied this, @x + @speed * ct.delta, @y, 'Solid'
 
 Looks simple! Maybe even too simple. And here is the issue: if the Robot touches the left or right side of a platform, it gets stuck forever! We need to make platforms solid only when they don't overlap.
 
-![An issue with platforms](./images/tutPlatformer_PlatformIssues.gif)
+![An issue with platforms](./../images/tutorials/tutPlatformer_PlatformIssues.gif)
 
 Here is a better code:
 

@@ -2,7 +2,7 @@
 
 Nesse tutorial criaremos um pequeno jogo de plataforma com diamantes, pontos de salvamento, plataformas que se movem e armadilhas! Você aprenderá como detectar colisões, e usar a mesma para criar uma visão de movimento lateral, além de manipular sprites e mover o jogador entre os níveis.
 
-![Uma captura de tela do jogo final](./../images/tutPlatformer_endResult.png)
+![Uma captura de tela do jogo final](./../images/tutorials/tutPlatformer_endResult.png)
 
 Aqui o que faremos:
 
@@ -12,25 +12,25 @@ Aqui o que faremos:
 
 Abra o ct.js e entre com o nome do seu projeto no campo inferior da janela inicial. Vamos chamá-lo de "Platformer". Em seguida click no botão "Create" e escolha a pasta onde o ct.js o armazenará , por exemplo, dentro da sua pasta "Documents".
 
-![Criando um novo projeto](./../images/tutPlatformer_01.png)
+![Criando um novo projeto](./../images/tutorials/tutPlatformer_01.png)
 
 ## Importando Texturas
 
 Nós precisaremos de alguns assets que podem ser encontrados em [pacote simplificado de plataforma por Kenney](https://www.kenney.nl/assets/simplified-platformer-pack). Os assets já estão empacotados com o ct.js e são nomeados corretamente; Você pode encontrá-los na pasta `ctjs/examples/Platformer_assets/`.
 
-![Os assets que precisamos](./../images/tutPlatformer_02.png)
+![Os assets que precisamos](./../images/tutorials/tutPlatformer_02.png)
 
 Abra a aba "Textures", e pressione o botão "Import", navegue até a pasta `ctjs/examples/Platformer_assets/` e selecione todas as imagens. Elas aparecerão no painel de texturas.
 
 A primeira coisa que nós precisamos notar é que a animação `Robot_Walking` é representada apenas por uma única imagem e, não com dois frames separados. Click no asset `Robot_Walking`.
 
-![Editing an animation stripe](./../images/tutPlatformer_03.png)
+![Editing an animation stripe](./../images/tutorials/tutPlatformer_03.png)
 
 A imagem é uma pequena faixa horizontal. Ela tem uma linha e duas colunas. Então podemos dizer ao ct.js para dividir a imagem especificando os campos `Columns`, `Rows` e ajustando o campo `Width`.
 
 A imagem inteira tem 192 pixels, então um frame será 192 : 2 = 96 pixels. Então cada frame do robô agora deve ser de 96 pixels.
 
-![Editando uma textura](./../images/tutPlatformer_04.png)
+![Editando uma textura](./../images/tutorials/tutPlatformer_04.png)
 
 Vamos agora editar a máscara de colisão. Ela determina qual área de uma imagem deve ser tratada como sólida e qual não é, a máscara é mostrada em forma de um retângulo amarelo sobre o sprite.
 
@@ -42,7 +42,7 @@ Como temos uma imagem de 96x96, nós precisamos de 48pixel na horizontal e de 96
 
 O robô tem um formato retangular, então ele pode ser marcado como `Rectangle`. Tenha certeza de escolher essa opção, em seguida click no botão 'Fill' e por fim ajuste as dimensões para cobrir o corpo do robô com o retângulo amarelo representando a máscara de colisão.
 
-![Editando uma textura](./../images/tutPlatformer_05.png)
+![Editando uma textura](./../images/tutorials/tutPlatformer_05.png)
 
 Você pode cobrir tanto as mãos como o corpo do robô ou apenas cobrir o corpo.
 
@@ -58,12 +58,12 @@ Agora vamos definir a máscara de colisão para os nossos cristais e para o cora
 
 Faça o mesmo para o asset `Heart`.
 
-![Editando diamantes](./../images/tutPlatformer_06.png)
-![Editando coração](./../images/tutPlatformer_07.png)
+![Editando diamantes](./../images/tutorials/tutPlatformer_06.png)
+![Editando coração](./../images/tutorials/tutPlatformer_07.png)
 
 O último asset que precisamos modificar é o `Spikes`. Não precisamos mudar os seus eixos, porque senão ficariam desalinhados no mapa, mas ainda precisamos definir a sua máscara de colisão. Defina o lado superior com um valor negativo para que a parte superior não seja preenchida com o amarelo da máscara de colisão.
 
-![Editando spikes](./../images/tutPlatformer_08.png)
+![Editando spikes](./../images/tutorials/tutPlatformer_08.png)
 
 Salve o seu asset. Se você observar as outras texturas, você verá que todas elas têm uma forma retangular que preenche toda a imagem. Portanto vamos deixar as mesmas do jeito que estão por enquanto.
 
@@ -71,7 +71,7 @@ Salve o seu asset. Se você observar as outras texturas, você verá que todas e
 
 Abra a aba "Templates" e crie um novo template(modelo). Chame-o de "Robot", defina o sprite para `Robot_Idle`, e o salve.
 
-![Editando um template](./../images/tutPlatformer_09.png)
+![Editando um template](./../images/tutorials/tutPlatformer_09.png)
 
 ::: tip Dica
 Os templates(modelos) são usados para criar copies. Nós preenchemos nossos níveis (frequentemente chamadas de rooms em ct.js) com copies, e eles são as coisas que interagem uma com as outras na tela, mas cada copy foi criada a partir de um certo template(modelo).
@@ -87,7 +87,7 @@ Crie templates adicionais do mesmo modo:
 
 Click na aba "Rooms" na parte superior da janela do ct.js e crie uma nova room. Chame essa room de "Level_01". Defina o seu tamanho para 1024x576.
 
-![Editando uma room](./../images/tutPlatformer_10.png)
+![Editando uma room](./../images/tutorials/tutPlatformer_10.png)
 
 Em seguida desenhe o nível clicando em um template à esquerda e com o seu mouse click na grande área a direita. Segure o `Shift` para adicionar várias copies de uma só vez. Não esqueça o nosso robô!
 
@@ -95,15 +95,15 @@ Você pode expandir o seu nível em qualquer direção, e as copies não precisa
 
 Aqui está um nível básico, você é livre para desenhar o seu, até porque o nosso objetivo nesse momento é o de ensinar a movimentar, pular e coletar itens. Por enquanto faça algo assim, bem simples, porque depois vamos adicionar alguns cristais e como mudar para uma outra room.
 
-![Comigo's platformer level](./../images/tutPlatformer_11.png)
+![Comigo's platformer level](./../images/tutorials/tutPlatformer_11.png)
 
 Vamos adicionar uma imagem de plano de fundo. Click na aba "Backgrounds" no lado esquerdo e em seguida click em "Add" e escolha o asset `BG`. Agora click na engrenagem em nosso plano de fundo e altere `Depth` para `-10`. Dessa forma diremos ao ct.js que o nosso plano de fundo deve ser desenhado 10 camadas abaixo da camada padrão, que é a camada 0 (zero).
 
-![](./../images/tutPlatformer_27.png)
+![](./../images/tutorials/tutPlatformer_27.png)
 
 Se salvarmos o nosso projeto agora e clicarmos no botão "Launch" localizado na parte superior da janela do ct.js, seremos capazes de vermos parte do nosso nível na janela de debugger. Não existe nenhuma interação, mas já é um bom começo!
 
-![Debug window with placed copies and background](./../images/tutPlatformer_12.png)
+![Debug window with placed copies and background](./../images/tutorials/tutPlatformer_12.png)
 
 ::: tip Dica
 O seu background(plano de fundo) está dividido em quadrados? Veja [Soluções de problemas: Minha imagem de fundo está didivida em quadrados!](./troubleshooting-teared-background.md)
@@ -113,7 +113,7 @@ O seu background(plano de fundo) está dividido em quadrados? Veja [Soluções d
 
 Precisaremos monitorar eventos de teclado e detectar as colisões entre o Robô e o chão. Para ter esse poder, precisaremos do Catmods! Click na aba "Project" e depois na aba "Catmods" à esquerda. Click no módulo keyboard na seção de módulos disponíveis que tem uma caixa de selação verde e um pequeno círculo giraório em torno dele. Talvez esse módulo já esteja habilitado, faça o mesmo com o módulo `place`.
 
-![Habilitando um módulo em ct.js](./../images/tutPlatformer_13.png)
+![Habilitando um módulo em ct.js](./../images/tutorials/tutPlatformer_13.png)
 
 ::: tip DICA TOP ✨
 Habilite o módulo chamado `fittoscreen`, em seguida click na aba "settings" e habilite a opção chamada "Fast scale with letterboxing" para um modo tela cheia.
@@ -129,7 +129,7 @@ Click na aba "Projects" localizada na parte superior da janela do ct.js, em segu
 
 Então crie um esquema de entrada como na imagem abaixo. Para fazer isso, primeiro click no botão "Add an action", dê um nome pra ela, e então adicione um método de entrada na coluna da direita. Você pode usar o campo de pesquisa para encontrar o método de entrada que você precisa e assim agilizar o processo.
 
-![Input mappings for a simple platformer in ct.js](./../images/tutPlatformer_25.png)
+![Input mappings for a simple platformer in ct.js](./../images/tutorials/tutPlatformer_25.png)
 
 ::: tip Dica
 Embora essa mecânica possa ser simplificado para apenas duas ações (veja [exemplos na página de ações](/actions.html#examples)), nesse tutorial teremos três ações, uma para o movimento de ir para a esquerda, outra para ir para a direita e a última para o pulo.
@@ -139,7 +139,7 @@ Embora essa mecânica possa ser simplificado para apenas duas ações (veja [exe
 
 Agora vá para a aba "Templates"(Modelos) localizada no topo da janela do ct.js e abra o template `Rocks`. Na coluna da esquerda preencha o campo chamado "Collision group" com o nome `Solid`:
 
-![Adicionando um grupo de colisão para um type](./../images/tutPlatformer_26.png)
+![Adicionando um grupo de colisão para um type](./../images/tutorials/tutPlatformer_26.png)
 
 Isso diz ao catmod `ct.place` que esse tipo específico pertence ao grupo de colisões chamado "Solid". O nome desse grupo pode ser qualquer um, e a quantidade de grupos é ilimitado. Por hora, um grupo apenas já é mais que suficiente.
 
@@ -270,7 +270,7 @@ Crie também uma nova room chamada de `Level_02`. Defina o seu tamanho para 1024
 
 Coloque o checkpoint (ponto de salvamento) antes e/ou depois dos lugares perigosos. Não tenha medo de pôr um monte deles, até porque, punir o jogador pelos seus erros nunca é uma boa ideia! 😉
 
-![Comigo's second level](./../images/tutPlatformer_16.png)
+![Comigo's second level](./../images/tutorials/tutPlatformer_16.png)
 
 Aqui o final da fase proposta está na plataforma média superior. Também foram colocados algumas outras plataformas fora da imagem capturada para adição de cristais futuros.
 
@@ -386,7 +386,7 @@ Como o nosso movimento vertical não depende do movimento horizontal, a animaç�
 
 O robô agora terá a sua direção atual transformada e a sua textura alterada dependendo do movimento, por exemplo, se ele for para esquerda, então sua textura será transformada para a esquerda e o robô irá olhar para essa direção. Veja o nosso garoto em ação!
 
-![Animated Robot](./../images/tutPlatformer_Animating.gif)
+![Animated Robot](./../images/tutorials/tutPlatformer_Animating.gif)
 
 ## Fazendo Transição Entre as Fases
 
@@ -452,7 +452,7 @@ Então agora precisamos criar uma função reutilizável. Isso pode parecer estr
 
 Vá para a aba "Project" na parte superior da tela e em seguida click na aba "Custom scripts" localizada no painel à esquerda. Click no botão "Add a New Script":
 
-![Creating a reusable script](./../images/tutPlatformer_20.png)
+![Creating a reusable script](./../images/tutorials/tutPlatformer_20.png)
 
 Chame o novo script de `inGameRoomStart`. E escreva o seguinte código:
 
@@ -467,7 +467,7 @@ var inGameRoomStart = function (room) {
 `ct.templates.list['TemplateName']` retorna uma lista de todas as copies do template definido na room. `length` retorna o tamanho da lista.
 :::
 
-![Creating a reusable script](./../images/tutPlatformer_21.png)
+![Creating a reusable script](./../images/tutorials/tutPlatformer_21.png)
 
 Agora em cada aba "On Create" de cada room adicione a seguinte linha de código:
 
@@ -485,15 +485,15 @@ Felizmente, existe uma ferramenta para desenhar texto estilosos dentro do própr
 
 Então na seção "Font", defina o tamanho da fonte para 24 e a sua espessura para 600. Alinhe à esquerda.
 
-![Setting a style's font](./../images/tutPlatformer_17.png)
+![Setting a style's font](./../images/tutorials/tutPlatformer_17.png)
 
 Depois abra a aba "Fill", ative-a e defina a sua cor de preenchimento para verde. Eu escolhi `#00A847`. Outras boas escolhas incluem as cores principais dos cristais como `#2ECC71` e `#28B463`.
 
-![Setting a style's fill color](./../images/tutPlatformer_18.png)
+![Setting a style's fill color](./../images/tutorials/tutPlatformer_18.png)
 
 Podemos adicionar também uma linha grossa branca para o nosso texto. Abra a aba "Stroke" e em seguida defina cor para branca e a largura da linha para 5. Se você não conseguir ver o resultado a direita, tente alternar para o tema escuro clicando no ícone de menu em forma de hamburger localizado no topo da janela.
 
-![Setting a style's line style](./../images/tutPlatformer_23.png)
+![Setting a style's line style](./../images/tutorials/tutPlatformer_23.png)
 
 Devemos agora criar um novo template chamado `CrystalsWidget`. Ele exibirá um ícone de cristal e um contador. Defina a textura `GreenCrystal` e em seguida escreva o seguinte código em sua aba "On Create":
 
@@ -515,7 +515,7 @@ this.text.text = `${ct.room.crystals} / ${ct.room.crystalsTotal}`;
 
 Agora devemos criar uma room especial para elemento de UI(Interface de Usuário). Vá para a aba "Rooms" localizada na parte superior da janela do ct.js e crie uma nova room chamada `LayerUI`. Defina o seu tamanho para 1024x576. Em seguida adicione o recém-criado `CrystalsWidget` no canto superior esquerdo dessa room:
 
-![Adding a crystals widget to a UI layer](./../images/tutPlatformer_28.png)
+![Adding a crystals widget to a UI layer](./../images/tutorials/tutPlatformer_28.png)
 
 Adicionar elementos de UI para uma room sepadara permite que você construa a sua UI de forma visual e importar a mesma para outras rooms via código. Ct.js tem uma flag(indicação) especial que bloqueia as camadas de UI no local, assim você pode livremente mover, redimensionar e rotacionar a câmera que os seus elementos de UI continuarão do mesmo jeito. Agora para importar a room de UI para uma outra, vá para o nosso script `inGameRoomStart` criado anteriormente na aba "Project" -> "Custom scripts", e adicione o trecho de código abaixo antes da chave, "}", de fechamento da função:
 
@@ -527,7 +527,7 @@ ct.rooms.append('LayerUI', {
 
 Ele deve parecer com isso:
 
-![A complete code of adding a UI layer in ct.js](./../images/tutPlatformer_29.png)
+![A complete code of adding a UI layer in ct.js](./../images/tutorials/tutPlatformer_29.png)
 
 ::: tip Dica
 O método `ct.rooms.append` (assim como `ct.rooms.prepend`) também pode ser usado reutilizar outras coisas além de camadas de UI. Por exemplo, podemos adicionar todos os backgrounds(planos ded fundo) para uma room separada, e então chamar `ct.rooms.prepend("YourBackgroundRoom");` para importá-los. Isso é especialmente útil ao criar uma complexa camada de backgrounds com parte de um efeito de paralaxe.
@@ -538,7 +538,7 @@ Mas o mais importante é a flag `isUi: true`. Esse parâmetro específico difere
 Se você executar o seu jogo agora, você verá um contador de cristais no canto superior esquerdo:
 
 
-![A crystal counter](./../images/tutPlatformer_19.png)
+![A crystal counter](./../images/tutorials/tutPlatformer_19.png)
 
 ### Adicionando Vidas e Corações Extras
 
@@ -610,7 +610,7 @@ if (ct.place.occupied(this, this.x, this.y, 'Deadly')) {
 
 Crie um novo template chamado `Platform` e selecione a textura correspondente. Crie uma nova fase chamada `Level_03` com características de fossos mais compridos, armadilhas mais longas e com plataformas que se movimentam.
 
-![Comigo's third level](./../images/tutPlatformer_22.png)
+![Comigo's third level](./../images/tutorials/tutPlatformer_22.png)
 
 A movimentação das plataformas será dessa forma:
 
@@ -647,7 +647,7 @@ this.move();
 
 Veja como é simples, simples até demais. E aqui temos um problema: Se o Robô encostar no lado direito ou esquerdo da plataforma ele ficará preso. Precisamos fazer com que as platoformas sejam sólidas apenas no caso do Robô está sobre elas.
 
-![An issue with platforms](./../images/tutPlatformer_PlatformIssues.gif)
+![An issue with platforms](./../images/tutorials/tutPlatformer_PlatformIssues.gif)
 
 Aqui vai um código melhor:
 
