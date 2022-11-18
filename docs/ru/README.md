@@ -46,7 +46,7 @@ footer: Документация ct.js. Если не указано иного,
         <h2>Скачай шпаргалку</h2>
         <p></p>
         <img src="/assets/img/CheatsheetThumbnail.png">
-        <a class="action-button" target="_blank" href="https://comigo.itch.io/ct-cheat-sheet">Скачать шпаргалку →</a>
+        <a class="action-button" target="_blank" href="https://comigo.itch.io/ctjs-cheatsheet-ru">Скачать шпаргалку →</a>
     </div>
     <div class="feature"  style="flex-basis: 50%">
         <h2>Присоединяйся к сообществу</h2>

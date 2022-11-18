@@ -42,7 +42,7 @@ footer: Documentação ct.js. Exceto onde for indicado de outra forma, o conteú
     </div>
     <div class="feature" style="flex-basis: 35%;">
         <h2>Obtenha o cheatsheet</h2>
-        <a class="action-button" target="_blank" href="https://comigo.itch.io/ct-cheat-sheet">Baixe o cheatsheet →</a>
+        <a class="action-button" target="_blank" href="https://araujo921.itch.io/ctjs-cheatsheet-pt-br">Baixe o cheatsheet →</a>
         <p></p>
         <img src="/assets/img/CheatsheetThumbnail.png">
     </div>
