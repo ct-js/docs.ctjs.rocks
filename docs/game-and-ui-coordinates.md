@@ -52,9 +52,9 @@ These may be used, for example, to determine whether a copy is visible or not.
 
 For rotated viewports, use these methods:
 
-* `ct.camera.getTopLeftCorner();`
-* `ct.camera.getTopRightCorner();`
-* `ct.camera.getBottomLeftCorner();`
-* `ct.camera.getBottomRightCorner();`
+* `ct.camera.getTopLeftCorner()`
+* `ct.camera.getTopRightCorner()`
+* `ct.camera.getBottomLeftCorner()`
+* `ct.camera.getBottomRightCorner()`
 
 They return an array with two elements — `x` and `y` coordinates.

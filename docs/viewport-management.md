@@ -23,6 +23,8 @@ A simple line `ct.camera.follow = this;` inside the On Create code of your main 
 
 `ct.camera.borderX` and `ct.camera.borderY` define the area at which the camera shifts when the followed copy enters these borders. These values are in UI coordinates.
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js Example: following a copy with borders
 // Place this code, e.g, to your hero's `OnCreate` code
 ct.camera.follow = this;
@@ -31,6 +33,16 @@ ct.camera.follow = this;
 ct.camera.borderX = 300;
 ct.camera.borderY = 300;
 ```
+@tab CoffeeScript
+```coffee Example: following a copy with borders
+# Place this code, e.g, to your hero's `OnCreate` code
+ct.camera.follow = this
+
+# Follow the hero so it cannot be closer than 300 px to any side of the screen
+ct.camera.borderX = 300
+ct.camera.borderY = 300
+```
+:::
 
 You can also disable following logic for one axis. Setting `ct.camera.followX` to `false` will disable horizontal movement, and setting `ct.camera.followY` will disable vertical movement. This still allows you to move the camera with `teleportTo` and `moveTo` methods. <badge>new in v1.3</badge>
 
@@ -67,23 +79,42 @@ You should not change the camera's values in the "On Draw" event, as the camera 
 For smooth scaling and rotation, change values `ct.camera.angle`, `ct.camera.scale.x`, `ct.camera.scale.y` continuously with `ct.delta`, or use `ct.tween` module.
 
 For example, to zoom in, you could use this code:
+
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 ct.tween.add({
-  obj: ct.camera.scale,
-  duration: 500,
-  fields: {
-    x: 0.5,
-    y: 0.5
-  }
+    obj: ct.camera.scale,
+    duration: 500,
+    fields: {
+        x: 0.5,
+        y: 0.5
+    }
 });
 ```
+@tab CoffeeScript
+```coffee
+ct.tween.add
+    obj: ct.camera.scale
+    duration: 500
+    fields:
+        x: 0.5
+        y: 0.5
+```
+:::
 
+::: tip
 Or you could manipulate camera angle by user input (in "On Step" event):
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 ct.camera.angle += ct.actions.CameraRotate.value * ct.delta * 5;
 ```
-
+@tab CoffeeScript
+```coffee
+ct.camera.angle += ct.actions.CameraRotate.value * ct.delta * 5
+```
 :::
 
 ## Screen shake effects <badge>new in v1.3</badge>
@@ -102,17 +133,35 @@ Yes, there is a built-in feature for that 😅 Its design is as follows:
 
 There are many parameters [described here](/ct.camera.html) to control its feel, but default values are good as well. Here are the examples:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 // Add an impulse that will accumulate on repetitive calls
 ct.camera.shake += 1;
 ```
+@tab CoffeeScript
+```coffee
+# Add an impulse that will accumulate on repetitive calls
+ct.camera.shake += 1
+```
+:::
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 // Make a constant, slow camera wobble
 ct.camera.shakeFrequency = 1;
 ct.camera.shakeDecay = 0;
 ct.camera.shake = 2;
 ```
+@tab CoffeeScript
+```coffee
+# Make a constant, slow camera wobble
+ct.camera.shakeFrequency = 1
+ct.camera.shakeDecay = 0
+ct.camera.shake = 2
+```
+:::
 
 ## Making an adaptive UI
 

@@ -10,12 +10,21 @@ Contains an array of all the backgrounds of the current texture in the room. The
 
 #### Example: Get the first background with a texture `BG_Sand` and make it darker
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 if (ct.backgrounds.list['BG_Sand']) {
     const bg = ct.backgrounds.list['BG_Sand'][0];
     bg.tint = 0x999999;
 }
 ```
+@tab CoffeeScript
+```coffee
+if ct.backgrounds.list['BG_Sand']
+    bg = ct.backgrounds.list['BG_Sand'][0]
+    bg.tint = 0x999999
+```
+:::
 
 ### `ct.backgrounds.add(texName, frame, depth, container)`
 
@@ -34,8 +43,17 @@ Visit the [`Background` class documentation](Background.html) to learn how to tw
 
 #### Example: Create a background, set its opacity, and make it move horizontally
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 const bg = ct.backgrounds.add('BG_SkyClouds', 0, -1000);
 bg.alpha = 0.5;
 bg.movementX = 1;
 ```
+@tab CoffeeScript
+```coffee
+bg = ct.backgrounds.add 'BG_SkyClouds', 0, -1000
+bg.alpha = 0.5
+bg.movementX = 1
+```
+:::

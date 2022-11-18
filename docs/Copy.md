@@ -23,9 +23,16 @@ Property | Type | Description
 
 You can also call `this.addSpeed` to add speed vector to a Copy in a given direction.
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 this.addSpeed(speed, dir);
 ```
+@tab CoffeeScript
+```coffee
+@addSpeed speed, dir
+```
+:::
 
 To actually move a copy, you should call `this.move();` in your copy's OnStep code (it is included in each Type by default). Default movement system already takes `ct.delta` into account, so it will move with the same speed at every frame rate.
 
@@ -77,11 +84,19 @@ To delete a Copy, simply set its `kill` parameter to `true`.
 
 **Example:** delete a Copy, if its health is depleted
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 if (this.health <= 0) {
     this.kill = true;
 }
 ```
+@tab CoffeeScript
+```coffee
+if @health <= 0
+    @kill = yes
+```
+:::
 
 ::: tip Note
 OnStep code [will still be executed](ct.html#Event-sequence) to its end. Copies get logically deleted between OnStep and Draw calls.

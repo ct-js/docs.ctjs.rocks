@@ -32,6 +32,8 @@ Similar to `ct.templates.list`, this object contains arrays of rooms on the curr
 
 This method safely removes a previously appended/prepended room from the stage. It will trigger "On Leave" for a room and "On Destroy" event for all the copies of the removed room. The room will also have `this.kill` set to `true` in its event, if it comes in handy. This method cannot remove `ct.room`, the main room. The `room` argument must be a reference to the previously created room, for example:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js Creating a pause menu by using a UI room
 if (ct.actions.TogglePause.released) {
     if (!this.pauseMenu) { // if a parameter `pauseMenu` is not set
@@ -41,9 +43,21 @@ if (ct.actions.TogglePause.released) {
     }
 }
 ```
+@tab CoffeeScript
+```coffee
+if ct.actions.TogglePause.released
+    if not @pauseMenu # if a parameter `pauseMenu` is not set
+        @pauseMenu = ct.rooms.append 'UI_Pause'
+        # create a room, and set it to a parameter `pauseMenu`
+    else
+        ct.rooms.remove @pauseMenu
+```
+:::
 
 How does a copy know that its "On Destroy" event is triggered from a removed room, that it was not the main one? Well, each copy has a method `getRoom()`, and you can use it with `room.kill` property:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 // Let's suppose that we have a modular level and some chunks shoud be loaded/unloaded dynamically,
 // and this particular copy is a bomb that shouldn't trigger if its chunk is unloaded.
@@ -53,6 +67,17 @@ if (this.getRoom().kill) {
 ct.sound.spawn('Explosion');
 this.killEverythingNearby();
 ```
+@tab CoffeeScript
+```coffee
+# Let's suppose that we have a modular level and some chunks shoud be loaded/unloaded dynamically,
+# and this particular copy is a bomb that shouldn't trigger if its chunk is unloaded.
+if @getRoom().kill
+  return # effectively breaks the execution of the next code
+
+ct.sound.spawn 'Explosion'
+@killEverythingNearby()
+```
+:::
 
 ### `ct.rooms.append('NameOfTheRoom', ext)` and `ct.rooms.prepend('NameOfTheRoom', ext)`
 
@@ -62,16 +87,27 @@ The `ext` parameter can be used to apply additional parameters to a new room. Fo
 
 To create a [UI layer](/game-and-ui-coordinates.html), use this code:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 ct.rooms.append('YourUiRoom', {
     isUi: true
 });
 ```
+@tab CoffeeScript
+```coffee
+roomSettings =
+    isUi: true
+ct.rooms.append 'YourUiRoom', roomSettings
+```
+:::
 
 ### `ct.rooms.merge('NameOfTheRoom')`
 
 This method puts all the entities of the given room into the current one. This is useful for prefabs and procedular generation. Note that the room's "On Create" event, as well as others, are **not called**. This method returns an object with three properties `copies`, `tileLayers`, and `backgrounds`. You can loop over them to position them properly, for example:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 var spawnX = 100,
     spawnY = 500;
@@ -85,6 +121,20 @@ for (const copy of merged.copies) {
     copy.y += spawnY;
 }
 ```
+@tab CoffeeScript
+```coffee
+spawnX = 100
+spawnY = 500
+merged = ct.rooms.merge 'AssasinsSet'
+
+# Suppose that we don't need any backgrounds and tile layers from it
+for copy in merged.copies
+    copy.xstart += spawnX
+    copy.x += spawnX
+    copy.ystart += spawnY
+    copy.y += spawnY
+```
+:::
 
 ::: warning Warning:
 The result of the function is not updated and is meant for initial setup only. It should not be stored as a parameter of an object to avoid memory leaks. Use the `var` keyword, as shown above.

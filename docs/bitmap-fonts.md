@@ -26,6 +26,8 @@ After configuring your font, you can grab the name of this font as a bitmap reso
 
 The process of creating a bitmap text label is similar to canvas-based one: we create a child element with `new PIXI.BitmapText()` and add it to a parent — a type or a room.
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 this.label = new PIXI.BitmapText('Initial text', {
   font: {
@@ -36,25 +38,59 @@ this.label = new PIXI.BitmapText('Initial text', {
 });
 this.addChild(this.label);
 ```
+@tab CoffeeScript
+```coffee
+textSettings =
+    font:
+        name: 'Void_400'
+        size: 16
+    align: 'left'
+@label = new PIXI.BitmapText 'Initial text', textSettings
+@addChild @label
+```
+:::
 
 The size of the font can be different than set in ct.IDE. When you add a number of fonts with different sizes but with one name, ct.js will take the best fit from them.
 
 We can manipulate the font similarly to copies by tinting, scaling, rotating this label:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 this.label.tint = 0xff0000; // Paint it in red
 this.label.rotation = 15; // Tilt it a bit
 this.label.scale.y = 1.25; // Make it taller
 ```
+@tab CoffeeScript
+```coffee
+@label.tint = 0xff0000 # Paint it in red
+@label.rotation = 15 # Tilt it a bit
+@label.scale.y = 1.25 # Make it taller
+```
+:::
 
 To change the text, write to `text` parameter:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 this.label.text = 'Score: ' + this.score;
 ```
+@tab CoffeeScript
+```coffee
+@label.text = 'Score: ' + @score
+```
+:::
 
 Finally, when you no longer need the label, you can remove it with `destroy()` method:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 this.label.destroy();
 ```
+@tab CoffeeScript
+```coffee
+@label.destroy()
+```
+:::

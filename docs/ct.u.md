@@ -10,12 +10,22 @@ Gets the horizontal part of a vector.
 
 #### Example: Spawn a bullet relative to the hero sprite
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 var dx = ct.u.ldx(40, this.angle),
     dy = ct.u.ldy(40, this.angle);
 var bullet = ct.templates.copy('Bullet', this + dx, this + dy);
 bullet.direction = this.angle;
 ```
+@tab CoffeeScript
+```coffee
+dx = ct.u.ldx 40, @angle
+dy = ct.u.ldy 40, @angle
+bullet = ct.templates.copy 'Bullet', this + dx, this + dy
+bullet.direction = @angle
+```
+:::
 
 ### `ct.u.ldy(length, direction)` and `ct.u.lengthDirY(length, direction)`
 
@@ -95,9 +105,16 @@ Converts a hex string to a Pixi color.
 
 #### Example: Set copy's tint color from a CSS color
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 this.tint = ct.u.hexToPixi('#0dfac3');
 ```
+@tab CoffeeScript
+```coffee
+@tint = ct.u.hexToPixi '#0dfac3'
+```
+:::
 
 ### `ct.u.pixiToHex(pixi: number)`
 
@@ -105,14 +122,23 @@ Converts a Pixi color to a hex-encoded color code.
 
 #### Example: Set page's background color from a Pixi color
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 document.body.style.backgroundColor = ct.u.pixiToHex(0x0dfac3);
 ```
+@tab CoffeeScript
+```coffee
+document.body.style.backgroundColor = ct.u.pixiToHex 0x0dfac3
+```
+:::
 
 ### `ct.u.wait(time)`
 
 Returns a Promise. Waits `time` milliseconds, then resolves without any data. Rejects if a new room was loaded before the Promise was resolved. Example:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 var enemy = whatever;
 enemy.state = 'Disappear';
@@ -123,6 +149,17 @@ ct.u.wait(1000)
     }
 });
 ```
+@tab CoffeeScript
+```coffee
+enemy = whatever
+enemy.state = 'Disappear'
+ct.u.wait 1000
+.then =>
+    if not enemy.kill
+        # this will happen a second after the code above was called.
+        enemy.kill = yes
+```
+:::
 
 ### `ct.u.load(url: String, callback: Function)`
 

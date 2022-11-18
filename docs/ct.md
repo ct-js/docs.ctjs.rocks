@@ -39,9 +39,16 @@ A multiplier that shows how much a current frame differs from the target FPS. It
 
 You can use this delta while designing movement, so things move uniformly at any framerate, e.g.:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 this.x += 10 * ct.delta;
 ```
+@tab CoffeeScript
+```coffee
+@x += 10 * ct.delta
+```
+:::
 
 But this delta is mostly useful while designing complex or logic-driven movement, as [the default movement system](ct.templates.html#moving-copies-around) already takes `ct.delta` into account.
 
