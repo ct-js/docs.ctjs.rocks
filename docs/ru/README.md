@@ -13,7 +13,7 @@ footer: Документация ct.js. Если не указано иного,
     <div class="feature">
         <h2>Изучаем JavaScript</h2>
         <p>Игры в ct.js пишутся на JavaScript (он же JS) — языке, которым задаётся геймплейная логика. Нужные для разработки знания можно получить в нашем <a href="/jsintro_pt1.html">Введении в JavaScript</a>.</p>
-        <a href="/jsintro_pt1.html" class="button">Изучить JavaScript →</a>
+        <a href="/ru/jsintro_pt1.html" class="button">Изучить JavaScript →</a>
     </div>
     <div class="feature">
         <h2>Проходим уроки</h2>
