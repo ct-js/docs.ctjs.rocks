@@ -12,8 +12,8 @@ footer: Документация ct.js. Если не указано иного,
 <div class="features">
     <div class="feature">
         <h2>Изучаем JavaScript</h2>
-        <p>Игры в ct.js пишутся на JavaScript (он же JS) — языке, которым задаётся геймплейная логика. Нужные для разработки знания можно получить в нашем <a href="/jsintro_pt1.html">Введении в JavaScript</a>.</p>
-        <a href="/ru/jsintro_pt1.html" class="button">Изучить JavaScript →</a>
+        <p>Игры в ct.js пишутся на JavaScript (он же JS) — языке, которым задаётся геймплейная логика. Нужные для разработки знания можно получить в нашем <a href="jsintro_pt1.html">Введении в JavaScript</a>.</p>
+        <a href="jsintro_pt1.html" class="button">Изучить JavaScript →</a>
     </div>
     <div class="feature">
         <h2>Проходим уроки</h2>
@@ -25,9 +25,9 @@ footer: Документация ct.js. Если не указано иного,
         </ul>
     </div>
     <div class="feature">
-        <h2>Learn the core library</h2>
-        <p>See additional methods and properties of copies, camera, rooms, and procedurally create tilemaps, backgrounds, and new copies.</p>
-        <a href="/ct-concepts.html" class="button">Go to ct.js docs →</a>
+        <h2>Изучите основную библиотеку</h2>
+        <p>Смотрите дополнительные методы и свойства копий, камеры, комнат и процедурно создавайте тайловые карты, фоны и новые копии.</p>
+        <a href="/ct-concepts.html" class="button">Перейти к документации ct.js →</a>
     </div>
     <div class="feature" style="flex-basis: 65%; max-width: 65%;">
         <h2>Важные изменения в ct.js v3.0</h2>
