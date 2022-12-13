@@ -19,7 +19,7 @@ To move the camera around, you can:
 
 ### Following a copy
 
-A simple line `ct.camera.follow = this;` inside the On Create code of your main character will set up automagical camera movement ✨
+A simple line `ct.camera.follow = this` inside the On Create code of your main character will set up automagical camera movement ✨ You can also set a template to automatically follow in your room's settings.
 
 `ct.camera.borderX` and `ct.camera.borderY` define the area at which the camera shifts when the followed copy enters these borders. These values are in UI coordinates.
 
