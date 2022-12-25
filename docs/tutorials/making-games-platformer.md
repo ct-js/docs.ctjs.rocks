@@ -902,7 +902,7 @@ if (robot) {
     this.cgroup = 'Solid';
     robot = ct.place.meet(this, this.x, this.y - 1, 'Robot');
     if (robot) {
-        robot.x += ct.u.ldx(this.speed, this.direction);
+        robot.x += ct.u.ldx(this.speed, this.direction) * ct.delta;
     }
 }
 
