@@ -921,7 +921,7 @@ else
     @cgroup = 'Solid'
     robot = ct.place.meet this, @x, @y - 1, 'Robot'
     if robot
-        robot.x += ct.u.ldx @speed, @direction
+        robot.x += (ct.u.ldx @speed, @direction) * ct.delta
 
 if ct.place.occupied this, @x + @speed * ct.delta, @y, 'Solid'
     # Flip direction
