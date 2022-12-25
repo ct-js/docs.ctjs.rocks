@@ -13,10 +13,21 @@ export default {
         {
             link: "/ru/",
             text: "Главная",
+            icon: 'home'
+        },
+        {
+            collapsible: false,
+            text: "Введение в JavaScript",
+            icon: 'book',
+            children: [
+                "/ru/jsintro_pt1",
+                "/ru/jsintro_pt2"
+            ],
         },
         {
             collapsible: false,
             text: "Уроки",
+            icon: 'arrows-turn-to-dots',
             children: [
                 "/ru/tut-making-shooter",
                 "/ru/tut-making-platformer"
@@ -25,6 +36,7 @@ export default {
         {
             text: "Ядро",
             collapsible: false,
+            icon: 'certificate',
             children: [
                 "/ru/ct",
                 {
@@ -48,6 +60,7 @@ export default {
         {
             text: "Подсказки и советы",
             collapsible: false,
+            icon: 'lightbulb',
             children: ["ru/actions"],
         },
     ],
