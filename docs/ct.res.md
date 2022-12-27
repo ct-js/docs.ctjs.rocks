@@ -20,6 +20,8 @@ Loads an individual image as a named ct.js texture.
 
 ### Example: loading an additional texture into ct.js
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 ct.res.loadTexture('Background_42.png', 'Background_42', {
     anchor: {
@@ -32,6 +34,18 @@ ct.res.loadTexture('Background_42.png', 'Background_42', {
     ct.backgrounds.add(textureName, 0, -100);
 });
 ```
+@tab CoffeeScript
+```coffee
+textureSettings =
+    anchor:
+        x: 0,
+        y: 0
+ct.res.loadTexture 'Background_42.png', 'Background_42', textureSettings
+.then (textureName) =>
+    # Adds a background to the current room at depth -100.
+    ct.backgrounds.add textureName, 0, -100
+```
+:::
 
 ## `ct.res.loadDragonBonesSkeleton(ske: string, tex: string, png: string, name: string): void;`
 
@@ -82,3 +96,34 @@ Creates a DragonBones skeleton, ready to be added to your copies.
 Returns the created skeleton.
 
 See also: [Using Skeletal Animation in ct.js Projects](skeletal-animation)
+
+## ct.res.groups
+
+`ct.res.groups` holds information about how assets were grouped in ct.IDE. This is an object that has the following keys:
+
+* `fonts`;
+* `textures`;
+* `styles`;
+* `rooms`;
+* `templates`;
+* `sounds`;
+* `emitterTandems`.
+
+Each key is an object, too, with group names as its keys, having an array of asset names as its values.
+
+### Example: set a copy's texture to a random texture from a group called "Enemy ships"
+
+::: code-tabs#tutorial
+@tab JavaScript
+```js
+var shipTextures = ct.res.groups.textures['Enemy ships'];
+// You will need the ct.random catmod enabled
+this.tex = ct.random.from(shipTextures);
+```
+@tab CoffeeScript
+```coffee
+shipTextures = ct.res.groups.textures['Enemy ships']
+# You will need the ct.random catmod enabled
+@tex = ct.random.from shipTextures
+```
+:::

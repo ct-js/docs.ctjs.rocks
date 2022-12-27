@@ -140,7 +140,7 @@ Seleziona la sua texture nell'angolo in alto a sinistra e inizia a modificare i 
 
 Prova a farlo sembrare così:
 
-![Un effetto starburst](../images/tutJettyCat_Stars.gif)
+![Un effetto starburst](../images/tutorials/tutJettyCat_Stars.gif)
 
 ::: tip
 Puoi impostare una texture di anteprima nell'angolo in basso a destra per vedere come appare il tuo effetto rispetto a un bonus stella.
@@ -166,13 +166,13 @@ Qui leggiamo la posizione della stella ( `this.x, this.y`) e diciamo di generare
 
 Per prima cosa avremo bisogno di una texture che assomigli a fumo. Vai nella scheda delle texture e fai clic sul pulsante Galleria nella parte superiore. Questo game engine include pacchetti di texture che puoi importare direttamente nel tuo gioco! Entra nel Jumperpack e importa la texture Smoke. Ora chiudi la galleria e vedrai che la texture del fumo fa parte del tuo progetto!
 
-![Importare una texture dalla galleria](../images/tutJettyCat_gallery.png)
+![Importare una texture dalla galleria](../images/tutorials/tutJettyCat_gallery.png)
 
 Apri la scheda "FX" in alto e crea un nuovo emettitore di particelle. Chiamalo `Jet`.
 
 Per iniziare, premi il pulsante `Select` nella sezione "Texture" e carica la texture chiamata `Smoke`. Nell'angolo in basso a destra, trova il pulsante "Imposta texture di anteprima" e seleziona il nostro gatto. Dopodiché, sentiti libero di armeggiare con l'editor per ottenere l'effetto che desideri. Io ho realizzato un getto di bolle bianche di diverse dimensioni:
 
-![Un effetto particellare di un jet in ct.js](../images/tutJettyCat_Jet.gif)
+![Un effetto particellare di un jet in ct.js](../images/tutorials/tutJettyCat_Jet.gif)
 
 Ecco alcuni suggerimenti:
 
@@ -256,7 +256,7 @@ this.angle = Math.sin(this.wiggleTime) * 5;
 
 Qui cambiamo `this.wiggleTime` ad ogni fotogramma per il tempo trascorso, moltiplicato per 0.2 per rallentare l'animazione. Quindi usiamo `Math.sin` per ottenere un seno di `wiggleTime` - cambiando quest'ultimo ad ogni fotogramma si otterrà un'oscillazione regolare tra -1 e 1. Moltiplicandolo per 5, rendiamo l'effetto cinque volte più evidente.
 
-![Una stella animata tondeggiante](../images/tutJettyCat_StarWiggle.gif)
+![Una stella animata tondeggiante](../images/tutorials/tutJettyCat_StarWiggle.gif)
 
 ## Aggiunta di un invito per iniziare a toccare
 
@@ -290,11 +290,11 @@ L'effetto di parallasse è usato nella creazione di videogiochi fin dai tempi an
 
 Vai nella stanza `MainMenu` e apri la scheda "Backgrounds" nella colonna di sinistra. Quindi, fai clic sull'icona a forma di ingranaggio accanto allo sfondo `BG_Sky`. Dovremo spostare lentamente lo sfondo da sinistra a destra in modo che le nostre nuvole si muovano. Impostare la Velocità di movimento su `-1`, `0`. Questi valori indicano allo sfondo di spostarsi contro l'asse X di un pixel al secondo.
 
-![Impostazione velocità di movimento dello sfondo in ct.js](../images/tutJettyCat_32.png)
+![Impostazione velocità di movimento dello sfondo in ct.js](../images/tutorials/tutJettyCat_32.png)
 
 Quindi, vai nella stanza chiamata `InGame`. Apri le stesse impostazioni dello sfondo `BG_Sky`. Imposta i suoi valori di parallasse su 0.25: ciò dirà allo sfondo di muoversi quattro volte più lentamente rispetto al resto della stanza, creando l'effetto di profondità.
 
-![Impostazione velocità di parallasse dello sfondo in ct.js](../images/tutJettyCat_33.png)
+![Impostazione velocità di parallasse dello sfondo in ct.js](../images/tutorials/tutJettyCat_33.png)
 
 Il menu principale ora avrà un cielo animato e il cielo nel livello di gioco principale scivolerà notevolmente più lentamente di qualsiasi altro oggetto nella stanza. Perfetto!
 

@@ -1,6 +1,6 @@
 # Fields reference for module settings and additional fields
 
-Both [module settings](modding-settings-and-extensions.html) and extensions for built-in templates are implemented by writing a declaration of editable fields in `module.json`. A declaration is an array of objects, with each object being one editable field. Let's take a look at `ct.place` module and its `module.json` (look at the `fields` array):
+Both [module settings](modding/settings-and-extensions.html) and extensions for built-in templates are implemented by writing a declaration of editable fields in `module.json`. A declaration is an array of objects, with each object being one editable field. Let's take a look at `ct.place` module and its `module.json` (look at the `fields` array):
 
 ```json
 {
@@ -137,7 +137,7 @@ You can present a number of choices for your user in a group, and allow them to 
 
 Tables allow users to describe an array of entities of a specific structure. Users can add/remove rows, and reorder them. Nested tables are supported, though they look terrible.
 
-![](./images/catmodsTable.png)
+![](./../images/catmodsTable.png)
 
 A table field is defined by setting field's type to `table`. Its fields are described in an array `fields`, in the same way as you define fields for the whole module.
 

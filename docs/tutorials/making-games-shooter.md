@@ -2,7 +2,7 @@
 
 Let's make a small space shooting game with asteroids, lasers and hostile gunships! This tutorial will teach you how to import assets, handle user input, move things around and respond to collisions.
 
-![](./images/tutSpaceShooter_Result.gif)
+![](./../images/tutorials/tutSpaceShooter_Result.gif)
 
 Here's what we will do:
 
@@ -12,7 +12,7 @@ Here's what we will do:
 
 Open ct.js and create a new project with a name "SpaceShooter".
 
-![](./images/tutSpaceShooter_01.png)
+![](./../images/tutorials/tutSpaceShooter_01.png)
 
 Next, [download an asset pack](http://www.kenney.nl/assets/space-shooter-redux) from Kenney's site. It is free to use and is great for prototyping, learning or just testing things out.
 
@@ -20,7 +20,7 @@ You can also use assets placed inside a `ct.js/examples/SpaceShooter_assets` fol
 
 These are all the assets we will need today:
 
-![](./images/tutSpaceShooter_02.png)
+![](./../images/tutorials/tutSpaceShooter_02.png)
 
 Now open the "Textures" tab on the top of the ct.IDE window, and drag & drop these assets inside the ct.IDE window. You can also press an "Import" button to find them manually.
 
@@ -30,17 +30,17 @@ Firstly, press a button "Image's center", so its axis is placed at the ship's ce
 
 Next, select the "**Line Strip / Polygon**" option under the label "Collision Shape". Add a couple of additional points and move them with your mouse so that the resulting polygon resembles the ship's shape.
 
-![](./images/tutSpaceShooter_03.png)
+![](./../images/tutorials/tutSpaceShooter_03.png)
 
 Press "Save" and move to the next texture — "LaserRed". As with the ship, let's set its axis to center by clicking "Image's Center". Then, select a **Circle** collision shape right beneath this button. Now a yellow collision shape is drawn as a circle.
 
 The next texture, `Laser_Blue`, should be centered too, and since the collision shape should cover all the image, we can click the "Fill" button to automate it.
 
-![](./images/tutSpaceShooter_04.png)
+![](./../images/tutorials/tutSpaceShooter_04.png)
 
 Both asteroids are better defined as polygons by their concave or sharp shapes. Set their collision shape to **Line Strip / Polygon**, and don't forget to set their axis to center.
 
-![](./images/tutSpaceShooter_05.png)
+![](./../images/tutorials/tutSpaceShooter_05.png)
 
 The `EnemyShip`'s shape can be treated as a **Polygon**.
 
@@ -54,17 +54,17 @@ Press the "Templates" tab on top of the screen, and create a new template for th
 
 Now, change the template's name to `PlayerShip` so we won't need to remember these numbers while coding.
 
-![](./images/tutSpaceShooter_06.png)
+![](./../images/tutorials/tutSpaceShooter_06.png)
 
 Create templates for all the other textures but the background image. Background images don't move or interact with anything, and is often tiled, so it is not a template. We will add it later in a **Room**.
 
-![](./images/tutSpaceShooter_07.png)
+![](./../images/tutorials/tutSpaceShooter_07.png)
 
 Let's place created templates somewhere on the map. To create this map, or Room, press the "Rooms" tab on top of the ct.IDE windows, and click an "Add new" button. Then, open the newly created room by clicking it.
 
-![](./images/tutSpaceShooter_08.png)
+![](./../images/tutorials/tutSpaceShooter_08.png)
 
-Here we will stop a bit to explain how to use the Room editor. The extended explanation can be found [here](/room-editor.html), but right now we will use just a few tools of it. Firstly, we should set up a Room's name and its viewport size in room's properties, by clicking the cog button in the left toolbar.
+Here we will stop a bit to explain how to use the Room editor. The extended explanation can be found [here](./../room-editor.md), but right now we will use just a few tools of it. Firstly, we should set up a Room's name and its viewport size in room's properties, by clicking the cog button in the left toolbar.
 
 In ct.js, Rooms are infinite and can pan in any direction. You can place objects inside and outside the viewport.
 
@@ -72,19 +72,19 @@ You can navigate the room by holding the mouse wheel and dragging your mouse. Yo
 
 For now, let's place a player's ship, a hostile one and a couple of asteroids. Select the "Add copies" tool in the left toolbar, pick a template, and position a copy of it onto a level with a mouse click.
 
-![](./images/tutSpaceShooter_10.png)
+![](./../images/tutorials/tutSpaceShooter_10.png)
 
 Then add a background. Click the "Backgrounds" tool on the left and press the "Add a background" button, then select our `BG`. It will appear as a tiled texture in the main view.
 
-![](./images/tutSpaceShooter_09.png)
+![](./../images/tutorials/tutSpaceShooter_09.png)
 
 Though backgrounds are always drawn before Copies of the same depth level (`0` by default), it is better to change their Depth level. Click on the cog on the right to the background's thumbnail and input `-5` in the "Depth" field. By doing this, we tell the engine that this background is placed lower than other Copies and backgrounds. Depth represents a third coordinate axis that goes upwards, when X and Y go to the sides.
 
-![](./images/tutSpaceShooter_Depth.png)
+![](./../images/tutorials/tutSpaceShooter_Depth.png)
 
 After that, save the project and click a 'Launch' button. At this point, you will have a game project with immovable ships and asteroids.
 
-![](./images/tutSpaceShooter_11.png)
+![](./../images/tutorials/tutSpaceShooter_11.png)
 
 ## Adding Player's Movement
 
@@ -92,17 +92,17 @@ Handling user's input is the most important task. In this section we will make t
 
 In order to handle keyboard inputs, we need to enable the Keyboard module. Press the "Project" tab, then a "Catmods" tab on the left, then find a Keyboard module in the section with available modules. Click it to enable it (it may be enabled by default, though — a green checkbox with a little spinning circle indicates that the module is enabled). Then make sure that modules `mouse`, `random` and `place` are enabled, as we will need them later too.
 
-![](./images/tutSpaceShooter_12.png)
+![](./../images/tutorials/tutSpaceShooter_12.png)
 
 ### Adding actions
 
-Actions in ct.js are entities that group different input methods into events, and allow you to listen to player input in code. You can read more about them [here](/actions.html).
+Actions in ct.js are entities that group different input methods into events, and allow you to listen to player input in code. You can read more about them [here](./../actions.md).
 
 For now, let's create a basic input scheme for our shooter. Open the "Project" tab, then the "Actions and input methods" tab on the left side. We will need to define three different actions: for shooting laser bullets, for moving horizontally, and for moving vertically.
 
 First, click the "Make from scratch" button. Then, input the name of the first action. Click the button called "Add an input method" to bind specific buttons to your action. Use its search to quickly filter available input methods. Click the "Add an action" button to continue creating more actions.
 
-![](./images/tutSpaceShooter_15.png)
+![](./../images/tutorials/tutSpaceShooter_15.png)
 
 Create three actions as in the picture above. Set multiplier value to `-1` for `keyboard.ArrowUp`, `keyboard.KeyW`, `keyboard.ArrowLeft`, and for `keyboard.KeyA`, so that these keys will move the ship in the opposite direction.
 
@@ -116,13 +116,14 @@ Open the "Templates" tab on the top, then click on the `PlayerShip` template and
 
 Write the following code:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 /**
  * Move the ship
  * See Project > Actions and input methods panel
  * and "Actions" in the docs.
  */
-
 this.x += 8 * ct.delta * ct.actions.MoveX.value; // Move by X axis
 
 
@@ -138,8 +139,26 @@ if (this.x > ct.camera.width) { // Have the ship crossed the right border?
 
 this.move();
 ```
+@tab CoffeeScript
+```coffee
+# Move the ship
+# See Project > Actions and input methods panel
+# and "Actions" in the docs.
 
-Here we are using the created actions. First, we try to move the ship horizontally (by `x`, line 6). `ct.actions.MoveX` will return `1` if we pressed the right keyboard arrow or the "D" key, and will return `-1` if a player presses the left arrow or the "A" key. If nothing is pressed, it will return `0`, disabling the horizontal movement.
+@x += 8 * ct.delta * ct.actions.MoveX.value # Move by X axis
+
+# Check whether the ship fell off the viewport
+if @x < 0 # Have the ship crossed the left border?
+    @x = 0 # Go back to the left border
+
+if @x > ct.camera.width # Have the ship crossed the right border?
+    @x = ct.camera.width # Go back to the right border
+
+@move()
+```
+:::
+
+Here we are using the created actions. First, we try to move the ship horizontally (by `x`, line 5). `ct.actions.MoveX` will return `1` if we pressed the right keyboard arrow or the "D" key, and will return `-1` if a player presses the left arrow or the "A" key. If nothing is pressed, it will return `0`, disabling the horizontal movement.
 
 `ct.delta` is needed to compensate possible lags and FPS drops. It is usually equal to `1` and doesn't add much, but will speed up the movement if some frames were dropped.
 
@@ -159,31 +178,52 @@ Enemies should move, too. For this tutorial, our hostile ship will move from top
 
 Open the "Templates" tab, then click on the `EnemyShip`. Navigate to the `Creation` event and add this code:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 this.speed = 3;
 this.direction = 90;
 ```
+@tab CoffeeScript
+```coffee
+@speed = 3
+@direction = 90
+```
+:::
 
 Here, we use built-in variables for moving. Manually editing coordinates is good for handling player's input, but for most tasks it is better to use these vars as they automate most of the things. For example, you don't need to use `ct.delta` while using `this.speed` and `this.direction`. Here, `this.speed` means the speed of the Copy, and `this.direction` refers to its direction.
 
 ::: tip
+If you use CoffeeScript, `this.speed` is `@speed`, `this.direction` is `@direction`, and so on. You can actually write it either way!
+:::
+
+::: tip
 In ct.js, direction is measured in degrees, moving clockwise. 0° means right, 90° means bottom, 180° is for left, and 270° points to the up.
 
-![](./images/tutSpaceShooter_Direction.png)
+![](./../images/tutorials/tutSpaceShooter_Direction.png)
 :::
 
 If we navigate to the `Frame start` event, we will see this little code:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 this.move();
 ```
+@tab CoffeeScript
+```coffee
+@move()
+```
+:::
 
 This line reads built-in variables and moves the Copy according to them. Without it, `this.speed` and `this.direction` will be meaningless.
 
-There are more built-in variables, which you can find on the [`ct.templates` page](ct.templates.html).
+There are more built-in variables, which you can find on the [`ct.templates` page](./../ct.templates.md).
 
 We will modify the `Frame start` code so enemies will destroy themselves if they fall off the screen.
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 this.move();
 
@@ -191,6 +231,14 @@ if (this.y > ct.camera.height + 80) {
     this.kill = true;
 }
 ```
+@tab CoffeeScript
+```coffee
+@move()
+
+if @y > ct.camera.height + 80
+    @kill = yes
+```
+:::
 
 ::: tip On your own!
 What if enemy ships could move diagonally, zig-zagging?
@@ -202,13 +250,23 @@ Asteroids will contain the same `Frame start` code, but their `direction` variab
 
 Open the `Asteroid_Medium` in the "Templates" tab, then write the code below in the `Creation` event.
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js On Create event
 this.speed = ct.random.range(1, 3);
 this.direction = ct.random.range(90 - 30, 90 + 30);
 ```
+@tab CoffeeScript
+```coffee On Create event
+@speed = ct.random.range(1, 3)
+@direction = ct.random.range(90 - 30, 90 + 30)
+```
+:::
 
 The `Frame start` event will be the same as in `EnemyShip`.
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js Frame start event
 this.move();
 
@@ -216,6 +274,14 @@ if (this.y > ct.camera.height + 80) {
     this.kill = true;
 }
 ```
+@tab CoffeeScript
+```coffee
+@move()
+
+if @y > ct.camera.height + 80
+  @kill = true
+```
+:::
 
 Do the same for another asteroid.
 
@@ -225,7 +291,7 @@ Save the project and click the "Launch" button at the top. The hostile ship will
 Do you have errors with `ct.random`? Make sure that you've enabled the `random` module at the Project tab -> Catmods panel.
 :::
 
-![](./images/tutSpaceShooter_RandomMovement.gif)
+![](./../images/tutorials/tutSpaceShooter_RandomMovement.gif)
 
 ## Projectiles & Collision
 
@@ -233,9 +299,16 @@ Now it is time to bring the guns 😎
 
 Open the `PlayerShip` template, and add the "Action press" event. A window should then pop up to ask you which action you want to use. Select the "Shoot" action and then hit apply. Now inside the "On Shoot press" event add this code:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 ct.templates.copy('Laser_Blue', this.x, this.y);
 ```
+@tab CoffeeScript
+```coffee
+ct.templates.copy 'Laser_Blue', @x, @y
+```
+:::
 
 This is the first time we add new copies programmatically. Hooray!
 
@@ -247,13 +320,23 @@ With all the data combined, we make a laser bullet right under our ship. Bullets
 
 Now let's move to the `Laser_Blue` itself. We will define its movement with default variables.
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js On Create code
 this.speed = 18;
 this.direction = 270;
 ```
+@tab CoffeeScript
+```coffee
+@speed = 18
+@direction = 270
+```
+:::
 
 Next, let's make sure that these laser bullets will disappear after they fly out the view. As they always fly to top, we may write a condition for the upper border only.
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js Step code
 if (this.y < -40) {
     this.kill = true;
@@ -261,15 +344,31 @@ if (this.y < -40) {
 
 this.move();
 ```
+@tab CoffeeScript
+```coffee
+if @y < -40
+  @kill = true
+
+@move()
+```
+:::
 
 The next thing is handling collisions. It is better to write all the collision logic in enemy ships' and asteroids' code because they will respond differently, making no clutter in the bullet's code.
 
 Go to the `EnemyShip` template and create a "Collision with a template" event, then select `Laser_Blue`. In the code, add the following:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ``` js
 other.kill = true;
 this.kill = true;
 ```
+@tab CoffeeScript
+```coffee
+other.kill = true
+@kill = true
+```
+:::
 
 ::: tip
 `other` is a special variable that can be referenced when inside collision event code. `other` refers to the other colliding copy. Look out for other local variables that may be accessible in certain events!
@@ -279,12 +378,22 @@ If a ship collides with a laser bullet, then both the bullet and the ship should
 
 Copy exactly the same code to `Asteroid_Medium`. We will need this code in `Asteroid_Big` too, but we will make it so that big asteroids break into two smaller ones:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ``` js
 other.kill = true;
 this.kill = true;
 ct.templates.copy('Asteroid_Medium', this.x, this.y);
 ct.templates.copy('Asteroid_Medium', this.x, this.y);
 ```
+@tab CoffeeScript
+```coffee
+other.kill = true
+@kill = true
+ct.templates.copy 'Asteroid_Medium', @x, @y
+ct.templates.copy 'Asteroid_Medium', @x, @y
+```
+:::
 
 If you run the game, you will be able to destroy enemy ships and asteroids. Bigger asteroids should break into smaller ones.
 
@@ -292,29 +401,53 @@ If you run the game, you will be able to destroy enemy ships and asteroids. Bigg
 
 Enemy ships should be able to shoot, too. Add the following code to `EnemyShip`'s `Creation` code:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ``` js
 this.timer1 = 1;
 ```
+@tab CoffeeScript
+```coffee
+@timer1 = 1
+```
+:::
 
 With this, we will set up our timer so that the enemy ship will shoot at precise intervals. `timer1` is a special variable that ct.js will automatically countdown for us, 1 per second. The `Timer 1` event will fire once this value reaches 0. This means we will wait for 1 second before shooting the first bullet.
 
 Add this code to the `Timer 1` event:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 this.timer1 = 3;
 ct.templates.copy('Laser_Red', this.x, this.y + 32);
 ```
+@tab CoffeeScript
+```coffee
+@timer1 = 3
+ct.templates.copy 'Laser_Red', @x, @y + 32
+```
+:::
 
 When the `timer1` variable goes down to zero, we wind it back up by setting it to 3 and then create a red laser bullet. Now the next bullet will shoot in 3 seconds automatically. As you can see, by writing `this.y + 32` we spawn it a bit lower than the ship.
 
 Let's write some code to red bullets. Add this code to `Creation` section of Laser_Red:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 this.speed = 8;
 this.direction = 90;
 
 this.angle = ct.random.deg();
 ```
+@tab CoffeeScript
+```coffee
+@speed = 8
+@direction = 90
+@angle = ct.random.deg()
+```
+:::
 
 `this.angle` rotates a copy's texture. `ct.random.deg()` returns a random value between 0 and 360, which is handy while defining angular values.
 
@@ -324,6 +457,8 @@ There is also `this.scale.x` and `this.scale.y`, which sets a copy's horizontal 
 
 The code of `Frame start` will look as following:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ``` js
 if (this.y > ct.camera.height + 40) {
     this.kill = true;
@@ -333,8 +468,18 @@ this.move();
 
 this.angle -= 4 * ct.delta;
 ```
+@tab CoffeeScript
+```coffee
+if @y > ct.camera.height + 40
+  @kill = true
 
-`this.angle -= 4 * ct.delta;` means that we will rotate a Copy by approximately 4 degrees at each step. `ct.delta` will balance out stuff if the game suffers from inconsistent FPS.
+@move()
+
+@angle -= 4 * ct.delta
+```
+:::
+
+`this.angle -= 4 * ct.delta` means that we will rotate a Copy by approximately 4 degrees at each step. `ct.delta` will balance out stuff if the game suffers from inconsistent FPS.
 
 We will define logic for destroying player's ship later. For now, it's time to add enemy and asteroid generation during the playtime.
 
@@ -355,26 +500,59 @@ We will generate enemies in almost the same way as enemy ships generate their bu
 
 To do this, setup two timers in the `Room start` code:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 this.timer1 = 0.3; // asteroid timer
 this.timer2 = 3; // enemy timer
 ```
+@tab CoffeeScript
+```coffee
+# asteroid timer
+@timer1 = 0.3
+# enemy timer
+@timer2 = 3
+```
+:::
 
 Then add this code in the `Timer 1` tab to generate asteroids through time:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 // asteroid timer
 this.timer1 = ct.random.range(0.3, 3);
 ct.templates.copy(ct.random.dice('Asteroid_Big', 'Asteroid_Medium'), ct.random(ct.camera.width), -100);
 ```
+@tab CoffeeScript
+```coffee
+# asteroid timer
+@timer1 = ct.random.range 0.3, 3
+
+randomAsteroid = ct.random.dice 'Asteroid_Big', 'Asteroid_Medium'
+randomX = ct.random ct.camera.width
+ct.templates.copy randomAsteroid, randomX, -100
+```
+:::
 
 Then add this code in the `Timer 2` tab to generate enemies through time:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 // enemy timer
 this.timer2 = ct.random.range(3, 6);
 ct.templates.copy('EnemyShip', ct.random(ct.camera.width), -100);
 ```
+@tab CoffeeScript
+```coffee
+# enemy timer
+@timer2 = ct.random.range 3, 6
+
+randomX =  ct.random ct.camera.width
+ct.templates.copy 'EnemyShip', randomX, -100
+```
+:::
 
 That's all what you need for generating asteroids and enemies!
 
@@ -394,6 +572,8 @@ Let's add score counting to the game and player ship's reaction to hostiles.
 
 Score is a numerical variable that is stored globally. In our case it is better to place it inside the room. Open the `Main` room, and then click on 'Room events' button. Add this code to the `Room start` section:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 this.score = 0;
 
@@ -403,22 +583,48 @@ this.scoreLabel.x = 30;
 this.scoreLabel.y = 30;
 this.scoreLabel.depth = 1000;
 ```
+@tab CoffeeScript
+```coffee
+@score = 0
+@scoreLabel = new PIXI.Text 'Score: ' + @score
+@addChild @scoreLabel
+@scoreLabel.x = 30
+@scoreLabel.y = 30
+@scoreLabel.depth = 1000
+```
+:::
 
 Here, we create a variable called `score`. Then, we construct a text label with `new PIXI.Text('Some text')`, save it `this.scoreLabel` and add it to the room with `this.addChild(this.scoreLabel);`. Later, we position it so that it shows at the top-left corner, with 30px padding on each side. We also set its depth — this is the same parameter we use in templates' settings, and this large positive value will place the `scoreLabel` above other entities in our room.
 
 We also need this code at `Frame end` to keep the label up-to-date:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 this.scoreLabel.text = 'Score: ' + this.score;
 ```
+@tab CoffeeScript
+```coffee
+@scoreLabel.text = 'Score: ' + @score
+```
+:::
 
 Now, move to `EnemyShip`'s `Collides Laser_Blue template` code, and add `ct.room.score += 100;` to a place where a ship is destroyed after colliding with a bullet, so the whole code looks like this:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 other.kill = true;
 this.kill = true;
 ct.room.score += 100;
 ```
+@tab CoffeeScript
+```coffee
+other.kill = true
+@kill = true
+ct.room.score += 100
+```
+:::
 
 ::: tip
 `ct.room` points to the current room object.
@@ -432,11 +638,11 @@ Text can be drawn with pre-defined styles that declare fill color, line style, f
 
 Let's make the font bigger and bolder. Change its size and set its weight to 800. Then align it to be drawn from a top left corner.
 
-![](./images/tutSpaceShooter_13.png)
+![](./../images/tutorials/tutSpaceShooter_13.png)
 
 Click the `Fill` tab, activate it, and then select the "Diffuse" fill type. Select an appropriate color; I chose something similar to the player's ship's colors.
 
-![](./images/tutSpaceShooter_14.png)
+![](./../images/tutorials/tutSpaceShooter_14.png)
 
 Add shadow, or border, or both! Then save the changes by clicking the "Apply" button in the bottom-left corner.
 
@@ -444,6 +650,8 @@ Name the created style as `ScoreText`. You can rename it by right-clicking it in
 
 Now let's return to the room's events. Open the `Room start` tab, and modify the code to apply the created style:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js{5}
 this.timer1 = 0.3; // asteroid timer
 this.timer2 = 3; // enemy timer
@@ -454,6 +662,21 @@ this.addChild(this.scoreLabel);
 this.scoreLabel.x = 30;
 this.scoreLabel.y = 30;
 ```
+@tab CoffeeScript
+```coffee{7,8}
+# asteroid timer
+@timer1 = 0.3
+# enemy timer
+@timer2 = 3
+
+@score = 0
+style = ct.styles.get 'ScoreText'
+@scoreLabel = new PIXI.Text 'Score: ' + @score, style
+@addChild @scoreLabel
+@scoreLabel.x = 30
+@scoreLabel.y = 30
+```
+:::
 
 ::: tip
 `ct.styles.get('Style');` loads the given style. You can use it inside PIXI.Text constructor to style the created label.
@@ -465,6 +688,8 @@ If you launch the game, the score will be drawn in your created style. Hooray!
 
 Managing lives is similar to managing score points. Add this code to the room's `Room start` code so that it stores and draws the number of lives, too:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 this.lives = 3;
 this.livesLabel = new PIXI.Text('Lives: ' + this.lives, ct.styles.get('ScoreText'));
@@ -473,6 +698,19 @@ this.livesLabel.x = ct.camera.width - 200;
 this.livesLabel.y = 30;
 this.livesLabel.depth = 1000;
 ```
+@tab CoffeeScript
+```coffee
+@lives = 3
+
+style = ct.styles.get 'ScoreText'
+@livesLabel = new PIXI.Text 'Lives: ' + @lives, style
+
+@addChild @livesLabel
+@livesLabel.x = ct.camera.width - 200
+@livesLabel.y = 30
+@livesLabel.depth = 1000
+```
+:::
 
 ::: tip On your own!
 Create a new style and apply it to the 'Lives' label.
@@ -484,19 +722,36 @@ To add copies to a collision group, we should write in the name of the collision
 
 Go to the player ship and create a new "Collision with a group" event. Specify "Hostile" in the appearing text field. Now add this code to the player ship's `Collides Hostile group` code:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 if(ct.templates.isCopy(other)) {
-    other.kill = true;    
+    other.kill = true;
 }
 
 ct.room.lives --;
 if (ct.room.lives <= 0) {
     this.kill = true;
-    setTimeout(function() {
+    ct.u.wait(1000)
+    .then(() => {
         ct.rooms.switch('Main');
-    }, 1000);
+    });
 }
 ```
+@tab CoffeeScript
+```coffee
+if ct.templates.isCopy(other)
+    other.kill = true
+
+ct.room.lives--
+
+if ct.room.lives <= 0
+    @kill = true
+    ct.u.wait 1000
+    .then =>
+        ct.rooms.switch 'Main'
+```
+:::
 
 `ct.rooms.switch` unloads the current room and loads a new one. By pointing to the same room as we were playing, we restart it.
 

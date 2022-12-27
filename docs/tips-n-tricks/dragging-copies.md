@@ -13,11 +13,11 @@ In this tutorial we are going to take a look at how we can do a drag and drop im
 
 We have a placeholder block template that we are going to drag around. Let's start by going to the the 'Catmods' menu under the Project tab and enable the `ct.touch` catmod. We are going to be using this catmod because we want to be able to drag our cube in mobile and touchscreen devices with our fingers. And don't worry, we will also be able to use our mouse to drag because  `ct.touch` can also handle mouse events by default. If you need to, you can disable this behavior from the Touch menu under Catmods' Settings.
 
-![Dragging the block](./images/draggingCopies_01.png)
+![Dragging the block](./../images/draggingCopies_01.png)
 
 Now we want to add a touch action from the 'Actions and Input Methods' menu. Click 'Add an Action' and name your action "TouchAction". Now click 'Add an Input Method' and select `touch.Any` from the list. It should look like this at the end:
 
-![Dragging the block](./images/draggingCopies_02.png)
+![Dragging the block](./../images/draggingCopies_02.png)
 
 We will use the action we just created to register touch events such as press and release.
 
@@ -54,7 +54,7 @@ if (this.dragging) {
 
 Now we can test it:
 
-![Dragging the block](./images/draggingCopies_01.gif)
+![Dragging the block](./../images/draggingCopies_01.gif)
 
 It works! it was this simple to set it up.
 
@@ -88,6 +88,6 @@ if (this.dragging) {
 
 We can now relaunch our game to test it.
 
-![Dragging the block](./images/draggingCopies_02.gif)
+![Dragging the block](./../images/draggingCopies_02.gif)
 
 Great! It works perfectly. Now when we pick up our block, it won't teleport to our cursor and get picked up like a real object.

@@ -6,6 +6,8 @@ This module (`ct.inputs`) allows you to manipulate [Actions](/actions.html). You
 
 Here is a generic example on how to use actions in your game:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 /**
  * Move the copy around.
@@ -18,6 +20,19 @@ if (ct.actions.Shoot.pressed) {
     ct.templates.copy('Bullet', this.x, this.y);
 }
 ```
+@tab CoffeeScript
+```coffee
+###
+Move the copy around.
+See "Project" > "Actions and input methods"
+and "Actions" in the docs.
+###
+@hspeed = 8 * ct.actions.MoveX.value # Move by X axis
+@vspeed = 8 * ct.actions.MoveY.value # Move by Y axis
+if ct.actions.Shoot.pressed
+    ct.templates.copy 'Bullet', @x, @y
+```
+:::
 
 ## Actions' methods and properties
 
@@ -99,6 +114,8 @@ methods|Array\<Object\>|A list of input methods. This list can be changed later.
 
 **Example:**
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 ct.inputs.addAction('Move', [{
     code: 'keyboard.ArrowLeft',
@@ -112,6 +129,27 @@ ct.inputs.addAction('Move', [{
     code: 'keyboard.KeyD'
 }]);
 ```
+@tab CoffeeScript
+```coffee
+ct.inputs.addAction 'Move', [
+    {
+        code: 'keyboard.ArrowLeft'
+        multiplier: -1
+    }
+    {
+        code: 'keyboard.ArrowRight'
+    }
+    {
+        code: 'keyboard.KeyA'
+        multiplier: -1
+    }
+    {
+        code: 'keyboard.KeyD'
+    }
+]
+
+```
+:::
 
 ### ct.inputs.removeAction(name, methods) ⇒ <code>void</code>
 

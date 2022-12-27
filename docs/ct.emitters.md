@@ -22,11 +22,21 @@ Let's see them all in action (note how the trail reacts to the robot's movement)
 -|-|-
 ![](./images/emittersFire.gif) | ![](./images/emittersFollow.gif) | ![](./images/emittersAppend.gif)
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 // The code from the "fire" example
 ct.emitters.fire('HeartTrail', this.x, this.y - 70);
 ```
+@tab CoffeeScript
+```coffee
+# The code from the "fire" example
+ct.emitters.fire 'HeartTrail', @x, @y - 70
+```
+:::
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 // The "follow" example
 ct.emitters.follow(this, 'HeartTrail', {
@@ -36,7 +46,19 @@ ct.emitters.follow(this, 'HeartTrail', {
     }
 });
 ```
+@tab CoffeeScript
+```coffee
+# The "follow" example
+followSettings =
+    position:
+        x: 0
+        y: -70
+ct.emitters.follow this, 'HeartTrail', followSettings
+```
+:::
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 // The "append" example
 ct.emitters.append(this, 'HeartTrail', {
@@ -46,6 +68,16 @@ ct.emitters.append(this, 'HeartTrail', {
     }
 });
 ```
+@tab CoffeeScript
+```coffee
+# The "append" example
+appendSettings =
+    position:
+        x: 0
+        y: -70
+ct.emitters.append this, 'HeartTrail', appendSettings
+```
+:::
 
 ## Additional options
 
@@ -63,6 +95,8 @@ You may have noticed that these three methods accept an additional argument (e.g
 
 Each property is optional. An example: if we would like to create a smaller reddish effect above a copy that stays at the same depth as the copy, we would write:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 ct.emitters.follow(this, 'Debuff', {
     scale: {
@@ -77,6 +111,20 @@ ct.emitters.follow(this, 'Debuff', {
     depth: this.depth
 });
 ```
+@tab CoffeeScript
+```coffee
+followSettings =
+    scale:
+        x: 0.75
+        y: 0.75
+    position:
+        x: 0
+        y: -80
+    tint: 0xff9999
+    depth: @depth
+ct.emitters.follow this, 'Debuff', followSettings
+```
+:::
 
 ## Manipulating emitters
 
@@ -84,6 +132,8 @@ By themselves, created effects will behave well: they will stop automatically wh
 
 Each of the `ct.emitters.fire`, `ct.emitters.append` and `ct.emitters.follow` return a reference to the created effect which we can use:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 // Let's create a shield bubble!
 this.shied = ct.emitters.append(this, 'BubbleEffect');
@@ -92,6 +142,16 @@ this.shied = ct.emitters.append(this, 'BubbleEffect');
 this.shield.stop();
 this.shield = null; // Forget about the effect to free memory
 ```
+@tab CoffeeScript
+```coffee
+# Let's create a shield bubble!
+@shied = ct.emitters.append this, 'BubbleEffect'
+
+# Later, when we no longer need the shield:
+@shield.stop()
+@shield = null # Forget about the effect to free memory
+```
+:::
 
 There is a number of properties we can use in such way:
 

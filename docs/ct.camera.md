@@ -1,7 +1,7 @@
 # ct.camera
 
 ::: tip Hey,
-This page describes the methods and parameters of `ct.camera` object in a form of a reference. You can learn about techniques and usage in a more free form at the ["Working with Viewport" page](/viewport-management.html).
+This page describes the methods and parameters of `ct.camera` object in a form of a reference. You can learn about techniques and usage in a more free form at the ["Working with Viewport" page](/tips-n-tricks/viewport-management.html).
 :::
 
 ## Camera's Geometry
@@ -46,7 +46,7 @@ There are also `ct.u.uiToGameCoord` and `ct.u.gameToUiCoord`, that call these me
 
 ### `ct.camera.getTopLeftCorner()`, `ct.camera.getTopRightCorner()`, `ct.camera.getBottomLeftCorner()`, `ct.camera.getBottomRightCorner()`
 
- Returns an object (`PIXI.Point`) with two properties: `x` and `y` components. These are in game coordinates, and take rotation and scaling into account.
+Returns an object (`PIXI.Point`) with two properties: `x` and `y` components. These are in game coordinates, and take rotation and scaling into account.
 
 ### `ct.camera.getBoundingBox()`
 
@@ -122,11 +122,18 @@ No `ct.camera.realign` | With `ct.camera.realign`
 
 #### Example: Realign UI elements in a room
 
-On Draw code of your UI room:
+Frame End code of your UI room:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 ct.camera.realign(this);
 ```
+@tab CoffeeScript
+```coffee
+ct.camera.realign this
+```
+:::
 
 Yup, that's it!
 
@@ -138,7 +145,15 @@ This will align all non-UI layers in the game according to the camera's transfor
 
 You can create a new camera object for your needs by calling a `Camera` constructor:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 const oldCamera = ct.camera;
 ct.camera = new Camera(0, 0, 1024, 768);
 ```
+@tab CoffeeScript
+```coffee
+oldCamera = ct.camera
+ct.camera = new Camera 0, 0, 1024, 768
+```
+:::

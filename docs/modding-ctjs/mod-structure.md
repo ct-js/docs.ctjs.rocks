@@ -38,11 +38,11 @@ mycatmod
   \-- injects
       \-- (injections go here)
 ```
-(more about injections [here](modding-events-and-injections.html))
+(more about injections [here](./events-and-injections.html))
 
 * `module.json` allows your module to be discoverable by ct.IDE, and contains basic info, list of authors and description of module settings. It is the only file that is required.
 
-* `index.js` usually represents the main code of your module, and is bundled with all the remaining code of compiled game. A rule of thumb is to pack all your dependencies in one file. If your dependency is an another ct module, you can list this module as such in `module.json`. (See below for examples.) This file supports [templating](modding-events-and-injections.html#templating).
+* `index.js` usually represents the main code of your module, and is bundled with all the remaining code of compiled game. A rule of thumb is to pack all your dependencies in one file. If your dependency is an another ct module, you can list this module as such in `module.json`. (See below for examples.) This file supports [templating](./events-and-injections.html#templating).
 
 * `README.md` is a markdown file with general info, examples, special notes, etc. If present, it makes the module's header clickable in the panel with all the modules' docs.
 
@@ -106,7 +106,7 @@ Since v1.4, modules can specify one or two categories in module.json so that the
 
 The first category is also used to create an icon in the bottom-right corner of a module's card:
 
-![](./images/modsCardIcon.png)
+![](./../images/modsCardIcon.png)
 
 **An example from `ct.flow` module:**
 
@@ -132,11 +132,11 @@ The first category is also used to create an icon in the bottom-right corner of 
 Depending on your needs, you will probably need to:
 
 * Write your core logic in `index.js` file;
-* [Inject custom code](modding-events-and-injections.html) into ct.js' events and procedures;
-* [Add settings to your module](modding-events-and-injections.html) editable from ct.IDE and read them back though injections;
-* [Add new editable fields](modding-events-and-injections.html) for templates and other few asset types;
-* [Implement new input methods](modding-input-methods.html) to integrate them into [Actions system](actions.html);
-* [Create new events for templates and rooms](modding-modded-events); <badge>new in ct.js v3.0</badge>
-* [Add typings](modding-typings-and-intellisense.html) for smart autocompletion and type checks.
+* [Inject custom code](./events-and-injections.html) into ct.js' events and procedures;
+* [Add settings to your module](./events-and-injections.html) editable from ct.IDE and read them back though injections;
+* [Add new editable fields](./events-and-injections.html) for templates and other few asset types;
+* [Implement new input methods](./input-methods.html) to integrate them into [Actions system](./../actions.html);
+* [Create new events for templates and rooms](./modded-events); <badge>new in ct.js v3.0</badge>
+* [Add typings](./typings-and-intellisense.html) for smart autocompletion and type checks.
 
 Follow the links to find the examples and references on further implementation.

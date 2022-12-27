@@ -6,7 +6,7 @@ Adding new fields allows users configure your mods from inside ct.IDE, on a 'Set
 
 Currently, settings are displayed at each mod's panel, in the "Settings" tab. It may look like this:
 
-![ct.place settings as an example of moddable settings sections in ct.js](./images/catmodsSettingsExample.png)
+![ct.place settings as an example of moddable settings sections in ct.js](./../images/catmodsSettingsExample.png)
 
 Settings are defined in `module.json` file, under the `fields` key, and are an array of objects, each object being one field or grahical element.
 
@@ -56,15 +56,15 @@ Here is how the screen above was implemented:
 }
 ```
 
-There are actually more input types; all of them, as well as description of other keys, can be found in [Fields declarations](modding-fields-declaration.html) page.
+There are actually more input types; all of them, as well as description of other keys, can be found in [Fields declarations](modding/fields-declaration.html) page.
 
-Settings' values are used for templating in your index.js and injections. Injections allow you to place your code in particular ct.js events. More about them and templating [here](modding-events-and-injections.html).
+Settings' values are used for templating in your index.js and injections. Injections allow you to place your code in particular ct.js events. More about them and templating [here](modding/events-and-injections.html).
 
 ## Adding extensions to built-in assets
 
 You can define additional fields that will be available in asset editors. Currently, you can define these fields for templates, rooms, copies, and tile layers. Here is where such fields are placed at the template editor:
 
-![](./images/modsFields.png)
+![](./../images/modsFields.png)
 
 And that's how you define them inside the `module.json`:
 
@@ -88,8 +88,8 @@ We currently have two keys where you can define new fields:
 * `copyExtends` for individual copies (applied directly to copies); <badge>new in v1.4.2</badge>
 * `roomExtends` for your levels (applied directly to rooms).
 
-Since v1.4, extensions support all the fields that are supported by injections. See [Fields declarations](modding-fields-declaration.html) page for more info.
+Since v1.4, extensions support all the fields that are supported by injections. See [Fields declarations](modding/fields-declaration.html) page for more info.
 
-With `templateExtends`, defined fields will be available in `this.extends` object to avoid overriding built in fields (and there are lots of them). For example, if you have a field with a key `tag`, then you will be able to read its value at `this.extends.tag`. Most of the time, you will need [injections](modding-events-and-injections.html) to make use of these fields, though not necessarily.
+With `templateExtends`, defined fields will be available in `this.extends` object to avoid overriding built in fields (and there are lots of them). For example, if you have a field with a key `tag`, then you will be able to read its value at `this.extends.tag`. Most of the time, you will need [injections](modding/events-and-injections.html) to make use of these fields, though not necessarily.
 
 With `tileLayerExtends`, parameters are applied directly to a tile layer. You can get a list of all the tile layers with `ct.templates.list['TILELAYER']`.

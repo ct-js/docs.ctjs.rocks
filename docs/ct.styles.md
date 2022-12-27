@@ -12,17 +12,29 @@ Returns the specified style.
 
 Returns a copy of the specified style. This copy then may be edited and used safely.
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 var multiline = ct.styles.get('Label', true);
 multiline.wordWrap = true;
 multiline.wordWrapWidth = 320;
 this.details = new PIXI.Text(this.info, multiline);
 ```
+@tab CoffeeScript
+```coffee
+multiline = ct.styles.get 'Label', yes
+multiline.wordWrap = yes
+multiline.wordWrapWidth = 320
+@details = new PIXI.Text @info, multiline
+```
+:::
 
 ### `ct.styles.get(name: String, opts: Object)`
 
 Creates a copy of the specified style, then extends it with a given object. This copy then may be edited and used safely.
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 var multiline = ct.styles.get('Label', {
     wordWrap: true,
@@ -30,6 +42,15 @@ var multiline = ct.styles.get('Label', {
 });
 this.details = new PIXI.Text(this.info, multiline);
 ```
+@tab CoffeeScript
+```coffee
+additionalOpts =
+    wordWrap: true
+    wordWrapWidth: 320
+multiline = ct.styles.get 'Label', additionalOpts
+@details = new PIXI.Text @info, multiline
+```
+:::
 
 ## Creating styles programmatically
 

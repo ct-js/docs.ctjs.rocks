@@ -4,13 +4,26 @@
 
 Examples:
 
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 // Add a timer
 ct.timer.add(1000, 'test');
 // Or:
 new CtTimer(1000, 'test');
 ```
+@tab CoffeeScript
+```coffee
+# Add a timer
+ct.timer.add 1000, 'test'
+# Or:
+new CtTimer 1000, 'test'
 
+```
+:::
+
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
 // Create a new timer and remember it in a variable `timer`
 // Log "Done!" when it gets to 2.5 seconds
@@ -39,6 +52,31 @@ timer.reject();
 // Trigger the timer manually
 timer.resolve();
 ```
+@tab CoffeeScript
+```coffee
+# Create a new timer and remember it in a variable `timer`
+# Log "Done!" when it gets to 2.5 seconds
+timer = ct.timer.add 2500, 'test'
+timer.then =>
+    # Do something useful
+    hero.invincible = false
+    console.log 'Done!'
+.catch (e) =>
+    # You can add code here so that important stuff still
+    # gets executed on room switch:
+    console.log 'Timer removed', e
+    hero.invincible = false
+
+# Log how much time left
+console.log timer.time
+
+# Stop the timer. It won't call the code inside `then => …` clause
+timer.reject()
+
+# Trigger the timer manually
+timer.resolve()
+```
+:::
 
 ## ct.timer methods
 
