@@ -13,7 +13,7 @@ export default defineUserConfig({
   description: 'Docs, tutorials, guides',
   plugins: [
     searchProPlugin({
-      // your options
+      historyCount: 10
     })
   ],
   head: [
