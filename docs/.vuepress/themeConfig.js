@@ -32,6 +32,14 @@ export default {
 
             imageLazyload: true,
             linkCheck: true
+        },
+        comment: {
+            provider: 'Giscus',
+            repo: 'ct-js/docs.ctjs.rocks',
+            repoId: 'MDEwOlJlcG9zaXRvcnkxNzE2MDQ5MDE=',
+            category: 'Pages\' discussions',
+            categoryId: 'DIC_kwDOCjp7pc4CTa2u',
+            reactionsEnabled: false
         }
     },
 

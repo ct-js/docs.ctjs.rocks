@@ -14,7 +14,7 @@ export default defineUserConfig({
   plugins: [
     searchProPlugin({
       // your options
-    }),
+    })
   ],
   head: [
     ['script', {
