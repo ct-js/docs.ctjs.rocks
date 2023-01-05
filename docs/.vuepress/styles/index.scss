@@ -1,5 +1,8 @@
-.home.project .hero {
+.hero-info-wrapper {
     text-align: center !important;
+    p.description {
+        margin: 0 auto;
+    }
 }
 .home.project .feature {
     text-align: left;
@@ -30,7 +33,12 @@
     font-size: 1.2rem;
     transition: color var(--color-transition), color var(--color-transition);
     text-align: center;
+    text-decoration: none;
+    &.primary {
+        color: var(--white);
+    }
     &:hover {
+        text-decoration: none;
         background: var(--theme-color);
         color: var(--white);
     }
