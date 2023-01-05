@@ -13,16 +13,16 @@ footer: Ct.js documentation. Except where otherwise noted, content is licensed u
 <div class="features">
     <div class="feature" style="flex-basis: 33%">
         <h2>Learn JavaScript</h2>
-        <p>Games made in ct.js use JavaScript, or simply JS, to code its gameplay logic. Learn the needed part of it in our little <a href="/jsintro_pt1.html">Introduction to JS</a>.</p>
-        <a href="/jsintro_pt1.html" class="action-button">Learn JavaScript →</a>
+        <p>Games made in ct.js use JavaScript, or simply JS, to code its gameplay logic. Learn the needed part of it in our little <a href="/learn-js/jsintro_pt1.html">Introduction to JS</a>.</p>
+        <a href="/learn-js/jsintro_pt1.html" class="action-button">Learn JavaScript →</a>
     </div>
     <div class="feature" style="flex-basis: 33%">
         <h2>Complete tutorials</h2>
         <p>The best way to learn is by <i>making</i>, and you can create real games with our step-by-step tutorials:</p>
         <ul>
-            <li><a href="/tut-making-shooter.html">Make a space shooter game →</a></li>
-            <li><a href="/tut-making-platformer.html">Create a platformer →</a></li>
-            <li><a href="/tut-making-jettycat.html">Create Jetty Cat, a flappy-bird-like game →</a></li>
+            <li><a href="/tutorials/making-games-shooter.html">Make a space shooter game →</a></li>
+            <li><a href="/tutorials/making-games-platformer.html">Create a platformer →</a></li>
+            <li><a href="/tutorials/making-games-jettycat.html">Create Jetty Cat, a flappy-bird-like game →</a></li>
         </ul>
     </div>
     <div class="feature" style="flex-basis: 33%">
