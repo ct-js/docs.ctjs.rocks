@@ -3,18 +3,17 @@ import { defineUserConfig } from '@vuepress/cli';
 //import { searchPlugin } from '@vuepress/plugin-search';
 //import { mediumZoomPlugin } from '@vuepress/plugin-medium-zoom';
 import { hope } from 'vuepress-theme-hope';
-import { searchProPlugin } from "vuepress-plugin-search-pro";
+import { searchPlugin } from '@vuepress/plugin-search';
 
 import themeConfig from './themeConfig';
-
 
 export default defineUserConfig({
   title: 'ct.js Documentation',
   description: 'Docs, tutorials, guides',
   plugins: [
-    searchProPlugin({
-      historyCount: 10
-    })
+    searchPlugin({
+      maxSuggestions: 10
+    }),
   ],
   head: [
     ['script', {

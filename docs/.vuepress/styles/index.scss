@@ -51,3 +51,8 @@
 div[class*="language-"] > button.copy:not(.pure) {
     background: var(--theme-color);
 }
+
+.search-box .suggestions .page-title {
+    margin: 0 !important;
+    padding: 0 !important;
+}
