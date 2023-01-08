@@ -52,7 +52,7 @@ footer: Documentação ct.js. Exceto onde for indicado de outra forma, o conteú
             <h2>Junte-se à comunidade</h2>
             <p>Junte-se ao nosso servidor Discord para conhecer outros desenvolvedores de jogos, tire dúvidas, ajude aos outros e compartilhe as suas criações. Além disso, você pode também postar em nosso fórum.</p>
             <a class="action-button" target="_blank" href="https://discord.gg/CggbPkb">Servidor Discord →</a>
-            <a class="action-button" target="_blank" href="https://comigo.itch.io/ct/community">Fórum →</a>
+            <a class="action-button" target="_blank" href="https://forum.ctjs.rocks/">Fórum →</a>
         </div>
         <div class="feature"  style="flex-basis: 50%;">
             <h2>Contribua</h2>
