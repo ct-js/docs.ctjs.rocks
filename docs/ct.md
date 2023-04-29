@@ -15,7 +15,7 @@
 * [ct.templates](ct.templates.html) for creating, finding and managing templates and copies;
 * [ct.u](ct.u.html) for vector functions, among other utilities.
 
-You will usually use the API above, as well ass those APIs provided by ct.js modules.
+You will usually use the API above, as well as those APIs provided by ct.js modules.
 
 By itself, ct.js is based on [Pixi.js](https://www.pixijs.com/), an HTML5 graphics library. You can use its API if you feel ct.js' one is not enough.
 
