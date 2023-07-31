@@ -78,7 +78,7 @@ declare interface IExtensionField {
 
 Here we mark optional fields in form of `key?: type`. The required fields are `name` and `type`. The former is a text label that is shown before an input field; the latter is a string that defines input method displayed for a user. It can be one of these strings:
 
-* `input` — a simple text input for short strings;
+* `text` — a simple text input for short strings;
 * `textfield` — a large textarea for a long input;
 * `code` — similar to `textfield`, but with monospace font and usually wider than `textfield`;
 * `number` — an input field for integers;
