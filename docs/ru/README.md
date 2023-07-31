@@ -13,22 +13,22 @@ footer: Документация ct.js. Если не указано иного,
     <div class="features">
         <div class="feature" style="flex-basis: 33%">
             <h2>Изучаем JavaScript</h2>
-            <p>Игры в ct.js пишутся на JavaScript (он же JS) — языке, которым задаётся геймплейная логика. Нужные для разработки знания можно получить в нашем <a href="/jsintro_pt1.html">Введении в JavaScript</a>.</p>
-            <a href="/jsintro_pt1.html" class="action-button">Изучить JavaScript →</a>
+            <p>Игры в ct.js пишутся на JavaScript (он же JS) — языке, которым задаётся геймплейная логика. Нужные для разработки знания можно получить в нашем <a href="./jsintro_pt1.html">Введении в JavaScript</a>.</p>
+            <a href="./jsintro_pt1.html" class="action-button">Изучить JavaScript →</a>
         </div>
         <div class="feature" style="flex-basis: 33%">
             <h2>Проходим уроки</h2>
             <p>Лучше всего умения закрепляются <i>на практике</i>, и с нашими пошаговыми туториалами ты научишься делать законченные игры:</p>
             <ul>
-                <li><a href="tut-making-shooter.html">Создать космический шутер →</a></li>
-                <li><a href="/tut-making-platformer.html">Написать платформер →</a></li>
+                <li><a href="./tut-making-shooter.html">Создать космический шутер →</a></li>
+                <li><a href="./tut-making-platformer.html">Написать платформер →</a></li>
                 <li><a href="/tut-making-jettycat.html">Сделать Jetty Cat, игру в духе Flappy Bird →</a></li>
             </ul>
         </div>
         <div class="feature" style="flex-basis: 33%">
             <h2>Изучи основную библиотеку</h2>
             <p>Найди дополнительные методы для работы с шаблонов, камерой, комнатами, и для процедурной генерации тайлов, фонов и копий.</p>
-            <a href="/ct-concepts.html" class="action-button">Перейти к докам →</a>
+            <a href="./ct-concepts.html" class="action-button">Перейти к докам →</a>
         </div>
         <div class="feature" style="flex-basis: 65%;">
             <h2>Важные изменения в ct.js v3.2</h2>
@@ -51,7 +51,7 @@ footer: Документация ct.js. Если не указано иного,
             <h2>Присоединяйся к сообществу</h2>
             <p>Найди других разработчиком, делись опытом, получи помощь, вместе разрабатывайте проекты.</p>
             <a class="action-button" target="_blank" href="https://discord.gg/HGbzZw4Prt">Дискорд-сервер →</a>
-            <a class="action-button" target="_blank" href="https://comigo.itch.io/ct/community">Форум →</a>
+            <a class="action-button" target="_blank" href="https://forum.ctjs.rocks/">Форум →</a>
         </div>
         <div class="feature"  style="flex-basis: 50%">
             <h2>Внести вклад</h2>
