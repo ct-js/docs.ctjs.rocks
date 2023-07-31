@@ -1,6 +1,6 @@
 # Fields reference for module settings and additional fields
 
-Both [module settings](modding/settings-and-extensions.html) and extensions for built-in templates are implemented by writing a declaration of editable fields in `module.json`. A declaration is an array of objects, with each object being one editable field. Let's take a look at `ct.place` module and its `module.json` (look at the `fields` array):
+Both [module settings](./settings-and-extensions.html) and extensions for built-in templates are implemented by writing a declaration of editable fields in `module.json`. A declaration is an array of objects, with each object being one editable field. Let's take a look at `ct.place` module and its `module.json` (look at the `fields` array):
 
 ```json
 {
