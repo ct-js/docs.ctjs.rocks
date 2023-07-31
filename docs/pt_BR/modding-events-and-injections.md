@@ -2,7 +2,7 @@
 
 Injeções são um poderoso intrumento para estender as funcionalidade do framework ct.js além de adicionar métodos e propriedades. Permitindo que você adicione lógica para um loop de jogo, carregue recursos. crie templates agrupados e etc.
 
-A pasta `injects` dentro do diretório do seu módulo aceita arquivos com código que serão injetados quando exportar um jogo. Todos eles são opcionais, e aqui está uma lista com todas as injeções possíveis:
+A pasta `injections` dentro do diretório do seu módulo aceita arquivos com código que serão injetados quando exportar um jogo. Todos eles são opcionais, e aqui está uma lista com todas as injeções possíveis:
 
 **Eventos gerais**:
 
