@@ -35,7 +35,7 @@ mycatmod
   |-- includes
   |   \-- (files to be copied to a resulting game)
   |
-  \-- injects
+  \-- injections
       \-- (injections go here)
 ```
 (more about injections [here](./events-and-injections.html))
