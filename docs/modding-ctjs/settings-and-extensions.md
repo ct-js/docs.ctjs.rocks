@@ -56,9 +56,9 @@ Here is how the screen above was implemented:
 }
 ```
 
-There are actually more input types; all of them, as well as description of other keys, can be found in [Fields declarations](modding/fields-declaration.html) page.
+There are actually more input types; all of them, as well as description of other keys, can be found in [Fields declarations](./fields-declaration.html) page.
 
-Settings' values are used for templating in your index.js and injections. Injections allow you to place your code in particular ct.js events. More about them and templating [here](modding/events-and-injections.html).
+Settings' values are used for templating in your index.js and injections. Injections allow you to place your code in particular ct.js events. More about them and templating [here](./events-and-injections.html).
 
 ## Adding extensions to built-in assets
 
