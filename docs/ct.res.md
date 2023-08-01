@@ -47,13 +47,19 @@ ct.res.loadTexture 'Background_42.png', 'Background_42', textureSettings
 ```
 :::
 
-## `ct.res.loadDragonBonesSkeleton(ske: string, tex: string, png: string, name: string): void;`
+## `ct.res.loadSkeleton(skel: string, name: string, txt: boolean): Promise<string>;`
 
-Loads a skeleton made in DragonBones into the game
-* `ske` -  the path to the `_ske.json` file that contains the armature and animations.
-* `tex` - the path to the `_tex.json` file that describes the atlas with the skeleton's textures.
-* `png` - the path to the `_tex.png` atlas that contains all the textures of the skeleton.
-* `name` - the name of the skeleton as it will be used in your ct.js game.
+Loads a skeleton made in Spine2d into the game. This must be a non-binary export of a spine project (`.json` format) with packaged atlas' files (`.png` and `.atlas`) next to it. The `.atlas` file's extension can be replaced with `.txt` one — see the `txt` argument.
+
+::: tip
+You can useDragonBones skeletons by converting them to a Spine2d format by importing them into an empty ct.js project and using the files in a `ctjsConvert` folder next to the original skeleton.
+:::
+
+Parameters:
+
+* `skel` -  the path to the `.json` file with skeleton and animation data.
+* `name` - the name of the new skeleton that will be recognised by other ct.js functions.
+* `txt` - if set to true, the resource loader will seek for `yourSkeleton.txt` file instead of `yourSkeleton.atlas` one.
 
 ## `ct.res.loadAtlas(url: string): Promise<string[]>;`
 
@@ -89,11 +95,11 @@ Gets a pixi.js texture from a ct.js' texture name, so that it can be used in pix
 Returns a single PIXI.Texture.
 
 ## `ct.res.makeSkeleton(name: string, skin?: string): unknown;`
-Creates a DragonBones skeleton, ready to be added to your copies.
+Creates an animatable skeleton, ready to be added to your copies.
 * `name` - The name of the skeleton asset.
 * `skin` - Optional; allows you to specify the needed skin.
 
-Returns the created skeleton.
+Returns the created skeleton. This can be added to any displayed object with `this.addChild(skeleton)`
 
 See also: [Using Skeletal Animation in ct.js Projects](skeletal-animation)
 
