@@ -8,7 +8,7 @@
 * [ct.inputs](ct.inputs.html) and [ct.actions](ct.actions.html) for handling user input;
 * [ct.res](ct.res.html) for loading resources;
 * [ct.rooms](ct.rooms.html) for switching and stacking multiple rooms (for UI, lighting, and gameplay, for example);
-* [ct.sound](ct.sound.html) for playing and tweaking sound effects;
+* [sounds](sounds.html) for playing and tweaking sound effects;
 * [ct.styles](ct.styles.html) for reusing UI styles;
 * [ct.tilemaps](ct.tilemaps.html) for dynamically generating levels made of tiles;
 * [ct.timer](ct.timer.html) for asynchronous events;

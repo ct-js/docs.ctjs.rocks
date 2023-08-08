@@ -123,6 +123,7 @@ export default {
                 },
                 'ct.res',
                 'ct.rooms',
+                'sounds',
                 'ct.styles',
                 'ct.tilemaps',
                 'ct.timer',
