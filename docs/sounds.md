@@ -94,6 +94,32 @@ Argument | Type | Description
 `newVolume` | `number` | *(optional)* The new volume where 1 is 100%. Default is 0.
 `duration` | `number` | *(optional)* The duration of transition, in milliseconds. Default is 1000.
 
+::: code-tabs#tutorial
+@tab JavaScript
+```js
+// Fade-out all sounds to volume 0 (by default) in 1000 milliseconds (by default).
+sounds.fade();
+```
+@tab CoffeeScript
+```coffee
+# Fade-out all sounds to volume 0 (by default) in 1000 milliseconds (by default).
+sounds.fade
+```
+:::
+
+::: code-tabs#tutorial
+@tab JavaScript
+```js
+// Fade-in 'MySound' to volume 1 in 2000 milliseconds.
+sounds.fade('MySound', 1, 2000);
+```
+@tab CoffeeScript
+```coffee
+# Fade-in 'MySound' to volume 1 in 2000 milliseconds.
+sounds.fade 'MySound', 1, 2000
+```
+:::
+
 ### `addFilter(sound: string, filter: string, options)`
 
 Add a filter (a special effect) to the specified sound.
@@ -114,6 +140,21 @@ Filter | Arguments | Description
 `TelephoneFilter` | None |
 
 NB: You can add several filters to the same sound.
+
+::: code-tabs#tutorial
+@tab JavaScript
+```js
+sounds.addFilter('MySound', 'ReverbFilter', 5, 7);
+// If the sound is not already playing, it won't be played until you use the 'play' method.
+sounds.play('MySound');
+```
+@tab CoffeeScript
+```coffee
+sounds.addFilter 'MySound', 'ReverbFilter', 5, 7
+# If the sound is not already playing, it won't be played until you use the 'play' method.
+sounds.play 'MySound'
+```
+:::
 
 ### `addFilterToAll(filter: string, options)`
 
@@ -140,7 +181,7 @@ Same as above but for all sounds.
 
 ### `playVariant(name: string, deviation, number)`
 
-Plays a variant of a sound by applying a small randomized speed value.  
+Plays a variant of a sound by applying a small randomized speed value (useful for step or coin sound for example).  
 `deviation`: A higher number means a bigger variant (depends also on sound). Default is 0.1.
 
 ### `toggleMuteAll()`
