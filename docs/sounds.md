@@ -1,6 +1,6 @@
 # sounds
 
-If you want to play and manipulate a sound in ctjs, you are at the right place.  
+`sounds` namespace stores methods that let you play sound effects in your game, apply filters to them, and change their volume. 
 Since v4, ctjs uses [`pixi-sound`](https://pixijs.io/sound/examples/).  
 Most of the time, you will play a sound like this:  
 ::: code-tabs#tutorial
@@ -10,7 +10,7 @@ sounds.play('MySound');
 ```
 @tab CoffeeScript
 ```coffee
-sounds.play('MySound')
+sounds.play 'MySound'
 ```
 :::
 
@@ -22,11 +22,11 @@ sounds.play('MyTrack', { loop: true });
 ```
 @tab CoffeeScript
 ```coffee
-sounds.play('MyTrack', { loop: true })
+soundSettings =
+    loop: true
+sounds.play 'MyTrack', soundSettings
 ```
 :::
-
-<p style="font-size: 1.65rem; border-bottom: 1px solid #eaecef; margin-top: calc(0.5rem - var(--navbar-height)); margin-bottom: 0.3rem; padding-top: calc(1rem + var(--navbar-height)); padding-bottom: 0.3rem;">Methods</p>
 
 ### `sounds.play(name: string, options?: object)`
 
@@ -43,7 +43,6 @@ Argument | Type | Description
 `options.muted` | `boolean` | If sound instance is muted by default.
 `options.singleInstance` | `boolean` | Setting true will stop any playing instances.
 `options.speed` | `number` | Override default speed, default to the Sound's speed setting.
-`options.sprite` | `string` | The sprite to play.
 `options.start` | `number` | Start time offset in seconds.
 `options.volume` | `number` | Override default volume.
 
@@ -124,7 +123,7 @@ Same as above but add a filter to all sounds.
 
 Remove a filter to the specified sound. If `filter` is omitted, all filters are removed.
 
-### `removeFilterToAll(filter?: string)`
+### `removeFilterFromAll(filter?: string)`
 
 Remove a filter added with addFilterToAll(). If `filter` is omitted, all filters are removed.
 
