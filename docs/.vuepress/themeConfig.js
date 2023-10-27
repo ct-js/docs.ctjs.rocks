@@ -115,6 +115,7 @@ export default {
                 'ct-concepts',
                 'ct',
                 'ct.backgrounds',
+                'behaviors',
                 'ct.camera',
                 'ct.emitters',
                 {
