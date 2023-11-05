@@ -22,6 +22,8 @@ These were the regular lifecycle code targets. They execute for each copy/room a
 
 The execution context is different here. `this` will point to `ct.room`, and you will have to work with your templates/rooms by reading variable substitutions from `/*%%ENTITY_TYPE%%*/` and `/*%%ENTITY_NAME%%*/`. Perhaps you will need `ct.templates.list` or `ct.rooms.list` to access your copies and rooms.
 
+Note that using `rootRoom*` fields makes the behaviors using it static, increasing the game's bundle size and preventing a game developer from adding and removing this behavior dynamically in game runtime, and you should only use such events when you can't use `thisOn*` fields alone.
+
 When the ct.IDE's exporter bakes a game, it combines all the events into `thisOnCreate`, `thisOnDestroy`, `thisOnStep`, and `thisOnDraw` for each template and room, and gathers events for the root rooms from all the scriptable entities. One user event can contribute to several code targets at once: for example, a timer would declare itself in `thisOnCreate` and check for execution in `thisOnStep`.
 
 ## Writing an event
@@ -66,6 +68,10 @@ Events are declared in an object `events` in `module.json`. Here is an excerpt f
 
             /* A list of scriptable entities that support this event. Currently can include `template`, `room`. */
             "applicable": ["template"],
+
+            /* If you design an event for templates only, write the supported
+            base classes here, or don't use this field at all if you support all of them. */
+            "baseClasses": ["AnimatedSprite", "NineSlicePlane", "Text"],
 
             /* The codename of the category in which this event will be displayed. */
             "category": "collisions",
