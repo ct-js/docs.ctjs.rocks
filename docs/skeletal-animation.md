@@ -1,6 +1,14 @@
 # Using Skeletal Animation in ct.js Projects
 
-ct.js supports importing DragonBones animations. It was tested with DragonBones v5.6, but, as DragonBones has a good backwards compatibility, it should work back to v4.0, too. Dragonones is free to use and is available at [their official site](http://dragonbones.com/).
+ct.js supports importing DragonBones & Spine2D animations. It was tested with DragonBones v5.6, but, as DragonBones has a good backwards compatibility, it should work back to v4.0, too. Dragonones is free to use and is available at [their official site](http://dragonbones.com/).
+
+Spine is a proprietary skeletal animation tool, and you can get it [here](https://esotericsoftware.com/).
+
+:::warning
+You need to have a valid Spine License in order to use skeletal animations in ct.js, even if you are using DragonBones animations. See [Spine Editor License Agreement](https://en.esotericsoftware.com/spine-editor-license), section 2.
+
+Someone please make an opensource Spine alternative with pixi.js runtime, this whole proprietary situation sucks.
+:::
 
 ## Importing Skeletal Animation
 
