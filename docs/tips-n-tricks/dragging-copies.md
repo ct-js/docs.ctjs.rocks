@@ -6,11 +6,11 @@ We have a placeholder block template that we are going to drag around. Let's sta
 
 ![Dragging the block](./../images/draggingCopies_01.png)
 
-Now we want to add a touch action from the 'Actions and Input Methods' menu. Click 'Add an Action' and name your action "TouchAction". Now click 'Add an Input Method' and select `touch.Any` from the list. It should look like this at the end:
+Now we want to add a pointer action from the 'Actions and Input Methods' menu. Click 'Add an Action' and name your action "PointerAction". Now click 'Add an Input Method' and select `pointer.Any` from the list. It should look like this at the end:
 
 ![Dragging the block](./../images/draggingCopies_02.png)
 
-We will use the action we just created to register touch events such as press and release.
+We will use the action we just created to register pointer events like click/tap and release.
 
 First we need to know when the object is being dragged. Head on to your template's `Creation` tab and declare a variable called `this.dragging`.
 
@@ -20,10 +20,10 @@ this.dragging = false;
 
 We will make this variable be `true` if the copy is currently being dragged, and otherwise go back to being `false`.
 
-So let's head over to the `Frame Start` tab and do that. We need the dragging to start when the user presses the mouse button while hovering the copy. We can check this with the "TouchAction" action that we declared in the 'Actions and Input Methods' menu and an `if` statement.
+So let's head over to the `Frame Start` tab and do that. We need the dragging to start when the user presses the mouse button while hovering the copy. We can check this with the "PointerAction" action that we declared in the 'Actions and Input Methods' menu and an `if` statement.
 
 ```js
-if (ct.pointer.hovers(this) && ct.actions.TouchAction.pressed) {
+if (ct.pointer.hovers(this) && ct.actions.PointerAction.pressed) {
     this.dragging = true;
 }
 ```
@@ -31,12 +31,12 @@ if (ct.pointer.hovers(this) && ct.actions.TouchAction.pressed) {
 We also want the dragging to end when the user releases the mouse button while dragging the copy. Letting go of it basically.
 
 ```js
-if (this.dragging && ct.actions.TouchAction.released) {
+if (this.dragging && ct.actions.PointerAction.released) {
     this.dragging = false;
 }
 ```
 
-And we want to set the position of our copy to the current position of the touch while dragging.
+And we want to set the position of our copy to the current position of the pointer while dragging.
 
 ```js
 if (this.dragging) {
@@ -49,7 +49,7 @@ Now we can test it:
 
 ![Dragging the block](./../images/draggingCopies_01.gif)
 
-It works! it was this simple to set it up.
+It works! It was this simple to set it up.
 
 ## Adding Offsets
 
@@ -63,7 +63,7 @@ this.yOffset = 0;
 Now we want to change these variables when the copy is picked up. So let's head back to the `Frame Start` tab and change them inside the if statement where the dragging begins (the copy gets picked up).
 
 ```js
-if (ct.pointer.hovers(this) && ct.actions.TouchAction.pressed) {
+if (ct.pointer.hovers(this) && ct.actions.PointerAction.pressed) {
     this.dragging = true;
     this.xOffset = ct.mouse.x - this.x;
     this.yOffset = ct.mouse.y - this.y;
