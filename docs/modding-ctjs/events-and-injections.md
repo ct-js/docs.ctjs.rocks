@@ -2,7 +2,7 @@
 
 Injections are a powerful instrument to extend functionality of ct.js framework beyond adding methods or properties. It allows you to add logic to a game loop, load resources, create bundled Templates, etc.
 
-The `injects` folder inside your module's directory accepts files with code that will be injected while exporting a game. All of them are optional, and here is a list of all the possible injections:
+The `injections` folder inside your module's directory accepts files with code that will be injected while exporting a game. All of them are optional, and here is a list of all the possible injections:
 
 **General events**:
 

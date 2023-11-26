@@ -32,7 +32,7 @@ ct.inputs.registry['keyboard.keyW'] = 1;
 ct.inputs.registry['gamepad.LeftThumbX'] = 0.2;
 ```
 
-Depending on the input method you are implementing and its native API, you may need checking them at each frame with [injections](modding/events-and-injections.html), or listen to their events.
+Depending on the input method you are implementing and its native API, you may need checking them at each frame with [injections](./events-and-injections.html), or listen to their events.
 
 ## Examples
 

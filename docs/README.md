@@ -51,7 +51,7 @@ footer: Ct.js documentation. Except where otherwise noted, content is licensed u
             <h2>Join the community</h2>
             <p>Join our Discord server to meet other game developers, receive help, aid others, and share your creations. Alternatively, you can also post on our forum.</p>
             <a class="action-button" target="_blank" href="https://discord.gg/CggbPkb">Discord Server →</a>
-            <a class="action-button" target="_blank" href="https://comigo.itch.io/ct/community">Forum →</a>
+            <a class="action-button" target="_blank" href="https://forum.ctjs.rocks/">Forum →</a>
         </div>
         <div class="feature"  style="flex-basis: 50%;">
             <h2>Contribute</h2>

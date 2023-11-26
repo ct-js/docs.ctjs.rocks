@@ -403,32 +403,32 @@ Considering the following structure, we can use array's `.reduce` method to get 
 var waves = [{
     delay: 30,
     monsters: [{
-        template: 'Monster_Flyer',
+        type: 'Monster_Flyer',
         health: 10,
         amount: 10
     }]
 }, {
     delay: 10,
     monsters: [{
-        template: 'Monster_Flyer',
+        type: 'Monster_Flyer',
         health: 15,
         amount: 12
     }]
 }, {
     delay: 12,
     monsters: [{
-        template: 'Monster_Flyer',
+        type: 'Monster_Flyer',
         health: 15,
         amount: 20
     }, {
-        template: 'Monster_Tank',
+        type: 'Monster_Tank',
         health: 15,
         amount: 20
     }]
 }, {
     delay: 20,
     monsters: [{
-        template: 'Monster_Boss',
+        type: 'Monster_Boss',
         health: 1000,
         amount: 1
     }]
@@ -445,10 +445,10 @@ Now let's use the same array to get the number of all the enemies in the waves, 
 var monstersInTheLevel = waves.reduce((currentStats, wave) => {
     for (const monsterGroup of wave.monsters) {
         // Initialize a monster group if it hasn't been written to the stats object yet
-        if (!currentStats[monsterGroup.template]) {
-            currentStats[monsterGroup.template] = 0;
+        if (!currentStats[monsterGroup.type]) {
+            currentStats[monsterGroup.type] = 0;
         }
-        currentStats[monsterGroup.template] += monsterGroup.amount;
+        currentStats[monsterGroup.type] += monsterGroup.amount;
     }
 }, {}); // Start with an empty object
 ```

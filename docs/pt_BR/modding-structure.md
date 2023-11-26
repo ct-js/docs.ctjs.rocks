@@ -22,7 +22,7 @@ mycatmod
   |-- includes
   |   \-- (arquivos a serem copiados para o jogo resultante)
   |
-  \-- injects
+  \-- injections
       \-- (injeções vão aqui)
 ```
 (mais sobre injeções [aqui](./modding-events-and-injections.html))

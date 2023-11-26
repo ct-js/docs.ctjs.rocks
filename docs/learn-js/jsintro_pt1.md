@@ -153,7 +153,7 @@ var cat = 'Albert',
 cat === dog; // false
 cat !== dog; // true
 
-/* There are also non-strict comparisons, which compare values but transform variables' templates */
+/* There are also non-strict comparisons, which compare values but transform variables' types */
 
 5 === '5'; // false, because '5' is String, not a Number
 5 == '5'; // true

@@ -136,7 +136,7 @@ Each of the `ct.emitters.fire`, `ct.emitters.append` and `ct.emitters.follow` re
 @tab JavaScript
 ```js
 // Let's create a shield bubble!
-this.shied = ct.emitters.append(this, 'BubbleEffect');
+this.shield = ct.emitters.append(this, 'BubbleEffect');
 
 // Later, when we no longer need the shield:
 this.shield.stop();
@@ -145,7 +145,7 @@ this.shield = null; // Forget about the effect to free memory
 @tab CoffeeScript
 ```coffee
 # Let's create a shield bubble!
-@shied = ct.emitters.append this, 'BubbleEffect'
+@shield = ct.emitters.append this, 'BubbleEffect'
 
 # Later, when we no longer need the shield:
 @shield.stop()

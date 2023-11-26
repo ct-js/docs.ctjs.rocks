@@ -1,6 +1,6 @@
 # Fields reference for module settings and additional fields
 
-Both [module settings](modding/settings-and-extensions.html) and extensions for built-in templates are implemented by writing a declaration of editable fields in `module.json`. A declaration is an array of objects, with each object being one editable field. Let's take a look at `ct.place` module and its `module.json` (look at the `fields` array):
+Both [module settings](./settings-and-extensions.html) and extensions for built-in templates are implemented by writing a declaration of editable fields in `module.json`. A declaration is an array of objects, with each object being one editable field. Let's take a look at `ct.place` module and its `module.json` (look at the `fields` array):
 
 ```json
 {
@@ -78,7 +78,7 @@ declare interface IExtensionField {
 
 Here we mark optional fields in form of `key?: type`. The required fields are `name` and `type`. The former is a text label that is shown before an input field; the latter is a string that defines input method displayed for a user. It can be one of these strings:
 
-* `input` — a simple text input for short strings;
+* `text` — a simple text input for short strings;
 * `textfield` — a large textarea for a long input;
 * `code` — similar to `textfield`, but with monospace font and usually wider than `textfield`;
 * `number` — an input field for integers;
