@@ -124,6 +124,7 @@ export default {
                 },
                 'ct.res',
                 'ct.rooms',
+                'settings',
                 'sounds',
                 'ct.styles',
                 'ct.tilemaps',
