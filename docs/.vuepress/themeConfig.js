@@ -250,6 +250,9 @@ export default {
                     link: 'migration-2to3',
                     text: 'Migration from 2.x to 3.0'
                 }, {
+                    link: 'migration-3to4',
+                    text: 'Migration from 3.x to 4.0'
+                }, {
                     link: 'teared-background',
                     text: 'Background splits into squares!'
                 }, {
