@@ -1,4 +1,4 @@
-# Creating custom events for ct.js <badge>new in v3.0</badge>
+# Creating custom events for ct.js
 
 Custom events are a perfect way to make your library easier to learn and use. It lets your users simplify their scripts and avoid boilerplate code. You've already been using events in templates and rooms through the event list, and your events can be there, too.
 
