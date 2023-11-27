@@ -10,6 +10,7 @@ All the `ct.something` lines are now just `something`, with few exceptions:
 * `ct.room` is now `rooms.current`.
 * `ct.pixiApp` is now just `pixiApp`.
 * `ct.roomWidth` and `ct.roomHeight` are now `rooms.current.viewWidth` and `rooms.current.viewHeight`.
+* `ct.speed` is now `settings.targetFps`.
 
 **Example.** Old code:
 
@@ -46,6 +47,18 @@ tween.add({
 ### `camera` is not writable now
 
 You can't assign a new camera to the `camera` variable.
+
+## New values for tracking time and changes in `this.move()` and backgrounds
+
+Aside from `u.delta` and `u.deltaUi`, ct.js now also has `u.time` and `u.timeUi`, which are computed in secods and show the time passed between the last frame and the current one. It is recommended that you use these values for velocity and other time-dependent variables instead of `u.delta` and `u.deltaUi`, as the latter two won't provide smooth movement if you change the framerate cap in-game.
+
+* Due to that, `this.move()` method now uses these values as well, and you will need to multiply your speed values by your Max FPS number you've defined in project's rendering settings. (Defaults to 60.)
+
+* This also affects `place.moveSmart` and `place.moveBullet`, as well as backgrounds' movement speed.
+
+* With acceleration values like those in `this.gravity` and `this.addSpeed`, you will need to multiply these with your max framerate **twice** (which is 3600 with default framerate), because physics.
+
+* `u.delta` and `u.deltaUi` are now deprecated, though still available for use.
 
 ## FitToScreen catmod is now a part of ct.js core library
 

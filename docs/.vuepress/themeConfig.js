@@ -131,8 +131,8 @@ export default {
                 'ct.timer',
                 'ct.templates',
                 {
-                    link: '/ct.u',
-                    text: 'ct.u (utilities)'
+                    link: '/u',
+                    text: 'u (utilities)'
                 },
                 {
                     link: '/catmoddocs.md',

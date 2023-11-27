@@ -97,6 +97,43 @@ Checks if a given point (x1;y1) is inside a rectangle. `arg` can be either an ar
 
 Checks if a given point is inside a circle. `arg` can be either an array of [x1, y1, radius], or a Copy with a cirular shape.
 
+## Time values
+
+### `u.time` <badge>new in v4.0</badge>
+
+A measure of how long the previous frame took time to draw, in seconds.
+You can use it by multiplying it with your copies' speed and other values with velocity to get the same speed with different framerate, regardless of lags or max framerate cap.
+
+If you plan on changing your game's target framerate, you should use `u.time` instead of `u.delta`.
+
+**A minimal example:**
+```js
+this.x += this.windSpeed * u.time;
+```
+
+Note that `this.move()` already uses this value, so there is no need to premultiply `this.speed` with it.
+
+### `u.timeUi` <badge>new in v4.0</badge>
+
+Similarly to `u.time`, this property also measures the time between the previous and current frames, in seconds, but this value ignores the effects of slow-mo and game pause. (See about pausing the game and changing game speed [here](/tips-n-tricks/game-pause.md).)
+
+### `u.delta`
+
+A measure of how long the previous frame took time to draw, usually equal to 1 and larger on lags.
+For example, if it is equal to 2, it means that the previous frame took twice as much time compared to expected FPS rate.
+
+:::warning This is a deprecated property.
+Use `u.time` instead.
+:::
+
+### `u.deltaUi`
+
+Similar to `u.delta`, this property also measures the time between the previous and current frames, but this value ignores the effects of slow-mo and game pause. (See about pausing the game and changing game speed [here](/tips-n-tricks/game-pause.md).)
+
+:::warning This is a deprecated property.
+Use `u.timeUi` instead.
+:::
+
 ## Miscellaneous
 
 ### `u.hexToPixi(hex: string)`
