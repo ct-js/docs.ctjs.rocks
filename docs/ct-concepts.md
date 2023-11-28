@@ -1,6 +1,6 @@
 # Basic concepts
 
-**Ct.js** is a modular library written in JavaScript, coupled with a visual editor. The editor is also referred to as **ct.IDE**. Games in ct.js are written in JavaScript as well: it is the programming language of the web, is flexible, easy to learn, and infinitely deep.
+**Ct.js** is a modular library written in JavaScript, coupled with a visual editor. The editor is also referred to as **ct.IDE**. Games in ct.js are written in JavaScript as well: it is the programming language of the web, is flexible, easy to learn, and infinitely deep. You can also use CoffeeScript to write your game's code, and it will be compiled in JavaScript automatically.
 
 Any ct.js game consists of **textures**, **copies**, **templates**, and **rooms**.
 
