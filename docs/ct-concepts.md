@@ -15,6 +15,5 @@ There are additional resources that help make games juicier, better, fun to play
 * **Catmods** are additional modules that hack on the core library and add new tools for programming and new features to the engine.
 * **Custom fonts** allow you to use .ttf files in your games, so your game looks nice in every browser or PC.
 * **Emitter tandems,** or simply particle systems, are flexible visual effects made of textures. Explosions, magic effects, rain, snow, and many other special effects may be made with these.
-* [**Skeletal animations**](skeletal-animation.html) for skinnable characters with smooth animations.
 * [**Sounds**](sounds.html) are audio assets that are played by code.
 * **Styles** are templates for drawing labels that are used while making the user interface.

@@ -170,10 +170,6 @@ export default {
                     text: 'Using bitmap fonts'
                 },
                 {
-                    link: '/skeletal-animation',
-                    text: 'Using skeletal animation'
-                },
-                {
                     link: '/content-subsystem',
                     text: 'Content editor'
                 },
