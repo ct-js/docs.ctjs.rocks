@@ -1,7 +1,11 @@
 # sounds
 
-`sounds` namespace stores methods that let you play sound effects in your game, apply filters to them, and change their volume. 
+`sounds` namespace stores methods that let you play sound effects in your game, apply filters to them, and change their volume.  
 Since v4, ctjs uses [`pixi-sound`](https://pixijs.io/sound/examples/).  
+Besides, you now can add variant(s) to a sound so, when a sound is played, one of the variants will be randomly played.  
+The new sound editor also allows you to set ranged values for filters (pitch, distortion, reverb, etc.) to add some variety.  
+For example, it's useful to slightly change the pitch of step or coin sounds to make them less repetitive and monotonous.
+
 Most of the time, you will play a sound like this:  
 ::: code-tabs#tutorial
 @tab JavaScript
@@ -120,53 +124,75 @@ sounds.fade 'MySound', 1, 2000
 ```
 :::
 
-### `addFilter(sound: string, filter: string, options)`
+### `addDistortion(sound: string, amount: number)`
 
-Add a filter (a special effect) to the specified sound.
+Adds a distortion filter.
 Argument | Type | Description
 -|-|-
-`name` | `string` | The name of a sound to affect.
-`filter` | `string` | The name of the filter.
-`options` | `number` | Arguments depending of the filter.
+`name` | `string` | The name of a sound to affect. If set to false, applies the filter globally.
+`amount` | `number` | The amount of distoration from 0 to 1. Default is 0.
 
-Available filters:
+### `addEqualizer(sound: string, f32: number, f64: number, f125: number, f250: number, f500: number, f1k: number, f2k: number, f4k: number, f8k: number, f16k: number)`
 
-Filter | Arguments | Description
+Adds an equalizer filter.
+Argument | Type | Description
 -|-|-
-`DistortionFilter` | `amount` | The amount of distoration from 0 to 1. Default is 0.
-`EqualizerFilter` | `f32, f64, f125, f250, f500, f1k, f2k, f4k, f8k, f16k` | Default gain for each band frequence. Default is 0.
-`ReverbFilter` | `seconds`<br>`decay`<br>`reverse` | Seconds for reverb. Default is 3.<br>The decay length. Default is 2.<br>Reverse reverb. Default is false.
-`StereoFilter` | `pan` | The amount of panning, -1 is left, 1 is right, 0 is centered. Default is 0.
-`TelephoneFilter` | None |
+`name` | `string` | The name of a sound to affect. If set to false, applies the filter globally.
+`Band frequences` | `number` | Default gain for each band frequence. Default is 0. Recommended value from -40 to 40.
+
+### `addMonoFilter(sound: string)`
+
+Combine all channels into mono channel.
+Argument | Type | Description
+-|-|-
+`name` | `string` | The name of a sound to affect. If set to false, applies the filter globally.
+
+### `addReverb(sound: string, seconds: number, decay: number, reverse: boolean)`
+
+Adds a reverb filter.
+Argument | Type | Description
+-|-|-
+`name` | `string` | The name of a sound to affect. If set to false, applies the filter globally.
+``seconds`` | `number` | Seconds for reverb. Default is 3.
+``decay`` | `number` | The decay length. Default is 2.
+``reverse`` | `boolean` | Reverse reverb. Default is false.
+
+### `addStereoFilter(sound: string, pan: number)`
+
+Adds a filter for stereo panning.
+Argument | Type | Description
+-|-|-
+`name` | `string` | The name of a sound to affect. If set to false, applies the filter globally.
+`pan` | `number` | The amount of panning, -1 is left, 1 is right, 0 is centered. Default is 0.
+
+### `addTelephone(sound: string)`
+
+Adds a telephone-sound filter.
+Argument | Type | Description
+-|-|-
+`name` | `string` | The name of a sound to affect. If set to false, applies the filter globally.
 
 NB: You can add several filters to the same sound.
 
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-sounds.addFilter('MySound', 'ReverbFilter', 5, 7);
+sounds.addReverb('MySound', 5, 7);
 // If the sound is not already playing, it won't be played until you use the 'play' method.
 sounds.play('MySound');
 ```
 @tab CoffeeScript
 ```coffee
-sounds.addFilter 'MySound', 'ReverbFilter', 5, 7
+sounds.addReverb 'MySound', 5, 7
 # If the sound is not already playing, it won't be played until you use the 'play' method.
 sounds.play 'MySound'
 ```
 :::
 
-### `addFilterToAll(filter: string, options)`
-
-Same as above but add a filter to all sounds.
-
 ### `removeFilter(name: string, filter?: string)`
 
-Remove a filter to the specified sound. If `filter` is omitted, all filters are removed.
-
-### `removeFilterFromAll(filter?: string)`
-
-Remove a filter added with addFilterToAll(). If `filter` is omitted, all filters are removed.
+Remove a filter to the specified sound or to all sounds if name is set to false.
+Also, if `filter` is omitted, all filters are removed.
 
 ### `speed(name: string | IMediaInstance, value?: number)`
 
@@ -178,11 +204,6 @@ If `value` is not specified, it will return the existing speed.
 ### `speedAll(value: number)`
 
 Same as above but for all sounds.
-
-### `playVariant(name: string, deviation, number)`
-
-Plays a variant of a sound by applying a small randomized speed value (useful for step or coin sound for example).  
-`deviation`: A higher number means a bigger variant (depends also on sound). Default is 0.1.
 
 ### `toggleMuteAll()`
 
