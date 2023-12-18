@@ -12,13 +12,6 @@ export default {
     titleIcon: false,
     darkmode: 'switch',
     iconAssets: 'fontawesome',
-    themeColor: {
-        green: '#44dbb5',
-        pink: '#E95378',
-        tan: '#FFCFD4',
-        rose: '#c4a7e7',
-        nord: '#88C0D0'
-    },
     plugins: {
         mdEnhance: {
             // Markdown options
@@ -79,7 +72,7 @@ export default {
         },
     ],
 
-    headerDepth: 1,
+    headerDepth: 2,
     sidebarIcon: true,
     sidebar: [
         {
