@@ -201,11 +201,3 @@ u.wait 1000
 ### `u.load(url: String, callback: Function)`
 
 Loads the specified script and calls the callback when it was loaded.
-
-### `u.ext(o1, o2[, arr: Array[String]])`
-
-Transfers objects' properties from `o2` to `o1`. You can specify an array of properties' names you want to transfer; otherwise everything is transferred.
-
-::: warning
-This doesn't create [a deep copy](https://we-are.bookmyshow.com/understanding-deep-and-shallow-copy-in-javascript-13438bad941c).
-:::

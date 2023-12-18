@@ -76,3 +76,7 @@ This includes some breaking changes and deprecations from the underlying graphic
 ## Catmods
 
 The `/*!%start%*/` injection was removed. Instead, write code in the `index.js` file.
+
+## ct.u.ext (aka ct.u.extend) were removed
+
+Use `Object.assign(target, valuesObject)` instead — it works the same.
