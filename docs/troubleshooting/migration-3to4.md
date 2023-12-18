@@ -77,6 +77,8 @@ This includes some breaking changes and deprecations from the underlying graphic
 
 The `/*!%start%*/` injection was removed. Instead, write code in the `index.js` file.
 
+Catmods `mouse` and `touch` were removed. Use `pointer` module instead, or the built-in pointer events you can add to event lists of your templates.
+
 ## ct.u.ext (aka ct.u.extend) were removed
 
 Use `Object.assign(target, valuesObject)` instead — it works the same.
