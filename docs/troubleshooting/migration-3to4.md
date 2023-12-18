@@ -6,6 +6,7 @@ All the `ct.something` lines are now just `something`, with few exceptions:
 
 * `ct.sound` is now `sounds`, in plural form.
     * `ct.sound.spawn` is now `sounds.play`
+    * Some options and methods may be different; see the new [sounds](../sounds.md) docs.
 * `ct.delta` is now `u.delta`, `ct.deltaUi` is `u.deltaUi`.
 * `ct.room` is now `rooms.current`.
 * `ct.pixiApp` is now just `pixiApp`.
