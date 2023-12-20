@@ -107,7 +107,7 @@ export default {
             children: [
                 'ct-concepts',
                 'ct',
-                'ct.backgrounds',
+                'backgrounds',
                 'behaviors',
                 'ct.camera',
                 'ct.emitters',
