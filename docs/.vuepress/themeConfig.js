@@ -115,7 +115,7 @@ export default {
                     link: '/ct.inputs',
                     text: 'ct.inputs and ct.actions'
                 },
-                'ct.res',
+                'res',
                 'ct.rooms',
                 'settings',
                 'sounds',
