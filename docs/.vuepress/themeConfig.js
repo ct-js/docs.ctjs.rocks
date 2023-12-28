@@ -109,7 +109,7 @@ export default {
                 'ct',
                 'backgrounds',
                 'behaviors',
-                'ct.camera',
+                'camera',
                 'ct.emitters',
                 {
                     link: '/ct.inputs',

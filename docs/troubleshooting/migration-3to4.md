@@ -75,6 +75,8 @@ This includes some breaking changes and deprecations from the underlying graphic
 
 ## Catmods
 
+The option `useUiDelta` in `tween.add` was renamed to be `isUi` to match how other ct.js code names similar options.
+
 The `/*!%start%*/` injection was removed. Instead, write code in the `index.js` file.
 
 Catmods `mouse` and `touch` were removed. Use `pointer` module instead, or the built-in pointer events you can add to event lists of your templates.
