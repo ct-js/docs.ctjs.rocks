@@ -106,23 +106,22 @@ export default {
             icon: 'certificate',
             children: [
                 'ct-concepts',
-                'ct',
                 'backgrounds',
                 'behaviors',
                 'camera',
-                'ct.emitters',
+                'emitters',
                 {
-                    link: '/ct.inputs',
-                    text: 'ct.inputs and ct.actions'
+                    link: '/inputs',
+                    text: 'inputs and actions'
                 },
                 'res',
-                'ct.rooms',
+                'rooms',
                 'settings',
                 'sounds',
-                'ct.styles',
-                'ct.tilemaps',
-                'ct.timer',
-                'ct.templates',
+                'styles',
+                'tilemaps',
+                'timer',
+                'templates',
                 {
                     link: '/u',
                     text: 'u (utilities)'

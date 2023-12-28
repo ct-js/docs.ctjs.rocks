@@ -1,16 +1,16 @@
-# ct.tilemaps
+# tilemaps
 
-The `ct.tilemap` object allows making tilemaps in-game. It can also cache your tilemaps, speeding up your game noticeably, but once a tilemap is cached, it cannot be edited.
+The `tilemap` object allows making tilemaps in-game. It can also cache your tilemaps, speeding up your game noticeably, but once a tilemap is cached, it cannot be edited.
 
-## Methods of `ct.tilemaps`
+## Methods of `tilemaps`
 
-### `ct.tilemaps.create(depth)`
+### `tilemaps.create(depth)`
 
 Creates and returns a new tilemap. `depth` sets the depth value of this tilemap, positioning it above or behind other objects.
 
 **Returns** a newly created instance of `Tilemap`.
 
-### `ct.tilemaps.addTile(tilemap, textureName, x, y, frame)`
+### `tilemaps.addTile(tilemap, textureName, x, y, frame)`
 
 Places a tile in the specified tilemap.
 Argument | Type | Description
@@ -23,7 +23,7 @@ Argument | Type | Description
 
 **Returns** the created tile, which is a [`PIXI.Sprite`](https://pixijs.download/release/docs/PIXI.Sprite.html).
 
-### `ct.tilemaps.cache(tilemap, chunkSize)`
+### `tilemaps.cache(tilemap, chunkSize)`
 
 Caches a tilemap, grouping tiles into large chunks and turning them into several bitmaps. Once it is cached, it can no longer be modified.
 
@@ -32,7 +32,7 @@ Argument | Type | Description
 `tilemap` | `Tilemap` | The tilemap to cache.
 `chunkSize` | `number` | *(optional)* The minimum size of a chunk. Defaults to 1024.
 
-### `ct.tilemaps.cacheDiamond(tilemap, chunkSize)`
+### `tilemaps.cacheDiamond(tilemap, chunkSize)`
 
 Enables caching on this tileset, freezing it and turning it into a series of bitmap textures. This proides great speed boost, but prevents further editing.
 
@@ -49,7 +49,7 @@ Argument | Type | Description
 
 ## Methods of `Tilemap`
 
-`Tilemap` is a subclass of [`PIXI.Container`](https://pixijs.download/release/docs/PIXI.Container.html), and can be tinted, transformed, and moved. The methods below mostly repeat the methods of `ct.tilemaps`, but are in an object-oriented style.
+`Tilemap` is a subclass of [`PIXI.Container`](https://pixijs.download/release/docs/PIXI.Container.html), and can be tinted, transformed, and moved. The methods below mostly repeat the methods of `tilemaps`, but are in an object-oriented style.
 
 ### `tilemap.addTile(textureName, x, y, frame)`
 
