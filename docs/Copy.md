@@ -43,6 +43,8 @@ Each Copy has these parameters for movement:
 | `gravity`   | `number` | Gravity force, as an amount of `speed` added at each frame.    |
 | `gravityDir`| `number` | Gravity direction (from 0 to 360, default is 90).|
 
+All the speed and gravity values are measured in pixels per second.
+
 You can also call `this.addSpeed` to add speed vector to a Copy in a given direction.
 
 ::: code-tabs#reference
