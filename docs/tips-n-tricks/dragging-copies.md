@@ -2,7 +2,7 @@
 
 In this tutorial we are going to take a look at how we can do a drag and drop implementation for copies in ct.js!
 
-We have a placeholder block template that we are going to drag around. Let's start by going to the the 'Catmods' menu under the Project tab and enable the `ct.pointer` catmod. This catmod lets us easily work with mouse and touchscreen input.
+We have a placeholder block template that we are going to drag around. Let's start by going to the the 'Catmods' menu under the Project tab and enable the `pointer` catmod. This catmod lets us easily work with mouse and touchscreen input.
 
 ![Dragging the block](./../images/draggingCopies_01.png)
 
@@ -23,7 +23,7 @@ We will make this variable be `true` if the copy is currently being dragged, and
 So let's head over to the `Frame Start` tab and do that. We need the dragging to start when the user presses the mouse button while hovering the copy. We can check this with the "PointerAction" action that we declared in the 'Actions and Input Methods' menu and an `if` statement.
 
 ```js
-if (ct.pointer.hovers(this) && ct.actions.PointerAction.pressed) {
+if (pointer.hovers(this) && actions.PointerAction.pressed) {
     this.dragging = true;
 }
 ```
@@ -31,7 +31,7 @@ if (ct.pointer.hovers(this) && ct.actions.PointerAction.pressed) {
 We also want the dragging to end when the user releases the mouse button while dragging the copy. Letting go of it basically.
 
 ```js
-if (this.dragging && ct.actions.PointerAction.released) {
+if (this.dragging && actions.PointerAction.released) {
     this.dragging = false;
 }
 ```
@@ -40,8 +40,8 @@ And we want to set the position of our copy to the current position of the point
 
 ```js
 if (this.dragging) {
-    this.x = ct.pointer.x;
-    this.y = ct.pointer.y;
+    this.x = pointer.x;
+    this.y = pointer.y;
 }
 ```
 
@@ -63,10 +63,10 @@ this.yOffset = 0;
 Now we want to change these variables when the copy is picked up. So let's head back to the `Frame Start` tab and change them inside the if statement where the dragging begins (the copy gets picked up).
 
 ```js
-if (ct.pointer.hovers(this) && ct.actions.PointerAction.pressed) {
+if (pointer.hovers(this) && actions.PointerAction.pressed) {
     this.dragging = true;
-    this.xOffset = ct.mouse.x - this.x;
-    this.yOffset = ct.mouse.y - this.y;
+    this.xOffset = pointer.x - this.x;
+    this.yOffset = pointer.y - this.y;
 }
 ```
 
@@ -74,8 +74,8 @@ Now we need to use these variables to determine the location of our copy when it
 
 ```js
 if (this.dragging) {
-    this.x = ct.pointer.x - this.xOffset;
-    this.y = ct.pointer.y - this.yOffset;
+    this.x = pointer.x - this.xOffset;
+    this.y = pointer.y - this.yOffset;
 }
 ```
 
