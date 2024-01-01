@@ -22,6 +22,7 @@ export default {
             sup: true,
             sub: true,
             tasklist: true,
+            align: true,
 
             imageLazyload: true,
             linkCheck: true
