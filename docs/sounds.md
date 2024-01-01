@@ -35,7 +35,7 @@ sounds.play 'MyTrack', soundSettings
 ```
 :::
 
-### `sounds.sounds.play(name: string, options?: object)`
+### `sounds.play(name: string, options?: object)`
 
 Plays a sound created in ctjs.
 Argument | Type | Description
@@ -55,6 +55,39 @@ Argument | Type | Description
 
 **Returns** Either a sound instance, or a promise that resolves into a sound instance.
 See [`IMediaInstance`](https://pixijs.io/sound/docs/IMediaInstance.html).
+
+### `sounds.playAt(name: string, position: {x: number, y: number}, options?: object)`
+
+Plays a 3D sound in the specified position. You can set the `position` argument to a copy, and the sound will follow the copy when it moves. To make the sound immovable, pass an object with unchanging `x`, `y` keys. The options object is the same as for `sounds.play` method.
+
+#### Example: Play a 3D sound that follows the current copy
+
+::: code-tabs#reference
+@tab JavaScript
+```js
+sounds.playAt('MySound', this);
+```
+@tab CoffeeScript
+```coffee
+sounds.playAt 'MySound', this
+```
+:::
+
+#### Example: Play a 3D sound under the current copy, but don't follow it
+
+::: code-tabs#reference
+@tab JavaScript
+```js
+sounds.playAt('MySound', {x: this.x, y: this.y});
+```
+@tab CoffeeScript
+```coffee
+pos =
+  x: @x
+  y: @y
+sounds.playAt 'MySound', pos
+```
+:::
 
 ### `sounds.stop(name?: string | IMediaInstance)`
 
