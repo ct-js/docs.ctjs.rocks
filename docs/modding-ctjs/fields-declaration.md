@@ -87,7 +87,7 @@ Here we mark optional fields in form of `key?: type`. The required fields are `n
 * `checkbox` — a checkbox for Boolean variables;
 * `radio` — a list of predefined values to choose from. This type also requires an `options` array to be set;
 * `select` — a dropdown with a list of predefined values. Requires an `options` array to be set. If any option has value equal to `''` (to an empty string), then this option will be blank and won't be selectable, acting as a divider;
-* `texture`, `template`, `room`, `sound`, `tandem` — a link to an asset in a project;
+* `texture`, `template`, `room`, `sound`, `tandem`, `font`, `behavior`, `script` — a link to an asset in a project;
 * `point2D` — displays a pair of number inputs with X and Y labels. Stores values as an array of two numbers;
 * `h1`, `h2`, `h3` and `h4`. These are not really for any input, but display a heading to categorize fields in catmod's settings tab. Such fields require `type` and `name` only;
 * `array` — editable series of simple values. Requires `arrayType` to be set;
