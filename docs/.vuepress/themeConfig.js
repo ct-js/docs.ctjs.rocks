@@ -128,7 +128,7 @@ export default {
                 },
                 {
                     link: '/catmoddocs.md',
-                    text: 'Where are the other ct.* docs?'
+                    text: 'Where are the docs for catmods?'
                 }
             ]
         }, {
