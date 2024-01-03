@@ -24,13 +24,17 @@ if (/* this statement is true */) {
 
 To make things work, we need to pass a Boolean value in the parentheses and write some code. We can do lots of things with this simple statement:
 
-```js Destroy a Copy if its health is zero or below
+#### Example: Destroy a Copy if its health is zero or below
+
+```js
 if (this.health <= 0) {
     this.kill = true;
 }
 ```
 
-```js Make a purchase
+#### Example: Use `if` statement to make a purchase
+
+```js
 var price = 500;
 this.money = 1230;
 
@@ -40,26 +44,30 @@ if (this.money >= price) {
 }
 ```
 
-```js Make a jump
+#### Example: Make a jump
+
+```js
 this.onGround = true;
-var keyUp = ct.keyboard.down['up'];
+var keyUp = actions.Jump.down;
 if (this.onGround && keyUp) {
     this.addSpeed(this, 10, 270);
 }
 ```
 
-```js Don't jump off the screen
+#### Example: Don't jump off the screen
+
+```js
 if (this.x < 0) {
     this.x = 0;
 }
-if (this.x > ct.viewWidth) {
-    this.x = ct.viewWidth;
+if (this.x > camera.width) {
+    this.x = camera.width;
 }
 if (this.y < 0) {
     this.y = 0;
 }
-if (this.y > ct.viewHeight) {
-    this.y = ct.viewHeight;
+if (this.y > camera.height) {
+    this.y = camera.height;
 }
 ```
 
@@ -68,13 +76,13 @@ Let's optimize the latter one a bit:
 ```js Don't jump off the screen
 if (this.x < 0) {
     this.x = 0;
-} else if (this.x > ct.viewWidth) {
-    this.x = ct.viewWidth;
+} else if (this.x > camera.width) {
+    this.x = camera.width;
 }
 if (this.y < 0) {
     this.y = 0;
-} else if (this.y > ct.viewHeight) {
-    this.y = ct.viewHeight;
+} else if (this.y > camera.height) {
+    this.y = camera.height;
 }
 ```
 

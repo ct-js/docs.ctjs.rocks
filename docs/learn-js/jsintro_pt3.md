@@ -1,5 +1,5 @@
 ---
-sidebarDepth: 3
+headerDepth: 3
 ---
 
 # Introduction to JavaScript, part III: Objects and Arrays, in-depth
@@ -72,7 +72,7 @@ You can write `this.enemy = undefined`, and in most cases, it will be fine, but 
 You can use the keyword `delete` to remove any property from an object:
 
 ```js
-if (!ct.templates.isValid(this.enemy)) {
+if (!templates.isValid(this.enemy)) {
     delete this.enemy;
 }
 ```
@@ -139,10 +139,9 @@ this.inventory = ['sword', 'sword', 'sword', 'sword', 'sword', 'sword', 'sword',
 this.maxInventorySize = 10;
 // later…
 
-if (this.inventory.length >= this.maxInventorySize) {
-    return; // abort the current event or function
+if (this.inventory.length < this.maxInventorySize) {
+    this.inventory.push('gold ingot'); // Add a new element
 }
-this.inventory.push('gold ingot'); // Add a new element
 ```
 
 Too bad they never get this gold ingot.

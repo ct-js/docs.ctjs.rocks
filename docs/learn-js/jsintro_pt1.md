@@ -108,7 +108,7 @@ this.name += ', '; // 'ct.js, '
 this.name += this.title; // 'ct.js, The Almighty Cat'
 ```
 
-We can even add numbers to strings: 
+We can even add numbers to strings:
 
 ```js
 var score = 1000,
