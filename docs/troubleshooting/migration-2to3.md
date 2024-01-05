@@ -14,4 +14,4 @@ This is rare and will probably happen to those who used ct.js Nightly before v3 
 
 Sometimes textures, generated with ct.js, will break project loading or room editor. You can fix it by opening your project's `img` folder, and removing `}` symbol in placeholder textures' filenames.
 
-If you need help, write to our [Discord server](https://discord.gg/CggbPkb)!
+If you need help, write to our [Discord server](https://discord.gg/yuvuDW5)!

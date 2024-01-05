@@ -17,7 +17,7 @@ export default {
         },
         {
             text: "Discord",
-            link: "https://discord.gg/CggbPkb",
+            link: "https://discord.gg/yuvuDW5",
         },
         {
             text: "Fórum",
