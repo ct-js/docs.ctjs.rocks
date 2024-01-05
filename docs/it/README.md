@@ -53,7 +53,7 @@ footer: Ct.js documentazione. Salvo diversa indicazione, al contenuto si applica
         <div class="feature"  style="flex-basis: 50%;">
             <h2>Unisciti alla comunità</h2>
             <p>Unisciti al nostro server Discord per incontrare altri sviluppatori di giochi, ricevere aiuto, aiutare gli altri e condividere le tue creazioni. In alternativa, puoi anche postare sul nostro forum.</p>
-            <a class="action-button" target="_blank" href="https://discord.gg/CggbPkb">Server Discord →</a>
+            <a class="action-button" target="_blank" href="https://discord.gg/yuvuDW5">Server Discord →</a>
             <a class="action-button" target="_blank" href="https://comigo.itch.io/ct/community">Forum →</a>
         </div>
         <div class="feature"  style="flex-basis: 50%;">
