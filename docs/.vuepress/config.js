@@ -18,7 +18,8 @@ export default defineUserConfig({
   head: [
     ['script', {
       src: '/themeSwitcher.js'
-    }]
+    }],
+    ['link', { rel: 'icon', href: '/assets/img/logo.png' }],
   ],
 
   locales: {
@@ -38,9 +39,9 @@ export default defineUserConfig({
       description: 'Docs, tutoriais, guias'
     },
     '/it/': {
-       lang: 'it',
-       title: 'Documentazione ct.js',
-       description: 'Docs, tutorial, guide',
+      lang: 'it',
+      title: 'Documentazione ct.js',
+      description: 'Docs, tutorial, guide',
     },
   },
 
