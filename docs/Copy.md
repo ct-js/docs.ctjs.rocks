@@ -19,6 +19,8 @@ Depending on what base class you choose in a template editor, your copy will be 
 | **Container**| Custom-made stuff that can be moved and transformed as one with its child items. | [PIXI.Container](https://pixijs.download/dev/docs/PIXI.Container.html)    |
 | **Panel** | Keeps corners of a texture intact — useful for UI buttons, panels, and stretching gameplay elements. | [PIXI.NineSlicePlane](https://pixijs.download/dev/docs/PIXI.NineSlicePlane.html) |
 | **Text** | User interface. Copies made of Text templates can be tweaked in a room editor and through code. | [PIXI.Text](https://pixijs.download/dev/docs/PIXI.Text.html)|
+| **Repeating texture** | A texture that can tile and scroll in both directions without distortions. | [PIXI.TilingSprite](https://pixijs.download/dev/docs/PIXI.TilingSprite.html) |
+| **Sprited counter** | Displays several sprites in a row depending on its `count` property. | [PIXI.TilingSprite](https://pixijs.download/dev/docs/PIXI.TilingSprite.html) |
 
 ::: warning INSTANCEOF and ct.js copies
 Ct.js' base classes do not form child classes, but rather a class with a mixin applied to its instances. You cannot do `copy instanceof CopyPanel`, as `CopyPanel` is not a constructor but a type combined of a class and ct.js' Copy interface.
@@ -257,6 +259,59 @@ else
 
 # A shorter way to do the same thing:
 @disabled = rooms.current.money < 50
+```
+:::
+
+### Repeating texture
+
+This base class allows you to create animated (or static) rectangles of arbitrary size with a tiling texture. The copies of this base class have these additional properties:
+
+* `scrollX` and `scrollY` — movement speed by X and Y, measured in pixels per second;
+* `tileScale.x` and `tileScale.y` can be used to stretch the texture inside the rectangle. `scale.x` and `scale.y` expand the rectangle without changing texture's scale.
+* `tilePosition.x` and `tilePosition.y` can be used to manually position the texture inside the rectangle.
+
+#### Example: Make a wavy animation of a repeating texture
+
+::: code-tabs#reference
+@tab JavaScript
+```js
+// In Creation event
+this.wavePhase = 0;
+
+// In Frame End event
+// 0.5 slows the frequency of movement by two.
+this.wavePhase += u.time * 0.5;
+// 32 is the amplitude of the movement.
+this.tilePosition.x = Math.sin(this.wavePhase) * 32;
+```
+@tab CoffeeScript
+```coffee
+# In Creation event
+@wavePhase = 0
+
+# In Frame End event
+# 0.5 slows the frequency of movement by two.
+@wavePhase += u.time * 0.5
+# 32 is the amplitude of the movement.
+@tilePosition.x = Math.sin(@wavePhase) * 32
+```
+:::
+
+
+### Sprited counter
+
+This template base class can be used to create healthbars and other UI elements that display several sprites in a row. This base class doesn't introduce many special properties except for `count`:
+
+#### Example: Change the number of sprites show depending on lives remaining
+
+::: code-tabs#reference
+@tab JavaScript
+```js
+this.count = rooms.current.lives;
+```
+@tab CoffeeScript
+```coffee
+@count = rooms.current.lives
 ```
 :::
 
