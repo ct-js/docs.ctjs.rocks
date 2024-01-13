@@ -14,6 +14,8 @@
 
 Откройте ct.js и создайте новый проект "Platformer".
 
+![Создание нового проекта](./../images/tutorials/tutCommon_CreateProject.png)
+
 ## Импорт текстур
 
 Нам понадобится парочка ассетов из [упрощённого набора для платформеров от Kenney](https://www.kenney.nl/assets/simplified-platformer-pack). Эти же ассеты можно найти в папке `ctjs/examples/Platformer_assets/`.

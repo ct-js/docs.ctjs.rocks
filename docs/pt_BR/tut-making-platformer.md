@@ -12,7 +12,7 @@ Aqui o que faremos:
 
 Abra o ct.js e entre com o nome do seu projeto no campo inferior da janela inicial. Vamos chamá-lo de "Platformer". Em seguida click no botão "Create" e escolha a pasta onde o ct.js o armazenará , por exemplo, dentro da sua pasta "Documents".
 
-![Criando um novo projeto](./../images/tutorials/tutPlatformer_01.png)
+![Criando um novo projeto](./../images/tutorials/tutCommon_CreateProject.png)
 
 ## Importando Texturas
 

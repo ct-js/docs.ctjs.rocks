@@ -40,8 +40,6 @@ Vamos para a próxima textura, `Laser_Blue`, ela também deve ter os seus eixos 
 
 Ambos os asteróides são melhores definidos como polígonos por causa de sua forma côncava ou com pontas. Defina a máscara de colisão como sendo **Line Strip / Polygon**, e não esqueça de definir os eixos para o centro.
 
-![](./../images/tutorials/tutSpaceShooter_05.png)
-
 A nave `EnemyShip` pode ser tratada como **Line Strip / Polygon**.
 
 A imagem de plano de fundo pode ser deixada da forma que está, porque ela não irá colidir com outras copies no jogo.
