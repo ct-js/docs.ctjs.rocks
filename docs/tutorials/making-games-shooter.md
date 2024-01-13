@@ -10,23 +10,23 @@ Here's what we will do:
 
 ## Importing Textures
 
-Open ct.js and create a new project with a name "SpaceShooter".
+Open ct.js and click the "Create new" tab. Create a new project by specifying its name (for example, "SpaceShooter"), selecting a coding language, and clicking "Create" button.
+
+![](./../images/tutorials/tutCommon_CreateProject.png)
+
+We will need some game sprites for this project. In the top-right corner, find a button "New Asset", click it and select "Built-in asset gallery" in the menu.
 
 ![](./../images/tutorials/tutSpaceShooter_01.png)
 
-Next, [download an asset pack](http://www.kenney.nl/assets/space-shooter-redux) from Kenney's site. It is free to use and is great for prototyping, learning or just testing things out.
-
-You can also use assets placed inside a `ct.js/examples/SpaceShooter_assets` folder.
-
-These are all the assets we will need today:
+In the gallery, find **"Kenney's Space Shooter"** asset pack, and add these (or similar) textures by hovering your mouse over the needed textures and clicking the small import button in the top-right corner:
 
 ![](./../images/tutorials/tutSpaceShooter_02.png)
 
-Now open the "Textures" tab on the top of the ct.IDE window, and drag & drop these assets inside the ct.IDE window. You can also press an "Import" button to find them manually.
+When you're done, close the gallery with an X button in the top-right corner.
 
-A card for each of the images will appear. Let's open the `PlayerShip` and configure it. We will see a yellow shape that defines its collision shape. For now, it covers too much empty space, especially above wings. To fix it, we should modify this collision shape in the left column.
+You will now see cards for each imported texture. Let's open the `PlayerShip` one and configure it by clicking its asset card. We will see a blue transparent shape that defines its collision shape. This shape defines which areas are counted as part of the ship, and which are not. For now, it covers too much empty space, especially above the wings. To fix it, we should modify this collision shape in the right column.
 
-Firstly, press a button "Image's center", so its axis is placed at the ship's center.
+Firstly, press a button **"Image's center"**, so its axis is placed at the ship's center.
 
 Next, select the "**Line Strip / Polygon**" option under the label "Collision Shape". Add a couple of additional points and move them with your mouse so that the resulting polygon resembles the ship's shape.
 
@@ -40,8 +40,6 @@ The next texture, `Laser_Blue`, should be centered too, and since the collision 
 
 Both asteroids are better defined as polygons by their concave or sharp shapes. Set their collision shape to **Line Strip / Polygon**, and don't forget to set their axis to center.
 
-![](./../images/tutorials/tutSpaceShooter_05.png)
-
 The `EnemyShip`'s shape can be treated as a **Polygon**.
 
 The background image may be left as is, because it won't collide with other things in the game.
@@ -50,13 +48,13 @@ The background image may be left as is, because it won't collide with other thin
 
 **Textures** don't do much on their own, and in order to display them in game, we need to create **templates** with these assets. Templates are used to create **Copies**, and the latter are the things that you place inside **Rooms**, that interact with each other and respond to your inputs.
 
-Press the "Templates" tab on top of the screen, and create a new template for the player's ship. After clicking the "Create" button, click on the big ghostly cat in the left column. It will show you all your textures. Press the card with your ship. It should now appear in the left column of the editor.
+Go to the "Assets" tab on top of the screen, click the "New Asset" button, and create a new template for the player's ship. Call the template "PlayerShip" so we won't have to remember any numbers when we start coding. If you forgot to change the name while creating the template, you can go to the "Assets" tab again and right-click the template, and there will be an option to change the name.
 
-Now, change the template's name to `PlayerShip` so we won't need to remember these numbers while coding.
-
-![](./../images/tutorials/tutSpaceShooter_06.png)
+Click on the big ghostly cat in the left column to select a texture for it. Press the card with your ship — after that, it will appear in the left column of the editor.
 
 Create templates for all the other textures but the background image. Background images don't move or interact with anything, and is often tiled, so it is not a template. We will add it later in a **Room**.
+
+Your asset list should look like this:
 
 ![](./../images/tutorials/tutSpaceShooter_07.png)
 
@@ -218,7 +216,7 @@ this.move();
 
 This line reads built-in variables and moves the Copy according to them. Without it, `this.speed` and `this.direction` will be meaningless.
 
-There are more built-in variables, which you can find on the [`ct.templates` page](./../ct.templates.md).
+There are more built-in variables, which you can find on the [`ct.templates` page](./../templates.md).
 
 We will modify the `Frame start` code so enemies will destroy themselves if they fall off the screen.
 
