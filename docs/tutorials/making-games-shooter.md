@@ -487,7 +487,7 @@ We will define logic for destroying player's ship later. For now, it's time to a
 
 ## Generating objects through time
 
-Open the `Main` room in the Rooms section. Remove existing asteroids and enemies with left mouse button while holding the `Ctrl` key.
+Open the `Main` room in the Rooms section. Remove existing asteroids and enemies by right-clicking on them, or erase them with left mouse button while holding the `Ctrl` key.
 
 Next, Press the `Events` button on the top bar.
 
