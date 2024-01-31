@@ -489,6 +489,10 @@ We will define logic for destroying player's ship later. For now, it's time to a
 
 Open the `Main` room in the Rooms section. Remove existing asteroids and enemies by right-clicking on them, or erase them with left mouse button while holding the `Ctrl` key.
 
+::: tip
+Make sure you are on the `Add copies` tool when deleting with the `Ctrl` key, and make sure you are on the `Select` tool and left-clicked a copy in the room before right-clicking to have the option to delete it.
+:::
+
 Next, Press the `Events` button on the top bar.
 
 Rooms have all the same events like Copies have.
