@@ -640,35 +640,19 @@ Then, switch to the "Stroke" tab, and activate it. Set stroke's color as dark br
 
 ![Setting stroke's properties in ct.js text style](./../images/tutorials/tutJettyCat_26.png)
 
-We can save the style now. After that, we will need a new template that will display a star icon and a score counter.
+We can save the style now. After that, we will need two new templates that will display a star icon and a score counter.
 
-Create a new template and call it `StarCounter`. As its texture, we will reuse our `Star` texture. In its Creation event code, put the following snippet:
+Create a new template and call it `StarCounter`. As its texture, we will reuse our `Star` texture. 
 
-::: code-tabs#tutorial
-@tab JavaScript
-```js
-this.label = new PIXI.Text('0', styles.get('Orange'));
-this.label.x = 130;
-this.label.y = -60;
-this.addChild(this.label);
-```
-@tab CoffeeScript
-```coffee
-style = styles.get 'Orange'
-@label = new PIXI.Text '0', style
-@label.x = 130
-@label.y = -60
-@addChild @label
-```
-:::
+Now make another template called `StarCounterLabel`. This will show the score value next to the StarCounter copy. Now switch it from being an animated sprite to a text.
 
-This code is sorcery made in Pixi.js' API. Pixi.js is the graphics framework ct.js is built upon, and when we need to display something beyond copies and backgrounds, we will use their API. Here, `new PIXI.Text` creates a new text label. Its first argument is a string that will be displayed: we have 0 score points at room start, and thus will write `'0'` as an initial text. The second argument is a text style — we load it from our created style `'Orange'`.
+![Switch StarCounterLabel to be a text](./../images/tutorials/tutJettyCat_16_2.png)
 
-By writing `this.label = new Pixi.Text(…)`, we instantly remember the reference to the created label and save it as a copy's parameter `this.label`. We then position it by writing `this.label.x = 130;` and `this.label.y = -60`, but we are doing it relative to the copy. The copy `StarCounter` itself is more a container we use to display our text, though it still displays an icon. The line `this.addChild(this.label)` finally puts the created text label into the copy.
+Once you switch it to a text you can click on the ghostly cat icon and now you can choose between your styles. Select the Orange style you made.
 
-We need to update the text label at each frame. In the Frame end event, put the line `this.label.text = rooms.current.score;`.
+We need to update the text label at each frame. In the Frame end event, put the line `this.text = rooms.current.score;`. `this.text` is a property that lets us edit the label of a text copy easily, now that we switched it to a Text. You can also set the default text of this template in the right sidebar so it doesn't say `<Empty>` when we put it in the room.
 
-Finally, let's create a room for this counter and put this room inside the main one. Create a new room, and call it `UI_InGame`. Then, set its view size to 1080x1920 to match the main room's viewport, mark it as a UI layer, and put a counter's copy in the top-left corner:
+Finally, let's create a room for this counter and label and put this room inside the main one. Create a new room, and call it `UI_InGame`. Then, set its view size to 1080x1920 to match the main room's viewport, mark it as a UI layer, and put a counter's copy and label in the top-left corner:
 
 ![Creating a UI layer in ct.js](./../images/tutorials/tutJettyCat_27.png)
 
@@ -804,7 +788,7 @@ The final step is making a score screen that will be displayed after a player lo
 
 Create a template with a texture `OhNo`. It won't have any logic.
 
-The other one, `EndGame_ScoreCounter`, won't have any texture at all. Instead, it will display a text label through code. It will also remember and display the player's high score. Put this code to its Creation event:
+The other one, `EndGame_ScoreCounter`, will be a text instead of a sprite, just like our other score label. Change it to a Text and select the Orange style. It will also remember and display the player's high score. Put this code to its Creation event:
 
 ::: code-tabs#tutorial
 @tab JavaScript
@@ -817,9 +801,8 @@ if (!('JettyCat_HighScore' in localStorage)) {
 
 var scoreText = 'Your score: ' + rooms.current.score + '\nHighscore: ' + localStorage['JettyCat_HighScore'];
 
-this.label = new PIXI.Text(scoreText, styles.get('Orange'));
-this.label.anchor.x = this.label.anchor.y = 0.5;
-this.addChild(this.label);
+this.text = scoreText;
+this.anchor.x = this.anchor.y = 0.5;
 ```
 @tab CoffeeScript
 ```coffee
@@ -831,9 +814,8 @@ else if localStorage['JettyCat_HighScore'] < rooms.current.score
 scoreText = 'Your score: ' + rooms.current.score + '\nHighscore: ' + localStorage['JettyCat_HighScore']
 style = styles.get 'Orange'
 
-@label = new PIXI.Text scoreText, style
-@label.anchor.x = @label.anchor.y = 0.5
-@addChild @label
+@text = scoreText
+@anchor.x = @anchor.y = 0.5
 ```
 :::
 
@@ -855,11 +837,13 @@ var scoreText = 'Your score: ' + rooms.current.score + '\nHighscore: ' + localSt
 scoreText = 'Your score: ' + rooms.current.score + '\nHighscore: ' + localStorage['JettyCat_HighScore']
 ```
 :::
-saves a string to a temporary variable. Everything defined with the `var` keyword exists for only one frame and in one event. Though it doesn't serve much purpose, it allows to write cleaner code and reuse temporary variables. The combination `\n` tells that there will be a line break there. By using the `+` operator, we join our strings with the current score and the saved one. Lastly, we create a new text label and set its text to the created variable's value (by using it as an argument in `new PIXI.Text(scoreText, styles.get('Orange'));`).
+saves a string to a temporary variable. Everything defined with the `var` keyword exists for only one frame and in one event. Though it doesn't serve much purpose, it allows to write cleaner code and reuse temporary variables. The combination `\n` tells that there will be a line break there. By using the `+` operator, we join our strings with the current score and the saved one. Lastly, we set the display text to the created variable's value and use anchor properties to make sure the text centers itself once the game runs.
 
 Now, create a room called `UI_OhNo` with the created templates.
 
 ![Setting a starting room in ct.js](./../images/tutorials/tutJettyCat_31.png)
+
+Place the EndGame_ScoreCounter template where the x is. It will look off in the preview but remember we center the text once the label shows up so it should look centered once in game.
 
 The last thing we need is creating this room when the cat hits an obstacle and removing the UI layer with the pause button so the user cannot pause while on the game over screen. Open the template `PotatoCat` and go to the Destruction event. Add this code right after the line with `camera.follow = false;`:
 
@@ -915,4 +899,4 @@ Try changing this stuff to train yourself in coding:
 * Change the cat's movement so that it is more close to what happens in Flappy Bird: make the cat fly upwards abruptly when a player taps the screen, but do nothing if they then press the screen continuously.
 * Make rotating tubes to make the game more challenging.
 * Add a life counter, and allow a player to take 3 hits before losing.
-* Add sounds! Visit sound documentation inside your editor's docs for modules on how to play sounds in your game.
+* Add sounds! [Visit sound documentation on how to play sounds in your game](./../sounds.md).
