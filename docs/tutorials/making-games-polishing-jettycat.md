@@ -10,7 +10,7 @@ The game is complete mechanic-wise, but there are a lot of ways to improve it ae
 
 ## Transition between rooms
 
-Ct.js has a module called `ct.transition`. It allows you to easily create nice transitions between levels. The idea is that you start the first half of a transition on a button press or some other event, then switch to another room and call the second half of a transition in its Room start code.
+Ct.js has a module called `transition`. It allows you to easily create nice transitions between levels. The idea is that you start the first half of a transition on a button press or some other event, then switch to another room and call the second half of a transition in its Room start code.
 
 Enable the module `transition` in the Catmods tab. It signals that it depends on the `tween` catmod, so enable it as well.
 
@@ -21,9 +21,9 @@ Now, modify the `Button_Play` Pointer click event code so that it shows a blue c
 ```js
 if (!this.pressed) {
     this.pressed = true;
-    ct.transition.circleOut(1000, 0x446ADB)
+    transition.circleOut(1000, 0x446ADB)
     .then(() => {
-        ct.rooms.switch('InGame');
+        rooms.switch('InGame');
     });
 }
 ```
@@ -31,15 +31,15 @@ if (!this.pressed) {
 ```coffee
 if not @pressed
     @pressed = yes
-    ct.transition.circleOut 1000, 0x446ADB
+    transition.circleOut 1000, 0x446ADB
     .then =>
-        ct.rooms.switch 'InGame'
+        rooms.switch 'InGame'
 ```
 :::
 
 `this.pressed` is our custom variable that remembers that a button was pressed. It will help us prevent occasional double clicking, that may have negative effects on the game's logic.
 
-The first argument in `ct.transition.circleOut(1000, 0x446ADB)` is the duration of the effect (1000 milliseconds = 1 second), and the second one is the color of the transition. It is like the hex color, but with `0x` instead of `#` in the beginning.
+The first argument in `transition.circleOut(1000, 0x446ADB)` is the duration of the effect (1000 milliseconds = 1 second), and the second one is the color of the transition. It is like the hex color, but with `0x` instead of `#` in the beginning.
 
 ::: tip
 There are many more methods and examples in the module's "Info" and "Reference" tabs.
@@ -52,19 +52,19 @@ That was the first part of the transition. The second one will go to the `InGame
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-ct.transition.circleIn(500, 0x446ADB);
+transition.circleIn(500, 0x446ADB);
 ```
 @tab CoffeeScript
 ```coffee
-ct.transition.circleIn 500, 0x446ADB
+transition.circleIn 500, 0x446ADB
 ```
 :::
 
-We can also show up our UI layers (the pause menu and the score screen) by making them transparent but slowly turning them opaque. We will use `ct.tween` there — that's one catmod that is used by `ct.transition`.
+We can also show up our UI layers (the pause menu and the score screen) by making them transparent but slowly turning them opaque. We will use `tween` there — that's one catmod that is used by `transition`.
 
 Most entities in ct.js have the same parameters that allow you to tweak their look and feel. We've been using `this.scale.x` and `this.scale.y` to set a copy's scale, but we can also apply it to rooms, text labels, special effects, and so on. Besides scaling, there are parameters `this.angle`, `this.alpha` and `this.tint` that rotate an object, set its opacity and color correspondingly.
 
-We will change the property `this.alpha` through time. It is a number between 0 and 1. When set to 1 — its initial value — a copy or a room will be fully opaque. When set to 0, it will be invisible. Any numbers in-between will make an object partially transparent. The module `ct.tween` will help create a smooth transition of it.
+We will change the property `this.alpha` through time. It is a number between 0 and 1. When set to 1 — its initial value — a copy or a room will be fully opaque. When set to 0, it will be invisible. Any numbers in-between will make an object partially transparent. The module `tween` will help create a smooth transition of it.
 
 So, to fade in a UI layer, we need to put this code in the Room start event of rooms `UI_OhNo` and `UI_Paused`:
 
@@ -73,29 +73,29 @@ So, to fade in a UI layer, we need to put this code in the Room start event of r
 ```js
 this.alpha = 0;
 
-ct.tween.add({
+tween.add({
     obj: this,
     fields: {
         alpha: 1
     },
     duration: 500,
-    useUiDelta: true
+    isUi: true
 });
 ```
 @tab CoffeeScript
 ```coffee
 @alpha = 0
 
-ct.tween.add
+tween.add
     obj: this
     fields:
         alpha: 1
     duration: 500
-    useUiDelta: true
+    isUi: true
 ```
 :::
 
-Firstly, we make a room fully transparent by setting its `alpha` to 0. Then, we call `ct.tween.add` to start a smooth transition. `obj` points to an object that should be animated, and `fields` lists all the properties and values we want to change. The `duration` key sets the length of the effect, in milliseconds. Finally, the `useUiDelta` key tells that animation should run in UI time scale, ignoring our "paused" game state.
+Firstly, we make a room fully transparent by setting its `alpha` to 0. Then, we call `tween.add` to start a smooth transition. `obj` points to an object that should be animated, and `fields` lists all the properties and values we want to change. The `duration` key sets the length of the effect, in milliseconds. Finally, the `isUi` key tells that animation should run in UI time scale, ignoring our "paused" game state.
 
 We can fade out a UI layer, too. Let's gradually hide the pause menu when the player hits the "continue" button. Open the template `Button_Continue`, and modify its Pointer click event code:
 
@@ -104,17 +104,17 @@ We can fade out a UI layer, too. Let's gradually hide the pause menu when the pl
 ```js
 if (!this.pressed) {
     this.pressed = true;
-    ct.tween.add({
+    tween.add({
         obj: this.getRoom(),
         fields: {
             alpha: 0
         },
         duration: 1000,
-        useUiDelta: true
+        isUi: true
     })
     .then(() => {
-        ct.pixiApp.ticker.speed = 1;
-        ct.rooms.remove(this.getRoom());
+        pixiApp.ticker.speed = 1;
+        rooms.remove(this.getRoom());
     });
 }
 ```
@@ -122,51 +122,51 @@ if (!this.pressed) {
 ```coffee
 if not @pressed
     @pressed = yes
-    ct.tween.add
+    tween.add
         obj: @getRoom()
         fields:
             alpha: 0
         duration: 1000
-        useUiDelta: yes
+        isUi: yes
     .then =>
-        ct.pixiApp.ticker.speed = 1
-        ct.rooms.remove @getRoom()
+        pixiApp.ticker.speed = 1
+        rooms.remove @getRoom()
 ```
 :::
 
-We create a flag `this.pressed` to make sure that the code runs the animation only once. Running it multiple times won't hurt, but this keeps the debugger's log clean as `ct.tween` will warn about interrupted animations otherwise.
+We create a flag `this.pressed` to make sure that the code runs the animation only once. Running it multiple times won't hurt, but this keeps the debugger's log clean as `tween` will warn about interrupted animations otherwise.
 
-Then we start animation for `this.getRoom()`, which will return the room `UI_Paused` that owns this button, and change its alpha value back to 0. After that, we can see that `ct.tween.add` creates an asynchronous event, and we remove the room and unpause the game inside the `.then(() => {…});` clause.
+Then we start animation for `this.getRoom()`, which will return the room `UI_Paused` that owns this button, and change its alpha value back to 0. After that, we can see that `tween.add` creates an asynchronous event, and we remove the room and unpause the game inside the `.then(() => {…});` clause.
 
 ## Smoothly resuming the game after it has been paused
 
-Though the "paused" menu fades out slowly, it is still hard for a player to catch up and prevent the cat from bumping into the ground. To prevent that, we can use `ct.tween` to… animate time! `ct.pixiApp.ticker.speed` can be not just 0 and 1, but also anything in between, and even beyond 1. Large values will make the game run faster, while values close to 0 will slow the game. Thus, we can animate the value `ct.pixiApp.ticker.speed` to make the game transition from paused to fully running state.
+Though the "paused" menu fades out slowly, it is still hard for a player to catch up and prevent the cat from bumping into the ground. To prevent that, we can use `tween` to… animate time! `pixiApp.ticker.speed` can be not just 0 and 1, but also anything in between, and even beyond 1. Large values will make the game run faster, while values close to 0 will slow the game. Thus, we can animate the value `pixiApp.ticker.speed` to make the game transition from paused to fully running state.
 
-Open the template `Button_Continue` again, and modify the script so it fires another `ct.tween.add` after it finishes the first one:
+Open the template `Button_Continue` again, and modify the script so it fires another `tween.add` after it finishes the first one:
 
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js {12,13,14,15,16,17,18,19}
 if (!this.pressed) {
     this.pressed = true;
-    ct.tween.add({
+    tween.add({
         obj: this.getRoom(),
         fields: {
             alpha: 0
         },
         duration: 1000,
-        useUiDelta: true
+        isUi: true
     })
     .then(() => {
-        ct.tween.add({
-            obj: ct.pixiApp.ticker,
+        tween.add({
+            obj: pixiApp.ticker,
             fields: {
                 speed: 1
             },
             duration: 1000,
-            useUiDelta: true
+            isUi: true
         });
-        ct.rooms.remove(this.getRoom());
+        rooms.remove(this.getRoom());
     });
 }
 ```
@@ -174,20 +174,20 @@ if (!this.pressed) {
 ```coffee
 if not @pressed
     @pressed = yes
-    ct.tween.add
+    tween.add
         obj: @getRoom()
         fields:
             alpha: 0
         duration: 1000
-        useUiDelta: yes
+        isUi: yes
     .then =>
-        ct.tween.add
-            obj: ct.pixiApp.ticker
+        tween.add
+            obj: pixiApp.ticker
             fields:
                 speed: 1
             duration: 1000
-            useUiDelta: true
-        ct.rooms.remove @getRoom()
+            isUi: true
+        rooms.remove @getRoom()
 ```
 :::
 
@@ -199,7 +199,7 @@ From v1.3, ct.js allows you to visually design particle effects and play them in
 
 ### Making a starburst
 
-Open the "FX" tab at the top, and create a new particle emitter. Call it `StarBurst`.
+Open the "Assets" tab at the top, and create a new emitter tandem through "New Asset". Call it `StarBurst`.
 
 Select its texture in the left top corner, and start tweaking values! There are lots of folding categories that manipulate how particles move, change over time and spawn.
 
@@ -214,8 +214,7 @@ You can set a preview texture in the right bottom corner to see how your effect 
 Here are some directions on how to make this effect:
 
 * To make the burst and not an infinite stream, open the "Spawning" section and set emitter's lifetime. This is a fast effect, so you will need small values like 0.1 seconds.
-* The "Gravity" section will make stars falling down after they burst out. You will need the vertical, Y-axis, and pretty large values: I used ~1400 for my effect.
-* When gravity is enabled, only the first velocity point will affect particles' motion.
+* The "Velocity" section has a "With gravity" button that will make stars falling down after they burst out. You will need the vertical, Y-axis, and pretty large values: I used ~1400 for my effect.
 * To make the effect uneven and less artificial, make sure particles have a different lifetime at the "Spawning" category, so they become more random. Tweaking minimum velocity and size also helps.
 * A relatively large circular area that covers most of the preview texture will make the effect more like it was a big star breaking down into smaller pieces. You can set the spawn shape and its size under the category "Shape and Positioning". Check the box "Show shape visualizer" to see the shape.
 
@@ -227,11 +226,11 @@ To create a burst of stars when a big one is collected, open the template `Star`
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-ct.emitters.fire('StarBurst', this.x, this.y);
+emitters.fire('StarBurst', this.x, this.y);
 ```
 @tab CoffeeScript
 ```coffee
-ct.emitters.fire 'StarBurst', @x, @y
+emitters.fire 'StarBurst', @x, @y
 ```
 :::
 
@@ -243,11 +242,11 @@ Here we read the position of the star (`this.x, this.y`) and tell to spawn an ef
 
 ### Making a jet smoke
 
-First we'll need a smoke-like texture. Go to the textures tab and click on the Gallery button near the top. This game engine comes with texture packs you can import right into your game! Go into the Jumperpack and import the Smoke texture. Now close out of the gallery and see that the smoke texture is part of your project!
+First we'll need a smoke-like texture. Go to add a new asset and click on the "Built-in asset gallery" button. This game engine comes with texture packs you can import right into your game! Go into the Jumperpack and import the Smoke texture. Now close out of the gallery and see that the smoke texture is part of your project!
 
 ![Importing a gallery texture in ct.js](./../images/tutorials/tutJettyCat_gallery.png)
 
-Open the "FX" tab at the top, and create a new particle emitter. Call it `Jet`.
+Create a new emitter tandem. Call it `Jet`.
 
 As a start, go to the texture select and load your Smoke texture. In the right bottom corner, find the button "Set preview texture", and select our cat. After that, feel free to tinker around the editor to make the effect you want. I made a jet of white smoke of different sizes:
 
@@ -256,7 +255,7 @@ As a start, go to the texture select and load your Smoke texture. In the right b
 Here are some hints:
 
 * Change the background color in the bottom-right corner of the window to better see white smoke;
-* Start by changing the Direction tab » Starting direction fields so the particles flow downwards. A good range is between 90 and 110 degrees.
+* Start by changing the Rotation tab » Starting direction fields so the particles flow downwards. A good range is between 90 and 110 degrees.
 * The default texture's size will be way too big; tweak its scale in the graph under the folding section called "Scaling", so it is somewhere around `0.3`.
 * Tweak the value Scaling » Minimum size to spawn particles of different sizes.
 * Precisely position the emitter so that it spawns right from the jet by tweaking the emitter's position, in the section called "Shape and Positioning".
@@ -267,23 +266,23 @@ To add the effect to the cat, open its template and put this code to the end of 
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-this.jet = ct.emitters.follow(this, 'Jet');
+this.jet = emitters.follow(this, 'Jet');
 ```
 @tab CoffeeScript
 ```coffee
-@jet = ct.emitters.follow this, 'Jet'
+@jet = emitters.follow this, 'Jet'
 ```
 :::
 
-`ct.emitters.follow` tells to create a particle effect and make it follow a copy. It will look attached to the cat. The first argument is the copy we want to attach the effect to (`this` is our cat), the second one — the name of the effect (`'Jet'`).
+`emitters.follow` tells to create a particle effect and make it follow a copy. It will look attached to the cat. The first argument is the copy we want to attach the effect to (`this` is our cat), the second one — the name of the effect (`'Jet'`).
 
 We also save a reference to this emitter to a parameter `this.jet`. This will allow us to manipulate the emitter later.
 
 ::: tip
-Read [the docs for `ct.emitters`](./../ct.emitters.md) to learn more about other methods for creating effects and their options.
+Read [the docs for `emitters`](./../emitters.md) to learn more about other methods for creating effects and their options.
 :::
 
-The cat should now have a jet of smoke running from its jetpack. You may need to tweak the jet's particle size and its speed on the "FX" tab.
+The cat should now have a jet of smoke running from its jetpack. You may need to tweak the jet's particle size and its speed.
 
 Let's add a bit of dynamics to this jet: we will spawn new particles only when the cat flies up. We have the reference `this.jet`, and we can use it to pause the emitter and unpause it when the player presses or releases the screen.
 
@@ -343,11 +342,11 @@ Though it will result in a too strong rotation. Adding a multiplier will make it
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-this.angle = -this.vspeed * 0.3;
+this.angle = -this.vspeed * (0.3 / 60);
 ```
 @tab CoffeeScript
 ```coffee
-@angle = -@vspeed * 0.3
+@angle = -@vspeed * (0.3 / 60)
 ```
 :::
 
@@ -373,17 +372,17 @@ Then, in the Frame end event, add this code:
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-this.wiggleTime += ct.delta * 0.2;
+this.wiggleTime += u.time * 12;
 this.angle = Math.sin(this.wiggleTime) * 5;
 ```
 @tab CoffeeScript
 ```coffee
-@wiggleTime += ct.delta * 0.2
+@wiggleTime += u.time * 12
 @angle = (Math.sin @wiggleTime) * 5
 ```
 :::
 
-Here we change `this.wiggleTime` at each frame by the elapsed time, multiplied by 0.2 to slow down the animation. Then we use `Math.sin` to get a sinus of the `wiggleTime` — changing the latter at each frame will result in a smooth oscillation between -1 and 1. By multiplying it by 5, we make the effect five times stronger.
+Here we change `this.wiggleTime` at each frame by the elapsed time, multiplied by 12 to speed up the animation. Then we use `Math.sin` to get a sinus of the `wiggleTime` — changing the latter at each frame will result in a smooth oscillation between -1 and 1. By multiplying it by 5, we make the effect five times stronger.
 
 ![A wiggling, animated star](./../images/tutorials/tutJettyCat_StarWiggle.gif)
 
@@ -398,13 +397,13 @@ In the template's Creation code, add a line `this.pulsePhase = 0;`. In its Frame
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-this.pulsePhase += ct.delta * 0.2;
+this.pulsePhase += u.time * 12;
 
 this.scale.x = this.scale.y = 1 + Math.sin(this.pulsePhase) * 0.1;
 ```
 @tab CoffeeScript
 ```coffee
-@pulsePhase += ct.delta * 0.2
+@pulsePhase += u.time * 12
 @scale.x = @scale.y = 1 + (Math.sin @pulsePhase) * 0.1
 ```
 :::
@@ -421,7 +420,7 @@ The last step is adding this copy to `UI_InGame`, somewhere in the center of the
 
 The parallax effect is used in gamedev since ancient times — once console's processors got strong enough to draw backgrounds. The effect is made by moving several background layers at different speeds to create an effect of depth. Though we won't get a strong effect in this tutorial, we will learn how to configure backgrounds in ct.js, and liven up our main menu and overall view.
 
-Go to the room `MainMenu`, and click the "Backgrounds" tool in the left toolbar. Then, click the gear icon next to the background `BG_Sky`. We will need to slowly move the background from left to right so that our clouds get moving. Set the Movement speed to `-0.5`, `0`. These values tell the background to move against the X-axis half a pixel each second.
+Go to the room `MainMenu`, and click the "Backgrounds" tool in the left toolbar. Then, click the gear icon next to the background `BG_Sky`. We will need to slowly move the background from left to right so that our clouds get moving. Set the Movement speed to `-30`, `0`. These values tell the background to move against the X-axis half a pixel each second.
 
 ![Setting a background's movement speed in ct.js](./../images/tutorials/tutJettyCat_32.png)
 
