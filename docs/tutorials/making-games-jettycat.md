@@ -802,7 +802,6 @@ if (!('JettyCat_HighScore' in localStorage)) {
 var scoreText = 'Your score: ' + rooms.current.score + '\nHighscore: ' + localStorage['JettyCat_HighScore'];
 
 this.text = scoreText;
-this.anchor.x = this.anchor.y = 0.5;
 ```
 @tab CoffeeScript
 ```coffee
@@ -815,7 +814,6 @@ scoreText = 'Your score: ' + rooms.current.score + '\nHighscore: ' + localStorag
 style = styles.get 'Orange'
 
 @text = scoreText
-@anchor.x = @anchor.y = 0.5
 ```
 :::
 
@@ -837,13 +835,15 @@ var scoreText = 'Your score: ' + rooms.current.score + '\nHighscore: ' + localSt
 scoreText = 'Your score: ' + rooms.current.score + '\nHighscore: ' + localStorage['JettyCat_HighScore']
 ```
 :::
-saves a string to a temporary variable. Everything defined with the `var` keyword exists for only one frame and in one event. Though it doesn't serve much purpose, it allows to write cleaner code and reuse temporary variables. The combination `\n` tells that there will be a line break there. By using the `+` operator, we join our strings with the current score and the saved one. Lastly, we set the display text to the created variable's value and use anchor properties to make sure the text centers itself once the game runs.
+saves a string to a temporary variable. Everything defined with the `var` keyword exists for only one frame and in one event. Though it doesn't serve much purpose, it allows to write cleaner code and reuse temporary variables. The combination `\n` tells that there will be a line break there. By using the `+` operator, we join our strings with the current score and the saved one. Lastly, we set the display text to the created variable's value.
 
 Now, create a room called `UI_OhNo` with the created templates.
 
-![Setting a starting room in ct.js](./../images/tutorials/tutJettyCat_31.png)
+![Placing the EndGame_ScoreCounter copy](./../images/tutorials/tutJettyCat_31.png)
 
-Place the EndGame_ScoreCounter template where the x is. It will look off in the preview but remember we center the text once the label shows up so it should look centered once in game.
+Place the EndGame_ScoreCounter template where the x is. Now we can align the text to be centered in the preview by switching to the UI Tools and selecting our `EndGame_ScoreCounter` copy. Here we can select the center box under "Align by:" to center the text and also add some default text to test how it would look.
+
+![Aligning the text of the EndGame_ScoreCounter copy](./../images/tutorials/tutJettyCat_31_2.png)
 
 The last thing we need is creating this room when the cat hits an obstacle and removing the UI layer with the pause button so the user cannot pause while on the game over screen. Open the template `PotatoCat` and go to the Destruction event. Add this code right after the line with `camera.follow = false;`:
 
