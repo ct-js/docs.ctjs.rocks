@@ -132,7 +132,7 @@ this.gravityAcceleration = 7000;
 ![Seeing the event list in ct.js](./../images/tutorials/tutJettyCat_12_3.png)
 
 
-`this.speed = 500;` means that we need to move the cat by 500 pixels every second — about half of our room. For setting speeds you will want to multiply your base speed by 60.
+`this.speed = 500;` means that we need to move the cat by 500 pixels every second — about half of our room.
 
 `this.direction = 0;` means that we move the cat in a given direction at 0 degrees. 0 degrees mean that it will move to the right, 270 — to the top, 180 — to the left, and 90 — downwards.
 
