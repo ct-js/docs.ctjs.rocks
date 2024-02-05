@@ -117,34 +117,26 @@ Click on the "Add an event" button, then find the Creation event and select it. 
 ::: code-tabs#tutorial
 @tab JavaScript
 ``` js
-this.speed = 10 * 60;
+this.speed = 500;
 this.direction = 0;
-this.gravityAcceleration = 2 * 60 * 60;
+this.gravityAcceleration = 7000;
 ```
 @tab CoffeeScript
 ```coffee
-@speed = 10 * 60
+@speed = 500
 @direction = 0
-@gravityAcceleration = 2 * 60 * 60;
+@gravityAcceleration = 7000;
 ```
 :::
 
 ![Seeing the event list in ct.js](./../images/tutorials/tutJettyCat_12_3.png)
 
 
-`this.speed = 10 * 60;` means that we need to move the cat by 600 pixels every second — about half of our room. For setting speeds you will want to multiply your base speed by 60.
+`this.speed = 500;` means that we need to move the cat by 500 pixels every second — about half of our room. For setting speeds you will want to multiply your base speed by 60.
 
 `this.direction = 0;` means that we move the cat in a given direction at 0 degrees. 0 degrees mean that it will move to the right, 270 — to the top, 180 — to the left, and 90 — downwards.
 
-`this.gravityAcceleration = 2 * 60 * 60;` will be used later. It will store how fast our cat will accelerate downwards. For setting accelerations you will want to multiply your base speed by 3600.
-
-::: tip
-It is a little advanced to explain the math of why we need to multiply speeds by 60 once and multiply accelerations by 60 twice.
-
-`this.speed` is used to update `this.x` and `this.y` every frame, and speed is multiplied by `u.time` to get the distance that should be covered over the time of each frame, accounting for changes in FPS. Because `u.time` averages about `1/60` second per frame for 60 FPS, we multiply the value by 60 to cancel out `u.time` slowing everything down.
-
-`this.gravity` modifies the speed of a copy every frame, and is also multiplied by `u.time` to get the change in speed that should happen over the time of each frame, accounting for changes in FPS. But now we have `this.gravity` multiplied by `u.time`, which changes `this.speed`, which is also multiplied by `u.time`, which is then finally added to `this.x` and `this.y`. So `this.gravity` needs two multiplications of 60 to cancel out both `u.time` effects of slowing everything down. Phew.
-:::
+`this.gravityAcceleration = 7000;` will be used later. It will store how fast our cat will accelerate downwards (it's not as fast as you think it is).
 
 Now, let's move our cat whenever a player presses the screen. We will need to support both mouse and mobile touch events, thus we will use the Pointer catmod. It should already be enabled, but if it isn't, open the "Project" tab at the top of the ct.js window, then "Catmods" on the left. Find the module `Pointer` in the section with available modules. Click it to enable it — it will have a green checkbox with a tiny spinning circle around it:
 
@@ -243,19 +235,19 @@ Firstly, make a new template "PotatoCat_Stunned", using the "PotatoCat_Stunned" 
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-this.gravity = 2 * 60 * 60;
+this.gravity = 7000;
 
 // Jump to the left
-this.speed = 25 * 60;
+this.speed = 1500;
 this.direction = -135;
 ```
 @tab CoffeeScript
 ```coffee
-@gravity = 2 * 60 * 60;
+@gravity = 7000;
 
 # Jump to the left
-@speed = 25 * 60
-@direction = 135
+@speed = 1500
+@direction = -135
 ```
 :::
 
