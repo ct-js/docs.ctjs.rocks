@@ -75,7 +75,7 @@ Open the "Assets" tab and click on the "New Asset" button. From the menu, select
 ![Editing a template](./../images/tutorials/tutPlatformer_09.png)
 
 ::: tip
-Template are used to create specific identical copies. We fill our levels (a.k.a. rooms) with copies, and they are the things that interact with each other on the screen, but each copy was created from a certain template.
+Templates are used to create specific identical copies. We fill our levels (a.k.a. rooms) with copies, and they are the things that interact with each other on the screen, but each copy was created from a certain template.
 :::
 
 Create additional templates in the same way (all the rock textures):
