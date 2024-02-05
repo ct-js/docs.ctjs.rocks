@@ -237,16 +237,16 @@ This will set variables `hspeed` and `vspeed`, but they won't do anything as is.
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-this.moveContinuousByAxes('Solid');
+this.moveSmart('Solid');
 ```
 @tab CoffeeScript
 ```coffee
-@moveContinuousByAxes 'Solid'
+@moveSmart 'Solid'
 ```
 :::
 
 ::: tip
-`moveContinuousByAxes` is a method from `place` module that gradually moves a copy pixel by pixel, stopping near the obstacles. It is great for platformers and when you need precise sliding movements.
+`moveSmart` is a method from `place` module that gradually moves a copy pixel by pixel, stopping near the obstacles. It is great for platformers and when you need precise sliding movements.
 :::
 
 We can now move our Robot around!
@@ -431,7 +431,7 @@ if (place.occupied(this, this.x, this.y + 1, 'Solid')) {
     this.tex = 'PlatformChar_Jump';
 }
 
-this.moveContinuousByAxes('Solid');
+this.moveSmart('Solid');
 ```
 @tab CoffeeScript
 ```coffee {7,8,9,15,16,17,22,34,35,36}
@@ -472,7 +472,7 @@ else
     # Set jumping animation!
     @tex = 'PlatformChar_Jump'
 
-@moveContinuousByAxes 'Solid'
+@moveSmart 'Solid'
 ```
 :::
 
