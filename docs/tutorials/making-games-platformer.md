@@ -259,7 +259,7 @@ Your character may ignore holes which are one grid cell wide. Test it. If it occ
 
 If we launch the game now, we will be able to move the Robot around. There is an issue, though: the camera isn't moving!
 
-It is not a hard issue, though. If we dig into the ct.js docs, we will find a `camera` entity with `camera.follow`, `camera.borderX` and `camera.borderY` exactly for following a copy.
+It is not a hard issue, though. If we dig into the ct.js docs, we will find a [`camera`](../camera.md) entity with `camera.follow`, `camera.borderX` and `camera.borderY` exactly for following a copy.
 
 Open the `Robot` template and its "Creation" Code. Add this code to the end:
 
