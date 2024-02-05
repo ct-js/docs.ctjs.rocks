@@ -337,16 +337,16 @@ this.angle = -this.vspeed;
 ```
 :::
 
-Though it will result in a too strong rotation. Adding a multiplier will make it look better:
+Though it will result in a too strong rotation. Adding a division will make it look better:
 
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-this.angle = -this.vspeed * (0.3 / 60);
+this.angle = -this.vspeed / 200;
 ```
 @tab CoffeeScript
 ```coffee
-@angle = -@vspeed * (0.3 / 60)
+@angle = -@vspeed / 200
 ```
 :::
 
