@@ -564,26 +564,20 @@ But if we continue to add more features to room-specific codes, we will soon fai
 
 So we need to create reusable functions now. This may look strange, but it is actually not that hard.
 
-Go to the "Project" tab on the top of the screen, then click the "Custom scripts" tab on the left. Press the "Add a New Script" button:
+Create a new asset, and this time select "Behaviors". Then pick a behavior for rooms and name it `inGameRoomStart`. This will allow us to write code that can then be applied to many rooms without needing to repeat the code!
 
-![Creating a reusable script](./../images/tutorials/tutPlatformer_20.png)
-
-Call a new script as `inGameRoomStart`. Write this code:
+Behaviors for rooms have events just like rooms do. Create a "Room start" event and write this code:
 
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-var inGameRoomStart = function (room) {
-    room.crystals = 0;
-    room.crystalsTotal = templates.list['GreenCrystal'].length;
-};
+rooms.current.crystals = 0;
+rooms.current.crystalsTotal = templates.list['GreenCrystal'].length;
 ```
 @tab CoffeeScript
 ```coffee
-inGameRoomStart = (room) ->
-  room.crystals = 0
-  room.crystalsTotal = templates.list['GreenCrystal'].length
-  return
+rooms.current.crystals = 0
+rooms.current.crystalsTotal = templates.list['GreenCrystal'].length
 ```
 :::
 
@@ -593,22 +587,9 @@ inGameRoomStart = (room) ->
 
 ![Creating a reusable script](./../images/tutorials/tutPlatformer_21.png)
 
-Now go to each room, click the "Events" button in the top toolbar, add an event "Room start", and add this line there:
+Now go to each room, click the cog "Room properties" button in the sidebar, and then click on "Add a behavior" and select the new behavior we just made.
 
-::: code-tabs#tutorial
-@tab JavaScript
-```js
-inGameRoomStart(this);
-```
-@tab CoffeeScript
-```coffee
-inGameRoomStart this
-```
-:::
-
-Hmmm… it looks familiar! Like `place.free(this, this.x, this.y)`! That's actually how most of the ct.js methods work: you have a method, and you tell this method to do something with that copy or that room.
-
-When `inGameRoomStart(this);` is called it will set `crystals` and `crystalsTotal` parameters by itself, without the need to write such code directly to a room.
+Now the behavior is hooked up to the room and when the "Room start" event is called it will set `crystals` and `crystalsTotal` parameters by itself, without the need to write such code directly to a room.
 
 So that's how we gather and count the crystals, but we also need to create a simple interface to draw their count and do it with *style*. ✨
 
@@ -654,7 +635,7 @@ Adding UI elements to a separate room allows you to design UI visually, and then
 
 ![Enabling the layer as a UI layer](./../images/tutorials/tutPlatformer_LayerUICheckbox.png)
 
- Now, to import a UI room into another, go to our script `inGameRoomStart` created at the Project -> Custom scripts tab before, and add this code before the closing brace of the function:
+ Now, to import a UI room into another, go to our behavior `inGameRoomStart` in the assets view, and add this code:
 
 ::: code-tabs#tutorial
 @tab JavaScript
@@ -762,26 +743,22 @@ if rooms.current.lives <= 0
 ```
 :::
 
-And make sure to edit the `inGameRoomStart` function to initialize the room lives:
+And make sure to edit the `inGameRoomStart` behavior to initialize the room lives:
 
 ::: code-tabs#tutorial
 @tab JavaScript
-```js {3}
-var inGameRoomStart = function (room) {
-    room.crystals = 0;
-    room.lives = 3;
-    room.crystalsTotal = templates.list['GreenCrystal'].length;
-    rooms.append('LayerUI');
-};
-
+```js {2}
+rooms.current.crystals = 0;
+rooms.current.lives = 3;
+rooms.current.crystalsTotal = templates.list['GreenCrystal'].length;
+rooms.append('LayerUI');
 ```
 @tab CoffeeScript
-```coffee {3}
-inGameRoomStart = (room) ->
-    room.crystals = 0
-    room.lives = 3
-    room.crystalsTotal = templates.list['GreenCrystal'].length
-    rooms.append 'LayerUI'
+```coffee {2}
+rooms.current.crystals = 0
+rooms.current.lives = 3
+rooms.current.crystalsTotal = templates.list['GreenCrystal'].length
+rooms.append 'LayerUI'
 ```
 :::
 
