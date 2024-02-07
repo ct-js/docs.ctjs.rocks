@@ -18,17 +18,15 @@ Open ct.js and input your project's name into the lower field of the starting wi
 
 We will need some assets from the [simplified platformer pack by Kenney](https://www.kenney.nl/assets/simplified-platformer-pack). The assets are already bundled with ct.js and are named properly; you can find them in the built-in gallery.
 
-![The needed assets](./../images/tutorials/tutPlatformer_02.png)
+Click on "Assets" tab, click on "New Asset", press the "Built-in asset gallery" button, find the "Simplified Platformer" pack by Kenney and import the needed textures. Then close the gallery — the textures will appear in the textures list.
 
-Open the "Textures" tab, press the "Gallery" button, find the "Simplified Platformer" pack by Kenney and import the needed textures. Then close the gallery — the textures will appear in the textures list.
+Once you're ready, click on the `PlatformChar_Walk1` asset.
 
-The first thing that we can notice is that the Robot_Walking animation is counted on as one image, not as two separate frames. Click on the `Robot_Walking` asset.
+![Editing an animation stripe](./../images/tutorials/tutPlatformer_02.png)
 
-![Editing an animation stripe](./../images/tutorials/tutPlatformer_03.png)
+The image is a small horizontal stripe. It has one row and two columns. We can tell ct.js to divide the image in this way by setting `Columns` and `Rows` fields and then calibrating the `Width` field, which should already be set up for us.
 
-The image is a small horizontal stripe. It has one row and two columns. We can tell ct.js to divide the image in this way by setting `Columns` and `Rows` fields and then calibrating the `Width` field.
-
-The whole image is 192 pixels wide so one frame will be 192 : 2 = 96 pixels wide. The robot's frames should now be outlined with two rectangles.
+The whole image is 172 pixels wide so one frame will be 172 : 2 = 86 pixels wide. The robot's frames should now be outlined with two rectangles.
 
 ![Editing a texture](./../images/tutorials/tutPlatformer_04.png)
 
@@ -37,7 +35,7 @@ Now let's edit its collision mask. It determines which areas of an image are cou
 Firstly, shift its axis so it is placed at the bottom middle point.
 
 ::: tip Explanation
-As we have a 96x96 pixels image, we need 48 pixels on the horizontal axis and 96 at a vertical one. Pixels are measured from the top-left corner, and the first value of a point is usually its horizontal component, or its X value, and the second is referred to as an Y component.
+As we have a 86x80 pixels image, we need 43 pixels on the horizontal axis and 80 at a vertical one. Pixels are measured from the top-left corner, and the first value of a point is usually its horizontal component, or its X value, and the second is referred to as an Y component.
 :::
 
 The robot has a nice rectangular shape so it will be wiser to mark it up as a rectangle. Make sure you have a rectangular shape selected, click the 'Fill' button and calibrate the offsets so the robot's body is covered with a yellow rectangle.
@@ -46,22 +44,25 @@ The robot has a nice rectangular shape so it will be wiser to mark it up as a re
 
 You can cover both the body and hands, or select the body only.
 
-Click the "Save" button in the bottom-left corner.
+Click the "Save" button in the bottom-right corner.
 
-We now need to set collision masks for `Robot_Idle` and `Robot_Jump` too. Make sure that you shift the axis to 48x96 and calibrate collision masks for both of them.
+We now need to set collision masks for `PlatformChar_Jump` and `PlatformChar_Idle` too. We can do this quickly by copying our collision mask for `PlatformChar_Walk1` and pasting it to `PlatformChar_Jump` and `PlatformChar_Idle`! Make sure that you also shift the axis to 43x80 for each of them.
+
+![Copying a texture's mask](./../images/tutorials/tutPlatformer_05_2.png)
+![Pasting a texture's mask](./../images/tutorials/tutPlatformer_05_3.png)
 
 ::: tip
 It is also good to make collision offsets same for each of the three sprites, so the robot doesn't clip into the surface when switching its animations while suddenly getting bigger as a collision shape.
 :::
 
-Now let's set the collision shapes of our crystals and heart bonuses. These can be defined as circles. Open the `GreenCrystal`, set its collision shape as a "Circle", then click a button called "Image's center" so the axis automatically snaps to needed values, and calibrate the collision shape's radius.
+Now let's set the collision shapes of our crystals and heart bonuses. These can be defined as circles. Open the `PlatformPack_Item09` (Green Crystal), set its collision shape as a "Circle", then click a button called "Image's center" so the axis automatically snaps to needed values, and calibrate the collision shape's radius.
 
-Do the same for the `Heart` asset.
+Do the same for the `PlatformPack_Item17` (Heart) asset.
 
 ![Editing diamonds](./../images/tutorials/tutPlatformer_06.png)
 ![Editing hearts](./../images/tutorials/tutPlatformer_07.png)
 
-The last asset we need to modify is the `Spikes`. We don't need to shift its axis, because it will appear misaligned on the map in this way, but we still need to set its collision shape. Set its top offset to a negative value so the top part of the image is not filled with yellow.
+The last asset we need to modify is the `PlatformPack_Tile43` (Spikes). We don't need to shift its axis, because it will appear misaligned on the map in this way, but we still need to set its collision shape. Set its top offset to a negative value so the top part of the image is not filled with yellow.
 
 ![Editing spikes](./../images/tutorials/tutPlatformer_08.png)
 
@@ -69,23 +70,23 @@ Save your asset. If you look into other textures, you will see that they all hav
 
 ## Creating a Robot Character and Ground
 
-Open the "Templates" tab and create a new template. Call it "Robot", set its sprite to `Robot_Idle`, and save it.
+Open the "Assets" tab and click on the "New Asset" button. From the menu, selecte "Template". Call the template "Robot", set its sprite to `PlatformChar_Idle`, and save it.
 
 ![Editing a template](./../images/tutorials/tutPlatformer_09.png)
 
 ::: tip
-Template are used to create specific identical copies. We fill our levels (a.k.a. rooms) with copies, and they are the things that interact with each other on the screen, but each copy was created from a certain template.
+Templates are used to create specific identical copies. We fill our levels (a.k.a. rooms) with copies, and they are the things that interact with each other on the screen, but each copy was created from a certain template.
 :::
 
-Create additional templates in the same way:
+Create additional templates in the same way (all the rock textures):
 
-* `Rocks`;
-* `Rocks_Top`;
-* `Rocks_Platform`.
+* `PlatformPack_Tile16`, named `Rocks`
+* `PlatformPack_Tile13`, named `Rocks_Platform`
+* `PlatformPack_Tile31`, named `Rocks_Top`
 
 ### Adding a Room
 
-Click on the "Rooms" tab at the top and create a new room. In the "Properties" panel with a cog icon, set its name to "Level_01" and view's size to 1024x576.
+Click on "New Asset" again and select "Room" in the menu. Set its name to "Level_01" and in the "Room properties" panel with a cog icon set the view's size to 1024x576.
 
 ![Editing a room](./../images/tutorials/tutPlatformer_10.png)
 
@@ -97,7 +98,7 @@ I drew this. It is hard to get stuck here as a player, but it teaches how to jum
 
 ![Comigo's platformer level](./../images/tutorials/tutPlatformer_11.png)
 
-Now let's add a background. Click the "Backgrounds" tool on the left, press "Add background", and select the `BG` asset. Now click the cog near our new background and change its depth to `-10`. Thus we tell the engine that the background should be drawn 10 layers below the default 0 layer.
+Now let's change the background color. Click the "Room properties" tool again and set the Background color to `#D0F4F7`.
 
 ![](./../images/tutorials/tutPlatformer_27.png)
 
@@ -105,19 +106,11 @@ If we save the project now and click the "Launch" button at the top, we will be 
 
 ![Debug window with placed copies and background](./../images/tutorials/tutPlatformer_12.png)
 
-::: tip
-Is your background splitting into squares? See [Troubleshooting: Background splits into squares!](./../troubleshooting/teared-background.md)
-:::
-
 ### Adding Modules for Keyboard and Collisions
 
 We will need to listen to keyboard events and to detect collisions between the Robot and ground. For such superpowers, we will need Catmods! Click on the "Project" tab, then on the "Catmods" tab on the left. Click the Keyboard module in the section of available modules so it has a green checkbox and a little spinning circle around it. (It may be already enabled, though!) Do the same with the `place` module.
 
 ![Enabling a module in ct.js](./../images/tutorials/tutPlatformer_13.png)
-
-::: tip PRO TIP ✨
-Enable the catmod called `fittoscreen`, then go to its settings tab and enable the option called "Fast scale with letterboxing" for an automagical full-screen view.
-:::
 
 Each module has its own documentation on the "Reference" tab. We will highlight some of its parts later.
 
@@ -141,7 +134,7 @@ Now, move to the "Templates" tab at the top of the screen and open the `Rocks` t
 
 ![Adding a collision group to a template](./../images/tutorials/tutPlatformer_26.png)
 
-This will tell the `ct.place` catmod that this particular template belongs to a special collision group called "Solid". The name of this group can be of any value, and the number of such groups is unlimited. For now, one group will be enough.
+This will tell the `place` catmod that this particular template belongs to a special collision group called "Solid". The name of this group can be of any value, and the number of such groups is unlimited. For now, one group will be enough.
 
 Add the same line to `Rocks_Top` and `Rocks_Platform`.
 
@@ -154,16 +147,16 @@ Let's set up some variables on the "Creation" event. Click on "Add an event" to 
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-this.jumpSpeed = -9;
-this.gravity = 0.5;
+this.jumpSpeed = -600;
+this.gravity = 1800;
 
 this.hspeed = 0; // Horizontal speed
 this.vspeed = 0; // Vertical speed
 ```
 @tab CoffeeScript
 ```coffee
-@jumpSpeed = -9
-@gravity = 0.5
+@jumpSpeed = -600
+@gravity = 1800
 @hspeed = 0 # Horizontal speed
 @vspeed = 0 # Vertical speed
 ```
@@ -178,12 +171,12 @@ Now move to the "Frame start" tab. Remove default `this.move();` line and add th
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-this.movespeed = 4 * ct.delta; // Max horizontal speed
+this.movespeed = 240; // Max horizontal speed
 
-if (ct.actions.MoveLeft.down) {
+if (actions.MoveLeft.down) {
     // If the A key or left arrow on a keyboard is down, then move to left
     this.hspeed = -this.movespeed;
-} else if (ct.actions.MoveRight.down) {
+} else if (actions.MoveRight.down) {
     // If the D key or right arrow on a keyboard is down, then move to right
     this.hspeed = this.movespeed;
 } else {
@@ -192,28 +185,25 @@ if (ct.actions.MoveLeft.down) {
 }
 
 // If there is ground underneath the Robot…
-if (ct.place.occupied(this, this.x, this.y + 1, 'Solid')) {
+if (place.occupied(this, this.x, this.y + 1, 'Solid')) {
     // …and the W key or the spacebar is down…
-    if (ct.actions.Jump.down) {
+    if (actions.Jump.down) {
         // …then jump!
         this.vspeed = this.jumpSpeed;
     } else {
         // Reset our vspeed. We don't want to be buried underground!
         this.vspeed = 0;
     }
-} else {
-    // If there is no ground
-    this.vspeed += this.gravity * ct.delta;
 }
 ```
 @tab CoffeeScript
 ```coffee
-@movespeed = 4 * ct.delta # Max horizontal speed
+@movespeed = 240 # Max horizontal speed
 
-if ct.actions.MoveLeft.down
-      # If the A key or left arrow on a keyboard is down, then move to left
+if actions.MoveLeft.down
+    # If the A key or left arrow on a keyboard is down, then move to left
     @hspeed = -@movespeed
-else if ct.actions.MoveRight.down
+else if actions.MoveRight.down
     # If the D key or right arrow on a keyboard is down, then move to right
     @hspeed = @movespeed
 else
@@ -221,17 +211,14 @@ else
     @hspeed = 0
 
 # If there is ground underneath the Robot…
-if ct.place.occupied(this, @x, @y + 1, 'Solid')
+if place.occupied(this, @x, @y + 1, 'Solid')
     # …and the W key or the spacebar is down…
-    if ct.actions.Jump.down
+    if actions.Jump.down
         # …then jump!
         @vspeed = @jumpSpeed
     else
         # Reset our vspeed. We don't want to be buried underground!
         @vspeed = 0
-else
-    # If there is no ground
-    @vspeed += @gravity * ct.delta
 ```
 :::
 
@@ -240,15 +227,9 @@ else
 :::
 
 ::: tip
-`ct.actions.YourAction.down` checks whether any key you listed in this action is currently held down. There are also `ct.actions.YourAction.pressed` and `ct.actions.YourAction.released`.
+`actions.YourAction.down` checks whether any key you listed in this action is currently held down. There are also `actions.YourAction.pressed` and `actions.YourAction.released`.
 
-`ct.place.occupied(copy, x, y, group)` checks whether a given copy has any collisions in given coordinates with a specific group. You can omit the group if you don't need it. This method returns either `false` (no collision) or a copy which was the first to collide with.
-:::
-
-::: tip
-`ct.delta` describes how much the previous frame took time to process. If everything is ok and game performs at smooth FPS, it is equal to `1`, and is larger if a game can't reach the target FPS value.
-
-By multiplying values to `ct.delta`, we make sure that everything moves uniformly at any framerate.
+`place.occupied(copy, x, y, group)` checks whether a given copy has any collisions in given coordinates with a specific group. You can omit the group if you don't need it. This method returns either `false` (no collision) or a copy which was the first to collide with.
 :::
 
 This will set variables `hspeed` and `vspeed`, but they won't do anything as is. And we don't want to clip into a wall or move when we are next to a 'Solid'. Gladly, we can add this magical line to the end to make the character properly collide with solid objects:
@@ -256,16 +237,16 @@ This will set variables `hspeed` and `vspeed`, but they won't do anything as is.
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-this.moveContinuousByAxes('Solid');
+this.moveSmart('Solid');
 ```
 @tab CoffeeScript
 ```coffee
-@moveContinuousByAxes 'Solid'
+@moveSmart 'Solid'
 ```
 :::
 
 ::: tip
-`moveContinuousByAxes` is a method from `ct.place` module that gradually moves a copy pixel by pixel, stopping near the obstacles. It is great for platformers and when you need precise sliding movements.
+`moveSmart` is a method from `place` module that gradually moves a copy pixel by pixel, stopping near the obstacles. It is great for platformers and when you need precise sliding movements.
 :::
 
 We can now move our Robot around!
@@ -278,22 +259,22 @@ Your character may ignore holes which are one grid cell wide. Test it. If it occ
 
 If we launch the game now, we will be able to move the Robot around. There is an issue, though: the camera isn't moving!
 
-It is not a hard issue, though. If we dig into the ct.js docs, we will find a `ct.camera` entity with `ct.camera.follow`, `ct.camera.borderX` and `ct.camera.borderY` exactly for following a copy.
+It is not a hard issue, though. If we dig into the ct.js docs, we will find a [`camera`](../camera.md) entity with `camera.follow`, `camera.borderX` and `camera.borderY` exactly for following a copy.
 
 Open the `Robot` template and its "Creation" Code. Add this code to the end:
 
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-ct.camera.follow = this;
-ct.camera.borderX = 450;
-ct.camera.borderY = 200;
+camera.follow = this;
+camera.borderX = 450;
+camera.borderY = 200;
 ```
 @tab CoffeeScript
 ```coffee
-ct.camera.follow = this
-ct.camera.borderX = 450
-ct.camera.borderY = 200
+camera.follow = this
+camera.borderX = 450
+camera.borderY = 200
 ```
 :::
 
@@ -303,9 +284,13 @@ The camera will now follow the Robot.
 
 We will now add deadly traps and water moats, and checkpoints so the player restarts at them and not at the beginning of the level.
 
-Create new templates for `Water`, `Water_Top`, `Spikes` and `Checkpoint` assets.
+Create new templates for the following assets:
+* `PlatformPack_Tile17`, named `Water`
+* `PlatformPack_Tile05`, named `Water_Top`
+* `PlatformPack_Tile43`, named `Spikes`
+* `PlatformPack_Tile21`, named `Checkpoint`
 
-Create a new room and call it `Level_02`. Set its size to 1024x576 and add a background. Create a dangerous level with spikes and lakes.
+Create a new room and call it `Level_02`. Set its size to 1024x576 and make the background color `#D0F4F7` again. Create a dangerous level with spikes and lakes.
 
 Place checkpoint boxes before and/or after hazardous places. Don't be afraid to put a lot of them, as punishing a player for mistakes is never a good idea! 😉
 
@@ -313,7 +298,7 @@ Place checkpoint boxes before and/or after hazardous places. Don't be afraid to 
 
 Here the supposed level's end is placed on the top middle platform. I also placed some platforms outside the screenshot for gathering future crystals.
 
-Now let's move to the `Checkpoint`'s template and edit its "Frame start" code.
+Now let's move to the `Checkpoint`'s template.
 
 We will check for collision with the Robot, and when it happens, we will store a rescue point inside the Robot's copy. Make a new Collision with a template event and select the Robot. Then add this code in the event:
 
@@ -378,11 +363,11 @@ this.savedY = this.y;
 ```
 :::
 
-To test a specific room, open the "Rooms" tab at the top, then right-click the desired room and press "Set as starting room".
+To test a specific room, open the "Assets" tab at the top, then right-click the desired room and press "Set as starting room".
 
 ## Transforming and Animating the Robot
 
-At this point, it will be wise to add little animations to our robot. As you remember, we have three different assets called `Robot_Idle`, `Robot_Jump`, and `Robot_Walking`.
+At this point, it will be wise to add little animations to our robot. As you remember, we have three different assets called `PlatformChar_Idle`, `PlatformChar_Jump`, and `PlatformChar_Walk1`.
 
 Add this line to `Robot`'s "Creation" code:
 
@@ -403,35 +388,37 @@ Open the `Robot`'s "Frame start" code and modify the moving section so it change
 
 ::: code-tabs#tutorial
 @tab JavaScript
-```js {4,5,6,7,8,9,13,14,15,16,17,18,22,38,39}
-if (ct.actions.MoveLeft.down) {
-    // If the A key on keyboard is down, then move to left
+```js {6,7,8,9,10,11,15,16,17,18,19,20,24,38,39,40}
+this.movespeed = 240; // Max horizontal speed
+
+if (actions.MoveLeft.down) {
+    // If the A key or left arrow on a keyboard is down, then move to left
     this.hspeed = -this.movespeed;
     // Set the walking animation and transform the robot to the left
-    if (this.tex !== 'Robot_Walking') {
-        this.tex = 'Robot_Walking';
+    if (this.tex !== 'PlatformChar_Walk1') {
+        this.tex = 'PlatformChar_Walk1';
         this.play();
     }
     this.scale.x = -1;
-} else if (ct.actions.MoveRight.down) {
-    // If the D key on keyboard is down, then move to right
+} else if (actions.MoveRight.down) {
+    // If the D key or right arrow on a keyboard is down, then move to right
     this.hspeed = this.movespeed;
     // Set the walking animation and transform the robot to the right
-    if (this.tex !== 'Robot_Walking') {
-        this.tex = 'Robot_Walking';
+    if (this.tex !== 'PlatformChar_Walk1') {
+        this.tex = 'PlatformChar_Walk1';
         this.play();
     }
     this.scale.x = 1;
 } else {
     // Don't move horizontally if no input
     this.hspeed = 0;
-    this.tex = 'Robot_Idle';
+    this.tex = 'PlatformChar_Idle';
 }
 
 // If there is ground underneath the Robot…
-if (ct.place.occupied(this, this.x, this.y + 1, 'Solid')) {
+if (place.occupied(this, this.x, this.y + 1, 'Solid')) {
     // …and the W key or the spacebar is down…
-    if (ct.actions.Jump.down) {
+    if (actions.Jump.down) {
         // …then jump!
         this.vspeed = this.jumpSpeed;
     } else {
@@ -440,37 +427,41 @@ if (ct.place.occupied(this, this.x, this.y + 1, 'Solid')) {
     }
 } else {
     // If there is no ground
-    this.vspeed += this.gravity * ct.delta;
     // Set jumping animation!
-    this.tex = 'Robot_Jump';
+    this.tex = 'PlatformChar_Jump';
 }
+
+this.moveSmart('Solid');
 ```
 @tab CoffeeScript
-```coffee {5,6,7,13,14,15,20,34}
-if ct.actions.MoveLeft.down
-    # If the A key on keyboard is down, then move to left
+```coffee {7,8,9,15,16,17,22,34,35,36}
+@movespeed = 240 # Max horizontal speed
+
+if actions.MoveLeft.down
+    # If the A key or left arrow on a keyboard is down, then move to left
     @hspeed = -@movespeed
     # Set the walking animation and transform the robot to the left
-     if @tex isnt 'Robot_Walking'
-        @tex = 'Robot_Walking'
+    if @tex isnt 'PlatformChar_Walk1'
+        @tex = 'PlatformChar_Walk1'
         @play()
     @scale.x = -1
-else if ct.actions.MoveRight.down
-    # If the D key on keyboard is down, then move to right
+else if actions.MoveRight.down
+    # If the D key or right arrow on a keyboard is down, then move to right
     @hspeed = @movespeed
     # Set the walking animation and transform the robot to the right
-    if @tex isnt 'Robot_Walking'
-        @tex = 'Robot_Walking'
+    if @tex isnt 'PlatformChar_Walk1'
+        @tex = 'PlatformChar_Walk1'
         @play()
     @scale.x = 1
 else
     # Don't move horizontally if no input
     @hspeed = 0
-    @tex = 'Robot_Idle'
+    @tex = 'PlatformChar_Idle'
+
 # If there is ground underneath the Robot…
-if ct.place.occupied(this, @x, @y + 1, 'Solid')
+if place.occupied(this, @x, @y + 1, 'Solid')
     # …and the W key or the spacebar is down…
-    if ct.actions.Jump.down
+    if actions.Jump.down
         # …then jump!
         @vspeed = @jumpSpeed
     else
@@ -478,13 +469,14 @@ if ct.place.occupied(this, @x, @y + 1, 'Solid')
         @vspeed = 0
 else
     # If there is no ground
-    @vspeed += @gravity * ct.delta
     # Set jumping animation!
-    @tex = 'Robot_Jump'
+    @tex = 'PlatformChar_Jump'
+
+@moveSmart 'Solid'
 ```
 :::
 
-As our vertical movement isn't dependant on the horizontal movement, the animation is overridden to the jumping state if there is no ground under the robot.
+As our vertical movement isn't dependent on the horizontal movement, the animation is overridden to the jumping state if there is no ground under the robot.
 
 The robot will now flip to the current direction and change its texture depending on movement. Look at that boy!
 
@@ -504,25 +496,25 @@ Create a new template and call it an `Exit`. Set its texture. Then make a Collid
 @tab JavaScript
 ```js
 // Is the next room defined?
-if (ct.room.nextRoom) {
+if (rooms.current.nextRoom) {
     // Switch to the next room
-    ct.rooms.switch(ct.room.nextRoom);
+    rooms.switch(rooms.current.nextRoom);
 }
 ```
 @tab CoffeeScript
 ```coffee
 # Is the next room defined?
-if ct.room.nextRoom
+if rooms.current.nextRoom
     # Switch to the next room
-    ct.rooms.switch ct.room.nextRoom
+    rooms.switch rooms.current.nextRoom
 ```
 :::
 
 ::: tip
-Here `ct.room` points to the current room. `ct.rooms.switch` exits the current room and opens another room with a given name.
+Here `rooms.current` points to the current room. `rooms.switch` exits the current room and opens another room with a given name.
 :::
 
-Now go to the "Rooms" tab at the top, open the `Level_01`, click the button called "Room's events" and write the following to its "Room start" code:
+Now go to the "Assets" tab at the top, open the `Level_01`, click the button called "Events" and write the following to its "Room start" code:
 
 ::: code-tabs#tutorial
 @tab JavaScript
@@ -552,12 +544,12 @@ Create a new template called `GreenCrystal` and set its sprite. Create a Collide
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-ct.room.crystals ++;
+rooms.current.crystals ++;
 this.kill = true;
 ```
 @tab CoffeeScript
 ```coffee
-ct.room.crystals++
+rooms.current.crystals++
 @kill = true
 ```
 :::
@@ -572,40 +564,38 @@ But if we continue to add more features to room-specific codes, we will soon fai
 
 So we need to create reusable functions now. This may look strange, but it is actually not that hard.
 
-Go to the "Project" tab on the top of the screen, then click the "Custom scripts" tab on the left. Press the "Add a New Script" button:
+Create a new asset, and this time select "Behaviors". Then pick a behavior for rooms and name it `inGameRoomStart`. This will allow us to write code that can then be applied to many rooms without needing to repeat the code!
 
-![Creating a reusable script](./../images/tutorials/tutPlatformer_20.png)
+Behaviors for rooms have events just like rooms do. Create a "Room start" event and write this code:
 
-Call a new script as `inGameRoomStart`. Write this code:
-
+::: code-tabs#tutorial
+@tab JavaScript
 ```js
-var inGameRoomStart = function (room) {
-    room.crystals = 0;
-    room.crystalsTotal = ct.templates.list['GreenCrystal'].length;
-};
+rooms.current.crystals = 0;
+rooms.current.crystalsTotal = templates.list['GreenCrystal'].length;
 ```
+@tab CoffeeScript
+```coffee
+rooms.current.crystals = 0
+rooms.current.crystalsTotal = templates.list['GreenCrystal'].length
+```
+:::
 
 ::: tip
-`ct.templates.list['TemplateName']` returns an array of all the copies of the given template in the room. `length` returns the size of an array.
+`templates.list['TemplateName']` returns an array of all the copies of the given template in the room. `length` returns the size of an array.
 :::
 
 ![Creating a reusable script](./../images/tutorials/tutPlatformer_21.png)
 
-Now go to each room, click the "Events" button in the top toolbar, add an event "Room start", and add this line there:
+Now go to each room, click the cog "Room properties" button in the sidebar, and then click on "Add a behavior" and select the new behavior we just made.
 
-```js
-inGameRoomStart(this);
-```
-
-Hmmm… it looks familiar! Like `ct.place.free(this, this.x, this.y)`! That's actually how most of the ct.js methods work: you have a method, and you tell this method to do something with that copy or that room.
-
-When `inGameRoomStart(this);` is called it will set `crystals` and `crystalsTotal` parameters by itself, without the need to write such code directly to a room.
+Now the behavior is hooked up to the room and when the "Room start" event is called it will set `crystals` and `crystalsTotal` parameters by itself, without the need to write such code directly to a room.
 
 So that's how we gather and count the crystals, but we also need to create a simple interface to draw their count and do it with *style*. ✨
 
-Gladly, there is a tool for designing nifty text styles inside the ct.js. Open the "UI" tab at the top of the screen and create a new style. Call it `CrystalCounter`.
+Gladly, there is a tool for designing nifty text styles inside the ct.js. Open the "Assets" tab at the top of the screen and create a new style. Call it `CrystalCounter`.
 
-Then activate the "Font" section, set the font size to 24 and its weight to 600. Align it to the left.
+Then activate the "Font" section, set the font size to 24 and its weight to 600. Align it to the left and set line height to 32.
 
 ![Setting a style's font](./../images/tutorials/tutPlatformer_17.png)
 
@@ -617,61 +607,44 @@ We can also add a thick white line to our text. Open the "Stroke" tab, then set 
 
 ![Setting a style's line style](./../images/tutorials/tutPlatformer_23.png)
 
-We should now create a new template called `CrystalsWidget`. It will display a crystal icon and a counter. Set its sprite to `GreenCrystal`, and write the following in its Creation code:
-
-::: code-tabs#tutorial
-@tab JavaScript
-```js
-this.text = new PIXI.Text('0 / ' + ct.room.crystalsTotal, ct.styles.get('CrystalCounter'));
-this.text.x = 32;
-this.text.anchor.y = 0.5;
-
-this.addChild(this.text);
-```
-@tab CoffeeScript
-```coffee
-style = ct.styles.get 'CrystalCounter'
-@text = new PIXI.Text '0 / ' + ct.room.crystalsTotal, style
-@text.x = 32
-@text.anchor.y = 0.5
-@addChild @text
-```
-:::
-
-Here we create a new text label (by using ct.js' underlying graphic library pixi.js) and attach it to our icon with `addChild`. `text.anchor.y = 0.5` tells that the vertical axis of the label should be aligned to the middle of our icon.
+We should now create two new templates, `CrystalsWidget` and `CrystalsWidgetText`. The first will display a crystal icon and the second one a counter. Set `CrystalsWidget`'s sprite to the green crystal, and in `CrystalsWidgetText` set it to be a Text instead of a sprite. Now set its style to `CrystalCounter` with the ghostly cat icon.
 
 To finish it off, add this to CrystalsWidget's Frame end code:
 
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-this.text.text = `${ct.room.crystals} / ${ct.room.crystalsTotal}`;
+this.text = `${rooms.current.crystals} / ${rooms.current.crystalsTotal}`;
 ```
 @tab CoffeeScript
 ```coffee
 # Note the double quotes!
-@text.text = "#{ct.room.crystals} / #{ct.room.crystalsTotal}"
+@text = "#{rooms.current.crystals} / #{rooms.current.crystalsTotal}"
 ```
 :::
 
-We should now create a special room for our UI elements. Create it in the "Rooms" tab, and call it `LayerUI`. Set its size identical to other rooms', 1024x576. Then, add the newly created `CrystalsWidget` to the top-left corner of the room:
+We should now create a special room for our UI elements. Create a new room, and call it `LayerUI`. Set its size identical to other rooms', 1024x576. Then, add the newly created `CrystalsWidget` and `CrystalsWidgetText` to the top-left corner of the room:
 
 ![Adding a crystals widget to a UI layer](./../images/tutorials/tutPlatformer_28.png)
+
+You can center the text by going to the UI tools and setting the alignment there after selecting the text. You can also set a default text to see how it would look if the number got really high, to make sure it's aligned how it should be!
+
+![Adding a crystals widget to a UI layer](./../images/tutorials/tutPlatformer_28_2.png)
 
 Adding UI elements to a separate room allows you to design UI visually, and then import them into other rooms through code. Ct.js also has a special flag that locks UI layers in place, so you can freely move, scale and even rotate the camera, and UI elements will remain properly positioned. Go to the room settings, and check the "Is a UI layer?" checkbox so that `LayerUI` will be fixated to the game view.
 
 ![Enabling the layer as a UI layer](./../images/tutorials/tutPlatformer_LayerUICheckbox.png)
 
- Now, to import a UI room into another, go to our script `inGameRoomStart` created at the Project -> Custom scripts tab before, and add this code before the closing brace of the function:
+ Now, to import a UI room into another, go to our behavior `inGameRoomStart` in the assets view, and add this code:
 
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-ct.rooms.append('LayerUI');
+rooms.append('LayerUI');
 ```
 @tab CoffeeScript
 ```coffee
-ct.rooms.append 'LayerUI'
+rooms.append 'LayerUI'
 ```
 :::
 
@@ -680,7 +653,7 @@ It should look like this:
 ![A complete code of adding a UI layer in ct.js](./../images/tutorials/tutPlatformer_29.png)
 
 ::: tip
-The method `ct.rooms.append` (as well as `ct.rooms.prepend`) may be also used for reusing other stuff than UI layers. For example, we can place all the backgrounds to a separate room, and then call `ct.rooms.prepend("YourBackgroundRoom");` to import them. This is especially useful while making complex layered backgrounds with a parallax effect.
+The method `rooms.append` (as well as `rooms.prepend`) may be also used for reusing other stuff than UI layers. For example, we can place all the backgrounds to a separate room, and then call `rooms.prepend("YourBackgroundRoom");` to import them. This is especially useful while making complex layered backgrounds with a parallax effect.
 :::
 
 If you now run your game, you should see the crystal counter in the top-left corner:
@@ -704,15 +677,15 @@ Create a new template called `Heart` and set a corresponding sprite. Add this co
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-if (ct.room.lives < 3) {
-    ct.room.lives++;
+if (rooms.current.lives < 3) {
+    rooms.current.lives++;
     this.kill = true;
 }
 ```
 @tab CoffeeScript
 ```coffee
-if ct.room.lives < 3
-    ct.room.lives++
+if rooms.current.lives < 3
+    rooms.current.lives++
     @kill = true
 ```
 :::
@@ -721,45 +694,24 @@ Don't forget to place actual heart bonuses on your levels!
 
 We will also need a style for a counter. The process is the same, and a suitable color is `#E85017`. We can even duplicate the existing style! Let's call this style a `HeartCounter`.
 
-We will need another widget for health, too. Create a new template called `HeartsWidget`, set its sprite to the `Heart`, and set its Creation code to this:
+We will need another two templates for health, too. Create a new template called `HeartsWidget`, and set its sprite to the heart. Now make a `HeartsWidgetText` and set it as a Text instead of a sprite. Now select the `HeartCounter` style for it.
+
+Now add this to `HeartsWidgetText`'s Frame end code:
 
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-this.text = new PIXI.Text(ct.room.lives, ct.styles.get('HeartCounter'));
-this.text.x = -32;
-this.text.anchor.y = 0.5;
-this.text.anchor.x = 1;
-
-this.addChild(this.text);
+this.text = rooms.current.lives;
 ```
 @tab CoffeeScript
 ```coffee
-style = ct.styles.get 'HeartCounter'
-@text = new PIXI.Text ct.room.lives, style
-@text.x = -32
-@text.anchor.y = 0.5
-@text.anchor.x = 1
-@addChild @text
+@text = rooms.current.lives
 ```
 :::
 
-Now add this to HeartsWidget's Frame end code:
+Then add a copy of both of these new templates to the room `LayerUI`. Don't forget to set the heart style text's alignment using the UI tools! 
 
-::: code-tabs#tutorial
-@tab JavaScript
-```js
-this.text.text = ct.room.lives;
-```
-@tab CoffeeScript
-```coffee
-@text.text = ct.room.lives
-```
-:::
-
-Then add a copy of this template to the room `LayerUI`.
-
-Now modify the respawn code of the `Robot` so it loses one heart at each respawn:
+Now modify the respawn code of the `Robot` so it loses one heart at each respawn (in the event with collides with Deadly group):
 
 ::: code-tabs#tutorial
 @tab JavaScript
@@ -769,10 +721,10 @@ this.y = this.savedY;
 this.hspeed = 0;
 this.vspeed = 0;
 // remove one life
-ct.room.lives --;
-if (ct.room.lives <= 0) {
+rooms.current.lives --;
+if (rooms.current.lives <= 0) {
     // Restart a room: switch to the room of its own name
-    ct.rooms.switch(ct.room.name);
+    rooms.switch(rooms.current.name);
 }
 ```
 @tab CoffeeScript
@@ -783,38 +735,30 @@ if (ct.room.lives <= 0) {
 @vspeed = 0
 
 # remove one life
-ct.room.lives--
+rooms.current.lives--
 
-if ct.room.lives <= 0
+if rooms.current.lives <= 0
     # Restart a room: switch to the room of its own name
-    ct.rooms.switch ct.room.name
+    rooms.switch rooms.current.name
 ```
 :::
 
-And make sure to edit the `inGameRoomStart` function to initialize the room lives:
+And make sure to edit the `inGameRoomStart` behavior to initialize the room lives:
 
 ::: code-tabs#tutorial
 @tab JavaScript
-```js {3}
-var inGameRoomStart = function (room) {
-    room.crystals = 0;
-    room.lives = 3;
-    room.crystalsTotal = ct.templates.list['GreenCrystal'].length;
-
-    ct.rooms.append('LayerUI', {
-        isUi: true
-    });
-};
+```js {2}
+rooms.current.crystals = 0;
+rooms.current.lives = 3;
+rooms.current.crystalsTotal = templates.list['GreenCrystal'].length;
+rooms.append('LayerUI');
 ```
 @tab CoffeeScript
-```coffee
-inGameRoomStart = (room) ->
-    room.crystals = 0
-    room.lives = 3
-    room.crystalsTotal = ct.templates.list['GreenCrystal'].length
-    roomSettings =
-        isUi: true
-    ct.rooms.append 'LayerUI', roomSettings
+```coffee {2}
+rooms.current.crystals = 0
+rooms.current.lives = 3
+rooms.current.crystalsTotal = templates.list['GreenCrystal'].length
+rooms.append 'LayerUI'
 ```
 :::
 
@@ -837,11 +781,11 @@ Let's open a `Platform`'s template and initialize its speed:
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-this.speed = 2;
+this.speed = 120;
 ```
 @tab CoffeeScript
 ```coffee
-@speed = 2
+@speed = 120
 ```
 :::
 
@@ -852,16 +796,16 @@ Then, add some code to the "Frame start" tab to move our Robot:
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-var robot = ct.place.meet(this, this.x, this.y - 1, 'Robot');
+var robot = place.meet(this, this.x, this.y - 1, 'Robot');
 if (robot) {
-    robot.x += this.speed;
+    robot.x += this.hspeed * u.time;
 }
 ```
 @tab CoffeeScript
 ```coffee
-robot = ct.place.meet this, @x, @y - 1, 'Robot'
+robot = place.meet this, @x, @y - 1, 'Robot'
 if robot
-    robot.x += @speed
+    robot.x += @speed * u.time
 ```
 :::
 
@@ -870,7 +814,7 @@ And the movement logic:
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-if (ct.place.occupied(this, this.x + this.speed * ct.delta, this.y, 'Solid')) {
+if (place.occupied(this, this.x + this.hspeed * u.time, this.y, 'Solid')) {
     // Flip direction
     this.direction += 180;
 }
@@ -878,7 +822,7 @@ this.move();
 ```
 @tab CoffeeScript
 ```coffee
-if ct.place.occupied this, @x + @speed * ct.delta, @y, 'Solid'
+if place.occupied this, @x + @speed, @y, 'Solid'
     # Flip direction
     @direction += 180
 
@@ -895,18 +839,18 @@ Here is a better code:
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-var robot = ct.place.meet(this, this.x, this.y, 'Robot');
+var robot = place.meet(this, this.x, this.y, 'Robot');
 if (robot) {
     this.cgroup = undefined;
 } else {
     this.cgroup = 'Solid';
-    robot = ct.place.meet(this, this.x, this.y - 1, 'Robot');
+    robot = place.meet(this, this.x, this.y - 1, 'Robot');
     if (robot) {
-        robot.x += ct.u.ldx(this.speed, this.direction) * ct.delta;
+        robot.x += this.hspeed * u.time;
     }
 }
 
-if (ct.place.occupied(this, this.x + this.speed * ct.delta, this.y, 'Solid')) {
+if (place.occupied(this, this.x + this.hspeed * u.time, this.y, 'Solid')) {
     // Flip direction
     this.direction += 180;
 }
@@ -914,16 +858,16 @@ this.move();
 ```
 @tab CoffeeScript
 ```coffee
-robot = ct.place.meet this, @x, @y, 'Robot'
+robot = place.meet this, @x, @y, 'Robot'
 if robot
     @cgroup = undefined
 else
     @cgroup = 'Solid'
-    robot = ct.place.meet this, @x, @y - 1, 'Robot'
+    robot = place.meet this, @x, @y - 1, 'Robot'
     if robot
-        robot.x += (ct.u.ldx @speed, @direction) * ct.delta
+        robot.x += @hspeed * u.time
 
-if ct.place.occupied this, @x + @speed * ct.delta, @y, 'Solid'
+if place.occupied this, @x + @hspeed * u.time, @y, 'Solid'
     # Flip direction
     @direction += 180
 
