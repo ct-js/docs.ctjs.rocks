@@ -19,6 +19,7 @@ Depending on what base class you choose in a template editor, your copy will be 
 | **Container**| Custom-made stuff that can be moved and transformed as one with its child items. | [PIXI.Container](https://pixijs.download/dev/docs/PIXI.Container.html)    |
 | **Panel** | Keeps corners of a texture intact — useful for UI buttons, panels, and stretching gameplay elements. | [PIXI.NineSlicePlane](https://pixijs.download/dev/docs/PIXI.NineSlicePlane.html) |
 | **Text** | User interface. Copies made of Text templates can be tweaked in a room editor and through code. | [PIXI.Text](https://pixijs.download/dev/docs/PIXI.Text.html)|
+| **TextBox** | A field that can accept keyboard input. | [PIXI.Container](https://pixijs.download/dev/docs/PIXI.Container.html)|
 | **Repeating texture** | A texture that can tile and scroll in both directions without distortions. | [PIXI.TilingSprite](https://pixijs.download/dev/docs/PIXI.TilingSprite.html) |
 | **Sprited counter** | Displays several sprites in a row depending on its `count` property. | [PIXI.TilingSprite](https://pixijs.download/dev/docs/PIXI.TilingSprite.html) |
 
@@ -259,6 +260,77 @@ else
 
 # A shorter way to do the same thing:
 @disabled = rooms.current.money < 50
+```
+:::
+
+### Textboxes
+
+This base class makes input fields you and your players can use to input custom text. The field has options to support numeric inputs, regular strings, and masked passwords.
+
+Copies that use this base class have two additional events to xlisten for text change, and in these events you can use a variable called `value` to get the text. Alternatively, you can use these properties:
+
+* `text` — the text value of this field.
+* `fieldType` — can be one of `'text'`, `'password'`, `'email'`, `'number'`.
+* `maxLength` – the maximum length of the text that can be written.
+
+#### Example: send a login request to a server by reading login and password from two textboxes
+
+::: code-tabs#reference
+@tab JavaScript
+```js
+var login = templates.list['LoginField'][0].text,
+    password = templates.list['PasswordField'][0].text;
+// Usually authentication is more complicated than this simplified example
+fetch('https://yourServer.com', {
+    method: 'POST',
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        login,
+        password
+    })
+}).then(response => {
+    if (response.ok) {
+        return response.json();
+    }
+    throw new Error('Login failed');
+}).then(json => {
+    if (json.ok) {
+        rooms.switch('InGame');
+    }
+}).catch(error => {
+    console.error(error);
+    rooms.switch('Login_NetworkError');
+});
+```
+@tab CoffeeScript
+```coffee
+login = templates.list['LoginField'][0].text
+password = templates.list['PasswordField'][0].text
+
+payload =
+    login: login
+    password: password
+
+# Usually authentication is more complicated than this simplified example
+fetch 'https://yourServer.com',
+    method: 'POST'
+    headers:
+      'Accept': 'application/json'
+      'Content-Type': 'application/json'
+    body: JSON.stringify payload
+.then (response) =>
+    if response.ok
+        return response.json()
+    throw new Error 'Login failed'
+.then (json) =>
+    if json.ok
+        rooms.switch 'InGame'
+.catch (error) =>
+    console.error error
+    rooms.switch 'Login_NetworkError'
 ```
 :::
 
