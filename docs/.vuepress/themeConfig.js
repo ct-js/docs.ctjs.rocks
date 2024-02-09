@@ -16,7 +16,7 @@ export default {
         mdEnhance: {
             // Markdown options
             gfm: true,
-            container: true,
+            hint: true,
             tabs: true,
             codetabs: true,
             sup: true,
@@ -24,8 +24,8 @@ export default {
             tasklist: true,
             align: true,
 
-            imageLazyload: true,
-            linkCheck: true
+            imgLazyload: true,
+            checkLinks: true
         },
         comment: {
             provider: 'Giscus',
@@ -34,7 +34,11 @@ export default {
             category: 'Pages\' discussions',
             categoryId: 'DIC_kwDOCjp7pc4CTa2u',
             reactionsEnabled: false
-        }
+        },
+        searchPro: {
+            autoSuggestions: false
+        },
+        readingTime: false
     },
 
     locales: {

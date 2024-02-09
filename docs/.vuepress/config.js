@@ -1,4 +1,5 @@
 import { defineUserConfig } from '@vuepress/cli';
+import { viteBundler } from '@vuepress/bundler-vite'
 
 //import { searchPlugin } from '@vuepress/plugin-search';
 //import { mediumZoomPlugin } from '@vuepress/plugin-medium-zoom';
@@ -10,11 +11,11 @@ import themeConfig from './themeConfig';
 export default defineUserConfig({
   title: 'ct.js Documentation',
   description: 'Docs, tutorials, guides',
-  plugins: [
-    searchPlugin({
-      maxSuggestions: 10
-    }),
-  ],
+  bundler: viteBundler({
+    viteOptions: {},
+    vuePluginOptions: {},
+  }),
+  plugins: [],
   head: [
     ['script', {
       src: '/themeSwitcher.js'

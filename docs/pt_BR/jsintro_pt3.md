@@ -1,5 +1,5 @@
 ---
-sidebarDepth: 3
+headerDepth: 3
 ---
 
 # Introdução ao JavaScript, parte III: Objetos e Arrays em pronfudidade
