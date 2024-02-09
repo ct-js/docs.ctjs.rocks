@@ -183,4 +183,4 @@ this.powerFromRight = true;
 this.poweredOn = this.powerFromLeft || this.powerFromRight; // true
 ```
 
-In the next part we will talk about conditional statements and loops. For now, I recommend you to read about default [properties of Copies](ct.templates.html) and [Rooms](ct.rooms.html).
+In the next part we will talk about conditional statements and loops. For now, I recommend you to read about default [properties of Copies](./../Copy.md) and [Rooms](./../Room.md).
