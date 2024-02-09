@@ -86,18 +86,18 @@ Argument | Type | Description
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-this.tilemap = ct.tilemaps.create(-100);
+this.tilemap = tilemaps.create(-100);
 for (let i = 0; i < 10; i++) {
-    ct.tilemaps.addTile(this.tilemap, 'Tiles', i*64, 0, i);
+    tilemaps.addTile(this.tilemap, 'Tiles', i*64, 0, i);
 }
 this.tilemap.cache();
 ```
 @tab CoffeeScript
 ```coffee
-@tilemap = ct.tilemaps.create(-100)
+@tilemap = tilemaps.create(-100)
 i = 0
 while i < 10
-    ct.tilemaps.addTile @tilemap, 'Tiles', i * 64, 0, i
+    tilemaps.addTile @tilemap, 'Tiles', i * 64, 0, i
     i++
 @tilemap.cache()
 ```
@@ -105,18 +105,18 @@ while i < 10
 
 ## Example: Generate a map made of bricks and Perlin noise, and enable collisions
 
-You will need a `ct.noise` module enabled in your project, `ct.place`, and a texture named `RockTile`.
+You will need a `noise` module enabled in your project, `place`, and a texture named `RockTile`.
 
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-const tilemap = ct.tilemaps.create(-100);
-ct.noise.setSeed(); // Randomize the seed on each start
+const tilemap = tilemaps.create(-100);
+noise.setSeed(); // Randomize the seed on each start
 
 // Assuming you have a texture called 'RockTile' which is 64x64px in size.
-for (var x = 0; x < ct.camera.width / 64; x++) {
-    for (var y = 0; y < ct.camera.height / 64; y++) {
-        var value = ct.noise.simplex2d(x / 7, y / 7); // Returns a value from -1 to 1.
+for (var x = 0; x < camera.width / 64; x++) {
+    for (var y = 0; y < camera.height / 64; y++) {
+        var value = noise.simplex2d(x / 7, y / 7); // Returns a value from -1 to 1.
         if (value > 0) {
             const tile = tilemap.addTile('RockTile', x*64, y*64);
             // Tiles are PIXI.Sprites; we can tweak their color and opacity before caching
@@ -126,19 +126,19 @@ for (var x = 0; x < ct.camera.width / 64; x++) {
 }
 
 tilemap.cache();
-ct.place.enableTilemapCollisions(tilemap, 'Solid');
+place.enableTilemapCollisions(tilemap, 'Solid');
 ```
 @tab CoffeeScript
 ```coffee
-tilemap = ct.tilemaps.create -100
-ct.noise.setSeed() # Randomize the seed on each start
+tilemap = tilemaps.create -100
+noise.setSeed() # Randomize the seed on each start
 
 # Assuming you have a texture called 'RockTile' which is 64x64px in size.
 x = 0
-while x < ct.camera.width / 64
+while x < camera.width / 64
     y = 0
-    while y < ct.camera.height / 64
-        value = ct.noise.simplex2d x / 7, y / 7 # Returns a value from -1 to 1.
+    while y < camera.height / 64
+        value = noise.simplex2d x / 7, y / 7 # Returns a value from -1 to 1.
         if value > 0
             tile = tilemap.addTile 'RockTile', x * 64, y * 64
             # Tiles are PIXI.Sprites; we can tweak their color and opacity before caching
@@ -146,6 +146,6 @@ while x < ct.camera.width / 64
         y++
     x++
 tilemap.cache()
-ct.place.enableTilemapCollisions tilemap, 'Solid'
+place.enableTilemapCollisions tilemap, 'Solid'
 ```
 :::
