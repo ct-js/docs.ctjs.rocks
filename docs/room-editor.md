@@ -100,6 +100,62 @@ You can change background's texture by clicking on the current texture. Other pr
   * `repeat-y` will tile the background vertically.
   * `no-repeat` won't tile the background at all.
 
+## UI tools
+
+This panel tweaks the look and position of copies, and is mainly used to configure elements of graphical user interface. UI tools have different contents depending on which copy is selected.
+
+These tools can:
+
+* Change the font and text of buttons and text labels;
+* Align copies relative to a room frame (or the one you defined), so they realign themselves to suit different screen dimensions;
+* Add bindings to common properties with JavaScript expressions.
+
+### Auto-align tool
+
+The tool is enabled with a checkbox, and **only works for UI rooms**. (You can change the type of the room in its properties panel.)
+
+![Screenshot of the auto-align tool](./images/roomEditor_autoAlign.png)
+
+The tool has three editable charts, that describe the position and padding of the frame you reference to, and how you align the copy relative to this frame.
+
+The charts are:
+
+* **The outer frame position.** It is defined by top-left and bottom-right points, and their position is measured in percents of room's viewport dimensions.
+* **The frame padding**, defined for each of the four sides in pixels.
+* **The constraints.** Vertical and horizontal constraints affect the copy separately.
+  * Each locked side means that the distance from copy's corresponding side to the edge of the frame won't change when screen dimensions change. Locking one side will stick a copy to it, locking both opposite sides will make the copy stretch with fixed gaps around it.
+  * Clicking the central buttons will make a copy position itself relative to the center of the frame.
+  * Disabling every lock and center alignment will make a copy scale relative to the frame.
+
+:::tip Tip
+Once you've changed your room to be a UI layer, you can test the auto-alignment settings by changing the room's viewport dimensions.
+:::
+
+If you want to align a copy relative to the viewport's edges, you can skip the first two charts. But with them, for example, you can align a copy relative to a column that occupies 50% of the screen.
+
+Consider this horrible tasteless example:
+
+![A UI interface with questionable design choices and a split UI layout, with a panel occupying a left side of the screen with buttons inside it](./images/roomEditor_autoAlignExample.png)
+
+The panel that is underneath the buttons occupies exactly 50% of the screen. Its alignment frame has default settings, as it is positioned relative to the viewport, and its constraints lock top and bottom sides, so there is no gap, and horizontal constraints are disabled, so the panel stretches with the viewport and continues to cover exactly 50% of the screen.
+
+The buttons will have to be positioned relative to the panel, so their frame position is set to 0;0 – 50;100. This makes the outer frame match the panel. (Note the frame with a `#` symbol.)
+
+The panel also has padding, so we add that padding to buttons' frame padding. The outline inside the panel will show the resulting reference frame for the buttons.
+
+All the buttons have horizontal constraints so they stretch horizontally nicely. Top buttons have top-side constraints, and the bottom one has bottom-side constraint. This makes them stick to top and bottom sides of the panel respectively.
+
+### Bindings
+
+Bindings are used to automatically change properties of copies once the value in the binding expression changes. This can be used to make dynamic text labels without having to create a separate template, or to, say, change button's color when certain conditions are met.
+
+Bindings must be written in JavaScript. For example:
+
+* `rooms.current.score` for a text label that shows current score.
+* `'Score: ' + room.current.score` shows the current score plus a "Score: " label before it.
+* `` `Score: ${rooms.current.score}` `` uses a JS string template that does the same thing.
+* `rooms.current.money < 50` can be used in the "Disable" field of a button to forbid using it when a player doesn't have enough money.
+
 ## Room properties
 
 The "Properties" tab of the room editor has options for render and camera tweaks.

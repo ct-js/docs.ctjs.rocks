@@ -40,8 +40,6 @@ Anche la texture successiva, `Laser_Blue`, dovrà essere centrata e poiché la f
 
 Entrambi gli asteroidi sono definiti da poligoni dalle loro forme concave o taglienti. Imposta la loro forma di collisione su **Line Strip / Polygon** e non dimenticare di impostare il loro asse al centro.
 
-![](../images/tutorials/tutSpaceShooter_05.png)
-
 La forma della tecture `EnemyShip` forma può essere trattata come un **Poliygon** .
 
 L'immagine di sfondo deve essere lasciata così com'è, perché non entrerà in collisione con nessuna entità del gioco.

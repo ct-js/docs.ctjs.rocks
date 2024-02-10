@@ -12,26 +12,20 @@ export default {
     titleIcon: false,
     darkmode: 'switch',
     iconAssets: 'fontawesome',
-    themeColor: {
-        green: '#44dbb5',
-        pink: '#E95378',
-        tan: '#FFCFD4',
-        rose: '#c4a7e7',
-        nord: '#88C0D0'
-    },
     plugins: {
         mdEnhance: {
             // Markdown options
             gfm: true,
-            container: true,
+            hint: true,
             tabs: true,
             codetabs: true,
             sup: true,
             sub: true,
             tasklist: true,
+            align: true,
 
-            imageLazyload: true,
-            linkCheck: true
+            imgLazyload: true,
+            checkLinks: true
         },
         comment: {
             provider: 'Giscus',
@@ -40,7 +34,11 @@ export default {
             category: 'Pages\' discussions',
             categoryId: 'DIC_kwDOCjp7pc4CTa2u',
             reactionsEnabled: false
-        }
+        },
+        searchPro: {
+            autoSuggestions: false
+        },
+        readingTime: false
     },
 
     locales: {
@@ -79,7 +77,7 @@ export default {
         },
     ],
 
-    headerDepth: 1,
+    headerDepth: 2,
     sidebarIcon: true,
     sidebar: [
         {
@@ -113,27 +111,29 @@ export default {
             icon: 'certificate',
             children: [
                 'ct-concepts',
-                'ct',
-                'ct.backgrounds',
-                'ct.camera',
-                'ct.emitters',
+                'backgrounds',
+                'behaviors',
+                'camera',
+                'emitters',
                 {
-                    link: '/ct.inputs',
-                    text: 'ct.inputs and ct.actions'
+                    link: '/inputs',
+                    text: 'inputs and actions'
                 },
-                'ct.res',
-                'ct.rooms',
-                'ct.styles',
-                'ct.tilemaps',
-                'ct.timer',
-                'ct.templates',
+                'res',
+                'rooms',
+                'settings',
+                'sounds',
+                'styles',
+                'tilemaps',
+                'timer',
+                'templates',
                 {
-                    link: '/ct.u',
-                    text: 'ct.u (utilities)'
+                    link: '/u',
+                    text: 'u (utilities)'
                 },
                 {
                     link: '/catmoddocs.md',
-                    text: 'Where are the other ct.* docs?'
+                    text: 'Where are the docs for catmods?'
                 }
             ]
         }, {
@@ -165,10 +165,6 @@ export default {
                 {
                     link: '/bitmap-fonts',
                     text: 'Using bitmap fonts'
-                },
-                {
-                    link: '/skeletal-animation',
-                    text: 'Using skeletal animation'
                 },
                 {
                     link: '/content-subsystem',
@@ -246,6 +242,9 @@ export default {
                 }, {
                     link: 'migration-2to3',
                     text: 'Migration from 2.x to 3.0'
+                }, {
+                    link: 'migration-3to4',
+                    text: 'Migration from 3.x to 4.0'
                 }, {
                     link: 'teared-background',
                     text: 'Background splits into squares!'

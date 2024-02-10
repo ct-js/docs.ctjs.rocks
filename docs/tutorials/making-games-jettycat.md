@@ -16,15 +16,15 @@ As you can see, this is not a "Hello world" example, but rather a guide to creat
 
 Open ct.js and create a new project by writing the name of your project and clicking the "Create" button. Tell ct.js where to save your project. A folder like "My Documents" would be a good choice.
 
-![Creating a new project](./../images/tutorials/tutJettyCat_01.png)
+![](./../images/tutorials/tutCommon_CreateProject.png)
 
-Click the "Textures" tab at the top of the ct.js' window. Then, open your file explorer, and find the folder `examples/JettyCat_assets` inside ct.js' folder. If you used the itch.io app to install ct.js, you can right click the installed program icon in your library to open the file explorer to its location. Inside, there are the assets we will use. Drag the assets from your file viewer to ct.js, and ct will quickly import them to the project.
+Click the "Assets" tab at the top of the ct.js' window. Then, open your file explorer, and find the folder `examples/JettyCat_assets` inside ct.js' folder. If you used the itch.io app to install ct.js, you can right click the installed program icon in your library to open the file explorer to its location. Inside, there are the assets we will use. Drag the assets from your file viewer to ct.js, and ct will quickly import them to the project.
 
 We will need to prepare these textures: properly mark backgrounds as such, and set collision shapes so that copies inside your game precisely interact with each other. Firstly, let's open the background for our project. Click the `BG_Ground` card:
 
 ![Opening a texture asset in ct.js](./../images/tutorials/tutJettyCat_02.png)
 
-Here, we will need to click the checkbox "Use as a background?" This tells ct.js to pack this texture differently and allows it to repeat in our levels.
+Here, we will need to click the checkbox "This is a tiled background" This tells ct.js to pack this texture differently and allows it to repeat in our levels.
 
 ![Changing texture's type to background in ct.js](./../images/tutorials/tutJettyCat_03.png)
 
@@ -56,11 +56,11 @@ We will need to do it for all the four tube textures. Then, we can start creatin
 
 ## Creating our main room and moving the cat
 
-Let's create a room where all the fun will be happening! Rooms are often called levels. These are the places where all your resources get combined, and where they can interact with each other. Open the "Rooms" tab at the top of the ct.js window, and create a new one.
+Let's create a room where all the fun will be happening! Rooms are often called levels. These are the places where all your resources get combined, and where they can interact with each other. Open the "Assets" tab at the top of the ct.js window, and click on "New Asset" and select "Room". Call the room as `InGame` — we will use this particular name later in code.
 
 ![Creating a new room in ct.js](./../images/tutorials/tutJettyCat_06.png)
 
-A room editor for this exact room will appear. Call the room as `InGame` — we will use this particular name later in code. There are no rules in naming them, though; we just need something we can remember later while coding menus :)
+A room editor for this exact room will appear. There are no rules in naming them, though; we just need something we can remember later while coding menus :)
 
 Then, on the Properties panel with a gear icon, we need to set the size of our room. Set it to 1080x1920 pixels.
 
@@ -86,11 +86,11 @@ Set sky's depth value to -20, and ground's depth to -10. That's how ct.js will u
 
 Textures are essential to most games, but they don't do anything on their own. We used *backgrounds* already, and they are for purely decorative textures. *Templates*, on the other hand, can include gameplay logic and are used to create *copies*. Copies are the things we add to our rooms, and these copies are the entities that interact with each other on the screen.
 
-Let's create a template for our cat! Open the "Templates" tab at the top of the ct.js window, and press the "Create" button. Name it as `PotatoCat`, and set its texture by clicking the "Select" square and selecting the cat's texture.
+Let's create a template for our cat! Open the "Assets" tab at the top of the ct.js window, and press the "New Asset" button and select "Template". Name it as `PotatoCat`, and set its texture by clicking the "Select" square and selecting the cat's texture.
 
 ![Setting a texture and the name of a template in ct.js](./../images/tutorials/tutJettyCat_10.png)
 
-We can now add the cat to our room! Navigate to it by switching back to the "Rooms" tab and opening our only room. When we click the "Add copies" tool, our cat will appear in a new panel. Click on the cat, and then click once again in a place where you want your copy to appear in the level. We will need just one cat for now.
+We can now add the cat to our room! Navigate to it by switching back to the "Assets" tab and opening our only room. When we click the "Add copies" tool, our cat will appear in a new panel. Click on the cat, and then click once again in a place where you want your copy to appear in the level. We will need just one cat for now.
 
 ![Placing a copy in the level in ct.js](./../images/tutorials/tutJettyCat_11.png)
 
@@ -98,7 +98,7 @@ If you click the "Launch" button now, it will run the debugger, and we will see 
 
 ![Testing the game in ct.js](./../images/tutorials/tutJettyCat_12.png)
 
-Open the "Templates" tab again, and open the cat's template. You should see the event "Frame start" selected, with some code on the right. ct.js runs blocks of code depending on the event that is happening. Click on the "Add an event" button to see some options. Here are some important events:
+Open the "Assets" tab again, and open the cat's template. You should see the event "Frame start" selected, with some code on the right. ct.js runs blocks of code depending on the event that is happening. Click on the "Add an event" button to see some options. Here are some important events:
 
 * "Creation" for code that runs once when a copy is created;
 * "Frame start" that runs at each frame;
@@ -117,22 +117,26 @@ Click on the "Add an event" button, then find the Creation event and select it. 
 ::: code-tabs#tutorial
 @tab JavaScript
 ``` js
-this.speed = 10;
+this.speed = 500;
 this.direction = 0;
+this.gravityAcceleration = 7000;
 ```
 @tab CoffeeScript
 ```coffee
-@speed = 10
+@speed = 500
 @direction = 0
+@gravityAcceleration = 7000;
 ```
 :::
 
 ![Seeing the event list in ct.js](./../images/tutorials/tutJettyCat_12_3.png)
 
 
-`this.speed = 10;` means that we need to move the cat by 10 pixels at each frame. With 60 FPS per second, it will be 600 pixels in a second — about half of our room.
+`this.speed = 500;` means that we need to move the cat by 500 pixels every second — about half of our room.
 
 `this.direction = 0;` means that we move the cat in a given direction at 0 degrees. 0 degrees mean that it will move to the right, 270 — to the top, 180 — to the left, and 90 — downwards.
+
+`this.gravityAcceleration = 7000;` will be used later. It will store how fast our cat will accelerate downwards (it's not as fast as you think it is).
 
 Now, let's move our cat whenever a player presses the screen. We will need to support both mouse and mobile touch events, thus we will use the Pointer catmod. It should already be enabled, but if it isn't, open the "Project" tab at the top of the ct.js window, then "Catmods" on the left. Find the module `Pointer` in the section with available modules. Click it to enable it — it will have a green checkbox with a tiny spinning circle around it:
 
@@ -157,22 +161,22 @@ Create a new Action down event for the cat. This is a parameterized event, so yo
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-this.gravity = 2;
-this.addSpeed(ct.delta * 4, 270);
+this.gravity = this.gravityAcceleration;
+this.addSpeed(u.time * 2 * this.gravityAcceleration, 270);
 ```
 @tab CoffeeScript
 ```coffee
-@gravity = 2
-@addSpeed ct.delta * 4, 270
+@gravity = @gravityAcceleration
+@addSpeed u.time * 2 * @gravityAcceleration, 270
 ```
 :::
 
-This code will run only when a player presses the screen. If it works, we will define a gravity force that pulls the cat down and add speed that pulls the cat upwards. We need to multiply the added speed with `ct.delta` to make it run smoothly on every occasion.
+This code will run only when a player presses the screen. If it works, we will define a gravity force that pulls the cat down and add speed that pulls the cat upwards. We need to multiply the added speed with `u.time` to make it run smoothly on every occasion. Yes, we use the `this.gravityAcceleration` value for both setting gravity and adding speed. Changing speed is an acceleration!
 
-::: tip ct.delta
-`ct.delta` will be equal to 1 most of the time, but this multiplier should not be overlooked. If a player's framerate drops or the game lags for some reason, `ct.delta` will become a larger value to compensate these frame drops and lags. For example, if framerate drops from 60 frames per second to 30, then `ct.delta` will temporarily be equal to 2.
+::: tip u.time
+`u.time` will be equal to 1/60 most of the time, but this multiplier should not be overlooked. If a player's framerate drops or the game lags for some reason, `u.time` will become a larger value to compensate these frame drops and lags. For example, if framerate drops from 60 frames per second to 30, then `u.time` will temporarily be equal to 2/60.
 
-Besides that, `ct.delta` supports in-game time stretching and allows for creating slow-mo effects and game pauses. (And we will implement these features!)
+Besides that, `u.time` supports in-game time stretching and allows for creating slow-mo effects and game pauses. (And we will implement these features!)
 :::
 
 ::: tip
@@ -185,30 +189,30 @@ If we run the project now, we will see that the cat moves from left to right, an
 
 ### Moving the camera
 
-Ct.js has an entity `ct.camera` which is responsible for showing stuff on your screen. It has lots of features, and one of them is following a copy.
+Ct.js has an entity `camera` which is responsible for showing stuff on your screen. It has lots of features, and one of them is following a copy.
 
 Open the "Creation" event of our cat, and add this code:
 
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-ct.camera.follow = this;
-ct.camera.followY = false;
-ct.camera.shiftX = 250;
+camera.follow = this;
+camera.followY = false;
+camera.shiftX = 250;
 ```
 @tab CoffeeScript
 ```coffee
-ct.camera.follow = this
-ct.camera.followY = false
-ct.camera.shiftX = 250
+camera.follow = this
+camera.followY = false
+camera.shiftX = 250
 ```
 :::
 
-`ct.camera.follow` links to a copy it should follow, and we tell it to follow the cat by setting it to `this`. `this` refers to the copy that runs the code. Rooms have their events and `this` keyword, too.
+`camera.follow` links to a copy it should follow, and we tell it to follow the cat by setting it to `this`. `this` refers to the copy that runs the code. Rooms have their events and `this` keyword, too.
 
-`ct.camera.followY = false;` tells that we don't need to move the camera vertically (by Y-axis). We will only slide it to the right.
+`camera.followY = false;` tells that we don't need to move the camera vertically (by Y-axis). We will only slide it to the right.
 
-`ct.camera.shiftX = 250;` tells that we want the camera to stay 250 pixels to the right relative to the cat. By default, it focuses so that the cat stays in the center of the viewport.
+`camera.shiftX = 250;` tells that we want the camera to stay 250 pixels to the right relative to the cat. By default, it focuses so that the cat stays in the center of the viewport.
 
 If we run the game now, the camera will nicely follow our cat. Yay!
 
@@ -226,134 +230,114 @@ Then, open our room and add pipes on the ground, so we can check the collisions.
 
 ![Creating a series of obstacles in the level](./../images/tutorials/tutJettyCat_19.png)
 
-Then, open the cat's template, and select its Frame start event. We will do the following:
-
-* We will check for a collision between a cat and a potential obstacle.
-* If we hit a tube, we will throw the cat to the left, change its texture, and set a flag that we've lost.
-* This flag will be checked at the very beginning of the code and will prevent the player's input and other logic if needed.
-
-That's the code that checks for collisions. Place it after the code that checks for player's input, but before `this.move();` line:
+Firstly, make a new template "PotatoCat_Stunned", using the "PotatoCat_Stunned" texture. Then, in its "Creation" event add the following:
 
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-// If the cat bumped into something solid and the game is not over
-if (!this.gameover && ct.place.occupied(this, 'Obstacle')) {
-    // Change the texture
-    this.tex = 'PotatoCat_Stunned';
-    // Set a flag that we will use to stop other logic
-    this.gameover = true;
-    // Jump to the left
-    this.speed = 25;
-    this.direction = 135;
-    // Stop camera movement
-    ct.camera.follow = false;
-}
+this.gravity = 7000;
+
+// Jump to the left
+this.speed = 1500;
+this.direction = -135;
 ```
 @tab CoffeeScript
 ```coffee
-# If the cat bumped into something solid and the game is not over
-if !@gameover and ct.place.occupied this, 'Obstacle'
-    # Change the texture
-    @tex = 'PotatoCat_Stunned'
-    # Set a flag that we will use to stop other logic
-    @gameover = true
-    # Jump to the left
-    @speed = 25
-    @direction = 135
-    # Stop camera movement
-    ct.camera.follow = false
+@gravity = 7000;
+
+# Jump to the left
+@speed = 1500
+@direction = -135
 ```
 :::
 
-`ct.place.occupied` checks for a collision of a given copy with a specific collision group. This method is provided by `ct.place` module, and you can find its reference for other methods in the "Catmods" tab.
+This is the stunned cat template we will switch to when the cat hits an obstacle. Once it exists, it will be pushed to the left and out of the screen, with gravity.
 
-We will also need this block of code right at the beginning of the Frame start event:
+Now, open the "PotatoCat" template, and create a new event "Collision with a group" with group name "Obstacle". This is the code that will run once the cat hits a pipe. Next, we will add the following code to destroy the copy and trigger the "Destruction" event:
 
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-if (this.gameover) {
-    this.gravity = 2;
-    this.move();
-    return;
-    // No code below will be executed if "return" was executed.
-}
+this.kill = true
 ```
 @tab CoffeeScript
 ```coffee
-if @gameover
-    @gravity = 2
-    @move()
-    # No code below will be executed if "return" was executed.
-    return
+@kill = true
 ```
 :::
 
-`this.gravity = 2;` will make sure that there is a gravity set to the cat even if the player hasn't interacted with a game yet (in the case when they lose by no interaction). `return;` stops further execution, and we place `this.move()` above that, because the same line at the bottom won't run.
+Finally, create the "Destruction" event in PotatoCat so we can spawn the PotatoCat_Stunned copy before this copy gets deleted, and add the following:
 
-![The current Frame start event code of the cat](./../images/tutorials/tutJettyCat_20.png)
+::: code-tabs#tutorial
+@tab JavaScript
+```js
+// Stop camera movement
+camera.follow = false;
+
+// Create an animated dummy
+var dummy = templates.copy('PotatoCat_Stunned', this.x, this.y);
+
+// Copy scale settings to the new copy
+dummy.scale.x = this.scale.x;
+dummy.scale.y = this.scale.y;
+```
+@tab CoffeeScript
+```coffee
+# Stop camera movement
+camera.follow = false
+
+# Create an animated dummy
+dummy = templates.copy 'PotatoCat_Stunned', this.x, this.y
+
+# Copy scale settings to the new copy
+dummy.scale.x = @scale.x
+dummy.scale.y = @scale.y
+```
+:::
+
+`dummy.scale.x = this.scale.x;` and `dummy.scale.y = this.scale.y;` just makes sure that if we decide to resize PotatoCat later on then the stunned template will resize in the same way.
 
 Time for some testing! If the cat jerks sharply during a collision, check that its collision shape and axis are set in the same way as in the starting texture.
 
 ### Making the cat lose if it touches ground or screen's top edge
 
-For some reason, the floor — and even the sky — is as deadly as tubes in flappy bird-like games. Now, the ground does not have a template and won't work with `ct.place`, as well as sky, as it is not a game's entity at all. But they are flat, horizontal, and we can augment our collision logic with rules that check the cat's position in space.
+For some reason, the floor — and even the sky — is as deadly as tubes in flappy bird-like games. Now, the ground does not have a template and won't work with `place`, as well as sky, as it is not a game's entity at all. But they are flat, horizontal, and we can augment our collision logic with rules that check the cat's position in space.
 
 If we now open our room and move the mouse over the level, we will see current coordinates in the bottom left corner. The top side of the initial view frame is always at 0 pixels on the Y-axis, and the ground's top edge is somewhere at 1750 pixels. Copies' positions are defined by `this.x` and `this.y`, and we can read them and compare to some other values.
 
 ![](./../images/tutorials/tutJettyCat_21.png)
 
-Modify the cat's collision logic as following so the cat gets stunned from hitting the ground and sky as well. Note that we added parentheses around new comparisons and `ct.place.occupied` to divide them:
+Modify the cat's "Frame start" logic as following so the cat gets stunned from hitting the ground and sky as well:
 
 ::: code-tabs#tutorial
 @tab JavaScript
-```js {3,4,5,6}
-// If the game is not over, the cat bumped into something solid, or
-if (!this.gameover && (ct.place.occupied(this, 'Obstacle') ||
-    // the cat is below the ground minus its approximate height, or
-    this.y > 1750 - 200 ||
-    // the cat flew off the upper boundary,
-    this.y < 0)
-) {
-    // Change the texture
-    this.tex = 'PotatoCat_Stunned';
-    // Set a flag that we will use to stop other logic
-    this.gameover = true;
-    // Jump to the left
-    this.speed = 25;
-    this.direction = 135;
-    // Stop camera movement
-    ct.camera.follow = false;
+```js
+this.move();
+
+if (this.y > 1750 - 200 || // If the cat is below the ground minus its approximate height, or
+    this.y < 0) {          // the cat flew off the upper boundary,
+    this.kill = true;      // remove the cat.
 }
 ```
 @tab CoffeeScript
-```coffee{3}
-bumped = ct.place.occupied this, 'Obstacle'
-# If the game is not over, the cat bumped into something solid, or
-if !@gameover and (bumped or @y > 1750 - 200 or @y < 0)
-    # Change the texture
-    @tex = 'PotatoCat_Stunned'
-    # Set a flag that we will use to stop other logic
-    @gameover = true
-    # Jump to the left
-    @speed = 25
-    @direction = 135
-    # Stop camera movement
-    ct.camera.follow = false
+```coffee
+@move
+
+if @y > 1750 - 200 or @y < 0    # If the cat is below the ground minus its approximate height, or the cat flew off the upper boundary,
+    @kill = true                # remove the cat.
 ```
 :::
 
 ### Randomizing pipe's height by changing its texture
 
-We changed the cat's texture before with `tex = 'NewTextureName'`. We can do the same with our pipes to randomize their height, as we have four different textures for them.
+We can change the texture in code with our pipes to randomize their height, as we have four different textures for them.
 
-Ct.js has a built-in module called `ct.random` that helps to generate random values. Find it in the Catmods view from the Project tab at the top and enable it. Then, add the Creation event to the tube template, open the Creation event code and add this snippet:
+Ct.js has a built-in module called `random` that helps to generate random values. Find it in the Catmods view from the Project tab at the top and enable it. Then, add the Creation event to the tube template, open the Creation event code and add this snippet:
 
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-this.tex = ct.random.dice(
+this.tex = random.dice(
     'Tube_01',
     'Tube_02',
     'Tube_03',
@@ -362,11 +346,11 @@ this.tex = ct.random.dice(
 ```
 @tab CoffeeScript
 ```coffee
-@tex = ct.random.dice 'Tube_01', 'Tube_02', 'Tube_03', 'Tube_04'
+@tex = random.dice 'Tube_01', 'Tube_02', 'Tube_03', 'Tube_04'
 ```
 :::
 
-`ct.random.dice` is a function that accepts any number of arguments and returns one of them randomly each time it is called.
+`random.dice` is a function that accepts any number of arguments and returns one of them randomly each time it is called.
 
 Time for testing! If your pipes spawn misaligned, check that you set up collision shapes for all the four textures and put their axis to the bottom of a pipe.
 
@@ -405,7 +389,7 @@ this.timer1 = 5;
 
 Here, `timer1` is a special variable name that will count down to 0 automatically without additional programming. This corresponds to the Timer 1 event.
 
-Add the Timer 1 event and in the code put this:
+Add the Timer 1 event, name it something like "TubeSpawn", keep UI event unchecked and in the code put this:
 
 ::: code-tabs#tutorial
 @tab JavaScript
@@ -414,8 +398,8 @@ Add the Timer 1 event and in the code put this:
 this.timer1 = 2
 
 // Create two tubes
-var tube1 = ct.templates.copy('Tube', ct.camera.right + 250, ct.camera.bottom - 130); // At the bottom of the camera
-var tube2 = ct.templates.copy('Tube', ct.camera.right + 250, ct.camera.top - 70); // At the top
+var tube1 = templates.copy('Tube', camera.right + 250, camera.bottom - 130); // At the bottom of the camera
+var tube2 = templates.copy('Tube', camera.right + 250, camera.top - 70); // At the top
 
 // Change second tube's texture depending on which texture is used in the first tube
 if (tube1.tex === 'Tube_01') { // Shortest tube will result in the longest tube
@@ -439,9 +423,9 @@ tube2.scale.y = -1;
 
 # Create two tubes
 # At the bottom of the camera
-tube1 = ct.templates.copy 'Tube', ct.camera.right + 250, ct.camera.bottom - 130
+tube1 = templates.copy 'Tube', camera.right + 250, camera.bottom - 130
 # At the top
-tube2 = ct.templates.copy 'Tube', ct.camera.right + 250, ct.camera.top - 70
+tube2 = templates.copy 'Tube', camera.right + 250, camera.top - 70
 
 # Change second tube's texture depending on which texture is used in the first tube
 if tube1.tex == 'Tube_01'
@@ -465,9 +449,9 @@ There's a lot of code!
 
 `timer1` will be zero when this event calls. When it happens, we set its value again to a positive number so that it fires again later. Here we add 2 seconds. ct.js will count it down automatically again because it is a special variable.
 
-We create two copies with `ct.templates.copy(templateName, xPosition, yPosition)` and store references to them to variables `tube1` and `tube2`. At the start, their height will be completely normal as their Creation code with `ct.random.dice` will be run instantly after their creation. This will result in a blocked pathway in a good portion of cases when both tubes turned out to be the long ones. To fix this, we read the texture's name of a first tube `tube1` with `tube1.tex` and set the texture of the second tube `tube2` depending on the extracted value.
+We create two copies with `templates.copy(templateName, xPosition, yPosition)` and store references to them to variables `tube1` and `tube2`. At the start, their height will be completely normal as their Creation code with `random.dice` will be run instantly after their creation. This will result in a blocked pathway in a good portion of cases when both tubes turned out to be the long ones. To fix this, we read the texture's name of a first tube `tube1` with `tube1.tex` and set the texture of the second tube `tube2` depending on the extracted value.
 
-`ct.camera.right`, `ct.camera.left`, `ct.camera.top`, `ct.camera.bottom` represent coordinates of view boundaries in game coordinates. Here we use them to create tubes off-screen, a bit to the right where the viewport ends, and above the bottom and top edge of the viewport.
+`camera.right`, `camera.left`, `camera.top`, `camera.bottom` represent coordinates of view boundaries in game coordinates. Here we use them to create tubes off-screen, a bit to the right where the viewport ends, and above the bottom and top edge of the viewport.
 
 Lastly, we flip the second tube by running `tube2.scale.y = -1`. It is exactly the same operation we would make when flipping an image vertically in a graphics editor. For reference, there also exists `tube2.scale.x` that sets its horizontal scale.
 
@@ -491,13 +475,13 @@ Add this code to the tube's Frame start event:
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-if (this.x < ct.camera.left - 150) {
+if (this.x < camera.left - 150) {
     this.kill = true;
 }
 ```
 @tab CoffeeScript
 ```coffee
-if @x < ct.camera.left - 150
+if @x < camera.left - 150
     @kill = true
 ```
 :::
@@ -524,23 +508,23 @@ Create a Collision with a template event, and select PotatoCat as the template. 
 @tab JavaScript
 ```js
 this.kill = true;
-ct.room.score += 1;
+rooms.current.score += 1;
 ```
 @tab CoffeeScript
 ```coffee
 @kill = true
-ct.room.score += 1
+rooms.current.score += 1
 ```
 :::
 
 ::: tip
-An alternative to using the collision event is calling `ct.place.meet` in an if statement before executing this code in the Frame start event. `ct.place.meet` is like `ct.place.occupied`, though it checks not against collision groups but against a specific template.
+An alternative to using the collision event is calling `place.meet` in an if statement before executing this code in the Frame start event. `place.meet` is like `place.occupied`, though it checks not against collision groups but against a specific template.
 :::
 
-This event checks whether a star collides with our cat. If it does, `this.kill = true` tells that the star should be removed. `ct.room.score += 1;` increments our score variable that was created before in the room's "Creation" code.
+This event checks whether a star collides with our cat. If it does, `this.kill = true` tells that the star should be removed. `rooms.current.score += 1;` increments our score variable that was created before in the room's "Creation" code.
 
 ::: tip
-`ct.room` always points to the current room. If you have nested rooms, the `ct.room` will always point to the main one.
+`rooms.current` always points to the current room. If you have nested rooms, the `rooms.current` will always point to the main one.
 :::
 
 We will also need this code in the Frame start event to prevent memory leaks and remove stars that were not collected:
@@ -548,20 +532,20 @@ We will also need this code in the Frame start event to prevent memory leaks and
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-if (this.x < ct.camera.left - 150) {
+if (this.x < camera.left - 150) {
     this.kill = true;
 }
 ```
 @tab CoffeeScript
 ```coffee
-if @x < ct.camera.left - 150
+if @x < camera.left - 150
     @kill = true
 ```
 :::
 
 ### Spawning stars
 
-In the room's Timer 1 event code, add a couple of lines (the highlighted ones) that will add a star with a 30% chance somewhere in between the next two tubes. It will use methods from the `ct.random` module:
+In the room's Timer 1 event code, add a couple of lines (the highlighted ones) that will add a star with a 30% chance somewhere in between the next two tubes. It will use methods from the `random` module:
 
 ::: code-tabs#tutorial
 @tab JavaScript
@@ -570,8 +554,8 @@ In the room's Timer 1 event code, add a couple of lines (the highlighted ones) t
 this.timer1 = 2
 
 // Create two tubes
-var tube1 = ct.templates.copy('Tube', ct.camera.right + 250, ct.camera.bottom - 130); // At the bottom of the camera
-var tube2 = ct.templates.copy('Tube', ct.camera.right + 250, ct.camera.top - 70); // At the top
+var tube1 = templates.copy('Tube', camera.right + 250, camera.bottom - 130); // At the bottom of the camera
+var tube2 = templates.copy('Tube', camera.right + 250, camera.top - 70); // At the top
 
 // Change second tube's texture depending on which texture is used in the first tube
 if (tube1.tex === 'Tube_01') { // Shortest tube will result in the longest tube
@@ -589,8 +573,8 @@ if (tube1.tex === 'Tube_01') { // Shortest tube will result in the longest tube
 tube2.scale.y = -1;
 
 // Create a star bonus with 30% chance somewhere in between top and bottom edge, with 300px padding.
-if (ct.random.chance(30)) {
-    ct.templates.copy('Star', ct.camera.right + 250 + 500, ct.random.range(ct.camera.top + 300, ct.camera.bottom - 300));
+if (random.chance(30)) {
+    templates.copy('Star', camera.right + 250 + 500, random.range(camera.top + 300, camera.bottom - 300));
 }
 ```
 @tab CoffeeScript
@@ -600,9 +584,9 @@ if (ct.random.chance(30)) {
 
 # Create two tubes
 # At the bottom of the camera
-tube1 = ct.templates.copy('Tube', ct.camera.right + 250, ct.camera.bottom - 130)
+tube1 = templates.copy 'Tube', camera.right + 250, camera.bottom - 130
 # At the top
-tube2 = ct.templates.copy('Tube', ct.camera.right + 250, ct.camera.top - 70)
+tube2 = templates.copy 'Tube', camera.right + 250, camera.top - 70
 
 # Change second tube's texture depending on which texture is used in the first tube
 if tube1.tex == 'Tube_01'
@@ -621,22 +605,22 @@ else if tube1.tex == 'Tube_04'
 tube2.scale.y = -1
 
 # Create a star bonus with 30% chance somewhere in between top and bottom edge, with 300px padding.
-if ct.random.chance(30)
-    ct.templates.copy 'Star', ct.camera.right + 250 + 500, ct.random.range(ct.camera.top + 300, ct.camera.bottom - 300)
+if random.chance(30)
+    templates.copy 'Star', camera.right + 250 + 500, random.range(camera.top + 300, camera.bottom - 300)
 ```
 :::
 
-`ct.random.chance(30)` returns `true` 30 times out of 100, and `false` otherwise. You can tweak the number to make stars appear more or less often.
+`random.chance(30)` returns `true` 30 times out of 100, and `false` otherwise. You can tweak the number to make stars appear more or less often.
 
-`ct.random.range(a, b)` picks a random value in between the given range. In our case, we calculate two coordinates relatively to our camera so that stars don't spawn near the ground or top edge.
+`random.range(a, b)` picks a random value in between the given range. In our case, we calculate two coordinates relatively to our camera so that stars don't spawn near the ground or top edge.
 
 ### Creating a UI element with a counter
 
 In ct.js, as of v1.3, UI elements are usually created in a separate room that then gets embedded into other rooms. These nested rooms are also often referred to as "layers".
 
-Go to the UI tab at the top of the ct.js window, and create a new text style. Call it Orange. Here, we will create a text style that we will use to display our score, as well as other text lines.
+Go to the Assets tab at the top of the ct.js window, and create a new Style under "New Asset". Call it Orange. Here, we will create a text style that we will use to display our score, as well as other text lines.
 
-On the first tab, "Font", set the font size to 80, and its weight to 900. Then align it to center. This will make the text bolder and bigger.
+On the first tab, "Font", set the font size to 80, and its weight to 900. Make its line height 0, then align it to center. This will make the text bolder and bigger.
 
 ![Setting a font's properties in ct.js text style](./../images/tutorials/tutJettyCat_24.png)
 
@@ -648,35 +632,19 @@ Then, switch to the "Stroke" tab, and activate it. Set stroke's color as dark br
 
 ![Setting stroke's properties in ct.js text style](./../images/tutorials/tutJettyCat_26.png)
 
-We can save the style now. After that, we will need a new template that will display a star icon and a score counter.
+We can save the style now. After that, we will need two new templates that will display a star icon and a score counter.
 
-Create a new template and call it `StarCounter`. As its texture, we will reuse our `Star` texture. In its Creation event code, put the following snippet:
+Create a new template and call it `StarCounter`. As its texture, we will reuse our `Star` texture. 
 
-::: code-tabs#tutorial
-@tab JavaScript
-```js
-this.label = new PIXI.Text('0', ct.styles.get('Orange'));
-this.label.x = 130;
-this.label.y = -60;
-this.addChild(this.label);
-```
-@tab CoffeeScript
-```coffee
-style = ct.styles.get 'Orange'
-@label = new PIXI.Text '0', style
-@label.x = 130
-@label.y = -60
-@addChild @label
-```
-:::
+Now make another template called `StarCounterLabel`. This will show the score value next to the StarCounter copy. Now switch it from being an animated sprite to a text.
 
-This code is sorcery made in Pixi.js' API. Pixi.js is the graphics framework ct.js is built upon, and when we need to display something beyond copies and backgrounds, we will use their API. Here, `new PIXI.Text` creates a new text label. Its first argument is a string that will be displayed: we have 0 score points at room start, and thus will write `'0'` as an initial text. The second argument is a text style — we load it from our created style `'Orange'`.
+![Switch StarCounterLabel to be a text](./../images/tutorials/tutJettyCat_16_2.png)
 
-By writing `this.label = new Pixi.Text(…)`, we instantly remember the reference to the created label and save it as a copy's parameter `this.label`. We then position it by writing `this.label.x = 130;` and `this.label.y = -60`, but we are doing it relative to the copy. The copy `StarCounter` itself is more a container we use to display our text, though it still displays an icon. The line `this.addChild(this.label)` finally puts the created text label into the copy.
+Once you switch it to a text you can click on the ghostly cat icon and now you can choose between your styles. Select the Orange style you made.
 
-We need to update the text label at each frame. In the Frame end event, put the line `this.label.text = ct.room.score;`.
+We need to update the text label at each frame. In the Frame end event, put the line `this.text = rooms.current.score;`. `this.text` is a property that lets us edit the label of a text copy easily, now that we switched it to a Text. You can also set the default text of this template in the right sidebar so it doesn't say `<Empty>` when we put it in the room.
 
-Finally, let's create a room for this counter and put this room inside the main one. Create a new room, and call it `UI_InGame`. Then, set its view size to 1080x1920 to match the main room's viewport, mark it as a UI layer, and put a counter's copy in the top-left corner:
+Finally, let's create a room for this counter and label and put this room inside the main one. Create a new room, and call it `UI_InGame`. Then, set its view size to 1080x1920 to match the main room's viewport, mark it as a UI layer, and put a counter's copy and label in the top-left corner:
 
 ![Creating a UI layer in ct.js](./../images/tutorials/tutJettyCat_27.png)
 
@@ -685,15 +653,15 @@ Then open the room `InGame`, and add this code to the bottom of its Room start c
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-ct.rooms.append('UI_InGame');
+this.mainUi = rooms.append("UI_InGame");
 ```
 @tab CoffeeScript
 ```coffee
-ct.rooms.append 'UI_InGame'
+@mainUi = rooms.append 'UI_InGame'
 ```
 :::
 
-After that, you should have stars spawning in the level, and the increment score displayed in the top-left corner of the viewport.
+We will reference this room for later. After that, you should have stars spawning in the level, and the increment score displayed in the top-left corner of the viewport.
 
 ## Creating menus
 
@@ -716,18 +684,18 @@ After that, create a new template with this texture. Create a Pointer click even
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-ct.rooms.switch('InGame');
+rooms.switch('InGame');
 ```
 @tab CoffeeScript
 ```coffee
-ct.rooms.switch 'InGame'
+rooms.switch 'InGame'
 ```
 :::
 
 This checks whether a player pressed the button, and if they did, it switches to our main room.
 
 ::: tip
-If you want to use ct.pointer instead for checking clicks, because the play button is on the UI layer you will need to use `ct.pointer.collidesUi(this)` instead of `ct.pointer.collides(copy)`.
+If you want to use pointer instead for checking clicks, because the play button is on the UI layer you will need to use `pointer.collidesUi(this)` instead of `pointer.collides(copy)`.
 :::
 
 Create a new room and call it `MainMenu`. Add backgrounds to it, and layout recently created copies so that it looks like this:
@@ -738,7 +706,7 @@ Hold the Alt button on your keyboard to place copies precisely.
 
 If your copies seem to disappear or not being placed, check that you set the depth of your backgrounds to -20 and -10. They may be overlapping your elements!
 
-If we now run the game, it will still start in our main room. To change that, open the Rooms tab and right-click the `MainMenu` room. In the context menu, select "Set as the starting room".
+If we now run the game, it will still start in our main room. To change that, right-click the `MainMenu` room. In the context menu, select "Set as the starting room".
 
 ![Setting a starting room in ct.js](./../images/tutorials/tutJettyCat_30.png)
 
@@ -754,33 +722,33 @@ The template `Button_Pause` will have this code in its Pointer click event:
 @tab JavaScript
 ```js
 // Check if we don't have any rooms called 'UI_Paused'
-if (ct.rooms.list['UI_Paused'].length === 0) {
+if (rooms.list['UI_Paused'].length === 0) {
     // Create a room UI_Paused, put it above the current one (append it),
     // and specify that it is a UI layer (isUi: true)
-    ct.rooms.append('UI_Paused', {
+    rooms.append('UI_Paused', {
         isUi: true
     });
-    // Turns ct.delta into 0, effectively stopping the game
-    ct.pixiApp.ticker.speed = 0;
+    // Turns u.delta into 0, effectively stopping the game
+    pixiApp.ticker.speed = 0;
 }
 ```
 @tab CoffeeScript
 ```coffee
 # Check if we don't have any rooms called 'UI_Paused'
-if ct.rooms.list['UI_Paused'].length == 0
+if rooms.list['UI_Paused'].length == 0
     # Create a room UI_Paused, put it above the current one (append it),
     # and specify that it is a UI layer (isUi: true)
     settings =
         isUi: true
-    ct.rooms.append 'UI_Paused', settings
-    # Turns ct.delta into 0, effectively stopping the game
-    ct.pixiApp.ticker.speed = 0
+    rooms.append 'UI_Paused', settings
+    # Turns u.delta into 0, effectively stopping the game
+    pixiApp.ticker.speed = 0
 ```
 :::
 
 Remember the name `UI_Paused`. We will need to create a room with this name a bit later.
 
-`ct.pixiApp.ticker.speed` is the multiplier that affects how `ct.delta` is calculated. When it is set to 0, it will effectively pause the game as everyone's `ct.delta` will turn to 0. Our cat and timers are dependant on `ct.delta`.
+`pixiApp.ticker.speed` is the multiplier that affects how `delta` is calculated. When it is set to 0, it will effectively pause the game as everyone's `delta` will turn to 0. Our cat and timers are dependant on `delta`.
 
 Open the room `UI_InGame` and place the created template at the top right corner.
 
@@ -791,18 +759,18 @@ The button will have the following code in its Pointer click event:
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-ct.rooms.remove(this.getRoom());
-ct.pixiApp.ticker.speed = 1;
+rooms.remove(this.getRoom());
+pixiApp.ticker.speed = 1;
 ```
 @tab CoffeeScript
 ```coffee
 room = @getRoom()
-ct.rooms.remove room
-ct.pixiApp.ticker.speed = 1
+rooms.remove room
+pixiApp.ticker.speed = 1
 ```
 :::
 
-`ct.rooms.remove(room);` removes the previously added room. It cannot remove the main one, but it is created to remove nested ones. `this.getRoom()` looks up for a room that owns the current copy. `ct.pixiApp.ticker.speed = 1;` reverts `ct.delta` back to normal behavior, unpausing the game.
+`rooms.remove(room);` removes the previously added room. It cannot remove the main one, but it is created to remove nested ones. `this.getRoom()` looks up for a room that owns the current copy. `pixiApp.ticker.speed = 1;` reverts `delta` back to normal behavior, unpausing the game.
 
 The final step is to create this nested room that will have an unpause button and a decorative header. Create a room called `UI_Paused`, and place a `Button_Continue` copy and a "Paused" header. Make sure you set its viewport size to 1080x1920 as well!
 
@@ -812,36 +780,32 @@ The final step is making a score screen that will be displayed after a player lo
 
 Create a template with a texture `OhNo`. It won't have any logic.
 
-The other one, `EndGame_ScoreCounter`, won't have any texture at all. Instead, it will display a text label through code. It will also remember and display the player's high score. Put this code to its Creation event:
+The other one, `EndGame_ScoreCounter`, will be a text instead of a sprite, just like our other score label. Change it to a Text and select the Orange style. It will also remember and display the player's high score. Put this code to its Creation event:
 
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
 if (!('JettyCat_HighScore' in localStorage)) {
-    localStorage['JettyCat_HighScore'] = ct.room.score;
-} else if (localStorage['JettyCat_HighScore'] < ct.room.score) {
-    localStorage['JettyCat_HighScore'] = ct.room.score;
+    localStorage['JettyCat_HighScore'] = rooms.current.score;
+} else if (localStorage['JettyCat_HighScore'] < rooms.current.score) {
+    localStorage['JettyCat_HighScore'] = rooms.current.score;
 }
 
-var scoreText = 'Your score: ' + ct.room.score + '\nHighscore: ' + localStorage['JettyCat_HighScore'];
+var scoreText = 'Your score: ' + rooms.current.score + '\nHighscore: ' + localStorage['JettyCat_HighScore'];
 
-this.label = new PIXI.Text(scoreText, ct.styles.get('Orange'));
-this.label.anchor.x = this.label.anchor.y = 0.5;
-this.addChild(this.label);
+this.text = scoreText;
 ```
 @tab CoffeeScript
 ```coffee
 if !('JettyCat_HighScore' of localStorage)
-    localStorage['JettyCat_HighScore'] = ct.room.score
-else if localStorage['JettyCat_HighScore'] < ct.room.score
-    localStorage['JettyCat_HighScore'] = ct.room.score
+    localStorage['JettyCat_HighScore'] = rooms.current.score
+else if localStorage['JettyCat_HighScore'] < rooms.current.score
+    localStorage['JettyCat_HighScore'] = rooms.current.score
 
-scoreText = 'Your score: ' + ct.room.score + '\nHighscore: ' + localStorage['JettyCat_HighScore']
-style = ct.styles.get 'Orange'
+scoreText = 'Your score: ' + rooms.current.score + '\nHighscore: ' + localStorage['JettyCat_HighScore']
+style = styles.get 'Orange'
 
-@label = new PIXI.Text scoreText, style
-@label.anchor.x = @label.anchor.y = 0.5
-@addChild @label
+@text = scoreText
 ```
 :::
 
@@ -849,62 +813,72 @@ style = ct.styles.get 'Orange'
 
 `if (!('JettyCat_HighScore' in localStorage))` checks whether a property `JettyCat_HighScore` exists inside the object `localStorage`. It is a good way to check whether there is any saved data. By the way, it works with copies, rooms, and other objects as well.
 
-If there is no such record in the browser, the line `localStorage['JettyCat_HighScore'] = ct.room.score;` will write it to the storage. Otherwise, we perform another check: `localStorage['JettyCat_HighScore'] < ct.room.score` checks whether the saved result is smaller than the current one. If it is, hooray! The player has just beaten their record. The record is updated again.
+If there is no such record in the browser, the line `localStorage['JettyCat_HighScore'] = rooms.current.score;` will write it to the storage. Otherwise, we perform another check: `localStorage['JettyCat_HighScore'] < rooms.current.score` checks whether the saved result is smaller than the current one. If it is, hooray! The player has just beaten their record. The record is updated again.
 
 This line:
 
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-var scoreText = 'Your score: ' + ct.room.score + '\nHighscore: ' + localStorage['JettyCat_HighScore'];
+var scoreText = 'Your score: ' + rooms.current.score + '\nHighscore: ' + localStorage['JettyCat_HighScore'];
 ```
 @tab CoffeeScript
 ```coffee
-scoreText = 'Your score: ' + ct.room.score + '\nHighscore: ' + localStorage['JettyCat_HighScore']
+scoreText = 'Your score: ' + rooms.current.score + '\nHighscore: ' + localStorage['JettyCat_HighScore']
 ```
 :::
-saves a string to a temporary variable. Everything defined with the `var` keyword exists for only one frame and in one event. Though it doesn't serve much purpose, it allows to write cleaner code and reuse temporary variables. The combination `\n` tells that there will be a line break there. By using the `+` operator, we join our strings with the current score and the saved one. Lastly, we create a new text label and set its text to the created variable's value (by using it as an argument in `new PIXI.Text(scoreText, ct.styles.get('Orange'));`).
+saves a string to a temporary variable. Everything defined with the `var` keyword exists for only one frame and in one event. Though it doesn't serve much purpose, it allows to write cleaner code and reuse temporary variables. The combination `\n` tells that there will be a line break there. By using the `+` operator, we join our strings with the current score and the saved one. Lastly, we set the display text to the created variable's value.
 
 Now, create a room called `UI_OhNo` with the created templates.
 
-![Setting a starting room in ct.js](./../images/tutorials/tutJettyCat_31.png)
+![Placing the EndGame_ScoreCounter copy](./../images/tutorials/tutJettyCat_31.png)
 
-The last thing we need is creating this room when the cat hits an obstacle. Open the template `PotatoCat` and find the place where we detect collision with surface or obstacles in its Frame start event. Add this code right after the line with `ct.camera.follow = false;`:
+Place the EndGame_ScoreCounter template where the x is. Now we can align the text to be centered in the preview by switching to the UI Tools and selecting our `EndGame_ScoreCounter` copy. Here we can select the center box under "Align by:" to center the text and also add some default text to test how it would look.
+
+![Aligning the text of the EndGame_ScoreCounter copy](./../images/tutorials/tutJettyCat_31_2.png)
+
+The last thing we need is creating this room when the cat hits an obstacle and removing the UI layer with the pause button so the user cannot pause while on the game over screen. Open the template `PotatoCat` and go to the Destruction event. Add this code right after the line with `camera.follow = false;`:
 
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
+// Remove the layer with score and a pause button
+rooms.remove(rooms.current.mainUi);
+
 // Wait for 1000 milliseconds (for one second)
-ct.u.wait(1000)
+u.wait(1000)
 .then(() => {
     // Add a layer with "Lose" UI
-    ct.rooms.append('UI_OhNo', {
+    rooms.append('UI_OhNo', {
         isUi: true
     });
 });
 ```
 @tab CoffeeScript
 ```coffee
+# Remove the layer with score and a pause button
+rooms.remove rooms.current.mainUi
+
 # Wait for 1000 milliseconds (for one second)
-ct.u.wait 1000
+u.wait 1000
 .then =>
     # Add a layer with "Lose" UI
     settings =
         isUi: true
-    ct.rooms.append 'UI_OhNo', settings
+    rooms.append 'UI_OhNo', settings
 ```
 :::
 
 A-a-and… ta-da! You did it! The game is fully-featured and playable!
 
 ::: tip
-`ct.u.wait(1000)` is an asynchronous method that waits for one second, then executes a given code in the `.then(() => {…})` part. "Asynchronous" means that the code is executed outside the Frame start event, and happens later in the game.
+`u.wait(1000)` is an asynchronous method that waits for one second, then executes a given code in the `.then(() => {…})` part. "Asynchronous" means that the code is executed outside the Frame start event, and happens later in the game.
 
 You will always find the structure `method().then(() => {…})` while working with asynchronous actions. In the JavaScript world, such actions are also called "Promises". When you don't need to use them, though, you can omit the part with `.then(() => {…})`.
 :::
 
 ::: tip
-`ct.u.wait` is just another way to wait for a second before running code. You can also use a Timer 1 event and `this.timer1` to do the same thing!
+`u.wait` is just another way to wait for a second before running code. You can also use a Timer 1 event and `this.timer1` to do the same thing!
 :::
 
 
@@ -917,4 +891,4 @@ Try changing this stuff to train yourself in coding:
 * Change the cat's movement so that it is more close to what happens in Flappy Bird: make the cat fly upwards abruptly when a player taps the screen, but do nothing if they then press the screen continuously.
 * Make rotating tubes to make the game more challenging.
 * Add a life counter, and allow a player to take 3 hits before losing.
-* Add sounds! Visit ct.sound documentation inside your editor's docs for modules on how to play sounds in your game.
+* Add sounds! [Visit sound documentation on how to play sounds in your game](./../sounds.md).

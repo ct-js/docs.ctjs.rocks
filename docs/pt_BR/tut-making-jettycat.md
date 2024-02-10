@@ -16,7 +16,7 @@ Como você pode ver, isso não é apenas um exemplo de "Hello world", mas sim, u
 
 Abra o ct.js e crie um novo projeto definindo o nome do seu projeto e clicando no botão "Create". Informe ao ct.js onde salvar o seu projeto. Uma pasta como "My Documents" seria uma boa escolha.
 
-![Criando um novo projeto](./../images/tutorials/tutJettyCat_01.png)
+![Criando um novo projeto](./../images/tutorials/tutCommon_CreateProject.png)
 
 Click na aba "Textures" na parte superior da janela do ct.js. Em seguida a abra o seu explorador de arquivos, e localize a pasta `examples/JettyCat_assets` dentro da pasta do ct.js. Lá dentro, existem os assets que nós usaremos. Arraste os assets do seu visualizador de arquivos para o ct.js, e o ct rapidamente importará os mesmos para o projeto.
 

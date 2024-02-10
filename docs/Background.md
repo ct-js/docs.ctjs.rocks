@@ -10,10 +10,14 @@ Property | Type | Description
 -|-|-
 `shiftX` | `number` | How much to shift the texture horizontally, in pixels.
 `shiftY` | `number` | How much to shift the texture vertically, in pixels.
-`movementX`, `movementY` | `number` | <p>The speed at which the background's texture moves by X and Y axes, wrapping around its area.</p><p>The value is measured in pixels per frame. It also takes `ct.delta` into account.</p>
+`movementX`, `movementY` | `number` | <p>The speed at which the background's texture moves by X and Y axes, wrapping around its area.</p><p>The value is measured in pixels per second. It also takes `u.time` into account.</p>
 `parallaxX`, `parallaxY` | `number` | <p>A value that makes background move faster or slower relative to other objects. It is often used to create an effect of depth.</p><p>`1` means regular movement, values smaller than 1 will make it move slower and make an effect that a background is placed farther away from camera; values larger than 1 will do the opposite, making the background appear closer than the rest of object.</p>
 `isUi` | `boolean` | Set it to `true` for backgrounds that are added to UI layers. It is needed for proper alignment of background layers.
 `repeat` | `string` | One of `'repeat'`, `'repeat-x'`, `'repeat-y'`, or `'no-repeat'`.
+
+### Adding a background
+
+Backgrounds can only be added through [`backgrounds.add`](./backgrounds.md#backgrounds-add-texname-frame-depth-container) method.
 
 ### Removing a background
 

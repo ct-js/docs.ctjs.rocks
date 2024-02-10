@@ -2,9 +2,11 @@
 
 Actions are an abstraction layer over various input methods that allow you to write a single code for various devices, be it a keyboard, mouse, gamepad, virtual keys or everything that can be connected to ct.js. The advantage is that one action listens not only to numerous devices at once but, for example, to several buttons of one device, too. For instance, you can simultaneously listen to WASD and keyboard arrows, and the code will be as if you were listening to one thing (and even less). If gamepad controls are added there, then the amount of your code will not change.
 
+::: center
 ![](./images/actions.png)
+:::
 
-For the actions to work, you need to connect particular modules: providers of input methods. The actions themselves are described in the "Settings" tab, behind the button "Actions and input methods". Ct.js comes with a number of default input providers: `ct.mouse` to track mouse clicks `ct.keyboard` for keystrokes, `ct.touch` and `ct.vkeys` for mobile, `ct.gamepad`.
+For the actions to work, you need to connect particular modules: providers of input methods. The actions themselves are described in the "Settings" tab, behind the button "Actions and input methods". Ct.js comes with a number of default input providers: `pointer` to track mouse clicks and touch events, `keyboard` for keystrokes, `vkeys` for on-screen controls, `gamepad` for console controllers.
 
 All these modules can be found and enabled in the catmods tab at a project's settings, in the category "Input methods":
 

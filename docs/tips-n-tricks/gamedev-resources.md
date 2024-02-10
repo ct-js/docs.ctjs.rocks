@@ -19,6 +19,7 @@
 
 * [Kevin MacLeod](https://www.youtube.com/channel/UCSZXFhRIx6b0dFX3xS8L1yQ) — a full-time composer who has published over 2000 compositions, most of which are made available for others to use using the Creative Commons by Attribution 3.0 license.
 * [Freesound](https://freesound.org/). Check the license for each music piece.
+* [FreePD.com](https://freepd.com/). Lots of CC0 tracks.
 
 ## Learning
 

@@ -1,6 +1,6 @@
-# ct.timer
+# timer
 
-`ct.timer` allows for making timers, optionally running a function when the timer reaches a certain amount of time.
+`timer` allows for making timers, optionally running a function when the timer reaches a certain amount of time.
 
 Examples:
 
@@ -8,14 +8,14 @@ Examples:
 @tab JavaScript
 ```js
 // Add a timer
-ct.timer.add(1000, 'test');
+timer.add(1000, 'test');
 // Or:
 new CtTimer(1000, 'test');
 ```
 @tab CoffeeScript
 ```coffee
 # Add a timer
-ct.timer.add 1000, 'test'
+timer.add 1000, 'test'
 # Or:
 new CtTimer 1000, 'test'
 
@@ -27,7 +27,7 @@ new CtTimer 1000, 'test'
 ```js
 // Create a new timer and remember it in a variable `timer`
 // Log "Done!" when it gets to 2.5 seconds
-var timer = ct.timer.add(2500, 'test');
+var timer = timer.add(2500, 'test');
 timer.then(() => {
     // Do something useful
     hero.invincible = false;
@@ -56,7 +56,7 @@ timer.resolve();
 ```coffee
 # Create a new timer and remember it in a variable `timer`
 # Log "Done!" when it gets to 2.5 seconds
-timer = ct.timer.add 2500, 'test'
+timer = timer.add 2500, 'test'
 timer.then =>
     # Do something useful
     hero.invincible = false
@@ -78,9 +78,9 @@ timer.resolve()
 ```
 :::
 
-## ct.timer methods
+## timer methods
 
-### ct.timer.add(timeMs, name) ⇒ <code>void</code>
+### timer.add(timeMs, name) ⇒ <code>void</code>
 Creates a new timer that runs in gameplay time scale and is affected by time acceleration/deceleration.
 
 | Param | Type | Description |
@@ -88,7 +88,7 @@ Creates a new timer that runs in gameplay time scale and is affected by time acc
 | timeMs | <code>Number</code> | The length of the timer, **in milliseconds** |
 | [name] | <code>String</code> | The timer's name, which will be accessible from `timer.name`. |
 
-### ct.timer.addUi(timeMs, name) ⇒ <code>void</code>
+### timer.addUi(timeMs, name) ⇒ <code>void</code>
 Creates a new timer that runs in UI time scale.
 
 | Param | Type | Description |
@@ -106,13 +106,13 @@ The amount of time the timer has been active, in milliseconds.
 
 The amount of time left until it gets to `timeMs`. Defaults to `0`.
 
-### CtTimer.name ⇒ <code>String|false</code>
+### CtTimer\.name ⇒ <code>String|false</code>
 
 The given name of a timer, or `false` if no name was given.
 
 ### CtTimer.uiDelta ⇒ <code>Boolean</code>
 
-If `true`, it will use `ct.deltaUi` for counting time. if `false`, it will use `ct.delta` for counting time.
+If `true`, it will use `u.timeUi` for counting time. if `false`, it will use `u.time` for counting time.
 
 ### CtTimer.promise ⇒ <code>Promise</code>
 

@@ -6,9 +6,9 @@ Besides that, bitmap fonts are much more better for pixelart games, as browsers 
 
 ## Importing a font and enabling a bitmap font
 
-You will need a font in TTF format. Make sure you have legal right to use it in games.
+You will need a font in TTF format. Make sure you have legal rights to use it in games.
 
-On the tab "UI", click the button "Import TTF" and locate your file. Then, click on this font to open font viewer.
+In the "Assets" tab, click "New asset" and select the Font option. Locate the file to import, and then click on the imported font to open font viewer.
 
 ![](./images/bitmapFonts_01.png)
 

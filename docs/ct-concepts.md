@@ -1,6 +1,6 @@
 # Basic concepts
 
-**Ct.js** is a modular library written in JavaScript, coupled with a visual editor. The editor is also referred to as **ct.IDE**. Games in ct.js are written in JavaScript as well: it is the programming language of the web, is flexible, easy to learn, and infinitely deep.
+**Ct.js** is a modular library written in JavaScript, coupled with a visual editor. The editor is also referred to as **ct.IDE**. Games in ct.js are written in JavaScript as well: it is the programming language of the web, is flexible, easy to learn, and infinitely deep. You can also use CoffeeScript to write your game's code, and it will be compiled in JavaScript automatically.
 
 Any ct.js game consists of **textures**, **copies**, **templates**, and **rooms**.
 
@@ -11,10 +11,12 @@ Any ct.js game consists of **textures**, **copies**, **templates**, and **rooms*
 
 There are additional resources that help make games juicier, better, fun to play, and easier to develop:
 
-* [**Actions**](actions.html) that combine different input methods into one API, so you can code once for keyboards, gamepads, virtual joysticks, and other stuff.
+* [**Actions**](./actions.md) that combine different input methods into one API, so you can code once for keyboards, gamepads, virtual joysticks, and other stuff.
+* [**Behaviors**](./behaviors.md) are used to add shared logic for rooms or templates. It is edited in the same way as templates, but with them you can also define additional options for templates besides just the events, and then add these behaviors to any templates or rooms.
 * **Catmods** are additional modules that hack on the core library and add new tools for programming and new features to the engine.
+* [**Content types and content tables**](./content-subsystem.md) are like a local database for your game's static data.
 * **Custom fonts** allow you to use .ttf files in your games, so your game looks nice in every browser or PC.
 * **Emitter tandems,** or simply particle systems, are flexible visual effects made of textures. Explosions, magic effects, rain, snow, and many other special effects may be made with these.
-* [**Skeletal animations**](skeletal-animation.html) for skinnable characters with smooth animations.
-* **Sounds** are audio assets that are played by code.
+* **Scripts** can be used to create functions you can reference in templates, rooms, content types, or be called directly with `scripts.scriptName()`.
+* [**Sounds**](sounds.html) are audio assets that are played by code.
 * **Styles** are templates for drawing labels that are used while making the user interface.

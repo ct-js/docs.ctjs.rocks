@@ -85,7 +85,7 @@ We currently have two keys where you can define new fields:
 
 * `templateExtends`, for templates (applied directly to copies);
 * `tileLayerExtends` for tile layers (written to `layer.extends` field);
-* `copyExtends` for individual copies (applied directly to copies); <badge>new in v1.4.2</badge>
+* `copyExtends` for individual copies (applied directly to copies);
 * `roomExtends` for your levels (applied directly to rooms).
 
 Since v1.4, extensions support all the fields that are supported by injections. See [Fields declarations](modding/fields-declaration.html) page for more info.

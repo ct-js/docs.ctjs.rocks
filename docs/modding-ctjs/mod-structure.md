@@ -68,7 +68,7 @@ mycatmod
 }
 ```
 
-### Listing dependencies <badge>new in v1.3</badge>
+### Listing dependencies
 
 Currently, catmods may express their dependency in other module with fields `dependencies` and `optionalDependencies` inside `module.json`. It allows ct.IDE to warn users about missing (disabled) modules. Please write info about getting custom modules in the "readme" section.
 
@@ -87,9 +87,9 @@ Currently, catmods may express their dependency in other module with fields `dep
 }
 ```
 
-## Specifying a category <badge>new in v1.4</badge>
+## Specifying a category
 
-Since v1.4, modules can specify one or two categories in module.json so that they can be filtered on the project's settings page. Categories are written in an array under the `main.categories` key, and can be one of these strings:
+Modules can specify one or two categories in module.json so that they can be filtered on the project's settings page. Categories are written in an array under the `main.categories` key, and can be one of these strings:
 
 * `customization`;
 * `desktop` — modules for desktop builds;

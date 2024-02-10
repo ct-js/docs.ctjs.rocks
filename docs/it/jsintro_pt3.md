@@ -1,5 +1,5 @@
 ---
-sidebarDepth: 3
+headerDepth: 3
 ---
 
 # Introduzione a JavaScript, parte III: oggetti e array, approfondimento

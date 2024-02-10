@@ -1,32 +1,34 @@
-# ct.backgrounds
+# backgrounds
 
-`ct.backgrounds` has some API to work with [`Background`](Background.md) objects.
+`backgrounds` has some API to work with [`Background`](Background.md) objects.
 
 ## Methods and properties
 
-### `ct.backgrounds.list['TextureName']`
+### `backgrounds.list['TextureName']`
 
 Contains an array of all the backgrounds of the current texture in the room. The array for this or that texture name may be absent if there are no such backgrounds yet, so you may need to check if the array itself exists before getting any of its elements.
+
+Any backgrounds that did not use a name of a ct.js texture when created will be put into an array `backgrounds.list.OTHER`.
 
 #### Example: Get the first background with a texture `BG_Sand` and make it darker
 
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-if (ct.backgrounds.list['BG_Sand']) {
-    const bg = ct.backgrounds.list['BG_Sand'][0];
+if (backgrounds.list['BG_Sand']) {
+    const bg = backgrounds.list['BG_Sand'][0];
     bg.tint = 0x999999;
 }
 ```
 @tab CoffeeScript
 ```coffee
-if ct.backgrounds.list['BG_Sand']
-    bg = ct.backgrounds.list['BG_Sand'][0]
+if backgrounds.list['BG_Sand']
+    bg = backgrounds.list['BG_Sand'][0]
     bg.tint = 0x999999
 ```
 :::
 
-### `ct.backgrounds.add(texName, frame, depth, container)`
+### `backgrounds.add(texName, frame, depth, container)`
 
 Argument | Type | Description
 -|-|-
@@ -46,13 +48,13 @@ Visit the [`Background` class documentation](Background.html) to learn how to tw
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-const bg = ct.backgrounds.add('BG_SkyClouds', 0, -1000);
+const bg = backgrounds.add('BG_SkyClouds', 0, -1000);
 bg.alpha = 0.5;
 bg.movementX = 1;
 ```
 @tab CoffeeScript
 ```coffee
-bg = ct.backgrounds.add 'BG_SkyClouds', 0, -1000
+bg = backgrounds.add 'BG_SkyClouds', 0, -1000
 bg.alpha = 0.5
 bg.movementX = 1
 ```

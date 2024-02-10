@@ -1,8 +1,8 @@
-# ct.inputs, ct.actions
+# inputs, actions
 
-This module (`ct.inputs`) allows you to manipulate [Actions](/actions.html). You can create, modify, or delete new actions during the game.
+This module (`inputs`) allows you to manipulate [Actions](/actions.html). You can create, modify, or delete new actions during the game.
 
-`ct.actions` stores existing actions. If you have created an action `Move`, then it will be available at `ct.actions.Move`. Each of them is an instance of JS class `CtAction`.
+`actions` stores existing actions. If you have created an action `Move`, then it will be available at `actions.Move`. Each of them is an instance of JS class `CtAction`.
 
 Here is a generic example on how to use actions in your game:
 
@@ -14,10 +14,10 @@ Here is a generic example on how to use actions in your game:
  * See "Project" > "Actions and input methods"
  * and "Actions" in the docs.
  */
-this.hspeed = 8 * ct.actions.MoveX.value; // Move by X axis
-this.vspeed = 8 * ct.actions.MoveY.value; // Move by Y axis
-if (ct.actions.Shoot.pressed) {
-    ct.templates.copy('Bullet', this.x, this.y);
+this.hspeed = 8 * actions.MoveX.value; // Move by X axis
+this.vspeed = 8 * actions.MoveY.value; // Move by Y axis
+if (actions.Shoot.pressed) {
+    templates.copy('Bullet', this.x, this.y);
 }
 ```
 @tab CoffeeScript
@@ -27,10 +27,10 @@ Move the copy around.
 See "Project" > "Actions and input methods"
 and "Actions" in the docs.
 ###
-@hspeed = 8 * ct.actions.MoveX.value # Move by X axis
-@vspeed = 8 * ct.actions.MoveY.value # Move by Y axis
-if ct.actions.Shoot.pressed
-    ct.templates.copy 'Bullet', @x, @y
+@hspeed = 8 * actions.MoveX.value # Move by X axis
+@vspeed = 8 * actions.MoveY.value # Move by Y axis
+if actions.Shoot.pressed
+    templates.copy 'Bullet', @x, @y
 ```
 :::
 
@@ -59,7 +59,7 @@ or a currently used scalar input
 
 ### ctAction.methodExists(code) ⇒ <code>Boolean</code>
 Checks whether the current action listens to a given input method.
-This *does not* check whether this input method is supported by ct.
+This *does not* check whether this input method is supported by ct.js.
 
 **Returns**: <code>Boolean</code> – `true` if it exists, `false` otherwise.
 
@@ -101,13 +101,13 @@ Resets the state of the action, setting its `value` to `0` and its `pressed`, `d
 
 ## Creating and removing new actions programmatically
 
-### ct.inputs.addAction(name, methods) ⇒ <code>CtAction</code>
+### inputs.addAction(name, methods) ⇒ <code>CtAction</code>
 
-Adds a new action and puts it into `ct.actions`.
+Adds a new action and puts it into `actions`.
 
 | Param | Type | Description |
 | --- | --- | --- |
-name|String|The name of an action, as it will be used in `ct.actions`.
+name|String|The name of an action, as it will be used in `actions`.
 methods|Array\<Object\>|A list of input methods. This list can be changed later.
 
 **Returns:** `CtAction` – The created action
@@ -117,7 +117,7 @@ methods|Array\<Object\>|A list of input methods. This list can be changed later.
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-ct.inputs.addAction('Move', [{
+inputs.addAction('Move', [{
     code: 'keyboard.ArrowLeft',
     multiplier: -1
 }, {
@@ -131,7 +131,7 @@ ct.inputs.addAction('Move', [{
 ```
 @tab CoffeeScript
 ```coffee
-ct.inputs.addAction 'Move', [
+inputs.addAction 'Move', [
     {
         code: 'keyboard.ArrowLeft'
         multiplier: -1
@@ -151,23 +151,12 @@ ct.inputs.addAction 'Move', [
 ```
 :::
 
-### ct.inputs.removeAction(name, methods) ⇒ <code>void</code>
+### inputs.removeAction(name, methods) ⇒ <code>void</code>
 
 Removes an action with a given name.
-
 
 | Param | Type | Description |
 | --- | --- | --- |
 name|String|The name of an action
 
 **Returns:** `void`
-
-## Creating new actions without adding them to ct.actions
-
-### new CtAction(name)
-Creates a new ct action.
-
-| Param | Type | Description |
-| --- | --- | --- |
-| name | <code>String</code> | The name of the new action. |
-

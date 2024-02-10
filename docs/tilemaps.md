@@ -1,16 +1,16 @@
-# ct.tilemaps
+# tilemaps
 
-The `ct.tilemap` object allows making tilemaps in-game. It can also cache your tilemaps, speeding up your game noticeably, but once a tilemap is cached, it cannot be edited.
+The `tilemap` object allows making tilemaps in-game. It can also cache your tilemaps, speeding up your game noticeably, but once a tilemap is cached, it cannot be edited.
 
-## Methods of `ct.tilemaps`
+## Methods of `tilemaps`
 
-### `ct.tilemaps.create(depth)`
+### `tilemaps.create(depth)`
 
 Creates and returns a new tilemap. `depth` sets the depth value of this tilemap, positioning it above or behind other objects.
 
 **Returns** a newly created instance of `Tilemap`.
 
-### `ct.tilemaps.addTile(tilemap, textureName, x, y, frame)`
+### `tilemaps.addTile(tilemap, textureName, x, y, frame)`
 
 Places a tile in the specified tilemap.
 Argument | Type | Description
@@ -23,7 +23,7 @@ Argument | Type | Description
 
 **Returns** the created tile, which is a [`PIXI.Sprite`](https://pixijs.download/release/docs/PIXI.Sprite.html).
 
-### `ct.tilemaps.cache(tilemap, chunkSize)`
+### `tilemaps.cache(tilemap, chunkSize)`
 
 Caches a tilemap, grouping tiles into large chunks and turning them into several bitmaps. Once it is cached, it can no longer be modified.
 
@@ -32,7 +32,7 @@ Argument | Type | Description
 `tilemap` | `Tilemap` | The tilemap to cache.
 `chunkSize` | `number` | *(optional)* The minimum size of a chunk. Defaults to 1024.
 
-### `ct.tilemaps.cacheDiamond(tilemap, chunkSize)`
+### `tilemaps.cacheDiamond(tilemap, chunkSize)`
 
 Enables caching on this tileset, freezing it and turning it into a series of bitmap textures. This proides great speed boost, but prevents further editing.
 
@@ -49,7 +49,7 @@ Argument | Type | Description
 
 ## Methods of `Tilemap`
 
-`Tilemap` is a subclass of [`PIXI.Container`](https://pixijs.download/release/docs/PIXI.Container.html), and can be tinted, transformed, and moved. The methods below mostly repeat the methods of `ct.tilemaps`, but are in an object-oriented style.
+`Tilemap` is a subclass of [`PIXI.Container`](https://pixijs.download/release/docs/PIXI.Container.html), and can be tinted, transformed, and moved. The methods below mostly repeat the methods of `tilemaps`, but are in an object-oriented style.
 
 ### `tilemap.addTile(textureName, x, y, frame)`
 
@@ -86,18 +86,18 @@ Argument | Type | Description
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-this.tilemap = ct.tilemaps.create(-100);
+this.tilemap = tilemaps.create(-100);
 for (let i = 0; i < 10; i++) {
-    ct.tilemaps.addTile(this.tilemap, 'Tiles', i*64, 0, i);
+    tilemaps.addTile(this.tilemap, 'Tiles', i*64, 0, i);
 }
 this.tilemap.cache();
 ```
 @tab CoffeeScript
 ```coffee
-@tilemap = ct.tilemaps.create(-100)
+@tilemap = tilemaps.create(-100)
 i = 0
 while i < 10
-    ct.tilemaps.addTile @tilemap, 'Tiles', i * 64, 0, i
+    tilemaps.addTile @tilemap, 'Tiles', i * 64, 0, i
     i++
 @tilemap.cache()
 ```
@@ -105,18 +105,18 @@ while i < 10
 
 ## Example: Generate a map made of bricks and Perlin noise, and enable collisions
 
-You will need a `ct.noise` module enabled in your project, `ct.place`, and a texture named `RockTile`.
+You will need a `noise` module enabled in your project, `place`, and a texture named `RockTile`.
 
 ::: code-tabs#tutorial
 @tab JavaScript
 ```js
-const tilemap = ct.tilemaps.create(-100);
-ct.noise.setSeed(); // Randomize the seed on each start
+const tilemap = tilemaps.create(-100);
+noise.setSeed(); // Randomize the seed on each start
 
 // Assuming you have a texture called 'RockTile' which is 64x64px in size.
-for (var x = 0; x < ct.camera.width / 64; x++) {
-    for (var y = 0; y < ct.camera.height / 64; y++) {
-        var value = ct.noise.simplex2d(x / 7, y / 7); // Returns a value from -1 to 1.
+for (var x = 0; x < camera.width / 64; x++) {
+    for (var y = 0; y < camera.height / 64; y++) {
+        var value = noise.simplex2d(x / 7, y / 7); // Returns a value from -1 to 1.
         if (value > 0) {
             const tile = tilemap.addTile('RockTile', x*64, y*64);
             // Tiles are PIXI.Sprites; we can tweak their color and opacity before caching
@@ -126,19 +126,19 @@ for (var x = 0; x < ct.camera.width / 64; x++) {
 }
 
 tilemap.cache();
-ct.place.enableTilemapCollisions(tilemap, 'Solid');
+place.enableTilemapCollisions(tilemap, 'Solid');
 ```
 @tab CoffeeScript
 ```coffee
-tilemap = ct.tilemaps.create -100
-ct.noise.setSeed() # Randomize the seed on each start
+tilemap = tilemaps.create -100
+noise.setSeed() # Randomize the seed on each start
 
 # Assuming you have a texture called 'RockTile' which is 64x64px in size.
 x = 0
-while x < ct.camera.width / 64
+while x < camera.width / 64
     y = 0
-    while y < ct.camera.height / 64
-        value = ct.noise.simplex2d x / 7, y / 7 # Returns a value from -1 to 1.
+    while y < camera.height / 64
+        value = noise.simplex2d x / 7, y / 7 # Returns a value from -1 to 1.
         if value > 0
             tile = tilemap.addTile 'RockTile', x * 64, y * 64
             # Tiles are PIXI.Sprites; we can tweak their color and opacity before caching
@@ -146,6 +146,6 @@ while x < ct.camera.width / 64
         y++
     x++
 tilemap.cache()
-ct.place.enableTilemapCollisions tilemap, 'Solid'
+place.enableTilemapCollisions tilemap, 'Solid'
 ```
 :::
