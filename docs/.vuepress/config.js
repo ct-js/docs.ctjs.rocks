@@ -1,10 +1,7 @@
 import { defineUserConfig } from '@vuepress/cli';
 import { viteBundler } from '@vuepress/bundler-vite'
 
-//import { searchPlugin } from '@vuepress/plugin-search';
-//import { mediumZoomPlugin } from '@vuepress/plugin-medium-zoom';
 import { hope } from 'vuepress-theme-hope';
-import { searchPlugin } from '@vuepress/plugin-search';
 
 import themeConfig from './themeConfig';
 

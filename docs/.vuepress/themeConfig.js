@@ -35,8 +35,8 @@ export default {
             categoryId: 'DIC_kwDOCjp7pc4CTa2u',
             reactionsEnabled: false
         },
-        searchPro: {
-            autoSuggestions: false
+        search: {
+            maxSuggestions: 10
         },
         readingTime: false
     },
