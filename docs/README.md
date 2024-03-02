@@ -13,7 +13,7 @@ highlights:
   - # header: Let's start making great stuff!
     features:
       - title: Learn JavaScript
-        details: Games made in ct.js use JavaScript, or simply JS, to code its gameplay logic. Learn the needed part of it in our little <a href="/learn-js/jsintro_pt1.html">Introduction to JavaScript</a>.</p>
+        details: Games made in ct.js use JavaScript, or simply JS, to code their gameplay logic. Learn the needed part of it in our little <a href="/learn-js/jsintro_pt1.html">Introduction to JavaScript</a>.</p>
         link: ./learn-js/jsintro_pt1.md
       - title: Complete tutorials
         details: <p>The best way to learn is by <i>making</i>, and you can create real games with our step-by-step tutorials:</p>
@@ -22,7 +22,7 @@ highlights:
                 <li><a href="/tutorials/making-games-platformer.html">Create a platformer →</a></li>
                 <li><a href="/tutorials/making-games-jettycat.html">Create Jetty Cat, a flappy-bird-like game →</a></li>
       - title: Learn the core library
-        details: <p>See additional methods and properties of copies, camera, rooms, and procedurally create tilemaps, backgrounds, and new copies.</p>
+        details: <p>See additional methods and properties of copies, camera, and rooms, and procedurally create tilemaps, backgrounds, and new copies.</p>
             <a href="/ct-concepts.html" class="vp-link">Go to ct.js docs →</a>
         link: ./ct-concepts.md
   - header: Get the cheatsheet
@@ -36,7 +36,7 @@ highlights:
         details: These two couple together greatly and let you effortlessly create randomized sounds with no code (except for <code>sounds.play('YourSound')</code>!)
       - title: Base classes for templates
         icon: icons
-        details: Now your templates may be based not just on animated sprites but also on nine-slice patches, text labels, dynamic buttons, or empty containers. You can place and edit them as regular copies both in a room editor and in-game. More base classes coming after v4 release!
+        details: Now your templates may be based not just on animated sprites but also on nine-slice patches, text labels, dynamic buttons, or empty containers. You can place and edit them as regular copies both in a room editor and in-game. More base classes coming after the v4 release!
       - title: Behaviors
         icon: brain
         details: A new scriptable asset type that you can use to define shared logic for rooms and templates. You can add behaviors to any template or room at any time, and most of the time even add or remove them dynamically!
