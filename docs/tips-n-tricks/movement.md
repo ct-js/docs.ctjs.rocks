@@ -57,8 +57,8 @@ On Step code:
 
 ```js
 var character = templates.list['Character'][0];
-// Check whether the character exists.
-if (templates.exists(character)) {
+// Check whether the `character` is a valid copy (if it actually exists in the game).
+if (templates.valid(character)) {
     this.speed = 300;
     // Compute direction from current location to character's position.
     this.direction = u.pointDirection(this.x, this.y, character.x, character.y);
@@ -66,6 +66,7 @@ if (templates.exists(character)) {
     // Stop moving if the character doesn't exist.
     this.speed = 0;
 }
+this.move();
 ```
 
 ## `this.moveBullet(cgroup)`
