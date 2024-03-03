@@ -242,10 +242,10 @@ if (this.x % 64 === 0 && this.y % 64 === 0) {
     // This will happen if we are snapped on the grid, too,
     // as all the code is inside the `if` clause.
     if (actions.MoveX.pressed) {
-        this.vspeed = Math.sign(actions.MoveX.value) * 8;
+        this.hspeed = Math.sign(actions.MoveX.value) * 8;
     }
     if (actions.MoveY.pressed) {
-        this.hspeed = Math.sign(actions.MoveY.value) * 8;
+        this.vspeed = Math.sign(actions.MoveY.value) * 8;
     }
 }
 
@@ -277,7 +277,7 @@ if (!this.moving) {
             obj: this,
             fields: {
                 x: this.x + Math.sign(actions.MoveX.value) * 64
-            }
+            },
             duration: 650 // 0.65s
         })
         .then(() => {
@@ -293,7 +293,7 @@ if (!this.moving) {
             obj: this,
             fields: {
                 y: this.y + Math.sign(actions.MoveY.value) * 64
-            }
+            },
             duration: 650
         })
         .then(() => {
