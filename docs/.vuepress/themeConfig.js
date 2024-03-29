@@ -220,6 +220,9 @@ export default {
                     link: 'typings-and-intellisense',
                     text: 'Autocompletion and IntelliSense'
                 }, {
+                    link: 'adding-blocks-to-catnip',
+                    text: 'Adding blocks to catnip'
+                }, {
                     link: 'fields-declaration',
                     text: 'Fields reference'
                 }
