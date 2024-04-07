@@ -113,11 +113,12 @@ module.exports = [{
 }];
 ```
 
-Fields `name`, `type`, `code`, `icon`, `jsTemplate`, and `pieces` are required.
+Fields `name`, `type`, `code`, `jsTemplate`, and `pieces` are required.
 
 * `type` can be either `computed` or `command`. Using `computed` also requires a `typeHint` which must be one of `"wildcard"`, `"string"`, `"number"`, or `"boolean"`.
 * `code` must be unique and not overlap with methods' and properties' names from `.d.ts`. That's how ct.IDE differs them (combined with your catmod's name) and is able to serialize blocks.
 * `pieces` can be an empty array if you don't need additional elements.
+* There is an `icon` field if you want an icon special to your block that is different from one set in `module.json`.
 
 Any detected errors will be logged into ct.IDE's devtools (accessible from Main menu — Troubleshooting) console when you open a project or enable a new catmod.
 
@@ -215,3 +216,7 @@ Each block must have a field `jsTemplate` that must be a function. This template
 Blocks must return a string that contains a valid JS script or expression.
 
 When an argument is empty, unless a `defaultConstant` is set, the argument is set to `"undefined"`. **Note that this is a string.** When a block list is empty, its value is an empty string. (`""`)
+
+## Setting an icon for block category
+
+You can add a field "icon" to your `main` section of the `module.json` file and set it to a string — to a name of one of the icons that are listed in ct.js main menu — Meta — List of icons.
