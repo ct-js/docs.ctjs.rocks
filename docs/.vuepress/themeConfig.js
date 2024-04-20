@@ -143,13 +143,13 @@ export default {
             children: [
                 {
                     link: '/Background',
-                    text: 'Background'
+                    text: 'background'
                 }, {
                     link: '/Copy',
-                    text: 'Copy'
+                    text: 'copy'
                 }, {
                     link: '/Room',
-                    text: 'Room'
+                    text: 'room'
                 }
             ]
         }, {
