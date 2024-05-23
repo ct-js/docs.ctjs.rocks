@@ -339,8 +339,8 @@ catnip-block.note textarea {
     margin: 0;
     font-style: italic;
     background: transparent;
-    transition: unset;
-    height: 1.5rem
+    height: 1.5rem;
+    resize: none;
 }
 
 .catnip-block-aConstantInput {
