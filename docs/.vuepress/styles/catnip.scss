@@ -17,6 +17,10 @@ catnip-block {
     transition: .15s ease all
 }
 
+catnip-block img, catnip-block button, catnip-block .catnip-block-anAsyncMarker {
+    pointer-events: none
+}
+
 catnip-block.command + catnip-block.command {
     margin-top: 0.25rem;
 }
