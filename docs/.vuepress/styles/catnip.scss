@@ -308,7 +308,11 @@ catnip-block .catnip-block-Blocks+* {
 
 catnip-block .catnip-block-aBlockPlaceholder {
     opacity: .65;
-    margin-bottom: .5rem
+    margin: .5rem 0
+}
+
+catnip-block .catnip-block-aBlockPlaceholder * {
+    vertical-align: middle;
 }
 
 catnip-block .catnip-block-aBlockPlaceholder>*+* {
