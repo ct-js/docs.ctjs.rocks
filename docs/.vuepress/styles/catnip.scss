@@ -21,6 +21,14 @@ catnip-block img, catnip-block button, catnip-block .catnip-block-anAsyncMarker 
     pointer-events: none
 }
 
+catnip-block button {
+    * {
+        vertical-align: middle;
+    }
+    padding: 0.25rem 0.5rem;
+    margin: 0.25rem 0.5rem;
+}
+
 catnip-block.command + catnip-block.command {
     margin-top: 0.25rem;
 }
@@ -80,6 +88,7 @@ catnip-block .catnip-block-Options>.catnip-block-anOptionsToggle>img {
 
 catnip-block .catnip-block-Options dl {
     border-top: 1px solid #e1e2e5;
+    border-top: 1px solid var(--code-border-color);
     display: flex;
     flex-flow: row nowrap;
     padding: .5rem .75rem;
