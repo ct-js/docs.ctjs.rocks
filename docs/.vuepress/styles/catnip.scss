@@ -334,6 +334,9 @@ catnip-block.note img {
 }
 
 catnip-block.note textarea {
+    font: inherit;
+    font-size: 80%;
+    line-height: 120%;
     flex: 1 1 auto;
     border: 0;
     margin: 0;
