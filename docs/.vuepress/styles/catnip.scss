@@ -132,8 +132,8 @@ catnip-block .catnip-block-aConstantInput {
     box-sizing: content-box
 }
 
-catnip-block.computed>svg,
-catnip-block .catnip-block-aConstantInput>svg {
+catnip-block.computed>img,
+catnip-block .catnip-block-aConstantInput>img {
     width: 1rem;
     height: 1rem
 }
@@ -149,9 +149,9 @@ catnip-block .catnip-block-aConstantInput.wildcard {
     background-color: #edecfb
 }
 
-catnip-block.computed.wildcard>svg,
-catnip-block .catnip-block-aConstantInput.wildcard>svg {
-    color: #5144db
+catnip-block.computed.wildcard>img,
+catnip-block .catnip-block-aConstantInput.wildcard>img {
+    filter: hue-rotate(20deg);
 }
 
 catnip-block.computed.wildcard::placeholder,
@@ -168,9 +168,9 @@ catnip-block .catnip-block-aConstantInput.string {
 }
 
 
-catnip-block.computed.string>svg,
-catnip-block .catnip-block-aConstantInput.string>svg {
-    color: #db44db
+catnip-block.computed.string>img,
+catnip-block .catnip-block-aConstantInput.string>img {
+    filter: hue-rotate(60deg)
 }
 
 catnip-block.computed.string::placeholder,
@@ -186,9 +186,9 @@ catnip-block .catnip-block-aConstantInput.number {
     background-color: #edfae9
 }
 
-catnip-block.computed.number>svg,
-catnip-block .catnip-block-aConstantInput.number>svg {
-    color: #4ed62c
+catnip-block.computed.number>img,
+catnip-block .catnip-block-aConstantInput.number>img {
+    filter: hue-rotate(-90deg)
 }
 
 catnip-block.computed.number::placeholder,
@@ -205,9 +205,9 @@ catnip-block .catnip-block-aConstantInput.boolean {
 }
 
 
-catnip-block.computed.boolean>svg,
-catnip-block .catnip-block-aConstantInput.boolean>svg {
-    color: #db9c44
+catnip-block.computed.boolean>img,
+catnip-block .catnip-block-aConstantInput.boolean>img {
+    filter: hue-rotate(-180deg)
 }
 
 catnip-block.computed.boolean::placeholder,
@@ -224,9 +224,9 @@ catnip-block .catnip-block-aConstantInput.color {
 }
 
 
-catnip-block.computed.color>svg,
-catnip-block .catnip-block-aConstantInput.color>svg {
-    color: #44a9db
+catnip-block.computed.color>img,
+catnip-block .catnip-block-aConstantInput.color>img {
+    filter: hue-rotate(-60deg);
 }
 
 catnip-block.computed.color::placeholder,
@@ -240,7 +240,15 @@ catnip-block .catnip-block-aConstantInput.userdefined {
     background: #5144db;
     border: 1px solid #5144db;
     color: #fff;
-    font-weight: bold
+    font-weight: bold;
+}
+catnip-block.computed,
+catnip-block .catnip-block-aConstantInput {
+    &.userdefined, &.constant {
+        &>img {
+            filter: brightness(1000%)
+        }
+    }
 }
 
 catnip-block.computed.constant {
@@ -279,7 +287,7 @@ catnip-block catnip-block.constant {
     margin: 0
 }
 
-catnip-block>svg.feather {
+catnip-block>img {
     vertical-align: middle
 }
 
@@ -362,8 +370,7 @@ catnip-block.note textarea {
     margin-right: .25rem
 }
 
-.catnip-block-aConstantInput img,
-.catnip-block-aConstantInput svg {
+.catnip-block-aConstantInput img {
     width: 1rem;
     height: 1rem;
     vertical-align: middle
