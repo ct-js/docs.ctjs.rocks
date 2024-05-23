@@ -62,12 +62,6 @@ catnip-block .catnip-block-Options>.catnip-block-anOptionsToggle {
     transition: .15s ease all
 }
 
-catnip-block .catnip-block-Options>.catnip-block-anOptionsToggle:hover {
-    opacity: 1;
-    background: #446adb;
-    color: #fff
-}
-
 catnip-block .catnip-block-Options>.catnip-block-anOptionsToggle span {
     margin: 0 .5rem
 }
@@ -118,9 +112,6 @@ catnip-block asset-input {
     line-height: 2
 }
 
-catnip-block:hover {
-    box-shadow: 0 .1rem .1rem rgba(0, 0, 0, 0.05), 0 .2rem .3rem rgba(0, 0, 0, 0.1), 0 .3rem .5rem rgba(0, 0, 0, 0.05)
-}
 
 catnip-block.command {
     padding: .5rem .75rem;
@@ -156,11 +147,6 @@ catnip-block .catnip-block-aConstantInput.wildcard {
     background-color: #edecfb
 }
 
-catnip-block.computed.wildcard:hover,
-catnip-block .catnip-block-aConstantInput.wildcard:hover {
-    border-color: #5144db
-}
-
 catnip-block.computed.wildcard>svg,
 catnip-block .catnip-block-aConstantInput.wildcard>svg {
     color: #5144db
@@ -179,10 +165,6 @@ catnip-block .catnip-block-aConstantInput.string {
     background-color: #fbecfb
 }
 
-catnip-block.computed.string:hover,
-catnip-block .catnip-block-aConstantInput.string:hover {
-    border-color: #db44db
-}
 
 catnip-block.computed.string>svg,
 catnip-block .catnip-block-aConstantInput.string>svg {
@@ -200,11 +182,6 @@ catnip-block .catnip-block-aConstantInput.number {
     color: #40842f;
     border: 1px solid #4ed62c;
     background-color: #edfae9
-}
-
-catnip-block.computed.number:hover,
-catnip-block .catnip-block-aConstantInput.number:hover {
-    border-color: #4ed62c
 }
 
 catnip-block.computed.number>svg,
@@ -225,10 +202,6 @@ catnip-block .catnip-block-aConstantInput.boolean {
     background-color: #fbf5ec
 }
 
-catnip-block.computed.boolean:hover,
-catnip-block .catnip-block-aConstantInput.boolean:hover {
-    border-color: #db9c44
-}
 
 catnip-block.computed.boolean>svg,
 catnip-block .catnip-block-aConstantInput.boolean>svg {
@@ -248,10 +221,6 @@ catnip-block .catnip-block-aConstantInput.color {
     background-color: #ecf6fb
 }
 
-catnip-block.computed.color:hover,
-catnip-block .catnip-block-aConstantInput.color:hover {
-    border-color: #44a9db
-}
 
 catnip-block.computed.color>svg,
 catnip-block .catnip-block-aConstantInput.color>svg {
@@ -270,11 +239,6 @@ catnip-block .catnip-block-aConstantInput.userdefined {
     border: 1px solid #5144db;
     color: #fff;
     font-weight: bold
-}
-
-catnip-block.computed.userdefined:hover,
-catnip-block .catnip-block-aConstantInput.userdefined:hover {
-    border-color: #5144db
 }
 
 catnip-block.computed.constant {
