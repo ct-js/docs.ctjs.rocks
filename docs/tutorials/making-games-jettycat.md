@@ -114,7 +114,7 @@ Here's what we will do:
 
 Click on the "Add an event" button, then find the Creation event and select it. In the Creation event that now appears on the left, click it to bring up its code block on the right side, then put this code:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ``` js
 this.speed = 500;
@@ -127,6 +127,12 @@ this.gravityAcceleration = 7000;
 @direction = 0
 @gravityAcceleration = 7000;
 ```
+@tab Catnip
+<catnip-block class=" command    selected">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">Set speed to</span>          <input type="text" class="catnip-block-aConstantInput number " style=" width: 3.5ch;    " value="500" readonly="readonly">     </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">Set direction to</span>          <input type="text" class="catnip-block-aConstantInput number " style=" width: 1.5ch;    " value="0" readonly="readonly">     </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">Set</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">gravityAcceleration</span>              </catnip-block>  <span class="catnip-block-aTextLabel">value</span>                   <input type="text" class="catnip-block-aConstantInput wildcard " style=" width: 4.5ch;    " value="7000" readonly="readonly">     </catnip-block>
 :::
 
 ![Seeing the event list in ct.js](./../images/tutorials/tutJettyCat_12_3.png)
@@ -158,7 +164,7 @@ You can [read more about actions here](./../actions.md).
 
 Create a new Action down event for the cat. This is a parameterized event, so you can specify which action you want! Select the Poof action from the dropdown list, then add this to the event:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js
 this.gravity = this.gravityAcceleration;
@@ -169,6 +175,10 @@ this.addSpeed(u.time * 2 * this.gravityAcceleration, 270);
 @gravity = @gravityAcceleration
 @addSpeed u.time * 2 * @gravityAcceleration, 270
 ```
+@tab Catnip
+<catnip-block class=" command    selected">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">Set gravity to</span>         <catnip-block class=" computed wildcard number userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">gravityAcceleration</span>              </catnip-block>      </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">Set vertical speed to</span>         <catnip-block class=" computed number number  ">           <catnip-block class=" computed number number  ">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">vertical speed</span>     </catnip-block>  <span class="catnip-block-aTextLabel">-</span>                  <catnip-block class=" computed number number  ">           <catnip-block class=" computed number number  ">  <img src="/assets/icons/tool.svg" class="feather"><span class="catnip-block-aTextLabel">time</span>     </catnip-block>  <span class="catnip-block-aTextLabel">×</span>                  <catnip-block class=" computed number number  ">            <input type="text" class="catnip-block-aConstantInput number " value="2" style=" width: 1.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">×</span>                  <catnip-block class=" computed wildcard number userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">gravityAcceleration</span>              </catnip-block>      </catnip-block>      </catnip-block>      </catnip-block>      </catnip-block>
 :::
 
 This code will run only when a player presses the screen. If it works, we will define a gravity force that pulls the cat down and add speed that pulls the cat upwards. We need to multiply the added speed with `u.time` to make it run smoothly on every occasion. Yes, we use the `this.gravityAcceleration` value for both setting gravity and adding speed. Changing speed is an acceleration!
@@ -193,7 +203,7 @@ Ct.js has an entity `camera` which is responsible for showing stuff on your scre
 
 Open the "Creation" event of our cat, and add this code:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js
 camera.follow = this;
@@ -206,6 +216,12 @@ camera.follow = this
 camera.followY = false
 camera.shiftX = 250
 ```
+@tab Catnip
+<catnip-block class=" command    selected">  <img src="/assets/icons/camera.svg" class="feather"><span class="catnip-block-aTextLabel">Follow this copy</span>     </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/camera.svg" class="feather"><span class="catnip-block-aTextLabel">Enable following by y</span>         <catnip-block class=" computed boolean boolean constant ">  <img src="/assets/icons/bool.svg" class="feather"><span class="catnip-block-aTextLabel">false</span>     </catnip-block>      </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/camera.svg" class="feather"><span class="catnip-block-aTextLabel">Set camera's horizontal shift</span>          <input type="text" class="catnip-block-aConstantInput number " style=" width: 3.5ch;    " value="250" readonly="readonly">     </catnip-block>
 :::
 
 `camera.follow` links to a copy it should follow, and we tell it to follow the cat by setting it to `this`. `this` refers to the copy that runs the code. Rooms have their events and `this` keyword, too.
@@ -232,7 +248,7 @@ Then, open our room and add pipes on the ground, so we can check the collisions.
 
 Firstly, make a new template "PotatoCat_Stunned", using the "PotatoCat_Stunned" texture. Then, in its "Creation" event add the following:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js
 this.gravity = 7000;
@@ -249,13 +265,21 @@ this.direction = -135;
 @speed = 1500
 @direction = -135
 ```
+@tab Catnip
+<catnip-block class=" command    selected">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">Set gravity to</span>          <input type="text" class="catnip-block-aConstantInput number " style=" width: 4.5ch;    " value="2700" readonly="readonly">     </catnip-block>
+
+<catnip-block class=" command   note selected">  <img src="/assets/icons/message-circle.svg" class="feather"><span class="catnip-block-aTextLabel">Note</span>      <textarea style="height: 21px;" value="Jump to the left" readonly="readonly"></textarea>         </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">Set speed to</span>          <input type="text" class="catnip-block-aConstantInput number " style=" width: 4.5ch;    " value="1500" readonly="readonly">     </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">Set direction to</span>          <input type="text" class="catnip-block-aConstantInput number " style=" width: 4.5ch;    " value="-135" readonly="readonly">     </catnip-block>
 :::
 
 This is the stunned cat template we will switch to when the cat hits an obstacle. Once it exists, it will be pushed to the left and out of the screen, with gravity.
 
 Now, open the "PotatoCat" template, and create a new event "Collision with a group" with group name "Obstacle". This is the code that will run once the cat hits a pipe. Next, we will add the following code to destroy the copy and trigger the "Destruction" event:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js
 this.kill = true
@@ -264,11 +288,13 @@ this.kill = true
 ```coffee
 @kill = true
 ```
+@tab Catnip
+<catnip-block class=" command    selected">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">Destroy this copy</span>     </catnip-block>
 :::
 
 Finally, create the "Destruction" event in PotatoCat so we can spawn the PotatoCat_Stunned copy before this copy gets deleted, and add the following:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js
 // Stop camera movement
@@ -293,6 +319,22 @@ dummy = templates.copy 'PotatoCat_Stunned', this.x, this.y
 dummy.scale.x = @scale.x
 dummy.scale.y = @scale.y
 ```
+@tab Catnip
+<catnip-block class=" command   note selected">  <img src="/assets/icons/message-circle.svg" class="feather"><span class="catnip-block-aTextLabel">Note</span>      <textarea value="Stop camera movement" style="height: 21px;" readonly="readonly"></textarea>         </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/camera.svg" class="feather"><span class="catnip-block-aTextLabel">Enable following by x</span>         <catnip-block class=" computed boolean boolean constant ">  <img src="/assets/icons/bool.svg" class="feather"><span class="catnip-block-aTextLabel">false</span>     </catnip-block>      </catnip-block>
+
+<catnip-block class=" command   note selected">  <img src="/assets/icons/message-circle.svg" class="feather"><span class="catnip-block-aTextLabel">Note</span>      <textarea value="Create an animated dummy" style="height: 21px;" readonly="readonly"></textarea>         </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">Copy a template</span>          <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/image.svg" class="feather"><span>PotatoCat_Stunned</span></span>         <catnip-block class=" computed number number  ">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">x</span>     </catnip-block>          <catnip-block class=" computed number number  ">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">y</span>     </catnip-block>    <div class="catnip-block-aFiller"></div>        <span class="catnip-block-aTextLabel">store in</span>                  <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">dummy</span>              </catnip-block>         <div class="catnip-block-Options"> <div class="catnip-block-anOptionsToggle"> <img src="/assets/icons/chevron-down.svg" class="feather"><span>Advanced</span> <img src="/assets/icons/chevron-down.svg" class="feather"> </div>    </div>       </catnip-block>
+
+<catnip-block class=" command   note selected">  <img src="/assets/icons/message-circle.svg" class="feather"><span class="catnip-block-aTextLabel">Note</span>      <textarea value="Copy scale settings to the new copy" style="height: 21px;" readonly="readonly"></textarea>         </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">Set</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">thisScaleX</span>              </catnip-block>  <span class="catnip-block-aTextLabel">value</span>                  <catnip-block class=" computed number wildcard  ">  <img src="/assets/icons/droplet.svg" class="feather"><span class="catnip-block-aTextLabel">scale by x</span>     </catnip-block>      </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">Set</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">thisScaleY</span>              </catnip-block>  <span class="catnip-block-aTextLabel">value</span>                  <catnip-block class=" computed number wildcard  ">  <img src="/assets/icons/droplet.svg" class="feather"><span class="catnip-block-aTextLabel">scale by y</span>     </catnip-block>      </catnip-block>
+
+<catnip-block class=" command void   selected">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">With copy</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">dummy</span>              </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/droplet.svg" class="feather"><span class="catnip-block-aTextLabel">Set scale to</span>         <catnip-block class=" computed wildcard number userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">thisScaleX</span>              </catnip-block>          <catnip-block class=" computed wildcard number userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">thisScaleY</span>              </catnip-block>      </catnip-block>    </catnip-block-list> </div>        </catnip-block>
 :::
 
 `dummy.scale.x = this.scale.x;` and `dummy.scale.y = this.scale.y;` just makes sure that if we decide to resize PotatoCat later on then the stunned template will resize in the same way.
@@ -309,7 +351,7 @@ If we now open our room and move the mouse over the level, we will see current c
 
 Modify the cat's "Frame start" logic as following so the cat gets stunned from hitting the ground and sky as well:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js
 this.move();
@@ -326,6 +368,12 @@ if (this.y > 1750 - 200 || // If the cat is below the ground minus its approxima
 if @y > 1750 - 200 or @y < 0    # If the cat is below the ground minus its approximate height, or the cat flew off the upper boundary,
     @kill = true                # remove the cat.
 ```
+@tab Catnip
+<catnip-block class=" command    selected">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">Move this copy</span>     </catnip-block>
+
+<catnip-block class=" command   note selected">  <img src="/assets/icons/message-circle.svg" class="feather"><span class="catnip-block-aTextLabel">Note</span>      <textarea value="If the cat is below the ground minus its approximate height, the cat flew off the upper boundary, remove the cat." style="height: 53px;" readonly="readonly"></textarea>         </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/help-circle.svg" class="feather"><span class="catnip-block-aTextLabel">If</span>         <catnip-block class=" computed boolean boolean  ">           <catnip-block class=" computed boolean boolean  ">           <catnip-block class=" computed number number  ">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">y</span>     </catnip-block>  <span class="catnip-block-aTextLabel">&gt;</span>                  <catnip-block class=" computed number number  ">            <input type="text" class="catnip-block-aConstantInput number " value="1750" style=" width: 4.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">-</span>                   <input type="text" class="catnip-block-aConstantInput number " value="200" style=" width: 3.5ch;    " readonly="readonly">     </catnip-block>      </catnip-block>  <span class="catnip-block-aTextLabel">or</span>                  <catnip-block class=" computed boolean boolean  ">           <catnip-block class=" computed number number  ">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">y</span>     </catnip-block>  <span class="catnip-block-aTextLabel">&lt;</span>                   <input type="text" class="catnip-block-aConstantInput number " value="0" style=" width: 1.5ch;    " readonly="readonly">     </catnip-block>      </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">Destroy this copy</span>     </catnip-block>    </catnip-block-list> </div>        </catnip-block>
 :::
 
 ### Randomizing pipe's height by changing its texture
@@ -334,7 +382,7 @@ We can change the texture in code with our pipes to randomize their height, as w
 
 Ct.js has a built-in module called `random` that helps to generate random values. Find it in the Catmods view from the Project tab at the top and enable it. Then, add the Creation event to the tube template, open the Creation event code and add this snippet:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js
 this.tex = random.dice(
@@ -348,6 +396,18 @@ this.tex = random.dice(
 ```coffee
 @tex = random.dice 'Tube_01', 'Tube_02', 'Tube_03', 'Tube_04'
 ```
+@tab Catnip
+<catnip-block class=" command    selected">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">Set</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">textureArray</span>              </catnip-block>  <span class="catnip-block-aTextLabel">value</span>                  <catnip-block class=" computed wildcard wildcard constant ">  <img src="/assets/icons/grid.svg" class="feather"><span class="catnip-block-aTextLabel">new array</span>     </catnip-block>      </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/grid.svg" class="feather"><span class="catnip-block-aTextLabel">Add an element at end</span>          <input type="text" class="catnip-block-aConstantInput wildcard " style=" width: 7.5ch;    " value="Tube_01" readonly="readonly"> <span class="catnip-block-aTextLabel">to</span>                  <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">textureArray</span>              </catnip-block>      </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/grid.svg" class="feather"><span class="catnip-block-aTextLabel">Add an element at end</span>          <input type="text" class="catnip-block-aConstantInput wildcard " style=" width: 7.5ch;    " value="Tube_02" readonly="readonly"> <span class="catnip-block-aTextLabel">to</span>                  <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">textureArray</span>              </catnip-block>      </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/grid.svg" class="feather"><span class="catnip-block-aTextLabel">Add an element at end</span>          <input type="text" class="catnip-block-aConstantInput wildcard " style=" width: 7.5ch;    " value="Tube_03" readonly="readonly"> <span class="catnip-block-aTextLabel">to</span>                  <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">textureArray</span>              </catnip-block>      </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/grid.svg" class="feather"><span class="catnip-block-aTextLabel">Add an element at end</span>          <input type="text" class="catnip-block-aConstantInput wildcard " style=" width: 7.5ch;    " value="Tube_04" readonly="readonly"> <span class="catnip-block-aTextLabel">to</span>                  <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">textureArray</span>              </catnip-block>      </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/droplet.svg" class="feather"><span class="catnip-block-aTextLabel">Set texture to</span>         <catnip-block class=" computed wildcard string  ">  <img src="/assets/icons/sort-numerically.svg" class="feather"><span class="catnip-block-aTextLabel">random from array</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">textureArray</span>              </catnip-block>      </catnip-block>      </catnip-block>
 :::
 
 `random.dice` is a function that accepts any number of arguments and returns one of them randomly each time it is called.
@@ -376,7 +436,7 @@ Open our only room `InGame`. Remove existing tubes by holding Control key and dr
 
 Put this line in the Room start code:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js
 this.timer1 = 5;
@@ -385,13 +445,15 @@ this.timer1 = 5;
 ```coffee
 @timer1 = 5
 ```
+@tab Catnip
+<catnip-block class=" command    selected">  <img src="/assets/icons/clock.svg" class="feather"><span class="catnip-block-aTextLabel">Set 1st timer to</span>          <input type="text" class="catnip-block-aConstantInput number " style=" width: 1.5ch;    " value="5" readonly="readonly"> <span class="catnip-block-aTextLabel">second(s)</span>              </catnip-block>
 :::
 
 Here, `timer1` is a special variable name that will count down to 0 automatically without additional programming. This corresponds to the Timer 1 event.
 
 Add the Timer 1 event, name it something like "TubeSpawn", keep UI event unchecked and in the code put this:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js
 // Wind it again
@@ -443,6 +505,32 @@ else if tube1.tex == 'Tube_04'
 # Now, flip the upper (second) tube
 tube2.scale.y = -1
 ```
+@tab Catnip
+<catnip-block class=" command   note selected">  <img src="/assets/icons/message-circle.svg" class="feather"><span class="catnip-block-aTextLabel">Note</span>      <textarea value="Wind it again" style="height: 21px;" readonly="readonly"></textarea>         </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/clock.svg" class="feather"><span class="catnip-block-aTextLabel">Set 1st timer to</span>          <input type="text" class="catnip-block-aConstantInput number " value="2" style=" width: 1.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">second(s)</span>              </catnip-block>
+
+<catnip-block class=" command   note selected">  <img src="/assets/icons/message-circle.svg" class="feather"><span class="catnip-block-aTextLabel">Note</span>      <textarea value="Create two tubes, one at the bottom of the camera and one at the top" style="height: 37px;" readonly="readonly"></textarea>         </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">Copy a template</span>          <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/image.svg" class="feather"><span>Tube</span></span>         <catnip-block class=" computed number number  ">           <catnip-block class=" computed number number  ">  <img src="/assets/icons/camera.svg" class="feather"><span class="catnip-block-aTextLabel">right side</span>     </catnip-block>  <span class="catnip-block-aTextLabel">+</span>                   <input type="text" class="catnip-block-aConstantInput number " value="250" style=" width: 3.5ch;    " readonly="readonly">     </catnip-block>          <catnip-block class=" computed number number  ">           <catnip-block class=" computed number number  ">  <img src="/assets/icons/camera.svg" class="feather"><span class="catnip-block-aTextLabel">bottom side</span>     </catnip-block>  <span class="catnip-block-aTextLabel">-</span>                   <input type="text" class="catnip-block-aConstantInput number " value="130" style=" width: 3.5ch;    " readonly="readonly">     </catnip-block>    <div class="catnip-block-aFiller"></div>        <span class="catnip-block-aTextLabel">store in</span>                  <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">tube1</span>              </catnip-block>         <div class="catnip-block-Options"> <div class="catnip-block-anOptionsToggle"> <img src="/assets/icons/chevron-down.svg" class="feather"><span>Advanced</span> <img src="/assets/icons/chevron-down.svg" class="feather"> </div>    </div>       </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">Copy a template</span>          <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/image.svg" class="feather"><span>Tube</span></span>         <catnip-block class=" computed number number  ">           <catnip-block class=" computed number number  ">  <img src="/assets/icons/camera.svg" class="feather"><span class="catnip-block-aTextLabel">right side</span>     </catnip-block>  <span class="catnip-block-aTextLabel">+</span>                   <input type="text" class="catnip-block-aConstantInput number " value="250" style=" width: 3.5ch;    " readonly="readonly">     </catnip-block>          <catnip-block class=" computed number number  ">           <catnip-block class=" computed number number  ">  <img src="/assets/icons/camera.svg" class="feather"><span class="catnip-block-aTextLabel">top side</span>     </catnip-block>  <span class="catnip-block-aTextLabel">-</span>                   <input type="text" class="catnip-block-aConstantInput number " value="70" style=" width: 2.5ch;    " readonly="readonly">     </catnip-block>    <div class="catnip-block-aFiller"></div>        <span class="catnip-block-aTextLabel">store in</span>                  <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">tube2</span>              </catnip-block>         <div class="catnip-block-Options"> <div class="catnip-block-anOptionsToggle"> <img src="/assets/icons/chevron-down.svg" class="feather"><span>Advanced</span> <img src="/assets/icons/chevron-down.svg" class="feather"> </div>    </div>       </catnip-block>
+
+<catnip-block class=" command   note selected">  <img src="/assets/icons/message-circle.svg" class="feather"><span class="catnip-block-aTextLabel">Note</span>      <textarea value="Change second tube's texture depending on which texture is used in the first tube" style="height: 37px;" readonly="readonly"></textarea>         </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/help-circle.svg" class="feather"><span class="catnip-block-aTextLabel">If</span>         <catnip-block class=" computed boolean boolean  ">           <catnip-block class=" computed wildcard wildcard  ">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">read</span>          <input type="text" class="catnip-block-aConstantInput string " value="tex" style=" width: 3.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">from</span>                  <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">tube1</span>              </catnip-block>      </catnip-block>  <span class="catnip-block-aTextLabel">is</span>                   <input type="text" class="catnip-block-aConstantInput wildcard " value="Tube_01" style=" width: 7.5ch;    " readonly="readonly">     </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command   note ">  <img src="/assets/icons/message-circle.svg" class="feather"><span class="catnip-block-aTextLabel">Note</span>      <textarea value="Shortest tube will result in the longest tube" style="height: 21px;" readonly="readonly"></textarea>         </catnip-block>   <catnip-block class=" command void   ">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">With copy</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">tube2</span>              </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/droplet.svg" class="feather"><span class="catnip-block-aTextLabel">Set texture to</span>          <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/image.svg" class="feather"><span>Tube_04</span></span>     </catnip-block>    </catnip-block-list> </div>        </catnip-block>    </catnip-block-list> </div>        </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/help-circle.svg" class="feather"><span class="catnip-block-aTextLabel">If</span>         <catnip-block class=" computed boolean boolean  ">           <catnip-block class=" computed wildcard wildcard  ">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">read</span>          <input type="text" class="catnip-block-aConstantInput string " value="tex" style=" width: 3.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">from</span>                  <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">tube1</span>              </catnip-block>      </catnip-block>  <span class="catnip-block-aTextLabel">is</span>                   <input type="text" class="catnip-block-aConstantInput wildcard " value="Tube_02" style=" width: 7.5ch;    " readonly="readonly">     </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command void   ">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">With copy</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">tube2</span>              </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/droplet.svg" class="feather"><span class="catnip-block-aTextLabel">Set texture to</span>          <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/image.svg" class="feather"><span>Tube_03</span></span>     </catnip-block>    </catnip-block-list> </div>        </catnip-block>    </catnip-block-list> </div>        </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/help-circle.svg" class="feather"><span class="catnip-block-aTextLabel">If</span>         <catnip-block class=" computed boolean boolean  ">           <catnip-block class=" computed wildcard wildcard  ">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">read</span>          <input type="text" class="catnip-block-aConstantInput string " value="tex" style=" width: 3.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">from</span>                  <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">tube1</span>              </catnip-block>      </catnip-block>  <span class="catnip-block-aTextLabel">is</span>                   <input type="text" class="catnip-block-aConstantInput wildcard " value="Tube_03" style=" width: 7.5ch;    " readonly="readonly">     </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command void   ">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">With copy</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">tube2</span>              </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/droplet.svg" class="feather"><span class="catnip-block-aTextLabel">Set texture to</span>          <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/image.svg" class="feather"><span>Tube_02</span></span>     </catnip-block>    </catnip-block-list> </div>        </catnip-block>    </catnip-block-list> </div>        </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/help-circle.svg" class="feather"><span class="catnip-block-aTextLabel">If</span>         <catnip-block class=" computed boolean boolean  ">           <catnip-block class=" computed wildcard wildcard  ">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">read</span>          <input type="text" class="catnip-block-aConstantInput string " value="tex" style=" width: 3.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">from</span>                  <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">tube1</span>              </catnip-block>      </catnip-block>  <span class="catnip-block-aTextLabel">is</span>                   <input type="text" class="catnip-block-aConstantInput wildcard " value="Tube_04" style=" width: 7.5ch;    " readonly="readonly">     </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command   note ">  <img src="/assets/icons/message-circle.svg" class="feather"><span class="catnip-block-aTextLabel">Note</span>      <textarea value="Longest will result in the shortest one" style="height: 21px;" readonly="readonly"></textarea>         </catnip-block>   <catnip-block class=" command void   ">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">With copy</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">tube2</span>              </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/droplet.svg" class="feather"><span class="catnip-block-aTextLabel">Set texture to</span>          <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/image.svg" class="feather"><span>Tube_01</span></span>     </catnip-block>    </catnip-block-list> </div>        </catnip-block>    </catnip-block-list> </div>        </catnip-block>
+
+<catnip-block class=" command   note selected">  <img src="/assets/icons/message-circle.svg" class="feather"><span class="catnip-block-aTextLabel">Note</span>      <textarea value="Thus we will always get gaps of the same size, but with random tubes." style="height: 37px;" readonly="readonly"></textarea>         </catnip-block>
+
+<catnip-block class=" command   note selected">  <img src="/assets/icons/message-circle.svg" class="feather"><span class="catnip-block-aTextLabel">Note</span>      <textarea value="Now, flip the upper (second) tube" style="height: 21px;" readonly="readonly"></textarea>         </catnip-block>
+
+<catnip-block class=" command void   selected">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">With copy</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">tube2</span>              </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/droplet.svg" class="feather"><span class="catnip-block-aTextLabel">Set scale to</span>          <input type="text" class="catnip-block-aConstantInput number " value="1" style=" width: 1.5ch;    " readonly="readonly">          <input type="text" class="catnip-block-aConstantInput number " value="-1" style=" width: 2.5ch;    " readonly="readonly">     </catnip-block>    </catnip-block-list> </div>        </catnip-block>
 :::
 
 There's a lot of code!
@@ -472,7 +560,7 @@ When we spawn copies through time, their number will constantly rise. If we don'
 
 Add this code to the tube's Frame start event:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js
 if (this.x < camera.left - 150) {
@@ -484,6 +572,8 @@ if (this.x < camera.left - 150) {
 if @x < camera.left - 150
     @kill = true
 ```
+@tab Catnip
+<catnip-block class=" command    selected">  <img src="/assets/icons/help-circle.svg" class="feather"><span class="catnip-block-aTextLabel">If</span>         <catnip-block class=" computed boolean boolean  ">           <catnip-block class=" computed number number  ">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">x</span>     </catnip-block>  <span class="catnip-block-aTextLabel">&lt;</span>                  <catnip-block class=" computed number number  ">           <catnip-block class=" computed number number  ">  <img src="/assets/icons/camera.svg" class="feather"><span class="catnip-block-aTextLabel">left side</span>     </catnip-block>  <span class="catnip-block-aTextLabel">-</span>                   <input type="text" class="catnip-block-aConstantInput number " value="150" style=" width: 3.5ch;    " readonly="readonly">     </catnip-block>      </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">Destroy this copy</span>     </catnip-block>    </catnip-block-list> </div>        </catnip-block>
 :::
 
 Here we compare a copy's horizontal coordinate to a camera's left side. We also watch 150 pixels to the left so the tube can fully escape the viewport before being removed.
@@ -504,7 +594,7 @@ Create a new template, and call it a `Star`. Set its texture.
 
 Create a Collision with a template event, and select PotatoCat as the template. Then, put this script in:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js
 this.kill = true;
@@ -515,6 +605,10 @@ rooms.current.score += 1;
 @kill = true
 rooms.current.score += 1
 ```
+@tab Catnip
+<catnip-block class=" command    selected">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">Destroy this copy</span>     </catnip-block>
+
+<catnip-block class=" command void   selected">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">With copy</span>         <catnip-block class=" computed wildcard wildcard  ">  <img src="/assets/icons/room.svg" class="feather"><span class="catnip-block-aTextLabel">current room</span>     </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">Write</span>          <input type="text" class="catnip-block-aConstantInput string " style=" width: 5.5ch;    " value="score" readonly="readonly"> <span class="catnip-block-aTextLabel">value</span>                  <catnip-block class=" computed number wildcard  ">           <catnip-block class=" computed wildcard number  ">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">read</span>          <input type="text" class="catnip-block-aConstantInput string " style=" width: 5.5ch;    " value="score" readonly="readonly">     </catnip-block>  <span class="catnip-block-aTextLabel">+</span>                   <input type="text" class="catnip-block-aConstantInput number " style=" width: 1.5ch;    " value="1" readonly="readonly">     </catnip-block>      </catnip-block>    </catnip-block-list> </div>        </catnip-block>
 :::
 
 ::: tip
@@ -529,7 +623,7 @@ This event checks whether a star collides with our cat. If it does, `this.kill =
 
 We will also need this code in the Frame start event to prevent memory leaks and remove stars that were not collected:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js
 if (this.x < camera.left - 150) {
@@ -541,13 +635,15 @@ if (this.x < camera.left - 150) {
 if @x < camera.left - 150
     @kill = true
 ```
+@tab Catnip
+<catnip-block class=" command    selected">  <img src="/assets/icons/help-circle.svg" class="feather"><span class="catnip-block-aTextLabel">If</span>         <catnip-block class=" computed boolean boolean  ">           <catnip-block class=" computed number number  ">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">x</span>     </catnip-block>  <span class="catnip-block-aTextLabel">&lt;</span>                  <catnip-block class=" computed number number  ">           <catnip-block class=" computed number number  ">  <img src="/assets/icons/camera.svg" class="feather"><span class="catnip-block-aTextLabel">left side</span>     </catnip-block>  <span class="catnip-block-aTextLabel">-</span>                   <input type="text" class="catnip-block-aConstantInput number " value="150" style=" width: 3.5ch;    " readonly="readonly">     </catnip-block>      </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">Destroy this copy</span>     </catnip-block>    </catnip-block-list> </div>        </catnip-block>
 :::
 
 ### Spawning stars
 
 In the room's Timer 1 event code, add a couple of lines (the highlighted ones) that will add a star with a 30% chance somewhere in between the next two tubes. It will use methods from the `random` module:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js {23,24,25,26}
 // Wind it again
@@ -608,6 +704,36 @@ tube2.scale.y = -1
 if random.chance(30)
     templates.copy 'Star', camera.right + 250 + 500, random.range(camera.top + 300, camera.bottom - 300)
 ```
+@tab Catnip
+<catnip-block class=" command   note selected">  <img src="/assets/icons/message-circle.svg" class="feather"><span class="catnip-block-aTextLabel">Note</span>      <textarea value="Wind it again" style="height: 21px;" readonly="readonly"></textarea>         </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/clock.svg" class="feather"><span class="catnip-block-aTextLabel">Set 1st timer to</span>          <input type="text" class="catnip-block-aConstantInput number " value="2" style=" width: 1.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">second(s)</span>              </catnip-block>
+
+<catnip-block class=" command   note selected">  <img src="/assets/icons/message-circle.svg" class="feather"><span class="catnip-block-aTextLabel">Note</span>      <textarea value="Create two tubes, one at the bottom of the camera and one at the top" style="height: 37px;" readonly="readonly"></textarea>         </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">Copy a template</span>          <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/image.svg" class="feather"><span>Tube</span></span>         <catnip-block class=" computed number number  ">           <catnip-block class=" computed number number  ">  <img src="/assets/icons/camera.svg" class="feather"><span class="catnip-block-aTextLabel">right side</span>     </catnip-block>  <span class="catnip-block-aTextLabel">+</span>                   <input type="text" class="catnip-block-aConstantInput number " value="250" style=" width: 3.5ch;    " readonly="readonly">     </catnip-block>          <catnip-block class=" computed number number  ">           <catnip-block class=" computed number number  ">  <img src="/assets/icons/camera.svg" class="feather"><span class="catnip-block-aTextLabel">bottom side</span>     </catnip-block>  <span class="catnip-block-aTextLabel">-</span>                   <input type="text" class="catnip-block-aConstantInput number " value="130" style=" width: 3.5ch;    " readonly="readonly">     </catnip-block>    <div class="catnip-block-aFiller"></div>        <span class="catnip-block-aTextLabel">store in</span>                  <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">tube1</span>              </catnip-block>         <div class="catnip-block-Options"> <div class="catnip-block-anOptionsToggle"> <img src="/assets/icons/chevron-down.svg" class="feather"><span>Advanced</span> <img src="/assets/icons/chevron-down.svg" class="feather"> </div>    </div>       </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">Copy a template</span>          <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/image.svg" class="feather"><span>Tube</span></span>         <catnip-block class=" computed number number  ">           <catnip-block class=" computed number number  ">  <img src="/assets/icons/camera.svg" class="feather"><span class="catnip-block-aTextLabel">right side</span>     </catnip-block>  <span class="catnip-block-aTextLabel">+</span>                   <input type="text" class="catnip-block-aConstantInput number " value="250" style=" width: 3.5ch;    " readonly="readonly">     </catnip-block>          <catnip-block class=" computed number number  ">           <catnip-block class=" computed number number  ">  <img src="/assets/icons/camera.svg" class="feather"><span class="catnip-block-aTextLabel">top side</span>     </catnip-block>  <span class="catnip-block-aTextLabel">-</span>                   <input type="text" class="catnip-block-aConstantInput number " value="70" style=" width: 2.5ch;    " readonly="readonly">     </catnip-block>    <div class="catnip-block-aFiller"></div>        <span class="catnip-block-aTextLabel">store in</span>                  <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">tube2</span>              </catnip-block>         <div class="catnip-block-Options"> <div class="catnip-block-anOptionsToggle"> <img src="/assets/icons/chevron-down.svg" class="feather"><span>Advanced</span> <img src="/assets/icons/chevron-down.svg" class="feather"> </div>    </div>       </catnip-block>
+
+<catnip-block class=" command   note selected">  <img src="/assets/icons/message-circle.svg" class="feather"><span class="catnip-block-aTextLabel">Note</span>      <textarea value="Change second tube's texture depending on which texture is used in the first tube" style="height: 37px;" readonly="readonly"></textarea>         </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/help-circle.svg" class="feather"><span class="catnip-block-aTextLabel">If</span>         <catnip-block class=" computed boolean boolean  ">           <catnip-block class=" computed wildcard wildcard  ">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">read</span>          <input type="text" class="catnip-block-aConstantInput string " value="tex" style=" width: 3.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">from</span>                  <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">tube1</span>              </catnip-block>      </catnip-block>  <span class="catnip-block-aTextLabel">is</span>                   <input type="text" class="catnip-block-aConstantInput wildcard " value="Tube_01" style=" width: 7.5ch;    " readonly="readonly">     </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command   note ">  <img src="/assets/icons/message-circle.svg" class="feather"><span class="catnip-block-aTextLabel">Note</span>      <textarea value="Shortest tube will result in the longest tube" style="height: 21px;" readonly="readonly"></textarea>         </catnip-block>   <catnip-block class=" command void   ">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">With copy</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">tube2</span>              </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/droplet.svg" class="feather"><span class="catnip-block-aTextLabel">Set texture to</span>          <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/image.svg" class="feather"><span>Tube_04</span></span>     </catnip-block>    </catnip-block-list> </div>        </catnip-block>    </catnip-block-list> </div>        </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/help-circle.svg" class="feather"><span class="catnip-block-aTextLabel">If</span>         <catnip-block class=" computed boolean boolean  ">           <catnip-block class=" computed wildcard wildcard  ">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">read</span>          <input type="text" class="catnip-block-aConstantInput string " value="tex" style=" width: 3.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">from</span>                  <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">tube1</span>              </catnip-block>      </catnip-block>  <span class="catnip-block-aTextLabel">is</span>                   <input type="text" class="catnip-block-aConstantInput wildcard " value="Tube_02" style=" width: 7.5ch;    " readonly="readonly">     </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command void   ">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">With copy</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">tube2</span>              </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/droplet.svg" class="feather"><span class="catnip-block-aTextLabel">Set texture to</span>          <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/image.svg" class="feather"><span>Tube_03</span></span>     </catnip-block>    </catnip-block-list> </div>        </catnip-block>    </catnip-block-list> </div>        </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/help-circle.svg" class="feather"><span class="catnip-block-aTextLabel">If</span>         <catnip-block class=" computed boolean boolean  ">           <catnip-block class=" computed wildcard wildcard  ">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">read</span>          <input type="text" class="catnip-block-aConstantInput string " value="tex" style=" width: 3.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">from</span>                  <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">tube1</span>              </catnip-block>      </catnip-block>  <span class="catnip-block-aTextLabel">is</span>                   <input type="text" class="catnip-block-aConstantInput wildcard " value="Tube_03" style=" width: 7.5ch;    " readonly="readonly">     </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command void   ">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">With copy</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">tube2</span>              </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/droplet.svg" class="feather"><span class="catnip-block-aTextLabel">Set texture to</span>          <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/image.svg" class="feather"><span>Tube_02</span></span>     </catnip-block>    </catnip-block-list> </div>        </catnip-block>    </catnip-block-list> </div>        </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/help-circle.svg" class="feather"><span class="catnip-block-aTextLabel">If</span>         <catnip-block class=" computed boolean boolean  ">           <catnip-block class=" computed wildcard wildcard  ">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">read</span>          <input type="text" class="catnip-block-aConstantInput string " value="tex" style=" width: 3.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">from</span>                  <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">tube1</span>              </catnip-block>      </catnip-block>  <span class="catnip-block-aTextLabel">is</span>                   <input type="text" class="catnip-block-aConstantInput wildcard " value="Tube_04" style=" width: 7.5ch;    " readonly="readonly">     </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command   note ">  <img src="/assets/icons/message-circle.svg" class="feather"><span class="catnip-block-aTextLabel">Note</span>      <textarea value="Longest will result in the shortest one" style="height: 21px;" readonly="readonly"></textarea>         </catnip-block>   <catnip-block class=" command void   ">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">With copy</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">tube2</span>              </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/droplet.svg" class="feather"><span class="catnip-block-aTextLabel">Set texture to</span>          <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/image.svg" class="feather"><span>Tube_01</span></span>     </catnip-block>    </catnip-block-list> </div>        </catnip-block>    </catnip-block-list> </div>        </catnip-block>
+
+<catnip-block class=" command   note selected">  <img src="/assets/icons/message-circle.svg" class="feather"><span class="catnip-block-aTextLabel">Note</span>      <textarea value="Thus we will always get gaps of the same size, but with random tubes." style="height: 37px;" readonly="readonly"></textarea>         </catnip-block>
+
+<catnip-block class=" command   note selected">  <img src="/assets/icons/message-circle.svg" class="feather"><span class="catnip-block-aTextLabel">Note</span>      <textarea value="Now, flip the upper (second) tube" style="height: 21px;" readonly="readonly"></textarea>         </catnip-block>
+
+<catnip-block class=" command void   selected">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">With copy</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">tube2</span>              </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/droplet.svg" class="feather"><span class="catnip-block-aTextLabel">Set scale to</span>          <input type="text" class="catnip-block-aConstantInput number " value="1" style=" width: 1.5ch;    " readonly="readonly">          <input type="text" class="catnip-block-aConstantInput number " value="-1" style=" width: 2.5ch;    " readonly="readonly">     </catnip-block>    </catnip-block-list> </div>        </catnip-block>
+
+<catnip-block class=" command   note selected">  <img src="/assets/icons/message-circle.svg" class="feather"><span class="catnip-block-aTextLabel">Note</span>      <textarea value="Create a star bonus with 30% chance somewhere in between top and bottom edge, with 300px padding." style="height: 37px;" readonly="readonly"></textarea>         </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/help-circle.svg" class="feather"><span class="catnip-block-aTextLabel">If</span>         <catnip-block class=" computed boolean boolean  ">  <img src="/assets/icons/sort-numerically.svg" class="feather"><span class="catnip-block-aTextLabel">random chance</span>          <input type="text" class="catnip-block-aConstantInput number " value="30" style=" width: 2.5ch;    " readonly="readonly">          <input type="text" class="catnip-block-aConstantInput number " value="100" style=" width: 3.5ch;    " readonly="readonly">     </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">Copy a template</span>          <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/image.svg" class="feather"><span>Star</span></span>         <catnip-block class=" computed number number  ">           <catnip-block class=" computed number number  ">  <img src="/assets/icons/camera.svg" class="feather"><span class="catnip-block-aTextLabel">right side</span>     </catnip-block>  <span class="catnip-block-aTextLabel">+</span>                  <catnip-block class=" computed number number  ">            <input type="text" class="catnip-block-aConstantInput number " value="250" style=" width: 3.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">+</span>                   <input type="text" class="catnip-block-aConstantInput number " value="500" style=" width: 3.5ch;    " readonly="readonly">     </catnip-block>      </catnip-block>          <catnip-block class=" computed number number  ">  <img src="/assets/icons/sort-numerically.svg" class="feather"><span class="catnip-block-aTextLabel">random range</span>         <catnip-block class=" computed number number  ">           <catnip-block class=" computed number number  ">  <img src="/assets/icons/camera.svg" class="feather"><span class="catnip-block-aTextLabel">top side</span>     </catnip-block>  <span class="catnip-block-aTextLabel">+</span>                   <input type="text" class="catnip-block-aConstantInput number " value="300" style=" width: 3.5ch;    " readonly="readonly">     </catnip-block>          <catnip-block class=" computed number number  ">           <catnip-block class=" computed number number  ">  <img src="/assets/icons/camera.svg" class="feather"><span class="catnip-block-aTextLabel">bottom side</span>     </catnip-block>  <span class="catnip-block-aTextLabel">-</span>                   <input type="text" class="catnip-block-aConstantInput number " value="300" style=" width: 3.5ch;    " readonly="readonly">     </catnip-block>      </catnip-block>    <div class="catnip-block-aFiller"></div>        <span class="catnip-block-aTextLabel">store in</span>                   <input type="text" class="catnip-block-aConstantInput wildcard " style=" width: 6.5ch;    " readonly="readonly">        <div class="catnip-block-Options"> <div class="catnip-block-anOptionsToggle"> <img src="/assets/icons/chevron-down.svg" class="feather"><span>Advanced</span> <img src="/assets/icons/chevron-down.svg" class="feather"> </div>    </div>       </catnip-block>    </catnip-block-list> </div>        </catnip-block>
 :::
 
 `random.chance(30)` returns `true` 30 times out of 100, and `false` otherwise. You can tweak the number to make stars appear more or less often.
@@ -644,13 +770,26 @@ Once you switch it to a text you can click on the ghostly cat icon and now you c
 
 We need to update the text label at each frame. In the Frame end event, put the line `this.text = rooms.current.score;`. `this.text` is a property that lets us edit the label of a text copy easily, now that we switched it to a Text. You can also set the default text of this template in the right sidebar so it doesn't say `<Empty>` when we put it in the room.
 
+::: tabs#tutorial
+@tab JavaScript
+```js
+this.text = rooms.current.score;
+```
+@tab CoffeeScript
+```coffee
+@text = rooms.current.score
+```
+@tab Catnip
+<catnip-block class=" command    selected">  <img src="/assets/icons/font.svg" class="feather"><span class="catnip-block-aTextLabel">Set text</span>         <catnip-block class=" computed wildcard string  ">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">read</span>          <input type="text" class="catnip-block-aConstantInput string " value="score" style=" width: 5.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">of the current room</span>              </catnip-block>      </catnip-block>
+:::
+
 Finally, let's create a room for this counter and label and put this room inside the main one. Create a new room, and call it `UI_InGame`. Then, set its view size to 1080x1920 to match the main room's viewport, mark it as a UI layer, and put a counter's copy and label in the top-left corner:
 
 ![Creating a UI layer in ct.js](./../images/tutorials/tutJettyCat_27.png)
 
 Then open the room `InGame`, and add this code to the bottom of its Room start code:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js
 this.mainUi = rooms.append("UI_InGame");
@@ -659,6 +798,8 @@ this.mainUi = rooms.append("UI_InGame");
 ```coffee
 @mainUi = rooms.append 'UI_InGame'
 ```
+@tab Catnip
+<catnip-block class=" command    selected">  <img src="/assets/icons/room.svg" class="feather"><span class="catnip-block-aTextLabel">Append a room</span>          <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/image.svg" class="feather"><span>UI_InGame</span></span>   <div class="catnip-block-aFiller"></div>        <span class="catnip-block-aTextLabel">store in</span>                  <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">mainUi</span>              </catnip-block>         <div class="catnip-block-Options"> <div class="catnip-block-anOptionsToggle"> <img src="/assets/icons/chevron-down.svg" class="feather"><span>Advanced</span> <img src="/assets/icons/chevron-down.svg" class="feather"> </div>    </div>       </catnip-block>
 :::
 
 We will reference this room for later. After that, you should have stars spawning in the level, and the increment score displayed in the top-left corner of the viewport.
@@ -681,7 +822,7 @@ Then, open the texture "Button_Play" and make sure that its axis is at the cente
 
 After that, create a new template with this texture. Create a Pointer click event and put the following:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js
 rooms.switch('InGame');
@@ -690,6 +831,8 @@ rooms.switch('InGame');
 ```coffee
 rooms.switch 'InGame'
 ```
+@tab Catnip
+<catnip-block class=" command void   selected">  <img src="/assets/icons/room.svg" class="feather"><span class="catnip-block-aTextLabel">Switch to</span>          <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/image.svg" class="feather"><span>InGame</span></span>     </catnip-block>
 :::
 
 This checks whether a player pressed the button, and if they did, it switches to our main room.
@@ -718,7 +861,7 @@ Create a template for texture `Button_Pause`. Make sure the texture `Button_Paus
 
 The template `Button_Pause` will have this code in its Pointer click event:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js
 // Check if we don't have any rooms called 'UI_Paused'
@@ -744,6 +887,10 @@ if rooms.list['UI_Paused'].length == 0
     # Turns u.delta into 0, effectively stopping the game
     pixiApp.ticker.speed = 0
 ```
+@tab Catnip
+<catnip-block class=" command   note selected">  <img src="/assets/icons/message-circle.svg" class="feather"><span class="catnip-block-aTextLabel">Note</span>      <textarea value="Check if we don't have any rooms called 'UI_Paused'" style="height: 21px;" readonly="readonly"></textarea>         </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/help-circle.svg" class="feather"><span class="catnip-block-aTextLabel">If</span>         <catnip-block class=" computed boolean boolean  ">           <catnip-block class=" computed number wildcard  ">  <img src="/assets/icons/grid.svg" class="feather"><span class="catnip-block-aTextLabel">length of</span>         <catnip-block class=" computed wildcard wildcard  ">  <img src="/assets/icons/room.svg" class="feather"><span class="catnip-block-aTextLabel">rooms list</span>          <span class="catnip-block-aConstantInput menu wildcard ">   <img src="/assets/icons/image.svg" class="feather"><span>UI_Paused</span></span>     </catnip-block>      </catnip-block>  <span class="catnip-block-aTextLabel">is</span>                   <input type="text" class="catnip-block-aConstantInput wildcard " value="0" style=" width: 1.5ch;    " readonly="readonly">     </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command   note ">  <img src="/assets/icons/message-circle.svg" class="feather"><span class="catnip-block-aTextLabel">Note</span>      <textarea value="Create a room UI_Paused, put it above the current one (append it), and specify that it is a UI layer (isUi: true)" style="height: 53px;" readonly="readonly"></textarea>         </catnip-block>   <catnip-block class=" command   note ">  <img src="/assets/icons/message-circle.svg" class="feather"><span class="catnip-block-aTextLabel">Note</span>      <textarea value="Turns u.delta into 0, effectively stopping the game" style="height: 21px;" readonly="readonly"></textarea>         </catnip-block>   <catnip-block class=" command    ">  <img src="/assets/icons/room.svg" class="feather"><span class="catnip-block-aTextLabel">Append a room</span>          <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/image.svg" class="feather"><span>UI_Paused</span></span>   <div class="catnip-block-aFiller"></div>        <span class="catnip-block-aTextLabel">store in</span>                   <input type="text" class="catnip-block-aConstantInput wildcard " style=" width: 6.5ch;    " readonly="readonly">        <div class="catnip-block-Options"> <div class="catnip-block-anOptionsToggle"> <img src="/assets/icons/chevron-up.svg" class="feather"><span>Advanced</span> <img src="/assets/icons/chevron-up.svg" class="feather"> </div> <dl> <dt>Is this room a UI layer?</dt> <dd> <catnip-block class=" computed boolean boolean constant ">  <img src="/assets/icons/bool.svg" class="feather"><span class="catnip-block-aTextLabel">true</span>     </catnip-block>  </dd> </dl>  <div class="pad"> <button class="inline small"> <img src="/assets/icons/plus.svg" class="feather"><span>Add a custom property</span> </button> </div> </div>       </catnip-block>   <catnip-block class=" command    ">  <img src="/assets/icons/settings.svg" class="feather"><span class="catnip-block-aTextLabel">Set game speed to</span>          <input type="text" class="catnip-block-aConstantInput number " value="0" style=" width: 1.5ch;    " readonly="readonly">     </catnip-block>    </catnip-block-list> </div>        </catnip-block>
 :::
 
 Remember the name `UI_Paused`. We will need to create a room with this name a bit later.
@@ -756,7 +903,7 @@ After that, create two new templates similar to those created for `MainMenu`. Us
 
 The button will have the following code in its Pointer click event:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js
 rooms.remove(this.getRoom());
@@ -768,6 +915,10 @@ room = @getRoom()
 rooms.remove room
 pixiApp.ticker.speed = 1
 ```
+@tab Catnip
+<catnip-block class=" command void   selected">  <img src="/assets/icons/room.svg" class="feather"><span class="catnip-block-aTextLabel">Remove a room</span>         <catnip-block class=" computed wildcard wildcard  ">  <img src="/assets/icons/room.svg" class="feather"><span class="catnip-block-aTextLabel">copy's owning room</span>     </catnip-block>      </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/settings.svg" class="feather"><span class="catnip-block-aTextLabel">Set game speed to</span>          <input type="text" class="catnip-block-aConstantInput number " style=" width: 1.5ch;    " value="1" readonly="readonly">     </catnip-block>
 :::
 
 `rooms.remove(room);` removes the previously added room. It cannot remove the main one, but it is created to remove nested ones. `this.getRoom()` looks up for a room that owns the current copy. `pixiApp.ticker.speed = 1;` reverts `delta` back to normal behavior, unpausing the game.
@@ -782,7 +933,7 @@ Create a template with a texture `OhNo`. It won't have any logic.
 
 The other one, `EndGame_ScoreCounter`, will be a text instead of a sprite, just like our other score label. Change it to a Text and select the Orange style. It will also remember and display the player's high score. Put this code to its Creation event:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js
 if (!('JettyCat_HighScore' in localStorage)) {
@@ -807,6 +958,14 @@ style = styles.get 'Orange'
 
 @text = scoreText
 ```
+@tab Catnip
+<catnip-block class=" command    selected">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">Set</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">roomScore</span>              </catnip-block>  <span class="catnip-block-aTextLabel">value</span>                  <catnip-block class=" computed wildcard wildcard  ">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">read</span>          <input type="text" class="catnip-block-aConstantInput string " value="score" style=" width: 5.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">of the current room</span>              </catnip-block>      </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">Set</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">currentHighScore</span>              </catnip-block>  <span class="catnip-block-aTextLabel">value</span>                  <catnip-block class=" computed string wildcard  ">  <img src="/assets/icons/save.svg" class="feather"><span class="catnip-block-aTextLabel">load from storage from key</span>          <input type="text" class="catnip-block-aConstantInput string " value="JettyCat_HighScore" style=" width: 18.5ch;    " readonly="readonly">     </catnip-block>      </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/help-circle.svg" class="feather"><span class="catnip-block-aTextLabel">If</span>         <catnip-block class=" computed boolean boolean  ">  <span class="catnip-block-aTextLabel">not</span>         <catnip-block class=" computed boolean boolean  ">  <img src="/assets/icons/save.svg" class="feather"><span class="catnip-block-aTextLabel">is key in storage</span>          <input type="text" class="catnip-block-aConstantInput string " value="JettyCat_HighScore" style=" width: 18.5ch;    " readonly="readonly">     </catnip-block>      </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/save.svg" class="feather"><span class="catnip-block-aTextLabel">Save to storage in key</span>          <input type="text" class="catnip-block-aConstantInput string " value="JettyCat_HighScore" style=" width: 18.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">value</span>                  <catnip-block class=" computed wildcard string userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">roomScore</span>              </catnip-block>      </catnip-block>    </catnip-block-list> </div>     <img src="/assets/icons/alert-circle.svg" class="feather">         <span class="catnip-block-aTextLabel">Else</span>                <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/help-circle.svg" class="feather"><span class="catnip-block-aTextLabel">If</span>         <catnip-block class=" computed boolean boolean  ">           <catnip-block class=" computed number number  ">  <img src="/assets/icons/sort-numerically.svg" class="feather"><span class="catnip-block-aTextLabel">to number</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">currentHighScore</span>              </catnip-block>      </catnip-block>  <span class="catnip-block-aTextLabel">&lt;</span>                  <catnip-block class=" computed wildcard number userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">roomScore</span>              </catnip-block>      </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/save.svg" class="feather"><span class="catnip-block-aTextLabel">Save to storage in key</span>          <input type="text" class="catnip-block-aConstantInput string " value="JettyCat_HighScore" style=" width: 18.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">value</span>                  <catnip-block class=" computed wildcard string userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">roomScore</span>              </catnip-block>      </catnip-block>    </catnip-block-list> </div>        </catnip-block>    </catnip-block-list> </div>        </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/font.svg" class="feather"><span class="catnip-block-aTextLabel">Set text</span>         <catnip-block class=" computed string string  ">            <input type="text" class="catnip-block-aConstantInput string " value="Your score: " style=" width: 12.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">+</span>                  <catnip-block class=" computed wildcard string userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">roomScore</span>              </catnip-block>  <span class="catnip-block-aTextLabel">+</span>                  <catnip-block class=" computed string string  ">           <catnip-block class=" computed string string  ">  <img src="/assets/icons/string.svg" class="feather">          <input type="text" class="catnip-block-aConstantInput string " value="\nHighscore: " style=" width: 13.5ch;    " readonly="readonly">     </catnip-block>  <span class="catnip-block-aTextLabel">+</span>                  <catnip-block class=" computed wildcard string userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">currentHighScore</span>              </catnip-block>      </catnip-block>      </catnip-block>      </catnip-block>
 :::
 
 `localStorage` is a built-in object that allows you to store textual data in browser. You can find more about it and saving progress [here](./../tips-n-tricks/localstorage.md).
@@ -817,7 +976,7 @@ If there is no such record in the browser, the line `localStorage['JettyCat_High
 
 This line:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js
 var scoreText = 'Your score: ' + rooms.current.score + '\nHighscore: ' + localStorage['JettyCat_HighScore'];
@@ -826,6 +985,8 @@ var scoreText = 'Your score: ' + rooms.current.score + '\nHighscore: ' + localSt
 ```coffee
 scoreText = 'Your score: ' + rooms.current.score + '\nHighscore: ' + localStorage['JettyCat_HighScore']
 ```
+@tab Catnip
+<catnip-block class=" command    selected">  <img src="/assets/icons/font.svg" class="feather"><span class="catnip-block-aTextLabel">Set text</span>         <catnip-block class=" computed string string  ">            <input type="text" class="catnip-block-aConstantInput string " value="Your score: " style=" width: 12.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">+</span>                  <catnip-block class=" computed wildcard string userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">roomScore</span>              </catnip-block>  <span class="catnip-block-aTextLabel">+</span>                  <catnip-block class=" computed string string  ">           <catnip-block class=" computed string string  ">  <img src="/assets/icons/string.svg" class="feather">          <input type="text" class="catnip-block-aConstantInput string " value="\nHighscore: " style=" width: 13.5ch;    " readonly="readonly">     </catnip-block>  <span class="catnip-block-aTextLabel">+</span>                  <catnip-block class=" computed wildcard string userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">currentHighScore</span>              </catnip-block>      </catnip-block>      </catnip-block>      </catnip-block>
 :::
 saves a string to a temporary variable. Everything defined with the `var` keyword exists for only one frame and in one event. Though it doesn't serve much purpose, it allows to write cleaner code and reuse temporary variables. The combination `\n` tells that there will be a line break there. By using the `+` operator, we join our strings with the current score and the saved one. Lastly, we set the display text to the created variable's value.
 
@@ -839,7 +1000,7 @@ Place the EndGame_ScoreCounter template where the x is. Now we can align the tex
 
 The last thing we need is creating this room when the cat hits an obstacle and removing the UI layer with the pause button so the user cannot pause while on the game over screen. Open the template `PotatoCat` and go to the Destruction event. Add this code right after the line with `camera.follow = false;`:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js
 // Remove the layer with score and a pause button
@@ -867,6 +1028,14 @@ u.wait 1000
         isUi: true
     rooms.append 'UI_OhNo', settings
 ```
+@tab Catnip
+<catnip-block class=" command   note selected">  <img src="/assets/icons/message-circle.svg" class="feather"><span class="catnip-block-aTextLabel">Note</span>      <textarea value="Remove the layer with score and a pause button" style="height: 21px;" readonly="readonly"></textarea>         </catnip-block>
+
+<catnip-block class=" command void   selected">  <img src="/assets/icons/room.svg" class="feather"><span class="catnip-block-aTextLabel">Remove a room</span>         <catnip-block class=" computed wildcard wildcard  ">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">read</span>          <input type="text" class="catnip-block-aConstantInput string " style=" width: 6.5ch;    " value="mainUi" readonly="readonly"> <span class="catnip-block-aTextLabel">of the current room</span>              </catnip-block>      </catnip-block>
+
+<catnip-block class=" command   note selected">  <img src="/assets/icons/message-circle.svg" class="feather"><span class="catnip-block-aTextLabel">Note</span>      <textarea value="Wait for 1000 milliseconds (for one second)" style="height: 21px;" readonly="readonly"></textarea>         </catnip-block>
+
+<catnip-block class=" command wildcard   selected">  <img src="/assets/icons/tool.svg" class="feather"><span class="catnip-block-aTextLabel">Delay, in milliseconds</span>          <input type="text" class="catnip-block-aConstantInput number " style=" width: 4.5ch;    " value="1000" readonly="readonly">   <div class="catnip-block-aFiller"></div>         <span class="catnip-block-anAsyncMarker"> <img src="/assets/icons/clock.svg" class="feather"></span>            <div class="catnip-block-aBreak"></div>        <img src="/assets/icons/redo.svg" class="feather">         <span class="catnip-block-aTextLabel">Then</span>                <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command   note ">  <img src="/assets/icons/message-circle.svg" class="feather"><span class="catnip-block-aTextLabel">Note</span>      <textarea value="Add a layer with &quot;Lose&quot; UI" style="height: 21px;" readonly="readonly"></textarea>         </catnip-block>   <catnip-block class=" command    ">  <img src="/assets/icons/room.svg" class="feather"><span class="catnip-block-aTextLabel">Append a room</span>          <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/image.svg" class="feather"><span>UI_OhNo</span></span>   <div class="catnip-block-aFiller"></div>        <span class="catnip-block-aTextLabel">store in</span>                   <input type="text" class="catnip-block-aConstantInput wildcard " style=" width: 6.5ch;    " readonly="readonly">        <div class="catnip-block-Options"> <div class="catnip-block-anOptionsToggle"> <img src="/assets/icons/chevron-up.svg" class="feather"><span>Advanced</span> <img src="/assets/icons/chevron-up.svg" class="feather"> </div> <dl> <dt>Is this room a UI layer?</dt> <dd> <catnip-block class=" computed boolean boolean constant ">  <img src="/assets/icons/bool.svg" class="feather"><span class="catnip-block-aTextLabel">true</span>     </catnip-block>  </dd> </dl>  <div class="pad"> <button class="inline small"> <img src="/assets/icons/plus.svg" class="feather"><span>Add a custom property</span> </button> </div> </div>       </catnip-block>    </catnip-block-list> </div>       <div class="catnip-block-aBreak"></div>        <img src="/assets/icons/alert-octagon.svg" class="feather">         <span class="catnip-block-aTextLabel">On error</span>                <div class="catnip-block-Blocks"> <catnip-block-list> <div class="catnip-block-aBlockPlaceholder"> <img src="/assets/icons/thumbs-up.svg" class="feather"><span class="catnip-block-aTextLabel">Do nothing</span>  </div>   </catnip-block-list> </div>        </catnip-block>
 :::
 
 A-a-and… ta-da! You did it! The game is fully-featured and playable!
