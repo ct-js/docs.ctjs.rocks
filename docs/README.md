@@ -29,26 +29,17 @@ highlights:
     image: /assets/img/CheatsheetThumbnail.png
     description: <p>Available in English, Russian, Spanish and Brazilian Portuguese languages.</p>
         <a class="vp-link vp-hero-action primary" target="_blank" href="https://comigo.itch.io/ct-cheat-sheet">Download the cheatsheet →</a>
-  - header: Notable changes and additions in ct.js v4
+  - header: Notable changes and additions in ct.js v5
     features:
-      - title: New sound editor and sound engine
-        icon: music
-        details: These two couple together greatly and let you effortlessly create randomized sounds with no code (except for <code>sounds.play('YourSound')</code>!)
-      - title: Base classes for templates
-        icon: icons
-        details: Now your templates may be based not just on animated sprites but also on nine-slice patches, text labels, dynamic buttons, or empty containers. You can place and edit them as regular copies both in a room editor and in-game. More base classes coming after the v4 release!
-      - title: Behaviors
-        icon: brain
-        details: A new scriptable asset type that you can use to define shared logic for rooms and templates. You can add behaviors to any template or room at any time, and most of the time even add or remove them dynamically!
-      - title: Asset folders
-        icon: folder
-        details: A real file-like project structure with nested folders and one asset browser.
-      - title: <code>settings</code> API
-        icon: gears
-        details: API for in-game change of framerate cap, hi-DPI and scaling mode!
-      - title: UI tools for the room editor
-        icon: arrow-pointer
-        details: Additional tools for base classes plus tools to create flexible UI layouts for various game resolutions.
+      - title: Catnip — new visual programming language
+        icon: diagram-next
+        details: Catnip is a new programming language made specifically for ct.js, in which you compose game logic with command blocks. Examples translated to Catnip are already bundled with your ct.js copy!
+      - title: 'New asset type: Typefaces'
+        icon: t
+        details: Typefaces replace Fonts and allow adding multiple font files in one font family, easing programmatic use of text labels and integrating with styles more tightly.
+      - title: Bitmap Text base class and bitmap text support in Buttons and Textboxes
+        icon: bold
+        details: A new base class allows utilizing exported bitmap fonts without additional code and placing crisp, pixel-perfect UI elements in the UI editor.
   - # header: Get help, and help others!
     features:
       - title: Join the Community
