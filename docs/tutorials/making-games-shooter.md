@@ -126,7 +126,7 @@ Write the following code:
  * See Project > Actions and input methods panel
  * and "Actions" in the docs.
  */
-this.x += 480 * u.time * actions.MoveX.value; // Move by X axis
+this.hspeed = 480 * actions.MoveX.value; // Move by X axis
 
 
 /**
@@ -147,7 +147,7 @@ this.move();
 # See Project > Actions and input methods panel
 # and "Actions" in the docs.
 
-@x += 480 * u.time * actions.MoveX.value # Move by X axis
+@hspeed = 480 * actions.MoveX.value # Move by X axis
 
 # Check whether the ship fell off the viewport
 if @x < 0 # Have the ship crossed the left border?

@@ -5,64 +5,210 @@ export default {
     selectLanguageName: "Русский",
     // text for the edit-on-github link
     editLinkText: "Помогите сделать эту страницу лучше!",*/
-    sidebar: [
+    navbar: [
         {
-            link: "/",
-            text: "Русская документация пока что неполная и может расходиться с английской!",
-        },
-        {
-            link: "/ru/",
             text: "Главная",
+            link: "/ru/",
             icon: 'home'
         },
         {
+            text: "Скачать ct.js",
+            link: "https://ctjs.rocks/ru/download/",
+            icon: 'download'
+        },
+        {
+            text: "Discord",
+            link: "https://comigo.games/rudiscord",
+            icon: 'user-group'
+        },
+        {
+            text: "Форум",
+            link: "https://forum.ctjs.rocks/",
+            icon: 'comments'
+        },
+    ],
+    sidebar: [
+        {
+            link: '/',
+            text: 'Главная',
+            icon: 'home'
+        }, {
+            text: 'Введение в JS',
             collapsible: false,
-            text: "Введение в JavaScript",
             icon: 'book',
+            prefix: '/ru/learn-js/',
             children: [
-                "/ru/jsintro_pt1",
-                "/ru/jsintro_pt2"
+                'jsintro_pt1',
+                'jsintro_pt2',
+                'jsintro_pt3'
             ],
-        },
-        {
+        }, {
             collapsible: false,
-            text: "Уроки",
+            text: 'Туториалы',
             icon: 'arrows-turn-to-dots',
+            prefix: '/ru/tutorials/',
             children: [
-                "/ru/tut-making-shooter",
-                "/ru/tut-making-platformer"
+                'making-games-shooter',
+                'making-games-platformer',
+                'making-games-jettycat',
+                'making-games-polishing-jettycat'
             ],
-        },
-        {
-            text: "Ядро",
+        }, {
+            text: 'Основная библиотека',
             collapsible: false,
             icon: 'certificate',
+            prefix: '/ru/',
             children: [
-                "/ru/ct",
+                'ct-concepts',
+                'backgrounds',
+                'behaviors',
+                'camera',
+                'emitters',
                 {
-                    link: "/ru/ct.inputs",
-                    text: "ct.inputs и ct.actions",
+                    link: '/ru/inputs',
+                    text: 'inputs и actions'
                 },
-                "/ru/ct.res",
-                "/ru/ct.rooms",
-                "/ru/ct.styles",
-                "/ru/ct.types",
+                'res',
+                'rooms',
+                'settings',
+                'sounds',
+                'styles',
+                'tilemaps',
+                'timer',
+                'templates',
                 {
-                    link: "/ru/ct.u",
-                    text: "ct.u (утилиты)",
+                    link: 'u',
+                    text: 'u (утилиты)'
                 },
                 {
-                    link: "/ru/catmoddocs",
-                    text: "Где документация к модулям?",
+                    link: 'catmoddocs',
+                    text: 'Где документация к котомодам?'
+                }
+            ]
+        }, {
+            text: 'Встроенные классы',
+            collapsible: false,
+            icon: 'icons',
+            prefix: '/ru/',
+            children: [
+                {
+                    link: './background.md',
+                    text: 'Background (фон)'
+                }, {
+                    link: './copy.md',
+                    text: 'Copy (копия)'
+                }, {
+                    link: './room.md',
+                    text: 'Room (комната)'
+                }
+            ]
+        }, {
+            text: 'Работа с редактором',
+            collapsible: false,
+            icon: 'laptop-code',
+            prefix: '/ru/',
+            children: [
+                'actions',
+                {
+                    link: 'room-editor',
+                    text: 'Работа с редактором комнат'
                 },
-            ],
-        },
-        {
-            text: "Подсказки и советы",
+                {
+                    link: 'bitmap-fonts',
+                    text: 'Использование битмап-шрифтов'
+                },
+                {
+                    link: 'content-subsystem',
+                    text: 'Подсистема контента'
+                },
+                "building-your-game",
+                "deployment-itch-io"
+            ]
+        }, {
+            text: 'Подсказки и приёмы',
             collapsible: false,
             icon: 'lightbulb',
-            children: ["ru/actions"],
-        },
+            prefix: '/ru/tips-n-tricks/',
+            children: [
+                'game-and-ui-coordinates',
+                'movement',
+                'game-pause',
+                'localstorage',
+                'viewport-management',
+                'textures-magic-properties',
+                'dragging-copies',
+                'gamedev-resources'
+            ]
+        }, {
+            prefix: '/ru/',
+            text: 'Техническая информация',
+            collapsible: true,
+            icon: 'gears',
+            children: [
+                '/event-order'
+            ]
+        }, {
+            text: 'Моддинг ct.js',
+            collapsible: true,
+            icon: 'plug',
+            prefix: "/ru/modding-ctjs/",
+            children: [
+                {
+                    link: 'mod-structure',
+                    text: 'Структура модуля и его манифест'
+                }, {
+                    link: 'events-and-injections',
+                    text: 'Расширение кода ct.js инъекциями'
+                }, {
+                    link: 'settings-and-extensions',
+                    text: 'Добавление настроек и дополнительных полей'
+                }, {
+                    link: 'input-methods',
+                    text: 'Добавление новых методов ввода'
+                }, {
+                    link: 'modded-events',
+                    text: 'Добавление новых событий'
+                }, {
+                    link: 'typings-and-intellisense',
+                    text: 'Автозаполнение и IntelliSense'
+                }, {
+                    link: 'fields-declaration',
+                    text: 'Справка по полям ввода'
+                }
+            ]
+        }, {
+            text: 'В случае неполадок',
+            collapsible: false,
+            icon: 'hand',
+            prefix: "/ru/troubleshooting/",
+            children: [
+                {
+                    link: 'migration-0to1',
+                    text: 'Миграция с 0.x на 1.x'
+                }, {
+                    link: 'migration-1-2to1-3',
+                    text: 'Миграция с 1.2 на 1.3'
+                }, {
+                    link: 'migration-1to2',
+                    text: 'Миграция с 1.x на 2.0'
+                }, {
+                    link: 'migration-2to3',
+                    text: 'Миграция с 2.x на 3.0'
+                }, {
+                    link: 'migration-3to4',
+                    text: 'Миграция с 3.x на 4.0'
+                }, {
+                    link: 'teared-background',
+                    text: 'Фоны разваливаются на квадраты!'
+                }, {
+                    link: 'leaking-pixels',
+                    text: 'У текстур видны странные края!'
+                }, {
+                    link: 'sounds-not-playing',
+                    text: 'Звуки не проигрываются на старте!'
+                }
+            ]
+        }
     ],
     serviceWorker: {
         updatePopup: {

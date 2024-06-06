@@ -24,7 +24,7 @@ We will need to prepare these textures: properly mark backgrounds as such, and s
 
 ![Opening a texture asset in ct.js](./../images/tutorials/tutJettyCat_02.png)
 
-Here, we will need to click the checkbox "This is a tiled background" This tells ct.js to pack this texture differently and allows it to repeat in our levels.
+Here, we will need to click the checkbox "This is a tiled background". This tells ct.js to pack this texture differently and allows it to repeat in our levels.
 
 ![Changing texture's type to background in ct.js](./../images/tutorials/tutJettyCat_03.png)
 
