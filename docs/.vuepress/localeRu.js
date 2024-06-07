@@ -198,6 +198,9 @@ export default {
                     link: 'migration-3to4',
                     text: 'Миграция с 3.x на 4.0'
                 }, {
+                    link: 'migration-4to5',
+                    text: 'Миграция с 4.0 на 5.0'
+                }, {
                     link: 'teared-background',
                     text: 'Фоны разваливаются на квадраты!'
                 }, {
