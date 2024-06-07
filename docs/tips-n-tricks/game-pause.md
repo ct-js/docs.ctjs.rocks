@@ -4,9 +4,9 @@ If you want to pause a game and to create a pause menu, you should freeze all th
 
 * Make sure all your timers use built-in events or are based on `u.time`. It can be as simple as `this.timer -= u.time;`, but it can't be `this.timer--;`.
 * Your UI elements should use `u.timeUi`, so they stay responsive when the game freezes.
-* Watch out for `tween` inside your gameplay-related code, as `tween` does not use `u.time` by default.
+* Watch out for `tween` inside your gameplay-related code, as `tween` uses `u.time` by default.
 
-`u.time` is a value available globally, and it shows how long a frame lasted relative to an ideal one at 60 FPS. It makes your game run uniformly smooth on any devices, but it can also be scaled, making the game running slower or faster, e.g. for making epic slo-mo scenes. We can freeze the game as well:
+`u.time` is a value available globally, and it shows how long a previous frame lasted. Using it makes your game run uniformly smooth on any devices, but it can also be scaled, making the game running slower or faster, e.g. for making epic slo-mo scenes. We can freeze the game as well:
 
 ```js
 pixiApp.ticker.speed = 0;
@@ -51,4 +51,4 @@ if (actions.Pause.pressed) {
 }
 ```
 
-This code can also be split into two parts and moved to UI buttons. UI animations can run on `ct.tween`, or be manually animated through time at each frame.
+This code can also be split into two parts and moved to UI buttons. UI animations can run on the `tween` catmod, or be manually animated through time at each frame.

@@ -65,7 +65,7 @@ To scale the viewport, use `camera.scale.x` and `camera.scale.y`, similarly to s
 To rotate the viewport, use `camera.rotation` (in degrees). Again, you rotate a capturing rectangle, so the stuff on the screen will rotate clockwise.
 
 ::: warning A little caveat
-You should not change the camera's values in the "On Draw" event, as the camera updates after the "On Step" event and before "On Draw" event. If you do, you will notice some inconsistencies when converting UI coordinates to game ones. That's because `u.uiToGameCoord` and others will use new values though the room is not yet repositioned.
+You should not change the camera's values in the "Frame End" event, as the camera updates after the "Frame Start" event and before "Frame End" event. If you do, you will notice some inconsistencies when converting UI coordinates to game ones. That's because `u.uiToGameCoord` and others will use new values though the room is not yet repositioned.
 :::
 
 ## Modifiers and smooth transition
@@ -179,9 +179,8 @@ If you are making a pixelart game, make sure you disable image smoothing at the 
 In general, you should follow these rules:
 
 * design UI in a separate room, and then import it with `rooms.append('NameOfTheRoom', {isUi: true})`;
-* use `camera.width` and `camera.height` to position UI elements;
-* use `camera.realign(this)` in "On Draw" of the UI layer to quickly get decent results;
-* update the position of UI elements regularly, as any resolution change may crop your elements. This can be caused by resizing a windowed version, at random unplug of an external monitor, etc;
+* use UI tools in the room editor for automatic copy alignment;
+* use `camera.width` and `camera.height` to position other UI elements;
 * when using "Scaling with/without letterboxing", start designing your rooms, graphic assets, and UI at a relatively big view size at rooms' settings, e.g. at 1920x1080px, so it will scale down on other resolutions nicely.
 
 Don't forget to test your UI on different screen sizes and devices!
