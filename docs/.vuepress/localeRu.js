@@ -92,13 +92,13 @@ export default {
             prefix: '/ru/',
             children: [
                 {
-                    link: './background.md',
+                    link: 'background',
                     text: 'Background (фон)'
                 }, {
-                    link: './copy.md',
+                    link: 'copy',
                     text: 'Copy (копия)'
                 }, {
-                    link: './room.md',
+                    link: 'room',
                     text: 'Room (комната)'
                 }
             ]
