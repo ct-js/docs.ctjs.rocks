@@ -1,122 +1,127 @@
-# Making Games: Space Shooter
+::: note Автоматически переведённая страница
+К сожалению, на полный ручной перевод у нас не хватает ресурсов.
+Если вы увидели ошибку — отправьте пул-риквест с исправлениями (ссылка для редактирования в конце страницы).
+:::
 
-Let's make a small space shooting game with asteroids, lasers and hostile gunships! This tutorial will teach you how to import assets, handle user input, move things around and respond to collisions.
+# Создание игр: космический шутер
 
-![](./../images/tutorials/tutSpaceShooter_Result.gif)
+Давайте создадим небольшую игру в космосе со шутерами, астероидами, лазерами и враждебными истребителями! В этом руководстве мы научим вас импортировать ресурсы, обрабатывать входные данные пользователей, перемещать объекты и реагировать на столкновения.
 
-Here's what we will do:
+![](../../images/tutorials/tutSpaceShooter_Result.gif)
+
+Вот что нам нужно сделать:
 
 [[toc]]
 
-## Importing Textures
+## Импорт текстур
 
-Open ct.js and click the "Create new" tab. Create a new project by specifying its name (for example, "SpaceShooter"), selecting a coding language, and clicking "Create" button.
+Откройте ct.js и кликните на вкладку "Создать новое". Создайте новый проект, указав его имя (например, "SpaceShooter"), выбрав язык программирования и нажав кнопку "Создать".
 
-![](./../images/tutorials/tutCommon_CreateProject.png)
+![](../../images/tutorials/tutCommon_CreateProject.png)
 
-We will need some game sprites for this project. In the top-right corner, find a button "New Asset", click it and select "Built-in asset gallery" in the menu.
+Нам понадобятся некоторые спрайты для этой задачи. В верхнем правом углу найдите кнопку "Новый ассет", нажмите ее и выберите "Внутренняя галерея ассетов" в меню.
 
-![](./../images/tutorials/tutSpaceShooter_01.png)
+![](../../images/tutorials/tutSpaceShooter_01.png)
 
-In the gallery, find **"Kenney's Space Shooter"** asset pack, and add these (or similar) textures by hovering your mouse over the needed textures and clicking the small import button in the top-right corner:
+В галерее найдите пакет ассетов **"Kenney's Space Shooter"** и добавьте эти (или похожие) текстуры, наведя курсор мыши на нужные текстуры и нажав кнопку импорта в правом верхнем углу:
 
-![](./../images/tutorials/tutSpaceShooter_02.png)
+![](../../images/tutorials/tutSpaceShooter_02.png)
 
-When you're done, close the gallery with an X button in the top-right corner.
+Когда вы закончите, закройте галерею, нажав на кнопку "X" в правом верхнем углу.
 
-You will now see cards for each imported texture. Let's open the `PlayerShip` one and configure it by clicking its asset card. We will see a blue transparent shape that defines its collision shape. This shape defines which areas are counted as part of the ship, and which are not. For now, it covers too much empty space, especially above the wings. To fix it, we should modify this collision shape in the right column.
+Теперь вы увидите карты для каждой импортированной текстуры. Откройте карту `PlayerShip` и настройте ее, нажав на ее карту ассета. Мы увидим синюю прозрачную форму, которая определяет его коллизионную форму. Эта форма определяет, какие области считаются частью корабля, а какие нет. Пока она покрывает слишком много пустого пространства, особенно над крыльями. Чтобы исправить это, нам нужно изменить эту коллизионную форму в правой колонке.
 
-Firstly, press a button **"Image's center"**, so its axis is placed at the ship's center.
+Сначала нажмите кнопку **"Центр изображения"**, чтобы поставить ось в центр корабля.
 
-Next, select the "**Line Strip / Polygon**" option under the label "Collision Shape". Add a couple of additional points and move them with your mouse so that the resulting polygon resembles the ship's shape.
+Далее выберите **«Линейная полоса / Полигон»** в качестве формы коллизии под меткой "Коллизионная форма". Добавьте пару дополнительных точек и переместите их мышкой, чтобы результирующий полигон напоминал форму корабля.
 
-![](./../images/tutorials/tutSpaceShooter_03.png)
+![](../../images/tutorials/tutSpaceShooter_03.png)
 
-Press "Save" and move to the next texture — `Laser_Red`. As with the ship, let's set its axis to center by clicking "Image's Center". Then, select a **Circle** collision shape right beneath this button. Now a blue collision shape is drawn as a circle.
+Нажмите "Сохранить" и перейдите к следующей текстуре — `Laser_Red`. Как и с кораблем, поставьте ее ось в центр, нажав кнопку **"Центр изображения"**. Затем выберите **«Круг»** в качестве формы коллизии прямо под этой кнопкой. Теперь синяя форма коллизии нарисована как круг.
 
-![](./../images/tutorials/tutSpaceShooter_03_2.png)
+![](../../images/tutorials/tutSpaceShooter_03_2.png)
 
-The next texture, `Laser_Blue`, should be centered too, and since the collision shape should cover all the image, we can click the "Fill" button to automate it.
+Следующая текстура, `Laser_Blue`, также должна быть центрирована. Поскольку форма коллизии должна покрывать все изображение, вы можете нажать кнопку "Заполнить", чтобы автоматизировать этот процесс.
 
-![](./../images/tutorials/tutSpaceShooter_04.png)
+![](../../images/tutorials/tutSpaceShooter_04.png)
 
-Both asteroids are better defined as polygons by their concave or sharp shapes. Set their collision shape to **Line Strip / Polygon**, and don't forget to set their axis to center.
+Оба астероида лучше определить как полигоны из-за их вогнутых или острых форм. Установите для них форму коллизии **«Линейная полоса / Полигон»** и не забудьте поставить их ось в центр.
 
-The `Enemy_Red`'s shape can be treated as a **Polygon**.
+Форма `Enemy_Red` может быть обработана как **«Полигон»**.
 
-The background image may be left as is, because it won't collide with other things in the game. But, you should go to edit it and check the "This is a tiled background" checkbox so that there will be no seams in the tiling when you launch the game.
+Фоновое изображение может остаться без изменений, так как оно не будет коллизией с другими объектами в игре. Но вы должны перейти к его редактированию и проверить флажок "Это тиленое заднее изображение", чтобы избежать швов при мозаике при запуске игры.
 
-## Making First Templates and Laying Things Out
+## Создание первых шаблонов и размещение вещей
 
-**Textures** don't do much on their own, and in order to display them in game, we need to create **templates** with these assets. Templates are used to create **Copies**, and the latter are the things that you place inside **Rooms**, that interact with each other and respond to your inputs.
+**Текстуры** сами по себе не имеют особого смысла, и чтобы отобразить их в игре, нам нужно создать **шаблоны** с этими ресурсами. Шаблоны используются для создания **копий**, а копии — это те самые объекты, которые вы помещаете в **комнаты**, которые взаимодействуют друг с другом и реагируют на ваши действия.
 
-Go to the "Assets" tab on top of the screen, click the "New Asset" button, and create a new template for the player's ship. Call the template "PlayerShip" so we won't have to remember any numbers when we start coding. If you forgot to change the name while creating the template, you can go to the "Assets" tab again and right-click the template, and there will be an option to change the name.
+Перейдите в вкладку "Ресурсы" в верхней части экрана, нажмите кнопку "Новый ресурс" и создайте новый шаблон для корабля игрока. Назовите шаблон "PlayerShip", чтобы нам не пришлось запоминать какие-то номера при программировании. Если вы забыли изменить название при создании шаблона, вы можете перейти обратно к вкладке "Ресурсы" и щелкнуть правой кнопкой мыши по шаблону, и там будет возможность переименовать его.
 
-Click on the big ghostly cat in the left column to select a texture for it. Press the card with your ship — after that, it will appear in the left column of the editor.
+Щелкните по большой призрачной кошке в левой колонке, чтобы выбрать текстуру для нее. Нажмите на карту с вашим кораблем — после этого он появится в левой колонке редактора.
 
-![](./../images/tutorials/tutSpaceShooter_05.png)
+![](../../images/tutorials/tutSpaceShooter_05.png)
 
-Create templates for all the other textures but the background image. Background images don't move or interact with anything, and is often tiled, so it is not a template. We will add it later in a **Room**.
+Создайте шаблоны для всех остальных текстур, кроме фонового изображения. Фоновые изображения обычно не перемещаются и не взаимодействуют с другими объектами и часто повторяются, поэтому они не являются шаблонами. Мы добавим его позже в **комнате**.
 
-Your asset list should look like this:
+Вот как должен выглядеть ваш список ресурсов:
 
-![](./../images/tutorials/tutSpaceShooter_07.png)
+![](../../images/tutorials/tutSpaceShooter_07.png)
 
-Let's place created templates somewhere on the map. To create this map, or Room, press the "New Asset" button again and click on "Room". Give it the title "Main" and create the room.
+Теперь поместим созданные шаблоны на карту. Чтобы создать эту карту или комнату, еще раз нажмите кнопку "Новый ресурс" и выберите "Комната". Назовите ее "Главная" и создайте.
 
-![](./../images/tutorials/tutSpaceShooter_08.png)
+![](../../images/tutorials/tutSpaceShooter_08.png)
 
-Here we will stop a bit to explain how to use the Room editor. The extended explanation can be found [here](./../room-editor.md), but right now we will use just a few tools of it. Firstly, we should set up a Room's viewport size in room's properties, by clicking the cog button in the left toolbar.
+Здесь мы немного остановимся, чтобы объяснить, как использовать редактор комнат. Более подробное описание можно найти [здесь](./../room-editor.md), но пока что нам понадобятся только некоторые инструменты этого редактора. Во-первых, мы должны настроить размер просмотра комнаты в свойствах комнаты, нажав кнопку с шестеренкой в левой панели инструментов.
 
-In ct.js, Rooms are infinite and can pan in any direction. You can place objects inside and outside the viewport.
+В ct.js комнаты бесконечны и могут перемещаться в любом направлении. Вы можете помещать объекты внутри и за пределами области просмотра.
 
-You can navigate the room by holding the mouse wheel and dragging your mouse. You can change zoom level by mouse wheel, or by changing zoom in the dropdown in the top toolbar. If you feel lost, press the "Reset viewport" menu item in the zoom dropdown to return to (0, 0) coordinates — or just press the `H` key.
+Вы можете перемещаться по комнате, удерживая колесо мыши и перетаскивая мышь. Вы также можете изменять масштаб с помощью колесика мыши или с помощью выпадающего меню в верхней панели инструментов. Если вы чувствуете себя дезориентированным, нажмите пункт меню "Сбросить просмотр" в выпадающем меню "Масштаб", чтобы вернуться к координатам (0, 0) — или просто нажмите клавишу `H`.
 
-For now, let's place a player's ship, a hostile one and a couple of asteroids. Select the "Add copies" tool in the left toolbar, pick a template, and position a copy of it onto a level with a mouse click.
+Пока что давайте разместим корабль игрока, вражеский корабль и пару астероидов. Выберите инструмент "Добавить копии" в левой панели инструментов, выберите шаблон и поместите его на уровень с помощью щелчка мыши.
 
-![](./../images/tutorials/tutSpaceShooter_10.png)
+![](../../images/tutorials/tutSpaceShooter_10.png)
 
-Then add a background. Click the "Backgrounds" tool on the left and press the "Add a background" button, then select our `BG`. It will appear as a tiled texture in the main view.
+Затем добавим фон. Нажмите кнопку "Фонды" в левой панели и нажмите кнопку "Добавить фон", затем выберите наш фоновый ресурс. Он появится в основном просмотре как текстура, повторяющаяся по всему экрану.
 
-![](./../images/tutorials/tutSpaceShooter_09.png)
+![](../../images/tutorials/tutSpaceShooter_09.png)
 
-Though backgrounds are always drawn before Copies of the same depth level (`0` by default), it is better to change their Depth level. Click on the cog on the right to the background's thumbnail and input `-5` in the "Depth" field. By doing this, we tell the engine that this background is placed lower than other Copies and backgrounds. Depth represents a third coordinate axis that goes upwards, when X and Y go to the sides.
+Хотя фоновые изображения всегда отрисовываются перед копиями с одинаковым уровнем глубины (`0` по умолчанию), лучше изменить их уровень глубины. Нажмите кнопку с шестеренкой справа рядом с миниатюрой фона и введите `-5` в поле "Глубина". Таким образом, мы сообщаем движку, что этот фон находится ниже, чем другие копии и фоны. Глубина представляет собой третью ось, которая идет вверх, а X и Y — на стороны.
 
-![](./../images/tutorials/tutSpaceShooter_Depth.png)
+![](../../images/tutorials/tutSpaceShooter_Depth.png)
 
-After that, save the project and click a 'Launch' button. At this point, you will have a game project with immovable ships and asteroids.
+После этого сохраните проект и нажмите кнопку "Запустить". На этом этапе у вас будет проект игры с неподвижными кораблями и астероидами.
 
-![](./../images/tutorials/tutSpaceShooter_11.png)
+![](../../images/tutorials/tutSpaceShooter_11.png)
 
-## Adding Player's Movement
+Добавление движения игрока
 
-Handling user's input is the most important task. In this section we will make the blue ship move when a player presses arrow keys or WASD.
+Обработка входных данных пользователя — это самый важный задача. В этом разделе мы сделаем синюю корабль двигаться при нажатии стрелочных клавиш или клавиш WASD.
 
-In order to handle keyboard inputs, we need to enable the Keyboard module. Press the "Project" tab, then a "Catmods" tab on the left, then find a Keyboard module in the section with available modules. Click it to enable it (it may be enabled by default, though — a green checkbox with a little spinning circle indicates that the module is enabled). Then make sure that modules `pointer`, `random` and `place` are enabled, as we will need them later too.
+Чтобы обработать ввод с клавиатуры, нам нужно включить модуль Keyboard. Перейдите на вкладку «Проект», затем на левую вкладку «Catmods», затем найдите модуль Keyboard в разделе доступных модулей. Нажмите на него, чтобы включить (он может быть включен по умолчанию — зеленый флажок с маленькой стрелкой указывает на то, что модуль включен). Затем убедитесь, что включены модули `pointer`, `random` и `place`, поскольку нам они тоже понадобятся позже.
 
-![](./../images/tutorials/tutSpaceShooter_12.png)
+![](../../images/tutorials/tutSpaceShooter_12.png)
 
-### Adding actions
+### Добавление действий
 
-Actions in ct.js are entities that group different input methods into events, and allow you to listen to player input in code. You can read more about them [here](./../actions.md).
+Действия в ct.js — это объекты, которые группируют различные методы ввода в события и позволяют вам слушать ввод игрока в коде. Дополнительную информацию можно найти [здесь](./../actions.md).
 
-For now, let's create a basic input scheme for our shooter. Open the "Project" tab, then the "Actions and input methods" tab on the left side. We will need to define three different actions: for shooting laser bullets, for moving horizontally, and for moving vertically.
+Пока давайте создадим базовую схему ввода для нашей игры-стрелялки. Откройте вкладку «Проект», а затем вкладку «Действия и методы ввода» слева. Нам нужно будет определить три разных действия: для стрельбы лазерными пулями, для горизонтального движения и для вертикального движения.
 
-First, click the "Make from scratch" button. Then, input the name of the first action. Click the button called "Add an input method" to bind specific buttons to your action. Use its search to quickly filter available input methods. Click the "Add an action" button to continue creating more actions.
+Сначала нажмите кнопку «Создать с нуля». Затем введите имя первого действия. Нажмите кнопку «Добавить метод ввода», чтобы связать конкретные кнопки с вашим действием. Используйте его поиск, чтобы быстро отфильтровать доступные методы ввода. Нажмите кнопку «Добавить действие», чтобы продолжить создание новых действий.
 
-![](./../images/tutorials/tutSpaceShooter_15.png)
+![](../../images/tutorials/tutSpaceShooter_15.png)
 
-Create three actions as in the picture above. Set multiplier value to `-1` for `keyboard.ArrowUp`, `keyboard.KeyW`, `keyboard.ArrowLeft`, and for `keyboard.KeyA`, so that these keys will move the ship in the opposite direction.
+Создайте три действия, как показано на картинке выше. Установите значение множителя равным `-1` для `keyboard.ArrowUp`, `keyboard.KeyW`, `keyboard.ArrowLeft` и для `keyboard.KeyA`, так что эти клавиши будут двигать корабль в противоположном направлении.
 
-### Coding the movement
+### Кодирование движения
 
-Go back to the "Assets" tab, then click on the `PlayerShip` template and move to `Frame start` event.
+Вернуться к "Ассетам", затем щелкнуть на шаблоне `PlayerShip` и перейти к событию `Frame start`.
 
 ::: tip
-`Frame start` event occurs every frame before drawing, while `Frame end` happens after all the `Frame start` events in the room to draw a new frame. `Creation` happens when you spawn a new Copy, and  `Destruction` occurs before the `Frame end` event if a Copy is killed.
+Событие `Frame start` происходит каждый кадр перед отрисовкой, в то время как событие `Frame end` происходит после всех событий `Frame start` в комнате для отрисовки нового кадра. Событие `Creation` происходит при создании новой Копии, и событие `Destruction` происходит до события `Frame end`, если Копия была убита.
 :::
 
-Write the following code:
+Напишите следующий код:
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -176,25 +181,25 @@ Has the ship crossed the left border?" style="height: 37px;" readonly="readonly"
 <catnip-block class=" command    selected">  <img src="/assets/icons/help-circle.svg" class="feather"><span class="catnip-block-aTextLabel">If</span>         <catnip-block class=" computed boolean boolean  ">           <catnip-block class=" computed number number  ">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">x</span>     </catnip-block>  <span class="catnip-block-aTextLabel">&gt;</span>                  <catnip-block class=" computed number number  ">  <img src="/assets/icons/camera.svg" class="feather"><span class="catnip-block-aTextLabel">width</span>     </catnip-block>      </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command   note ">  <img src="/assets/icons/message-circle.svg" class="feather"><span class="catnip-block-aTextLabel">Note</span>      <textarea value="Go back to the right border" style="height: 21px;" readonly="readonly"></textarea>         </catnip-block>   <catnip-block class=" command    ">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">Set x to</span>         <catnip-block class=" computed number number  ">  <img src="/assets/icons/camera.svg" class="feather"><span class="catnip-block-aTextLabel">width</span>     </catnip-block>      </catnip-block>    </catnip-block-list> </div>        </catnip-block>
 :::
 
-Here we are using the created actions. First, we try to move the ship horizontally (by `x`, line 5 or 6). `actions.MoveX` will return `1` if we pressed the right keyboard arrow or the "D" key, and will return `-1` if a player presses the left arrow or the "A" key. If nothing is pressed, it will return `0`, disabling the horizontal movement.
+Здесь мы используем созданные действия. Во-первых, мы пытаемся горизонтально перемещать корабль (по оси X, строки 5 или 6). `actions.MoveX` вернет `1`, если мы нажимаем правую стрелку клавиатуры или клавишу "D", и будет возвращать `-1`, если игрок нажимает левую стрелку или клавишу "A". Если ничего не нажато, он будет возвращать `0`, отключая горизонтальное перемещение.
 
-`u.time` is needed to compensate possible lags, and FPS changes. It measures the amount of time in seconds between the last frame and the current one. It is usually equal to `1/60` if your project runs at 60 FPS, but will speed up the movement if some frames were dropped. This means the copy will move at 1 pixel per second under `u.time`.
+`u.time` необходимо для компенсации возможных задержек и изменений FPS. Он измеряет количество времени в секундах между последним кадром и текущим. Обычно он равен `1/60`, если ваш проект работает на 60 кадров в секунду, но будет ускорять перемещение, если некоторые кадры были пропущены. Это означает, что копия будет двигаться на 1 пиксель в секунду при `u.time`.
 
-Lastly, we multiply our intermediate speed value with the desired velocity, `480`.
+Наконец, мы умножаем наше промежуточное значение скорости на желаемую скорость, `480`.
 
-We later check whether its X coordinate fell off the viewport. Here `0` means the left side of the room and `camera.width` means the horizontal size of the viewport, which forms the right side.
+Затем мы проверяем, не вышла ли X-координата корабля за пределы камеры. Здесь `0` означает левый бок комнаты, а `camera.width` означает горизонтальную ширину камеры, которая соответствует правому краю.
 
-::: tip On your own!
-Add a vertical movement to the player. Then, try to limit its movement so the ship can't fly above the middle of the viewport.
+::: tip А теперь — самостоятельно!
+Добавьте вертикальное перемещение игроку. Затем попробуйте ограничить его движение так, чтобы корабль не мог лететь выше середины камеры.
 :::
 
-## Moving Hostiles and Asteroids
+## Перемещающиеся враги и астероиды
 
-Enemies should move, too. For this tutorial, our hostile ship will move from top to bottom, and asteroids will fly in a random direction.
+Враги тоже должны двигаться. Для этого руководства наш враждебный корабль будет перемещаться сверху вниз, а астероиды будут лететь в случайном направлении.
 
-### Enemy ships
+### Враги
 
-Open the "Assets" tab, then click on the `EnemyShip`. Navigate to the `Creation` event and add this code:
+Откройте вкладку "Ассеты", затем щелкните по `EnemyShip`. Перейдите к событию "Создание" и добавьте следующий код:
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -213,19 +218,19 @@ this.direction = 90;
 <catnip-block class=" command    selected">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">Set direction to</span>          <input type="text" class="catnip-block-aConstantInput number " style=" width: 2.5ch;    " value="90" readonly="readonly">     </catnip-block>
 :::
 
-Here, we use built-in variables for moving. Manually editing coordinates is good for handling player's input, but for most tasks it is better to use these vars as they automate most of the things. For example, you don't need to use `u.time` while using `this.speed` and `this.direction`. Here, `this.speed` means the speed of the Copy, and `this.direction` refers to its direction.
+Здесь мы используем встроенные переменные для движения. Ручное редактирование координат может быть полезно при обработке ввода игрока, но для большинства задач лучше использовать эти переменные, так как они автоматизируют многие вещи. Например, вам не нужно использовать `u.time`, когда есть `this.speed` и `this.direction`. Здесь `this.speed` означает скорость Копии, а `this.direction` относится к ее направлению.
 
 ::: tip
-If you use CoffeeScript, `this.speed` is `@speed`, `this.direction` is `@direction`, and so on. You can actually write it either way!
+Если вы используете CoffeeScript, то `this.speed` является `@speed`, `this.direction` — `@direction`, и т.д. Вы можете писать по-разному!
 :::
 
 ::: tip
-In ct.js, direction is measured in degrees, moving clockwise. 0° means right, 90° means bottom, 180° is for left, and 270° points to the up.
+В ct.js направление измеряется в градусах, по часовой стрелке. 0° означает вправо, 90° вниз, 180° влево, а 270° вверх.
 
-![](./../images/tutorials/tutSpaceShooter_Direction.png)
+![](../../images/tutorials/tutSpaceShooter_Direction.png)
 :::
 
-If we navigate to the `Frame start` event, we will see this little code:
+Если мы перейдем к событию "Начало кадра", мы увидим следующий небольшой код:
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -240,11 +245,11 @@ this.move();
 <catnip-block class=" command    selected">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">Move this copy</span>     </catnip-block>
 :::
 
-This line reads built-in variables and moves the Copy according to them. Without it, `this.speed` and `this.direction` will be meaningless.
+Эта строка использует встроенные переменные и перемещает Копию в соответствии с ними. Без него `this.speed` и `this.direction` будут бессмысленны.
 
-There are more built-in variables, which you can find on the [`templates` page](./../templates.md).
+Есть еще несколько встроенных переменных, которые вы можете найти на странице [`шаблоны`](./../templates.md).
 
-We will modify the `Frame start` code so enemies will destroy themselves if they fall off the screen.
+Мы изменим код события "Начало кадра", чтобы враги уничтожались, если они уходят за пределы экрана.
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -268,15 +273,15 @@ if @y > camera.height + 80
 <catnip-block class=" command    selected">  <img src="/assets/icons/help-circle.svg" class="feather"><span class="catnip-block-aTextLabel">If</span>         <catnip-block class=" computed boolean boolean  ">           <catnip-block class=" computed number number  ">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">y</span>     </catnip-block>  <span class="catnip-block-aTextLabel">&gt;</span>                  <catnip-block class=" computed number number  ">           <catnip-block class=" computed number number  ">  <img src="/assets/icons/camera.svg" class="feather"><span class="catnip-block-aTextLabel">height</span>     </catnip-block>  <span class="catnip-block-aTextLabel">+</span>                   <input type="text" class="catnip-block-aConstantInput number " value="80" style=" width: 2.5ch;    " readonly="readonly">     </catnip-block>      </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">Destroy this copy</span>     </catnip-block>    </catnip-block-list> </div>        </catnip-block>
 :::
 
-::: tip On your own!
-What if enemy ships could move diagonally, zig-zagging?
+::: tip Попробуйте самостоятельно!
+Что если враги могут двигаться диагонально, создавая эффект зигзага?
 :::
 
-### Asteroids
+### Астероиды
 
-Asteroids will contain the same `Frame start` code, but their `direction` variable will be defined randomly.
+Астероиды будут содержать один и тот же код `Frame start`, но их переменная `direction` будет определяться случайным образом.
 
-Open the `Asteroid_Medium` in the "Assets" tab, then write the code below in the `Creation` event.
+Откройте `Asteroid_Medium` в вкладке "Assets", затем введите следующий код в событие `Creation`.
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -295,7 +300,7 @@ this.direction = random.range(90 - 30, 90 + 30);
 <catnip-block class=" command    selected">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">Set direction to</span>         <catnip-block class=" computed number number  ">  <img src="/assets/icons/sort-numerically.svg" class="feather"><span class="catnip-block-aTextLabel">random range</span>         <catnip-block class=" computed number number  ">            <input type="text" class="catnip-block-aConstantInput number " value="90" style=" width: 2.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">-</span>                   <input type="text" class="catnip-block-aConstantInput number " value="30" style=" width: 2.5ch;    " readonly="readonly">     </catnip-block>          <catnip-block class=" computed number number  ">            <input type="text" class="catnip-block-aConstantInput number " value="90" style=" width: 2.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">+</span>                   <input type="text" class="catnip-block-aConstantInput number " value="30" style=" width: 2.5ch;    " readonly="readonly">     </catnip-block>      </catnip-block>      </catnip-block>
 :::
 
-The `Frame start` event will be the same as in `EnemyShip`.
+Событие `Frame start` будет таким же, как и в `EnemyShip`.
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -319,21 +324,21 @@ if @y > camera.height + 80
 <catnip-block class=" command    selected">  <img src="/assets/icons/help-circle.svg" class="feather"><span class="catnip-block-aTextLabel">If</span>         <catnip-block class=" computed boolean boolean  ">           <catnip-block class=" computed number number  ">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">y</span>     </catnip-block>  <span class="catnip-block-aTextLabel">&gt;</span>                  <catnip-block class=" computed number number  ">           <catnip-block class=" computed number number  ">  <img src="/assets/icons/camera.svg" class="feather"><span class="catnip-block-aTextLabel">height</span>     </catnip-block>  <span class="catnip-block-aTextLabel">+</span>                   <input type="text" class="catnip-block-aConstantInput number " value="80" style=" width: 2.5ch;    " readonly="readonly">     </catnip-block>      </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">Destroy this copy</span>     </catnip-block>    </catnip-block-list> </div>        </catnip-block>
 :::
 
-Do the same for another asteroid.
+Повторите то же для другого астероида.
 
-Save the project and click the "Launch" button at the top. The hostile ship will slowly move to the bottom, while asteroids will move more chaotically. If you refresh the page, asteroids will move to a new direction.
+Сохраните проект и нажмите кнопку "Запустить" вверху. Враждебный корабль будет медленно двигаться вниз, а астероиды будут двигаться более хаотично. Если вы обновите страницу, астероиды будут двигаться в новом направлении.
 
 ::: tip
-Do you have errors with `random`? Make sure that you've enabled the `random` module at the Project tab -> Catmods panel.
+У вас возникли ошибки с `random`? Убедитесь, что вы включили модуль `random` в разделе Проект -> Котомоды.
 :::
 
-![](./../images/tutorials/tutSpaceShooter_RandomMovement.gif)
+![](../../images/tutorials/tutSpaceShooter_RandomMovement.gif)
 
-## Projectiles & Collision
+## Снаряды & Столкновения
 
-Now it is time to bring the guns 😎
+Теперь пора вооружить корабли 😎
 
-Open the `PlayerShip` template, and add the "Action press" event. A window should then pop up to ask you which action you want to use. Select the "Shoot" action and then hit apply. Now inside the "On Shoot press" event add this code:
+Откройте шаблон `PlayerShip` и добавьте событие "Нажата кнопка "Стрелять"". Окно должно подсказать вам, какое действие вы хотите использовать. Выберите действие "Стрелка", а затем нажмите "Применить". Теперь внутри события "Стрелять" нажатого добавьте следующий код:
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -348,15 +353,15 @@ templates.copy 'Laser_Blue', @x, @y
 <catnip-block class=" command    selected">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">Copy a template</span>          <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/image.svg" class="feather"><span>Laser_Blue</span></span>         <catnip-block class=" computed number number  ">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">x</span>     </catnip-block>          <catnip-block class=" computed number number  ">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">y</span>     </catnip-block>    <div class="catnip-block-aFiller"></div>        <span class="catnip-block-aTextLabel">store in</span>                   <input type="text" class="catnip-block-aConstantInput wildcard " style=" width: 6.5ch;    " readonly="readonly">        <div class="catnip-block-Options"> <div class="catnip-block-anOptionsToggle"> <img src="/assets/icons/chevron-down.svg" class="feather"><span>Advanced</span> <img src="/assets/icons/chevron-down.svg" class="feather"> </div>    </div>       </catnip-block>
 :::
 
-This is the first time we add new copies programmatically. Hooray!
+Это первая программа, с помощью которой мы создаем новые копии. Хороший старта!
 
 ::: tip
-`templates.copy` is a very important function that spawns a new Copy in the current room. Firstly, we write an enquoted Template's name to copy. Then, we write coordinates at which we should create it, by horizontal and vertical axes accordingly. `this.x` means a horizontal location of current copy, and `this.y` means a vertical one.
+`templates.copy` - это очень важная функция, которая создает новую копию в текущей комнате. Во-первых, мы указываем название шаблона, который нужно скопировать, а затем координаты, по которым нужно создать его, по горизонтали и вертикали соответственно. `this.x` означает горизонтальное положение текущей копии, а `this.y` - вертикальное.
 :::
 
-With all the data combined, we make a laser bullet right under our ship. Bullets will spawn when the Space key is pressed.
+Сочетая все данные, мы создаем лазерный снаряд прямо под нашим кораблем. Снаряды будут создаваться при нажатии клавиши "Пробел".
 
-Now let's move to the `Laser_Blue` itself. We will define its movement with default variables in the Creation event.
+Теперь давайте поговорим о самом "Laser_Blue". Мы определим его движение по умолчанию в событии "Создание".
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -375,7 +380,7 @@ this.direction = 270;
 <catnip-block class=" command    selected">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">Set direction to</span>          <input type="text" class="catnip-block-aConstantInput number " style=" width: 3.5ch;    " value="270" readonly="readonly">     </catnip-block>
 :::
 
-Next, let's make sure that these laser bullets will disappear after they fly out the view. As they always fly to top, we may write a condition for the upper border only in the Frame start event.
+Следующий шаг - убедиться, что эти лазерные снаряды исчезнут после того, как выйдут из кадра. Поскольку они всегда ползут вверх, мы можем написать условие для верхней границы в событии "Начало кадра".
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -399,9 +404,10 @@ if @y < -40
 <catnip-block class=" command    selected">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">Move this copy</span>     </catnip-block>
 :::
 
-The next thing is handling collisions. It is better to write all the collision logic in enemy ships' and asteroids' code because they will respond differently, making no clutter in the bullet's code.
 
-Go to the `EnemyShip` template and create a "Collision with a template" event, then select `Laser_Blue`. In the code, add the following:
+Следующим шагом является обработка столкновений. Лучше всего обрабатывать логику столкновений в коде противника и кораблей, потому что они будут реагировать по-разному, не перегружая код снаряда.
+
+Откройте шаблон `EnemyShip` и создайте событие "Столкновение с шаблоном", выбрав `Laser_Blue`. В коде добавьте следующее:
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -421,12 +427,12 @@ other.kill = true
 :::
 
 ::: tip
-`other` is a special variable that can be referenced when inside collision event code. `other` refers to the other colliding copy. Look out for other local variables that may be accessible in certain events!
+`other` — это специальная переменная, на которую можно ссылаться при написании кода событий столкновения. `other` относится к другому сталкивающемуся экземпляру. Будьте внимательны к другим локальным переменным, которые могут быть доступны в определенных событиях!
 :::
 
-If a ship collides with a laser bullet, then both the bullet and the ship should be destroyed.
+Если корабль сталкивается с лазерным снарядом, то и снаряд, и корабль должны быть уничтожены.
 
-Copy exactly the same code to `Asteroid_Medium`. We will need this code in `Asteroid_Big` too, but we will make it so that big asteroids break into two smaller ones:
+Скопируйте тот же код для `Asteroid_Medium`. Нам также понадобится этот код для `Asteroid_Big`, но мы сделаем так, чтобы большие астероиды разбивались на два более мелких:
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -453,11 +459,11 @@ templates.copy 'Asteroid_Medium', @x, @y
 <catnip-block class=" command    selected">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">Copy a template</span>          <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/image.svg" class="feather"><span>Asteroid_Medium</span></span>         <catnip-block class=" computed number number  ">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">x</span>     </catnip-block>          <catnip-block class=" computed number number  ">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">y</span>     </catnip-block>    <div class="catnip-block-aFiller"></div>        <span class="catnip-block-aTextLabel">store in</span>                   <input type="text" class="catnip-block-aConstantInput wildcard " style=" width: 6.5ch;    " readonly="readonly">        <div class="catnip-block-Options"> <div class="catnip-block-anOptionsToggle"> <img src="/assets/icons/chevron-down.svg" class="feather"><span>Advanced</span> <img src="/assets/icons/chevron-down.svg" class="feather"> </div>    </div>       </catnip-block>
 :::
 
-If you run the game, you will be able to destroy enemy ships and asteroids. Bigger asteroids should break into smaller ones.
+Если запустить игру, вы сможете уничтожать вражеские корабли и астероиды. Более крупные астероиды должны разбиваться на более мелкие.
 
-### Enemy bullets
+### Противник стреляет тоже
 
-Enemy ships should be able to shoot, too. Add the following code to `EnemyShip`'s `Creation` code:
+Врагу тоже нужно уметь стрелять. Добавьте следующий код в секцию `Creation` класса `EnemyShip`:
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -472,9 +478,9 @@ this.timer1 = 1;
 <catnip-block class=" command    selected">  <img src="/assets/icons/clock.svg" class="feather"><span class="catnip-block-aTextLabel">Set 1st timer to</span>          <input type="text" class="catnip-block-aConstantInput number " style=" width: 1.5ch;    " value="1" readonly="readonly"> <span class="catnip-block-aTextLabel">second(s)</span>              </catnip-block>
 :::
 
-With this, we will set up our timer so that the enemy ship will shoot at precise intervals. `timer1` is a special variable that ct.js will automatically countdown for us, 1 per second. The `Timer 1` event will fire once this value reaches 0. This means we will wait for 1 second before shooting the first bullet.
+Таким образом, мы настроим таймер, чтобы враг стрелял с определенными интервалами. Переменная `timer1` — это специальная переменная, которую ct.js будет автоматически отсчитывать для нас, 1 секунда в секунду. Событие `Timer 1` будет активироваться, когда значение достигнет 0. Это означает, что мы подождем 1 секунду, прежде чем стрелять первым выстрелом.
 
-Give the event a name like "Shoot", keep the UI event checkbox unchecked, then add this code to the `Timer 1` event:
+Дайте событию имя, например "Shoot", оставьте флажок проверки UI не выбранным, а затем добавьте следующий код в событие `Timer 1`:
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -493,9 +499,9 @@ templates.copy 'Laser_Red', @x, @y + 32
 <catnip-block class=" command    selected">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">Copy a template</span>          <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/image.svg" class="feather"><span>Laser_Red</span></span>         <catnip-block class=" computed number number  ">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">x</span>     </catnip-block>          <catnip-block class=" computed number number  ">           <catnip-block class=" computed number number  ">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">y</span>     </catnip-block>  <span class="catnip-block-aTextLabel">+</span>                   <input type="text" class="catnip-block-aConstantInput number " value="32" style=" width: 2.5ch;    " readonly="readonly">     </catnip-block>    <div class="catnip-block-aFiller"></div>        <span class="catnip-block-aTextLabel">store in</span>                   <input type="text" class="catnip-block-aConstantInput wildcard " style=" width: 6.5ch;    " readonly="readonly">        <div class="catnip-block-Options"> <div class="catnip-block-anOptionsToggle"> <img src="/assets/icons/chevron-down.svg" class="feather"><span>Advanced</span> <img src="/assets/icons/chevron-down.svg" class="feather"> </div>    </div>       </catnip-block>
 :::
 
-When the `timer1` variable goes down to zero, we wind it back up by setting it to 3 and then create a red laser bullet. Now the next bullet will shoot in 3 seconds automatically. As you can see, by writing `this.y + 32` we spawn it a bit lower than the ship.
+Когда значение `timer1` достигнет нуля, мы вернем его к значению 3 и создадим красный лазерный выстрел. Следующий выстрел будет стрелять через 3 секунды автоматически. Как вы можете видеть, написав `this.y + 32`, мы создаем выстрел немного ниже корабля.
 
-Let's write some code to red bullets. Add this code to `Creation` section of Laser_Red:
+Давайте напишем код для красного bullets. Добавьте следующий код в секцию `Creation` класса `Laser_Red`:
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -519,13 +525,13 @@ this.angle = random.deg();
 <catnip-block class=" command    selected">  <img src="/assets/icons/droplet.svg" class="feather"><span class="catnip-block-aTextLabel">Set texture rotation to</span>         <catnip-block class=" computed number number  ">  <img src="/assets/icons/sort-numerically.svg" class="feather"><span class="catnip-block-aTextLabel">random angle</span>     </catnip-block>      </catnip-block>
 :::
 
-`this.angle` rotates a copy's texture. `random.deg()` returns a random value between 0 and 360, which is handy while defining angular values.
+`this.angle` вращает текстуру копии. `random.deg()` возвращает случайное значение между 0 и 360, что очень удобно для определения угловых значений.
 
 ::: tip
-There is also `this.scale.x` and `this.scale.y`, which sets a copy's horizontal and vertical scale accordingly, and `this.alpha` which manipulates its opacity (0 means fully transparent, 1 — fully opaque).
+Есть также `this.scale.x` и `this.scale.y`, которые позволяют масштабировать копию по горизонтали и вертикали соответственно, а также `this.alpha`, который манипулирует ее непрозрачностью (0 означает полностью прозрачное, 1 — полностью непрозрачное).
 :::
 
-The code of `Frame start` will look as following:
+Код для события `Frame start` будет следующим:
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -555,30 +561,30 @@ if @y > camera.height + 40
 <catnip-block class=" command    selected">  <img src="/assets/icons/droplet.svg" class="feather"><span class="catnip-block-aTextLabel">Set texture rotation to</span>         <catnip-block class=" computed number number  ">           <catnip-block class=" computed number number  ">  <img src="/assets/icons/droplet.svg" class="feather"><span class="catnip-block-aTextLabel">texture rotation</span>     </catnip-block>  <span class="catnip-block-aTextLabel">-</span>                  <catnip-block class=" computed number number  ">            <input type="text" class="catnip-block-aConstantInput number " value="240" style=" width: 3.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">×</span>                  <catnip-block class=" computed number number  ">  <img src="/assets/icons/tool.svg" class="feather"><span class="catnip-block-aTextLabel">time</span>     </catnip-block>      </catnip-block>      </catnip-block>      </catnip-block>
 :::
 
-`this.angle -= 240 * u.time` means that we will rotate a Copy by approximately 240 degrees every second. `u.time` will balance out stuff if the game suffers from inconsistent FPS.
+`this.angle -= 240 * u.time` означает, что мы будем вращать Копию примерно на 240 градусов каждую секунду. `u.time` будет выравнивать stuff, если игра страдает от непоследовательной FPS.
 
-We will define logic for destroying player's ship later. For now, it's time to add enemy and asteroid generation during the playtime.
+Мы определим логику уничтожения корабля игрока позже. Пока нам нужно добавить генерацию врагов и астероидов во время игрового процесса.
 
-## Generating objects through time
+## Генерация объектов во времени
 
-Open the `Main` room. Remove existing asteroids and enemies by right-clicking on them, or erase them with left mouse button while holding the `Ctrl` key.
+Откройте комнату «Main». Удалите существующие астероиды и врагов, нажав правой кнопкой мыши на них или удалив их, удерживая клавишу `Ctrl`.
 
 ::: tip
-Make sure you are on the `Add copies` tool when deleting with the `Ctrl` key, and make sure you are on the `Select` tool and left-clicked a copy in the room before right-clicking to have the option to delete it.
+Убедитесь, что вы выбрали инструмент «Добавить копии», когда удаляете с помощью `Ctrl`, и убедитесь, что вы выбрали инструмент «Выбрать» и нажали левую кнопку мыши на копии в комнате перед правым щелчком, чтобы у вас была опция удалить его.
 :::
 
-Next, Press the `Events` button on the top bar.
+Далее нажмите кнопку «Events» в верхней панели.
 
-Rooms have all the same events like Copies have.
+Комнаты имеют те же события, что и копии.
 
-* `Room start` is called when you launch the game or move to this room programmatically;
-* `Frame start` is called each frame, after Copies' `Frame start`;
-* `Frame end` is called after drawing all the level. It is useful for updating UI;
-* `Room end` is called before moving to another room.
+- `Room start` вызывается при запуске игры или при программировании перемещения в эту комнату.
+- `Frame start` вызывается каждый кадр после копий `Frame start`.
+- `Frame end` вызывается после рисования всех уровней. Это полезно для обновления интерфейса пользователя.
+- `Room end` вызывается перед перемещением в другую комнату.
 
-We will generate enemies in almost the same way as enemy ships generate their bullets. We will have a couple of timers and will place copies above the player's view.
+Мы будем генерировать врагов почти так же, как и снаряды у врагов. У нас будут несколько таймеров и мы будем помещать копии выше поля зрения игрока.
 
-To do this, setup two timers in the `Room start` code:
+Настройте два таймера в коде «Room start»:
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -603,7 +609,6 @@ this.timer2 = 3; // enemy timer
 <catnip-block class=" command    selected">  <img src="/assets/icons/clock.svg" class="feather"><span class="catnip-block-aTextLabel">Set 2nd timer to</span>          <input type="text" class="catnip-block-aConstantInput number " style=" width: 1.5ch;    " value="3" readonly="readonly"> <span class="catnip-block-aTextLabel">second(s)</span>              </catnip-block>
 :::
 
-Then add this code in the `Timer 1` tab to generate asteroids through time:
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -627,7 +632,7 @@ templates.copy randomAsteroid, randomX, -100
 <catnip-block class=" command    selected">  <img src="/assets/icons/help-circle.svg" class="feather"><span class="catnip-block-aTextLabel">If</span>         <catnip-block class=" computed boolean boolean  ">  <img src="/assets/icons/sort-numerically.svg" class="feather"><span class="catnip-block-aTextLabel">random chance</span>          <input type="text" class="catnip-block-aConstantInput number " value="1" style=" width: 1.5ch;    " readonly="readonly">          <input type="text" class="catnip-block-aConstantInput number " value="2" style=" width: 1.5ch;    " readonly="readonly">     </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">Copy a template</span>          <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/image.svg" class="feather"><span>Asteroid_Big</span></span>         <catnip-block class=" computed number number  ">  <img src="/assets/icons/sort-numerically.svg" class="feather"><span class="catnip-block-aTextLabel">random</span>         <catnip-block class=" computed number number  ">  <img src="/assets/icons/camera.svg" class="feather"><span class="catnip-block-aTextLabel">width</span>     </catnip-block>      </catnip-block>           <input type="text" class="catnip-block-aConstantInput number " value="-100" style=" width: 4.5ch;    " readonly="readonly">   <div class="catnip-block-aFiller"></div>        <span class="catnip-block-aTextLabel">store in</span>                   <input type="text" class="catnip-block-aConstantInput wildcard " style=" width: 6.5ch;    " readonly="readonly">        <div class="catnip-block-Options"> <div class="catnip-block-anOptionsToggle"> <img src="/assets/icons/chevron-down.svg" class="feather"><span>Advanced</span> <img src="/assets/icons/chevron-down.svg" class="feather"> </div>    </div>       </catnip-block>    </catnip-block-list> </div>     <img src="/assets/icons/alert-circle.svg" class="feather">         <span class="catnip-block-aTextLabel">Else</span>                <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">Copy a template</span>          <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/image.svg" class="feather"><span>Asteroid_Medium</span></span>         <catnip-block class=" computed number number  ">  <img src="/assets/icons/sort-numerically.svg" class="feather"><span class="catnip-block-aTextLabel">random</span>         <catnip-block class=" computed number number  ">  <img src="/assets/icons/camera.svg" class="feather"><span class="catnip-block-aTextLabel">width</span>     </catnip-block>      </catnip-block>           <input type="text" class="catnip-block-aConstantInput number " value="-100" style=" width: 4.5ch;    " readonly="readonly">   <div class="catnip-block-aFiller"></div>        <span class="catnip-block-aTextLabel">store in</span>                   <input type="text" class="catnip-block-aConstantInput wildcard " style=" width: 6.5ch;    " readonly="readonly">        <div class="catnip-block-Options"> <div class="catnip-block-anOptionsToggle"> <img src="/assets/icons/chevron-down.svg" class="feather"><span>Advanced</span> <img src="/assets/icons/chevron-down.svg" class="feather"> </div>    </div>       </catnip-block>    </catnip-block-list> </div>        </catnip-block>
 :::
 
-Then add this code in the `Timer 2` tab to generate enemies through time:
+Затем добавьте этот код в вкладку "Timer 2", чтобы генерировать врагов во времени:
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -650,23 +655,23 @@ templates.copy 'EnemyShip', randomX, -100
 <catnip-block class=" command    selected">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">Copy a template</span>          <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/image.svg" class="feather"><span>EnemyShip</span></span>         <catnip-block class=" computed number number  ">  <img src="/assets/icons/sort-numerically.svg" class="feather"><span class="catnip-block-aTextLabel">random</span>         <catnip-block class=" computed number number  ">  <img src="/assets/icons/camera.svg" class="feather"><span class="catnip-block-aTextLabel">width</span>     </catnip-block>      </catnip-block>           <input type="text" class="catnip-block-aConstantInput number " style=" width: 4.5ch;    " value="-100" readonly="readonly">   <div class="catnip-block-aFiller"></div>        <span class="catnip-block-aTextLabel">store in</span>                   <input type="text" class="catnip-block-aConstantInput wildcard " style=" width: 6.5ch;    " readonly="readonly">        <div class="catnip-block-Options"> <div class="catnip-block-anOptionsToggle"> <img src="/assets/icons/chevron-down.svg" class="feather"><span>Advanced</span> <img src="/assets/icons/chevron-down.svg" class="feather"> </div>    </div>       </catnip-block>
 :::
 
-That's all what you need for generating asteroids and enemies!
+Вот всё, что вам нужно для создания астероидов и врагов!
 
-::: tip
-`random.dice` returns one of the provided values. You can put any value here, including Numbers, Strings, complex objects. Here, there is a 50% chance that `'Asteroid_Big'` will be returned and a 50% chance that it will be `'Asteroid_Medium'`.
+:::tip
+`random.dice` возвращает одно из указанных значений. Вы можете использовать любые значения, включая числа, строки или сложные объекты. Здесь есть 50% вероятность того, что будет возвращена строка `'Asteroid_Big'`, и 50% вероятность того, что будет возвращена строка `'Asteroid_Medium'`.
 
-`random.range(a, b)` returns a random numerical value between `a` and `b`.
+`random.range(a, b)` возвращает случайное числовое значение между `a` и `b`.
 
-`random(b)` is the same as `random.range(0, b)`.
+`random(b)` равно `random.range(0, b)`.
 :::
 
-## Lives, score and GUI
+## Жизни, счет и графический интерфейс пользователя
 
-Let's add score counting to the game and player ship's reaction to hostiles.
+Давайте добавим в игру подсчет очков и реакцию корабля игрока на враждебные действия.
 
-### Adding and drawing score
+### Добавление и отрисовка счета
 
-Score is a numerical variable that is stored globally. In our case it is better to place it inside the room. Open the `Main` room, and then click on 'Events' button. Add this code to the `Room start` section:
+Счет — это числовой переменная, которая хранится глобально. В нашем случае лучше всего разместить его внутри комнаты. Откройте «Основную» комнату и затем нажмите кнопку «События». Добавьте этот код в раздел «Начало комнаты»:
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -681,11 +686,11 @@ this.score = 0;
 <catnip-block class=" command    selected">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">Set</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">score</span>              </catnip-block>  <span class="catnip-block-aTextLabel">value</span>                   <input type="text" class="catnip-block-aConstantInput wildcard " style=" width: 1.5ch;    " value="0" readonly="readonly">     </catnip-block>
 :::
 
-Now we will make a template that displays the score for us. Make a new template named `ScoreText`, and instead of making it an animated sprite make it a text. Also set its depth, and this large positive value will place the text above other entities in our room. Adding a default text will make it show up in the room we place the copy in, so we can see how it would look in the game without running it!
+Теперь нам нужно создать шаблон, который будет отображать счет для нас. Создайте новый шаблон с именем `ScoreText`, и вместо того, чтобы сделать его анимационным спрайтом, сделайте его текстом. Также установите его глубину, и это большое положительное значение поместит текст выше других сущностей в нашей комнате. Добавление текста по умолчанию сделает его видимым в комнате, которую мы помещаем копию, так что мы сможем увидеть, как он будет выглядеть в игре без ее запуска!
 
-![](./../images/tutorials/tutSpaceShooter_12_2.png)
+![](../../images/tutorials/tutSpaceShooter_12_2.png)
 
-We also need this code at `Frame end` to keep the label up-to-date:
+Мы также нуждаемся в этом коде в разделе «Конец кадра», чтобы держать метку в актуальном состоянии:
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -700,7 +705,7 @@ this.text = 'Score: ' + rooms.current.score;
 <catnip-block class=" command    selected">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">Write</span>          <input type="text" class="catnip-block-aConstantInput string " style=" width: 4.5ch;    " value="text" readonly="readonly"> <span class="catnip-block-aTextLabel">value</span>                  <catnip-block class=" computed string wildcard  ">            <input type="text" class="catnip-block-aConstantInput string " style=" width: 7.5ch;    " value="Score: " readonly="readonly"> <span class="catnip-block-aTextLabel">+</span>                  <catnip-block class=" computed wildcard string  ">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">read</span>          <input type="text" class="catnip-block-aConstantInput string " value="score" style=" width: 5.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">of the current room</span>              </catnip-block>      </catnip-block>      </catnip-block>
 :::
 
-Now, move to `EnemyShip`'s `Collides Laser_Blue template` code, and add `rooms.current.score += 100;` to a place where a ship is destroyed after colliding with a bullet, so the whole code looks like this:
+Теперь перейдите к коду `EnemyShip`'s `Collides Laser_Blue` шаблона и добавьте `rooms.current.score += 100;` в место, где корабль уничтожается после столкновения с лазерной стрелой, так что весь код выглядит так:
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -724,34 +729,35 @@ rooms.current.score += 100
 :::
 
 ::: tip
-`rooms.current` points to the current room object.
+`rooms.current` указывает на текущую комнату.
 :::
 
-Do the same for asteroids, too. Change the number of given score points as you wish.
+Сделайте то же самое для астероидов тоже. Измените количество данных очков так, как вам нравится.
 
-When you place ScoreText in the top-left corner and run the game, you may notice a small black number which will change as asteroids and enemy ships get destroyed. But this doesn't look nice, so it is a good time to make some styling.
+Когда вы помещаете ScoreText в левый верхний угол и запускаете игру, вы можете заметить небольшую черную цифру, которая меняется при уничтожении астероидов и вражеских кораблей. Но это не выглядит хорошо, поэтому сейчас самое время для некоторых стилей.
 
-Text can be drawn with pre-defined styles that declare fill color, line style, font settings, shadow. They are created with the `New Asset` button and selecting `Style`. You will see a style editor, which has a left bar with tabs for setting properties and a preview image on the right.
+Текст можно нарисовать с помощью заранее определенных стилей, которые устанавливают цвет заливки, стиль линии, настройки шрифта, тень. Они создаются с помощью кнопки «Новый ресурс» и выбора «Стиль». Вам будет представлен редактор стилей, в левой части которого есть вкладки для настройки свойств, а справа — предварительный просмотр.
 
-Let's make the font bigger and bolder. Change its size and set its weight to 800. Then align it to be drawn from a top left corner.
+Давайте увеличим шрифт и сделаем его жирным. Измените его размер и установите вес шрифта 800. Затем выровняйте его так, чтобы он начинался слева сверху.
 
-![](./../images/tutorials/tutSpaceShooter_13.png)
+![](../../images/tutorials/tutSpaceShooter_13.png)
 
-Click the `Fill` tab, activate it, and then select the "Diffuse" fill type. Select an appropriate color; I chose something similar to the player's ship's colors.
+Нажмите на вкладку «Заполнение», включите ее и выберите тип заполнения «Размер». Выберите подходящий цвет; я выбрал что-то похожее на цвета игрового корабля.
 
-![](./../images/tutorials/tutSpaceShooter_14.png)
+![](../../images/tutorials/tutSpaceShooter_14.png)
 
-Add shadow, or border, or both! Then save the changes by clicking the "Apply" button in the bottom-left corner.
+Добавьте тень или границу, или оба! Затем примените изменения, нажав кнопку «Применить» в нижнем левом углу.
 
-Name the created style as `ScoreText`. You can rename it by right-clicking it in the list view.
+Назовите созданный стиль `ScoreText`. Вы можете изменить имя, щелкнув правой кнопкой мыши по нему в списке.
 
-Now let's return to the template `ScoreText`. Instead of selecting a sprite with the ghostly cat icon, you can now select a style because we set it to Text. So set it to the ScoreText style we just created.
+Теперь вернитесь к шаблону `ScoreText`. Вместо выбора спрайта с иконкой кошки-призрака вы теперь можете выбрать стиль, потому что мы установили его на Text. Таким образом, установите его на стиль ScoreText, который мы только что создали.
 
-If you go back to the main room, the score will be drawn in your created style. Hooray!
+Если вы vrátитесь в главную комнату, счет будет отрисован вашим созданным стилем. Ура!
 
-### Drawing and managing lives
+### Управление жизнями
 
-Managing lives is similar to managing score points. Add this code to the room's `Room start` code so that it stores the number of lives, too.
+Управление жизнями похоже на управление очками в игре. Добавьте этот код в `Room start` кода, чтобы он также хранил количество жизней.
+
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -766,7 +772,7 @@ this.lives = 3;
 <catnip-block class=" command    selected">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">Set</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">lives</span>              </catnip-block>  <span class="catnip-block-aTextLabel">value</span>                   <input type="text" class="catnip-block-aConstantInput wildcard " style=" width: 1.5ch;    " value="3" readonly="readonly">     </catnip-block>
 :::
 
-Now make a new template named `LivesText`, set it as a Text, and select the `ScoreText` style again. Set its depth to 1000, and add this to `Frame end`:
+Теперь сделайте новый шаблон с именем `LivesText`, установите его как Text и выберите стиль `ScoreText` снова. Установите его глубину в 1000, и добавьте в `Frame end`:
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -781,17 +787,19 @@ this.text = 'Lives: ' + rooms.current.lives
 <catnip-block class=" command    selected">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">Write</span>          <input type="text" class="catnip-block-aConstantInput string " style=" width: 4.5ch;    " value="text" readonly="readonly"> <span class="catnip-block-aTextLabel">value</span>                  <catnip-block class=" computed string wildcard  ">            <input type="text" class="catnip-block-aConstantInput string " style=" width: 7.5ch;    " value="Lives: " readonly="readonly"> <span class="catnip-block-aTextLabel">+</span>                  <catnip-block class=" computed wildcard string  ">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">read</span>          <input type="text" class="catnip-block-aConstantInput string " style=" width: 5.5ch;    " value="lives" readonly="readonly"> <span class="catnip-block-aTextLabel">of the current room</span>              </catnip-block>      </catnip-block>      </catnip-block>
 :::
 
-::: tip On your own!
-Create a new style and apply it to the 'Lives' label.
+Создайте новый стиль и примените его к ярлыку «Жизни».
+
+::: tip Самостоятельно!
+Создайте новый стиль и примените его к ярлыку «Жизни».
 :::
 
-Finally, add the copy to the room in the top right corner and it will display your current lives in game!
+Добавьте копию в комнату в правом верхнем углу, и она будет отображать ваше текущее количество жизней в игре!
 
-Then we should add logic so that player's ship removes one life on collision. Let's group asteroids and enemies into one _collision group_. It will allow us to write less code and won't require any changes if we add more enemies, missiles or asteroids of different size.
+Далее мы должны добавить логику, чтобы корабль игрока убирал одну жизнь при столкновении. Давайте сгруппируем астероиды и врагов в одну группу столкновений. Это позволит нам писать меньше кода и не требовать изменений, если мы добавим больше врагов, ракет или астероидов разного размера.
 
-To add copies to a collision group, we should write in the name of the collision group in the right column of the template editor. Let's write in the word `Hostile`. Do it for all the asteroids, for the enemy ship and red lasers.
+Чтобы добавить копии в группу столкновений, мы должны написать имя группы в правой колонке редактора шаблонов. Давайте напишем `Hostile` в группе. Сделайте это для всех астероидов, вражеского корабля и красных лазеров.
 
-Go to the player ship and create a new "Collision with a group" event. Specify "Hostile" in the appearing text field. Now add this code to the player ship's `Collides Hostile group` code:
+Перейдите к кораблю игрока и создайте новое событие «Коллизия с группой». Укажите `Hostile` в текстовом поле появления. Теперь добавьте этот код в `Collides Hostile group` кода корабля игрока:
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -830,41 +838,42 @@ if room.lives <= 0
 <catnip-block class=" command    selected">  <img src="/assets/icons/help-circle.svg" class="feather"><span class="catnip-block-aTextLabel">If</span>         <catnip-block class=" computed boolean boolean  ">           <catnip-block class=" computed wildcard number  ">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">read</span>          <input type="text" class="catnip-block-aConstantInput string " value="lives" style=" width: 5.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">of the current room</span>              </catnip-block>  <span class="catnip-block-aTextLabel">≤</span>                   <input type="text" class="catnip-block-aConstantInput number " value="0" style=" width: 1.5ch;    " readonly="readonly">     </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">Destroy this copy</span>     </catnip-block>   <catnip-block class=" command wildcard   ">  <img src="/assets/icons/tool.svg" class="feather"><span class="catnip-block-aTextLabel">Delay, in milliseconds</span>          <input type="text" class="catnip-block-aConstantInput number " value="1000" style=" width: 4.5ch;    " readonly="readonly">   <div class="catnip-block-aFiller"></div>         <span class="catnip-block-anAsyncMarker"> <img src="/assets/icons/clock.svg" class="feather"></span>            <div class="catnip-block-aBreak"></div>        <img src="/assets/icons/redo.svg" class="feather">         <span class="catnip-block-aTextLabel">Then</span>                <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command void   ">  <img src="/assets/icons/room.svg" class="feather"><span class="catnip-block-aTextLabel">Switch to</span>          <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/image.svg" class="feather"><span>Main</span></span>     </catnip-block>    </catnip-block-list> </div>       <div class="catnip-block-aBreak"></div>        <img src="/assets/icons/alert-octagon.svg" class="feather">         <span class="catnip-block-aTextLabel">On error</span>                <div class="catnip-block-Blocks"> <catnip-block-list> <div class="catnip-block-aBlockPlaceholder"> <img src="/assets/icons/thumbs-up.svg" class="feather"><span class="catnip-block-aTextLabel">Do nothing</span>  </div>   </catnip-block-list> </div>        </catnip-block>    </catnip-block-list> </div>        </catnip-block>
 :::
 
-`rooms.switch` unloads the current room and loads a new one. By pointing to the same room as we were playing, we restart it.
+`rooms.switch` отключает текущую комнату и загружает новую. Таким образом, мы перезагружаем комнату, указывая ту же комнату, в которой мы играли.
 
-`u.wait` is a Promise that resolves after a given number of milliseconds. Here we wait one second (1000 milliseconds) and then restart the room in the first argument of `then()`.
+`u.wait` — это Promise, который разрешается через заданное количество миллисекунд. Здесь мы ждем одну секунду (1000 миллисекунд) и затем перезагружаем комнату в первом аргументе `then()`.
 
 ::: tip
-`u.wait` may seem like a better way to work with delayed events than writing timers. The difference is that timers exist while its owner does, but `u.wait` will happen in any circumstances, even if the copy that called it was removed from a room.
+`u.wait` может показаться более удобным способом работы с задержками событий, чем таймеры. Разница заключается в том, что таймеры существуют до тех пор, пока существует их владелец, но `u.wait` будет происходить во всех обстоятельствах, даже если копия, которая его вызвала, была удалена из комнаты.
 
-In our case, we want the room to be restarted though there aren't any player ships on the screen, so we use `u.wait`. We use timers for shooting and spawning enemies because we don't want bullets to randomly appear after enemies were destroyed.
+В нашем случае мы хотим перезагрузить комнату, хотя на экране нет кораблей игрока, поэтому мы используем `u.wait`. Мы используем таймеры для стрельбы и появления врагов, потому что мы не хотим, чтобы пули внезапно появлялись после уничтожения врагов.
 :::
 
-Save your project and test it out. Now you have a small, but fully working space shooter! There is a lot of ways to improve this game further:
+Сохраните проект и протестируйте его. Теперь у вас есть небольшая, но полностью работающая игра в космические шутеры! Существует много способов улучшить эту игру дальше:
 
-* tweak existing values, like enemy speed or score points for a better gameplay;
-* add more enemies;
-* improve shooting with timers so that you can just hold your spacebar, not smash it;
-* add bonuses and different weapons;
-* design a main menu and a victory screen;
-* add sounds;
-* create bosses and companions.
+* отрегулировать существующие значения, такие как скорость врага или очки за победу, для улучшения игрового процесса;
+* добавить больше врагов;
+* улучшить стрельбу с таймерами, чтобы игрок мог просто держать клавишу «пробел», а не нажимать на нее;
+* добавить бонусы и разные виды оружия;
+* разработать меню и экран победы;
+* добавить звуки;
+* создать боссов и союзников.
 
-That's my result of improving this project furthermore: [Catsteroids](https://comigo.itch.io/catsteroids).
+Вот мой результат дальнейшего улучшения этой игры: [Catsteroids](https://comigo.itch.io/catsteroids).
 
-You can also start a new project if you're not into space shooters :D
+Вы также можете начать новый проект, если вы не заинтересованы в космических шутерах :D
 
-## Extra: Reusing logic using behaviors
-If you create a lot of different types of asteroids, you may get annoyed having to write the same logic for setting starting speed and direction, and for when to destroy the asteroids. Fortunately there is a way to quickly set up multiple templates with the same logic, and that is with using behaviors!
+## Экстра: повторное использование логики с помощью поведений
+Если вы создаете много разных типов астероидов, вам может надоесть написание одинаковой логики для настройки начальной скорости и направления, а также для определения момента уничтожения астероидов. К счастью, существует способ быстро создать несколько шаблонов с одной и той же логикой, а именно с помощью поведений!
 
-In the Assets tab, click on `New Asset` and go to `Behaviors` and click on `Behavior with templates`. Name it "Asteroid Setup".
+В вкладке «Ассеты» нажмите на «Новый ассет» и перейдите в раздел «Поведения», затем выберите «Поведение с шаблонами». Назовите его «Настройка астероидов».
 
-There is a place for adding custom fields that will then be available for copies that add this behavior, but for now we will just add some events. Add a `Creation` event and a `Frame Start` event.
+Есть поле для добавления пользовательских полей, которые будут доступны для копий, добавляющих это поведение, но пока что мы просто добавим некоторые события. Добавьте событие «Создание» и событие «Начало кадра».
 
-![](./../images/tutorials/tutSpaceShooter_16.png)
+![](../../images/tutorials/tutSpaceShooter_16.png)
 
-Go to one of the asteroid templates and copy the code from the `Creation` and `Frame Start` events and paste them into the events of the newly created behavior. Now, go to `Asteroid_Big` and `Asteroid_Medium` and delete those two events. Finally, for each of the asteroids, go to the right sidebar and click on "Add a Behavior" and select the behavior created.
+Перейдите в один из шаблонов астероидов и скопируйте код из событий «Создание» и «Начало кадра», а затем вставьте его в события недавно созданного поведения. Теперь перейдите в «Asteroid_Big» и «Asteroid_Medium» и удалите эти два события. Наконец, для каждого астероида перейдите во всплывающее окно справа и нажмите «Добавить поведение», выбрав созданное поведение.
 
-![](./../images/tutorials/tutSpaceShooter_17.png)
+![](../../images/tutorials/tutSpaceShooter_17.png)
 
-And just like that, the two asteroids behave just like before, but with their shared logic now in the behavior! Now if you add any more asteroids you can simply add the "Asteroid Setup" behavior to it and it will act the same as the other asteroids! This also lets you edit the behavior of all asteroids in one location and reduces the need to find all the copy pasted code across multiple templates when you want to make changes.
+И вот так два астероида ведут себя так же, как и раньше, но теперь их логика объединена в поведении! Теперь, когда вы добавляете новые астероиды, вам просто нужно добавить поведение «Asteroid Setup», и они будут вести себя точно так же, как и другие астероиды! Это также позволяет редактировать поведение всех астероидов в одном месте и уменьшает необходимость поиска скопированного кода в нескольких шаблонах при внесении изменений.
+
