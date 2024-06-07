@@ -207,7 +207,7 @@ Now players can catch up with the game and save their cat from falling.
 
 ## Cat's jet smoke and star particles
 
-From v1.3, ct.js allows you to visually design particle effects and play them in your game. And it's cool! Let's create two effects: one will be a jet smoke for the cat. The other will show a burst of smaller stars when you collect one.
+Ct.js allows you to visually design particle effects and play them in your game. And it's cool! Let's create two effects: one will be a jet smoke for the cat. The other will show a burst of smaller stars when you collect one.
 
 ### Making a starburst
 
@@ -444,7 +444,7 @@ this.scale.x = this.scale.y = 1 + Math.sin(this.pulsePhase) * 0.1;
 <catnip-block class=" command    selected">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">Set</span>         <catnip-block class=" computed number wildcard  ">  <img src="/assets/icons/droplet.svg" class="feather"><span class="catnip-block-aTextLabel">scale by y</span>     </catnip-block>  <span class="catnip-block-aTextLabel">value</span>                  <catnip-block class=" computed number wildcard  ">            <input type="text" class="catnip-block-aConstantInput number " style=" width: 1.5ch;    " value="1" readonly="readonly"> <span class="catnip-block-aTextLabel">+</span>                  <catnip-block class=" computed number number  ">           <catnip-block class=" computed number number  ">  <span class="catnip-block-aTextLabel">sin</span>         <catnip-block class=" computed wildcard number userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">pulsePhase</span>              </catnip-block>      </catnip-block>  <span class="catnip-block-aTextLabel">×</span>                   <input type="text" class="catnip-block-aConstantInput number " style=" width: 3.5ch;    " value="0.1" readonly="readonly">     </catnip-block>      </catnip-block>      </catnip-block>
 :::
 
-And in the Action Poof press event, add this: `this.kill = true`
+And in the Action Poof press event, add this: `this.kill = true` ("Destroy this copy" in Catnip)
 
 Here we again change the property that is used inside `Math.sin`. We set a copy's horizontal and vertical scale to this sine wave plus add `1` so that the copy is not shrunk into a point. (Without this `1 +`, the sine wave would oscillate around 0, meaning near 0% of a copy's size.)
 

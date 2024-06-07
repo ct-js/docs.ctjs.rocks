@@ -1,6 +1,6 @@
 # backgrounds
 
-`backgrounds` has some API to work with [`Background`](Background.md) objects.
+`backgrounds` has some API to work with [`Background`](background.md) objects.
 
 ## Methods and properties
 

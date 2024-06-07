@@ -156,8 +156,3 @@ Attaches callbacks for the resolution and/or rejection of the internal Promise.
 Mirrors `CtTimer.promise.catch()`.
 
 Attaches callbacks for the rejection of the internal Promise.
-
-| Param | Type | Description |
-| --- | --- | --- |
-| onfulfilled | <code>Any</code> | The callback to execute when the Promise is resolved. |
-| [onrejected] | <code>Any</code> | The callback to execute when the Promise is rejected. |
