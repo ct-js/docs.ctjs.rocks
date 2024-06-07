@@ -1,20 +1,26 @@
-# Polishing the JettyCat
+# Полировка JettyCat
 
-::: tip Hey,
-This tutorial assumes that you have finished the tutorial [Making Games: Jetty Cat](./making-games-jettycat.md). You should complete it first.
+::: note Автоматически переведённая страница
+К сожалению, на полный ручной перевод у нас не хватает ресурсов.
+Если вы увидели ошибку — отправьте пул-риквест с исправлениями (ссылка для редактирования в конце страницы).
 :::
 
-The game is complete mechanic-wise, but there are a lot of ways to improve it aesthetically and gameplay-wise!
+::: tip Привет!
+В этом руководстве предполагается, что вы уже закончили руководство [Создание игр: JettyCat](./making-games-ferry-for-cats.md). Прежде чем приступать к этому, рекомендуем его завершить.
+:::
+
+Игра полная с точки зрения механики, но есть много способов улучшить ее как с эстетической, так и с игровой точки зрения!
 
 [[toc]]
 
-## Transition between rooms
+## Переход между комнатами
 
-Ct.js has a module called `transition`. It allows you to easily create nice transitions between levels. The idea is that you start the first half of a transition on a button press or some other event, then switch to another room and call the second half of a transition in its Room start code.
+В Ct.js есть модуль под названием «transition» (переход). Он позволяет легко создавать приятные переходы между уровнями. Идея в том, чтобы начать первую половину перехода при нажатии кнопки или другом событии, а затем перейти к другой комнате и вызвать вторую половину перехода в коде старта комнаты.
 
-Enable the module `transition` in the Catmods tab. It signals that it depends on the `tween` catmod, so enable it as well.
+Включите модуль «transition» в вкладке Catmods. Он указывает, что он зависит от catmod «tween», поэтому включите его также.
 
-Now, modify the `Button_Play` Pointer click event code so that it shows a blue circled transition when clicked:
+Теперь измените код события нажатия кнопки «Button_Play», чтобы при нажатии отображался синий круглый переход:
+
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -39,17 +45,17 @@ if not @pressed
 <catnip-block class=" command    selected">  <img src="/assets/icons/help-circle.svg" class="feather"><span class="catnip-block-aTextLabel">If</span>         <catnip-block class=" computed boolean boolean  ">  <span class="catnip-block-aTextLabel">not</span>         <catnip-block class=" computed wildcard boolean userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">pressed</span>              </catnip-block>      </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">Set</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">pressed</span>              </catnip-block>  <span class="catnip-block-aTextLabel">value</span>                  <catnip-block class=" computed boolean wildcard constant ">  <img src="/assets/icons/bool.svg" class="feather"><span class="catnip-block-aTextLabel">true</span>     </catnip-block>      </catnip-block>   <catnip-block class=" command wildcard   ">  <img src="/assets/icons/monitor.svg" class="feather"><span class="catnip-block-aTextLabel">Transition circle out</span>          <input type="text" class="catnip-block-aConstantInput number " value="1000" style=" width: 4.5ch;    " readonly="readonly">          <input type="text" class="catnip-block-aConstantInput number " value="4483803" style=" width: 7.5ch;    " readonly="readonly">   <div class="catnip-block-aFiller"></div>         <span class="catnip-block-anAsyncMarker"> <img src="/assets/icons/clock.svg" class="feather"></span>            <div class="catnip-block-aBreak"></div>        <img src="/assets/icons/redo.svg" class="feather">         <span class="catnip-block-aTextLabel">Then</span>                <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command void   ">  <img src="/assets/icons/room.svg" class="feather"><span class="catnip-block-aTextLabel">Switch to</span>          <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/image.svg" class="feather"><span>InGame</span></span>     </catnip-block>    </catnip-block-list> </div>        </catnip-block>    </catnip-block-list> </div>        </catnip-block>
 :::
 
-`this.pressed` is our custom variable that remembers that a button was pressed. It will help us prevent occasional double clicking, that may have negative effects on the game's logic.
+`this.pressed` — это наша пользовательская переменная, которая запоминает, что кнопка была нажата. Это поможет нам избежать случайного двойного нажатия, которое может негативно повлиять на логику игры.
 
-The first argument in `transition.circleOut(1000, 0x446ADB)` is the duration of the effect (1000 milliseconds = 1 second), and the second one is the color of the transition. It is like the hex color, but with `0x` instead of `#` in the beginning.
+Первый аргумент функции `transition.circleOut(1000, 0x446ADB)` — это продолжительность эффекта (1000 миллисекунд = 1 секунда), а второй аргумент — цвет перехода. Он представлен в формате шестнадцатеричного цвета, но с `0x` вместо `#` в начале.
 
 ::: tip
-There are many more methods and examples in the module's "Info" and "Reference" tabs.
+В модуле есть много других методов и примеров в вкладках "Информация" и "Справочник".
 :::
 
-The transition itself is an asynchronous action! We use `.then(() => {…})` to switch to the next room right when the transition ends.
+Переход сам по себе является асинхронной операцией! Мы используем `.then(() => {…})`, чтобы перейти к следующей комнате сразу после окончания перехода.
 
-That was the first part of the transition. The second one will go to the `InGame` Room start code. Open the room, and put this line:
+Это была первая часть перехода. Вторая часть приведет нас к коду комнаты `InGame`. Откройте комнату и добавьте следующую строку:
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -64,13 +70,13 @@ transition.circleIn 500, 0x446ADB
 <catnip-block class=" command wildcard   selected">  <img src="/assets/icons/monitor.svg" class="feather"><span class="catnip-block-aTextLabel">Transition circle in</span>          <input type="text" class="catnip-block-aConstantInput number " style=" width: 3.5ch;    " value="500" readonly="readonly">          <input type="text" class="catnip-block-aConstantInput number " style=" width: 7.5ch;    " value="4483803" readonly="readonly">   <div class="catnip-block-aFiller"></div>         <span class="catnip-block-anAsyncMarker"> <img src="/assets/icons/clock.svg" class="feather"></span>            <div class="catnip-block-aBreak"></div>        <img src="/assets/icons/redo.svg" class="feather">         <span class="catnip-block-aTextLabel">Then</span>                <div class="catnip-block-Blocks"> <catnip-block-list> <div class="catnip-block-aBlockPlaceholder"> <img src="/assets/icons/thumbs-up.svg" class="feather"><span class="catnip-block-aTextLabel">Do nothing</span>  </div>   </catnip-block-list> </div>        </catnip-block>
 :::
 
-We can also show up our UI layers (the pause menu and the score screen) by making them transparent but slowly turning them opaque. We will use `tween` there — that's one catmod that is used by `transition`.
+Мы также можем продемонстрировать наши слои интерфейса пользователя (паузовое меню и экран счета) путем их сделать прозрачными, но медленно превращая их в непрозрачные. Мы будем использовать «твейн» — это один из катмодов, используемых переходом.
 
-Most entities in ct.js have the same parameters that allow you to tweak their look and feel. We've been using `this.scale.x` and `this.scale.y` to set a copy's scale, but we can also apply it to rooms, text labels, special effects, and so on. Besides scaling, there are parameters `this.angle`, `this.alpha` and `this.tint` that rotate an object, set its opacity and color correspondingly.
+Большинство сущностей в ct.js имеют одинаковые параметры, которые позволяют настроить их внешний вид и ощущения. Мы использовали «this.scale.x» и «this.scale.y», чтобы установить масштаб копии, но мы также можем применить это к комнатам, текстовым меткам, специальным эффектам и т. д. Помимо масштабирования, есть параметры «this.angle», «this.alpha» и «this.tint», которые вращают объект, устанавливают его непрозрачность и цвет соответственно.
 
-We will change the property `this.alpha` through time. It is a number between 0 and 1. When set to 1 — its initial value — a copy or a room will be fully opaque. When set to 0, it will be invisible. Any numbers in-between will make an object partially transparent. The module `tween` will help create a smooth transition of it.
+Мы изменим свойство «this.alpha» с течением времени. Это число от 0 до 1. Когда установлено в 1 — его начальное значение — копия или комната будут полностью непрозрачными. Когда установлено в 0, он будет невидимым. Любые числа между ними сделают объект частично прозрачным. Модуль «твейн» поможет создать плавный переход.
 
-So, to fade in a UI layer, we need to put this code in the Room start event of rooms `UI_OhNo` and `UI_Paused`:
+Таким образом, чтобы сделать слои интерфейса пользователя более заметными, нам нужно добавить этот код в событие начала комнаты для комнат «UI_OhNo» и «UI_Paused»:
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -103,9 +109,10 @@ tween.add
 <catnip-block class=" command    selected">  <img src="/assets/icons/interpolation-smooth.svg" class="feather"><span class="catnip-block-aTextLabel">Animate a value</span>         <catnip-block class=" computed number number  ">  <img src="/assets/icons/droplet.svg" class="feather"><span class="catnip-block-aTextLabel">opacity</span>     </catnip-block>  <span class="catnip-block-aTextLabel">to</span>                   <input type="text" class="catnip-block-aConstantInput number " value="1" style=" width: 1.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">for</span>                   <input type="text" class="catnip-block-aConstantInput number " value="500" style=" width: 3.5ch;    " readonly="readonly">  <span class="catnip-block-anAsyncMarker"> <img src="/assets/icons/clock.svg" class="feather"></span>            <div class="catnip-block-aBreak"></div>        <img src="/assets/icons/redo.svg" class="feather">         <span class="catnip-block-aTextLabel">Then</span>                <div class="catnip-block-Blocks"> <catnip-block-list> <div class="catnip-block-aBlockPlaceholder"> <img src="/assets/icons/thumbs-up.svg" class="feather"><span class="catnip-block-aTextLabel">Do nothing</span>  </div>   </catnip-block-list> </div>     <img src="/assets/icons/alert-octagon.svg" class="feather">         <span class="catnip-block-aTextLabel">On error</span>                <div class="catnip-block-Blocks"> <catnip-block-list> <div class="catnip-block-aBlockPlaceholder"> <img src="/assets/icons/thumbs-up.svg" class="feather"><span class="catnip-block-aTextLabel">Do nothing</span>  </div>   </catnip-block-list> </div>           <div class="catnip-block-Options"> <div class="catnip-block-anOptionsToggle"> <img src="/assets/icons/chevron-up.svg" class="feather"><span>Advanced</span> <img src="/assets/icons/chevron-up.svg" class="feather"> </div> <dl> <dt>Animate in UI time</dt> <dd> <catnip-block class=" computed boolean boolean constant ">  <img src="/assets/icons/bool.svg" class="feather"><span class="catnip-block-aTextLabel">true</span>     </catnip-block>  </dd> </dl><dl> <dt>Curve</dt> <dd>  <input type="text" class="catnip-block-aConstantInput wildcard " style="width: 5.5ch" readonly="readonly"> </dd> </dl>   </div>       </catnip-block>
 :::
 
-Firstly, we make a room fully transparent by setting its `alpha` to 0. Then, we call `tween.add` to start a smooth transition. `obj` points to an object that should be animated, and `fields` lists all the properties and values we want to change. The `duration` key sets the length of the effect, in milliseconds. Finally, the `isUi` key tells that animation should run in UI time scale, ignoring our "paused" game state.
+Сначала мы делаем комнату полностью прозрачной, установив ее альфа на 0. Затем мы вызываем `tween.add`, чтобы начать плавное переходное действие. `obj` указывает на объект, который нужно анимировать, а `fields` перечисляет все свойства и значения, которые мы хотим изменить. Ключевое слово `duration` задает продолжительность эффекта в миллисекундах. Наконец, ключевое слово `isUi` указывает, что анимация должна выполняться в шкале времени пользовательского интерфейса, игнорируя наше "паузированное" состояние игры.
 
-We can fade out a UI layer, too. Let's gradually hide the pause menu when the player hits the "continue" button. Open the template `Button_Continue`, and modify its Pointer click event code:
+Мы также можем постепенно вывести из слоя пользовательского интерфейса. Давайте спрячем меню паузы, когда игрок нажимает кнопку "продолжить". Откройте шаблон `Button_Continue` и измените код события "Pointer Click":
+
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -144,15 +151,15 @@ if not @pressed
 <catnip-block class=" command    selected">  <img src="/assets/icons/help-circle.svg" class="feather"><span class="catnip-block-aTextLabel">If</span>         <catnip-block class=" computed boolean boolean  ">  <span class="catnip-block-aTextLabel">not</span>         <catnip-block class=" computed wildcard boolean userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">pressed</span>              </catnip-block>      </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">Set</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">pressed</span>              </catnip-block>  <span class="catnip-block-aTextLabel">value</span>                  <catnip-block class=" computed boolean wildcard constant ">  <img src="/assets/icons/bool.svg" class="feather"><span class="catnip-block-aTextLabel">true</span>     </catnip-block>      </catnip-block>   <catnip-block class=" command    ">  <img src="/assets/icons/interpolation-smooth.svg" class="feather"><span class="catnip-block-aTextLabel">Animate object's</span>         <catnip-block class=" computed wildcard wildcard  ">  <img src="/assets/icons/room.svg" class="feather"><span class="catnip-block-aTextLabel">copy's owning room</span>     </catnip-block>  <span class="catnip-block-aTextLabel">property</span>                   <input type="text" class="catnip-block-aConstantInput string " value="alpha" style=" width: 5.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">to</span>                   <input type="text" class="catnip-block-aConstantInput number " value="0" style=" width: 1.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">for</span>                   <input type="text" class="catnip-block-aConstantInput number " value="1000" style=" width: 4.5ch;    " readonly="readonly">  <span class="catnip-block-anAsyncMarker"> <img src="/assets/icons/clock.svg" class="feather"></span>            <div class="catnip-block-aBreak"></div>        <img src="/assets/icons/redo.svg" class="feather">         <span class="catnip-block-aTextLabel">Then</span>                <div class="catnip-block-Blocks"> <catnip-block-list> <div class="catnip-block-aBlockPlaceholder"> <img src="/assets/icons/thumbs-up.svg" class="feather"><span class="catnip-block-aTextLabel">Do nothing</span>  </div>   </catnip-block-list> </div>     <img src="/assets/icons/alert-octagon.svg" class="feather">         <span class="catnip-block-aTextLabel">On error</span>                <div class="catnip-block-Blocks"> <catnip-block-list> <div class="catnip-block-aBlockPlaceholder"> <img src="/assets/icons/thumbs-up.svg" class="feather"><span class="catnip-block-aTextLabel">Do nothing</span>  </div>   </catnip-block-list> </div>           <div class="catnip-block-Options"> <div class="catnip-block-anOptionsToggle"> <img src="/assets/icons/chevron-up.svg" class="feather"><span>Advanced</span> <img src="/assets/icons/chevron-up.svg" class="feather"> </div> <dl> <dt>Animate in UI time</dt> <dd> <catnip-block class=" computed boolean boolean constant ">  <img src="/assets/icons/bool.svg" class="feather"><span class="catnip-block-aTextLabel">true</span>     </catnip-block>  </dd> </dl><dl> <dt>Curve</dt> <dd>  <input type="text" class="catnip-block-aConstantInput wildcard " style="width: 5.5ch" readonly="readonly"> </dd> </dl>   </div>       </catnip-block>   <catnip-block class=" command    ">  <img src="/assets/icons/settings.svg" class="feather"><span class="catnip-block-aTextLabel">Set game speed to</span>          <input type="text" class="catnip-block-aConstantInput number " style=" width: 1.5ch;    " value="1" readonly="readonly">     </catnip-block>   <catnip-block class=" command void   ">  <img src="/assets/icons/room.svg" class="feather"><span class="catnip-block-aTextLabel">Remove a room</span>         <catnip-block class=" computed wildcard wildcard  ">  <img src="/assets/icons/room.svg" class="feather"><span class="catnip-block-aTextLabel">copy's owning room</span>     </catnip-block>      </catnip-block>    </catnip-block-list> </div>        </catnip-block>
 :::
 
-We create a flag `this.pressed` to make sure that the code runs the animation only once. Running it multiple times won't hurt, but this keeps the debugger's log clean as `tween` will warn about interrupted animations otherwise.
+Мы создаем флаг `this.pressed`, чтобы убедиться, что анимация запускается только один раз. Запуск ее несколько раз не нанесет вреда, но этот подход сохраняет чистоту журнала отладчика, поскольку `tween` будет предупреждать об прерванных анимациях в противном случае.
 
-Then we start animation for `this.getRoom()`, which will return the room `UI_Paused` that owns this button, and change its alpha value back to 0. After that, we can see that `tween.add` creates an asynchronous event, and we remove the room and unpause the game inside the `.then(() => {…});` clause.
+Затем мы запускаем анимацию для `this.getRoom()`, которая вернет комнату `UI_Paused`, владеющую этой кнопкой, и возвращаем ее альфа-канал к 0. После этого видно, что `tween.add` создает асинхронное событие, и мы удаляем комнату и возобновляем игру внутри условия `.then(() => {…});`.
 
-## Smoothly resuming the game after it has been paused
+## Плавное воспроизведение игры после ее приостановки
 
-Though the "paused" menu fades out slowly, it is still hard for a player to catch up and prevent the cat from bumping into the ground. To prevent that, we can use `tween` to… animate time! `pixiApp.ticker.speed` can be not just 0 and 1, but also anything in between, and even beyond 1. Large values will make the game run faster, while values close to 0 will slow the game. Thus, we can animate the value `pixiApp.ticker.speed` to make the game transition from paused to fully running state.
+Хотя меню «пауза» медленно исчезает, игроку трудно успеть и предотвратить падение кошки. Чтобы этого избежать, мы можем использовать `tween`, чтобы… анимация времени! `pixiApp.ticker.speed` может быть не только 0 и 1, но и любое другое значение, даже более 1. Большие значения сделают игру быстройше, а маленькие — медленнее. Таким образом, мы можем анимировать значение `pixiApp.ticker.speed`, чтобы плавно перейти от паузы к полностью работающей игре.
 
-Open the template `Button_Continue` again, and modify the script so it fires another `tween.add` after it finishes the first one:
+Откройте шаблон `Button_Continue` снова и измените скрипт, чтобы после завершения первого твикна запустить еще один:
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -203,37 +210,36 @@ if not @pressed
 <catnip-block class=" command    selected">  <img src="/assets/icons/help-circle.svg" class="feather"><span class="catnip-block-aTextLabel">If</span>         <catnip-block class=" computed boolean boolean  ">  <span class="catnip-block-aTextLabel">not</span>         <catnip-block class=" computed wildcard boolean userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">pressed</span>              </catnip-block>      </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">Set</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">pressed</span>              </catnip-block>  <span class="catnip-block-aTextLabel">value</span>                  <catnip-block class=" computed boolean wildcard constant ">  <img src="/assets/icons/bool.svg" class="feather"><span class="catnip-block-aTextLabel">true</span>     </catnip-block>      </catnip-block>   <catnip-block class=" command    ">  <img src="/assets/icons/interpolation-smooth.svg" class="feather"><span class="catnip-block-aTextLabel">Animate object's</span>         <catnip-block class=" computed wildcard wildcard  ">  <img src="/assets/icons/room.svg" class="feather"><span class="catnip-block-aTextLabel">copy's owning room</span>     </catnip-block>  <span class="catnip-block-aTextLabel">property</span>                   <input type="text" class="catnip-block-aConstantInput string " value="alpha" style=" width: 5.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">to</span>                   <input type="text" class="catnip-block-aConstantInput number " value="0" style=" width: 1.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">for</span>                   <input type="text" class="catnip-block-aConstantInput number " value="1000" style=" width: 4.5ch;    " readonly="readonly">  <span class="catnip-block-anAsyncMarker"> <img src="/assets/icons/clock.svg" class="feather"></span>            <div class="catnip-block-aBreak"></div>        <img src="/assets/icons/redo.svg" class="feather">         <span class="catnip-block-aTextLabel">Then</span>                <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/interpolation-smooth.svg" class="feather"><span class="catnip-block-aTextLabel">Animate a value</span>         <catnip-block class=" computed number number  ">  <img src="/assets/icons/settings.svg" class="feather"><span class="catnip-block-aTextLabel">game speed</span>     </catnip-block>  <span class="catnip-block-aTextLabel">to</span>                   <input type="text" class="catnip-block-aConstantInput number " value="1" style=" width: 1.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">for</span>                   <input type="text" class="catnip-block-aConstantInput number " value="1000" style=" width: 4.5ch;    " readonly="readonly">  <span class="catnip-block-anAsyncMarker"> <img src="/assets/icons/clock.svg" class="feather"></span>            <div class="catnip-block-aBreak"></div>        <img src="/assets/icons/redo.svg" class="feather">         <span class="catnip-block-aTextLabel">Then</span>                <div class="catnip-block-Blocks"> <catnip-block-list> <div class="catnip-block-aBlockPlaceholder"> <img src="/assets/icons/thumbs-up.svg" class="feather"><span class="catnip-block-aTextLabel">Do nothing</span>  </div>   </catnip-block-list> </div>     <img src="/assets/icons/alert-octagon.svg" class="feather">         <span class="catnip-block-aTextLabel">On error</span>                <div class="catnip-block-Blocks"> <catnip-block-list> <div class="catnip-block-aBlockPlaceholder"> <img src="/assets/icons/thumbs-up.svg" class="feather"><span class="catnip-block-aTextLabel">Do nothing</span>  </div>   </catnip-block-list> </div>           <div class="catnip-block-Options"> <div class="catnip-block-anOptionsToggle"> <img src="/assets/icons/chevron-up.svg" class="feather"><span>Advanced</span> <img src="/assets/icons/chevron-up.svg" class="feather"> </div> <dl> <dt>Animate in UI time</dt> <dd> <catnip-block class=" computed boolean boolean constant ">  <img src="/assets/icons/bool.svg" class="feather"><span class="catnip-block-aTextLabel">true</span>     </catnip-block>  </dd> </dl><dl> <dt>Curve</dt> <dd>  <input type="text" class="catnip-block-aConstantInput wildcard " style="width: 5.5ch" readonly="readonly"> </dd> </dl>   </div>       </catnip-block>   <catnip-block class=" command void   ">  <img src="/assets/icons/room.svg" class="feather"><span class="catnip-block-aTextLabel">Remove a room</span>         <catnip-block class=" computed wildcard wildcard  ">  <img src="/assets/icons/room.svg" class="feather"><span class="catnip-block-aTextLabel">copy's owning room</span>     </catnip-block>      </catnip-block>    </catnip-block-list> </div>     <img src="/assets/icons/alert-octagon.svg" class="feather">         <span class="catnip-block-aTextLabel">On error</span>                <div class="catnip-block-Blocks"> <catnip-block-list> <div class="catnip-block-aBlockPlaceholder"> <img src="/assets/icons/thumbs-up.svg" class="feather"><span class="catnip-block-aTextLabel">Do nothing</span>  </div>   </catnip-block-list> </div>           <div class="catnip-block-Options"> <div class="catnip-block-anOptionsToggle"> <img src="/assets/icons/chevron-up.svg" class="feather"><span>Advanced</span> <img src="/assets/icons/chevron-up.svg" class="feather"> </div> <dl> <dt>Animate in UI time</dt> <dd> <catnip-block class=" computed boolean boolean constant ">  <img src="/assets/icons/bool.svg" class="feather"><span class="catnip-block-aTextLabel">true</span>     </catnip-block>  </dd> </dl><dl> <dt>Curve</dt> <dd>  <input type="text" class="catnip-block-aConstantInput wildcard " style="width: 5.5ch" readonly="readonly"> </dd> </dl>   </div>       </catnip-block>    </catnip-block-list> </div>        </catnip-block>
 :::
 
-Now players can catch up with the game and save their cat from falling.
+Теперь игроки могут наверстать упущенное в игре и спасти свою кошку от падения.
 
-## Cat's jet smoke and star particles
+## Дым от кошачьего реактивного двигателя и звездные частицы
 
-Ct.js allows you to visually design particle effects and play them in your game. And it's cool! Let's create two effects: one will be a jet smoke for the cat. The other will show a burst of smaller stars when you collect one.
+Ct.js позволяет визуально создавать эффекты частиц и воспроизводить их в вашей игре. И это круто! Давайте создадим два эффекта: один будет дымом реактивного двигателя для кошки, а другой — вспышку более мелких звезд, когда вы собираете одну из них.
 
-### Making a starburst
+### Создание вспышки
 
-Open the "Assets" tab at the top, and create a new emitter tandem through "New Asset". Call it `StarBurst`.
+Откройте вкладку "Ассеты" в верхней части и создайте новый тандем эмиттера через "Новый ассет". Назовите его `StarBurst`.
 
-Select its texture in the left top corner, and start tweaking values! There are lots of folding categories that manipulate how particles move, change over time and spawn.
+Выберите его текстуру в левом верхнем углу и начните подгружать значения! Есть много категорий складывания, которые манипулируют тем, как частицы двигаются, меняются со временем и появляются.
 
-Try making it look like this one:
+Попробуйте сделать так, чтобы это выглядело следующим образом:
 
-![An effect with a star burst](./../images/tutorials/tutJettyCat_Stars.gif)
+![Эффект с вспышкой звезд](../../images/tutorials/tutJettyCat_Stars.gif)
 
 ::: tip
-You can set a preview texture in the right bottom corner to see how your effect looks compared to a star bonus.
+Вы можете установить предварительный просмотр текстуры в правом нижнем углу, чтобы увидеть, как выглядит ваш эффект по сравнению со звездным бонусом.
 :::
 
-Here are some directions on how to make this effect:
+Ниже приведены некоторые рекомендации по созданию этого эффекта:
 
-* To make the burst and not an infinite stream, open the "Spawning" section and set emitter's lifetime. This is a fast effect, so you will need small values like 0.1 seconds.
-* The "Velocity" section has a "With gravity" button that will make stars falling down after they burst out. You will need the vertical, Y-axis, and pretty large values: I used ~1400 for my effect.
-* To make the effect uneven and less artificial, make sure particles have a different lifetime at the "Spawning" category, so they become more random. Tweaking minimum velocity and size also helps.
-* A relatively large circular area that covers most of the preview texture will make the effect more like it was a big star breaking down into smaller pieces. You can set the spawn shape and its size under the category "Shape and Positioning". Check the box "Show shape visualizer" to see the shape.
+* Чтобы сделать вспышку и не бесконечную струю, откройте раздел "Создание" и установите продолжительность эмиттера. Это быстрый эффект, поэтому нам понадобятся небольшие значения, такие как 0,1 секунды.
+* В разделе "Быстрость" есть кнопка "С гравитацией", которая сделает звезды падающими после их появления. Нам нужно вертикальное, Y-ось, и довольно большие значения: я использовал ~1400 для своего эффекта.
+* Чтобы сделать эффект более неупорядоченным и менее искусственным, убедитесь, что частицы имеют разную продолжительность в категории "Создание", так что они становятся более случайными. Подгружая минимальную скорость и размер также помогает.
+* относительно большой круговой область, охватывающий большую часть предварительного просмотра текстуры, сделает эффект более похожим на то, что большая звезда разбивается на более мелкие части. Вы можете установить форму и ее размер под категорией "Форма и положение". Проверьте флажок "Показать визуализатор формы", чтобы увидеть форму.
 
-When you're ready, hit the "Apply" button at the bottom of the left column.
+Когда вы готовы, нажмите кнопку "Применить" в нижней левой колонке.
 
-To create a burst of stars when a big one is collected, open the template `Star`, add the "Destruction" event and write a line:
-
+Чтобы создать вспышку звезд при сборе большой звезды, откройте шаблон `Star`, добавьте событие "Уничтожение" и напишите следующую строку:
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -248,34 +254,32 @@ emitters.fire 'StarBurst', @x, @y
 <catnip-block class=" command wildcard   selected">  <img src="/assets/icons/sparkles.svg" class="feather"><span class="catnip-block-aTextLabel">Fire an emitter at location</span>          <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/sparkles.svg" class="feather"><span>StarBurst</span></span>         <catnip-block class=" computed number number  ">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">x</span>     </catnip-block>          <catnip-block class=" computed number number  ">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">y</span>     </catnip-block>           <input type="text" class="catnip-block-aConstantInput wildcard " style=" width: 8.5ch;    " readonly="readonly">   <div class="catnip-block-aFiller"></div>        <span class="catnip-block-aTextLabel">store in</span>                   <input type="text" class="catnip-block-aConstantInput wildcard " style=" width: 6.5ch;    " readonly="readonly">     </catnip-block>
 :::
 
-Ta-da!
-
 ::: tip
-Here we read the position of the star (`this.x, this.y`) and tell to spawn an effect `StarBurst`.
+Здесь мы читаем позицию звезды (this.x, this.y) и говорим о создании эффекта "Звездный взрыв".
 :::
 
-### Making a jet smoke
+### Создание реактивного следа
 
-First we'll need a smoke-like texture. Go to add a new asset and click on the "Built-in asset gallery" button. This game engine comes with texture packs you can import right into your game! Go into the Jumperpack and import the Smoke texture. Now close out of the gallery and see that the smoke texture is part of your project!
+Сначала нам понадобится текстура, похожая на дым. Перейдите к добавлению нового актива и нажмите кнопку "Галерея встроенных активов". В этот игровой движок включены текстурные пакеты, которые можно импортировать непосредственно в вашу игру! Откройте Jumperpack и импортируйте текстуру Smoke. Теперь закройте галерею, и вы увидите, что текстура дыма стала частью вашего проекта!
 
-![Importing a gallery texture in ct.js](./../images/tutorials/tutJettyCat_gallery.png)
+![Импорт текстуры галереи в ct.js](../../images/tutorials/tutJettyCat_gallery.png)
 
-Create a new emitter tandem. Call it `Jet`.
+Создайте новый эмиттер тандем. Назовем его "Jet".
 
-As a start, go to the texture select and load your Smoke texture. In the right bottom corner, find the button "Set preview texture", and select our cat. After that, feel free to tinker around the editor to make the effect you want. I made a jet of white smoke of different sizes:
+Начнем с того, что перейдите к выбору текстуры и загрузите текстуру Smoke. В правом нижнем углу найдите кнопку "Установить предварительную текстуру" и выберите нашу кошку. После этого вы можете поиграть с редактором, чтобы получить желаемый эффект. Я создал курок белого дыма разных размеров:
 
-![A jet particle effect in ct.js](./../images/tutorials/tutJettyCat_Jet.gif)
+![Эффект частицы курока в ct.js](../../images/tutorials/tutJettyCat_Jet.gif)
 
-Here are some hints:
+Вот несколько подсказок:
 
-* Change the background color in the bottom-right corner of the window to better see white smoke;
-* Start by changing the Rotation tab » Starting direction fields so the particles flow downwards. A good range is between 90 and 110 degrees.
-* The default texture's size will be way too big; tweak its scale in the graph under the folding section called "Scaling", so it is somewhere around `0.3`.
-* Tweak the value Scaling » Minimum size to spawn particles of different sizes.
-* Precisely position the emitter so that it spawns right from the jet by tweaking the emitter's position, in the section called "Shape and Positioning".
-* Change the value Spawning » Time between bursts to change the density of a jet. Smaller values spawn larger amounts of particles.
+* Измените цвет фона в нижнем правом углу окна, чтобы лучше видеть белый дым;
+* Начните с изменения полей "Начальный направление" в разделе " вращение", чтобы частицы течь вниз. Хороший диапазон - от 90 до 110 градусов.
+* По умолчанию размер текстуры будет слишком большим; скорректируйте его в графике под разделом "Масштабирование", так что он будет где-то около `0,3`.
+* Измените значение Масштабирование » Минимальный размер, чтобы создавать частицы разных размеров.
+* Точечно положите эмиттер, чтобы курок выходил прямо из джета, скорректировав положение эмиттера в разделе "Форма и позиционирование".
+* Измените значение Спавнинг » Интервал между вспышками, чтобы изменить плотность курока. Более мелкие значения создают больше частиц.
 
-To add the effect to the cat, open its template and put this code to the end of its Creation code:
+Чтобы добавить эффект к кошке, откройте ее шаблон и вставьте этот код в конец кода Создание:
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -290,19 +294,19 @@ this.jet = emitters.follow(this, 'Jet');
 <catnip-block class=" command wildcard   selected">  <img src="/assets/icons/sparkles.svg" class="feather"><span class="catnip-block-aTextLabel">Create an emitter and follow</span>         <catnip-block class=" computed wildcard wildcard constant ">  <img src="/assets/icons/crosshair.svg" class="feather"><span class="catnip-block-aTextLabel">this</span>     </catnip-block>           <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/sparkles.svg" class="feather"><span>Jet</span></span>          <input type="text" class="catnip-block-aConstantInput wildcard " style=" width: 8.5ch;    " readonly="readonly">   <div class="catnip-block-aFiller"></div>        <span class="catnip-block-aTextLabel">store in</span>                  <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">jet</span>              </catnip-block>      </catnip-block>
 :::
 
-`emitters.follow` tells to create a particle effect and make it follow a copy. It will look attached to the cat. The first argument is the copy we want to attach the effect to (`this` is our cat), the second one — the name of the effect (`'Jet'`).
+`emitters.follow` создает эффект частиц и делает его следовать за копией. Первый аргумент - копия, за которой мы хотим следовать (`this` - наша кошка), а второй - имя эффекта (`'Jet'`).
 
-We also save a reference to this emitter to a parameter `this.jet`. This will allow us to manipulate the emitter later.
+Мы также сохраняем ссылку на этот эмиттер в параметр `this.jet`. Это позволит нам манипулировать эмиттером позже.
 
 ::: tip
-Read [the docs for `emitters`](./../emitters.md) to learn more about other methods for creating effects and their options.
+Чтоб узнать больше о создании эффектов и их параметрах, [прочитайте документацию по эмиттерам](./../emitters.md).
 :::
 
-The cat should now have a jet of smoke running from its jetpack. You may need to tweak the jet's particle size and its speed.
+У кошки должен быть курок дыма, исходящий из ее реактивера. Вы можете отрегулировать размер частиц курока и его скорость.
 
-Let's add a bit of dynamics to this jet: we will spawn new particles only when the cat flies up. We have the reference `this.jet`, and we can use it to pause the emitter and unpause it when the player presses or releases the screen.
+Давайте добавим немного динамики в этот курок: мы будем создавать новые частицы только тогда, когда кошка летит вверх. У нас есть ссылка `this.jet`, и мы можем использовать ее, чтобы приостановить эмиттер и возобновить его при нажатии или отпускании экрана.
 
-Create a new Action release event, select the Poof action, and place this piece of code in it:
+Создайте новое событие Action release, выберите действие Poof и поместите следующий код в него:
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -317,7 +321,7 @@ this.jet.pause();
 <catnip-block class=" command void   selected">  <img src="/assets/icons/sparkles.svg" class="feather"><span class="catnip-block-aTextLabel">Pause the emitter</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">jet</span>              </catnip-block>      </catnip-block>
 :::
 
-This will pause the effect. To unpause it, go to the On Poof down event and add this line:
+Это приостановит эффект. Чтобы возобновить его, перейдите к событию On Poof down и добавьте эту строку:
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -332,19 +336,19 @@ this.jet.resume();
 <catnip-block class=" command void   selected">  <img src="/assets/icons/sparkles.svg" class="feather"><span class="catnip-block-aTextLabel">Resume the emitter</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">jet</span>              </catnip-block>      </catnip-block>
 :::
 
-And that is it for particles; time for some testing!
+Пора всё протестировать!
 
-## Adding subtle animations to the cat and stars
+## Добавление лёгких анимаций для кошки и звезд
 
-Particles help liven up the game, but it still may feel stiff and static. Let's add little animations to the cat and stars. We will rotate the cat depending on its vertical speed, and the star by time.
+Частицы помогают оживить игру, но она все равно может казаться жесткой и неподвижной. Давайте добавим небольшие анимации для кошки и звезд. Мы будем вращать кошку в зависимости от ее вертикальной скорости, а звезду — по времени.
 
-### Rotating the cat
+### Вращение кошки
 
-Every copy has a parameter `this.angle`, that sets the visual angle of a texture in degrees. Each copy also has `this.speed` and `this.direction` we've used, and they both define additional parameters `this.vspeed` and `this.hspeed` — the vertical and horizontal speed decomposed from speed and direction. These two can be negative values when a copy moves in the opposite direction from how the axis goes. (E.g. the X-axis points to the right, its values grow from left to right. Moving to the right makes positive `hspeed`, moving to the left makes negative `hspeed`.)
+У каждой копии есть параметр `this.angle`, который устанавливает угол наклона текстуры в градусах. Каждый копия также имеет параметры `this.speed` и `this.direction`, которые мы использовали, и они оба определяют дополнительные параметры `this.vspeed` и `this.hspeed` — вертикальную и горизонтальную скорость, полученные из скорости и направления. Эти два значения могут быть отрицательными, когда копия движется в направлении, противоположном оси. Например, ось X указывает вправо, а ее значения растут с левого на правое. Двигаясь вправо, мы получаем положительную `hspeed`, а двигаясь влево — отрицательную `hspeed`.
 
-We can tie `this.vspeed` and `this.angle` of a cat together so that it rotates when falling or flying up. It is done by simply assigning one value to another in the Frame end event code.
+Мы можем связать `this.vspeed` и `this.angle` копия так, что он будет вращаться при падении или полете вверх. Это можно сделать просто, присваивая одно значение другому в коде события конца кадра.
 
-This line will work:
+Этот код сработает:
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -359,7 +363,7 @@ this.angle = -this.vspeed;
 <catnip-block class=" command    selected">  <img src="/assets/icons/droplet.svg" class="feather"><span class="catnip-block-aTextLabel">Set texture rotation to</span>         <catnip-block class=" computed number number  ">            <input type="text" class="catnip-block-aConstantInput number " style=" width: 2.5ch;    " value="-1" readonly="readonly"> <span class="catnip-block-aTextLabel">×</span>                  <catnip-block class=" computed number number  ">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">vertical speed</span>     </catnip-block>      </catnip-block>      </catnip-block>
 :::
 
-Though it will result in a too strong rotation. Adding a division will make it look better:
+Но это приведет к слишком сильному вращению. Добавление деления сделает его более плавным:
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -374,11 +378,11 @@ this.angle = -this.vspeed / 200;
 <catnip-block class=" command    selected">  <img src="/assets/icons/droplet.svg" class="feather"><span class="catnip-block-aTextLabel">Set texture rotation to</span>         <catnip-block class=" computed number number  ">            <input type="text" class="catnip-block-aConstantInput number " value="-1" style=" width: 2.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">×</span>                  <catnip-block class=" computed number number  ">           <catnip-block class=" computed number number  ">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">vertical speed</span>     </catnip-block>  <span class="catnip-block-aTextLabel">:</span>                   <input type="text" class="catnip-block-aConstantInput number " value="200" style=" width: 3.5ch;    " readonly="readonly">     </catnip-block>      </catnip-block>      </catnip-block>
 :::
 
-### Rotating the stars
+### Вращение звезд
 
-With stars, we can't simply tie `this.angle` to some ct.js' value. We can define our own, though, and apply a bit of math to turn numbers into nice wiggles. This all will remind you of spawning timers.
+Со звёздами мы не можем просто привязать `this.angle` к значению ct.js. Мы можем определить свое собственное и применить немного математики, чтобы превратить числа в приятные колебания. Это все будет напоминать вам о таймерах спавна труб.
 
-Open the `Star` template, and add this line to its Creation event:
+Откройте шаблон `Star` и добавьте следующую строку в событие Создание:
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -393,7 +397,7 @@ this.wiggleTime = 0;
 <catnip-block class=" command    selected">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">Set</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">wiggleTime</span>              </catnip-block>  <span class="catnip-block-aTextLabel">value</span>                   <input type="text" class="catnip-block-aConstantInput wildcard " style=" width: 1.5ch;    " value="0" readonly="readonly">     </catnip-block>
 :::
 
-Then, in the Frame end event, add this code:
+И для события Конец Кадра:
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -412,17 +416,17 @@ this.angle = Math.sin(this.wiggleTime) * 5;
 <catnip-block class=" command    selected">  <img src="/assets/icons/droplet.svg" class="feather"><span class="catnip-block-aTextLabel">Set texture rotation to</span>         <catnip-block class=" computed number number  ">           <catnip-block class=" computed number number  ">  <span class="catnip-block-aTextLabel">sin</span>         <catnip-block class=" computed wildcard number userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">wiggleTime</span>              </catnip-block>      </catnip-block>  <span class="catnip-block-aTextLabel">×</span>                   <input type="text" class="catnip-block-aConstantInput number " style=" width: 1.5ch;    " value="5" readonly="readonly">     </catnip-block>      </catnip-block>
 :::
 
-Here we change `this.wiggleTime` at each frame by the elapsed time, multiplied by 12 to speed up the animation. Then we use `Math.sin` to get a sinus of the `wiggleTime` — changing the latter at each frame will result in a smooth oscillation between -1 and 1. By multiplying it by 5, we make the effect five times stronger.
+Здесь мы меняем `this.wiggleTime` на каждом кадре в зависимости от прошедшего времени, умножая его на 12, чтобы ускорить анимацию. Затем мы используем `Math.sin`, чтобы получить синус `wiggleTime` — изменение последнего на каждом кадре приведет к плавному колебанию между -1 и 1. Множа его на 5, мы усиливаем эффект в пять раз.
 
-![A wiggling, animated star](./../images/tutorials/tutJettyCat_StarWiggle.gif)
+![Покачивающаяся, анимированная звезда](../../images/tutorials/tutJettyCat_StarWiggle.gif)
 
-## Adding a hint to start tapping
+## Добавление подсказки для нажатия
 
-Let's use the same approach to create a visual hint for a user to start tapping! It will be a pulsating hand icon.
+Давайте используем тот же подход, чтобы создать визуальную подсказку для пользователя, чтобы начать нажимать! Это будет пульсирующая иконка руки.
 
-Create a new template called `PressHint` with a texture `PressHint`. Make sure the texture has its axis centered.
+Создайте новый шаблон под названием `PressHint` с текстурой `PressHint`. Убедитесь, что текстура имеет центрированную ось.
 
-In the template's Creation code, add a line `this.pulsePhase = 0;`. In its Frame start code, put this snippet:
+В коде создания шаблона добавьте строку `this.pulsePhase = 0;`. В коде начала фрейма вставьте следующий фрагмент:
 
 ::: tabs#tutorial
 @tab JavaScript
@@ -444,30 +448,31 @@ this.scale.x = this.scale.y = 1 + Math.sin(this.pulsePhase) * 0.1;
 <catnip-block class=" command    selected">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">Set</span>         <catnip-block class=" computed number wildcard  ">  <img src="/assets/icons/droplet.svg" class="feather"><span class="catnip-block-aTextLabel">scale by y</span>     </catnip-block>  <span class="catnip-block-aTextLabel">value</span>                  <catnip-block class=" computed number wildcard  ">            <input type="text" class="catnip-block-aConstantInput number " style=" width: 1.5ch;    " value="1" readonly="readonly"> <span class="catnip-block-aTextLabel">+</span>                  <catnip-block class=" computed number number  ">           <catnip-block class=" computed number number  ">  <span class="catnip-block-aTextLabel">sin</span>         <catnip-block class=" computed wildcard number userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">pulsePhase</span>              </catnip-block>      </catnip-block>  <span class="catnip-block-aTextLabel">×</span>                   <input type="text" class="catnip-block-aConstantInput number " style=" width: 3.5ch;    " value="0.1" readonly="readonly">     </catnip-block>      </catnip-block>      </catnip-block>
 :::
 
-And in the Action Poof press event, add this: `this.kill = true` ("Destroy this copy" in Catnip)
+И в событии действия Poof при нажатии добавьте следующее: `this.kill = true` ("Удалить копию" в Котомяте)
 
-Here we again change the property that is used inside `Math.sin`. We set a copy's horizontal and vertical scale to this sine wave plus add `1` so that the copy is not shrunk into a point. (Without this `1 +`, the sine wave would oscillate around 0, meaning near 0% of a copy's size.)
+Здесь мы снова меняем свойство, которое используется внутри `Math.sin`. Мы устанавливаем копию's горизонтальный и вертикальный масштаб на синусовую волну плюс добавляем `1`, чтобы копия не сжималась в точку. (Без этого `1 +`, синусовая волна будет колебаться вокруг 0, что означает около 0% размера копии.)
 
-When a user presses the screen, the Poof press event runs and we remove the copy as the user starts manipulating their cat.
+Когда пользователь нажимает на экран, событие Poof при нажатии запускается, и мы удаляем копию, когда пользователь начинает манипулировать своим котом.
 
-The last step is adding this copy to `UI_InGame`, somewhere in the center of the view.
+Последнее действие — добавить эту копию в `UI_InGame`, где-нибудь в центре видимой области.
 
-## Animating background in the main menu + parallax effect
+## Анимирование фона в главном меню + эффект парцелла
 
-The parallax effect is used in gamedev since ancient times — once console's processors got strong enough to draw backgrounds. The effect is made by moving several background layers at different speeds to create an effect of depth. Though we won't get a strong effect in this tutorial, we will learn how to configure backgrounds in ct.js, and liven up our main menu and overall view.
+Эффект парцелла используется в игровой разработке с древних времен — как только процессоры консолей стали достаточно мощными, чтобы рисовать фоны. Эффект создается за счет движения нескольких слоев фона с разными скоростями, создавая ощущение глубины. Хотя мы не добьемся výraznого эффекта в этом учебнике, мы научимся настраивать фоны в ct.js и оживить главное меню и общий вид.
 
-Go to the room `MainMenu`, and click the "Backgrounds" tool in the left toolbar. Then, click the gear icon next to the background `BG_Sky`. We will need to slowly move the background from left to right so that our clouds get moving. Set the Movement speed to `-30`, `0`. These values tell the background to move against the X-axis half a pixel each second.
+Перейдите в комнату «MainMenu» и кликните по инструменту «Фон» в левой панели инструментов. Затем нажмите на иконку шестеренки рядом с фоном «BG_Sky». Нам нужно будет медленно перемещать фон с левого на правый, чтобы наши облака двигались. Установите скорость движения на -30, 0. Эти значения сообщают фону перемещаться против оси X на половину пикселя в секунду.
 
-![Setting a background's movement speed in ct.js](./../images/tutorials/tutJettyCat_32.png)
+![Установка скорости движения фона в ct.js](../../images/tutorials/tutJettyCat_32.png)
 
-Then, go to the room called `InGame`. Open the same settings of the background `BG_Sky`. Set its parallax values to 0.5: it will tell the background to move twice as slow than the rest of the room, creating the effect of depth.
+Затем перейдите в комнату под названием «InGame». Откройте те же настройки фона «BG_Sky». Установите его значения парцелла на 0,5: это сообщит фону перемещаться в два раза медленнее, чем остальные объекты в комнате, создавая эффект глубины.
 
-![Setting a background's movement speed in ct.js](./../images/tutorials/tutJettyCat_33.png)
+![Установка скорости движения фона в ct.js](../../images/tutorials/tutJettyCat_33.png)
 
-The main menu will now have an animated sky, and the sky at the main game's room will slide noticeably slower than any other object in the room. Neat!
+Теперь у нас будет анимированное небо в главном меню, и небо в основной комнате игры будет скользить значительно медленнее, чем любой другой объект в комнате. Отлично!
 
-## That's it!
+## Вот и все!
 
-The game is polished and looks juicy, hooray! Time to read other tutorials, or to create a new game from scratch!
+Игра отполирована и выглядит аппетитно, ура! Пора читать другие руководства или создавать новую игру с нуля!
 
-Happy coding!
+Счастливого кодинга!
+
