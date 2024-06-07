@@ -145,7 +145,7 @@ export default {
             collapsible: true,
             icon: 'gears',
             children: [
-                '/event-order'
+                'event-order'
             ]
         }, {
             text: 'Моддинг ct.js',
