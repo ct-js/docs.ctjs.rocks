@@ -102,7 +102,7 @@ Imagine that we need to create a number of same Copies, and that this number can
 var counter = 20; // We need to create 20 Copies
 
 while (counter > 0) {
-    ct.templates.copy('Enemy', this.x, this.y);
+    templates.copy('Enemy', this.x, this.y);
     counter --;
 }
 ```
@@ -113,7 +113,7 @@ General "for" loops work in the same way as "while" loops do. Let's take the pre
 
 ```js
 for (var counter = 20; counter > 0; counter--) {
-    ct.templates.copy('Enemy', this.x, this.y);
+    templates.copy('Enemy', this.x, this.y);
 }
 ```
 
