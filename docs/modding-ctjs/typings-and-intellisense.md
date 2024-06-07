@@ -24,7 +24,7 @@ declare namespace sausage {
     function roast(me: Copy): void;
 
     /**
-     * Covers your copy in ketchup. Consumes `ct.sosiska.ketchup`.
+     * Covers your copy in ketchup. Consumes `sosiska.ketchup`.
      * @param {Copy} me The copy to cover in ketchup
      * @param {boolean} tonsOfKetchup If set to `true`, it will spend a LOT of ketchup on this particular copy
      */
