@@ -60,6 +60,10 @@ catnip-block .catnip-block-Options {
     margin: -.25rem -.75rem -.5rem !important;
 }
 
+.catnip-block-Options .toright {
+    float: right;
+}
+
 catnip-block .catnip-block-Options:last-child {
     border-bottom-left-radius: .2rem;
     border-bottom-right-radius: .2rem
@@ -319,7 +323,7 @@ catnip-block textarea,
 }
 
 catnip-block .catnip-block-Blocks {
-    background: var(--code-bg-color);
+    background: rgba(0, 26, 43, 0.082);
     border-radius: .2rem;
     border: 1px solid var(--code-border-color);
     padding: 0 .75rem
@@ -357,7 +361,7 @@ catnip-block.note .catnip-block-aTextLabel {
 
 catnip-block.note img {
     flex: 0 0 auto;
-    color: #ff9748
+    filter: hue-rotate(180deg) saturate(200%);
 }
 
 catnip-block.note textarea {
