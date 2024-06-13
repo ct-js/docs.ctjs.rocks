@@ -33,8 +33,18 @@ export default {
             text: 'Главная',
             icon: 'home'
         }, {
-            text: 'Введение в JS',
-            collapsible: false,
+            text: 'Учим Котомяту (Catnip)',
+            collapsible: true,
+            icon: 'book',
+            prefix: '/ru/learn-catnip/',
+            children: [
+                'introduction',
+                'conditions-and-loops',
+                'working-with-copies'
+            ]
+        }, {
+            text: 'Учим JavaScript',
+            collapsible: true,
             icon: 'book',
             prefix: '/ru/learn-js/',
             children: [
