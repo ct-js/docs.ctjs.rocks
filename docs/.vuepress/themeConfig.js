@@ -85,8 +85,18 @@ export default {
             text: 'Home',
             icon: 'home'
         }, {
-            text: 'Introduction to JS',
-            collapsible: false,
+            text: 'Learn Catnip',
+            collapsible: true,
+            icon: 'book',
+            prefix: '/learn-catnip/',
+            children: [
+                'introduction',
+                'conditions-and-loops',
+                'working-with-copies'
+            ]
+        }, {
+            text: 'Learn JavaScript',
+            collapsible: true,
             icon: 'book',
             prefix: '/learn-js/',
             children: [
@@ -229,7 +239,7 @@ export default {
             ]
         }, {
             text: 'Troubleshooting',
-            collapsible: false,
+            collapsible: true,
             icon: 'hand',
             prefix: "/troubleshooting/",
             children: [

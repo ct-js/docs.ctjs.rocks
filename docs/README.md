@@ -13,22 +13,29 @@ highlights:
   - # header: Let's start making great stuff!
     features:
       - title: Learn JavaScript
-        details: Games made in ct.js use JavaScript, or simply JS, to code their gameplay logic. Learn the needed part of it in our little <a href="/learn-js/jsintro_pt1.html">Introduction to JavaScript</a>.</p>
-        link: ./learn-js/jsintro_pt1.md
+        details:
+          Games made in ct.js can use JavaScript, or simply JS, to code their gameplay logic. Learn the needed part of it in our little <a href="/learn-js/jsintro_pt1.html">Introduction to JavaScript</a>.
+          <br/>
+          <br/>
+          <h3 class="vp-feature-title"><span>Learn Catnip</span></h3>
+          Catnip is ct.js' visual programming language. Learn how to write scripts in Catnip fast🔥 and correctly🧑‍🔬 in our <a href="/learn-catnip/introduction.html">three-chapter guide.</a>
       - title: Complete tutorials
-        details: <p>The best way to learn is by <i>making</i>, and you can create real games with our step-by-step tutorials:</p>
-            <ul>
-                <li><a href="/tutorials/making-games-shooter.html">Make a space shooter game →</a></li>
-                <li><a href="/tutorials/making-games-platformer.html">Create a platformer →</a></li>
-                <li><a href="/tutorials/making-games-jettycat.html">Create Jetty Cat, a flappy-bird-like game →</a></li>
+        details:
+          'The best way to learn is by <i>making</i>, and you can create real games with our step-by-step tutorials:
+          <ul>
+              <li><a href="/tutorials/making-games-shooter.html">Make a space shooter game →</a></li>
+              <li><a href="/tutorials/making-games-platformer.html">Create a platformer →</a></li>
+              <li><a href="/tutorials/making-games-jettycat.html">Create Jetty Cat, a flappy-bird-like game →</a></li>'
       - title: Learn the core library
-        details: <p>See additional methods and properties of copies, camera, and rooms, and procedurally create tilemaps, backgrounds, and new copies.</p>
-            <a href="/ct-concepts.html" class="vp-link">Go to ct.js docs →</a>
+        details:
+          See additional methods and properties of copies, camera, and rooms, and procedurally create tilemaps, backgrounds, and new copies.
+          <p><a href="/ct-concepts.html" class="vp-link">Go to ct.js docs →</a></p>
         link: ./ct-concepts.md
   - header: Get the cheatsheet
     image: /assets/img/CheatsheetThumbnail.png
-    description: <p>Available in English, Russian, Spanish and Brazilian Portuguese languages.</p>
-        <a class="vp-link vp-hero-action primary" target="_blank" href="https://comigo.itch.io/ct-cheat-sheet">Download the cheatsheet →</a>
+    description:
+      <p>Available in English, Russian, Spanish and Brazilian Portuguese languages.</p>
+      <a class="vp-link vp-hero-action primary" target="_blank" href="https://comigo.itch.io/ct-cheat-sheet">Download the cheatsheet →</a>
   - header: Notable changes and additions in ct.js v5
     features:
       - title: Catnip — new visual programming language
