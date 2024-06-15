@@ -1,6 +1,6 @@
 # Adding new input methods to ct.js
 
-Since `v1.0.0-next-3`, ct.js now uses Actions system for managing inputs from mouse, keyboard, gamepads, etc. If you are making a module with a new input method, you should do a couple of things.
+Ct.js uses Actions system for managing inputs from mouse, keyboard, gamepads, etc. If you are making a module with a new input method, you should do a couple of things.
 
 ## 1. Provide a list of available input signals (aka "input methods")
 

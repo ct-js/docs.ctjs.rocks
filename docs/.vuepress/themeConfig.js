@@ -85,8 +85,18 @@ export default {
             text: 'Home',
             icon: 'home'
         }, {
-            text: 'Introduction to JS',
-            collapsible: false,
+            text: 'Learn Catnip',
+            collapsible: true,
+            icon: 'book',
+            prefix: '/learn-catnip/',
+            children: [
+                'introduction',
+                'conditions-and-loops',
+                'working-with-copies'
+            ]
+        }, {
+            text: 'Learn JavaScript',
+            collapsible: true,
             icon: 'book',
             prefix: '/learn-js/',
             children: [
@@ -220,13 +230,16 @@ export default {
                     link: 'typings-and-intellisense',
                     text: 'Autocompletion and IntelliSense'
                 }, {
+                    link: 'adding-blocks-to-catnip',
+                    text: 'Adding blocks to catnip'
+                }, {
                     link: 'fields-declaration',
                     text: 'Fields reference'
                 }
             ]
         }, {
             text: 'Troubleshooting',
-            collapsible: false,
+            collapsible: true,
             icon: 'hand',
             prefix: "/troubleshooting/",
             children: [
@@ -245,6 +258,9 @@ export default {
                 }, {
                     link: 'migration-3to4',
                     text: 'Migration from 3.x to 4.0'
+                }, {
+                    link: 'migration-4to5',
+                    text: 'Migration from 4.0 to 5.0'
                 }, {
                     link: 'teared-background',
                     text: 'Background splits into squares!'

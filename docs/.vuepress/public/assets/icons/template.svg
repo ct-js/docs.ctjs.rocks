@@ -1,10 +1,10 @@
-<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M5 11L2.4453 12.7031C2.1671 12.8886 2 13.2008 2 13.5352V16" stroke="#446adb"/>
-<path d="M19 11H22C22.5523 11 23 10.5523 23 10V8" stroke="#446adb"/>
-<path d="M15 19V22" stroke="#446adb"/>
-<path d="M9 19V22" stroke="#446adb"/>
-<rect x="5" y="2" width="14" height="17" rx="2" stroke="#446adb"/>
-<path d="M11 6V8" stroke="#446adb"/>
-<path d="M15 6V8" stroke="#446adb"/>
-<path d="M23 5V5.001" stroke="#446adb"/>
+<svg width="24" height="24" viewBox="0 0 24 24"  fill="none" stroke="#446adb" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+<path d="M5 11L2.4453 12.7031C2.1671 12.8886 2 13.2008 2 13.5352V16"/>
+<path d="M19 11H22C22.5523 11 23 10.5523 23 10V8"/>
+<path d="M15 19V22"/>
+<path d="M9 19V22"/>
+<rect x="5" y="2" width="14" height="17" rx="2"/>
+<path d="M11 6V8"/>
+<path d="M15 6V8"/>
+<path d="M23 5V5.001"/>
 </svg>

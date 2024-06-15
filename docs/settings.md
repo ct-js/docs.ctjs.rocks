@@ -2,7 +2,7 @@
 
 This object provides rendering options that you can tweak in-game, usually to provide your players graphics settings.
 
-## settings.targetFps <badge>new in v4.0</badge>
+## settings.targetFps
 
 The target framerate for the game. You can use it to cap the framerate to preserve battery life or to provide smoother but lower FPS than the maximum a player's screen can support.
 
@@ -12,7 +12,7 @@ The target framerate for the game. You can use it to cap the framerate to preser
 settings.targetFps = 30
 ```
 
-## settings.viewMode <badge>new in v4.0</badge>
+## settings.viewMode
 
 The viewport mode you usually set in project's render options. You may need to change it, for example, to provide a user a choice between fast and quality scaling, or to toggle letterboxing.
 
@@ -51,7 +51,7 @@ else
 ```
 :::
 
-## settings.highDensity <badge>new in v4.0</badge>
+## settings.highDensity
 
 A boolean property that can be set to `true` to enable high-DPI support in the game. Defaults to the value you set in the ct.js IDE, in the project's render settings.
 
@@ -63,7 +63,7 @@ High-DPI support is only visible if your screen is high-DPI one. If it is, a pla
 settings.highDensity = !settings.highDensity
 ```
 
-## settings.fullscreen <badge>new in v4.0</badge>
+## settings.fullscreen
 
 A boolean property that can be changed to exit or enter fullscreen mode. It always defaults to `false` as web games cannot enter fullscreen voluntarily — only through user interaction. Desktop and mobile builds work differently, with mobile builds being always in fullscreen mode and desktop builds having an option in your project's render settings.
 

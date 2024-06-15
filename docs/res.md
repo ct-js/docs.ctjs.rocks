@@ -21,7 +21,6 @@ Gets a pixi.js texture from a ct.js' texture name, so that it can be used in pix
 Returns a single PIXI.Texture.
 
 ## Browsing the asset tree
-<badge>new in v4.0</badge>
 
 Since version 4.0 of ct.js, it can export a partial structure of your project as `res.tree` field. You can use it to, say, load a list of playable maps dynamically so you don't need to update your UI manually, or to create randomized entities based on how assets are organized in folders.
 

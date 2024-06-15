@@ -136,7 +136,7 @@ Depending on your needs, you will probably need to:
 * [Add settings to your module](./events-and-injections.html) editable from ct.IDE and read them back though injections;
 * [Add new editable fields](./events-and-injections.html) for templates and other few asset types;
 * [Implement new input methods](./input-methods.html) to integrate them into [Actions system](./../actions.html);
-* [Create new events for templates and rooms](./modded-events); <badge>new in ct.js v3.0</badge>
+* [Create new events for templates and rooms](./modded-events); 
 * [Add typings](./typings-and-intellisense.html) for smart autocompletion and type checks.
 
 Follow the links to find the examples and references on further implementation.

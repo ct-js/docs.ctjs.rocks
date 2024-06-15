@@ -99,7 +99,7 @@ Checks if a given point is inside a circle. `arg` can be either an array of [x1,
 
 ## Time values
 
-### `u.time` <badge>new in v4.0</badge>
+### `u.time`
 
 A measure of how long the previous frame took time to draw, in seconds.
 You can use it by multiplying it with your copies' speed and other values with velocity to get the same speed with different framerate, regardless of lags or max framerate cap.
@@ -113,7 +113,7 @@ this.x += this.windSpeed * u.time;
 
 Note that `this.move()` already uses this value, so there is no need to premultiply `this.speed` with it.
 
-### `u.timeUi` <badge>new in v4.0</badge>
+### `u.timeUi`
 
 Similarly to `u.time`, this property also measures the time between the previous and current frames, in seconds, but this value ignores the effects of slow-mo and game pause. (See about pausing the game and changing game speed [here](/tips-n-tricks/game-pause.md).)
 

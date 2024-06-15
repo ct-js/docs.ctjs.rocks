@@ -221,7 +221,7 @@ Here is an example of an inlined event code:
     "codeTargets": ["thisOnStep"],
     "inlineCodeTemplates": {
         /* This matches with codeTargets with its keys*/
-        "thisOnStep": "if (ct.actions[/*%%action%%*/].${prop}) {\n/*%%USER_CODE%%*/\n}"
+        "thisOnStep": "if (ct.actions[/*%%action%%*/].pressed) {\n/*%%USER_CODE%%*/\n}"
     }
 }
 ```

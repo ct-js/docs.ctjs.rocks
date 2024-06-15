@@ -23,10 +23,6 @@
 
 ## Learning
 
-### Ct.js
-
-* [Stuck Up Creations channel](https://www.youtube.com/user/BatteryProductions/featured) on YouTube — they have some nice introductional videos for ct.js.
-
 ### Game Design
 
 * [Design Oriented Topic Wheel](https://www.designoriented.net/wheel) — A huge glossary on gamedev topics made in an interesting interactive way. Make sure to disable DarkReader or other "dark theme" extensions in your browser to actually see the definitions!
@@ -39,7 +35,7 @@
 * [Ask Gamedev](https://www.youtube.com/c/AskGamedev/videos) on YouTube — a group of game industry veterans that make videos on the game development industry and how to make video games.
 * [Design Doc](https://www.youtube.com/user/Warbot40/featured). Yep.
 * [Game Developer Conference recordings](https://www.youtube.com/channel/UC0JB7TSe49lg56u6qH8y_MQ) on YouTube — various talks on every gamedev topic.
-* [Game Design with Michael](https://www.youtube.com/channel/UCBDJsz_SgRaV96Xd9gqEemg) — they teach game design theory and talk about the ins and outs of game design so that you are equipped to analyse, discuss and create great games.
+* [Game Design with Michael](https://www.youtube.com/@gamedesignwithmichael) — they teach game design theory and talk about the ins and outs of game design so that you are equipped to analyse, discuss and create great games.
 * [Game Dev Underground](https://www.youtube.com/channel/UC_hwKJdF3KRAy4QIaiCSMgQ) — The science, art, and business of making great games.
 * [Miziziziz](https://www.youtube.com/user/Miziziziz) makes games, hosts game jams, talks about game development. His videos are short and concise, but useful.
 * [The game Overanalyser](https://www.youtube.com/channel/UCZMF14eNxvuReRTceX_mbqQ/featured) — this channel explores the stories, themes, design and art of gaming.
@@ -53,7 +49,7 @@
 
 ### Animation
 
-* [DragonBones](http://dragonbones.com/) — create skeletal animations and import them to ct.js. Read more about working with DragonBones animations in [our tutorial](/skeletal-animation.html).
+* [DragonBones](http://dragonbones.com/) — create skeletal animations and import them to ct.js.
 * [Synfig](https://www.synfig.org/) — Open-source 2D Animation Software.
 
 ### Graphic editors

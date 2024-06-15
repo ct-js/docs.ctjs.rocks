@@ -16,7 +16,7 @@ Enable the module `transition` in the Catmods tab. It signals that it depends on
 
 Now, modify the `Button_Play` Pointer click event code so that it shows a blue circled transition when clicked:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js
 if (!this.pressed) {
@@ -35,6 +35,8 @@ if not @pressed
     .then =>
         rooms.switch 'InGame'
 ```
+@tab Catnip
+<catnip-block class=" command    selected">  <img src="/assets/icons/help-circle.svg" class="feather"><span class="catnip-block-aTextLabel">If</span>         <catnip-block class=" computed boolean boolean  ">  <span class="catnip-block-aTextLabel">not</span>         <catnip-block class=" computed wildcard boolean userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">pressed</span>              </catnip-block>      </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">Set</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">pressed</span>              </catnip-block>  <span class="catnip-block-aTextLabel">value</span>                  <catnip-block class=" computed boolean wildcard constant ">  <img src="/assets/icons/bool.svg" class="feather"><span class="catnip-block-aTextLabel">true</span>     </catnip-block>      </catnip-block>   <catnip-block class=" command wildcard   ">  <img src="/assets/icons/monitor.svg" class="feather"><span class="catnip-block-aTextLabel">Transition circle out</span>          <input type="text" class="catnip-block-aConstantInput number " value="1000" style=" width: 4.5ch;    " readonly="readonly">          <input type="text" class="catnip-block-aConstantInput number " value="4483803" style=" width: 7.5ch;    " readonly="readonly">   <div class="catnip-block-aFiller"></div>         <span class="catnip-block-anAsyncMarker"> <img src="/assets/icons/clock.svg" class="feather"></span>            <div class="catnip-block-aBreak"></div>        <img src="/assets/icons/redo.svg" class="feather">         <span class="catnip-block-aTextLabel">Then</span>                <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command void   ">  <img src="/assets/icons/room.svg" class="feather"><span class="catnip-block-aTextLabel">Switch to</span>          <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/image.svg" class="feather"><span>InGame</span></span>     </catnip-block>    </catnip-block-list> </div>        </catnip-block>    </catnip-block-list> </div>        </catnip-block>
 :::
 
 `this.pressed` is our custom variable that remembers that a button was pressed. It will help us prevent occasional double clicking, that may have negative effects on the game's logic.
@@ -49,7 +51,7 @@ The transition itself is an asynchronous action! We use `.then(() => {…})` to 
 
 That was the first part of the transition. The second one will go to the `InGame` Room start code. Open the room, and put this line:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js
 transition.circleIn(500, 0x446ADB);
@@ -58,6 +60,8 @@ transition.circleIn(500, 0x446ADB);
 ```coffee
 transition.circleIn 500, 0x446ADB
 ```
+@tab Catnip
+<catnip-block class=" command wildcard   selected">  <img src="/assets/icons/monitor.svg" class="feather"><span class="catnip-block-aTextLabel">Transition circle in</span>          <input type="text" class="catnip-block-aConstantInput number " style=" width: 3.5ch;    " value="500" readonly="readonly">          <input type="text" class="catnip-block-aConstantInput number " style=" width: 7.5ch;    " value="4483803" readonly="readonly">   <div class="catnip-block-aFiller"></div>         <span class="catnip-block-anAsyncMarker"> <img src="/assets/icons/clock.svg" class="feather"></span>            <div class="catnip-block-aBreak"></div>        <img src="/assets/icons/redo.svg" class="feather">         <span class="catnip-block-aTextLabel">Then</span>                <div class="catnip-block-Blocks"> <catnip-block-list> <div class="catnip-block-aBlockPlaceholder"> <img src="/assets/icons/thumbs-up.svg" class="feather"><span class="catnip-block-aTextLabel">Do nothing</span>  </div>   </catnip-block-list> </div>        </catnip-block>
 :::
 
 We can also show up our UI layers (the pause menu and the score screen) by making them transparent but slowly turning them opaque. We will use `tween` there — that's one catmod that is used by `transition`.
@@ -68,7 +72,7 @@ We will change the property `this.alpha` through time. It is a number between 0 
 
 So, to fade in a UI layer, we need to put this code in the Room start event of rooms `UI_OhNo` and `UI_Paused`:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js
 this.alpha = 0;
@@ -93,13 +97,17 @@ tween.add
     duration: 500
     isUi: true
 ```
+@tab Catnip
+<catnip-block class=" command    selected">  <img src="/assets/icons/droplet.svg" class="feather"><span class="catnip-block-aTextLabel">Set opacity to</span>          <input type="text" class="catnip-block-aConstantInput number " value="0" style=" width: 1.5ch;    " readonly="readonly">     </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/interpolation-smooth.svg" class="feather"><span class="catnip-block-aTextLabel">Animate a value</span>         <catnip-block class=" computed number number  ">  <img src="/assets/icons/droplet.svg" class="feather"><span class="catnip-block-aTextLabel">opacity</span>     </catnip-block>  <span class="catnip-block-aTextLabel">to</span>                   <input type="text" class="catnip-block-aConstantInput number " value="1" style=" width: 1.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">for</span>                   <input type="text" class="catnip-block-aConstantInput number " value="500" style=" width: 3.5ch;    " readonly="readonly">  <span class="catnip-block-anAsyncMarker"> <img src="/assets/icons/clock.svg" class="feather"></span>            <div class="catnip-block-aBreak"></div>        <img src="/assets/icons/redo.svg" class="feather">         <span class="catnip-block-aTextLabel">Then</span>                <div class="catnip-block-Blocks"> <catnip-block-list> <div class="catnip-block-aBlockPlaceholder"> <img src="/assets/icons/thumbs-up.svg" class="feather"><span class="catnip-block-aTextLabel">Do nothing</span>  </div>   </catnip-block-list> </div>     <img src="/assets/icons/alert-octagon.svg" class="feather">         <span class="catnip-block-aTextLabel">On error</span>                <div class="catnip-block-Blocks"> <catnip-block-list> <div class="catnip-block-aBlockPlaceholder"> <img src="/assets/icons/thumbs-up.svg" class="feather"><span class="catnip-block-aTextLabel">Do nothing</span>  </div>   </catnip-block-list> </div>           <div class="catnip-block-Options"> <div class="catnip-block-anOptionsToggle"> <img src="/assets/icons/chevron-up.svg" class="feather"><span>Advanced</span> <img src="/assets/icons/chevron-up.svg" class="feather"> </div> <dl> <dt>Animate in UI time</dt> <dd> <catnip-block class=" computed boolean boolean constant ">  <img src="/assets/icons/bool.svg" class="feather"><span class="catnip-block-aTextLabel">true</span>     </catnip-block>  </dd> </dl><dl> <dt>Curve</dt> <dd>  <input type="text" class="catnip-block-aConstantInput wildcard " style="width: 5.5ch" readonly="readonly"> </dd> </dl>   </div>       </catnip-block>
 :::
 
 Firstly, we make a room fully transparent by setting its `alpha` to 0. Then, we call `tween.add` to start a smooth transition. `obj` points to an object that should be animated, and `fields` lists all the properties and values we want to change. The `duration` key sets the length of the effect, in milliseconds. Finally, the `isUi` key tells that animation should run in UI time scale, ignoring our "paused" game state.
 
 We can fade out a UI layer, too. Let's gradually hide the pause menu when the player hits the "continue" button. Open the template `Button_Continue`, and modify its Pointer click event code:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js
 if (!this.pressed) {
@@ -132,6 +140,8 @@ if not @pressed
         pixiApp.ticker.speed = 1
         rooms.remove @getRoom()
 ```
+@tab Catnip
+<catnip-block class=" command    selected">  <img src="/assets/icons/help-circle.svg" class="feather"><span class="catnip-block-aTextLabel">If</span>         <catnip-block class=" computed boolean boolean  ">  <span class="catnip-block-aTextLabel">not</span>         <catnip-block class=" computed wildcard boolean userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">pressed</span>              </catnip-block>      </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">Set</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">pressed</span>              </catnip-block>  <span class="catnip-block-aTextLabel">value</span>                  <catnip-block class=" computed boolean wildcard constant ">  <img src="/assets/icons/bool.svg" class="feather"><span class="catnip-block-aTextLabel">true</span>     </catnip-block>      </catnip-block>   <catnip-block class=" command    ">  <img src="/assets/icons/interpolation-smooth.svg" class="feather"><span class="catnip-block-aTextLabel">Animate object's</span>         <catnip-block class=" computed wildcard wildcard  ">  <img src="/assets/icons/room.svg" class="feather"><span class="catnip-block-aTextLabel">copy's owning room</span>     </catnip-block>  <span class="catnip-block-aTextLabel">property</span>                   <input type="text" class="catnip-block-aConstantInput string " value="alpha" style=" width: 5.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">to</span>                   <input type="text" class="catnip-block-aConstantInput number " value="0" style=" width: 1.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">for</span>                   <input type="text" class="catnip-block-aConstantInput number " value="1000" style=" width: 4.5ch;    " readonly="readonly">  <span class="catnip-block-anAsyncMarker"> <img src="/assets/icons/clock.svg" class="feather"></span>            <div class="catnip-block-aBreak"></div>        <img src="/assets/icons/redo.svg" class="feather">         <span class="catnip-block-aTextLabel">Then</span>                <div class="catnip-block-Blocks"> <catnip-block-list> <div class="catnip-block-aBlockPlaceholder"> <img src="/assets/icons/thumbs-up.svg" class="feather"><span class="catnip-block-aTextLabel">Do nothing</span>  </div>   </catnip-block-list> </div>     <img src="/assets/icons/alert-octagon.svg" class="feather">         <span class="catnip-block-aTextLabel">On error</span>                <div class="catnip-block-Blocks"> <catnip-block-list> <div class="catnip-block-aBlockPlaceholder"> <img src="/assets/icons/thumbs-up.svg" class="feather"><span class="catnip-block-aTextLabel">Do nothing</span>  </div>   </catnip-block-list> </div>           <div class="catnip-block-Options"> <div class="catnip-block-anOptionsToggle"> <img src="/assets/icons/chevron-up.svg" class="feather"><span>Advanced</span> <img src="/assets/icons/chevron-up.svg" class="feather"> </div> <dl> <dt>Animate in UI time</dt> <dd> <catnip-block class=" computed boolean boolean constant ">  <img src="/assets/icons/bool.svg" class="feather"><span class="catnip-block-aTextLabel">true</span>     </catnip-block>  </dd> </dl><dl> <dt>Curve</dt> <dd>  <input type="text" class="catnip-block-aConstantInput wildcard " style="width: 5.5ch" readonly="readonly"> </dd> </dl>   </div>       </catnip-block>   <catnip-block class=" command    ">  <img src="/assets/icons/settings.svg" class="feather"><span class="catnip-block-aTextLabel">Set game speed to</span>          <input type="text" class="catnip-block-aConstantInput number " style=" width: 1.5ch;    " value="1" readonly="readonly">     </catnip-block>   <catnip-block class=" command void   ">  <img src="/assets/icons/room.svg" class="feather"><span class="catnip-block-aTextLabel">Remove a room</span>         <catnip-block class=" computed wildcard wildcard  ">  <img src="/assets/icons/room.svg" class="feather"><span class="catnip-block-aTextLabel">copy's owning room</span>     </catnip-block>      </catnip-block>    </catnip-block-list> </div>        </catnip-block>
 :::
 
 We create a flag `this.pressed` to make sure that the code runs the animation only once. Running it multiple times won't hurt, but this keeps the debugger's log clean as `tween` will warn about interrupted animations otherwise.
@@ -144,7 +154,7 @@ Though the "paused" menu fades out slowly, it is still hard for a player to catc
 
 Open the template `Button_Continue` again, and modify the script so it fires another `tween.add` after it finishes the first one:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js {12,13,14,15,16,17,18,19}
 if (!this.pressed) {
@@ -189,13 +199,15 @@ if not @pressed
             isUi: true
         rooms.remove @getRoom()
 ```
+@tab Catnip
+<catnip-block class=" command    selected">  <img src="/assets/icons/help-circle.svg" class="feather"><span class="catnip-block-aTextLabel">If</span>         <catnip-block class=" computed boolean boolean  ">  <span class="catnip-block-aTextLabel">not</span>         <catnip-block class=" computed wildcard boolean userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">pressed</span>              </catnip-block>      </catnip-block>        <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">Set</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">pressed</span>              </catnip-block>  <span class="catnip-block-aTextLabel">value</span>                  <catnip-block class=" computed boolean wildcard constant ">  <img src="/assets/icons/bool.svg" class="feather"><span class="catnip-block-aTextLabel">true</span>     </catnip-block>      </catnip-block>   <catnip-block class=" command    ">  <img src="/assets/icons/interpolation-smooth.svg" class="feather"><span class="catnip-block-aTextLabel">Animate object's</span>         <catnip-block class=" computed wildcard wildcard  ">  <img src="/assets/icons/room.svg" class="feather"><span class="catnip-block-aTextLabel">copy's owning room</span>     </catnip-block>  <span class="catnip-block-aTextLabel">property</span>                   <input type="text" class="catnip-block-aConstantInput string " value="alpha" style=" width: 5.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">to</span>                   <input type="text" class="catnip-block-aConstantInput number " value="0" style=" width: 1.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">for</span>                   <input type="text" class="catnip-block-aConstantInput number " value="1000" style=" width: 4.5ch;    " readonly="readonly">  <span class="catnip-block-anAsyncMarker"> <img src="/assets/icons/clock.svg" class="feather"></span>            <div class="catnip-block-aBreak"></div>        <img src="/assets/icons/redo.svg" class="feather">         <span class="catnip-block-aTextLabel">Then</span>                <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/interpolation-smooth.svg" class="feather"><span class="catnip-block-aTextLabel">Animate a value</span>         <catnip-block class=" computed number number  ">  <img src="/assets/icons/settings.svg" class="feather"><span class="catnip-block-aTextLabel">game speed</span>     </catnip-block>  <span class="catnip-block-aTextLabel">to</span>                   <input type="text" class="catnip-block-aConstantInput number " value="1" style=" width: 1.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">for</span>                   <input type="text" class="catnip-block-aConstantInput number " value="1000" style=" width: 4.5ch;    " readonly="readonly">  <span class="catnip-block-anAsyncMarker"> <img src="/assets/icons/clock.svg" class="feather"></span>            <div class="catnip-block-aBreak"></div>        <img src="/assets/icons/redo.svg" class="feather">         <span class="catnip-block-aTextLabel">Then</span>                <div class="catnip-block-Blocks"> <catnip-block-list> <div class="catnip-block-aBlockPlaceholder"> <img src="/assets/icons/thumbs-up.svg" class="feather"><span class="catnip-block-aTextLabel">Do nothing</span>  </div>   </catnip-block-list> </div>     <img src="/assets/icons/alert-octagon.svg" class="feather">         <span class="catnip-block-aTextLabel">On error</span>                <div class="catnip-block-Blocks"> <catnip-block-list> <div class="catnip-block-aBlockPlaceholder"> <img src="/assets/icons/thumbs-up.svg" class="feather"><span class="catnip-block-aTextLabel">Do nothing</span>  </div>   </catnip-block-list> </div>           <div class="catnip-block-Options"> <div class="catnip-block-anOptionsToggle"> <img src="/assets/icons/chevron-up.svg" class="feather"><span>Advanced</span> <img src="/assets/icons/chevron-up.svg" class="feather"> </div> <dl> <dt>Animate in UI time</dt> <dd> <catnip-block class=" computed boolean boolean constant ">  <img src="/assets/icons/bool.svg" class="feather"><span class="catnip-block-aTextLabel">true</span>     </catnip-block>  </dd> </dl><dl> <dt>Curve</dt> <dd>  <input type="text" class="catnip-block-aConstantInput wildcard " style="width: 5.5ch" readonly="readonly"> </dd> </dl>   </div>       </catnip-block>   <catnip-block class=" command void   ">  <img src="/assets/icons/room.svg" class="feather"><span class="catnip-block-aTextLabel">Remove a room</span>         <catnip-block class=" computed wildcard wildcard  ">  <img src="/assets/icons/room.svg" class="feather"><span class="catnip-block-aTextLabel">copy's owning room</span>     </catnip-block>      </catnip-block>    </catnip-block-list> </div>     <img src="/assets/icons/alert-octagon.svg" class="feather">         <span class="catnip-block-aTextLabel">On error</span>                <div class="catnip-block-Blocks"> <catnip-block-list> <div class="catnip-block-aBlockPlaceholder"> <img src="/assets/icons/thumbs-up.svg" class="feather"><span class="catnip-block-aTextLabel">Do nothing</span>  </div>   </catnip-block-list> </div>           <div class="catnip-block-Options"> <div class="catnip-block-anOptionsToggle"> <img src="/assets/icons/chevron-up.svg" class="feather"><span>Advanced</span> <img src="/assets/icons/chevron-up.svg" class="feather"> </div> <dl> <dt>Animate in UI time</dt> <dd> <catnip-block class=" computed boolean boolean constant ">  <img src="/assets/icons/bool.svg" class="feather"><span class="catnip-block-aTextLabel">true</span>     </catnip-block>  </dd> </dl><dl> <dt>Curve</dt> <dd>  <input type="text" class="catnip-block-aConstantInput wildcard " style="width: 5.5ch" readonly="readonly"> </dd> </dl>   </div>       </catnip-block>    </catnip-block-list> </div>        </catnip-block>
 :::
 
 Now players can catch up with the game and save their cat from falling.
 
 ## Cat's jet smoke and star particles
 
-From v1.3, ct.js allows you to visually design particle effects and play them in your game. And it's cool! Let's create two effects: one will be a jet smoke for the cat. The other will show a burst of smaller stars when you collect one.
+Ct.js allows you to visually design particle effects and play them in your game. And it's cool! Let's create two effects: one will be a jet smoke for the cat. The other will show a burst of smaller stars when you collect one.
 
 ### Making a starburst
 
@@ -223,7 +235,7 @@ When you're ready, hit the "Apply" button at the bottom of the left column.
 To create a burst of stars when a big one is collected, open the template `Star`, add the "Destruction" event and write a line:
 
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js
 emitters.fire('StarBurst', this.x, this.y);
@@ -232,6 +244,8 @@ emitters.fire('StarBurst', this.x, this.y);
 ```coffee
 emitters.fire 'StarBurst', @x, @y
 ```
+@tab Catnip
+<catnip-block class=" command wildcard   selected">  <img src="/assets/icons/sparkles.svg" class="feather"><span class="catnip-block-aTextLabel">Fire an emitter at location</span>          <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/sparkles.svg" class="feather"><span>StarBurst</span></span>         <catnip-block class=" computed number number  ">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">x</span>     </catnip-block>          <catnip-block class=" computed number number  ">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">y</span>     </catnip-block>           <input type="text" class="catnip-block-aConstantInput wildcard " style=" width: 8.5ch;    " readonly="readonly">   <div class="catnip-block-aFiller"></div>        <span class="catnip-block-aTextLabel">store in</span>                   <input type="text" class="catnip-block-aConstantInput wildcard " style=" width: 6.5ch;    " readonly="readonly">     </catnip-block>
 :::
 
 Ta-da!
@@ -263,7 +277,7 @@ Here are some hints:
 
 To add the effect to the cat, open its template and put this code to the end of its Creation code:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js
 this.jet = emitters.follow(this, 'Jet');
@@ -272,6 +286,8 @@ this.jet = emitters.follow(this, 'Jet');
 ```coffee
 @jet = emitters.follow this, 'Jet'
 ```
+@tab Catnip
+<catnip-block class=" command wildcard   selected">  <img src="/assets/icons/sparkles.svg" class="feather"><span class="catnip-block-aTextLabel">Create an emitter and follow</span>         <catnip-block class=" computed wildcard wildcard constant ">  <img src="/assets/icons/crosshair.svg" class="feather"><span class="catnip-block-aTextLabel">this</span>     </catnip-block>           <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/sparkles.svg" class="feather"><span>Jet</span></span>          <input type="text" class="catnip-block-aConstantInput wildcard " style=" width: 8.5ch;    " readonly="readonly">   <div class="catnip-block-aFiller"></div>        <span class="catnip-block-aTextLabel">store in</span>                  <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">jet</span>              </catnip-block>      </catnip-block>
 :::
 
 `emitters.follow` tells to create a particle effect and make it follow a copy. It will look attached to the cat. The first argument is the copy we want to attach the effect to (`this` is our cat), the second one — the name of the effect (`'Jet'`).
@@ -288,7 +304,7 @@ Let's add a bit of dynamics to this jet: we will spawn new particles only when t
 
 Create a new Action release event, select the Poof action, and place this piece of code in it:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js
 this.jet.pause();
@@ -297,11 +313,13 @@ this.jet.pause();
 ```coffee
 @jet.pause()
 ```
+@tab Catnip
+<catnip-block class=" command void   selected">  <img src="/assets/icons/sparkles.svg" class="feather"><span class="catnip-block-aTextLabel">Pause the emitter</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">jet</span>              </catnip-block>      </catnip-block>
 :::
 
 This will pause the effect. To unpause it, go to the On Poof down event and add this line:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js
 this.jet.resume();
@@ -310,6 +328,8 @@ this.jet.resume();
 ```coffee
 @jet.resume()
 ```
+@tab Catnip
+<catnip-block class=" command void   selected">  <img src="/assets/icons/sparkles.svg" class="feather"><span class="catnip-block-aTextLabel">Resume the emitter</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">jet</span>              </catnip-block>      </catnip-block>
 :::
 
 And that is it for particles; time for some testing!
@@ -326,7 +346,7 @@ We can tie `this.vspeed` and `this.angle` of a cat together so that it rotates w
 
 This line will work:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js
 this.angle = -this.vspeed;
@@ -335,11 +355,13 @@ this.angle = -this.vspeed;
 ```coffee
 @angle = -@vspeed
 ```
+@tab Catnip
+<catnip-block class=" command    selected">  <img src="/assets/icons/droplet.svg" class="feather"><span class="catnip-block-aTextLabel">Set texture rotation to</span>         <catnip-block class=" computed number number  ">            <input type="text" class="catnip-block-aConstantInput number " style=" width: 2.5ch;    " value="-1" readonly="readonly"> <span class="catnip-block-aTextLabel">×</span>                  <catnip-block class=" computed number number  ">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">vertical speed</span>     </catnip-block>      </catnip-block>      </catnip-block>
 :::
 
 Though it will result in a too strong rotation. Adding a division will make it look better:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js
 this.angle = -this.vspeed / 200;
@@ -348,6 +370,8 @@ this.angle = -this.vspeed / 200;
 ```coffee
 @angle = -@vspeed / 200
 ```
+@tab Catnip
+<catnip-block class=" command    selected">  <img src="/assets/icons/droplet.svg" class="feather"><span class="catnip-block-aTextLabel">Set texture rotation to</span>         <catnip-block class=" computed number number  ">            <input type="text" class="catnip-block-aConstantInput number " value="-1" style=" width: 2.5ch;    " readonly="readonly"> <span class="catnip-block-aTextLabel">×</span>                  <catnip-block class=" computed number number  ">           <catnip-block class=" computed number number  ">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">vertical speed</span>     </catnip-block>  <span class="catnip-block-aTextLabel">:</span>                   <input type="text" class="catnip-block-aConstantInput number " value="200" style=" width: 3.5ch;    " readonly="readonly">     </catnip-block>      </catnip-block>      </catnip-block>
 :::
 
 ### Rotating the stars
@@ -356,7 +380,7 @@ With stars, we can't simply tie `this.angle` to some ct.js' value. We can define
 
 Open the `Star` template, and add this line to its Creation event:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js
 this.wiggleTime = 0;
@@ -365,11 +389,13 @@ this.wiggleTime = 0;
 ```coffee
 @wiggleTime = 0
 ```
+@tab Catnip
+<catnip-block class=" command    selected">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">Set</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">wiggleTime</span>              </catnip-block>  <span class="catnip-block-aTextLabel">value</span>                   <input type="text" class="catnip-block-aConstantInput wildcard " style=" width: 1.5ch;    " value="0" readonly="readonly">     </catnip-block>
 :::
 
 Then, in the Frame end event, add this code:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js
 this.wiggleTime += u.time * 12;
@@ -380,6 +406,10 @@ this.angle = Math.sin(this.wiggleTime) * 5;
 @wiggleTime += u.time * 12
 @angle = (Math.sin @wiggleTime) * 5
 ```
+@tab Catnip
+<catnip-block class=" command    selected">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">Set</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">wiggleTime</span>              </catnip-block>  <span class="catnip-block-aTextLabel">value</span>                  <catnip-block class=" computed number wildcard  ">           <catnip-block class=" computed wildcard number userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">wiggleTime</span>              </catnip-block>  <span class="catnip-block-aTextLabel">+</span>                  <catnip-block class=" computed number number  ">           <catnip-block class=" computed number number  ">  <img src="/assets/icons/tool.svg" class="feather"><span class="catnip-block-aTextLabel">time</span>     </catnip-block>  <span class="catnip-block-aTextLabel">×</span>                   <input type="text" class="catnip-block-aConstantInput number " style=" width: 2.5ch;    " value="12" readonly="readonly">     </catnip-block>      </catnip-block>      </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/droplet.svg" class="feather"><span class="catnip-block-aTextLabel">Set texture rotation to</span>         <catnip-block class=" computed number number  ">           <catnip-block class=" computed number number  ">  <span class="catnip-block-aTextLabel">sin</span>         <catnip-block class=" computed wildcard number userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">wiggleTime</span>              </catnip-block>      </catnip-block>  <span class="catnip-block-aTextLabel">×</span>                   <input type="text" class="catnip-block-aConstantInput number " style=" width: 1.5ch;    " value="5" readonly="readonly">     </catnip-block>      </catnip-block>
 :::
 
 Here we change `this.wiggleTime` at each frame by the elapsed time, multiplied by 12 to speed up the animation. Then we use `Math.sin` to get a sinus of the `wiggleTime` — changing the latter at each frame will result in a smooth oscillation between -1 and 1. By multiplying it by 5, we make the effect five times stronger.
@@ -394,7 +424,7 @@ Create a new template called `PressHint` with a texture `PressHint`. Make sure t
 
 In the template's Creation code, add a line `this.pulsePhase = 0;`. In its Frame start code, put this snippet:
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js
 this.pulsePhase += u.time * 12;
@@ -406,9 +436,15 @@ this.scale.x = this.scale.y = 1 + Math.sin(this.pulsePhase) * 0.1;
 @pulsePhase += u.time * 12
 @scale.x = @scale.y = 1 + (Math.sin @pulsePhase) * 0.1
 ```
+@tab Catnip
+<catnip-block class=" command    selected">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">Set</span>         <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">pulsePhase</span>              </catnip-block>  <span class="catnip-block-aTextLabel">value</span>                  <catnip-block class=" computed number wildcard  ">           <catnip-block class=" computed wildcard number userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">pulsePhase</span>              </catnip-block>  <span class="catnip-block-aTextLabel">+</span>                  <catnip-block class=" computed number number  ">           <catnip-block class=" computed number number  ">  <img src="/assets/icons/tool.svg" class="feather"><span class="catnip-block-aTextLabel">time</span>     </catnip-block>  <span class="catnip-block-aTextLabel">×</span>                   <input type="text" class="catnip-block-aConstantInput number " style=" width: 2.5ch;    " value="12" readonly="readonly">     </catnip-block>      </catnip-block>      </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">Set</span>         <catnip-block class=" computed number wildcard  ">  <img src="/assets/icons/droplet.svg" class="feather"><span class="catnip-block-aTextLabel">scale by x</span>     </catnip-block>  <span class="catnip-block-aTextLabel">value</span>                  <catnip-block class=" computed number wildcard  ">            <input type="text" class="catnip-block-aConstantInput number " style=" width: 1.5ch;    " value="1" readonly="readonly"> <span class="catnip-block-aTextLabel">+</span>                  <catnip-block class=" computed number number  ">           <catnip-block class=" computed number number  ">  <span class="catnip-block-aTextLabel">sin</span>         <catnip-block class=" computed wildcard number userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">pulsePhase</span>              </catnip-block>      </catnip-block>  <span class="catnip-block-aTextLabel">×</span>                   <input type="text" class="catnip-block-aConstantInput number " style=" width: 3.5ch;    " value="0.1" readonly="readonly">     </catnip-block>      </catnip-block>      </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">Set</span>         <catnip-block class=" computed number wildcard  ">  <img src="/assets/icons/droplet.svg" class="feather"><span class="catnip-block-aTextLabel">scale by y</span>     </catnip-block>  <span class="catnip-block-aTextLabel">value</span>                  <catnip-block class=" computed number wildcard  ">            <input type="text" class="catnip-block-aConstantInput number " style=" width: 1.5ch;    " value="1" readonly="readonly"> <span class="catnip-block-aTextLabel">+</span>                  <catnip-block class=" computed number number  ">           <catnip-block class=" computed number number  ">  <span class="catnip-block-aTextLabel">sin</span>         <catnip-block class=" computed wildcard number userdefined ">  <img src="/assets/icons/archive.svg" class="feather"> <span class="catnip-block-aTextLabel">pulsePhase</span>              </catnip-block>      </catnip-block>  <span class="catnip-block-aTextLabel">×</span>                   <input type="text" class="catnip-block-aConstantInput number " style=" width: 3.5ch;    " value="0.1" readonly="readonly">     </catnip-block>      </catnip-block>      </catnip-block>
 :::
 
-And in the Action Poof press event, add this: `this.kill = true`
+And in the Action Poof press event, add this: `this.kill = true` ("Destroy this copy" in Catnip)
 
 Here we again change the property that is used inside `Math.sin`. We set a copy's horizontal and vertical scale to this sine wave plus add `1` so that the copy is not shrunk into a point. (Without this `1 +`, the sine wave would oscillate around 0, meaning near 0% of a copy's size.)
 
