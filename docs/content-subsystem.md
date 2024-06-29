@@ -50,7 +50,7 @@ The simplest way to explore the resulting structure of your data is to write `co
 
 ![](./images/contentEditor_Inspect.png)
 
-You are free to use the data however you want — everything is presented as objects inside an array. If you don't know how to manipulate objects and arrays yet, read our [third chapter of the introduction to JS](jsintro_pt3.html). You will also probably need to [read about loops here](jsintro_pt2.html).
+You are free to use the data however you want — everything is presented as objects inside an array. If you don't know how to manipulate objects and arrays yet, read our [third chapter of the introduction to JS](learn-js/jsintro_pt3.html). You will also probably need to [read about loops here](learn-js/jsintro_pt2.html).
 
 ### Example: Searching a content record with a specific name
 
