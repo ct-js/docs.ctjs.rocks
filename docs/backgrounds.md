@@ -37,10 +37,10 @@ Argument | Type | Description
 `depth` | `number` | *(optional)* The depth to place the background at. Defaults to `0`.
 `container` | `PIXI.Container` | *(optional)* Where to put the background. Defaults to `ct.room`, but can be set to any other room or valid pixi container.
 
-**Returns** the created [`Background`](Background.html) instance.
+**Returns** the created [`Background`](background.html) instance.
 
 ::: tip
-Visit the [`Background` class documentation](Background.html) to learn how to tweak backgrounds' position, look, and movement.
+Visit the [`Background` class documentation](background.html) to learn how to tweak backgrounds' position, look, and movement.
 :::
 
 #### Example: Create a background, set its opacity, and make it move horizontally
