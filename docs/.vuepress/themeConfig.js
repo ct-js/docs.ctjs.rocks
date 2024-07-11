@@ -180,6 +180,7 @@ export default {
                     link: '/content-subsystem',
                     text: 'Content editor'
                 },
+                'enumerations',
                 "building-your-game",
                 "deployment-itch-io"
             ]

@@ -131,6 +131,7 @@ export default {
                     link: 'content-subsystem',
                     text: 'Подсистема контента'
                 },
+                "enumerations",
                 "building-your-game",
                 "deployment-itch-io"
             ]

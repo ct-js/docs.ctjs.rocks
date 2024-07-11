@@ -36,6 +36,10 @@ Here is an example of a "Gear" content type:
 
 ![](./images/contentEditor_SchemaExample.png)
 
+### Using Enumerations in Content Types
+
+Every Enumeration asset you create will be available as a field type in the content schema editor. Using them in the type field will create dropdowns in entries editor with the variants an Enumeration has. This is very handy for creating settings and tools for designers, as they will be presented with a dropdown with options predefined by you, which minifies human error compared to having to manually input values from keyboard.
+
 ## Editing the data
 
 Editing is simple — once you've designed your data, you can start creating entries for your content types. For each content type you create, there will be a new section in the Project tab, right under modules' settings.
