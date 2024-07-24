@@ -31,6 +31,7 @@ Tools for adding new copies and tiles have pretty similar functionality.
 
 * By default, you can draw multiple copies or tiles by pressing your mouse and making a stroke with it. If you have grid enabled, every copy and tile will snap to it; otherwise, they will be placed freely with spacing depending on your previously configured grid size.
 * If you hold the `Shift` key before starting placing a tile or a copy, your copies and tiles will form a straight line — diagonal, vertical, or horizontal.
+* If you hold `Shift` and `Ctrl` keys at the same time before placing objects, you will be able to place them in a rectangular grid.
 * If you hold the `Alt` key, grid snapping will be disabled temporarily.
 * Lastly, if you hold the `Ctrl` key, you will be able to remove stuff with your cursor, like with an eraser.
 
