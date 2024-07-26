@@ -31,6 +31,60 @@ bullet.direction = @angle
 
 Gets the vertical part of a vector.
 
+### `u.distance(from, to)`
+
+Returns the distance from one object to another. The objects must have `x` and `y` coordinates. (Copies do have them.)
+
+#### Example: Get the distance between the current copy and the player's character
+
+::: tabs#tutorial
+@tab JavaScript
+```js
+var player = templates.list['Hero'][0];
+if (templates.valid(player)) {
+    console.log(u.distance(this, player));
+}
+```
+@tab CoffeeScript
+```coffee
+player = templates.list['Hero'][0]
+if templates.valid player
+    console.log u.distance(this, player)
+```
+@tab Catnip
+<catnip-block class=" command    selected">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">Set</span>          <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">player</span>               </catnip-block>  <span class="catnip-block-aTextLabel">value</span>                    <catnip-block class=" computed wildcard wildcard  ">  <img src="/assets/icons/grid.svg" class="feather"><span class="catnip-block-aTextLabel">get array element</span>          <catnip-block class=" computed wildcard wildcard  ">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">templates list</span>           <span class="catnip-block-aConstantInput menu wildcard ">   <img src="/assets/icons/image.svg" class="feather"><span>Hero</span></span>     </catnip-block>  <span class="catnip-block-aTextLabel">at</span>                     <input type="text" class="catnip-block-aConstantInput number " style=" width: 1.5ch;    " value="0" readonly="readonly">     </catnip-block>      </catnip-block>
+<catnip-block class=" command    selected">  <img src="/assets/icons/help-circle.svg" class="feather"><span class="catnip-block-aTextLabel">If</span>          <catnip-block class=" computed boolean boolean  ">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">is valid</span>          <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">player</span>               </catnip-block>      </catnip-block>         <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/terminal.svg" class="feather"><span class="catnip-block-aTextLabel">Log to console</span>          <catnip-block class=" computed number wildcard  ">  <img src="/assets/icons/tool.svg" class="feather"><span class="catnip-block-aTextLabel">distance between</span>          <catnip-block class=" computed wildcard wildcard constant ">  <img src="/assets/icons/crosshair.svg" class="feather"><span class="catnip-block-aTextLabel">this</span>     </catnip-block>           <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">player</span>               </catnip-block>      </catnip-block>      </catnip-block>    </catnip-block-list> </div>        </catnip-block>
+
+:::
+
+### `u.direction(from, to)`
+
+Returns the direction of a vector that goes from one object to another, in degrees. The objects must have `x` and `y` coordinates. (Copies do have them.)
+
+#### Example: Get the direction from the current copy to the player's character and shoot a projectile
+
+::: tabs#tutorial
+@tab JavaScript
+```js
+var player = templates.list['Hero'][0];
+if (templates.valid(player)) {
+    var projectile = templates.copy('Laser', this.x, this.y);
+    projectile.direction = u.direction(this, player);
+}
+```
+@tab CoffeeScript
+```coffee
+player = templates.list['Hero'][0]
+if templates.valid player
+    projectile = templates.copy 'Laser', @x, @y
+    projectile.direction = u.direction this, player
+```
+@tab Catnip
+<catnip-block class=" command    selected">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">Set</span>          <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">player</span>               </catnip-block>  <span class="catnip-block-aTextLabel">value</span>                    <catnip-block class=" computed wildcard wildcard  ">  <img src="/assets/icons/grid.svg" class="feather"><span class="catnip-block-aTextLabel">get array element</span>          <catnip-block class=" computed wildcard wildcard  ">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">templates list</span>           <span class="catnip-block-aConstantInput menu wildcard ">   <img src="/assets/icons/image.svg" class="feather"><span>PotatoCat</span></span>     </catnip-block>  <span class="catnip-block-aTextLabel">at</span>                     <input type="text" class="catnip-block-aConstantInput number " style=" width: 1.5ch;    " value="0" readonly="readonly">     </catnip-block>      </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/help-circle.svg" class="feather"><span class="catnip-block-aTextLabel">If</span>          <catnip-block class=" computed boolean boolean  ">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">is valid</span>          <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">player</span>               </catnip-block>      </catnip-block>         <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">Copy a template</span>           <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/image.svg" class="feather"><span>Laser</span></span>          <catnip-block class=" computed number number  ">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">x</span>     </catnip-block>           <catnip-block class=" computed number number  ">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">y</span>     </catnip-block>     <div class="catnip-block-aFiller"></div>        <span class="catnip-block-aTextLabel">store in</span>                    <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">projectile</span>               </catnip-block>          <div class="catnip-block-Options"> <div class="catnip-block-anOptionsToggle"> <img src="/assets/icons/chevron-down.svg" class="feather"><span>Advanced</span> <img src="/assets/icons/chevron-down.svg" class="feather"> </div>    </div>       </catnip-block>   <catnip-block class=" command void   ">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">With copy</span>          <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">projectile</span>               </catnip-block>         <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">Set direction to</span>          <catnip-block class=" computed number number  ">  <img src="/assets/icons/tool.svg" class="feather"><span class="catnip-block-aTextLabel">direction</span>          <catnip-block class=" computed wildcard wildcard constant ">  <img src="/assets/icons/crosshair.svg" class="feather"><span class="catnip-block-aTextLabel">this</span>     </catnip-block>           <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">player</span>               </catnip-block>      </catnip-block>      </catnip-block>    </catnip-block-list> </div>        </catnip-block>    </catnip-block-list> </div>        </catnip-block>
+:::
+
 ### `u.pdn(x1, y1, x2, y2)` and `u.pointDirection(x1, y1, x2, y2)`
 
 Gets the direction of vector which is pointing from (x1;y1) to (x2;y2).
