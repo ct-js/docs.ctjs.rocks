@@ -1,6 +1,6 @@
 # Pubblicazione su itch.io
 
-Prima di distribuire il tuo gioco su [itch.io](https://itch.io/) dovrai esportare i file necessari. Avrai anche bisogno di un account su itch.io e di alcuni screenshot del tuo progetto. Se non sei sicuro di come esportare il tuo gioco, consulta la sezione [Creazione del gioco](/building-your-game.md).
+Prima di distribuire il tuo gioco su [itch.io](https://itch.io/) dovrai esportare i file necessari. Avrai anche bisogno di un account su itch.io e di alcuni screenshot del tuo progetto. Se non sei sicuro di come esportare il tuo gioco, consulta la sezione [Creazione del gioco](./building-your-game.md).
 
 Ecco cosa faremo:
 

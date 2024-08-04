@@ -13,6 +13,7 @@ export default defineUserConfig({
     vuePluginOptions: {},
   }),
   plugins: [],
+  base: '/',
   head: [
     ['script', {
       src: '/themeSwitcher.js'

@@ -178,7 +178,7 @@ Note that `this.move()` already uses this value, so there is no need to premulti
 
 ### `u.timeUi`
 
-Similarly to `u.time`, this property also measures the time between the previous and current frames, in seconds, but this value ignores the effects of slow-mo and game pause. (See about pausing the game and changing game speed [here](/tips-n-tricks/game-pause.md).)
+Similarly to `u.time`, this property also measures the time between the previous and current frames, in seconds, but this value ignores the effects of slow-mo and game pause. (See about pausing the game and changing game speed [here](./tips-n-tricks/game-pause.md).)
 
 ### `u.delta`
 
@@ -191,7 +191,7 @@ Use `u.time` instead.
 
 ### `u.deltaUi`
 
-Similar to `u.delta`, this property also measures the time between the previous and current frames, but this value ignores the effects of slow-mo and game pause. (See about pausing the game and changing game speed [here](/tips-n-tricks/game-pause.md).)
+Similar to `u.delta`, this property also measures the time between the previous and current frames, but this value ignores the effects of slow-mo and game pause. (See about pausing the game and changing game speed [here](./tips-n-tricks/game-pause.md).)
 
 :::warning This is a deprecated property.
 Use `u.timeUi` instead.

@@ -123,7 +123,7 @@ Cada módulo tem a sua própria documentação na aba "Reference". Destacaremos 
 
 ### Adicionando Actions (Ações) para Eventos de Keyboard (Teclado)
 
-Ações permite monitorar eventos de teclado, mouse, gamepad e etc. Você pode lê mais sobre elas [aqui](/actions.html). Com elas, nós criamos monitoramento para as teclas WASD e para as setas de navegação.
+Ações permite monitorar eventos de teclado, mouse, gamepad e etc. Você pode lê mais sobre elas [aqui](./actions.md). Com elas, nós criamos monitoramento para as teclas WASD e para as setas de navegação.
 
 Click na aba "Projects" localizada na parte superior da janela do ct.js, em seguida click na aba "Actions and input methods" localizada à esquerda.
 
@@ -132,7 +132,7 @@ Então crie um esquema de entrada como na imagem abaixo. Para fazer isso, primei
 ![Input mappings for a simple platformer in ct.js](./../images/tutorials/tutPlatformer_25.png)
 
 ::: tip Dica
-Embora essa mecânica possa ser simplificado para apenas duas ações (veja [exemplos na página de ações](/actions.html#examples)), nesse tutorial teremos três ações, uma para o movimento de ir para a esquerda, outra para ir para a direita e a última para o pulo.
+Embora essa mecânica possa ser simplificado para apenas duas ações (veja [exemplos na página de ações](./actions.md#examples)), nesse tutorial teremos três ações, uma para o movimento de ir para a esquerda, outra para ir para a direita e a última para o pulo.
 :::
 
 ### Codificando o Movimentação e a Detecção de Colisão

@@ -131,7 +131,7 @@ Yes, there is a built-in feature for that 😅 Its design is as follows:
 * **Put warnings** about screen shake/wobbling at the start of your game and inside your game's description.
 :::
 
-There are many parameters [described here](/camera.html) to control its feel, but default values are good as well. Here are the examples:
+There are many parameters [described here](../camera.md) to control its feel, but default values are good as well. Here are the examples:
 
 ::: code-tabs#tutorial
 @tab JavaScript

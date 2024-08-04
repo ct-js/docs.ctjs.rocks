@@ -12,16 +12,16 @@ Usando essas coordenadas, você pode separar as camadas de UI e de jogo, reutili
 
 ## Espaço de Jogo
 
-O Espaço de Jogo era o único espaço em ct.js até que um objeto de câmera fosse implementado. Se você migrar um projeto da versão 1.2 para a versão 1.3, notará que o seu jogo estará totalmente em coordenadas de jogo. [Veja o guia de migração aqui](/migration-1.2to1.3.html), se você tiver algum problema. Diferentes rooms colocadas em coordenadas de jogo colidem uma com as outras.
+O Espaço de Jogo era o único espaço em ct.js até que um objeto de câmera fosse implementado. Se você migrar um projeto da versão 1.2 para a versão 1.3, notará que o seu jogo estará totalmente em coordenadas de jogo. [Veja o guia de migração aqui](../troubleshooting/migration-1-2to1-3.md), se você tiver algum problema. Diferentes rooms colocadas em coordenadas de jogo colidem uma com as outras.
 
 ## Entrando no Espaço de UI
 
-Qualquer room nova adicionada para a room principal pode ser posta nas coordenadas de UI com os métodos `ct.rooms.append('NameOfTheRoom', {isUi: true})` e `ct.rooms.append('NameOfTheRoom', {isUi: true})` (veja o guia de referência desses métodos [aqui](/ct.rooms.html)). Essa é toda a linha de código que você precisa!
+Qualquer room nova adicionada para a room principal pode ser posta nas coordenadas de UI com os métodos `ct.rooms.append('NameOfTheRoom', {isUi: true})` e `ct.rooms.append('NameOfTheRoom', {isUi: true})` (veja o guia de referência desses métodos [aqui](./ct.rooms.md)). Essa é toda a linha de código que você precisa!
 
 ::: tip Dica
 Tecnicamente, ct.js transformará cada layer na fase dependendo da posição da câmera, enquanto que as layers de UI serão deixadas como estão. Isso significa que as coordenadas de mundo Pixi são na verdade coordenadas de UI, a qual não é intuitiva, mas é dessa forma que o objeto câmera é codificado. Portanto, não use as coordenadas de mundo Pixi.
 
-O que isso significa para você? Em primeiro lugar, você não pode reposicionar essas rooms que usam coordenadas de jogo por conta própria, pois elas são gerenciadas pelo `ct.camera` e as mesmas são substituídas por ele. Em vez disso, você pode simplesmente manipular a câmera — ela tem alguns recursos interessantes para o gerenciamento do viewport (janela/tela de visualização). Para mais informação sobre isso, acesse [Trabalhando com o Viewport](/tips-n-tricks/viewport-management.md).
+O que isso significa para você? Em primeiro lugar, você não pode reposicionar essas rooms que usam coordenadas de jogo por conta própria, pois elas são gerenciadas pelo `ct.camera` e as mesmas são substituídas por ele. Em vez disso, você pode simplesmente manipular a câmera — ela tem alguns recursos interessantes para o gerenciamento do viewport (janela/tela de visualização). Para mais informação sobre isso, acesse [Trabalhando com o Viewport](./viewport-management.md).
 
 Em segundo lugar, você pode reposicionar as layers de UI! Isso pode ser usado para criar widgets que se movem pela tela e para animações de slides.
 :::

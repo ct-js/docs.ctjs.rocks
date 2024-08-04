@@ -63,7 +63,7 @@ Aside from `u.delta` and `u.deltaUi`, ct.js now also has `u.time` and `u.timeUi`
 
 ## FitToScreen catmod is now a part of ct.js core library
 
-Viewport settings are moved to project's render settings. Moreover, you can change viewport settings on the fly in the game with the new [settings API](/settings.md#settings-viewmode)!
+Viewport settings are moved to project's render settings. Moreover, you can change viewport settings on the fly in the game with the new [settings API](../settings.md#settings-viewmode)!
 
 ## Skeletal animations are no longer supported
 

@@ -90,7 +90,7 @@ sounds.play 'Explosion'
 
 Параметр `ext` можно использовать для применения дополнительных параметров к новой комнате. Например, если вы вызовете `rooms.append('Background', {color: 0x446ADB})`, то комната "Background" будет иметь `this.color` в своих событиях "On Create" и других.
 
-Для создания [слоя интерфейса](/tips-n-tricks/game-and-uiks/game-and-ui-coordinates.html) используйте этот код:
+Для создания [слоя интерфейса](./tips-n-tricks/game-and-ui-coordinates.md) используйте этот код:
 
 ::: code-tabs#tutorial
 @tab JavaScript

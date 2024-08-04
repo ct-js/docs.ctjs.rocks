@@ -100,7 +100,7 @@ Sim, existe tal recurso para isso no ct.js. 😅 O seu design é o seguinte:
 * **Adicione alertas** sobre o tremor/oscilação de tela no início do seu jogo e também dentro da descrição do mesmo.
 :::
 
-Há muitos parâmetros [descritos aqui](/ct.camera.html) para controlar a sua sensibilidade, mas os valores padrão também são bons. Abaixo segue alguns exemplos:
+Há muitos parâmetros [descritos aqui](./ct.camera.md) para controlar a sua sensibilidade, mas os valores padrão também são bons. Abaixo segue alguns exemplos:
 
 ```js
 // Adiciona um impulso que acumulará em repetitivas chamadas

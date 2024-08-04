@@ -85,7 +85,7 @@ Adds a new room to the current stage and puts it above or behind all the copies 
 
 The `ext` parameter can be used to apply additional parameters to a new room. For example, if you call `rooms.append('Background', {color: 0x446ADB})`, then the room "Background" will have `this.color` available in its "On Create" and other events.
 
-To create a [UI layer](/tips-n-tricks/game-and-uiks/game-and-ui-coordinates.html), use this code:
+To create a [UI layer](./tips-n-tricks/game-and-ui-coordinates.md), use this code:
 
 ::: code-tabs#tutorial
 @tab JavaScript

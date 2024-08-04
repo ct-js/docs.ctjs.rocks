@@ -102,7 +102,7 @@ Para poder manipular entradas de teclado, nós precisamos habilitar o módulo ke
 
 ### Adicionando Ações
 
-Ações em ct.js são entidades que agrupa vários métodos de entradas diferentes em eventos, permitindo assim, que você monitore pelas entradas do jogador via código. Você pode ler mais sobre isso [aqui](/actions.html).
+Ações em ct.js são entidades que agrupa vários métodos de entradas diferentes em eventos, permitindo assim, que você monitore pelas entradas do jogador via código. Você pode ler mais sobre isso [aqui](./actions.md).
 
 Por enquanto, vamos criar um esquema básico de entrada para a nossa nave. Abra a aba "Project" localizada no topo da tela e em seguida click  na aba "Actions and input methods" à esquerda. Precisaremos definir três ações diferentes: para atirar o laser, para o movimento horizontal e para movimento vertical.
 

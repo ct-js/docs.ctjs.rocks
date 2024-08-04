@@ -4,7 +4,7 @@ In ct.js v1.3, a concept of a camera was introduced. Previously, the viewport wa
 
 The camera has additional features like scaling, rotating the viewport, and adding the screen shake effect.
 
-It also introduced the concepts of game coordinates and UI coordinates. Shortly, "game coordinates" are those you were using before — they are for stuff placed in a game's world —, and "UI coordinates" are exclusively for UI layers. More on this [here](/tips-n-tricks/game-and-ui-coordinates.html).
+It also introduced the concepts of game coordinates and UI coordinates. Shortly, "game coordinates" are those you were using before — they are for stuff placed in a game's world —, and "UI coordinates" are exclusively for UI layers. More on this [here](../tips-n-tricks/game-and-ui-coordinates.md).
 
 So,
 
@@ -16,11 +16,11 @@ So,
 For their combinations, like `ct.room.x + ct.viewWidth`, better use camera's special functions and parameters. For example, `ct.room.x + ct.viewWidth` is `ct.camera.width` in UI coordinates and `ct.camera.left` in game coordinates (though you will need to use `ct.camera.getTopLeftCorner` and `ct.camera.getBottomLeftCorner` while working with rotated cameras).
 
 ::: warning
-If you are making UI, better use automatic alignment and UI layers, which are described [here](/tips-n-tricks/viewport-management.html), as they are more powerful tools when working with screen coordinates.
+If you are making UI, better use automatic alignment and UI layers, which are described [here](../tips-n-tricks/viewport-management.md), as they are more powerful tools when working with screen coordinates.
 :::
 
 ::: tip
-You should also consider using `ct.camera.moveTo` and `ct.camera.teleportTo` to move the camera. [Read about their effects here](/tips-n-tricks/viewport-management.html#moving-and-teleporting).
+You should also consider using `ct.camera.moveTo` and `ct.camera.teleportTo` to move the camera. [Read about their effects here](../tips-n-tricks/viewport-management.md#moving-and-teleporting).
 :::
 
 ::: tip
