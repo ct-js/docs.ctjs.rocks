@@ -4,7 +4,7 @@ Ct.js is moddable, and the process of making new modules is pretty easy! Modules
 
 Any module is a directory with `module.json` file inside and any additional files needed for your module to work.
 
-:::warn
+::: warning
 The name of the directory itself is the codename of your module. For example, if you look into ct.js folder/data/ct.libs, you will see that the codename of ct.place library is just `place`.
 
 The name should be unique, should have lowercase latin letters and (optionally) dots in it, and must not contain underscores and other special characters, like quotes and commas.
