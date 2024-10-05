@@ -33,7 +33,7 @@ camera.follow = this;
 camera.borderX = 300;
 camera.borderY = 300;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee Example: following a copy with borders
 # Place this code, e.g, to your hero's `OnCreate` code
 camera.follow = this
@@ -92,7 +92,7 @@ tween.add({
     }
 });
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 tween.add
     obj: camera.scale
@@ -111,7 +111,7 @@ Or you could manipulate camera angle by user input (in "On Step" event):
 ```js
 camera.angle += actions.CameraRotate.value * u.time * 300;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 camera.angle += actions.CameraRotate.value * u.time * 300
 ```
@@ -139,7 +139,7 @@ There are many parameters [described here](../camera.md) to control its feel, bu
 // Add an impulse that will accumulate on repetitive calls
 camera.shake += 1;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # Add an impulse that will accumulate on repetitive calls
 camera.shake += 1
@@ -154,7 +154,7 @@ camera.shakeFrequency = 1;
 camera.shakeDecay = 0;
 camera.shake = 2;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # Make a constant, slow camera wobble
 camera.shakeFrequency = 1

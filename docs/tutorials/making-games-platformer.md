@@ -153,7 +153,7 @@ this.gravity = 1800;
 this.hspeed = 0; // Horizontal speed
 this.vspeed = 0; // Vertical speed
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @jumpSpeed = -600
 @gravity = 1800
@@ -204,7 +204,7 @@ if (place.occupied(this, this.x, this.y + 1, 'Solid')) {
     }
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @movespeed = 240 # Max horizontal speed
 
@@ -257,7 +257,7 @@ This will set variables `hspeed` and `vspeed`, but they won't do anything as is.
 ```js
 this.moveSmart('Solid');
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @moveSmart 'Solid'
 ```
@@ -290,7 +290,7 @@ camera.follow = this;
 camera.borderX = 450;
 camera.borderY = 200;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 camera.follow = this
 camera.borderX = 450
@@ -334,7 +334,7 @@ We will check for collision with the Robot, and when it happens, we will store a
 other.savedX = this.x + 32;
 other.savedY = this.y + 32;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 other.savedX = @x + 32
 other.savedY = @y + 32
@@ -369,7 +369,7 @@ this.y = this.savedY;
 this.hspeed = 0;
 this.vspeed = 0;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @x = @savedX
 @y = @savedY
@@ -394,7 +394,7 @@ We should also write this code to the "Creation" event so that the respawn point
 this.savedX = this.x;
 this.savedY = this.y;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @savedX = @x
 @savedY = @y
@@ -418,7 +418,7 @@ Add this line to `Robot`'s "Creation" code:
 ```js
 this.animationSpeed = 0.2;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @animationSpeed = 0.2
 ```
@@ -477,7 +477,7 @@ if (place.occupied(this, this.x, this.y + 1, 'Solid')) {
 
 this.moveSmart('Solid');
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee {7,8,9,15,16,17,22,34,35,36}
 @movespeed = 240 # Max horizontal speed
 
@@ -557,7 +557,7 @@ if (rooms.current.nextRoom) {
     rooms.switch(rooms.current.nextRoom);
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # Is the next room defined?
 if rooms.current.nextRoom
@@ -581,7 +581,7 @@ Now go to the "Assets" tab at the top, open the `Level_01`, click the button cal
 ```js
 this.nextRoom = 'Level_02';
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @nextRoom = 'Level_02'
 ```
@@ -609,7 +609,7 @@ Create a new template called `GreenCrystal` and set its sprite. Create a Collide
 rooms.current.crystals ++;
 this.kill = true;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 rooms.current.crystals++
 @kill = true
@@ -640,7 +640,7 @@ Behaviors for rooms have events just like rooms do. Create a "Room start" event 
 rooms.current.crystals = 0;
 rooms.current.crystalsTotal = templates.list['GreenCrystal'].length;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 rooms.current.crystals = 0
 rooms.current.crystalsTotal = templates.list['GreenCrystal'].length
@@ -684,7 +684,7 @@ To finish it off, add this to CrystalsWidgetText's Frame end code:
 ```js
 this.text = `${rooms.current.crystals} / ${rooms.current.crystalsTotal}`;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # Note the double quotes!
 @text = "#{rooms.current.crystals} / #{rooms.current.crystalsTotal}"
@@ -712,7 +712,7 @@ Adding UI elements to a separate room allows you to design UI visually, and then
 ```js
 rooms.append('LayerUI');
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 rooms.append 'LayerUI'
 ```
@@ -754,7 +754,7 @@ if (rooms.current.lives < 3) {
     this.kill = true;
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 if rooms.current.lives < 3
     rooms.current.lives++
@@ -777,7 +777,7 @@ Now add this to `HeartsWidgetText`'s Frame end code:
 ```js
 this.text = rooms.current.lives;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @text = rooms.current.lives
 ```
@@ -803,7 +803,7 @@ if (rooms.current.lives <= 0) {
     rooms.switch(rooms.current.name);
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @x = @savedX
 @y = @savedY
@@ -843,7 +843,7 @@ rooms.current.lives = 3;
 rooms.current.crystalsTotal = templates.list['GreenCrystal'].length;
 rooms.append('LayerUI');
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee {2}
 rooms.current.crystals = 0
 rooms.current.lives = 3
@@ -877,7 +877,7 @@ Let's open a `Platform`'s template and initialize its speed:
 ```js
 this.speed = 120;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @speed = 120
 ```
@@ -897,7 +897,7 @@ if (robot) {
     robot.x += this.hspeed * u.time;
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 robot = place.meet this, @x, @y - 1, 'Robot'
 if robot
@@ -920,7 +920,7 @@ if (place.occupied(this, this.x + this.hspeed * u.time, this.y, 'Solid')) {
 }
 this.move();
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 if place.occupied this, @x + @speed, @y, 'Solid'
     # Flip direction
@@ -958,7 +958,7 @@ if (place.occupied(this, this.x + this.hspeed * u.time, this.y, 'Solid')) {
 }
 this.move();
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 robot = place.meet this, @x, @y, 'Robot'
 if robot

@@ -38,7 +38,7 @@ camera.follow = this;
 camera.borderX = 300;
 camera.borderY = 300;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee Пример: следование за копией с границами
 # Добавьте этот код, например, в код OnCreate вашего героя
 camera.follow = this
@@ -97,7 +97,7 @@ tween.add({
     }
 });
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 tween.add
     obj: camera.scale
@@ -116,7 +116,7 @@ tween.add
 ```js
 camera.angle += actions.CameraRotate.value * u.time * 300;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 camera.angle += actions.CameraRotate.value * u.time * 300
 ```
@@ -144,7 +144,7 @@ camera.angle += actions.CameraRotate.value * u.time * 300
 // Добавьте импульс, который будет накапливаться при повторных вызовах
 camera.shake += 1;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 // Добавьте импульс, который будет накапливаться при повторных вызовах
 camera.shake += 1
@@ -159,7 +159,7 @@ camera.shakeFrequency = 1;
 camera.shakeDecay = 0;
 camera.shake = 2;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 // Создайте постоянное медленное дрожание камеры
 camera.shakeFrequency = 1

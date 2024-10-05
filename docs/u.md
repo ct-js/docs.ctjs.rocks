@@ -18,7 +18,7 @@ var dx = u.ldx(40, this.angle),
 var bullet = templates.copy('Bullet', this + dx, this + dy);
 bullet.direction = this.angle;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 dx = u.ldx 40, @angle
 dy = u.ldy 40, @angle
@@ -54,7 +54,7 @@ if (templates.valid(player)) {
     console.log(u.distance(this, player));
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 player = templates.list['Hero'][0]
 if templates.valid player
@@ -81,7 +81,7 @@ if (templates.valid(player)) {
     projectile.direction = u.direction(this, player);
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 player = templates.list['Hero'][0]
 if templates.valid player
@@ -210,7 +210,7 @@ Converts a hex string to a Pixi color.
 ```js
 this.tint = u.hexToPixi('#0dfac3');
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @tint = u.hexToPixi '#0dfac3'
 ```
@@ -227,7 +227,7 @@ Converts a Pixi color to a hex-encoded color code.
 ```js
 document.body.style.backgroundColor = u.pixiToHex(0x0dfac3);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 document.body.style.backgroundColor = u.pixiToHex 0x0dfac3
 ```
@@ -249,7 +249,7 @@ u.wait(1000)
     }
 });
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 enemy = whatever
 enemy.state = 'Disappear'

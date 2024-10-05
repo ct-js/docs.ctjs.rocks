@@ -43,7 +43,7 @@ this.label = new PIXI.BitmapText('Initial text', {
 });
 this.addChild(this.label);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 textSettings =
     font:
@@ -67,7 +67,7 @@ this.label.tint = 0xff0000; // Покрасить в красный цвет
 this.label.rotation = 15; // Немного наклонить
 this.label.scale.y = 1.25; // Сделать более высоким
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @label.tint = 0xff0000 # Покрасить в красный цвет
 @label.rotation = 15 # Немного наклонить
@@ -82,7 +82,7 @@ this.label.scale.y = 1.25; // Сделать более высоким
 ```js
 this.label.text = 'Score: ' + this.score;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @label.text = 'Score: ' + @score
 ```
@@ -95,7 +95,7 @@ this.label.text = 'Score: ' + this.score;
 ```js
 this.label.destroy();
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @label.destroy()
 ```

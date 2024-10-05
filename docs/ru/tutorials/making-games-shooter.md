@@ -146,7 +146,7 @@ if (this.x > camera.width) { // Have the ship crossed the right border?
 
 this.move();
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # Move the ship
 # See Project > Actions and input methods panel
@@ -207,7 +207,7 @@ Has the ship crossed the left border?" style="height: 37px;" readonly="readonly"
 this.speed = 180;
 this.direction = 90;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @speed = 180
 @direction = 90
@@ -221,7 +221,7 @@ this.direction = 90;
 Здесь мы используем встроенные переменные для движения. Ручное редактирование координат может быть полезно при обработке ввода игрока, но для большинства задач лучше использовать эти переменные, так как они автоматизируют многие вещи. Например, вам не нужно использовать `u.time`, когда есть `this.speed` и `this.direction`. Здесь `this.speed` означает скорость Копии, а `this.direction` относится к ее направлению.
 
 ::: tip
-Если вы используете CoffeeScript, то `this.speed` является `@speed`, `this.direction` — `@direction`, и т.д. Вы можете писать по-разному!
+Если вы используете Civet, то `this.speed` является `@speed`, `this.direction` — `@direction`, и т.д. Вы можете писать по-разному!
 :::
 
 ::: tip
@@ -237,7 +237,7 @@ this.direction = 90;
 ```js
 this.move();
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @move()
 ```
@@ -260,7 +260,7 @@ if (this.y > camera.height + 80) {
     this.kill = true;
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @move()
 
@@ -289,7 +289,7 @@ if @y > camera.height + 80
 this.speed = random.range(60, 180);
 this.direction = random.range(90 - 30, 90 + 30);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee On Create event
 @speed = random.range(60, 180)
 @direction = random.range(90 - 30, 90 + 30)
@@ -311,7 +311,7 @@ if (this.y > camera.height + 80) {
     this.kill = true;
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @move()
 
@@ -345,7 +345,7 @@ if @y > camera.height + 80
 ```js
 templates.copy('Laser_Blue', this.x, this.y);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 templates.copy 'Laser_Blue', @x, @y
 ```
@@ -369,7 +369,7 @@ templates.copy 'Laser_Blue', @x, @y
 this.speed = 1080;
 this.direction = 270;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @speed = 1080
 @direction = 270
@@ -391,7 +391,7 @@ if (this.y < -40) {
 
 this.move();
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 if @y < -40
   @kill = true
@@ -415,7 +415,7 @@ if @y < -40
 other.kill = true;
 this.kill = true;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 other.kill = true
 @kill = true
@@ -442,7 +442,7 @@ this.kill = true;
 templates.copy('Asteroid_Medium', this.x, this.y);
 templates.copy('Asteroid_Medium', this.x, this.y);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 other.kill = true
 @kill = true
@@ -470,7 +470,7 @@ templates.copy 'Asteroid_Medium', @x, @y
 ``` js
 this.timer1 = 1;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @timer1 = 1
 ```
@@ -488,7 +488,7 @@ this.timer1 = 1;
 this.timer1 = 3;
 templates.copy('Laser_Red', this.x, this.y + 32);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @timer1 = 3
 templates.copy 'Laser_Red', @x, @y + 32
@@ -511,7 +511,7 @@ this.direction = 90;
 
 this.angle = random.deg();
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @speed = 480
 @direction = 90
@@ -544,7 +544,7 @@ this.move();
 
 this.angle -= 240 * u.time;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 if @y > camera.height + 40
   @kill = true
@@ -592,7 +592,7 @@ if @y > camera.height + 40
 this.timer1 = 0.3; // asteroid timer
 this.timer2 = 3; // enemy timer
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # asteroid timer
 @timer1 = 0.3
@@ -617,7 +617,7 @@ this.timer2 = 3; // enemy timer
 this.timer1 = random.range(0.3, 3);
 templates.copy(random.dice('Asteroid_Big', 'Asteroid_Medium'), random(camera.width), -100);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # asteroid timer
 @timer1 = random.range 0.3, 3
@@ -641,7 +641,7 @@ templates.copy randomAsteroid, randomX, -100
 this.timer2 = random.range(3, 6);
 templates.copy('EnemyShip', random(camera.width), -100);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # enemy timer
 @timer2 = random.range 3, 6
@@ -678,7 +678,7 @@ templates.copy 'EnemyShip', randomX, -100
 ```js
 this.score = 0;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @score = 0
 ```
@@ -697,7 +697,7 @@ this.score = 0;
 ```js
 this.text = 'Score: ' + rooms.current.score;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @text = 'Score: ' + rooms.current.score
 ```
@@ -714,7 +714,7 @@ other.kill = true;
 this.kill = true;
 rooms.current.score += 100;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 other.kill = true
 @kill = true
@@ -764,7 +764,7 @@ rooms.current.score += 100
 ```js
 this.lives = 3;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @lives = 3
 ```
@@ -779,7 +779,7 @@ this.lives = 3;
 ```js
 this.text = 'Lives: ' + rooms.current.lives
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @text = 'Lives: ' + rooms.current.lives
 ```
@@ -817,7 +817,7 @@ if (rooms.current.lives <= 0) {
     });
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 if templates.isCopy(other)
     other.kill = true

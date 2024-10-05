@@ -74,7 +74,7 @@ var lootedItem = content.loot.find((loot) => {
 console.log(lootedItem);
 ```
 
-@tab CoffeeScript
+@tab Civet
 ```coffee
 lootedItem = content.loot.find (loot) => loot.name is 'Divine shield'
 console.log lootedItem
@@ -93,7 +93,7 @@ var possibleItems = content.loot.filter((loot) => {
 });
 console.log(possibleItems);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 possibleItems = content.loot.filter (loot) => 5 <= loot.level <= 10
 console.log possibleItems

@@ -42,7 +42,7 @@ if (settings.viewMode === 'fastScale') {
     settings.viewMode = 'fastScale';
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 if settings.viewMode is 'fastScale'
     settings.viewMode = 'scaleFit'

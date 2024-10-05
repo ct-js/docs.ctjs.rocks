@@ -43,7 +43,7 @@ if (actions.TogglePause.released) {
     }
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 if actions.TogglePause.released
     if not @pauseMenu # if a parameter `pauseMenu` is not set
@@ -67,7 +67,7 @@ if (this.getRoom().kill) {
 sounds.play('Explosion');
 this.killEverythingNearby();
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # Let's suppose that we have a modular level and some chunks shoud be loaded/unloaded dynamically,
 # and this particular copy is a bomb that shouldn't trigger if its chunk is unloaded.
@@ -94,7 +94,7 @@ rooms.append('YourUiRoom', {
     isUi: true
 });
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 roomSettings =
     isUi: true
@@ -121,7 +121,7 @@ for (const copy of merged.copies) {
     copy.y += spawnY;
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 spawnX = 100
 spawnY = 500

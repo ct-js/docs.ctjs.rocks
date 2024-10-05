@@ -25,7 +25,7 @@
 var bullet = templates.copy('Bullet', this.x, this.y);
 bullet.direction = this.direction;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 bullet = templates.copy 'Bullet', @x, @y
 bullet.direction = @direction
@@ -43,7 +43,7 @@ if (actions.Press.down) {
     templates.copy('Fruit', pointer.x, pointer.y);
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 if actions.Press.down
     templates.copy 'Fruit', pointer.x, pointer.y
@@ -67,7 +67,7 @@ if (uiLayer) {
     });
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 uiLayer = rooms.list['UI_Layer'][0]
 if uiLayer
@@ -96,7 +96,7 @@ templates.each(function () {
     }
 });
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 me = this
 templates.each ->
@@ -136,7 +136,7 @@ for (var bonus of templates.list['Бонус']) {
     bonus.kill = true;
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 for bonus in templates.list['Бонус']
     bonus.kill = true

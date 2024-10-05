@@ -126,7 +126,7 @@ this.speed = 500;
 this.direction = 0;
 this.gravityAcceleration = 7000;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @speed = 500
 @direction = 0
@@ -176,7 +176,7 @@ this.gravityAcceleration = 7000;
 this.gravity = this.gravityAcceleration;
 this.addSpeed(u.time * 2 * this.gravityAcceleration, 270);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @gravity = @gravityAcceleration
 @addSpeed u.time * 2 * @gravityAcceleration, 270
@@ -216,7 +216,7 @@ camera.follow = this;
 camera.followY = false;
 camera.shiftX = 250;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 camera.follow = this
 camera.followY = false
@@ -265,7 +265,7 @@ this.speed = 1500;
 this.direction = -45;
 ```
 
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @gravity = 7000;
 
@@ -295,7 +295,7 @@ this.direction = -45;
 this.kill = true;
 ```
 
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @kill = true;
 ```
@@ -321,7 +321,7 @@ dummy.scale.x = this.scale.x;
 dummy.scale.y = this.scale.y;
 ```
 
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # Остановите движение камеры
 camera.follow = false
@@ -376,7 +376,7 @@ if (this.y > 1750 - 200 || // If the cat is below the ground minus its approxima
     this.kill = true;      // remove the cat.
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @move
 
@@ -407,7 +407,7 @@ this.tex = random.dice(
     'Tube_04'
 );
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @tex = random.dice 'Tube_01', 'Tube_02', 'Tube_03', 'Tube_04'
 ```
@@ -458,7 +458,7 @@ Here is the translation of the provided markdown document from English to Russia
 ```js
 this.timer1 = 5;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @timer1 = 5
 ```
@@ -498,7 +498,7 @@ if (tube1.tex === 'Tube_01') { // Короткий труб будет резу�
 // Теперь, переверните верхний (второй) труб
 tube2.scale.y = -1;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # Повторно установите таймер снова
 @timer1 = 2;
@@ -586,7 +586,7 @@ if (this.x < camera.left - 150) {
     this.kill = true;
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 if @x < camera.left - 150
     @kill = true
@@ -617,7 +617,7 @@ if @x < camera.left - 150
 this.kill = true;
 rooms.current.score += 1;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @kill = true
 rooms.current.score += 1
@@ -647,7 +647,7 @@ if (this.x < camera.left - 150) {
   this.kill = true;
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 if @x < camera.left - 150
     @kill = true
@@ -691,7 +691,7 @@ if (random.chance(30)) {
     templates.copy('Star', camera.right + 250 + 500, random.range(camera.top + 300, camera.bottom - 300));
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee{26,27,28}
 # Wind it again
 @timer1 = 2
@@ -793,7 +793,7 @@ if random.chance(30)
 ```js
 this.text = rooms.current.score;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @text = rooms.current.score
 ```
@@ -813,7 +813,7 @@ this.text = rooms.current.score;
 ```js
 this.mainUi = rooms.append("UI_InGame");
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @mainUi = rooms.append 'UI_InGame'
 ```
@@ -846,7 +846,7 @@ this.mainUi = rooms.append("UI_InGame");
 ```js
 rooms.switch('InGame');
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 rooms.switch 'InGame';
 ```
@@ -894,7 +894,7 @@ if (rooms.list['UI_Paused'].length === 0) {
     pixiApp.ticker.speed = 0;
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # Проверяем, нет ли у нас комнат с названием 'UI_Paused'
 if rooms.list['UI_Paused'].length == 0 {
@@ -929,7 +929,7 @@ if rooms.list['UI_Paused'].length == 0 {
 rooms.remove(this.getRoom());
 pixiApp.ticker.speed = 1;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 room = @getRoom()
 rooms.remove room
@@ -967,7 +967,7 @@ var scoreText = 'Your score: ' + rooms.current.score + '\nHighscore: ' + localSt
 
 this.text = scoreText;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 if !('JettyCat_HighScore' of localStorage)
     localStorage['JettyCat_HighScore'] = rooms.current.score
@@ -1002,7 +1002,7 @@ style = styles.get 'Orange'
 ```js
 var scoreText = 'Ваш счет: ' + rooms.current.score + '\nЛучший счет: ' + localStorage['JettyCat_HighScore'];
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 scoreText = 'Ваш счет: ' + rooms.current.score + '\nЛучший счет: ' + localStorage['JettyCat_HighScore']
 ```
@@ -1034,7 +1034,7 @@ u.wait(1000)
     this.createRoom('UI_OhNo');
 })
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # Удалить слой с кнопкой паузы
 rooms.remove(rooms.current.mainUi);

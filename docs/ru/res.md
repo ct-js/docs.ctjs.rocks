@@ -81,7 +81,7 @@ var shipTextures = res.getOfType('textures', 'Enemies/Enemy ships');
 // Нам понадобится включить котомод `random`
 this.tex = random.from(shipTextures).name;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 shipTextures = res.getOfType 'textures', 'Enemies/Enemy ships'
 # Нам понадобится включить котомод `random`
@@ -136,8 +136,8 @@ res.loadTexture('Background_42.png', 'Background_42', {
     ct.backgrounds.add(textureName, 0, -100);
 });
 ```
-@tab CoffeeScript
-```coffeescript
+@tab Civet
+```coffee
 textureSettings =
     anchor:
         x: 0,

@@ -12,7 +12,7 @@ timer.add(1000, 'test');
 // Or:
 new CtTimer(1000, 'test');
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # Add a timer
 timer.add 1000, 'test'
@@ -52,7 +52,7 @@ timer.reject();
 // Trigger the timer manually
 timer.resolve();
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # Create a new timer and remember it in a variable `timer`
 # Log "Done!" when it gets to 2.5 seconds

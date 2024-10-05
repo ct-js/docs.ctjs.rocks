@@ -140,7 +140,7 @@
 ```js
 camera.realign(this);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 camera.realign this
 ```

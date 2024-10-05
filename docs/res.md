@@ -76,7 +76,7 @@ var shipTextures = res.getOfType('textures', 'Enemies/Enemy ships');
 // You will need the `random` catmod enabled
 this.tex = random.from(shipTextures).name;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 shipTextures = res.getOfType 'textures', 'Enemies/Enemy ships'
 # You will need the ct.random catmod enabled
@@ -131,7 +131,7 @@ res.loadTexture('Background_42.png', 'Background_42', {
     ct.backgrounds.add(textureName, 0, -100);
 });
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 textureSettings =
     anchor:

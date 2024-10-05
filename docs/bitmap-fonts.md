@@ -38,7 +38,7 @@ this.label = new PIXI.BitmapText('Initial text', {
 });
 this.addChild(this.label);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 textSettings =
     font:
@@ -61,7 +61,7 @@ this.label.tint = 0xff0000; // Paint it in red
 this.label.rotation = 15; // Tilt it a bit
 this.label.scale.y = 1.25; // Make it taller
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @label.tint = 0xff0000 # Paint it in red
 @label.rotation = 15 # Tilt it a bit
@@ -76,7 +76,7 @@ To change the text, write to `text` parameter:
 ```js
 this.label.text = 'Score: ' + this.score;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @label.text = 'Score: ' + @score
 ```
@@ -89,7 +89,7 @@ Finally, when you no longer need the label, you can remove it with `destroy()` m
 ```js
 this.label.destroy();
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @label.destroy()
 ```

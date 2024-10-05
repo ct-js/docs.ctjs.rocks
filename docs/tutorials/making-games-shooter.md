@@ -141,7 +141,7 @@ if (this.x > camera.width) { // Have the ship crossed the right border?
 
 this.move();
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # Move the ship
 # See Project > Actions and input methods panel
@@ -202,7 +202,7 @@ Open the "Assets" tab, then click on the `EnemyShip`. Navigate to the `Creation`
 this.speed = 180;
 this.direction = 90;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @speed = 180
 @direction = 90
@@ -216,7 +216,7 @@ this.direction = 90;
 Here, we use built-in variables for moving. Manually editing coordinates is good for handling player's input, but for most tasks it is better to use these vars as they automate most of the things. For example, you don't need to use `u.time` while using `this.speed` and `this.direction`. Here, `this.speed` means the speed of the Copy, and `this.direction` refers to its direction.
 
 ::: tip
-If you use CoffeeScript, `this.speed` is `@speed`, `this.direction` is `@direction`, and so on. You can actually write it either way!
+If you use Civet, `this.speed` is `@speed`, `this.direction` is `@direction`, and so on. You can actually write it either way!
 :::
 
 ::: tip
@@ -232,7 +232,7 @@ If we navigate to the `Frame start` event, we will see this little code:
 ```js
 this.move();
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @move()
 ```
@@ -255,7 +255,7 @@ if (this.y > camera.height + 80) {
     this.kill = true;
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @move()
 
@@ -284,7 +284,7 @@ Open the `Asteroid_Medium` in the "Assets" tab, then write the code below in the
 this.speed = random.range(60, 180);
 this.direction = random.range(90 - 30, 90 + 30);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee On Create event
 @speed = random.range(60, 180)
 @direction = random.range(90 - 30, 90 + 30)
@@ -306,7 +306,7 @@ if (this.y > camera.height + 80) {
     this.kill = true;
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @move()
 
@@ -340,7 +340,7 @@ Open the `PlayerShip` template, and add the "Action press" event. A window shoul
 ```js
 templates.copy('Laser_Blue', this.x, this.y);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 templates.copy 'Laser_Blue', @x, @y
 ```
@@ -364,7 +364,7 @@ Now let's move to the `Laser_Blue` itself. We will define its movement with defa
 this.speed = 1080;
 this.direction = 270;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @speed = 1080
 @direction = 270
@@ -386,7 +386,7 @@ if (this.y < -40) {
 
 this.move();
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 if @y < -40
   @kill = true
@@ -409,7 +409,7 @@ Go to the `EnemyShip` template and create a "Collision with a template" event, t
 other.kill = true;
 this.kill = true;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 other.kill = true
 @kill = true
@@ -436,7 +436,7 @@ this.kill = true;
 templates.copy('Asteroid_Medium', this.x, this.y);
 templates.copy('Asteroid_Medium', this.x, this.y);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 other.kill = true
 @kill = true
@@ -464,7 +464,7 @@ Enemy ships should be able to shoot, too. Add the following code to `EnemyShip`'
 ``` js
 this.timer1 = 1;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @timer1 = 1
 ```
@@ -482,7 +482,7 @@ Give the event a name like "Shoot", keep the UI event checkbox unchecked, then a
 this.timer1 = 3;
 templates.copy('Laser_Red', this.x, this.y + 32);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @timer1 = 3
 templates.copy 'Laser_Red', @x, @y + 32
@@ -505,7 +505,7 @@ this.direction = 90;
 
 this.angle = random.deg();
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @speed = 480
 @direction = 90
@@ -538,7 +538,7 @@ this.move();
 
 this.angle -= 240 * u.time;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 if @y > camera.height + 40
   @kill = true
@@ -586,7 +586,7 @@ To do this, setup two timers in the `Room start` code:
 this.timer1 = 0.3; // asteroid timer
 this.timer2 = 3; // enemy timer
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # asteroid timer
 @timer1 = 0.3
@@ -612,7 +612,7 @@ Then add this code in the `Timer 1` tab to generate asteroids through time:
 this.timer1 = random.range(0.3, 3);
 templates.copy(random.dice('Asteroid_Big', 'Asteroid_Medium'), random(camera.width), -100);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # asteroid timer
 @timer1 = random.range 0.3, 3
@@ -636,7 +636,7 @@ Then add this code in the `Timer 2` tab to generate enemies through time:
 this.timer2 = random.range(3, 6);
 templates.copy('EnemyShip', random(camera.width), -100);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # enemy timer
 @timer2 = random.range 3, 6
@@ -673,7 +673,7 @@ Score is a numerical variable that is stored globally. In our case it is better 
 ```js
 this.score = 0;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @score = 0
 ```
@@ -692,7 +692,7 @@ We also need this code at `Frame end` to keep the label up-to-date:
 ```js
 this.text = 'Score: ' + rooms.current.score;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @text = 'Score: ' + rooms.current.score
 ```
@@ -709,7 +709,7 @@ other.kill = true;
 this.kill = true;
 rooms.current.score += 100;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 other.kill = true
 @kill = true
@@ -758,7 +758,7 @@ Managing lives is similar to managing score points. Add this code to the room's 
 ```js
 this.lives = 3;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @lives = 3
 ```
@@ -773,7 +773,7 @@ Now make a new template named `LivesText`, set it as a Text, and select the `Sco
 ```js
 this.text = 'Lives: ' + rooms.current.lives
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @text = 'Lives: ' + rooms.current.lives
 ```
@@ -809,7 +809,7 @@ if (rooms.current.lives <= 0) {
     });
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 if templates.isCopy(other)
     other.kill = true

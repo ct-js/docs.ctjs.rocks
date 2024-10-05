@@ -27,7 +27,7 @@ if (!this.pressed) {
     });
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 if not @pressed
     @pressed = yes
@@ -56,7 +56,7 @@ That was the first part of the transition. The second one will go to the `InGame
 ```js
 transition.circleIn(500, 0x446ADB);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 transition.circleIn 500, 0x446ADB
 ```
@@ -86,7 +86,7 @@ tween.add({
     isUi: true
 });
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @alpha = 0
 
@@ -126,7 +126,7 @@ if (!this.pressed) {
     });
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 if not @pressed
     @pressed = yes
@@ -180,7 +180,7 @@ if (!this.pressed) {
     });
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 if not @pressed
     @pressed = yes
@@ -240,7 +240,7 @@ To create a burst of stars when a big one is collected, open the template `Star`
 ```js
 emitters.fire('StarBurst', this.x, this.y);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 emitters.fire 'StarBurst', @x, @y
 ```
@@ -282,7 +282,7 @@ To add the effect to the cat, open its template and put this code to the end of 
 ```js
 this.jet = emitters.follow(this, 'Jet');
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @jet = emitters.follow this, 'Jet'
 ```
@@ -309,7 +309,7 @@ Create a new Action release event, select the Poof action, and place this piece 
 ```js
 this.jet.pause();
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @jet.pause()
 ```
@@ -324,7 +324,7 @@ This will pause the effect. To unpause it, go to the On Poof down event and add 
 ```js
 this.jet.resume();
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @jet.resume()
 ```
@@ -351,7 +351,7 @@ This line will work:
 ```js
 this.angle = -this.vspeed;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @angle = -@vspeed
 ```
@@ -366,7 +366,7 @@ Though it will result in a too strong rotation. Adding a division will make it l
 ```js
 this.angle = -this.vspeed / 200;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @angle = -@vspeed / 200
 ```
@@ -385,7 +385,7 @@ Open the `Star` template, and add this line to its Creation event:
 ```js
 this.wiggleTime = 0;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @wiggleTime = 0
 ```
@@ -401,7 +401,7 @@ Then, in the Frame end event, add this code:
 this.wiggleTime += u.time * 12;
 this.angle = Math.sin(this.wiggleTime) * 5;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @wiggleTime += u.time * 12
 @angle = (Math.sin @wiggleTime) * 5
@@ -431,7 +431,7 @@ this.pulsePhase += u.time * 12;
 
 this.scale.x = this.scale.y = 1 + Math.sin(this.pulsePhase) * 0.1;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @pulsePhase += u.time * 12
 @scale.x = @scale.y = 1 + (Math.sin @pulsePhase) * 0.1

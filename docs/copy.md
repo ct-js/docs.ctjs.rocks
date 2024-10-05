@@ -55,7 +55,7 @@ You can also call `this.addSpeed` to add speed vector to a Copy in a given direc
 ```js
 this.addSpeed(speed, dir);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @addSpeed speed, dir
 ```
@@ -98,7 +98,7 @@ if (this.health <= 0) {
     this.kill = true;
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 if @health <= 0
     @kill = yes
@@ -172,7 +172,7 @@ var sprite = new PIXI.Sprite(res.getTexture('Enemy', 0));
 // Same as this.addChild(healthbar); this.addChild(sprite);
 this.addChild(healthbar, sprite);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 healthbar = templates.copy 'HealthBar'
 healthbar.x = 0
@@ -229,7 +229,7 @@ Buttons are containers that automatically create and manage a text and a nine-sl
 ```js
 this.text.text = 'New label!';
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @text.text = 'New label!'
 ```
@@ -251,7 +251,7 @@ if (rooms.current.money >= 50) {
 // A shorter way to do the same thing:
 this.disabled = rooms.current.money < 50;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 if rooms.current.money >= 50
     @disabled = no
@@ -305,7 +305,7 @@ fetch('https://yourServer.com', {
     rooms.switch('Login_NetworkError');
 });
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 login = templates.list['LoginField'][0].text
 password = templates.list['PasswordField'][0].text
@@ -356,7 +356,7 @@ this.wavePhase += u.time * 0.5;
 // 32 is the amplitude of the movement.
 this.tilePosition.x = Math.sin(this.wavePhase) * 32;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # In Creation event
 @wavePhase = 0
@@ -381,7 +381,7 @@ This template base class can be used to create healthbars and other UI elements 
 ```js
 this.count = rooms.current.lives;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @count = rooms.current.lives
 ```

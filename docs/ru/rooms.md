@@ -48,7 +48,7 @@ if (actions.TogglePause.released) {
   }
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 if actions.TogglePause.released
   if not @pauseMenu # если параметр pauseMenu не установлен
@@ -72,7 +72,7 @@ if (this.getRoom().kill) {
 sounds.play('Explosion');
 this.killEverythingNearby();
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # Предположим, у нас есть модульный уровень, и некоторые куски должны загружаться/выгружаться динамически,
 # а эта конкретная копия - бомба, которая не должна срабатывать, если ее кусок выгружен.
@@ -99,7 +99,7 @@ rooms.append('YourUiRoom', {
     isUi: true
 });
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 roomSettings = {
     isUi: true
@@ -127,7 +127,7 @@ for (const copy of merged.copies) {
     copy.y += spawnY;
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 spawnX = 100
 spawnY = 500

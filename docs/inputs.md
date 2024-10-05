@@ -20,7 +20,7 @@ if (actions.Shoot.pressed) {
     templates.copy('Bullet', this.x, this.y);
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 ###
 Move the copy around.
@@ -129,7 +129,7 @@ inputs.addAction('Move', [{
     code: 'keyboard.KeyD'
 }]);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 inputs.addAction 'Move', [
     {

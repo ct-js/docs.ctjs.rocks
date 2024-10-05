@@ -22,7 +22,7 @@
 ```js
 sounds.play('MySound');
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 sounds.play 'MySound';
 ```
@@ -35,7 +35,7 @@ sounds.play 'MySound';
 ```js
 sounds.play('MyTrack', { loop: true });
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 soundSettings =
     loop: true
@@ -77,7 +77,7 @@ sounds.play 'MyTrack', soundSettings;
 ```js
 sounds.playAt('MySound', этот);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 sounds.playAt 'MySound', this;
 ```
@@ -90,7 +90,7 @@ sounds.playAt 'MySound', this;
 ```js
 sounds.playAt('МойЗвук', {x: this.x, y: this.y});
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 pos =
   x: @x
@@ -166,7 +166,7 @@ sounds.playAt('МойЗвук', pos)
 // Снижение громкости всех звуков до нуля (по умолчанию) с длительностью 1000 миллисекунд (по умолчанию).
 sounds.fade();
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # Снижение громкости всех звуков до нуля (по умолчанию) с длительностью 1000 миллисекунд (по умолчанию).
 sounds.fade()
@@ -179,7 +179,7 @@ sounds.fade()
 // Увеличение громкости 'MySound' до уровня 1 за 2000 миллисекунд.
 sounds.fade('MySound', 1, 2000);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # Увеличение громкости 'MySound' до уровня 1 за 2000 миллисекунд.
 sounds.fade 'MySound', 1, 2000
@@ -245,7 +245,7 @@ sounds.addReverb('MySound', 5, 7);
 // Если звук не воспроизводится, он не будет воспроизводиться до тех пор, пока вы не вызовете метод "play".
 sounds.play('MySound');
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 sounds.addReverb 'MySound', 5, 7
 # Если звук не воспроизводится, он не будет воспроизводиться до тех пор, пока не будет вызван метод "play".
@@ -280,7 +280,7 @@ sounds.load('BackgroundMusic')
     rooms.switch('MainRoom');
 });
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 sounds.load 'BackgroundMusic'
 .then =>
@@ -291,7 +291,7 @@ sounds.load 'BackgroundMusic'
 
 Links:
 - JavaScript: язык программирования, основанный на прототипах, который используется для создания интерактивных веб-страниц.
-- CoffeeScript: язык программирования, компилирующийся в JavaScript, который позволяет писать более краткий и понятный код.
+- Civet: язык программирования, компилирующийся в JavaScript, который позволяет писать более краткий и понятный код.
 
 #### Пример: Предзагрузка нескольких звуковых файлов перед переходом в комнату
 
@@ -309,7 +309,7 @@ Promise.all(soundsToLoad).then(() => {
     rooms.switch('MainRoom');
 });
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 soundsToLoad = []
 

@@ -135,7 +135,7 @@ Frame End code of your UI room:
 ```js
 camera.realign(this);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 camera.realign this
 ```

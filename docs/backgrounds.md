@@ -20,7 +20,7 @@ if (backgrounds.list['BG_Sand']) {
     bg.tint = 0x999999;
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 if backgrounds.list['BG_Sand']
     bg = backgrounds.list['BG_Sand'][0]
@@ -52,7 +52,7 @@ const bg = backgrounds.add('BG_SkyClouds', 0, -1000);
 bg.alpha = 0.5;
 bg.movementX = 1;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 bg = backgrounds.add 'BG_SkyClouds', 0, -1000
 bg.alpha = 0.5

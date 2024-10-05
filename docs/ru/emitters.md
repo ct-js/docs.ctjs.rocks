@@ -33,7 +33,7 @@
 // Код из примера "fire"
 emitters.fire('HeartTrail', this.x, this.y - 70);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # Код из примера "fire"
 emitters.fire 'HeartTrail', @x, @y - 70
@@ -51,7 +51,7 @@ emitters.follow(this, 'HeartTrail', {
     }
 });
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # Пример "follow"
 followSettings =
@@ -73,7 +73,7 @@ emitters.append(this, 'HeartTrail', {
     }
 });
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # Пример "append"
 appendSettings =
@@ -118,7 +118,7 @@ emitters.follow(this, 'Debuff', {
     depth: this.zIndex
 });
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 followSettings =
     scale:
@@ -149,7 +149,7 @@ this.shield = emitters.append(this, 'BubbleEffect');
 this.shield.stop();
 this.shield = null; // Забудьте об эффекте, чтобы освободить память
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # Давайте создадим защитную пузырьковую оболочку!
 @shield = emitters.append this, 'BubbleEffect'

@@ -121,7 +121,7 @@ this.speed = 500;
 this.direction = 0;
 this.gravityAcceleration = 7000;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @speed = 500
 @direction = 0
@@ -170,7 +170,7 @@ Create a new Action down event for the cat. This is a parameterized event, so yo
 this.gravity = this.gravityAcceleration;
 this.addSpeed(u.time * 2 * this.gravityAcceleration, 270);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @gravity = @gravityAcceleration
 @addSpeed u.time * 2 * @gravityAcceleration, 270
@@ -210,7 +210,7 @@ camera.follow = this;
 camera.followY = false;
 camera.shiftX = 250;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 camera.follow = this
 camera.followY = false
@@ -257,7 +257,7 @@ this.gravity = 7000;
 this.speed = 1500;
 this.direction = -135;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @gravity = 7000;
 
@@ -284,7 +284,7 @@ Now, open the "PotatoCat" template, and create a new event "Collision with a gro
 ```js
 this.kill = true
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @kill = true
 ```
@@ -307,7 +307,7 @@ var dummy = templates.copy('PotatoCat_Stunned', this.x, this.y);
 dummy.scale.x = this.scale.x;
 dummy.scale.y = this.scale.y;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # Stop camera movement
 camera.follow = false
@@ -361,7 +361,7 @@ if (this.y > 1750 - 200 || // If the cat is below the ground minus its approxima
     this.kill = true;      // remove the cat.
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @move
 
@@ -392,7 +392,7 @@ this.tex = random.dice(
     'Tube_04'
 );
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @tex = random.dice 'Tube_01', 'Tube_02', 'Tube_03', 'Tube_04'
 ```
@@ -441,7 +441,7 @@ Put this line in the Room start code:
 ```js
 this.timer1 = 5;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @timer1 = 5
 ```
@@ -478,7 +478,7 @@ if (tube1.tex === 'Tube_01') { // Shortest tube will result in the longest tube
 // Now, flip the upper (second) tube
 tube2.scale.y = -1;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # Wind it again
 @timer1 = 2
@@ -567,7 +567,7 @@ if (this.x < camera.left - 150) {
     this.kill = true;
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 if @x < camera.left - 150
     @kill = true
@@ -600,7 +600,7 @@ Create a Collision with a template event, and select PotatoCat as the template. 
 this.kill = true;
 rooms.current.score += 1;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @kill = true
 rooms.current.score += 1
@@ -630,7 +630,7 @@ if (this.x < camera.left - 150) {
     this.kill = true;
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 if @x < camera.left - 150
     @kill = true
@@ -673,7 +673,7 @@ if (random.chance(30)) {
     templates.copy('Star', camera.right + 250 + 500, random.range(camera.top + 300, camera.bottom - 300));
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee{26,27,28}
 # Wind it again
 @timer1 = 2
@@ -775,7 +775,7 @@ We need to update the text label at each frame. In the Frame end event, put the 
 ```js
 this.text = rooms.current.score;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @text = rooms.current.score
 ```
@@ -794,7 +794,7 @@ Then open the room `InGame`, and add this code to the bottom of its Room start c
 ```js
 this.mainUi = rooms.append("UI_InGame");
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @mainUi = rooms.append 'UI_InGame'
 ```
@@ -827,7 +827,7 @@ After that, create a new template with this texture. Create a Pointer click even
 ```js
 rooms.switch('InGame');
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 rooms.switch 'InGame'
 ```
@@ -875,7 +875,7 @@ if (rooms.list['UI_Paused'].length === 0) {
     pixiApp.ticker.speed = 0;
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # Check if we don't have any rooms called 'UI_Paused'
 if rooms.list['UI_Paused'].length == 0
@@ -909,7 +909,7 @@ The button will have the following code in its Pointer click event:
 rooms.remove(this.getRoom());
 pixiApp.ticker.speed = 1;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 room = @getRoom()
 rooms.remove room
@@ -946,7 +946,7 @@ var scoreText = 'Your score: ' + rooms.current.score + '\nHighscore: ' + localSt
 
 this.text = scoreText;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 if !('JettyCat_HighScore' of localStorage)
     localStorage['JettyCat_HighScore'] = rooms.current.score
@@ -981,7 +981,7 @@ This line:
 ```js
 var scoreText = 'Your score: ' + rooms.current.score + '\nHighscore: ' + localStorage['JettyCat_HighScore'];
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 scoreText = 'Your score: ' + rooms.current.score + '\nHighscore: ' + localStorage['JettyCat_HighScore']
 ```
@@ -1015,7 +1015,7 @@ u.wait(1000)
     });
 });
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # Remove the layer with score and a pause button
 rooms.remove rooms.current.mainUi

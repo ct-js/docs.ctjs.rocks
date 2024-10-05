@@ -60,7 +60,7 @@ Ct.js использует графическую библиотеку Pixi.js, 
 ```js
 this.addSpeed(speed, dir);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @addSpeed speed, dir
 ```
@@ -103,7 +103,7 @@ if (this.health <= 0) {
     this.kill = true;
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 if @health <= 0
     @kill = yes
@@ -177,7 +177,7 @@ var sprite = new PIXI.Sprite(res.getTexture('Enemy', 0));
 // То же, что и this.addChild(healthBar); this.addChild(sprite);
 this.addChild(healthBar, sprite);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 healthBar = templates.copy 'HealthBar'
 healthBar.x = 0
@@ -234,7 +234,7 @@ sprite = new PIXI.Sprite texture
 ```js
 this.text.text = 'Новый текст!';
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @text.text = 'Новый текст!'
 ```
@@ -261,7 +261,7 @@ if (rooms.current.money >= 50) {
 // Более короткий способ сделать то же самое:
 this.disabled = rooms.current.money < 50;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 if rooms.current.money >= 50
     @disabled = false
@@ -315,7 +315,7 @@ fetch('https://yourServer.com', {
     rooms.switch('Login_NetworkError');
 });
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 login = templates.list['LoginField'][0].text
 password = templates.list['PasswordField'][0].text
@@ -366,7 +366,7 @@ this.wavePhase += u.time * 0.5;
 // 32 — это амплитуда движения.
 this.tilePosition.x = Math.sin(this.wavePhase) * 32;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # В событии создания
 @wavePhase = 0
@@ -390,7 +390,7 @@ this.tilePosition.x = Math.sin(this.wavePhase) * 32;
 ```js
 this.count = rooms.current.lives;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @count = rooms.current.lives
 ```

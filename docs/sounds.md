@@ -15,7 +15,7 @@ Most of the time, you will play a sound like this:
 ```js
 sounds.play('MySound');
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 sounds.play 'MySound'
 ```
@@ -27,7 +27,7 @@ If the sound is a music track, you can loop it like this:
 ```js
 sounds.play('MyTrack', { loop: true });
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 soundSettings =
     loop: true
@@ -67,7 +67,7 @@ Plays a 3D sound in the specified position. You can set the `position` argument 
 ```js
 sounds.playAt('MySound', this);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 sounds.playAt 'MySound', this
 ```
@@ -80,7 +80,7 @@ sounds.playAt 'MySound', this
 ```js
 sounds.playAt('MySound', {x: this.x, y: this.y});
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 pos =
   x: @x
@@ -157,7 +157,7 @@ Argument | Type | Description
 // Fade-out all sounds to volume 0 (by default) in 1000 milliseconds (by default).
 sounds.fade();
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # Fade-out all sounds to volume 0 (by default) in 1000 milliseconds (by default).
 sounds.fade
@@ -170,7 +170,7 @@ sounds.fade
 // Fade-in 'MySound' to volume 1 in 2000 milliseconds.
 sounds.fade('MySound', 1, 2000);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # Fade-in 'MySound' to volume 1 in 2000 milliseconds.
 sounds.fade 'MySound', 1, 2000
@@ -236,7 +236,7 @@ sounds.addReverb('MySound', 5, 7);
 // If the sound is not already playing, it won't be played until you use the 'play' method.
 sounds.play('MySound');
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 sounds.addReverb 'MySound', 5, 7
 # If the sound is not already playing, it won't be played until you use the 'play' method.
@@ -272,7 +272,7 @@ sounds.load('BackgroundMusic')
     rooms.switch('MainRoom');
 });
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 sounds.load 'BackgroundMusic'
 .then =>
@@ -296,7 +296,7 @@ Promise.all(soundsToLoad).then(() => {
     rooms.switch('MainRoom');
 });
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 soundsToLoad = []
 

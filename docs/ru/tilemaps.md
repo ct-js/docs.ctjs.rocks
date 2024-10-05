@@ -97,7 +97,7 @@ for (let i = 0; i < 10; i++) {
 }
 this.tilemap.cache();
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @tilemap = tilemaps.create(-100)
 i = 0
@@ -134,7 +134,7 @@ tilemap.cache();
 place.enableTilemapCollisions(tilemap, 'Solid');
 ```
 
-@tab CoffeeScript
+@tab Civet
 ```coffee
 tilemap = tilemaps.create -100
 noise.setSeed() # Случайно перемешать семя на каждом запуске

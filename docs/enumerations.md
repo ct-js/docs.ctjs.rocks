@@ -4,7 +4,7 @@ Strictly speaking, enumerations is a type from TypeScript language you can edit 
 
 ![](./images/enumerations_example.png)
 
-If you are using JavaScript, TypeScript, or CoffeeScript in your project, the values of enumerations will be accessible as `YourEnumerationName.VariantName`, like in the enumeration editor. For Catnip, a special block in the Properties category is created for each enumeration in your Project.
+If you are using JavaScript, TypeScript, or Civet in your project, the values of enumerations will be accessible as `YourEnumerationName.VariantName`, like in the enumeration editor. For Catnip, a special block in the Properties category is created for each enumeration in your Project.
 
 ## Mapping Enumerations Back
 

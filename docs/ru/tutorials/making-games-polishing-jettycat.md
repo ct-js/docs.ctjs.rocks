@@ -33,7 +33,7 @@ if (!this.pressed) {
     });
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 if not @pressed
     @pressed = yes
@@ -62,7 +62,7 @@ if not @pressed
 ```js
 transition.circleIn(500, 0x446ADB);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 transition.circleIn 500, 0x446ADB
 ```
@@ -92,7 +92,7 @@ tween.add({
     isUi: true
 });
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @alpha = 0
 
@@ -133,7 +133,7 @@ if (!this.pressed) {
     });
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 if not @pressed
     @pressed = yes
@@ -187,7 +187,7 @@ if (!this.pressed) {
     });
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 if not @pressed
     @pressed = yes
@@ -246,7 +246,7 @@ Ct.js позволяет визуально создавать эффекты ч
 ```js
 emitters.fire('StarBurst', this.x, this.y);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 emitters.fire 'StarBurst', @x, @y
 ```
@@ -286,7 +286,7 @@ emitters.fire 'StarBurst', @x, @y
 ```js
 this.jet = emitters.follow(this, 'Jet');
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @jet = emitters.follow this, 'Jet'
 ```
@@ -313,7 +313,7 @@ this.jet = emitters.follow(this, 'Jet');
 ```js
 this.jet.pause();
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @jet.pause()
 ```
@@ -328,7 +328,7 @@ this.jet.pause();
 ```js
 this.jet.resume();
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @jet.resume()
 ```
@@ -355,7 +355,7 @@ this.jet.resume();
 ```js
 this.angle = -this.vspeed;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @angle = -@vspeed
 ```
@@ -370,7 +370,7 @@ this.angle = -this.vspeed;
 ```js
 this.angle = -this.vspeed / 200;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @angle = -@vspeed / 200
 ```
@@ -389,7 +389,7 @@ this.angle = -this.vspeed / 200;
 ```js
 this.wiggleTime = 0;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @wiggleTime = 0
 ```
@@ -405,7 +405,7 @@ this.wiggleTime = 0;
 this.wiggleTime += u.time * 12;
 this.angle = Math.sin(this.wiggleTime) * 5;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @wiggleTime += u.time * 12
 @angle = (Math.sin @wiggleTime) * 5
@@ -435,7 +435,7 @@ this.pulsePhase += u.time * 12;
 
 this.scale.x = this.scale.y = 1 + Math.sin(this.pulsePhase) * 0.1;
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @pulsePhase += u.time * 12
 @scale.x = @scale.y = 1 + (Math.sin @pulsePhase) * 0.1

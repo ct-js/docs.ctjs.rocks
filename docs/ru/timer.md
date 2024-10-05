@@ -17,7 +17,7 @@ timer.add(1000, 'test');
 // или:
 new CtTimer(1000, 'test');
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # Добавить таймер
 timer.add 1000, 'test'
@@ -54,7 +54,7 @@ timer.reject();
 // Активировать таймер вручную
 timer.resolve();
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # Создать новый таймер и сохранить его в переменной `timer`
 # Записать "Готово!" когда пройдет 2,5 секунды

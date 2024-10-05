@@ -28,7 +28,7 @@ Let's see them all in action (note how the trail reacts to the robot's movement)
 // The code from the "fire" example
 emitters.fire('HeartTrail', this.x, this.y - 70);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # The code from the "fire" example
 emitters.fire 'HeartTrail', @x, @y - 70
@@ -46,7 +46,7 @@ emitters.follow(this, 'HeartTrail', {
     }
 });
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # The "follow" example
 followSettings =
@@ -68,7 +68,7 @@ emitters.append(this, 'HeartTrail', {
     }
 });
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # The "append" example
 appendSettings =
@@ -111,7 +111,7 @@ emitters.follow(this, 'Debuff', {
     depth: this.zIndex
 });
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 followSettings =
     scale:
@@ -142,7 +142,7 @@ this.shield = emitters.append(this, 'BubbleEffect');
 this.shield.stop();
 this.shield = null; // Forget about the effect to free memory
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # Let's create a shield bubble!
 @shield = emitters.append this, 'BubbleEffect'

@@ -28,7 +28,7 @@ if ('heroName' in localStorage) { // было что-то сохранено р�
     requestNameAndTitle();
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # Запись значений в localStorage
 localStorage.heroName = 'Isaac Newcat';
@@ -59,7 +59,7 @@ this.level = localStorage.heroLevel;
 this.level += 1;
 console.log(this.level);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # НЕПРАВИЛЬНЫЙ ПРИМЕР
 localStorage.heroLevel = 15
@@ -88,7 +88,7 @@ this.level = Number(localStorage.heroLevel);
 this.level += 1;
 console.log(this.level);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # ПРАВИЛЬНЫЙ ПРИМЕР
 localStorage.heroLevel = 15
@@ -116,7 +116,7 @@ localStorage.hardcoreMode = false;
 this.startTime = new Date(localStorage.gameStartTime);
 this.hardcoreMode = localStorage.hardcoreMode === 'true';
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 localStorage.gameStartTime = new Date()
 localStorage.hardcoreMode = false
@@ -166,7 +166,7 @@ localStorage.heroInventory = JSON.stringify(inventory);
 // Load the inventory from the previously saved string
 this.inventory = JSON.parse(localStorage.heroInventory);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 inventory = [
     {

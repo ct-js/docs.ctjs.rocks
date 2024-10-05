@@ -23,7 +23,7 @@ if ('heroName' in localStorage) { // was anything saved before?
     requestNameAndTitle();
 }
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # Writing values to localStorage
 localStorage.heroName = 'Isaac Newcat'
@@ -54,7 +54,7 @@ this.level = localStorage.heroLevel;
 this.level += 1;
 console.log(this.level);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # WRONG WAY
 localStorage.heroLevel = 15
@@ -82,7 +82,7 @@ this.level = Number(localStorage.heroLevel);
 this.level += 1;
 console.log(this.level);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 # BETTER WAY
 localStorage.heroLevel = 15
@@ -110,7 +110,7 @@ localStorage.hardcoreMode = false;
 this.startTime = new Date(localStorage.gameStartTime);
 this.hardcoreMode = localStorage.hardcoreMode === 'true';
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 localStorage.gameStartTime = new Date()
 localStorage.hardcoreMode = false
@@ -160,7 +160,7 @@ localStorage.heroInventory = JSON.stringify(inventory);
 // Load the inventory from the previously saved string
 this.inventory = JSON.parse(localStorage.heroInventory);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 inventory = [
     {

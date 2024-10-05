@@ -92,7 +92,7 @@ for (let i = 0; i < 10; i++) {
 }
 this.tilemap.cache();
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 @tilemap = tilemaps.create(-100)
 i = 0
@@ -128,7 +128,7 @@ for (var x = 0; x < camera.width / 64; x++) {
 tilemap.cache();
 place.enableTilemapCollisions(tilemap, 'Solid');
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 tilemap = tilemaps.create -100
 noise.setSeed() # Randomize the seed on each start

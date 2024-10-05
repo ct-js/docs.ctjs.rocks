@@ -20,7 +20,7 @@ multiline.wordWrap = true;
 multiline.wordWrapWidth = 320;
 this.details = new PIXI.Text(this.info, multiline);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 multiline = styles.get 'Label', yes
 multiline.wordWrap = yes
@@ -42,7 +42,7 @@ var multiline = styles.get('Label', {
 });
 this.details = new PIXI.Text(this.info, multiline);
 ```
-@tab CoffeeScript
+@tab Civet
 ```coffee
 additionalOpts =
     wordWrap: true
