@@ -1043,7 +1043,9 @@ rooms.remove(rooms.current.mainUi);
 u.wait(1000)
 .then(() => {
     # Создать новую комнату
-    this.createRoom 'UI_OhNo';
+    rooms.append('UI_OhNo', {
+        isUi: true
+    });
 })
 ```
 @tab Catnip
