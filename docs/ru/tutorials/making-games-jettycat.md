@@ -1031,20 +1031,23 @@ rooms.remove(rooms.current.mainUi);
 u.wait(1000)
 .then(() => {
     // Создать новую комнату
-    this.createRoom('UI_OhNo');
-})
+    rooms.append('UI_OhNo', {
+        isUi: true
+    });
+});
 ```
 @tab CoffeeScript
 ```coffee
 # Удалить слой с кнопкой паузы
-rooms.remove(rooms.current.mainUi);
+rooms.remove rooms.current.mainUi
 
-# Подождать 1000 миллисекунд (за один секунду)
-u.wait(1000)
-.then(() => {
+# Подождать 1000 миллисекунд (одну секунду)
+u.wait 1000
+.then =>
     # Создать новую комнату
-    this.createRoom 'UI_OhNo';
-})
+    settings =
+        isUi: true
+    rooms.append 'UI_OhNo', settings
 ```
 @tab Catnip
 <catnip-block class=" command   note selected">  <img src="/assets/icons/message-circle.svg" class="feather"><span class="catnip-block-aTextLabel">Note</span>      <textarea value="Remove the layer with score and a pause button" style="height: 21px;" readonly="readonly"></textarea>         </catnip-block>
