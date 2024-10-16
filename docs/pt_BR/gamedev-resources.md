@@ -53,7 +53,7 @@
 
 ### Animação
 
-* [DragonBones](http://dragonbones.com/) — crie animações por ossos e importe as mesmas para o ct.js. Leia mais sobre como trabalhar com animações no DragonBones em [nosso tutorial](/skeletal-animation.html).
+* [DragonBones](http://dragonbones.com/) — crie animações por ossos e importe as mesmas para o ct.js. Leia mais sobre como trabalhar com animações no DragonBones em [nosso tutorial](./skeletal-animation.md).
 * [Synfig](https://www.synfig.org/) — Um sosftware de animação 2D de código aberto.
 
 ### Editores gráficos

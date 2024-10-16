@@ -10,7 +10,7 @@ Gets the horizontal part of a vector.
 
 #### Example: Spawn a bullet relative to the hero sprite
 
-::: code-tabs#tutorial
+::: tabs#tutorial
 @tab JavaScript
 ```js
 var dx = u.ldx(40, this.angle),
@@ -25,11 +25,74 @@ dy = u.ldy 40, @angle
 bullet = templates.copy 'Bullet', this + dx, this + dy
 bullet.direction = @angle
 ```
+@tab Catnip
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">Set</span>          <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">dx</span>               </catnip-block>  <span class="catnip-block-aTextLabel">value</span>                    <catnip-block class=" computed number wildcard  ">  <img src="/assets/icons/tool.svg" class="feather"><span class="catnip-block-aTextLabel">x length of a vector</span>           <input type="text" class="catnip-block-aConstantInput number " style=" width: 2.5ch;    " value="40" readonly="readonly">          <catnip-block class=" computed number number  ">  <img src="/assets/icons/droplet.svg" class="feather"><span class="catnip-block-aTextLabel">texture rotation</span>     </catnip-block>      </catnip-block>      </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">Set</span>          <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">dy</span>               </catnip-block>  <span class="catnip-block-aTextLabel">value</span>                    <catnip-block class=" computed number wildcard  ">  <img src="/assets/icons/tool.svg" class="feather"><span class="catnip-block-aTextLabel">y length of a vector</span>           <input type="text" class="catnip-block-aConstantInput number " style=" width: 2.5ch;    " value="40" readonly="readonly">          <catnip-block class=" computed number number  ">  <img src="/assets/icons/droplet.svg" class="feather"><span class="catnip-block-aTextLabel">texture rotation</span>     </catnip-block>      </catnip-block>      </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">Copy a template</span>           <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/image.svg" class="feather"><span>Star</span></span>          <catnip-block class=" computed number number  ">            <catnip-block class=" computed number number  ">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">x</span>     </catnip-block>  <span class="catnip-block-aTextLabel">+</span>                    <catnip-block class=" computed wildcard number userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">dx</span>               </catnip-block>      </catnip-block>           <catnip-block class=" computed number number  ">            <catnip-block class=" computed number number  ">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">y</span>     </catnip-block>  <span class="catnip-block-aTextLabel">+</span>                    <catnip-block class=" computed wildcard number userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">dy</span>               </catnip-block>      </catnip-block>     <div class="catnip-block-aFiller"></div>        <span class="catnip-block-aTextLabel">store in</span>                    <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">projectile</span>               </catnip-block>          <div class="catnip-block-Options"> <div class="catnip-block-anOptionsToggle"> <img src="/assets/icons/chevron-down.svg" class="feather"><span>Advanced</span> <img src="/assets/icons/chevron-down.svg" class="feather"> </div>    </div>       </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">Write</span>          <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">projectile</span>               </catnip-block>  <span class="catnip-block-aTextLabel">property</span>                     <input type="text" class="catnip-block-aConstantInput string " style=" width: 9.5ch;    " value="direction" readonly="readonly"> <span class="catnip-block-aTextLabel">value</span>                    <catnip-block class=" computed number wildcard  ">  <img src="/assets/icons/droplet.svg" class="feather"><span class="catnip-block-aTextLabel">texture rotation</span>     </catnip-block>      </catnip-block>
 :::
 
 ### `u.ldy(length, direction)` and `u.lengthDirY(length, direction)`
 
 Gets the vertical part of a vector.
+
+### `u.distance(from, to)`
+
+Returns the distance from one object to another. The objects must have `x` and `y` coordinates. (Copies do have them.)
+
+#### Example: Get the distance between the current copy and the player's character
+
+::: tabs#tutorial
+@tab JavaScript
+```js
+var player = templates.list['Hero'][0];
+if (templates.valid(player)) {
+    console.log(u.distance(this, player));
+}
+```
+@tab CoffeeScript
+```coffee
+player = templates.list['Hero'][0]
+if templates.valid player
+    console.log u.distance(this, player)
+```
+@tab Catnip
+<catnip-block class=" command    selected">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">Set</span>          <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">player</span>               </catnip-block>  <span class="catnip-block-aTextLabel">value</span>                    <catnip-block class=" computed wildcard wildcard  ">  <img src="/assets/icons/grid.svg" class="feather"><span class="catnip-block-aTextLabel">get array element</span>          <catnip-block class=" computed wildcard wildcard  ">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">templates list</span>           <span class="catnip-block-aConstantInput menu wildcard ">   <img src="/assets/icons/image.svg" class="feather"><span>Hero</span></span>     </catnip-block>  <span class="catnip-block-aTextLabel">at</span>                     <input type="text" class="catnip-block-aConstantInput number " style=" width: 1.5ch;    " value="0" readonly="readonly">     </catnip-block>      </catnip-block>
+<catnip-block class=" command    selected">  <img src="/assets/icons/help-circle.svg" class="feather"><span class="catnip-block-aTextLabel">If</span>          <catnip-block class=" computed boolean boolean  ">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">is valid</span>          <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">player</span>               </catnip-block>      </catnip-block>         <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/terminal.svg" class="feather"><span class="catnip-block-aTextLabel">Log to console</span>          <catnip-block class=" computed number wildcard  ">  <img src="/assets/icons/tool.svg" class="feather"><span class="catnip-block-aTextLabel">distance between</span>          <catnip-block class=" computed wildcard wildcard constant ">  <img src="/assets/icons/crosshair.svg" class="feather"><span class="catnip-block-aTextLabel">this</span>     </catnip-block>           <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">player</span>               </catnip-block>      </catnip-block>      </catnip-block>    </catnip-block-list> </div>        </catnip-block>
+
+:::
+
+### `u.direction(from, to)`
+
+Returns the direction of a vector that goes from one object to another, in degrees. The objects must have `x` and `y` coordinates. (Copies do have them.)
+
+#### Example: Get the direction from the current copy to the player's character and shoot a projectile
+
+::: tabs#tutorial
+@tab JavaScript
+```js
+var player = templates.list['Hero'][0];
+if (templates.valid(player)) {
+    var projectile = templates.copy('Laser', this.x, this.y);
+    projectile.direction = u.direction(this, player);
+}
+```
+@tab CoffeeScript
+```coffee
+player = templates.list['Hero'][0]
+if templates.valid player
+    projectile = templates.copy 'Laser', @x, @y
+    projectile.direction = u.direction this, player
+```
+@tab Catnip
+<catnip-block class=" command    selected">  <img src="/assets/icons/code-alt.svg" class="feather"><span class="catnip-block-aTextLabel">Set</span>          <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">player</span>               </catnip-block>  <span class="catnip-block-aTextLabel">value</span>                    <catnip-block class=" computed wildcard wildcard  ">  <img src="/assets/icons/grid.svg" class="feather"><span class="catnip-block-aTextLabel">get array element</span>          <catnip-block class=" computed wildcard wildcard  ">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">templates list</span>           <span class="catnip-block-aConstantInput menu wildcard ">   <img src="/assets/icons/image.svg" class="feather"><span>PotatoCat</span></span>     </catnip-block>  <span class="catnip-block-aTextLabel">at</span>                     <input type="text" class="catnip-block-aConstantInput number " style=" width: 1.5ch;    " value="0" readonly="readonly">     </catnip-block>      </catnip-block>
+
+<catnip-block class=" command    selected">  <img src="/assets/icons/help-circle.svg" class="feather"><span class="catnip-block-aTextLabel">If</span>          <catnip-block class=" computed boolean boolean  ">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">is valid</span>          <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">player</span>               </catnip-block>      </catnip-block>         <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">Copy a template</span>           <span class="catnip-block-aConstantInput menu string ">   <img src="/assets/icons/image.svg" class="feather"><span>Laser</span></span>          <catnip-block class=" computed number number  ">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">x</span>     </catnip-block>           <catnip-block class=" computed number number  ">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">y</span>     </catnip-block>     <div class="catnip-block-aFiller"></div>        <span class="catnip-block-aTextLabel">store in</span>                    <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">projectile</span>               </catnip-block>          <div class="catnip-block-Options"> <div class="catnip-block-anOptionsToggle"> <img src="/assets/icons/chevron-down.svg" class="feather"><span>Advanced</span> <img src="/assets/icons/chevron-down.svg" class="feather"> </div>    </div>       </catnip-block>   <catnip-block class=" command void   ">  <img src="/assets/icons/template.svg" class="feather"><span class="catnip-block-aTextLabel">With copy</span>          <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">projectile</span>               </catnip-block>         <div class="catnip-block-Blocks"> <catnip-block-list>   <catnip-block class=" command    ">  <img src="/assets/icons/move.svg" class="feather"><span class="catnip-block-aTextLabel">Set direction to</span>          <catnip-block class=" computed number number  ">  <img src="/assets/icons/tool.svg" class="feather"><span class="catnip-block-aTextLabel">direction</span>          <catnip-block class=" computed wildcard wildcard constant ">  <img src="/assets/icons/crosshair.svg" class="feather"><span class="catnip-block-aTextLabel">this</span>     </catnip-block>           <catnip-block class=" computed wildcard wildcard userdefined ">  <img src="/assets/icons/clock.svg" class="feather"> <span class="catnip-block-aTextLabel">player</span>               </catnip-block>      </catnip-block>      </catnip-block>    </catnip-block-list> </div>        </catnip-block>    </catnip-block-list> </div>        </catnip-block>
+:::
 
 ### `u.pdn(x1, y1, x2, y2)` and `u.pointDirection(x1, y1, x2, y2)`
 
@@ -115,7 +178,7 @@ Note that `this.move()` already uses this value, so there is no need to premulti
 
 ### `u.timeUi`
 
-Similarly to `u.time`, this property also measures the time between the previous and current frames, in seconds, but this value ignores the effects of slow-mo and game pause. (See about pausing the game and changing game speed [here](/tips-n-tricks/game-pause.md).)
+Similarly to `u.time`, this property also measures the time between the previous and current frames, in seconds, but this value ignores the effects of slow-mo and game pause. (See about pausing the game and changing game speed [here](./tips-n-tricks/game-pause.md).)
 
 ### `u.delta`
 
@@ -128,7 +191,7 @@ Use `u.time` instead.
 
 ### `u.deltaUi`
 
-Similar to `u.delta`, this property also measures the time between the previous and current frames, but this value ignores the effects of slow-mo and game pause. (See about pausing the game and changing game speed [here](/tips-n-tricks/game-pause.md).)
+Similar to `u.delta`, this property also measures the time between the previous and current frames, but this value ignores the effects of slow-mo and game pause. (See about pausing the game and changing game speed [here](./tips-n-tricks/game-pause.md).)
 
 :::warning This is a deprecated property.
 Use `u.timeUi` instead.

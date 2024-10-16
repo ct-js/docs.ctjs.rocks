@@ -79,7 +79,7 @@ this.alpha = 0.5;
 Instead of `ct.room.width` and `ct.room.height` use `ct.viewWidth` and `ct.viewHeight` only. These are different concepts now, and `ct.room.width` and `ct.room.height` changes over time.
 
 ::: warning
-Stuff changed in v1.3. [See the migration guide](/migration-1.2to1.3.html). Shortly, `ct.room.width` is `ct.camera.width` now, and `ct.room.height` is `ct.camera.height`, but there are nuances once you start scaling or rotating the camera.
+Stuff changed in v1.3. [See the migration guide](./migration-1-2to1-3.md). Shortly, `ct.room.width` is `ct.camera.width` now, and `ct.room.height` is `ct.camera.height`, but there are nuances once you start scaling or rotating the camera.
 :::
 
 ### Timers
@@ -193,7 +193,7 @@ For working with different resolutions, you should now use `ct.viewWidth` and `c
 
 ### Keyboard and mouse support
 
-ct.js now uses Actions for mapping a user input with game events. You can read about Actions [here](/actions.html). Because of that, `ct.mouse` dropped out of the core and is now a catmod.
+ct.js now uses Actions for mapping a user input with game events. You can read about Actions [here](../actions.md). Because of that, `ct.mouse` dropped out of the core and is now a catmod.
 
 All old projects will automatically work with `ct.mouse.legacy` and, if needed, `ct.keyboard.legacy`. They reflect the previous behaviour of these modules and should not cause compatibility issues.
 

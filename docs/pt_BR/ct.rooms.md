@@ -56,7 +56,7 @@ Adiciona uma nova room a fase atual e a coloca depois ou antes de todas as copie
 
 O parâmetro `ext` pode ser usado aplicar prâmetros adicionais a nova room. Por exemplo, se você chamar `ct.rooms.append('Background', {color: 0x446ADB})`, então a room "Background" terá a propriedade `this.color` disponível em seu evento "On Create" e nos  outros também.
 
-Para criar uma [camada de UI](/game-and-ui-coordinates.html), use este código:
+Para criar uma [camada de UI](./game-and-ui-coordinates.md), use este código:
 
 ```js
 ct.rooms.append('YourUiRoom', {
@@ -88,4 +88,4 @@ O resultado dessa função não é atualizada e deve ser usada apenas durante o 
 
 ## Gerenciando o viewport atual
 
-Desde a versão 1.3, que viewport é gerenciado pelo objeto especial [ct.camera](/ct.camera.html).
+Desde a versão 1.3, que viewport é gerenciado pelo objeto especial [ct.camera](./ct.camera.md).

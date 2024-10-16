@@ -12,12 +12,12 @@ By using these coordinates, you can separate UI and gameplay layers, reuse your 
 
 ## Entering the UI Space
 
-Any new rooms appended or prepended to the main one can be put in UI coordinates with `rooms.append('NameOfTheRoom', {isUi: true})` and `rooms.append('NameOfTheRoom', {isUi: true})` (see the corresponding reference for the methods [here](/rooms.html)). This one line is all you need!
+Any new rooms appended or prepended to the main one can be put in UI coordinates with `rooms.append('NameOfTheRoom', {isUi: true})` and `rooms.append('NameOfTheRoom', {isUi: true})` (see the corresponding reference for the methods [here](../rooms.md)). This one line is all you need!
 
 ::: tip
 Technically, ct.js will transform each layer in the stage depending on the camera's position, and UI layers will be left as is. This means that Pixi's world coordinates are actually UI coordinates, which is counter-intuitive, but that's the way the camera object is coded. So, don't use Pixi's world coordinates.
 
-What does it mean for you? Firstly, you can't reposition those rooms that use game coordinates by yourself, as they are managed by `camera` and get overridden. You can manipulate the camera instead — it has some cool features to simplify viewport management. More info on that in the [Viewport management](/tips-n-tricks/viewport-management.md) docs.
+What does it mean for you? Firstly, you can't reposition those rooms that use game coordinates by yourself, as they are managed by `camera` and get overridden. You can manipulate the camera instead — it has some cool features to simplify viewport management. More info on that in the [Viewport management](./viewport-management.md) docs.
 
 Secondly, you can reposition UI layers! This can be used to create widgets that move on the screen, and for slide animations.
 :::

@@ -1,7 +1,7 @@
 # ct.camera
 
 ::: tip Hey,
-Essa página descreve os métodos e parâmetros do objeto `ct.camera` em forma de referência. Você pode aprender mais sobre técnicas e uso de forma menos formal na [página "Trabalhando com o Viewport"](/viewport-management.html).
+Essa página descreve os métodos e parâmetros do objeto `ct.camera` em forma de referência. Você pode aprender mais sobre técnicas e uso de forma menos formal na [página "Trabalhando com o Viewport"](./viewport-management.md).
 :::
 
 ## Geometria da Câmera

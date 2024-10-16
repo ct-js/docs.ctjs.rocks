@@ -1,6 +1,6 @@
 # inputs, actions
 
-This module (`inputs`) allows you to manipulate [Actions](/actions.html). You can create, modify, or delete new actions during the game.
+This module (`inputs`) allows you to manipulate [Actions](./actions.md). You can create, modify, or delete new actions during the game.
 
 `actions` stores existing actions. If you have created an action `Move`, then it will be available at `actions.Move`. Each of them is an instance of JS class `CtAction`.
 

@@ -1,6 +1,6 @@
 # ct.inputs, ct.actions
 
-Esse módulo (`ct.inputs`) permite manipular [Ações](/actions.html). Você pode criar novas ações durante o jogo, modificando ou deletando as mesmas.
+Esse módulo (`ct.inputs`) permite manipular [Ações](./actions.md). Você pode criar novas ações durante o jogo, modificando ou deletando as mesmas.
 
 `ct.actions` armazena as ações existentes. Se você criou uma ação `Move`, Então ela estará disponível em `ct.actions.Move`. Cada uma delas é uma instância da classe JS `CtAction`.
 
