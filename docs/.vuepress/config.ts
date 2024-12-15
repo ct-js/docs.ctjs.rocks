@@ -1,23 +1,19 @@
 import { defineUserConfig } from '@vuepress/cli';
-import { viteBundler } from '@vuepress/bundler-vite'
+import { viteBundler } from '@vuepress/bundler-vite';
 
-import { hope } from 'vuepress-theme-hope';
-
-import themeConfig from './themeConfig';
+import theme from './theme.js';
 
 export default defineUserConfig({
   title: 'ct.js Documentation',
   description: 'Docs, tutorials, guides',
-  bundler: viteBundler({
-    viteOptions: {},
-    vuePluginOptions: {},
-  }),
-  plugins: [],
   base: '/',
   head: [
-    ['script', {
-      src: '/themeSwitcher.js'
-    }],
+    [
+      'script',
+      {
+        src: '/themeSwitcher.js',
+      },
+    ],
     ['link', { rel: 'icon', href: '/assets/img/logo.png' }],
   ],
 
@@ -30,12 +26,12 @@ export default defineUserConfig({
     '/ru/': {
       lang: 'ru-Ru',
       title: 'Документация к игровому движку ct.js',
-      description: 'Референсы, туториалы, гайды'
+      description: 'Референсы, туториалы, гайды',
     },
     '/pt_BR/': {
       lang: 'pt-BR',
       title: 'Documentação ct.js',
-      description: 'Docs, tutoriais, guias'
+      description: 'Docs, tutoriais, guias',
     },
     '/it/': {
       lang: 'it',
@@ -44,11 +40,15 @@ export default defineUserConfig({
     },
   },
 
-  theme: hope(themeConfig),
   markdown: {
     toc: {
       level: [2, 3, 4],
     },
   },
-  shouldPrefetch: false
+
+  bundler: viteBundler(),
+
+  theme,
+
+  shouldPrefetch: false,
 });
