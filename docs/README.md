@@ -34,7 +34,9 @@ highlights:
   - header: Get the cheatsheet
     image: /assets/img/CheatsheetThumbnail.png
     description:
-      '<p>Available in English, Russian, Spanish and Brazilian Portuguese languages.</p> <a class="route-link auto-link vp-hero-action primary no-external-link-icon" href="https://comigo.itch.io/ct-cheat-sheet" aria-label="Download the cheatsheet">Download the cheatsheet</a>'
+      'Available in English, Russian, Spanish and Brazilian Portuguese languages.
+      <br/>
+      <a class="route-link auto-link vp-hero-action primary no-external-link-icon" href="https://comigo.itch.io/ct-cheat-sheet" aria-label="Download the cheatsheet">Download the cheatsheet</a>'
   - header: Notable changes and additions in ct.js v5
     features:
     - title: Catnip — new visual programming language
@@ -49,8 +51,8 @@ highlights:
   - features:
     - title: Join the Community
       details:
-        '<p>Join our Discord server to meet other game developers, receive help, aid others, and share your creations. Alternatively, you can also post on our forum.</p> <a class="vp-link vp-hero-action primary" target="_blank" href="https://comigo.games/discord">Discord Server →</a> <a class="vp-link vp-hero-action primary" target="_blank" href="https://forum.ctjs.rocks/">Forum →</a>'
+        'Join our Discord server to meet other game developers, receive help, aid others, and share your creations. Alternatively, you can also post on our forum.<br><br><a class="vp-link vp-hero-action primary" target="_blank" href="https://comigo.games/discord">Discord Server →</a> <a class="vp-link vp-hero-action primary" target="_blank" href="https://forum.ctjs.rocks/">Forum →</a>'
     - title: Contribute
       details:
-        '<p>Set up a dev environment to run a local docs server and use simple Markdown syntax to write new tutorials and send fixes.</p> <p>You can also edit docs on Github — look for "Propose edits" links at the bottom of each page!</p> <a class="vp-link vp-hero-action primary" target="_blank" href="https://github.com/ct-js/docs.ctjs.rocks">Visit the repo →</a>'
+        'Set up a dev environment to run a local docs server and use simple Markdown syntax to write new tutorials and send fixes.<br>You can also edit docs on Github — look for "Propose edits" links at the bottom of each page!<br><br> <a class="vp-link vp-hero-action primary" target="_blank" href="https://github.com/ct-js/docs.ctjs.rocks">Visit the repo →</a>'
 ---
