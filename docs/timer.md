@@ -27,11 +27,16 @@ new CtTimer 1000, 'test'
 ```js
 // Create a new timer and remember it in a variable `timer`
 // Log "Done!" when it gets to 2.5 seconds
-var timer = timer.add(2500, 'test');
-timer.then(() => {
+timer.add(2500, 'test').then(() => {
     // Do something useful
-    hero.invincible = false;
-    console.log('Done!');
+    console.log(timer);
+    console.log('Done! timer test');
+})
+// or
+var timer1 = new CtTimer(1110, 'test');
+timer1.then(() => {
+    // Do something useful
+    console.log('Done! timer1');
 })
 // The `catch` part is not necessary. Without it, though, you will
 // see errors in the console when timers got interrupted,
