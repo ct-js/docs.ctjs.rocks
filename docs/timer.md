@@ -27,8 +27,8 @@ new CtTimer 1000, 'test'
 ```js
 // Create a new timer and remember it in a variable `timer`
 // Log "Done!" when it gets to 2.5 seconds
-var timer = timer.add(2500, 'test');
-timer.then(() => {
+var myTimer = timer.add(2500, 'test');
+myTimer.then(() => {
     // Do something useful
     hero.invincible = false;
     console.log('Done!');
@@ -44,20 +44,20 @@ timer.then(() => {
 });
 
 // Log how much time left
-console.log(timer.time);
+console.log(myTimer.time);
 
 // Stop the timer. It won't call the code inside `then(() => {})` clause
-timer.reject();
+myTimer.reject();
 
 // Trigger the timer manually
-timer.resolve();
+myTimer.resolve();
 ```
 @tab CoffeeScript
 ```coffee
 # Create a new timer and remember it in a variable `timer`
 # Log "Done!" when it gets to 2.5 seconds
-timer = timer.add 2500, 'test'
-timer.then =>
+myTimer = timer.add 2500, 'test'
+myTimer.then =>
     # Do something useful
     hero.invincible = false
     console.log 'Done!'
@@ -68,13 +68,13 @@ timer.then =>
     hero.invincible = false
 
 # Log how much time left
-console.log timer.time
+console.log myTimer.time
 
 # Stop the timer. It won't call the code inside `then => …` clause
-timer.reject()
+myTimer.reject()
 
 # Trigger the timer manually
-timer.resolve()
+myTimer.resolve()
 ```
 :::
 

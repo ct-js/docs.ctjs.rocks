@@ -31,8 +31,8 @@ new CtTimer 1000, 'test'
 ```js
 // Создать новый таймер и сохранить его в переменной `timer`
 // Записать "Готово!" когда пройдет 2,5 секунды
-var timer = timer.add(2500, 'test');
-timer.then(() => {
+var myTimer = timer.add(2500, 'test');
+myTimer.then(() => {
     // Сделать что-то полезное
     hero.invinvible = false;
     console.log('Готово!');
@@ -46,20 +46,20 @@ timer.then(() => {
 });
 
 // Записать оставшееся время
-console.log(timer.time);
+console.log(myTimer.time);
 
 // Остановить таймер. Он не вызовет код внутри блока `then(() => …)`
-timer.reject();
+myTimer.reject();
 
 // Активировать таймер вручную
-timer.resolve();
+myTimer.resolve();
 ```
 @tab CoffeeScript
 ```coffee
 # Создать новый таймер и сохранить его в переменной `timer`
 # Записать "Готово!" когда пройдет 2,5 секунды
-timer = timer.add 2500, 'test'
-timer.then =>
+myTimer = timer.add 2500, 'test'
+myTimer.then =>
     # Сделать что-то полезное
     hero.invulnerable = false
     console.log 'Готово!'
@@ -69,13 +69,13 @@ timer.then =>
     hero.invulnerable = false
 
 # Записать оставшееся время
-console.log timer.time
+console.log myTimer.time
 
 # Остановить таймер. Он не вызовет код внутри блока `then => …`
-timer.reject()
+myTimer.reject()
 
 # Активировать таймер вручную
-timer.resolve()
+myTimer.resolve()
 ```
 :::
 
@@ -159,5 +159,3 @@ timer.resolve()
 Отражает `CtTimer.promise.catch()`.
 
 Привязывает коллбэки для отклонения внутреннего Promise.
-
-
