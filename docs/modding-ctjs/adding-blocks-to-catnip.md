@@ -145,6 +145,7 @@ Built-in category names are:
 * Templates
 * Rooms
 * Behaviors
+* Tiles
 * Sounds
 * Styles
 * Backgrounds
@@ -178,7 +179,8 @@ declare interface IBlockPieceCode {
     type: 'code';
     key: string;
 }
-declare interface IBlockPieceArgument { // A chip for a constant value or a reference to an asset
+// A field for a constant value or a computed block
+declare interface IBlockPieceArgument {
     type: 'argument';
     key: string;
     typeHint: blockArgumentType;
@@ -191,19 +193,46 @@ declare interface IBlockPieceTextbox {
     key: string;
     default?: string;
 }
-declare interface IBlockPieceBlocks { // A block area.
+// An area where a user can add command blocks.
+declare interface IBlockPieceBlocks {
     type: 'blocks';
-    placeholder?: 'do nothing';
+    placeholder?: 'doNothing' | 'putBlocksHere';
     key: string;
 }
-declare interface IBlockPieceBreak { // A line break
+// A line break
+declare interface IBlockPieceBreak {
     type: 'break'
 }
-declare interface IBlockFiller { // Moves next blocks to the right
+// Moves next blocks to the right
+declare interface IBlockFiller {
     type: 'filler'
 }
-declare interface IBlockAsyncMarker { // Adds an Async icon
+// Adds an Async icon. Mark asynchronous functions with this icon.
+declare interface IBlockAsyncMarker {
     type: 'asyncMarker'
+}
+// Adds an icon denoting a context change. Mark functions that change `this` with this icon.
+declare interface IBlockContextMarker {
+    type: 'contextMarker'
+}
+declare interface IBlockOptions { // Adds a collapsible section for advanced settings
+    type: 'options';
+    buttonLabel?: string; // Custom label instead of the default "Advanced"
+    buttonLabelI18nKey?: string;
+    allowCustom?: boolean; // Whether to allows a user to add custom options
+    customKeysType?: blockArgumentType;
+    customValuesType?: blockArgumentType;
+    customHeader?: string; // Displayed above custom options
+    customHeaderI18nKey?: string;
+    options: {
+        key: string,
+        name: string,
+        i18nKey: string,
+        typeHint: blockArgumentType,
+        assets?: resourceType | 'action',
+        defaultConstant?: string,
+        required?: boolean
+    }[];
 }
 ```
 

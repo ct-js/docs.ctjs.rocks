@@ -209,19 +209,47 @@ declare interface IBlockPieceTextbox {
     key: string;
     default?: string;
 }
-declare interface IBlockPieceBlocks { // Область блока
+// Область для добавления блоков-команд
+declare interface IBlockPieceBlocks {
     type: 'blocks';
-    placeholder?: 'ничто не делать';
+    placeholder?: 'doNothing' | 'putBlocksHere';
     key: string;
 }
-declare interface IBlockPieceBreak { // Полосчатая линия
+// Перенос на новую строку
+declare interface IBlockPieceBreak {
     type: 'break'
 }
-declare interface IBlockFiller { // Перемещает следующие блоки вправо
+// Перемещает следующие блоки вправо
+declare interface IBlockFiller {
     type: 'filler'
 }
-declare interface IBlockAsyncMarker { // Добавляет иконку Async
+// Добавляет иконку для обозначения асинхронных блоков
+declare interface IBlockAsyncMarker {
     type: 'asyncMarker'
+}
+// Добавляет иконку для обозначения блоков, меняющие `this`.
+declare interface IBlockContextMarker {
+    type: 'contextMarker'
+}
+// Добавляет сворачиваемую секцию для дополнительных настроек
+declare interface IBlockOptions {
+    type: 'options';
+    buttonLabel?: string; // Заменяет стандартную надпись "Advanced" у кнопки сворачивания/разворачивания на другую.
+    buttonLabelI18nKey?: string;
+    allowCustom?: boolean; // Разрешать ли пользователям добавлять свои собственные опции
+    customKeysType?: blockArgumentType;
+    customValuesType?: blockArgumentType;
+    customHeader?: string; // Показывается над пользовательскими опциями
+    customHeaderI18nKey?: string;
+    options: {
+        key: string,
+        name: string,
+        i18nKey: string,
+        typeHint: blockArgumentType,
+        assets?: resourceType | 'action',
+        defaultConstant?: string,
+        required?: boolean
+    }[];
 }
 ```
 
@@ -238,4 +266,3 @@ declare interface IBlockAsyncMarker { // Добавляет иконку Async
 ## Установка иконки для блока категории
 
 В файл `module.json` можно добавить поле "icon" в раздел `main` и установить его на строку — имя одной из иконок, перечисленных в главном меню ct.js — Метаданные — Список иконок.
-
