@@ -5,17 +5,18 @@ These events are always executed in the following order:
 1. Core ct.js library runs;
 1. Modules get initialized;
 1. Custom scripts added at project settings are executed;
-1. room's `oncreate` event is called, which is emitted when a user starts a game or navigates to a new room;
-1. `oncreate` is applied for each copy;
+1. When a user starts a game or navigates to a new room:
+  1. **Creation** is applied for each copy placed in a room asset;
+  1. room's **Room start** event is called.
 1. then the main game loop starts:
-    1. `onstep` event is emitted for all the copies in the room;
-    1. `onstep` event for current room is called;
-    1. `ondestroy` is called for all the copies marked to be `kill`ed;
+    1. **Frame start** event is emitted for all the copies in the room;
+    1. **Frame start** event for current room is called;
+    1. **Destruction** is called for all the copies marked to be `kill`ed;
     1. all the copies are reordered then;
-    1. `ondraw` is called for all the copies;
-    1. `ondraw` is called for a room;
+    1. **Frame end** is called for all the copies;
+    1. **Frame end** is called for a room;
     1. input events are cleared. Waiting for a new game loop iteration.
-1. When a user moves to a new room, an `onleave` event is called for the latest room.
+1. When a user moves to a new room, a **Room end** event is called for the latest room.
 
 ## Call order with mod's injections
 
