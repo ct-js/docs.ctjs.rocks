@@ -81,7 +81,9 @@ To prevent it, you can use `this.moveBullet(cgroup)` to move the projectiles in 
 
 ![](./../images/movement/moveContinuous.png)
 
-`cgroup` is a collision group. There is also a form of the method `this.moveBullet(cgroup, precision)`, where `precision` is the length of each step in pixels. It is set to 1 by default. For fast-moving projectiles, though, you will often set it to a value somewhere between the radius and the diameter of this projectile.
+`cgroup` is a collision group name (or a collection of collision group names - `Set` or `Array`). There is also a form of the method `this.moveBullet(cgroup, precision)`, where `precision` is the length of each step in pixels. It is set to 1 by default. For fast-moving projectiles, though, you will often set it to a value somewhere between the radius and the diameter of this projectile.
+
+You can configure a helper `this.myCollidingGroups` property in the template editor, in the section `Colliding groups`. `this.myCollidingGroups` is a `Set` of colliding groups. In JavaScript/CoffeeScript projects, this property is never used unless the user explicitly passes it as a parameter to `this.moveBullet` or `this.moveSmart`. In Catnip projects, these groups are used as the groups the copy collides with when moved using the blocks ending in `...stopping at colliding groups`.
 
 :::warning
 Note that you should use `this.moveBullet(cgroup)` sparingly, setting its precision as well, as too many bullets using it will produce so many collision checks that it may slow down your game.
