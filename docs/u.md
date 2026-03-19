@@ -264,3 +264,47 @@ u.wait 1000
 ### `u.load(url: String, callback: Function)`
 
 Loads the specified script and calls the callback when it was loaded.
+
+### `u.eachEnumName(enum, predicate)`
+
+Loops over all enumeration's names. This is designed for the built-in Enumeration assets; for custom ones, its values must not be of string type.
+
+#### Example: Create a new text copy for each enumeration's entry
+
+::: code-tabs#tutorial
+@tab JavaScript
+```js
+u.eachEnumName(EResource, (name) => {
+  const copy = templates.copy('ResourceReadout');
+  copy.resource = EResource[name];
+  copy.text = name;
+});
+```
+@tab CoffeeScript
+```coffee
+u.eachEnumName EResource, (name) ->
+  copy = templates.copy 'ResourceReadout'
+  copy.resource = EResource[name]
+  copy.text = name
+```
+:::
+
+### `u.eachEnumValue(enum, predicate)`
+
+Loops over all enumeration's values. This is designed for the built-in Enumeration assets; for custom ones, its values must be integers type.
+
+#### Example: Show all values of an enumeration in console
+
+::: code-tabs#tutorial
+@tab JavaScript
+```js
+u.eachEnumValue(EnemyState, (state) => {
+    console.log(state);
+});
+```
+@tab CoffeeScript
+```coffee
+u.eachEnumValue EnemyState, (state) ->
+    console.log state
+```
+:::

@@ -261,3 +261,47 @@ u.wait 1000
 
 Загружает указанный скрипт и вызывает обратный вызов после его загрузки.
 
+
+### `u.eachEnumName(enum, predicate)`
+
+Итерирует по именам перечисления. Этот метод предназначен для использования со встроенными ассетами-перечислениями Ct.js; для пользовательских перечислений, их значения не должны быть строкового типа.
+
+#### Пример: Создание новой копии-текста для каждого элемента перечисления
+
+::: code-tabs#tutorial
+@tab JavaScript
+```js
+u.eachEnumName(EResource, (name) => {
+  const copy = templates.copy('ResourceReadout');
+  copy.resource = EResource[name];
+  copy.text = name;
+});
+```
+@tab CoffeeScript
+```coffee
+u.eachEnumName EResource, (name) ->
+  copy = templates.copy 'ResourceReadout'
+  copy.resource = EResource[name]
+  copy.text = name
+```
+:::
+
+### `u.eachEnumValue(enum, predicate)`
+
+Итерирует по значениям перечисления. Этот метод предназначен для использования со встроенными ассетами-перечислениями Ct.js; для пользовательских перечислений, их значения должны быть численного типа.
+
+#### Example: Show all values of an enumeration in console
+
+::: code-tabs#tutorial
+@tab JavaScript
+```js
+u.eachEnumValue(EnemyState, (state) => {
+    console.log(state);
+});
+```
+@tab CoffeeScript
+```coffee
+u.eachEnumValue EnemyState, (state) ->
+    console.log state
+```
+:::

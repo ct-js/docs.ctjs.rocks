@@ -70,3 +70,11 @@ A boolean property that can be changed to exit or enter fullscreen mode. It alwa
 ::: warning
 Always add a way to exit fullscreen mode, or you risk getting your players stuck in a window they can't escape!
 :::
+
+## settings.isDebug
+
+A boolean **read-only** property that indicates whether the game is running in debug mode — meaning that it runs in ct.js IDE. You can use "Force production tasks for debug exports" option in ct.js settings to override this property during development.
+
+## settings.isProduction
+
+A boolean **read-only** property that indicates whether the game is running in production mode — meaning that it runs in a browser or a desktop application. You can use "Force production tasks for debug exports" option in ct.js settings to override this property during development.

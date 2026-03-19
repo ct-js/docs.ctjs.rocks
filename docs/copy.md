@@ -402,3 +402,7 @@ The name of the template from which a Copy was created (a `string`).
 When using Containers, you can add other copies (or pixi.js objects) to a container, and they will be moved and transformed together. You will then position the copies inside the container relative to its x, y coordinates, not relative to the 0;0 point of the room.
 
 Note that collision catmods usually work only if copies are placed directly in a room, so you should generally use containers for UI elements only, or for cosmetic stuff.
+
+### `copy.placedInRoom`
+
+This property is `true` if the copy was preplaced in a room with a room editor and not dynamically spawned.
